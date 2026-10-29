@@ -1,0 +1,240 @@
+FileStream.Flush Method (System.IO) | Microsoft Learn
+Skip to main content
+Skip to in-page navigation
+Skip to Ask Learn chat experience
+This browser is no longer supported.
+Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+Download Microsoft Edge
+More info about Internet Explorer and Microsoft Edge
+Table of contents
+Exit editor mode
+Ask Learn
+Ask Learn
+Language
+csharp
+vb
+fsharp
+cpp
+Reading mode
+Table of contents
+Read in English
+Add
+Add to Plans
+Edit
+Copy Markdown
+Print
+Note
+Access to this page requires authorization. You can try
+signing in
+or
+changing directories
+.
+Access to this page requires authorization. You can try
+changing directories
+.
+File
+Stream.
+Flush Method
+Definition
+Namespace:
+System.IO
+Assemblies:
+mscorlib.dll, System.IO.FileSystem.dll
+Assemblies:
+netstandard.dll, System.Runtime.dll
+Assembly:
+System.IO.FileSystem.dll
+Assembly:
+System.Runtime.dll
+Assembly:
+mscorlib.dll
+Assembly:
+netstandard.dll
+Important
+Some information relates to prerelease product that may be substantially modified before it’s released. Microsoft makes no warranties, express or implied, with respect to the information provided here.
+Clears buffers for this stream and causes any buffered data to be written to the file.
+Overloads
+Name
+Description
+Flush()
+Clears buffers for this stream and causes any buffered data to be written to the file.
+Flush(Boolean)
+Clears buffers for this stream and causes any buffered data to be written to the file, and also clears all intermediate file buffers.
+Flush()
+Source:
+FileStream.cs
+Source:
+FileStream.cs
+Source:
+FileStream.cs
+Source:
+FileStream.cs
+Source:
+FileStream.cs
+Clears buffers for this stream and causes any buffered data to be written to the file.
+public:
+ override void Flush();
+public override void Flush();
+override this.Flush : unit -> unit
+Public Overrides Sub Flush ()
+Exceptions
+IOException
+An I/O error occurred.
+ObjectDisposedException
+The stream is closed.
+Examples
+This code example is part of a larger example provided for the
+Lock
+method.
+// Update the file.
+case 'W':
+    try
+    {
+        fileStream.Seek(textLength,
+            SeekOrigin.Begin);
+        fileStream.Read(
+            readText, textLength - 1, byteCount);
+        tempString = new String(
+            uniEncoding.GetChars(
+            readText, textLength - 1, byteCount));
+        recordNumber = int.Parse(tempString) + 1;
+        fileStream.Seek(
+            textLength, SeekOrigin.Begin);
+        fileStream.Write(uniEncoding.GetBytes(
+            recordNumber.ToString()),
+            0, byteCount);
+        fileStream.Flush();
+        Console.WriteLine(
+            "Record has been updated.");
+    }
+| 'W' ->
+    // Update the file.
+    try
+
+        fileStream.Seek(textLength, SeekOrigin.Begin) |> ignore
+        fileStream.Read(readText, textLength - 1, byteCount) |> ignore
+        tempString <- String(uniEncoding.GetChars readText, textLength - 1, byteCount)
+        recordNumber <- Int32.Parse tempString + 1
+        fileStream.Seek(textLength, SeekOrigin.Begin) |> ignore
+        fileStream.Write(string recordNumber |> uniEncoding.GetBytes, 0, byteCount)
+        fileStream.Flush()
+        printfn "Record has been updated."
+' Update the file.
+Case "W"C
+    Try
+        aFileStream.Seek(textLength, _
+            SeekOrigin.Begin)
+        aFileStream.Read( _
+            readText, textLength - 1, byteCount)
+        tempString = New String( _
+            uniEncoding.GetChars( _
+            readText, textLength - 1, byteCount))
+        recordNumber = _
+            Integer.Parse(tempString) + 1
+        aFileStream.Seek( _
+            textLength, SeekOrigin.Begin)
+        aFileStream.Write(uniEncoding.GetBytes( _
+            recordNumber.ToString()), 0, byteCount)
+        aFileStream.Flush()
+        Console.WriteLine( _
+            "Record has been updated.")
+Remarks
+This method overrides
+Stream.Flush
+.
+When you call the
+FileStream.Flush
+method, the operating system I/O buffer is also flushed.
+A stream's encoder is not flushed unless you explicitly call
+Flush
+or dispose of the object. Setting
+StreamWriter.AutoFlush
+to
+true
+means that data will be flushed from the buffer to the stream, but the encoder state will not be flushed. This allows the encoder to keep its state (partial characters) so that it can encode the next block of characters correctly. This scenario affects UTF8 and UTF7 where certain characters can only be encoded after the encoder receives the adjacent character or characters.
+Because a buffer can be used for either reading or writing,
+Flush()
+performs the following two functions:
+Any data previously written to the buffer is copied to the file and the buffer is cleared except for its encoder state.
+If
+BufferedStream.CanSeek
+is
+true
+and data was previously copied from the file to the buffer for reading, the current position within the file is decremented by the number of unread bytes in the buffer. The buffer is then cleared.
+Use the
+Flush(Boolean)
+method overload when you want to ensure that all buffered data in intermediate file buffers is written to disk.
+See also
+Flush(Boolean)
+How to: Write Text to a File
+Applies to
+Flush(Boolean)
+Source:
+FileStream.cs
+Source:
+FileStream.cs
+Source:
+FileStream.cs
+Source:
+FileStream.cs
+Source:
+FileStream.cs
+Clears buffers for this stream and causes any buffered data to be written to the file, and also clears all intermediate file buffers.
+public:
+ virtual void Flush(bool flushToDisk);
+public virtual void Flush(bool flushToDisk);
+override this.Flush : bool -> unit
+Public Overridable Sub Flush (flushToDisk As Boolean)
+Parameters
+flushToDisk
+Boolean
+true
+to flush all intermediate file buffers; otherwise,
+false
+.
+Remarks
+Use this overload when you want to ensure that all buffered data in intermediate file buffers is written to disk.
+When you call the
+Flush
+method, the operating system I/O buffer is also flushed.
+See also
+Flush()
+Applies to
+Collaborate with us on GitHub
+The source for this content can be found on GitHub, where you can also create and review issues and pull requests. For more information, see
+our contributor guide
+.
+.NET
+Open a documentation issue
+Provide product feedback
+Feedback
+Was this page helpful?
+Yes
+No
+No
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+Was this page helpful?
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+en-us
+Your Privacy Choices
+Theme
+Light
+Dark
+High contrast
+AI Disclaimer
+Previous Versions
+Blog
+Contribute
+Privacy
+Consumer Health Privacy
+Terms of Use
+Trademarks
+© Microsoft 2026

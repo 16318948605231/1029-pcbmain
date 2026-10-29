@@ -1,0 +1,609 @@
+find_generic_shape_model [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Matching
+/
+Shape-Based
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+find_generic_shape_model
+T_find_generic_shape_model
+FindGenericShapeModel
+FindGenericShapeModel
+find_generic_shape_model
+(Operator)
+Name
+find_generic_shape_model
+T_find_generic_shape_model
+FindGenericShapeModel
+FindGenericShapeModel
+find_generic_shape_model
+— Find the best matches of one or multiple shape models in an image.
+Signature
+find_generic_shape_model
+(
+SearchImage
+:  :
+ModelID
+:
+MatchResultID
+,
+NumMatchResult
+)
+Herror
+T_find_generic_shape_model
+(const Hobject
+SearchImage
+, const Htuple
+ModelID
+, Htuple*
+MatchResultID
+, Htuple*
+NumMatchResult
+)
+void
+FindGenericShapeModel
+(const HObject&
+SearchImage
+, const HTuple&
+ModelID
+, HTuple*
+MatchResultID
+, HTuple*
+NumMatchResult
+)
+static
+HGenericShapeModelResult
+HShapeModel
+::
+FindGenericShapeModel
+(const HObject&
+SearchImage
+, const HShapeModelArray&
+ModelID
+, Hlong*
+NumMatchResult
+)
+HGenericShapeModelResult
+HShapeModel
+::
+FindGenericShapeModel
+(const HObject&
+SearchImage
+, Hlong*
+NumMatchResult
+) const
+Hlong
+HGenericShapeModelResult
+::
+FindGenericShapeModel
+(const HObject&
+SearchImage
+, const HShapeModelArray&
+ModelID
+)
+Hlong
+HGenericShapeModelResult
+::
+FindGenericShapeModel
+(const HObject&
+SearchImage
+, const HShapeModel&
+ModelID
+)
+HGenericShapeModelResult
+HImage
+::
+FindGenericShapeModel
+(const HShapeModelArray&
+ModelID
+, Hlong*
+NumMatchResult
+) const
+HGenericShapeModelResult
+HImage
+::
+FindGenericShapeModel
+(const HShapeModel&
+ModelID
+, Hlong*
+NumMatchResult
+) const
+static void
+HOperatorSet
+.
+FindGenericShapeModel
+(
+HObject
+searchImage
+,
+HTuple
+modelID
+, out
+HTuple
+matchResultID
+, out
+HTuple
+numMatchResult
+)
+static
+HGenericShapeModelResult
+HShapeModel
+.
+FindGenericShapeModel
+(
+HObject
+searchImage
+,
+HShapeModel[]
+modelID
+, out int
+numMatchResult
+)
+HGenericShapeModelResult
+HShapeModel
+.
+FindGenericShapeModel
+(
+HObject
+searchImage
+, out int
+numMatchResult
+)
+int
+HGenericShapeModelResult
+.
+FindGenericShapeModel
+(
+HObject
+searchImage
+,
+HShapeModel[]
+modelID
+)
+int
+HGenericShapeModelResult
+.
+FindGenericShapeModel
+(
+HObject
+searchImage
+,
+HShapeModel
+modelID
+)
+HGenericShapeModelResult
+HImage
+.
+FindGenericShapeModel
+(
+HShapeModel[]
+modelID
+, out int
+numMatchResult
+)
+HGenericShapeModelResult
+HImage
+.
+FindGenericShapeModel
+(
+HShapeModel
+modelID
+, out int
+numMatchResult
+)
+def
+find_generic_shape_model
+(
+search_image
+: HObject,
+model_id
+: MaybeSequence[HHandle]) -> Tuple[HHandle, int]
+Description
+The operator
+find_generic_shape_model
+find_generic_shape_model
+FindGenericShapeModel
+FindGenericShapeModel
+find_generic_shape_model
+finds the best instances of
+one or multiple shape models passed in
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+in the input image
+SearchImage
+SearchImage
+SearchImage
+searchImage
+search_image
+. The found matches are returned in
+MatchResultID
+MatchResultID
+MatchResultID
+matchResultID
+match_result_id
+and can be queried using
+get_generic_shape_model_result
+get_generic_shape_model_result
+GetGenericShapeModelResult
+GetGenericShapeModelResult
+get_generic_shape_model_result
+and
+get_generic_shape_model_result_object
+get_generic_shape_model_result_object
+GetGenericShapeModelResultObject
+GetGenericShapeModelResultObject
+get_generic_shape_model_result_object
+. The number of found matches
+is returned in
+NumMatchResult
+NumMatchResult
+NumMatchResult
+numMatchResult
+num_match_result
+. The model can be parameterized using
+set_generic_shape_model_param
+set_generic_shape_model_param
+SetGenericShapeModelParam
+SetGenericShapeModelParam
+set_generic_shape_model_param
+and
+set_generic_shape_model_object
+set_generic_shape_model_object
+SetGenericShapeModelObject
+SetGenericShapeModelObject
+set_generic_shape_model_object
+, through which one can control
+the search.
+The input image
+SearchImage
+SearchImage
+SearchImage
+searchImage
+search_image
+may be a multichannel image.
+Which channels of a multichannel image are used depends on the
+model parameter
+'metric'
+"metric"
+"metric"
+"metric"
+"metric"
+(see
+set_generic_shape_model_param
+set_generic_shape_model_param
+SetGenericShapeModelParam
+SetGenericShapeModelParam
+set_generic_shape_model_param
+).
+The domain of
+SearchImage
+SearchImage
+SearchImage
+searchImage
+search_image
+sets the ROI for the
+search. It limits the search space as it is considered as boundary for the
+center of gravity of
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+in order to accelerate the matching
+process. For information on passing a tuple of images to
+SearchImage
+SearchImage
+SearchImage
+searchImage
+search_image
+see below.
+Furthermore, the search space is limited by the size of
+SearchImage
+SearchImage
+SearchImage
+searchImage
+search_image
+.
+By default,
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+is only searched within those points of the
+domain, in which
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+fits completely. Hence,
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+will not be found if it exceeds the border of the image. This holds
+for all levels of the used image pyramid.
+In rare cases which typically occur for artificial images, instances of
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+cannot be found in an image, if they touch the border of the
+domain on any level of the image pyramid.
+As a rule of thumb,
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+might not be found if its distance to
+an image border is smaller than
+pixels (where
+is the number of pyramid levels).
+This behavior can be changed with
+'border_shape_models'
+"border_shape_models"
+"border_shape_models"
+"border_shape_models"
+"border_shape_models"
+, see
+set_generic_shape_model_param
+set_generic_shape_model_param
+SetGenericShapeModelParam
+SetGenericShapeModelParam
+set_generic_shape_model_param
+.
+When searching multiple models
+'border_shape_models'
+"border_shape_models"
+"border_shape_models"
+"border_shape_models"
+"border_shape_models"
+is treated
+as
+'true'
+"true"
+"true"
+"true"
+"true"
+for all models even if
+'border_shape_models'
+"border_shape_models"
+"border_shape_models"
+"border_shape_models"
+"border_shape_models"
+only evaluates to
+'true'
+"true"
+"true"
+"true"
+"true"
+for one of the models in a search.
+(
+      1)
+(
+      2)
+(
+      3)
+(1) Search image with reduced domain (yellow) and the shape model (cyan).
+(2) Instances that will be returned (green) or not returned (red)
+in case
+'border_shape_models'
+"border_shape_models"
+"border_shape_models"
+"border_shape_models"
+"border_shape_models"
+is set to
+'false'
+"false"
+"false"
+"false"
+"false"
+.
+(3) Instances that will be returned (green) or not returned (red)
+in case
+'border_shape_models'
+"border_shape_models"
+"border_shape_models"
+"border_shape_models"
+"border_shape_models"
+is set to
+'true'
+"true"
+"true"
+"true"
+"true"
+.
+When searching multiple models, the search space can be restricted for all
+models simultaneously by passing a single image with reduced domain in
+SearchImage
+SearchImage
+SearchImage
+searchImage
+search_image
+.
+Alternatively, the search space can be restricted for each model
+individually by passing an object containing multiple image objects, one for
+each model in
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+.
+The search space is determined by the domain of the corresponding image.
+Except the domain, the images have to be identical, i.e.,
+the pointers of the image objects need to refer to the same
+image (thus they need to be identical).
+The pointers can be checked using
+get_image_pointer1
+get_image_pointer1
+GetImagePointer1
+GetImagePointer1
+get_image_pointer1
+.
+When applying multiple models, different identifiers
+(
+'model_identifier'
+"model_identifier"
+"model_identifier"
+"model_identifier"
+"model_identifier"
+) have to be set for each model,
+so that each instance can be assigned to the shape model it has
+been found with. Otherwise an exception is raised.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+This operator returns a handle. Note that the state of an instance of this handle type may be changed by specific operators even though the handle is used as an input parameter by those operators.
+This operator supports canceling timeouts and interrupts.
+This operator modifies the state of the following input parameter:
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+During execution of this operator, access to the value of this parameter must be synchronized if it is used across multiple threads.
+Parameters
+SearchImage
+SearchImage
+SearchImage
+searchImage
+search_image
+(input_object)
+(multichannel-)object(-array)
+→
+object
+HObject
+HObject
+HObject
+Hobject
+Image in which the model is searched.
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+(input_control, state is modified)
+shape_model(-array)
+→
+HShapeModel
+,
+HTuple
+MaybeSequence[HHandle]
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Handle of the shape model.
+MatchResultID
+MatchResultID
+MatchResultID
+matchResultID
+match_result_id
+(output_control)
+generic_shape_model_result
+→
+HGenericShapeModelResult
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Handle with the found matches.
+NumMatchResult
+NumMatchResult
+NumMatchResult
+numMatchResult
+num_match_result
+(output_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Number of found matches.
+Result
+If the parameters are valid, the operator
+find_generic_shape_model
+find_generic_shape_model
+FindGenericShapeModel
+FindGenericShapeModel
+find_generic_shape_model
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    .
+If necessary an exception is raised.
+Possible Predecessors
+train_generic_shape_model
+train_generic_shape_model
+TrainGenericShapeModel
+TrainGenericShapeModel
+train_generic_shape_model
+,
+set_generic_shape_model_param
+set_generic_shape_model_param
+SetGenericShapeModelParam
+SetGenericShapeModelParam
+set_generic_shape_model_param
+Module
+Matching
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

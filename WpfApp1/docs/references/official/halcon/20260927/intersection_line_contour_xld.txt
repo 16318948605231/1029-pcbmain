@@ -1,0 +1,491 @@
+intersection_line_contour_xld [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Tools
+/
+Geometry
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+intersection_line_contour_xld
+intersection_line_contour_xld
+IntersectionLineContourXld
+IntersectionLineContourXld
+intersection_line_contour_xld
+(Operator)
+Name
+intersection_line_contour_xld
+intersection_line_contour_xld
+IntersectionLineContourXld
+IntersectionLineContourXld
+intersection_line_contour_xld
+— Calculate the intersection points of a line and an XLD contour
+Signature
+intersection_line_contour_xld
+(
+Contour
+:  :
+LineRow1
+,
+LineColumn1
+,
+LineRow2
+,
+LineColumn2
+:
+Row
+,
+Column
+,
+IsOverlapping
+)
+Herror
+intersection_line_contour_xld
+(const Hobject
+Contour
+, double
+LineRow1
+, double
+LineColumn1
+, double
+LineRow2
+, double
+LineColumn2
+, double*
+Row
+, double*
+Column
+, Hlong*
+IsOverlapping
+)
+Herror
+T_intersection_line_contour_xld
+(const Hobject
+Contour
+, const Htuple
+LineRow1
+, const Htuple
+LineColumn1
+, const Htuple
+LineRow2
+, const Htuple
+LineColumn2
+, Htuple*
+Row
+, Htuple*
+Column
+, Htuple*
+IsOverlapping
+)
+void
+IntersectionLineContourXld
+(const HObject&
+Contour
+, const HTuple&
+LineRow1
+, const HTuple&
+LineColumn1
+, const HTuple&
+LineRow2
+, const HTuple&
+LineColumn2
+, HTuple*
+Row
+, HTuple*
+Column
+, HTuple*
+IsOverlapping
+)
+static void
+HOperatorSet
+.
+IntersectionLineContourXld
+(
+HObject
+contour
+,
+HTuple
+lineRow1
+,
+HTuple
+lineColumn1
+,
+HTuple
+lineRow2
+,
+HTuple
+lineColumn2
+, out
+HTuple
+row
+, out
+HTuple
+column
+, out
+HTuple
+isOverlapping
+)
+def
+intersection_line_contour_xld
+(
+contour
+: HObject,
+line_row_1
+: Union[float, int],
+line_column_1
+: Union[float, int],
+line_row_2
+: Union[float, int],
+line_column_2
+: Union[float, int]) -> Tuple[Sequence[float], Sequence[float], int]
+def
+intersection_line_contour_xld_s
+(
+contour
+: HObject,
+line_row_1
+: Union[float, int],
+line_column_1
+: Union[float, int],
+line_row_2
+: Union[float, int],
+line_column_2
+: Union[float, int]) -> Tuple[float, float, int]
+Description
+intersection_line_contour_xld
+intersection_line_contour_xld
+IntersectionLineContourXld
+IntersectionLineContourXld
+intersection_line_contour_xld
+calculates the intersection points
+of a line and an XLD
+Contour
+Contour
+Contour
+contour
+contour
+. The line is defined by the points
+(
+LineRow1
+LineRow1
+LineRow1
+lineRow1
+line_row_1
+,
+LineColumn1
+LineColumn1
+LineColumn1
+lineColumn1
+line_column_1
+) and
+(
+LineRow2
+LineRow2
+LineRow2
+lineRow2
+line_row_2
+,
+LineColumn2
+LineColumn2
+LineColumn2
+lineColumn2
+line_column_2
+).
+The intersection points, if any, are returned in
+(
+Row
+Row
+Row
+row
+row
+,
+Column
+Column
+Column
+column
+column
+).
+If a part of the XLD contour lies on the line
+IsOverlapping
+IsOverlapping
+IsOverlapping
+isOverlapping
+is_overlapping
+returns the value 1, otherwise 0 is returned.
+In this case the endpoints of the XLD segment
+are returned in (
+Row
+Row
+Row
+row
+row
+,
+Column
+Column
+Column
+column
+column
+).
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Contour
+Contour
+Contour
+contour
+contour
+(input_object)
+xld_cont
+→
+object
+HXLDCont
+HObject
+HObject
+Hobject
+XLD contour.
+LineRow1
+LineRow1
+LineRow1
+lineRow1
+line_row_1
+(input_control)
+point.y
+→
+HTuple
+Union[float, int]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Row coordinate of the first point of the line.
+LineColumn1
+LineColumn1
+LineColumn1
+lineColumn1
+line_column_1
+(input_control)
+point.x
+→
+HTuple
+Union[float, int]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Column coordinate of the first point of the line.
+LineRow2
+LineRow2
+LineRow2
+lineRow2
+line_row_2
+(input_control)
+point.y
+→
+HTuple
+Union[float, int]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Row coordinate of the second point of the line.
+LineColumn2
+LineColumn2
+LineColumn2
+lineColumn2
+line_column_2
+(input_control)
+point.x
+→
+HTuple
+Union[float, int]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Column coordinate of the second point of the line.
+Row
+Row
+Row
+row
+row
+(output_control)
+point.y(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Row coordinates of the intersection points.
+Column
+Column
+Column
+column
+column
+(output_control)
+point.x(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Column coordinates of the intersection points.
+IsOverlapping
+IsOverlapping
+IsOverlapping
+isOverlapping
+is_overlapping
+(output_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Does a part of the XLD contour lie on the line?
+Result
+If the parameters are valid, the operator
+intersection_line_contour_xld
+intersection_line_contour_xld
+IntersectionLineContourXld
+IntersectionLineContourXld
+intersection_line_contour_xld
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    .
+Alternatives
+intersection_segment_line
+intersection_segment_line
+IntersectionSegmentLine
+IntersectionSegmentLine
+intersection_segment_line
+See also
+intersection_segments
+intersection_segments
+IntersectionSegments
+IntersectionSegments
+intersection_segments
+,
+intersection_lines
+intersection_lines
+IntersectionLines
+IntersectionLines
+intersection_lines
+,
+intersection_segment_contour_xld
+intersection_segment_contour_xld
+IntersectionSegmentContourXld
+IntersectionSegmentContourXld
+intersection_segment_contour_xld
+,
+intersection_contours_xld
+intersection_contours_xld
+IntersectionContoursXld
+IntersectionContoursXld
+intersection_contours_xld
+Module
+Foundation
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

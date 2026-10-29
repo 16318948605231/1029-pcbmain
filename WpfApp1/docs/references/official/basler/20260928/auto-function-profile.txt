@@ -1,0 +1,2129 @@
+Auto Function Profile | Basler Product Documentation
+Skip to content
+STAGING SERVER
+DEVELOPMENT SERVER
+Basler Product Documentation Draft Version
+Auto Function Profile
+Your camera model:
+None selected
+Home
+Cameras
+Lenses
+Illumination
+Acquisition Cards
+Accessories
+Software
+Basler Product Documentation
+Home
+Cameras       Cameras
+Overview
+Area and Line Scan Cameras       Area and Line Scan Cameras
+Overview
+Area Scan Cameras       Area Scan Cameras
+ace 2       ace 2
+Overview
+CoaXPress       CoaXPress
+a2A2448-120cc
+a2A2448-120cm
+a2A2448-210cc
+a2A2448-210cm
+a2A2840-86cc
+a2A2840-86cm
+a2A4096-67cc
+a2A4096-67cm
+a2A4504-42cc
+a2A4504-42cm
+a2A5060-35cc
+a2A5060-35cm
+a2A5320-52cc
+a2A5320-52cm
+a2A5328-35cc
+a2A5328-35cm
+GigE       GigE
+a2A1920-51gcBAS
+a2A1920-51gcIP67
+a2A1920-51gcPRO
+a2A1920-51gmBAS
+a2A1920-51gmIP67
+a2A1920-51gmPRO
+a2A2048-37gcBAS
+a2A2048-37gcPRO
+a2A2048-37gmBAS
+a2A2048-37gmPRO
+a2A2448-23gcBAS
+a2A2448-23gcIP67
+a2A2448-23gcPRO
+a2A2448-23gmBAS
+a2A2448-23gmIP67
+a2A2448-23gmPRO
+a2A2464-23gcBAS
+a2A2464-23gcPRO
+a2A2464-23gmBAS
+a2A2464-23gmPRO
+a2A2590-22gcBAS
+a2A2590-22gcPRO
+a2A2590-22gmBAS
+a2A2590-22gmPRO
+a2A2600-20gcBAS
+a2A2600-20gcPRO
+a2A2600-20gmBAS
+a2A2600-20gmPRO
+a2A2840-14gcBAS
+a2A2840-14gcIP67
+a2A2840-14gcPRO
+a2A2840-14gmBAS
+a2A2840-14gmIP67
+a2A2840-14gmPRO
+a2A3536-9gcBAS
+a2A3536-9gcPRO
+a2A3536-9gmBAS
+a2A3536-9gmPRO
+a2A3840-13gcBAS
+a2A3840-13gcPRO
+a2A3840-13gmBAS
+a2A3840-13gmPRO
+a2A4096-9gcBAS
+a2A4096-9gcIP67
+a2A4096-9gcPRO
+a2A4096-9gmBAS
+a2A4096-9gmIP67
+a2A4096-9gmPRO
+a2A4200-12gcBAS
+a2A4200-12gcPRO
+a2A4200-12gmBAS
+a2A4200-12gmPRO
+a2A4504-5gcBAS
+a2A4504-5gcIP67
+a2A4504-5gcPRO
+a2A4504-5gmBAS
+a2A4504-5gmIP67
+a2A4504-5gmPRO
+a2A4508-6gcBAS
+a2A4508-6gcPRO
+a2A4508-6gmBAS
+a2A4508-6gmPRO
+a2A5060-4gcBAS
+a2A5060-4gmBAS
+a2A5320-7gcBAS
+a2A5320-7gcIP67
+a2A5320-7gcPRO
+a2A5320-7gmBAS
+a2A5320-7gmIP67
+a2A5320-7gmPRO
+a2A5328-4gcBAS
+a2A5328-4gcIP67
+a2A5328-4gcPRO
+a2A5328-4gmBAS
+a2A5328-4gmIP67
+a2A5328-4gmPRO
+5GigE       5GigE
+a2A1920-165g5cBAS
+a2A1920-165g5mBAS
+a2A2048-114g5cBAS
+a2A2048-114g5mBAS
+a2A2440-98g5cBAS
+a2A2440-98g5mBAS
+a2A2448-105g5cBAS
+a2A2448-105g5mBAS
+a2A2464-115g5cBAS
+a2A2464-115g5mBAS
+a2A2840-67g5cBAS
+a2A2840-67g5mBAS
+a2A3536-42g5cBAS
+a2A3536-42g5mBAS
+a2A4096-44g5cBAS
+a2A4096-44g5mBAS
+a2A4504-27g5cBAS
+a2A4504-27g5mBAS
+a2A5060-21g5cBAS
+a2A5060-21g5mBAS
+a2A5320-34g5cBAS
+a2A5320-34g5mBAS
+a2A5328-22g5cBAS
+a2A5328-22g5mBAS
+GMSL2       GMSL2
+a2A1920-168mgc
+a2A1920-168mgm
+a2A2048-114mgc
+a2A2048-114mgm
+a2A2448-90mgc
+a2A2448-90mgm
+a2A2840-57mgc
+a2A2840-57mgm
+a2A3536-37mgc
+a2A3536-37mgm
+a2A4096-38mgc
+a2A4096-38mgm
+a2A4504-23mgc
+a2A4504-23mgm
+a2A5320-29mgc
+a2A5320-29mgm
+a2A5328-19mgc
+a2A5328-19mgm
+USB 3.0       USB 3.0
+a2A1920-160ucBAS
+a2A1920-160ucPRO
+a2A1920-160umBAS
+a2A1920-160umPRO
+a2A2048-114ucBAS
+a2A2048-114ucPRO
+a2A2048-114umBAS
+a2A2048-114umPRO
+a2A2448-75ucBAS
+a2A2448-75ucPRO
+a2A2448-75umBAS
+a2A2448-75umPRO
+a2A2464-77ucBAS
+a2A2464-77ucPRO
+a2A2464-77umBAS
+a2A2464-77umPRO
+a2A2590-60ucBAS
+a2A2590-60ucPRO
+a2A2590-60umBAS
+a2A2590-60umPRO
+a2A2600-64ucBAS
+a2A2600-64ucPRO
+a2A2600-64umBAS
+a2A2600-64umPRO
+a2A2840-48ucBAS
+a2A2840-48ucPRO
+a2A2840-48umBAS
+a2A2840-48umPRO
+a2A3536-31ucBAS
+a2A3536-31ucPRO
+a2A3536-31umBAS
+a2A3536-31umPRO
+a2A3840-45ucBAS
+a2A3840-45ucPRO
+a2A3840-45umBAS
+a2A3840-45umPRO
+a2A4096-30ucBAS
+a2A4096-30ucPRO
+a2A4096-30umBAS
+a2A4096-30umPRO
+a2A4200-40ucBAS
+a2A4200-40ucPRO
+a2A4200-40umBAS
+a2A4200-40umPRO
+a2A4504-18ucBAS
+a2A4504-18ucPRO
+a2A4504-18umBAS
+a2A4504-18umPRO
+a2A4508-20ucBAS
+a2A4508-20ucPRO
+a2A4508-20umBAS
+a2A4508-20umPRO
+a2A5060-15ucBAS
+a2A5060-15umBAS
+a2A5320-23ucBAS
+a2A5320-23ucPRO
+a2A5320-23umBAS
+a2A5320-23umPRO
+a2A5328-15ucBAS
+a2A5328-15ucPRO
+a2A5328-15umBAS
+a2A5328-15umPRO
+ace 2 X SWIR/UV       ace 2 X SWIR/UV
+Overview
+CoaXPress       CoaXPress
+a2A2048-173cmSWIR
+a2A2560-131cmSWIR
+GigE       GigE
+a2A640-240gmSWIR
+a2A1280-80gmSWIR
+a2A2048-35gmSWIR
+a2A2560-20gmSWIR
+a2A2840-14gmUV
+5GigE       5GigE
+a2A2840-67g5mUV
+USB 3.0       USB 3.0
+a2A640-240umSWIR
+a2A1280-125umSWIR
+a2A2048-110umSWIR
+a2A2560-70umSWIR
+a2A2840-48umUV
+ace       ace
+Overview
+GigE       GigE
+acA640-121gm
+acA640-300gc
+acA640-300gm
+acA720-290gc
+acA720-290gm
+acA800-200gc
+acA800-200gm
+acA1280-60gc
+acA1280-60gm
+acA1300-60gc
+acA1300-60gm
+acA1300-60gmNIR
+acA1300-75gc
+acA1300-75gm
+acA1440-73gc
+acA1440-73gm
+acA1600-60gc
+acA1600-60gm
+acA1920-25gc
+acA1920-25gm
+acA1920-40gc
+acA1920-40gm
+acA1920-48gc
+acA1920-48gm
+acA1920-50gc
+acA1920-50gm
+acA2000-50gc
+acA2000-50gm
+acA2040-25gc
+acA2040-25gm
+acA2040-25gmNIR
+acA2040-35gc
+acA2040-35gm
+acA2440-20gc
+acA2440-20gm
+acA2500-14gc
+acA2500-14gm
+acA2500-20gc
+acA2500-20gm
+acA3088-16gc
+acA3088-16gm
+acA3800-10gc
+acA3800-10gm
+acA4024-8gc
+acA4024-8gm
+acA4096-11gc
+acA4096-11gm
+acA4112-8gc
+acA4112-8gm
+acA5472-5gc
+acA5472-5gm
+USB 3.0       USB 3.0
+acA640-750uc
+acA640-750um
+acA720-520uc
+acA720-520um
+acA800-510uc
+acA800-510um
+acA1300-200uc
+acA1300-200um
+acA1440-220uc
+acA1440-220um
+acA1920-150uc
+acA1920-150um
+acA1920-155uc
+acA1920-155um
+acA1920-25uc
+acA1920-25um
+acA1920-40uc
+acA1920-40um
+acA2000-165uc
+acA2000-165um
+acA2040-120uc
+acA2040-120um
+acA2040-55uc
+acA2040-55um
+acA2040-90uc
+acA2040-90um
+acA2040-90umNIR
+acA2440-35uc
+acA2440-35um
+acA2440-75uc
+acA2440-75um
+acA2500-14uc
+acA2500-14um
+acA2500-60uc
+acA2500-60um
+acA3088-57uc
+acA3088-57um
+acA3800-14uc
+acA3800-14um
+acA4024-29uc
+acA4024-29um
+acA4096-30uc
+acA4096-30um
+acA4096-40uc
+acA4096-40um
+acA4112-20uc
+acA4112-20um
+acA4112-30uc
+acA4112-30um
+acA5472-17uc
+acA5472-17um
+MED ace       MED ace
+Overview
+GigE       GigE
+acA2500-20gcMED
+acA2500-20gmMED
+USB 3.0       USB 3.0
+acA1920-155ucMED
+acA1920-155umMED
+acA1920-40ucMED
+acA1920-40umMED
+acA2440-35ucMED
+acA2440-35umMED
+acA2440-75ucMED
+acA2440-75umMED
+acA3088-57ucMED
+acA3088-57umMED
+acA4096-30ucMED
+acA4096-30umMED
+acA4096-40ucMED
+acA4096-40umMED
+acA4112-20ucMED
+acA4112-20umMED
+acA4112-30ucMED
+acA4112-30umMED
+acA5472-17ucMED
+acA5472-17umMED
+boost       boost
+Overview
+CoaXPress       CoaXPress
+boA1936-400cc
+boA1936-400cm
+boA2448-250cc
+boA2448-250cm
+boA2832-190cc
+boA2832-190cm
+boA4096-180cc
+boA4096-180cm
+boA4096-93cc
+boA4096-93cm
+boA4112-68cc
+boA4112-68cm
+boA4500-45cc
+boA4500-45cm
+boA4504-100cc
+boA4504-100cm
+boA5056-95cm
+boA5120-150cc
+boA5120-150cm
+boA5120-230cc
+boA5120-230cm
+boA5320-150cc
+boA5320-150cm
+boA5328-100cc
+boA5328-100cm
+boA6500-36cc
+boA6500-36cm
+boA8100-16cc
+boA8100-16cm
+boA9344-30cc
+boA9344-30cm
+boA9344-70cc
+boA9344-70cm
+boA13440-17cm
+dart Classic/R/E       dart Classic/R/E
+Overview
+BCON for MIPI       BCON for MIPI
+dart E
+USB 3.0       USB 3.0
+daA720-520uc
+daA720-520um
+daA1280-54uc
+daA1280-54um
+daA1440-220uc
+daA1440-220um
+daA1600-60uc
+daA1600-60um
+daA1920-15um
+daA1920-160uc
+daA1920-160um
+daA1920-30uc
+daA1920-30um
+daA2448-70uc
+daA2448-70um
+daA2500-14uc
+daA2500-14um
+daA3840-45uc
+daA3840-45um
+dart M       dart M
+Overview
+GigE       GigE
+dmA720-290gc
+dmA720-290gm
+dmA1440-73gc
+dmA1440-73gm
+dmA1920-51gc
+dmA1920-51gm
+dmA2048-37gc
+dmA2048-37gm
+dmA2448-23gc
+dmA2448-23gm
+dmA2840-14gc
+dmA2840-14gm
+dmA3536-9gc
+dmA3536-9gm
+dmA4096-9gc
+dmA4096-9gm
+dart M Interface Description
+dart M Accessories
+pulse       pulse
+Overview
+USB 3.0       USB 3.0
+puA1280-54uc
+puA1280-54um
+puA1600-60uc
+puA1600-60um
+puA1920-30uc
+puA1920-30um
+puA2500-14uc
+puA2500-14um
+Line Scan Cameras       Line Scan Cameras
+racer 2       racer 2
+Overview
+racer 2 S       racer 2 S
+GigE       GigE
+r2L2048-29gc
+r2L2048-58gm
+r2L4096-14gc
+r2L4096-29gm
+5GigE       5GigE
+r2L2048-62g5c
+r2L2048-172g5m
+r2L4096-42g5c
+r2L4096-84g5m
+CoaXPress       CoaXPress
+r2L2048-62cc
+r2L2048-172cm
+r2L4096-42cc
+r2L4096-84cm
+racer 2 L       racer 2 L
+CoaXPress       CoaXPress
+r2L8192-80cc
+r2L8192-240cm
+r2L16384-60cc
+r2L16384-120cm
+racer 2 XL       racer 2 XL
+CoaXPress-over-Fiber       CoaXPress-over-Fiber
+r2T16416-500cm
+Features       Features
+Overview
+Acquisition Frame Rate
+Acquisition Line Rate
+Acquisition Mode
+Acquisition Start, Stop, and Abort
+Acquisition Status
+Action Commands
+Auto Functions
+Auto Function Profile      Auto Function Profile      In this topic
+Using the Feature
+Setting the Auto Function Profile
+Available Auto Function Profiles
+Minimize Gain (= Gain Minimum)
+Minimize Exposure Time (= Exposure Minimum)
+Minimize Gain Quick (= Gain Minimum Quick)
+Minimize Exposure Time Quick (= Exposure Minimum Quick)
+Smart
+Anti-Flicker 50 Hz / 60 Hz
+Specifics
+Sample Code
+Auto Function ROI
+Backlight Compensation
+Balance White
+Balance White Adjustment Damping
+Balance White Auto
+Balance White Reset
+Binning
+Black Level
+Blooming Reduction
+Brightness Adjustment Damping
+Brightness and Contrast
+Burst Mode
+Camera Operation Mode
+Center X and Center Y
+Color Adjustment
+Color Transformation
+Compression Beyond
+Conversion Gain Mode
+Counter
+Data Chunks
+Decimation
+Defect Pixel Correction
+Demosaicing Mode
+Device Information Parameters
+Device Temperature
+Digital Shift
+Dual ROI
+Encoder Control
+Error Codes
+Event Notification
+Exposure Auto
+Exposure Mode
+Exposure Overlap Time Max
+Exposure Start Delay
+Exposure Time
+Feature Sequence
+(dart, pulse)
+Flat-Field Correction
+Frequency Converter
+Gain
+Gain Auto
+Gamma
+Gray Value Adjustment Damping
+HDR
+Hue and Saturation
+Image ROI
+Input Filter
+Light Control
+Light Source Preset
+Line Connection
+Line Debouncer
+Line Format
+Line Inverter
+Line Logic
+Line Minimum Output Pulse Width
+Line Mode
+Line Noise Reduction
+Line Overload Status
+Line Pitch
+Line Selector
+Line Source
+Line Status
+Line Termination
+Line Timeout
+LUT
+Median Filter
+Multiple ROI
+Network-Related Parameters
+Pattern Removal Auto
+Periodic Signal
+PGI Feature Set
+Pixel Beyond
+Pixel Correction Beyond
+Pixel Format
+Precision Time Protocol
+Processed Raw Enable
+Remove Parameter Limits
+Resulting Acquisition Frame Rate
+Resulting Acquisition Line Rate
+Reverse X and Reverse Y
+Scaling
+Scheduled Action Commands
+Sensor Bit Depth
+Sensor Acquisition Mode
+Sensor Readout Mode
+Sensor Readout Time
+Sensor Shutter Mode
+Sensor State
+Sequencer       Sequencer
+Overview
+Sequencer
+(ace Classic/U/L GigE)
+Sequencer
+(ace Classic/U/L USB)
+Sequencer
+(ace 2 and boost R)
+Serial Communication
+Shading Correction
+Software Signal Pulse
+Spatial Correction
+Stacked ROI
+Stacked Zone Imaging
+Synchronous Free Run
+Temperature State
+TDI
+Test Images
+Test Patterns
+Timer
+Timestamp
+Tonal Range
+Tonal Range Auto
+Transfer Bit Depth
+Triggered Image Acquisition
+Two-Wire Interface
+User-Defined Data
+User Output Value
+User Sets
+Vignetting Correction
+Installation       Installation
+Overview
+Hardware Installation
+(CoaXPress Cameras)
+Hardware Installation
+(GigE Cameras)
+Hardware Installation
+(GMSL Cameras)
+Hardware Installation
+(USB 3.0 Cameras)
+Network Configuration
+(GigE Cameras)
+Software Installation
+(Linux)
+Software Installation
+(Windows)
+Using Basler GigE Cameras in a Wireless LAN
+Configuring CXP Line Scan Cameras and Frame Grabbers       Configuring CXP Line Scan Cameras and Frame Grabbers
+General Information
+Using the Framegrabber SDK
+Using the pylon Viewer
+Configuring a CoaXPress-over-Fiber System
+Configuring GigE Line Scan Cameras       Configuring GigE Line Scan Cameras
+General Information (GigE Line Scan Cameras)
+GigE Line Scan Use Case Descriptions and Diagrams
+Configuring GMSL Cameras       Configuring GMSL Cameras
+General Information (GMSL Cameras)
+Installing Camera Enablement Package (GMSL Cameras)
+Configuring GMSL Cameras
+Hardware Information       Hardware Information
+Avoiding EMI and ESD
+Problems
+Cleaning Instructions
+dart M Interface Description
+Maximum Allowed Lens Intrusion
+Mounting Instructions
+Providing Heat Dissipation
+Safety Instructions
+(ace, ace 2, racer 2 S)
+Safety Instructions (boost, racer 2 L, racer 2 XL)
+Safety Instructions (dart)
+Safety Instructions (pulse)
+Stress Test Results
+Image Acquisition       Image Acquisition
+Acquisition Timing Information
+Electronic Shutter Types
+Free Run Image Acquisition
+Overlapping Image Acquisition
+Triggered Image Acquisition
+I/O Control       I/O Control
+Overview
+Circuit Diagrams
+Galvanically Isolated I/O Lines
+General Purpose I/O (GPIO) Lines
+I/O Timing Characteristics
+Opto-Coupled I/O Lines
+I/O Control of racer 2 L and racer 2 XL Cameras
+3D Cameras       3D Cameras
+Overview
+ToF Cameras       ToF Cameras
+Overview
+Models       Models
+blaze-101
+blaze-101s
+blaze-102
+blaze-102s
+blaze-112
+blaze-112s
+Safety       Safety
+Safety Instructions
+Avoiding EMI and ESD
+Problems
+Hardware Information       Hardware Information
+Cleaning Instructions
+Choosing a Power Supply
+Providing Heat Dissipation
+Stress Test Results
+Software       Software
+blaze Viewer       blaze Viewer
+Overview of the blaze Viewer
+Getting Started
+Image Windows
+Saving Depth and Image Data
+Troubleshooting
+Stereo Camera Software
+Installation       Installation
+Overview
+Software Installation
+Hardware Installation
+Network Configuration
+Accessories       Accessories
+Overview
+Basler ace 2 to blaze Mounting Bracket
+Cable GigE M12, M, 8P/RJ45
+Power-I/O Cable M12, M, 8P/Open
+Power Supply 24V/60W, DC Jack 5.5/2.1mm
+Features       Features
+Overview
+Acquisition Frame Rate
+Ambiguity Filter
+Component Selector
+Confidence Threshold
+Device Information Parameters
+Device Temperature
+Diagnostic Information
+Distortion Correction
+Error Codes
+Exposure Time
+Extrinsic Transformation
+Fast Mode
+Gamma Correction
+HDR Mode
+Image Acquisition and IO Control
+Image Inpainting
+Intensity Calculation
+Legacy Behavior Control
+Multi-Camera Channel
+Network Bandwidth Control
+Operating Mode
+Outlier Removal
+Pixel Format
+Precision Time Protocol
+ROI
+Scan 3d Calibration Offset
+Scan 3d Focal Length
+Scan 3d Invalid Data Value
+Spatial Filter
+Synchronous Free Run
+Temperature State
+Temporal Filter
+Thermal Drift Correction
+Trigger Thermal Drift Stabilization
+Web Server Enable
+Camera Operation       Camera Operation
+Using blaze Cameras
+Image Acquisition and IO Control
+Processing Measurement
+Results
+Working with Multiple
+Cameras
+Shifting the Working Range
+ToF Camera Technology       ToF Camera Technology
+Overview
+Accuracy and Precision
+Ambient Light Robustness
+Influencing Factors
+Stereo Cameras       Stereo Cameras
+Overview
+Stereo ace       Stereo ace
+Overview
+Models       Models
+STA-100-547C-082609W
+STA-100-547M-082609W
+STA-200-547C-082616W
+STA-200-547M-082616W
+STA-300-547C-082625W
+STA-300-547M-082625W
+Safety
+Hardware Information       Hardware Information
+Avoiding EMI and ESD Problems
+Cleaning Instructions
+Choosing a Power Supply
+Stress Test Results
+Software
+Installation       Installation
+Overview
+Software Installation
+Hardware Installation
+Network Configuration
+Accessories       Accessories
+Overview
+Cable GigE, Cat 6, RJ45 sl hor/RJ45, DrC, P
+Power-I/O Cable M12, M, 8P/Open
+Power Supply 24V/60W, DC Jack 5.5/2.1mm
+Features       Features
+Overview
+Acquisition Frame Rate
+Binning
+Component Selector
+Depth Control
+Device Information Parameters
+Device Temperature
+Error Codes
+Exposure Time
+Gain
+HDR
+Illumination Control
+Network Bandwidth Control
+Pixel Format
+Precision Time Protocol
+ROI
+Scan 3d Focal Length
+Scan 3d Invalid Data Value
+Temperature State
+Camera Operation       Camera Operation
+Using Stereo ace Cameras
+Image Acquisition and IO Control
+Optimizing Image Quality
+Processing Measurement
+Results
+Camera Calibration
+Stereo mini       Stereo mini
+Overview
+Glossary
+Product Specifications
+Product Information
+Functional Specifications
+Performance
+SDK
+Use Guidance
+System Integration Guide
+Cautions
+Additional Resources       Additional Resources
+Optical Filters for Stereo mini Cameras
+Depth Quality Metrics
+Reference Design (USB Cable)
+Reference Design (Mounting Stereo mini USB Cameras)
+Reference Design (Thermal Best Practices)
+Stereo visard       Stereo visard
+Overview
+Models       Models
+rc_visard 65c
+rc_visard 65m
+rc_visard 160c
+rc_visard 160m
+rc_visard 160m-6
+Introduction       Introduction
+General
+Overview
+Warranty
+Applicable Standards
+Information on Disposal
+Glossary
+Safety       Safety
+Overview
+General Warnings
+Intended Use
+Hardware Specification       Hardware Specification
+General
+Scope of Delivery
+Technical Specifications
+Environmental and Operating Conditions
+Power Supply Specifications
+Wiring
+Mechanical Interface
+Coordinate Frames
+Installation       Installation
+General
+Software License
+Power Up
+Discovery of rc_visard Devices
+Network Configuration
+Software Modules       Software Modules
+General
+3D Camera Operation
+Navigation
+Detection
+Configuration
+Database
+Interfaces       Interfaces
+Overview
+Web GUI
+GigE Vision 2.0/GenICam Image Interface
+REST-API Interface
+rc_dynamics Interface
+KUKA Ethernet KRL Interface
+gRPC Image Stream Interface
+OPC UA Interface
+Time Synchronization
+Maintenance       Maintenance
+General
+Lens Cleaning
+Camera Calibration
+Creating and restoring backups of settings
+Updating the Firmware
+Restoring the previous firmware version
+Rebooting the rc_visard
+Updating the Software License
+Downloading Log Files
+Accessories       Accessories
+Overview
+3D Camera Cube S/I
+Stereo Camera Randomdot Projector
+Stereo Camera Connectivity
+Troubleshooting       Troubleshooting
+LED Colors
+Hardware Issues
+Connectivity Issues
+Camera Image Issues
+Depth/Disparity, Error, and Confidence Image Issues
+Dynamics Issues
+GigE Vision/GenICam Issues
+Appendix       Appendix
+Pose Formats
+Software Release Notes       Software Release Notes
+Overview
+Stereo visard       Stereo visard
+v26.07.0
+v26.04.0
+v26.01.0
+v25.10.1
+v25.10.0
+v25.07.0
+v25.04.0
+v25.01.0
+v24.10.0
+v24.07.0
+3D Camera Cube       3D Camera Cube
+v26.07.0
+v26.04.0
+v26.01.0
+v25.10.2
+v25.10.1
+v25.10.0
+v25.07.0
+v25.04.0
+v25.01.0
+v24.10.0
+v24.07.0
+URCap       URCap
+v3.0.6
+v3.0.5
+v3.0.4
+v3.0.3
+v3.0.2
+v3.0.1
+v3.0.0
+Stereo Camera Tutorials
+Embedded Vision Cameras       Embedded Vision Cameras
+Overview
+Models       Models
+daA2500-60mc
+daA2500-60mci
+daA3840-30mc
+daA4200-30mci
+Installation
+Features       Features
+Available Features
+Acquisition Frame Rate
+Acquisition Start and Stop
+Adaptive Tone Mapping
+Auto Function Profile
+Balance White
+Balance White Auto
+Brightness and Contrast
+Center X and Center Y
+Device Information Parameters
+Exposure Auto
+Exposure Time
+Flare Removal
+Gain
+Gain Auto
+Gamma
+Image ROI
+Light Source Preset
+Periodic Signal
+Pixel Format
+Saturation
+Scaling
+Sharpness Enhancement
+Test Patterns
+Triggered Image Acquisition
+Vignetting Correction
+BCON for MIPI Interface       BCON for MIPI Interface
+BCON for MIPI Hardware Design Guide
+BCON for MIPI Interface Description
+Hardware Information       Hardware Information
+Avoiding EMI and ESD
+Problems
+Cleaning Instructions
+Maximum Allowed Lens Intrusion
+Providing Heat Dissipation
+Safety Instructions
+Stress Test Results
+Information for Partners       Information for Partners
+Porting Guide (Yocto)
+Lenses
+Illumination
+Acquisition Cards
+Accessories
+Software
+In this topic
+Using the Feature
+Setting the Auto Function Profile
+Available Auto Function Profiles
+Minimize Gain (= Gain Minimum)
+Minimize Exposure Time (= Exposure Minimum)
+Minimize Gain Quick (= Gain Minimum Quick)
+Minimize Exposure Time Quick (= Exposure Minimum Quick)
+Smart
+Anti-Flicker 50 Hz / 60 Hz
+Specifics
+Sample Code
+Cameras
+Area and Line Scan Cameras
+Features
+Auto Function Profile#
+The Auto Function Profile camera feature allows you to specify how gain and exposure time are balanced when the camera is making automatic adjustments.
+Using the Feature#
+Setting the Auto Function Profile#
+To set the auto function profile:
+Set the Gain Auto auto function and the Exposure Auto auto function to Continuous.
+Set the AutoFunctionProfile parameter to one of the following values (if available):
+GainMinimum
+ExposureMinimum
+GainMinimumQuick
+ExposureMinimumQuick
+Smart
+AntiFlicker50Hz
+AntiFlicker60Hz
+Available Auto Function Profiles# Minimize Gain (= Gain Minimum)#
+The gain is kept as low as possible during the automatic adjustment process. If the exposure time is at its upper limit and the target brightness value has not been reached yet, the gain will be increased in order to reach the target.
+Minimize Exposure Time (= Exposure Minimum)#
+The exposure time is kept as low as possible during the automatic adjustment process. If the gain is at its upper limit and the target brightness value has not been reached yet, the exposure time will be increased in order to reach the target.
+Minimize Gain Quick (= Gain Minimum Quick)#
+This profile works the same as the Minimize Gain profile. The difference is that it reacts more quickly in situations with extreme changes in brightness or where the image brightness changes rapidly. This situation occurs, for example, when microscope objective lenses are changed using the objective turret.
+Minimize Exposure Time Quick (= Exposure Minimum Quick)#
+This profile works the same as the Minimize Exposure Time profile. The difference is that it reacts more quickly in situations with extreme changes in brightness or where the image brightness changes rapidly. This situation occurs, for example, when microscope objective lenses are changed using the objective turret.
+Smart#
+Gain is kept as low as possible and the frame rate will be kept as high as possible during automatic adjustments.
+This is a four-step process:
+The camera adjusts the exposure time to achieve the target brightness value.
+If the exposure time must be increased to achieve the target brightness value, the camera does so until the frame rate drops.
+If the frame rate drops, the camera stops increasing the exposure time and increases the gain until the AutoGainRawUpperLimit value is reached.
+When the AutoGainRawUpperLimit value has been reached, the camera stops increasing the gain and increases the exposure time until the target brightness value is reached. Increasing the exposure time results in a lower frame rate.
+Anti-Flicker 50 Hz / 60 Hz#
+Gain and exposure time are optimized to reduce flickering. If the camera is operating in an environment where the lighting flickers at a 50-Hz or a 60-Hz rate, the flickering lights can cause significant changes in brightness from image to image. Enabling the anti-flicker profile may reduce the effect of the flickering in the captured images.
+Choose the frequency (50 Hz or 60 Hz) according your local power line frequency (e.g., North America: 60 Hz, Europe: 50 Hz).
+Specifics#
+Show all camera models
+Camera Model Available Auto Function Profiles
+a2A640-240gmSWIR Minimize Gain
+Minimize Exposure Time
+a2A640-240umSWIR Minimize Gain
+Minimize Exposure Time
+a2A1280-80gmSWIR Minimize Gain
+Minimize Exposure Time
+a2A1280-125umSWIR Minimize Gain
+Minimize Exposure Time
+a2A1920-51gcBAS Minimize Gain
+Minimize Exposure Time
+a2A1920-51gcIP67 Minimize Gain
+Minimize Exposure Time
+a2A1920-51gcPRO Minimize Gain
+Minimize Exposure Time
+a2A1920-51gmBAS Minimize Gain
+Minimize Exposure Time
+a2A1920-51gmIP67 Minimize Gain
+Minimize Exposure Time
+a2A1920-51gmPRO Minimize Gain
+Minimize Exposure Time
+a2A1920-160ucBAS Minimize Gain
+Minimize Exposure Time
+a2A1920-160ucPRO Minimize Gain
+Minimize Exposure Time
+a2A1920-160umBAS Minimize Gain
+Minimize Exposure Time
+a2A1920-160umPRO Minimize Gain
+Minimize Exposure Time
+a2A1920-165g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A1920-165g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A1920-168mgc Minimize Gain
+Minimize Exposure Time
+a2A1920-168mgm Minimize Gain
+Minimize Exposure Time
+a2A2048-35gmSWIR Minimize Gain
+Minimize Exposure Time
+a2A2048-37gcBAS Minimize Gain
+Minimize Exposure Time
+a2A2048-37gcPRO Minimize Gain
+Minimize Exposure Time
+a2A2048-37gmBAS Minimize Gain
+Minimize Exposure Time
+a2A2048-37gmPRO Minimize Gain
+Minimize Exposure Time
+a2A2048-110umSWIR Minimize Gain
+Minimize Exposure Time
+a2A2048-114g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A2048-114g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A2048-114mgc Minimize Gain
+Minimize Exposure Time
+a2A2048-114mgm Minimize Gain
+Minimize Exposure Time
+a2A2048-114ucBAS Minimize Gain
+Minimize Exposure Time
+a2A2048-114ucPRO Minimize Gain
+Minimize Exposure Time
+a2A2048-114umBAS Minimize Gain
+Minimize Exposure Time
+a2A2048-114umPRO Minimize Gain
+Minimize Exposure Time
+a2A2048-173cmSWIR Minimize Gain
+Minimize Exposure Time
+a2A2440-98g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A2440-98g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A2448-23gcBAS Minimize Gain
+Minimize Exposure Time
+a2A2448-23gcIP67 Minimize Gain
+Minimize Exposure Time
+a2A2448-23gcPRO Minimize Gain
+Minimize Exposure Time
+a2A2448-23gmBAS Minimize Gain
+Minimize Exposure Time
+a2A2448-23gmIP67 Minimize Gain
+Minimize Exposure Time
+a2A2448-23gmPRO Minimize Gain
+Minimize Exposure Time
+a2A2448-75ucBAS Minimize Gain
+Minimize Exposure Time
+a2A2448-75ucPRO Minimize Gain
+Minimize Exposure Time
+a2A2448-75umBAS Minimize Gain
+Minimize Exposure Time
+a2A2448-75umPRO Minimize Gain
+Minimize Exposure Time
+a2A2448-90mgc Minimize Gain
+Minimize Exposure Time
+a2A2448-90mgm Minimize Gain
+Minimize Exposure Time
+a2A2448-105g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A2448-105g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A2448-120cc Minimize Gain
+Minimize Exposure Time
+a2A2448-120cm Minimize Gain
+Minimize Exposure Time
+a2A2448-210cc Minimize Gain
+Minimize Exposure Time
+a2A2448-210cm Minimize Gain
+Minimize Exposure Time
+a2A2464-23gcBAS Minimize Gain
+Minimize Exposure Time
+a2A2464-23gcPRO Minimize Gain
+Minimize Exposure Time
+a2A2464-23gmBAS Minimize Gain
+Minimize Exposure Time
+a2A2464-23gmPRO Minimize Gain
+Minimize Exposure Time
+a2A2464-77ucBAS Minimize Gain
+Minimize Exposure Time
+a2A2464-77ucPRO Minimize Gain
+Minimize Exposure Time
+a2A2464-77umBAS Minimize Gain
+Minimize Exposure Time
+a2A2464-77umPRO Minimize Gain
+Minimize Exposure Time
+a2A2464-115g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A2464-115g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A2560-20gmSWIR Minimize Gain
+Minimize Exposure Time
+a2A2560-70umSWIR Minimize Gain
+Minimize Exposure Time
+a2A2560-131cmSWIR Minimize Gain
+Minimize Exposure Time
+a2A2590-22gcBAS Minimize Gain
+Minimize Exposure Time
+a2A2590-22gcPRO Minimize Gain
+Minimize Exposure Time
+a2A2590-22gmBAS Minimize Gain
+Minimize Exposure Time
+a2A2590-22gmPRO Minimize Gain
+Minimize Exposure Time
+a2A2590-60ucBAS Minimize Gain
+Minimize Exposure Time
+a2A2590-60ucPRO Minimize Gain
+Minimize Exposure Time
+a2A2590-60umBAS Minimize Gain
+Minimize Exposure Time
+a2A2590-60umPRO Minimize Gain
+Minimize Exposure Time
+a2A2600-20gcBAS Minimize Gain
+Minimize Exposure Time
+a2A2600-20gcPRO Minimize Gain
+Minimize Exposure Time
+a2A2600-20gmBAS Minimize Gain
+Minimize Exposure Time
+a2A2600-20gmPRO Minimize Gain
+Minimize Exposure Time
+a2A2600-64ucBAS Minimize Gain
+Minimize Exposure Time
+a2A2600-64ucPRO Minimize Gain
+Minimize Exposure Time
+a2A2600-64umBAS Minimize Gain
+Minimize Exposure Time
+a2A2600-64umPRO Minimize Gain
+Minimize Exposure Time
+a2A2840-14gcBAS Minimize Gain
+Minimize Exposure Time
+a2A2840-14gcIP67 Minimize Gain
+Minimize Exposure Time
+a2A2840-14gcPRO Minimize Gain
+Minimize Exposure Time
+a2A2840-14gmBAS Minimize Gain
+Minimize Exposure Time
+a2A2840-14gmIP67 Minimize Gain
+Minimize Exposure Time
+a2A2840-14gmPRO Minimize Gain
+Minimize Exposure Time
+a2A2840-14gmUV Minimize Gain
+Minimize Exposure Time
+a2A2840-48ucBAS Minimize Gain
+Minimize Exposure Time
+a2A2840-48ucPRO Minimize Gain
+Minimize Exposure Time
+a2A2840-48umBAS Minimize Gain
+Minimize Exposure Time
+a2A2840-48umPRO Minimize Gain
+Minimize Exposure Time
+a2A2840-48umUV Minimize Gain
+Minimize Exposure Time
+a2A2840-57mgc Minimize Gain
+Minimize Exposure Time
+a2A2840-57mgm Minimize Gain
+Minimize Exposure Time
+a2A2840-67g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A2840-67g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A2840-67g5mUV Minimize Gain
+Minimize Exposure Time
+a2A2840-86cc Minimize Gain
+Minimize Exposure Time
+a2A2840-86cm Minimize Gain
+Minimize Exposure Time
+a2A3536-9gcBAS Minimize Gain
+Minimize Exposure Time
+a2A3536-9gcPRO Minimize Gain
+Minimize Exposure Time
+a2A3536-9gmBAS Minimize Gain
+Minimize Exposure Time
+a2A3536-9gmPRO Minimize Gain
+Minimize Exposure Time
+a2A3536-31ucBAS Minimize Gain
+Minimize Exposure Time
+a2A3536-31ucPRO Minimize Gain
+Minimize Exposure Time
+a2A3536-31umBAS Minimize Gain
+Minimize Exposure Time
+a2A3536-31umPRO Minimize Gain
+Minimize Exposure Time
+a2A3536-37mgc Minimize Gain
+Minimize Exposure Time
+a2A3536-37mgm Minimize Gain
+Minimize Exposure Time
+a2A3536-42g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A3536-42g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A3840-13gcBAS Minimize Gain
+Minimize Exposure Time
+a2A3840-13gcPRO Minimize Gain
+Minimize Exposure Time
+a2A3840-13gmBAS Minimize Gain
+Minimize Exposure Time
+a2A3840-13gmPRO Minimize Gain
+Minimize Exposure Time
+a2A3840-45ucBAS Minimize Gain
+Minimize Exposure Time
+a2A3840-45ucPRO Minimize Gain
+Minimize Exposure Time
+a2A3840-45umBAS Minimize Gain
+Minimize Exposure Time
+a2A3840-45umPRO Minimize Gain
+Minimize Exposure Time
+a2A4096-9gcBAS Minimize Gain
+Minimize Exposure Time
+a2A4096-9gcIP67 Minimize Gain
+Minimize Exposure Time
+a2A4096-9gcPRO Minimize Gain
+Minimize Exposure Time
+a2A4096-9gmBAS Minimize Gain
+Minimize Exposure Time
+a2A4096-9gmIP67 Minimize Gain
+Minimize Exposure Time
+a2A4096-9gmPRO Minimize Gain
+Minimize Exposure Time
+a2A4096-30ucBAS Minimize Gain
+Minimize Exposure Time
+a2A4096-30ucPRO Minimize Gain
+Minimize Exposure Time
+a2A4096-30umBAS Minimize Gain
+Minimize Exposure Time
+a2A4096-30umPRO Minimize Gain
+Minimize Exposure Time
+a2A4096-38mgc Minimize Gain
+Minimize Exposure Time
+a2A4096-38mgm Minimize Gain
+Minimize Exposure Time
+a2A4096-44g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A4096-44g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A4096-67cc Minimize Gain
+Minimize Exposure Time
+a2A4096-67cm Minimize Gain
+Minimize Exposure Time
+a2A4200-12gcBAS Minimize Gain
+Minimize Exposure Time
+a2A4200-12gcPRO Minimize Gain
+Minimize Exposure Time
+a2A4200-12gmBAS Minimize Gain
+Minimize Exposure Time
+a2A4200-12gmPRO Minimize Gain
+Minimize Exposure Time
+a2A4200-40ucBAS Minimize Gain
+Minimize Exposure Time
+a2A4200-40ucPRO Minimize Gain
+Minimize Exposure Time
+a2A4200-40umBAS Minimize Gain
+Minimize Exposure Time
+a2A4200-40umPRO Minimize Gain
+Minimize Exposure Time
+a2A4504-5gcBAS Minimize Gain
+Minimize Exposure Time
+a2A4504-5gcIP67 Minimize Gain
+Minimize Exposure Time
+a2A4504-5gcPRO Minimize Gain
+Minimize Exposure Time
+a2A4504-5gmBAS Minimize Gain
+Minimize Exposure Time
+a2A4504-5gmIP67 Minimize Gain
+Minimize Exposure Time
+a2A4504-5gmPRO Minimize Gain
+Minimize Exposure Time
+a2A4504-18ucBAS Minimize Gain
+Minimize Exposure Time
+a2A4504-18ucPRO Minimize Gain
+Minimize Exposure Time
+a2A4504-18umBAS Minimize Gain
+Minimize Exposure Time
+a2A4504-18umPRO Minimize Gain
+Minimize Exposure Time
+a2A4504-23mgc Minimize Gain
+Minimize Exposure Time
+a2A4504-23mgm Minimize Gain
+Minimize Exposure Time
+a2A4504-27g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A4504-27g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A4504-42cc Minimize Gain
+Minimize Exposure Time
+a2A4504-42cm Minimize Gain
+Minimize Exposure Time
+a2A4508-6gcBAS Minimize Gain
+Minimize Exposure Time
+a2A4508-6gcPRO Minimize Gain
+Minimize Exposure Time
+a2A4508-6gmBAS Minimize Gain
+Minimize Exposure Time
+a2A4508-6gmPRO Minimize Gain
+Minimize Exposure Time
+a2A4508-20ucBAS Minimize Gain
+Minimize Exposure Time
+a2A4508-20ucPRO Minimize Gain
+Minimize Exposure Time
+a2A4508-20umBAS Minimize Gain
+Minimize Exposure Time
+a2A4508-20umPRO Minimize Gain
+Minimize Exposure Time
+a2A5060-4gcBAS Minimize Gain
+Minimize Exposure Time
+a2A5060-4gmBAS Minimize Gain
+Minimize Exposure Time
+a2A5060-15ucBAS Minimize Gain
+Minimize Exposure Time
+a2A5060-15umBAS Minimize Gain
+Minimize Exposure Time
+a2A5060-21g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A5060-21g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A5060-35cc Minimize Gain
+Minimize Exposure Time
+a2A5060-35cm Minimize Gain
+Minimize Exposure Time
+a2A5320-7gcBAS Minimize Gain
+Minimize Exposure Time
+a2A5320-7gcIP67 Minimize Gain
+Minimize Exposure Time
+a2A5320-7gcPRO Minimize Gain
+Minimize Exposure Time
+a2A5320-7gmBAS Minimize Gain
+Minimize Exposure Time
+a2A5320-7gmPRO Minimize Gain
+Minimize Exposure Time
+a2A5320-7gmip67 Minimize Gain
+Minimize Exposure Time
+a2A5320-23ucBAS Minimize Gain
+Minimize Exposure Time
+a2A5320-23ucPRO Minimize Gain
+Minimize Exposure Time
+a2A5320-23umBAS Minimize Gain
+Minimize Exposure Time
+a2A5320-23umPRO Minimize Gain
+Minimize Exposure Time
+a2A5320-29mgc Minimize Gain
+Minimize Exposure Time
+a2A5320-29mgm Minimize Gain
+Minimize Exposure Time
+a2A5320-34g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A5320-34g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A5320-52cc Minimize Gain
+Minimize Exposure Time
+a2A5320-52cm Minimize Gain
+Minimize Exposure Time
+a2A5328-4gcBAS Minimize Gain
+Minimize Exposure Time
+a2A5328-4gcIP67 Minimize Gain
+Minimize Exposure Time
+a2A5328-4gcPRO Minimize Gain
+Minimize Exposure Time
+a2A5328-4gmBAS Minimize Gain
+Minimize Exposure Time
+a2A5328-4gmIP67 Minimize Gain
+Minimize Exposure Time
+a2A5328-4gmPRO Minimize Gain
+Minimize Exposure Time
+a2A5328-15ucBAS Minimize Gain
+Minimize Exposure Time
+a2A5328-15ucPRO Minimize Gain
+Minimize Exposure Time
+a2A5328-15umBAS Minimize Gain
+Minimize Exposure Time
+a2A5328-15umPRO Minimize Gain
+Minimize Exposure Time
+a2A5328-19mgc Minimize Gain
+Minimize Exposure Time
+a2A5328-19mgm Minimize Gain
+Minimize Exposure Time
+a2A5328-22g5cBAS Minimize Gain
+Minimize Exposure Time
+a2A5328-22g5mBAS Minimize Gain
+Minimize Exposure Time
+a2A5328-35cc Minimize Gain
+Minimize Exposure Time
+a2A5328-35cm Minimize Gain
+Minimize Exposure Time
+acA640-121gm Gain Minimum
+Exposure Minimum
+acA640-300gc Gain Minimum
+Exposure Minimum
+acA640-300gm Gain Minimum
+Exposure Minimum
+acA640-750uc Minimize Gain
+Minimize Exposure Time
+acA640-750um Minimize Gain
+Minimize Exposure Time
+acA720-290gc Gain Minimum
+Exposure Minimum
+acA720-290gm Gain Minimum
+Exposure Minimum
+acA720-520uc Minimize Gain
+Minimize Exposure Time
+acA720-520um Minimize Gain
+Minimize Exposure Time
+acA800-200gc Gain Minimum
+Exposure Minimum
+acA800-200gm Gain Minimum
+Exposure Minimum
+acA800-510uc Minimize Gain
+Minimize Exposure Time
+acA800-510um Minimize Gain
+Minimize Exposure Time
+acA1280-60gc Gain Minimum
+Exposure Minimum
+acA1280-60gm Gain Minimum
+Exposure Minimum
+acA1300-60gc Gain Minimum
+Exposure Minimum
+acA1300-60gm Gain Minimum
+Exposure Minimum
+acA1300-60gmNIR Gain Minimum
+Exposure Minimum
+acA1300-75gc Gain Minimum
+Exposure Minimum
+acA1300-75gm Gain Minimum
+Exposure Minimum
+acA1300-200uc Minimize Gain
+Minimize Exposure Time
+acA1300-200um Minimize Gain
+Minimize Exposure Time
+acA1440-73gc Gain Minimum
+Exposure Minimum
+acA1440-73gm Gain Minimum
+Exposure Minimum
+acA1440-220uc Minimize Gain
+Minimize Exposure Time
+acA1440-220um Minimize Gain
+Minimize Exposure Time
+acA1600-60gc Gain Minimum
+Exposure Minimum
+acA1600-60gm Gain Minimum
+Exposure Minimum
+acA1920-25gc Gain Minimum
+Exposure Minimum
+acA1920-25gm Gain Minimum
+Exposure Minimum
+acA1920-25uc Minimize Gain
+Minimize Exposure Time
+acA1920-25um Minimize Gain
+Minimize Exposure Time
+acA1920-40gc Gain Minimum
+Exposure Minimum
+acA1920-40gm Gain Minimum
+Exposure Minimum
+acA1920-40uc Minimize Gain
+Minimize Exposure Time
+acA1920-40ucMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA1920-40um Minimize Gain
+Minimize Exposure Time
+acA1920-40umMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA1920-48gc Gain Minimum
+Exposure Minimum
+acA1920-48gm Gain Minimum
+Exposure Minimum
+acA1920-50gc Gain Minimum
+Exposure Minimum
+acA1920-50gm Gain Minimum
+Exposure Minimum
+acA1920-150uc Minimize Gain
+Minimize Exposure Time
+acA1920-150um Minimize Gain
+Minimize Exposure Time
+acA1920-155uc Minimize Gain
+Minimize Exposure Time
+acA1920-155ucMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA1920-155um Minimize Gain
+Minimize Exposure Time
+acA1920-155umMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA2000-50gc Gain Minimum
+Exposure Minimum
+acA2000-50gm Gain Minimum
+Exposure Minimum
+acA2000-165uc Minimize Gain
+Minimize Exposure Time
+acA2000-165um Minimize Gain
+Minimize Exposure Time
+acA2040-25gc Gain Minimum
+Exposure Minimum
+acA2040-25gm Gain Minimum
+Exposure Minimum
+acA2040-25gmNIR Gain Minimum
+Exposure Minimum
+acA2040-35gc Gain Minimum
+Exposure Minimum
+acA2040-35gm Gain Minimum
+Exposure Minimum
+acA2040-55uc Minimize Gain
+Minimize Exposure Time
+acA2040-55um Minimize Gain
+Minimize Exposure Time
+acA2040-90uc Minimize Gain
+Minimize Exposure Time
+acA2040-90um Minimize Gain
+Minimize Exposure Time
+acA2040-90umNIR Minimize Gain
+Minimize Exposure Time
+acA2040-120uc Minimize Gain
+Minimize Exposure Time
+acA2040-120um Minimize Gain
+Minimize Exposure Time
+acA2440-20gc Gain Minimum
+Exposure Minimum
+acA2440-20gm Gain Minimum
+Exposure Minimum
+acA2440-35uc Minimize Gain
+Minimize Exposure Time
+acA2440-35ucMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA2440-35um Minimize Gain
+Minimize Exposure Time
+acA2440-35umMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA2440-75uc Minimize Gain
+Minimize Exposure Time
+acA2440-75ucMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA2440-75um Minimize Gain
+Minimize Exposure Time
+acA2440-75umMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA2500-14gc Gain Minimum
+Exposure Minimum
+acA2500-14gm Gain Minimum
+Exposure Minimum
+acA2500-14uc Minimize Gain
+Minimize Exposure Time
+acA2500-14um Minimize Gain
+Minimize Exposure Time
+acA2500-20gc Gain Minimum
+Exposure Minimum
+acA2500-20gcMED Gain Minimum
+Exposure Minimum
+Gain Minimum Quick
+Exposure Minimum Quick
+acA2500-20gm Gain Minimum
+Exposure Minimum
+acA2500-20gmMED Gain Minimum
+Exposure Minimum
+Gain Minimum Quick
+Exposure Minimum Quick
+acA2500-60uc Minimize Gain
+Minimize Exposure Time
+acA2500-60um Minimize Gain
+Minimize Exposure Time
+acA3088-16gc Gain Minimum
+Exposure Minimum
+acA3088-16gm Gain Minimum
+Exposure Minimum
+acA3088-57uc Minimize Gain
+Minimize Exposure Time
+acA3088-57ucMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA3088-57um Minimize Gain
+Minimize Exposure Time
+acA3088-57umMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA3800-10gc Gain Minimum
+Exposure Minimum
+acA3800-10gm Gain Minimum
+Exposure Minimum
+acA3800-14uc Minimize Gain
+Minimize Exposure Time
+acA3800-14um Minimize Gain
+Minimize Exposure Time
+acA4024-8gc Gain Minimum
+Exposure Minimum
+acA4024-8gm Gain Minimum
+Exposure Minimum
+acA4024-29uc Minimize Gain
+Minimize Exposure Time
+acA4024-29um Minimize Gain
+Minimize Exposure Time
+acA4096-11gc Gain Minimum
+Exposure Minimum
+acA4096-11gm Gain Minimum
+Exposure Minimum
+acA4096-30uc Minimize Gain
+Minimize Exposure Time
+acA4096-30ucMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA4096-30um Minimize Gain
+Minimize Exposure Time
+acA4096-30umMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA4096-40uc Minimize Gain
+Minimize Exposure Time
+acA4096-40ucMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA4096-40um Minimize Gain
+Minimize Exposure Time
+acA4096-40umMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA4112-8gc Gain Minimum
+Exposure Minimum
+acA4112-8gm Gain Minimum
+Exposure Minimum
+acA4112-20uc Minimize Gain
+Minimize Exposure Time
+acA4112-20ucMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA4112-20um Minimize Gain
+Minimize Exposure Time
+acA4112-20umMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA4112-30uc Minimize Gain
+Minimize Exposure Time
+acA4112-30ucMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA4112-30um Minimize Gain
+Minimize Exposure Time
+acA4112-30umMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA5472-5gc Gain Minimum
+Exposure Minimum
+acA5472-5gm Gain Minimum
+Exposure Minimum
+acA5472-17uc Minimize Gain
+Minimize Exposure Time
+acA5472-17ucMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+acA5472-17um Minimize Gain
+Minimize Exposure Time
+acA5472-17umMED Minimize Gain
+Minimize Exposure Time
+Minimize Gain Quick
+Minimize Exposure Time Quick
+boA1936-400cc Minimize Gain
+Minimize Exposure Time
+boA1936-400cm Minimize Gain
+Minimize Exposure Time
+boA2448-250cc Minimize Gain
+Minimize Exposure Time
+boA2448-250cm Minimize Gain
+Minimize Exposure Time
+boA2832-190cc Minimize Gain
+Minimize Exposure Time
+boA2832-190cm Minimize Gain
+Minimize Exposure Time
+boA4096-93cc Minimize Gain
+Minimize Exposure Time
+boA4096-93cm Minimize Gain
+Minimize Exposure Time
+boA4096-180cc Minimize Gain
+Minimize Exposure Time
+boA4096-180cm Minimize Gain
+Minimize Exposure Time
+boA4112-68cc Minimize Gain
+Minimize Exposure Time
+boA4112-68cm Minimize Gain
+Minimize Exposure Time
+boA4500-45cc Minimize Gain
+Minimize Exposure Time
+boA4500-45cm Minimize Gain
+Minimize Exposure Time
+boA4504-100cc Minimize Gain
+Minimize Exposure Time
+boA4504-100cm Minimize Gain
+Minimize Exposure Time
+boA5056-95cm Minimize Gain
+Minimize Exposure Time
+boA5120-150cc Auto Function Profile feature not supported
+boA5120-150cm Auto Function Profile feature not supported
+boA5120-230cc Auto Function Profile feature not supported
+boA5120-230cm Auto Function Profile feature not supported
+boA5320-150cc Minimize Gain
+Minimize Exposure Time
+boA5320-150cm Minimize Gain
+Minimize Exposure Time
+boA5328-100cc Minimize Gain
+Minimize Exposure Time
+boA5328-100cm Minimize Gain
+Minimize Exposure Time
+boA6500-36cc Minimize Gain
+Minimize Exposure Time
+boA6500-36cm Minimize Gain
+Minimize Exposure Time
+boA8100-16cc Minimize Gain
+Minimize Exposure Time
+boA8100-16cm Minimize Gain
+Minimize Exposure Time
+boA9344-30cc Auto Function Profile feature not supported
+boA9344-30cm Auto Function Profile feature not supported
+boA9344-70cc Auto Function Profile feature not supported
+boA9344-70cm Auto Function Profile feature not supported
+boA13440-17cm Auto Function Profile feature not supported
+daA720-520uc Minimize Gain
+Minimize Exposure Time
+daA720-520um Minimize Gain
+Minimize Exposure Time
+daA1280-54uc Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+daA1280-54um Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+daA1440-220uc Minimize Gain
+Minimize Exposure Time
+daA1440-220um Minimize Gain
+Minimize Exposure Time
+daA1600-60uc Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+daA1600-60um Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+daA1920-15um Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+daA1920-30uc Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+daA1920-30um Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+daA1920-160uc Minimize Gain
+Minimize Exposure Time
+daA1920-160um Minimize Gain
+Minimize Exposure Time
+daA2448-70uc Minimize Gain
+Minimize Exposure Time
+daA2448-70um Minimize Gain
+Minimize Exposure Time
+daA2500-14uc Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+daA2500-14um Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+daA3840-45uc Minimize Gain
+Minimize Exposure Time
+daA3840-45um Minimize Gain
+Minimize Exposure Time
+dmA720-290gc Minimize Gain
+Minimize Exposure Time
+dmA720-290gm Minimize Gain
+Minimize Exposure Time
+dmA1440-73gc Minimize Gain
+Minimize Exposure Time
+dmA1440-73gm Minimize Gain
+Minimize Exposure Time
+dmA1920-51gc Minimize Gain
+Minimize Exposure Time
+dmA1920-51gm Minimize Gain
+Minimize Exposure Time
+dmA2048-37gc Minimize Gain
+Minimize Exposure Time
+dmA2048-37gm Minimize Gain
+Minimize Exposure Time
+dmA2448-23gc Minimize Gain
+Minimize Exposure Time
+dmA2448-23gm Minimize Gain
+Minimize Exposure Time
+dmA2840-14gc Minimize Gain
+Minimize Exposure Time
+dmA2840-14gm Minimize Gain
+Minimize Exposure Time
+dmA3536-9gc Minimize Gain
+Minimize Exposure Time
+dmA3536-9gm Minimize Gain
+Minimize Exposure Time
+dmA4096-9gc Minimize Gain
+Minimize Exposure Time
+dmA4096-9gm Minimize Gain
+Minimize Exposure Time
+puA1280-54uc Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+puA1280-54um Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+puA1600-60uc Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+puA1600-60um Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+puA1920-30uc Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+puA1920-30um Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+puA2500-14uc Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+puA2500-14um Minimize Gain
+Minimize Exposure Time
+Smart
+Anti-Flicker 50 Hz
+Anti-Flicker 60 Hz
+r2L2048-29gc Minimize Gain
+Minimize Exposure Time
+r2L2048-58gm Minimize Gain
+Minimize Exposure Time
+r2L2048-62cc Minimize Gain
+Minimize Exposure Time
+r2L2048-62g5c Minimize Gain
+Minimize Exposure Time
+r2L2048-172cm Minimize Gain
+Minimize Exposure Time
+r2L2048-172g5m Minimize Gain
+Minimize Exposure Time
+r2L4096-14gc Minimize Gain
+Minimize Exposure Time
+r2L4096-29gm Minimize Gain
+Minimize Exposure Time
+r2L4096-42cc Minimize Gain
+Minimize Exposure Time
+r2L4096-42g5c Minimize Gain
+Minimize Exposure Time
+r2L4096-84cm Minimize Gain
+Minimize Exposure Time
+r2L4096-84g5m Minimize Gain
+Minimize Exposure Time
+r2L8192-80cc Minimize Gain
+Minimize Exposure Time
+r2L8192-240cm Auto Function Profile feature not supported
+r2L16384-60cc Minimize Gain
+Minimize Exposure Time
+r2L16384-120cm Auto Function Profile feature not supported
+r2T16416-500cm Auto Function Profile feature not supported
+Sample Code# ace Classic/U/L GigE Cameras#
+C++ (Native)C++ (Generic)C#C (Generic)Python
+// Set the auto function profile to Gain Minimum
+camera.AutoFunctionProfile.SetValue(AutoFunctionProfile_GainMinimum);
+// Set the auto function profile to Exposure Minimum
+camera.AutoFunctionProfile.SetValue(AutoFunctionProfile_ExposureMinimum);
+// Enable Gain and Exposure Auto auto functions and set the operating mode to Continuous
+camera.GainAuto.SetValue(GainAuto_Continuous);
+camera.ExposureAuto.SetValue(ExposureAuto_Continuous);
+INodeMap& nodemap = camera.GetNodeMap();
+// Set the auto function profile to Gain Minimum
+CEnumParameter(nodemap, "AutoFunctionProfile").SetValue("GainMinimum");
+// Set the auto function profile to Exposure Minimum
+CEnumParameter(nodemap, "AutoFunctionProfile").SetValue("ExposureMinimum");
+// Enable Gain and Exposure Auto auto functions and set the operating mode to Continuous
+CEnumParameter(nodemap, "GainAuto").SetValue("Continuous");
+CEnumParameter(nodemap, "ExposureAuto").SetValue("Continuous");
+// Set the auto function profile to Gain Minimum
+camera.Parameters[PLCamera.AutoFunctionProfile].SetValue(PLCamera.AutoFunctionProfile.GainMinimum);
+// Set the auto function profile to Exposure Minimum
+camera.Parameters[PLCamera.AutoFunctionProfile].SetValue(PLCamera.AutoFunctionProfile.ExposureMinimum);
+// Enable Gain and Exposure Auto auto functions and set the operating mode to Continuous
+camera.Parameters[PLCamera.GainAuto].SetValue(PLCamera.GainAuto.Continuous);
+camera.Parameters[PLCamera.ExposureAuto].SetValue(PLCamera.ExposureAuto.Continuous);
+/* Macro to check for errors */
+#define CHECK(errc) if (GENAPI_E_OK != errc) printErrorAndExit(errc)
+GENAPIC_RESULT errRes = GENAPI_E_OK;  /* Return value of pylon methods */
+/* Set the auto function profile to Gain Minimum */
+errRes = PylonDeviceFeatureFromString(hdev, "AutoFunctionProfile", "GainMinimum");
+CHECK(errRes);
+/* Set the auto function profile to Exposure Minimum */
+errRes = PylonDeviceFeatureFromString(hdev, "AutoFunctionProfile", "ExposureMinimum");
+CHECK(errRes);
+/* Enable Gain and Exposure Auto auto functions and set the operating mode to Continuous */
+errRes = PylonDeviceFeatureFromString(hdev, "GainAuto", "Continuous");
+CHECK(errRes);
+errRes = PylonDeviceFeatureFromString(hdev, "ExposureAuto", "Continuous");
+CHECK(errRes);
+# Set the auto function profile to Gain Minimum
+camera.AutoFunctionProfile.Value = "GainMinimum"
+# Set the auto function profile to Exposure Minimum
+camera.AutoFunctionProfile.Value = "ExposureMinimum"
+# Enable Gain and Exposure Auto auto functions and set the operating mode to Continuous
+camera.GainAuto.Value = "Continuous"
+camera.ExposureAuto.Value = "Continuous"
+Other Cameras#
+C++ (Native)C++ (Generic)C#C (Generic)Python
+// Set the auto function profile to Minimize Gain
+camera.AutoFunctionProfile.SetValue(AutoFunctionProfile_MinimizeGain);
+// Set the auto function profile to Minimize Exposure Time
+camera.AutoFunctionProfile.SetValue(AutoFunctionProfile_MinimizeExposureTime);
+// Enable Gain and Exposure Auto auto functions and set the operating mode to Continuous
+camera.GainAuto.SetValue(GainAuto_Continuous);
+camera.ExposureAuto.SetValue(ExposureAuto_Continuous);
+INodeMap& nodemap = camera.GetNodeMap();
+// Set the auto function profile to Minimize Gain
+CEnumParameter(nodemap, "AutoFunctionProfile").SetValue("MinimizeGain");
+// Set the auto function profile to Minimize Exposure Time
+CEnumParameter(nodemap, "AutoFunctionProfile").SetValue("MinimizeExposureTime");
+// Enable Gain and Exposure Auto auto functions and set the operating mode to Continuous
+CEnumParameter(nodemap, "GainAuto").SetValue("Continuous");
+CEnumParameter(nodemap, "ExposureAuto").SetValue("Continuous");
+// Set the auto function profile to Minimize Gain
+camera.Parameters[PLCamera.AutoFunctionProfile].SetValue(PLCamera.AutoFunctionProfile.MinimizeGain);
+// Set the auto function profile to Minimize Exposure Time
+camera.Parameters[PLCamera.AutoFunctionProfile].SetValue(PLCamera.AutoFunctionProfile.MinimizeExposureTime);
+// Enable Gain and Exposure Auto auto functions and set the operating mode to Continuous
+camera.Parameters[PLCamera.GainAuto].SetValue(PLCamera.GainAuto.Continuous);
+camera.Parameters[PLCamera.ExposureAuto].SetValue(PLCamera.ExposureAuto.Continuous);
+/* Macro to check for errors */
+#define CHECK(errc) if (GENAPI_E_OK != errc) printErrorAndExit(errc)
+GENAPIC_RESULT errRes = GENAPI_E_OK;  /* Return value of pylon methods */
+/* Set the auto function profile to Minimize Gain */
+errRes = PylonDeviceFeatureFromString(hdev, "AutoFunctionProfile", "MinimizeGain");
+CHECK(errRes);
+/* Set the auto function profile to Minimize Exposure Time */
+errRes = PylonDeviceFeatureFromString(hdev, "AutoFunctionProfile", "MinimizeExposureTime");
+CHECK(errRes);
+/* Enable Gain and Exposure Auto auto functions and set the operating mode to Continuous */
+errRes = PylonDeviceFeatureFromString(hdev, "GainAuto", "Continuous");
+CHECK(errRes);
+errRes = PylonDeviceFeatureFromString(hdev, "ExposureAuto", "Continuous");
+CHECK(errRes);
+# Set the auto function profile to Minimize Gain
+camera.AutoFunctionProfile.Value = "MinimizeGain"
+# Set the auto function profile to Minimize Exposure Time
+camera.AutoFunctionProfile.Value = "MinimizeExposureTime"
+# Enable Gain and Exposure Auto auto functions and set the operating mode to Continuous
+camera.GainAuto.Value = "Continuous"
+camera.ExposureAuto.Value = "Continuous"
+You can also use the pylon Viewer to easily set the parameters.
+Was this page helpful?
+Thanks for your feedback!
+Thanks for your feedback! Help us improve this page by using our
+Back to top
+Suggestions for improving the documentation? Send us your feedback.
+For technical questions, please contact your local distributor or use the support form on the Basler website.
+All material in this publication is subject to change without notice and is copyright Basler AG.
+Version: 134 • Release date: 16 September 2026 • Document number: AW001406 • ICP license number: 沪ICP备17041046号-1
+Download •  Privacy •  Licensing •  Legal Info
+×
+Select your camera model to display camera-specific information throughout the help:
+Tip: In the select box, enter any part of your camera model's name, e.g., 'acA' or '1600'.
+×
+This camera is not in series production yet.
+All information is subject to change.
+×
+Search not available
+Due to technical restrictions, the search feature is only available on docs.baslerweb.com.
+The information in this topic does not apply to your camera model.
+Select a different camera model:
+Parameter names may not apply to your camera model.
+To display appropriate parameter names, select a camera model:
+Internet Explorer not supported
+To access the Basler Product Documentation, use one of the following browsers:
+Google Chrome
+Microsoft Edge
+Mozilla Firefox
+Disclaimer
+This website is being translated through machine translation by a third-party service. Basler does not warrant the accuracy, reliability or timeliness of any information translated by this system and will not accept liability for loss or damage incurred as a result. Content that has not yet been translated appears in English. Switch to English version
+Show only your camera model Show all camera models
+This website uses cookies
+We use cookies to provide site search, store your settings, and to analyze the usage of the documentation. With your consent, you're helping us to make our documentation better.
+Google Analytics
+Accept Manage settings

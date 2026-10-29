@@ -1,0 +1,811 @@
+create_variation_model [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Inspection
+/
+Variation Model
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+create_variation_model
+T_create_variation_model
+CreateVariationModel
+CreateVariationModel
+create_variation_model
+(Operator)
+Name
+create_variation_model
+T_create_variation_model
+CreateVariationModel
+CreateVariationModel
+create_variation_model
+— Create a variation model for image comparison.
+Signature
+create_variation_model
+( :  :
+Width
+,
+Height
+,
+Type
+,
+Mode
+:
+ModelID
+)
+Herror
+T_create_variation_model
+(const Htuple
+Width
+, const Htuple
+Height
+, const Htuple
+Type
+, const Htuple
+Mode
+, Htuple*
+ModelID
+)
+void
+CreateVariationModel
+(const HTuple&
+Width
+, const HTuple&
+Height
+, const HTuple&
+Type
+, const HTuple&
+Mode
+, HTuple*
+ModelID
+)
+void
+HVariationModel
+::
+HVariationModel
+(Hlong
+Width
+, Hlong
+Height
+, const HString&
+Type
+, const HString&
+Mode
+)
+void
+HVariationModel
+::
+HVariationModel
+(Hlong
+Width
+, Hlong
+Height
+, const char*
+Type
+, const char*
+Mode
+)
+void
+HVariationModel
+::
+HVariationModel
+(Hlong
+Width
+, Hlong
+Height
+, const wchar_t*
+Type
+, const wchar_t*
+Mode
+)
+(
+            Windows only)
+void
+HVariationModel
+::
+CreateVariationModel
+(Hlong
+Width
+, Hlong
+Height
+, const HString&
+Type
+, const HString&
+Mode
+)
+void
+HVariationModel
+::
+CreateVariationModel
+(Hlong
+Width
+, Hlong
+Height
+, const char*
+Type
+, const char*
+Mode
+)
+void
+HVariationModel
+::
+CreateVariationModel
+(Hlong
+Width
+, Hlong
+Height
+, const wchar_t*
+Type
+, const wchar_t*
+Mode
+)
+(
+            Windows only)
+static void
+HOperatorSet
+.
+CreateVariationModel
+(
+HTuple
+width
+,
+HTuple
+height
+,
+HTuple
+type
+,
+HTuple
+mode
+, out
+HTuple
+modelID
+)
+public
+HVariationModel
+(int
+width
+, int
+height
+, string
+type
+, string
+mode
+)
+void
+HVariationModel
+.
+CreateVariationModel
+(int
+width
+, int
+height
+, string
+type
+, string
+mode
+)
+def
+create_variation_model
+(
+width
+: int,
+height
+: int,
+type
+: str,
+mode
+: str) -> HHandle
+Description
+create_variation_model
+create_variation_model
+CreateVariationModel
+CreateVariationModel
+create_variation_model
+creates a variation model that can be
+used for image comparison.  The handle for the variation model is
+returned in
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+.
+Typically, the variation model is used to discriminate correctly
+manufactured objects (“good objects”) from incorrectly
+manufactured objects (“bad objects”).  It is assumed that the
+discrimination can be done solely based on the gray values of the
+object.
+The variation model consists of an ideal image of the object to
+which the images of the objects to be tested are compared later on
+with
+compare_variation_model
+compare_variation_model
+CompareVariationModel
+CompareVariationModel
+compare_variation_model
+or
+compare_ext_variation_model
+compare_ext_variation_model
+CompareExtVariationModel
+CompareExtVariationModel
+compare_ext_variation_model
+, and an image that represents
+the amount of gray value variation at every point of the object.
+The size of the images with which the object model is trained and
+with which the model is compared later on is passed in
+Width
+Width
+Width
+width
+width
+and
+Height
+Height
+Height
+height
+height
+, respectively.  The image type of
+the images used for training and comparison is passed in
+Type
+Type
+Type
+type
+type
+.
+The variation model is trained using multiple images of good
+objects.  Therefore, it is essential that the training images show
+the objects in the same position and rotation.  If this cannot be
+guaranteed by external means, the pose of the object can, for
+example, be determined by using matching (see
+find_generic_shape_model
+find_generic_shape_model
+FindGenericShapeModel
+FindGenericShapeModel
+find_generic_shape_model
+). The image can then be transformed to a
+reference pose with
+affine_trans_image
+affine_trans_image
+AffineTransImage
+AffineTransImage
+affine_trans_image
+.
+The parameter
+Mode
+Mode
+Mode
+mode
+mode
+is used to determine how the image of
+the ideal object and the corresponding variation image are computed.
+For
+Mode
+Mode
+Mode
+mode
+mode
+=
+'standard'
+"standard"
+"standard"
+"standard"
+"standard"
+, the ideal image of the object
+is computed as the mean of all training images at the respective
+image positions.  The corresponding variation image is computed as
+the standard deviation of the training images at the respective
+image positions.  This mode has the advantage that the variation
+model can be trained iteratively, i.e., as soon as an image of a
+good object becomes available, it can be trained with
+train_variation_model
+train_variation_model
+TrainVariationModel
+TrainVariationModel
+train_variation_model
+.  The disadvantage of this mode is
+that great care must be taken to ensure that only images of good
+objects are trained, because the mean and standard deviation are not
+robust against outliers, i.e., if an image of a bad object is
+trained inadvertently, the accuracy of the ideal object image and
+that of the variation image might be degraded.
+If it cannot be avoided that the variation model is trained with
+some images of objects that can contain errors,
+Mode
+Mode
+Mode
+mode
+mode
+can be
+set to
+'robust'
+"robust"
+"robust"
+"robust"
+"robust"
+.  In this mode, the image of the ideal
+object is computed as the median of all training images at the
+respective image positions.  The corresponding variation image is
+computed as a suitably scaled median absolute deviation of the
+training images and the median image at the respective image
+positions.  This mode has the advantage that it is robust against
+outliers.  It has the disadvantage that it cannot be trained
+iteratively, i.e., all training images must be accumulated using
+concat_obj
+concat_obj
+ConcatObj
+ConcatObj
+concat_obj
+and be trained with
+train_variation_model
+train_variation_model
+TrainVariationModel
+TrainVariationModel
+train_variation_model
+in a single call.
+In some cases, it is impossible to acquire multiple training images.
+In this case, a useful variation image cannot be trained from the
+single training image.  To solve this problem, variations of the
+training image can be created synthetically, e.g., by shifting the
+training image by
+pixel in the row and column
+directions or by using gray value morphology (e.g.,
+gray_erosion_shape
+gray_erosion_shape
+GrayErosionShape
+GrayErosionShape
+gray_erosion_shape
+and
+gray_dilation_shape
+gray_dilation_shape
+GrayDilationShape
+GrayDilationShape
+gray_dilation_shape
+), and
+then training the synthetically modified images.  A different
+possibility to create the variation model from a single image is to
+create the model with
+Mode
+Mode
+Mode
+mode
+mode
+=
+'direct'
+"direct"
+"direct"
+"direct"
+"direct"
+.  In this
+case, the variation model can only be trained by specifying the
+ideal image and the variation image directly with
+prepare_direct_variation_model
+prepare_direct_variation_model
+PrepareDirectVariationModel
+PrepareDirectVariationModel
+prepare_direct_variation_model
+.  Since the variation
+typically is large at the edges of the object, edge operators like
+sobel_amp
+sobel_amp
+SobelAmp
+SobelAmp
+sobel_amp
+,
+edges_image
+edges_image
+EdgesImage
+EdgesImage
+edges_image
+, or
+gray_range_rect
+gray_range_rect
+GrayRangeRect
+GrayRangeRect
+gray_range_rect
+should be used to create the variation image.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+This operator returns a handle. Note that the state of an instance of this handle type may be changed by specific operators even though the handle is used as an input parameter by those operators.
+Parameters
+Width
+Width
+Width
+width
+width
+(input_control)
+extent.x
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Width of the images to be compared.
+Default:
+640
+Suggested values:
+160, 192, 320, 384, 640, 768
+Height
+Height
+Height
+height
+height
+(input_control)
+extent.y
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Height of the images to be compared.
+Default:
+480
+Suggested values:
+120, 144, 240, 288, 480, 576
+Type
+Type
+Type
+type
+type
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Type of the images to be compared.
+Default:
+'byte'
+"byte"
+"byte"
+"byte"
+"byte"
+Suggested values:
+'byte'
+"byte"
+"byte"
+"byte"
+"byte"
+,
+'int2'
+"int2"
+"int2"
+"int2"
+"int2"
+,
+'uint2'
+"uint2"
+"uint2"
+"uint2"
+"uint2"
+Mode
+Mode
+Mode
+mode
+mode
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Method used for computing the variation model.
+Default:
+'standard'
+"standard"
+"standard"
+"standard"
+"standard"
+Suggested values:
+'standard'
+"standard"
+"standard"
+"standard"
+"standard"
+,
+'robust'
+"robust"
+"robust"
+"robust"
+"robust"
+,
+'direct'
+"direct"
+"direct"
+"direct"
+"direct"
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+(output_control)
+variation_model
+→
+HVariationModel
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+ID of the variation model.
+Complexity
+A variation model created with
+create_variation_model
+create_variation_model
+CreateVariationModel
+CreateVariationModel
+create_variation_model
+requires 12*
+Width
+Width
+Width
+width
+width
+*
+Height
+Height
+Height
+height
+height
+bytes of memory for
+Mode
+Mode
+Mode
+mode
+mode
+=
+'standard'
+"standard"
+"standard"
+"standard"
+"standard"
+and
+Mode
+Mode
+Mode
+mode
+mode
+=
+'robust'
+"robust"
+"robust"
+"robust"
+"robust"
+for
+Type
+Type
+Type
+type
+type
+=
+'byte'
+"byte"
+"byte"
+"byte"
+"byte"
+.  For
+Type
+Type
+Type
+type
+type
+=
+'uint2'
+"uint2"
+"uint2"
+"uint2"
+"uint2"
+and
+Type
+Type
+Type
+type
+type
+=
+'int2'
+"int2"
+"int2"
+"int2"
+"int2"
+, 14*
+Width
+Width
+Width
+width
+width
+*
+Height
+Height
+Height
+height
+height
+are required.
+For
+Mode
+Mode
+Mode
+mode
+mode
+=
+'direct'
+"direct"
+"direct"
+"direct"
+"direct"
+and after the training data
+has been cleared with
+clear_train_data_variation_model
+clear_train_data_variation_model
+ClearTrainDataVariationModel
+ClearTrainDataVariationModel
+clear_train_data_variation_model
+,
+2*
+Width
+Width
+Width
+width
+width
+*
+Height
+Height
+Height
+height
+height
+bytes are required for
+Type
+Type
+Type
+type
+type
+=
+'byte'
+"byte"
+"byte"
+"byte"
+"byte"
+and
+4*
+Width
+Width
+Width
+width
+width
+*
+Height
+Height
+Height
+height
+height
+for the other image types.
+Result
+create_variation_model
+create_variation_model
+CreateVariationModel
+CreateVariationModel
+create_variation_model
+returns
+2
+(
+H_MSG_TRUE
+)
+     if all parameters are
+correct.
+Possible Successors
+train_variation_model
+train_variation_model
+TrainVariationModel
+TrainVariationModel
+train_variation_model
+,
+prepare_direct_variation_model
+prepare_direct_variation_model
+PrepareDirectVariationModel
+PrepareDirectVariationModel
+prepare_direct_variation_model
+See also
+prepare_variation_model
+prepare_variation_model
+PrepareVariationModel
+PrepareVariationModel
+prepare_variation_model
+,
+clear_variation_model
+clear_variation_model
+ClearVariationModel
+ClearVariationModel
+clear_variation_model
+,
+clear_train_data_variation_model
+clear_train_data_variation_model
+ClearTrainDataVariationModel
+ClearTrainDataVariationModel
+clear_train_data_variation_model
+,
+find_generic_shape_model
+find_generic_shape_model
+FindGenericShapeModel
+FindGenericShapeModel
+find_generic_shape_model
+,
+affine_trans_image
+affine_trans_image
+AffineTransImage
+AffineTransImage
+affine_trans_image
+Module
+Matching
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

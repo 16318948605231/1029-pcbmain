@@ -1,0 +1,555 @@
+set_deep_ocr_param [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+OCR
+/
+Deep OCR
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+set_deep_ocr_param
+T_set_deep_ocr_param
+SetDeepOcrParam
+SetDeepOcrParam
+set_deep_ocr_param
+(Operator)
+Name
+set_deep_ocr_param
+T_set_deep_ocr_param
+SetDeepOcrParam
+SetDeepOcrParam
+set_deep_ocr_param
+— Set the parameters of a Deep OCR model.
+Signature
+set_deep_ocr_param
+( :  :
+DeepOcrHandle
+,
+GenParamName
+,
+GenParamValue
+: )
+Herror
+T_set_deep_ocr_param
+(const Htuple
+DeepOcrHandle
+, const Htuple
+GenParamName
+, const Htuple
+GenParamValue
+)
+void
+SetDeepOcrParam
+(const HTuple&
+DeepOcrHandle
+, const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+)
+void
+HDlModelOcr
+::
+SetDeepOcrParam
+(const HString&
+GenParamName
+, const HTuple&
+GenParamValue
+) const
+void
+HDlModelOcr
+::
+SetDeepOcrParam
+(const HString&
+GenParamName
+, double
+GenParamValue
+) const
+void
+HDlModelOcr
+::
+SetDeepOcrParam
+(const char*
+GenParamName
+, double
+GenParamValue
+) const
+void
+HDlModelOcr
+::
+SetDeepOcrParam
+(const wchar_t*
+GenParamName
+, double
+GenParamValue
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+SetDeepOcrParam
+(
+HTuple
+deepOcrHandle
+,
+HTuple
+genParamName
+,
+HTuple
+genParamValue
+)
+void
+HDlModelOcr
+.
+SetDeepOcrParam
+(string
+genParamName
+,
+HTuple
+genParamValue
+)
+void
+HDlModelOcr
+.
+SetDeepOcrParam
+(string
+genParamName
+, double
+genParamValue
+)
+def
+set_deep_ocr_param
+(
+deep_ocr_handle
+: HHandle,
+gen_param_name
+: str,
+gen_param_value
+: HTupleType) -> None
+Description
+set_deep_ocr_param
+set_deep_ocr_param
+SetDeepOcrParam
+SetDeepOcrParam
+set_deep_ocr_param
+sets the parameters
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+of the
+Deep OCR model
+DeepOcrHandle
+DeepOcrHandle
+DeepOcrHandle
+deepOcrHandle
+deep_ocr_handle
+to the values
+GenParamValue
+GenParamValue
+GenParamValue
+genParamValue
+gen_param_value
+.
+The possible parameters are listed and described in
+get_deep_ocr_param
+get_deep_ocr_param
+GetDeepOcrParam
+GetDeepOcrParam
+get_deep_ocr_param
+. An overview of the
+Deep OCR workflow is given in
+OCR / Deep OCR
+.
+Attention
+System requirements:
+To successfully set
+'gpu'
+"gpu"
+"gpu"
+"gpu"
+"gpu"
+parameters, cuDNN and cuBLAS are
+required, i.e., to set the parameter
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+'device'
+"device"
+"device"
+"device"
+"device"
+to a GPU.
+For further details, please refer to the
+“Installation Guide”
+,
+paragraph “Requirements for Deep Learning and Deep-Learning-Based Methods”.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+DeepOcrHandle
+DeepOcrHandle
+DeepOcrHandle
+deepOcrHandle
+deep_ocr_handle
+(input_control)
+deep_ocr
+→
+HDlModelOcr
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Handle of the Deep OCR model.
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+(input_control)
+attribute.name
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Name of the generic parameter.
+Default:
+'detection_image_width'
+"detection_image_width"
+"detection_image_width"
+"detection_image_width"
+"detection_image_width"
+List of values:
+'detection_device'
+"detection_device"
+"detection_device"
+"detection_device"
+"detection_device"
+,
+'detection_image_height'
+"detection_image_height"
+"detection_image_height"
+"detection_image_height"
+"detection_image_height"
+,
+'detection_image_size'
+"detection_image_size"
+"detection_image_size"
+"detection_image_size"
+"detection_image_size"
+,
+'detection_image_width'
+"detection_image_width"
+"detection_image_width"
+"detection_image_width"
+"detection_image_width"
+,
+'detection_min_character_score'
+"detection_min_character_score"
+"detection_min_character_score"
+"detection_min_character_score"
+"detection_min_character_score"
+,
+'detection_min_link_score'
+"detection_min_link_score"
+"detection_min_link_score"
+"detection_min_link_score"
+"detection_min_link_score"
+,
+'detection_min_word_area'
+"detection_min_word_area"
+"detection_min_word_area"
+"detection_min_word_area"
+"detection_min_word_area"
+,
+'detection_min_word_score'
+"detection_min_word_score"
+"detection_min_word_score"
+"detection_min_word_score"
+"detection_min_word_score"
+,
+'detection_model'
+"detection_model"
+"detection_model"
+"detection_model"
+"detection_model"
+,
+'detection_optimize_for_inference'
+"detection_optimize_for_inference"
+"detection_optimize_for_inference"
+"detection_optimize_for_inference"
+"detection_optimize_for_inference"
+,
+'detection_orientation'
+"detection_orientation"
+"detection_orientation"
+"detection_orientation"
+"detection_orientation"
+,
+'detection_sort_by_line'
+"detection_sort_by_line"
+"detection_sort_by_line"
+"detection_sort_by_line"
+"detection_sort_by_line"
+,
+'detection_tiling'
+"detection_tiling"
+"detection_tiling"
+"detection_tiling"
+"detection_tiling"
+,
+'detection_tiling_overlap'
+"detection_tiling_overlap"
+"detection_tiling_overlap"
+"detection_tiling_overlap"
+"detection_tiling_overlap"
+,
+'device'
+"device"
+"device"
+"device"
+"device"
+,
+'recognition_alignment'
+"recognition_alignment"
+"recognition_alignment"
+"recognition_alignment"
+"recognition_alignment"
+,
+'recognition_alphabet'
+"recognition_alphabet"
+"recognition_alphabet"
+"recognition_alphabet"
+"recognition_alphabet"
+,
+'recognition_alphabet_internal'
+"recognition_alphabet_internal"
+"recognition_alphabet_internal"
+"recognition_alphabet_internal"
+"recognition_alphabet_internal"
+,
+'recognition_alphabet_mapping'
+"recognition_alphabet_mapping"
+"recognition_alphabet_mapping"
+"recognition_alphabet_mapping"
+"recognition_alphabet_mapping"
+,
+'recognition_batch_size'
+"recognition_batch_size"
+"recognition_batch_size"
+"recognition_batch_size"
+"recognition_batch_size"
+,
+'recognition_device'
+"recognition_device"
+"recognition_device"
+"recognition_device"
+"recognition_device"
+,
+'recognition_image_width'
+"recognition_image_width"
+"recognition_image_width"
+"recognition_image_width"
+"recognition_image_width"
+,
+'recognition_model'
+"recognition_model"
+"recognition_model"
+"recognition_model"
+"recognition_model"
+,
+'recognition_num_char_candidates'
+"recognition_num_char_candidates"
+"recognition_num_char_candidates"
+"recognition_num_char_candidates"
+"recognition_num_char_candidates"
+,
+'recognition_optimize_for_inference'
+"recognition_optimize_for_inference"
+"recognition_optimize_for_inference"
+"recognition_optimize_for_inference"
+"recognition_optimize_for_inference"
+GenParamValue
+GenParamValue
+GenParamValue
+genParamValue
+gen_param_value
+(input_control)
+attribute.value(-array)
+→
+HTuple
+HTupleType
+HTuple
+Htuple
+(real /
+string /
+integer /
+handle)
+(
+double
+/
+string /
+int /
+long /
+HHandle)
+(
+double
+/
+HString /
+Hlong /
+HHandle)
+(
+double
+/
+char* /
+Hlong /
+handle)
+Value of the generic parameter.
+Default:
+1024
+Suggested values:
+0, 10, 50, 100, 200, 512, 768, 1024, 1280, 0.3, 0.4, 0.5, 0.6, 0.7,
+'true'
+"true"
+"true"
+"true"
+"true"
+,
+'false'
+"false"
+"false"
+"false"
+"false"
+,
+'auto'
+"auto"
+"auto"
+"auto"
+"auto"
+,
+'compact'
+"compact"
+"compact"
+"compact"
+"compact"
+,
+'default'
+"default"
+"default"
+"default"
+"default"
+,
+'pretrained_deep_ocr_detection.hdl'
+"pretrained_deep_ocr_detection.hdl"
+"pretrained_deep_ocr_detection.hdl"
+"pretrained_deep_ocr_detection.hdl"
+"pretrained_deep_ocr_detection.hdl"
+,
+'pretrained_deep_ocr_detection_compact.hdl'
+"pretrained_deep_ocr_detection_compact.hdl"
+"pretrained_deep_ocr_detection_compact.hdl"
+"pretrained_deep_ocr_detection_compact.hdl"
+"pretrained_deep_ocr_detection_compact.hdl"
+,
+'pretrained_deep_ocr_recognition.hdl'
+"pretrained_deep_ocr_recognition.hdl"
+"pretrained_deep_ocr_recognition.hdl"
+"pretrained_deep_ocr_recognition.hdl"
+"pretrained_deep_ocr_recognition.hdl"
+,
+'pretrained_deep_ocr_recognition_compact.hdl'
+"pretrained_deep_ocr_recognition_compact.hdl"
+"pretrained_deep_ocr_recognition_compact.hdl"
+"pretrained_deep_ocr_recognition_compact.hdl"
+"pretrained_deep_ocr_recognition_compact.hdl"
+Result
+If the parameters are valid, the operator
+set_deep_ocr_param
+set_deep_ocr_param
+SetDeepOcrParam
+SetDeepOcrParam
+set_deep_ocr_param
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    .  If
+necessary, an exception is raised.
+Possible Predecessors
+create_deep_ocr
+create_deep_ocr
+CreateDeepOcr
+CreateDeepOcr
+create_deep_ocr
+,
+get_deep_ocr_param
+get_deep_ocr_param
+GetDeepOcrParam
+GetDeepOcrParam
+get_deep_ocr_param
+Possible Successors
+get_deep_ocr_param
+get_deep_ocr_param
+GetDeepOcrParam
+GetDeepOcrParam
+get_deep_ocr_param
+,
+apply_deep_ocr
+apply_deep_ocr
+ApplyDeepOcr
+ApplyDeepOcr
+apply_deep_ocr
+See also
+get_deep_ocr_param
+get_deep_ocr_param
+GetDeepOcrParam
+GetDeepOcrParam
+get_deep_ocr_param
+Module
+OCR/OCV
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

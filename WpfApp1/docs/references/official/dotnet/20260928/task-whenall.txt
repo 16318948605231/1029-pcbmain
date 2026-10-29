@@ -1,0 +1,1118 @@
+Task.WhenAll Method (System.Threading.Tasks) | Microsoft Learn
+Skip to main content
+Skip to in-page navigation
+Skip to Ask Learn chat experience
+This browser is no longer supported.
+Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+Download Microsoft Edge
+More info about Internet Explorer and Microsoft Edge
+Table of contents
+Exit editor mode
+Ask Learn
+Ask Learn
+Language
+csharp
+vb
+fsharp
+cpp
+Reading mode
+Table of contents
+Read in English
+Add
+Add to Plans
+Edit
+Copy Markdown
+Print
+Note
+Access to this page requires authorization. You can try
+signing in
+or
+changing directories
+.
+Access to this page requires authorization. You can try
+changing directories
+.
+Task.
+When
+All Method
+Definition
+Namespace:
+System.Threading.Tasks
+Assemblies:
+mscorlib.dll, System.Threading.Tasks.dll
+Assemblies:
+netstandard.dll, System.Runtime.dll
+Assembly:
+System.Threading.Tasks.dll
+Assembly:
+System.Runtime.dll
+Assembly:
+mscorlib.dll
+Assembly:
+netstandard.dll
+Important
+Some information relates to prerelease product that may be substantially modified before it’s released. Microsoft makes no warranties, express or implied, with respect to the information provided here.
+Creates a task that will complete when all of the supplied tasks have completed.
+Overloads
+Name
+Description
+WhenAll(IEnumerable<Task>)
+Creates a task that will complete when all of the
+Task
+objects in an enumerable collection have completed.
+WhenAll(ReadOnlySpan<Task>)
+Creates a task that will complete when all of the supplied tasks have completed.
+WhenAll(Task[])
+Creates a task that will complete when all of the
+Task
+objects in an array have completed.
+WhenAll<TResult>(ReadOnlySpan<Task<TResult>>)
+Creates a task that will complete when all of the supplied tasks have completed.
+WhenAll<TResult>(IEnumerable<Task<TResult>>)
+Creates a task that will complete when all of the
+Task<TResult>
+objects in an enumerable collection have completed.
+WhenAll<TResult>(Task<TResult>[])
+Creates a task that will complete when all of the
+Task<TResult>
+objects in an array have completed.
+WhenAll(IEnumerable<Task>)
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Creates a task that will complete when all of the
+Task
+objects in an enumerable collection have completed.
+public:
+ static System::Threading::Tasks::Task ^ WhenAll(System::Collections::Generic::IEnumerable<System::Threading::Tasks::Task ^> ^ tasks);
+public static System.Threading.Tasks.Task WhenAll(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task> tasks);
+static member WhenAll : seq<System.Threading.Tasks.Task> -> System.Threading.Tasks.Task
+Public Shared Function WhenAll (tasks As IEnumerable(Of Task)) As Task
+Parameters
+tasks
+IEnumerable
+<
+Task
+>
+The tasks to wait on for completion.
+Returns
+Task
+A task that represents the completion of all of the supplied tasks.
+Exceptions
+ArgumentNullException
+The
+tasks
+argument was
+null
+.
+ArgumentException
+The
+tasks
+collection contained a
+null
+task.
+Examples
+The following example creates a set of tasks that ping the URLs in an array. The tasks are stored in a
+List<Task>
+collection that is passed to the
+WhenAll(IEnumerable<Task>)
+method. After the call to the
+Wait
+method ensures that all threads have completed, the example examines the
+Task.Status
+property to determine whether any tasks have faulted.
+using System;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Threading;
+using System.Threading.Tasks;
+
+public class Example
+{
+   public static void Main()
+   {
+      int failed = 0;
+      var tasks = new List<Task>();
+      String[] urls = { "www.adatum.com", "www.cohovineyard.com",
+                        "www.cohowinery.com", "www.northwindtraders.com",
+                        "www.contoso.com" };
+      
+      foreach (var value in urls) {
+         var url = value;
+         tasks.Add(Task.Run( () => { var png = new Ping();
+                                     try {
+                                        var reply = png.Send(url);
+                                        if (!(reply.Status == IPStatus.Success)) {
+                                           Interlocked.Increment(ref failed);
+                                           throw new TimeoutException("Unable to reach " + url + ".");
+                                        }
+                                     }
+                                     catch (PingException) {
+                                        Interlocked.Increment(ref failed);
+                                        throw;
+                                     }
+                                   }));
+      }
+      Task t = Task.WhenAll(tasks);
+      try {
+         t.Wait();
+      }
+      catch {}   
+
+      if (t.Status == TaskStatus.RanToCompletion)
+         Console.WriteLine("All ping attempts succeeded.");
+      else if (t.Status == TaskStatus.Faulted)
+         Console.WriteLine("{0} ping attempts failed", failed);      
+   }
+}
+// The example displays output like the following:
+//       5 ping attempts failed
+open System
+open System.Net.NetworkInformation
+open System.Threading
+open System.Threading.Tasks
+
+let mutable failed = 0
+
+let urls =
+    [ "www.adatum.com"
+      "www.cohovineyard.com"
+      "www.cohowinery.com"
+      "www.northwindtraders.com"
+      "www.contoso.com" ]
+
+let tasks =
+    urls
+    |> List.map (fun url ->
+        Task.Run(fun () ->
+            let png = new Ping()
+
+            try
+                let reply = png.Send url
+
+                if reply.Status <> IPStatus.Success then
+                    Interlocked.Increment &failed |> ignore
+                    raise (TimeoutException $"Unable to reach {url}.")
+            with :? PingException ->
+                Interlocked.Increment &failed |> ignore
+                reraise ()))
+
+let t = Task.WhenAll tasks
+
+try
+    t.Wait()
+with _ ->
+    ()
+
+if t.Status = TaskStatus.RanToCompletion then
+    printfn "All ping attempts succeeded."
+elif t.Status = TaskStatus.Faulted then
+    printfn $"{failed} ping attempts failed"
+
+// The example displays output like the following:
+//       5 ping attempts failed
+Imports System.Collections.Generic
+Imports System.Net.NetworkInformation
+Imports System.Threading
+Imports System.Threading.Tasks
+
+Module Example
+   Public Sub Main()
+      Dim failed As Integer = 0
+      Dim tasks As New List(Of Task)()
+      Dim urls() As String = { "www.adatum.com", "www.cohovineyard.com",
+                              "www.cohowinery.com", "www.northwindtraders.com",
+                              "www.contoso.com" }
+      
+      For Each value In urls
+         Dim url As String = value
+         tasks.Add(Task.Run( Sub()
+                                Dim png As New Ping()
+                                Try
+                                   Dim reply = png.Send(url)
+                                   If Not reply.Status = IPStatus.Success Then
+                                      Interlocked.Increment(failed)
+                                      Throw New TimeoutException("Unable to reach " + url + ".")
+                                   End If
+                                   Catch e As PingException
+                                      Interlocked.Increment(failed)
+                                      Throw
+                                   End Try
+                             End Sub))
+      Next
+      Dim t As Task = Task.WhenAll(tasks)
+      Try
+         t.Wait()
+      Catch
+      End Try   
+
+      If t.Status = TaskStatus.RanToCompletion
+         Console.WriteLine("All ping attempts succeeded.")
+      ElseIf t.Status = TaskStatus.Faulted
+         Console.WriteLine("{0} ping attempts failed", failed)      
+      End If
+   End Sub
+End Module
+' The example displays output like the following:
+'     5 ping attempts failed
+Remarks
+The overloads of the
+WhenAll
+method that return a
+Task
+object are typically called when you are interested in the status of a set of tasks or in the exceptions thrown by a set of tasks.
+Note
+The call to
+WhenAll(IEnumerable<Task>)
+method does not block the calling thread.
+If any of the supplied tasks completes in a faulted state, the returned task will also complete in a
+Faulted
+state,  where its exceptions will contain the aggregation of the set of unwrapped exceptions from each of the supplied tasks.
+If none of the supplied tasks faulted but at least one of them was canceled, the returned task will end in the
+Canceled
+state.
+If none of the tasks faulted and none of the tasks were canceled, the resulting task will end in the
+RanToCompletion
+state.
+If the supplied array/enumerable contains no tasks, the returned task will immediately transition to a
+RanToCompletion
+state before it's returned to the caller.
+Applies to
+WhenAll(ReadOnlySpan<Task>)
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Creates a task that will complete when all of the supplied tasks have completed.
+public:
+ static System::Threading::Tasks::Task ^ WhenAll(ReadOnlySpan<System::Threading::Tasks::Task ^> tasks);
+public static System.Threading.Tasks.Task WhenAll(scoped ReadOnlySpan<System.Threading.Tasks.Task> tasks);
+static member WhenAll : ReadOnlySpan<System.Threading.Tasks.Task> -> System.Threading.Tasks.Task
+Public Shared Function WhenAll (tasks As ReadOnlySpan(Of Task)) As Task
+Parameters
+tasks
+ReadOnlySpan
+<
+Task
+>
+The tasks to wait on for completion.
+Returns
+Task
+A task that represents the completion of all of the supplied tasks.
+Exceptions
+ArgumentException
+The
+tasks
+array contains a
+null
+task.
+Remarks
+If any of the supplied tasks completes in a faulted state, the returned task will also complete in a Faulted state, where its exceptions will contain the aggregation of the set of unwrapped exceptions from each of the supplied tasks.
+If none of the supplied tasks faulted but at least one of them was canceled, the returned task will end in the Canceled state.
+If none of the tasks faulted and none of the tasks were canceled, the resulting task will end in the RanToCompletion state.
+If the supplied span contains no tasks, the returned task will immediately transition to a RanToCompletion state before it's returned to the caller.
+Applies to
+WhenAll(Task[])
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Creates a task that will complete when all of the
+Task
+objects in an array have completed.
+public:
+ static System::Threading::Tasks::Task ^ WhenAll(... cli::array <System::Threading::Tasks::Task ^> ^ tasks);
+public static System.Threading.Tasks.Task WhenAll(params System.Threading.Tasks.Task[] tasks);
+static member WhenAll : System.Threading.Tasks.Task[] -> System.Threading.Tasks.Task
+Public Shared Function WhenAll (ParamArray tasks As Task()) As Task
+Parameters
+tasks
+Task
+[]
+The tasks to wait on for completion.
+Returns
+Task
+A task that represents the completion of all of the supplied tasks.
+Exceptions
+ArgumentNullException
+The
+tasks
+argument was
+null
+.
+ArgumentException
+The
+tasks
+array contained a
+null
+task.
+Examples
+The following example creates a set of tasks that ping the URLs in an array. The tasks are stored in a
+List<Task>
+collection that is converted to an array and passed to the
+WhenAll(IEnumerable<Task>)
+method. After the call to the
+Wait
+method ensures that all threads have completed, the example examines the
+Task.Status
+property to determine whether any tasks have faulted.
+using System;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Threading;
+using System.Threading.Tasks;
+
+public class Example
+{
+   public static async Task Main()
+   {
+      int failed = 0;
+      var tasks = new List<Task>();
+      String[] urls = { "www.adatum.com", "www.cohovineyard.com",
+                        "www.cohowinery.com", "www.northwindtraders.com",
+                        "www.contoso.com" };
+      
+      foreach (var value in urls) {
+         var url = value;
+         tasks.Add(Task.Run( () => { var png = new Ping();
+                                     try {
+                                        var reply = png.Send(url);
+                                        if (!(reply.Status == IPStatus.Success)) {
+                                           Interlocked.Increment(ref failed);
+                                           throw new TimeoutException("Unable to reach " + url + ".");
+                                        }
+                                     }
+                                     catch (PingException) {
+                                        Interlocked.Increment(ref failed);
+                                        throw;
+                                     }
+                                   }));
+      }
+      Task t = Task.WhenAll(tasks.ToArray());
+      try {
+         await t;
+      }
+      catch {}   
+
+      if (t.Status == TaskStatus.RanToCompletion)
+         Console.WriteLine("All ping attempts succeeded.");
+      else if (t.Status == TaskStatus.Faulted)
+         Console.WriteLine("{0} ping attempts failed", failed);      
+   }
+}
+// The example displays output like the following:
+//       5 ping attempts failed
+open System
+open System.Net.NetworkInformation
+open System.Threading
+open System.Threading.Tasks
+
+let mutable failed = 0
+
+let urls =
+    [| "www.adatum.com"
+       "www.cohovineyard.com"
+       "www.cohowinery.com"
+       "www.northwindtraders.com"
+       "www.contoso.com" |]
+
+let tasks =
+    urls
+    |> Array.map (fun url ->
+        Task.Run(fun () ->
+            let png = new Ping()
+
+            try
+                let reply = png.Send url
+
+                if reply.Status <> IPStatus.Success then
+                    Interlocked.Increment &failed |> ignore
+                    raise (TimeoutException $"Unable to reach {url}.")
+            with :? PingException ->
+                Interlocked.Increment &failed |> ignore
+                reraise ()))
+
+let main =
+    task {
+        let t = Task.WhenAll tasks
+
+        try
+            do! t
+        with _ ->
+            ()
+
+        if t.Status = TaskStatus.RanToCompletion then
+            printfn "All ping attempts succeeded."
+        elif t.Status = TaskStatus.Faulted then
+            printfn $"{failed} ping attempts failed"
+    }
+
+main.Wait()
+// The example displays output like the following:
+//       5 ping attempts failed
+Imports System.Collections.Generic
+Imports System.Net.NetworkInformation
+Imports System.Threading
+Imports System.Threading.Tasks
+
+Module Example
+   Public Sub Main()
+      Dim failed As Integer = 0
+      Dim tasks As New List(Of Task)()
+      Dim urls() As String = { "www.adatum.com", "www.cohovineyard.com",
+                              "www.cohowinery.com", "www.northwindtraders.com",
+                              "www.contoso.com" }
+      
+      For Each value In urls
+         Dim url As String = value
+         tasks.Add(Task.Run( Sub()
+                                Dim png As New Ping()
+                                Try
+                                   Dim reply = png.Send(url)
+                                   If Not reply.Status = IPStatus.Success Then
+                                      Interlocked.Increment(failed)
+                                      Throw New TimeoutException("Unable to reach " + url + ".")
+                                   End If
+                                   Catch e As PingException
+                                      Interlocked.Increment(failed)
+                                      Throw
+                                   End Try
+                             End Sub))
+      Next
+      Dim t As Task = Task.WhenAll(tasks.ToArray())
+      Try
+         t.Wait()
+      Catch
+      End Try   
+
+      If t.Status = TaskStatus.RanToCompletion
+         Console.WriteLine("All ping attempts succeeded.")
+      ElseIf t.Status = TaskStatus.Faulted
+         Console.WriteLine("{0} ping attempts failed", failed)      
+      End If
+   End Sub
+End Module
+' The example displays output like the following:
+'     5 ping attempts failed
+Remarks
+The overloads of the
+WhenAll
+method that return a
+Task
+object are typically called when you are interested in the status of a set of tasks or in the exceptions thrown by a set of tasks.
+Note
+The call to
+WhenAll(Task[])
+method does not block the calling thread.
+If any of the supplied tasks completes in a faulted state, the returned task will also complete in a
+Faulted
+state, where its exceptions will contain the aggregation of the set of unwrapped exceptions from each of the supplied tasks.
+If none of the supplied tasks faulted but at least one of them was canceled, the returned task will end in the
+Canceled
+state.
+If none of the tasks faulted and none of the tasks were canceled, the resulting task will end in the
+RanToCompletion
+state.
+If the supplied array/enumerable contains no tasks, the returned task will immediately transition to a
+RanToCompletion
+state before it's returned to the caller.
+Applies to
+WhenAll<TResult>(ReadOnlySpan<Task<TResult>>)
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Creates a task that will complete when all of the supplied tasks have completed.
+public:
+generic <typename TResult>
+ static System::Threading::Tasks::Task<cli::array <TResult> ^> ^ WhenAll(ReadOnlySpan<System::Threading::Tasks::Task<TResult> ^> tasks);
+public static System.Threading.Tasks.Task<TResult[]> WhenAll<TResult>(scoped ReadOnlySpan<System.Threading.Tasks.Task<TResult>> tasks);
+static member WhenAll : ReadOnlySpan<System.Threading.Tasks.Task<'Result>> -> System.Threading.Tasks.Task<'Result[]>
+Public Shared Function WhenAll(Of TResult) (tasks As ReadOnlySpan(Of Task(Of TResult))) As Task(Of TResult())
+Type Parameters
+TResult
+The type of the result returned by the tasks.
+Parameters
+tasks
+ReadOnlySpan
+<
+Task
+<TResult>>
+The tasks to wait on for completion.
+Returns
+Task
+<TResult[]>
+A task that represents the completion of all of the supplied tasks.
+Exceptions
+ArgumentException
+The
+tasks
+array contains a
+null
+task.
+Remarks
+If any of the supplied tasks completes in a faulted state, the returned task will also complete in a Faulted state, where its exceptions will contain the aggregation of the set of unwrapped exceptions from each of the supplied tasks.
+If none of the supplied tasks faulted but at least one of them was canceled, the returned task will end in the Canceled state.
+If none of the tasks faulted and none of the tasks were canceled, the resulting task will end in the RanToCompletion state. The Result of the returned task will be set to an array containing all of the results of the supplied tasks in the same order as they were provided (e.g. if the input tasks array contained t1, t2, t3, the output task's Result will return an TResult[] where arr[0] == t1.Result, arr[1] == t2.Result, and arr[2] == t3.Result).
+If the supplied array/enumerable contains no tasks, the returned task will immediately transition to a RanToCompletion state before it's returned to the caller.  The returned TResult[] will be an array of 0 elements.
+Applies to
+WhenAll<TResult>(IEnumerable<Task<TResult>>)
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Creates a task that will complete when all of the
+Task<TResult>
+objects in an enumerable collection have completed.
+public:
+generic <typename TResult>
+ static System::Threading::Tasks::Task<cli::array <TResult> ^> ^ WhenAll(System::Collections::Generic::IEnumerable<System::Threading::Tasks::Task<TResult> ^> ^ tasks);
+public static System.Threading.Tasks.Task<TResult[]> WhenAll<TResult>(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>> tasks);
+static member WhenAll : seq<System.Threading.Tasks.Task<'Result>> -> System.Threading.Tasks.Task<'Result[]>
+Public Shared Function WhenAll(Of TResult) (tasks As IEnumerable(Of Task(Of TResult))) As Task(Of TResult())
+Type Parameters
+TResult
+The type of the completed task.
+Parameters
+tasks
+IEnumerable
+<
+Task
+<TResult>>
+The tasks to wait on for completion.
+Returns
+Task
+<TResult[]>
+A task that represents the completion of all of the supplied tasks.
+Exceptions
+ArgumentNullException
+The
+tasks
+argument was
+null
+.
+ArgumentException
+The
+tasks
+collection contained a
+null
+task.
+Examples
+The following example creates ten tasks, each of which instantiates a random number generator that creates 1,000 random numbers between 1 and 1,000 and computes their mean. The
+Delay(Int32)
+method is used to delay instantiation of the random number generators so that they are not created with identical seed values. The call to the
+WhenAll
+method then returns an
+Int64
+array that contains the mean computed by each task. These are then used to calculate the overall mean.
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public class Example
+{
+   public static void Main()
+   {
+      var tasks = new List<Task<long>>();
+      for (int ctr = 1; ctr <= 10; ctr++) {
+         int delayInterval = 18 * ctr;
+         tasks.Add(Task.Run(async () => { long total = 0;
+                                          await Task.Delay(delayInterval);
+                                          var rnd = new Random();
+                                          // Generate 1,000 random numbers.
+                                          for (int n = 1; n <= 1000; n++)
+                                             total += rnd.Next(0, 1000);
+                                          return total; } ));
+      }
+      var continuation = Task.WhenAll(tasks);
+      try {
+         continuation.Wait();
+      }
+      catch (AggregateException)
+      { }
+   
+      if (continuation.Status == TaskStatus.RanToCompletion) {
+         long grandTotal = 0;
+         foreach (var result in continuation.Result) {
+            grandTotal += result;
+            Console.WriteLine("Mean: {0:N2}, n = 1,000", result/1000.0);
+         }
+   
+         Console.WriteLine("\nMean of Means: {0:N2}, n = 10,000",
+                           grandTotal/10000);
+      }
+      // Display information on faulted tasks.
+      else {
+         foreach (var t in tasks) {
+            Console.WriteLine("Task {0}: {1}", t.Id, t.Status);
+         }
+      }
+   }
+}
+// The example displays output like the following:
+//       Mean: 506.34, n = 1,000
+//       Mean: 504.69, n = 1,000
+//       Mean: 489.32, n = 1,000
+//       Mean: 505.96, n = 1,000
+//       Mean: 515.31, n = 1,000
+//       Mean: 499.94, n = 1,000
+//       Mean: 496.92, n = 1,000
+//       Mean: 508.58, n = 1,000
+//       Mean: 494.88, n = 1,000
+//       Mean: 493.53, n = 1,000
+//
+//       Mean of Means: 501.55, n = 10,000
+open System
+open System.Threading.Tasks
+
+let tasks =
+    [| for i = 1 to 10 do
+           let delayInterval = 18 * i
+
+           task {
+               let mutable total = 0L
+               do! Task.Delay delayInterval
+               let rnd = Random()
+
+               for _ = 1 to 1000 do
+                   total <- total + (rnd.Next(0, 1000) |> int64)
+
+               return total
+           } |]
+
+let continuation = Task.WhenAll tasks
+
+try
+    continuation.Wait()
+
+with :? AggregateException ->
+    ()
+
+if continuation.Status = TaskStatus.RanToCompletion then
+    for result in continuation.Result do
+        printfn $"Mean: {float result / 1000.:N2}, n = 1,000"
+
+    let grandTotal = continuation.Result |> Array.sum
+
+    printfn $"\nMean of Means: {float grandTotal / 10000.:N2}, n = 10,000"
+
+// Display information on faulted tasks.
+else
+    for t in tasks do
+        printfn $"Task {t.Id}: {t.Status}"
+
+// The example displays output like the following:
+//       Mean: 506.34, n = 1,000
+//       Mean: 504.69, n = 1,000
+//       Mean: 489.32, n = 1,000
+//       Mean: 505.96, n = 1,000
+//       Mean: 515.31, n = 1,000
+//       Mean: 499.94, n = 1,000
+//       Mean: 496.92, n = 1,000
+//       Mean: 508.58, n = 1,000
+//       Mean: 494.88, n = 1,000
+//       Mean: 493.53, n = 1,000
+//
+//       Mean of Means: 501.55, n = 10,000
+Imports System.Collections.Generic
+Imports System.Threading.Tasks
+
+Module Example
+   Public Sub Main()
+      Dim tasks As New List(Of Task(Of Long))()
+      For ctr As Integer = 1 To 10
+         Dim delayInterval As Integer = 18 * ctr
+         tasks.Add(Task.Run(Async Function()
+                               Dim total As Long = 0
+                               Await Task.Delay(delayInterval)
+                               Dim rnd As New Random()
+                               ' Generate 1,000 random numbers.
+                               For n As Integer = 1 To 1000
+                                  total += rnd.Next(0, 1000)
+                               Next
+                               Return total
+                            End Function))
+      Next
+      Dim continuation = Task.WhenAll(tasks)
+      Try
+         continuation.Wait()
+      Catch ae As AggregateException
+      End Try
+      
+      If continuation.Status = TaskStatus.RanToCompletion Then
+         Dim grandTotal As Long = 0
+         For Each result in continuation.Result
+            grandTotal += result
+            Console.WriteLine("Mean: {0:N2}, n = 1,000", result/1000)
+         Next
+         Console.WriteLine()
+         Console.WriteLine("Mean of Means: {0:N2}, n = 10,000",
+                           grandTotal/10000)
+      ' Display information on faulted tasks.
+      Else 
+         For Each t In tasks
+            Console.WriteLine("Task {0}: {1}", t.Id, t.Status)
+         Next
+      End If
+   End Sub
+End Module
+' The example displays output like the following:
+'       Mean: 506.34, n = 1,000
+'       Mean: 504.69, n = 1,000
+'       Mean: 489.32, n = 1,000
+'       Mean: 505.96, n = 1,000
+'       Mean: 515.31, n = 1,000
+'       Mean: 499.94, n = 1,000
+'       Mean: 496.92, n = 1,000
+'       Mean: 508.58, n = 1,000
+'       Mean: 494.88, n = 1,000
+'       Mean: 493.53, n = 1,000
+'
+'       Mean of Means: 501.55, n = 10,000
+In this case, the ten individual tasks are stored in a
+List<T>
+object.
+List<T>
+implements the
+IEnumerable<T>
+interface.
+Remarks
+The call to
+WhenAll<TResult>(IEnumerable<Task<TResult>>)
+method does not block the calling thread. However, a call to the returned
+Result
+property does block the calling thread.
+If any of the supplied tasks completes in a faulted state, the returned task will also complete in a
+Faulted
+state, where its exceptions will contain the aggregation of the set of unwrapped exceptions from each of the supplied tasks.
+If none of the supplied tasks faulted but at least one of them was canceled, the returned task will end in the
+Canceled
+state.
+If none of the tasks faulted and none of the tasks were canceled, the resulting task will end in the
+RanToCompletion
+state.  The
+Task<TResult>.Result
+property of the returned task will be set to an array containing all of the results of the supplied tasks in the same order as they were provided (e.g. if the input tasks array contained t1, t2, t3, the output task's
+Task<TResult>.Result
+property will return an
+TResult[]
+where
+arr[0] == t1.Result, arr[1] == t2.Result, and arr[2] == t3.Result)
+.
+If the
+tasks
+argument contains no tasks, the returned task will immediately transition to a
+RanToCompletion
+state before it's returned to the caller. The returned
+TResult[]
+will be an array of 0 elements.
+Applies to
+WhenAll<TResult>(Task<TResult>[])
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Creates a task that will complete when all of the
+Task<TResult>
+objects in an array have completed.
+public:
+generic <typename TResult>
+ static System::Threading::Tasks::Task<cli::array <TResult> ^> ^ WhenAll(... cli::array <System::Threading::Tasks::Task<TResult> ^> ^ tasks);
+public static System.Threading.Tasks.Task<TResult[]> WhenAll<TResult>(params System.Threading.Tasks.Task<TResult>[] tasks);
+static member WhenAll : System.Threading.Tasks.Task<'Result>[] -> System.Threading.Tasks.Task<'Result[]>
+Public Shared Function WhenAll(Of TResult) (ParamArray tasks As Task(Of TResult)()) As Task(Of TResult())
+Type Parameters
+TResult
+The type of the completed task.
+Parameters
+tasks
+Task
+<TResult>[]
+The tasks to wait on for completion.
+Returns
+Task
+<TResult[]>
+A task that represents the completion of all of the supplied tasks.
+Exceptions
+ArgumentNullException
+The
+tasks
+argument was
+null
+.
+ArgumentException
+The
+tasks
+array contained a
+null
+task.
+Examples
+The following example creates ten tasks, each of which instantiates a random number generator that creates 1,000 random numbers between 1 and 1,000 and computes their mean. In this case, the ten individual tasks are stored in a
+Task<Int64>
+array.  The
+Delay(Int32)
+method is used to delay instantiation of the random number generators so that they are not created with identical seed values. The call to the
+WhenAll
+method then returns an
+Int64
+array that contains the mean computed by each task. These are then used to calculate the overall mean.
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public class Example
+{
+   public static void Main()
+   {
+      var tasks = new Task<long>[10];
+      for (int ctr = 1; ctr <= 10; ctr++) {
+         int delayInterval = 18 * ctr;
+         tasks[ctr - 1] = Task.Run(async () => { long total = 0;
+                                                 await Task.Delay(delayInterval);
+                                                 var rnd = new Random();
+                                                 // Generate 1,000 random numbers.
+                                                 for (int n = 1; n <= 1000; n++)
+                                                    total += rnd.Next(0, 1000);
+
+                                                 return total; } );
+      }
+      var continuation = Task.WhenAll(tasks);
+      try {
+         continuation.Wait();
+      }
+      catch (AggregateException)
+      {}
+   
+      if (continuation.Status == TaskStatus.RanToCompletion) {
+         long grandTotal = 0;
+         foreach (var result in continuation.Result) {
+            grandTotal += result;
+            Console.WriteLine("Mean: {0:N2}, n = 1,000", result/1000.0);
+         }
+   
+         Console.WriteLine("\nMean of Means: {0:N2}, n = 10,000",
+                           grandTotal/10000);
+      }
+      // Display information on faulted tasks.
+      else { 
+         foreach (var t in tasks)
+            Console.WriteLine("Task {0}: {1}", t.Id, t.Status);
+      }
+   }
+}
+// The example displays output like the following:
+//       Mean: 506.38, n = 1,000
+//       Mean: 501.01, n = 1,000
+//       Mean: 505.36, n = 1,000
+//       Mean: 492.00, n = 1,000
+//       Mean: 508.36, n = 1,000
+//       Mean: 503.99, n = 1,000
+//       Mean: 504.95, n = 1,000
+//       Mean: 508.58, n = 1,000
+//       Mean: 490.23, n = 1,000
+//       Mean: 501.59, n = 1,000
+//
+//       Mean of Means: 502.00, n = 10,000
+open System
+open System.Threading.Tasks
+
+let tasks =
+    [| for i = 1 to 10 do
+           let delayInterval = 18 * i
+
+           task {
+               let mutable total = 0L
+               do! Task.Delay delayInterval
+               let rnd = Random()
+
+               for _ = 1 to 1000 do
+                   total <- total + (rnd.Next(0, 1000) |> int64)
+
+               return total
+           } |]
+
+let continuation = Task.WhenAll tasks
+
+try
+    continuation.Wait()
+
+with :? AggregateException ->
+    ()
+
+if continuation.Status = TaskStatus.RanToCompletion then
+    for result in continuation.Result do
+        printfn $"Mean: {float result / 1000.:N2}, n = 1,000"
+
+    let grandTotal = Array.sum continuation.Result
+
+    printfn $"\nMean of Means: {float grandTotal / 10000.:N2}, n = 10,000"
+
+// Display information on faulted tasks.
+else
+    for t in tasks do
+        printfn $"Task {t.Id}: {t.Status}"
+
+// The example displays output like the following:
+//       Mean: 506.38, n = 1,000
+//       Mean: 501.01, n = 1,000
+//       Mean: 505.36, n = 1,000
+//       Mean: 492.00, n = 1,000
+//       Mean: 508.36, n = 1,000
+//       Mean: 503.99, n = 1,000
+//       Mean: 504.95, n = 1,000
+//       Mean: 508.58, n = 1,000
+//       Mean: 490.23, n = 1,000
+//       Mean: 501.59, n = 1,000
+//
+//       Mean of Means: 502.00, n = 10,000
+Imports System.Collections.Generic
+Imports System.Threading.Tasks
+
+Module Example
+   Public Sub Main()
+      Dim tasks(9) As Task(Of Long)
+      For ctr As Integer = 1 To 10
+         Dim delayInterval As Integer = 18 * ctr
+         tasks(ctr - 1) =Task.Run(Async Function()
+                                     Dim total As Long = 0
+                                     Await Task.Delay(delayInterval)
+                                     Dim rnd As New Random()
+                                     ' Generate 1,000 random numbers.
+                                     For n As Integer = 1 To 1000
+                                        total += rnd.Next(0, 1000)
+                                     Next
+                                     Return total
+                                  End Function)
+      Next
+      Dim continuation = Task.WhenAll(tasks)
+      Try
+         continuation.Wait()
+      Catch ae As AggregateException
+      End Try
+         
+      If continuation.Status = TaskStatus.RanToCompletion Then
+         Dim grandTotal As Long = 0
+         For Each result in continuation.Result
+            grandTotal += result
+            Console.WriteLine("Mean: {0:N2}, n = 1,000", result/1000)
+         Next
+         Console.WriteLine()
+         Console.WriteLine("Mean of Means: {0:N2}, n = 10,000",
+                           grandTotal/10000)
+      ' Display information on faulted tasks.
+      Else 
+         For Each t In tasks
+            Console.WriteLine("Task {0}: {1}", t.Id, t.Status)
+         Next
+      End If
+   End Sub
+End Module
+' The example displays output like the following:
+'       Mean: 506.38, n = 1,000
+'       Mean: 501.01, n = 1,000
+'       Mean: 505.36, n = 1,000
+'       Mean: 492.00, n = 1,000
+'       Mean: 508.36, n = 1,000
+'       Mean: 503.99, n = 1,000
+'       Mean: 504.95, n = 1,000
+'       Mean: 508.58, n = 1,000
+'       Mean: 490.23, n = 1,000
+'       Mean: 501.59, n = 1,000
+'
+'       Mean of Means: 502.00, n = 10,000
+Remarks
+The call to
+WhenAll<TResult>(Task<TResult>[])
+method does not block the calling thread. However, a call to the returned
+Result
+property does block the calling thread.
+If any of the supplied tasks completes in a faulted state, the returned task will also complete in a
+Faulted
+state, where its exceptions will contain the aggregation of the set of unwrapped exceptions from each of the supplied tasks.
+If none of the supplied tasks faulted but at least one of them was canceled, the returned task will end in the
+Canceled
+state.
+If none of the tasks faulted and none of the tasks were canceled, the resulting task will end in the
+RanToCompletion
+state.  The
+Result
+of the returned task will be set to an array containing all of the results of the supplied tasks in the same order as they were provided (e.g. if the input tasks array contained t1, t2, t3, the output   task's
+Result
+will return an
+TResult[]
+where
+arr[0] == t1.Result, arr[1] == t2.Result, and arr[2] == t3.Result)
+.
+If the supplied array/enumerable contains no tasks, the returned task will immediately transition to a
+RanToCompletion
+state before it's returned to the caller.  The returned
+TResult[]
+will be an array of 0 elements.
+Applies to
+Collaborate with us on GitHub
+The source for this content can be found on GitHub, where you can also create and review issues and pull requests. For more information, see
+our contributor guide
+.
+.NET
+Open a documentation issue
+Provide product feedback
+Feedback
+Was this page helpful?
+Yes
+No
+No
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+Was this page helpful?
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+en-us
+Your Privacy Choices
+Theme
+Light
+Dark
+High contrast
+AI Disclaimer
+Previous Versions
+Blog
+Contribute
+Privacy
+Consumer Health Privacy
+Terms of Use
+Trademarks
+© Microsoft 2026

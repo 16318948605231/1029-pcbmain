@@ -1,0 +1,605 @@
+binary_threshold [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Segmentation
+/
+Threshold
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+binary_threshold
+binary_threshold
+BinaryThreshold
+BinaryThreshold
+binary_threshold
+(Operator)
+Name
+binary_threshold
+binary_threshold
+BinaryThreshold
+BinaryThreshold
+binary_threshold
+— Segment an image using binary thresholding.
+Signature
+binary_threshold
+(
+Image
+:
+Region
+:
+Method
+,
+LightDark
+:
+UsedThreshold
+)
+Herror
+binary_threshold
+(const Hobject
+Image
+, Hobject*
+Region
+, const char*
+Method
+, const char*
+LightDark
+, Hlong*
+UsedThreshold
+)
+Herror
+T_binary_threshold
+(const Hobject
+Image
+, Hobject*
+Region
+, const Htuple
+Method
+, const Htuple
+LightDark
+, Htuple*
+UsedThreshold
+)
+void
+BinaryThreshold
+(const HObject&
+Image
+, HObject*
+Region
+, const HTuple&
+Method
+, const HTuple&
+LightDark
+, HTuple*
+UsedThreshold
+)
+HRegion
+HImage
+::
+BinaryThreshold
+(const HString&
+Method
+, const HString&
+LightDark
+, HTuple*
+UsedThreshold
+) const
+HRegion
+HImage
+::
+BinaryThreshold
+(const HString&
+Method
+, const HString&
+LightDark
+, Hlong*
+UsedThreshold
+) const
+HRegion
+HImage
+::
+BinaryThreshold
+(const char*
+Method
+, const char*
+LightDark
+, Hlong*
+UsedThreshold
+) const
+HRegion
+HImage
+::
+BinaryThreshold
+(const wchar_t*
+Method
+, const wchar_t*
+LightDark
+, Hlong*
+UsedThreshold
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+BinaryThreshold
+(
+HObject
+image
+, out
+HObject
+region
+,
+HTuple
+method
+,
+HTuple
+lightDark
+, out
+HTuple
+usedThreshold
+)
+HRegion
+HImage
+.
+BinaryThreshold
+(string
+method
+, string
+lightDark
+, out
+HTuple
+usedThreshold
+)
+HRegion
+HImage
+.
+BinaryThreshold
+(string
+method
+, string
+lightDark
+, out int
+usedThreshold
+)
+def
+binary_threshold
+(
+image
+: HObject,
+method
+: str,
+light_dark
+: str) -> Tuple[HObject, Sequence[Union[str, int]]]
+def
+binary_threshold_s
+(
+image
+: HObject,
+method
+: str,
+light_dark
+: str) -> Tuple[HObject, Union[str, int]]
+Description
+binary_threshold
+binary_threshold
+BinaryThreshold
+BinaryThreshold
+binary_threshold
+segments a single-channel
+Image
+Image
+Image
+image
+image
+using an automatically determined global threshold and returns the
+segmented region in
+Region
+Region
+Region
+region
+region
+.  This is, e.g., useful for the
+segmentation of characters on a homogeneously illuminated background.
+binary_threshold
+binary_threshold
+BinaryThreshold
+BinaryThreshold
+binary_threshold
+also returns the used threshold in
+UsedThreshold
+UsedThreshold
+UsedThreshold
+usedThreshold
+used_threshold
+.
+The used threshold is determined by the method that is given in
+Method
+Method
+Method
+method
+method
+.  Currently the operator provides the following two
+methods:
+'max_separability'
+"max_separability"
+"max_separability"
+"max_separability"
+"max_separability"
+and
+'smooth_histo'
+"smooth_histo"
+"smooth_histo"
+"smooth_histo"
+"smooth_histo"
+.
+Both methods should only be used for images that have a bimodal
+histogram.
+The method
+'smooth_histo'
+"smooth_histo"
+"smooth_histo"
+"smooth_histo"
+"smooth_histo"
+provides the same functionality
+that has been provided by the operator
+bin_threshold
+bin_threshold
+BinThreshold
+BinThreshold
+bin_threshold
+.  The
+method
+'max_separability'
+"max_separability"
+"max_separability"
+"max_separability"
+"max_separability"
+tends to determine smaller values
+for
+UsedThreshold
+UsedThreshold
+UsedThreshold
+usedThreshold
+used_threshold
+. Furthermore, it is less sensitive to thin
+isolated peaks in the histogram that are far from the rest of the
+spectrum and often, it is faster than
+'smooth_histo'
+"smooth_histo"
+"smooth_histo"
+"smooth_histo"
+"smooth_histo"
+.
+Maximize separability
+By selecting
+Method
+Method
+Method
+method
+method
+=
+'max_separability'
+"max_separability"
+"max_separability"
+"max_separability"
+"max_separability"
+, automatic
+thresholding based on the gray-level histogram according to Otsu (see
+the paper in References) is invoked.  The algorithm first calculates
+the histogram of the image and then uses statistical moments to find
+the optimal threshold
+that divides the pixels
+into foreground and background and maximizes the separability between
+these two classes. This method is only available for byte and uint2
+images.
+If
+LightDark
+LightDark
+LightDark
+lightDark
+light_dark
+=
+'light'
+"light"
+"light"
+"light"
+"light"
+all pixels with gray values greater or equal to
+are selected.
+If
+LightDark
+LightDark
+LightDark
+lightDark
+light_dark
+=
+'dark'
+"dark"
+"dark"
+"dark"
+"dark"
+all pixels
+with gray values smaller than
+are selected.
+Histogram smoothing
+By selecting
+Method
+Method
+Method
+method
+method
+=
+'smooth_histo'
+"smooth_histo"
+"smooth_histo"
+"smooth_histo"
+"smooth_histo"
+binary_threshold
+binary_threshold
+BinaryThreshold
+BinaryThreshold
+binary_threshold
+determines the threshold
+in the following way: First, the relative
+histogram of the gray values is determined. Then, relevant minima are
+extracted from the histogram, which are used as parameters for a
+thresholding operation. In order to reduce the number of minima, the
+histogram is smoothed with a Gaussian, as in
+auto_threshold
+auto_threshold
+AutoThreshold
+AutoThreshold
+auto_threshold
+.
+The mask size is enlarged until there is only one minimum in the
+smoothed histogram. Then, the threshold
+is
+set to the position of this minimum.
+If
+LightDark
+LightDark
+LightDark
+lightDark
+light_dark
+=
+'light'
+"light"
+"light"
+"light"
+"light"
+all pixels
+p(r,c)
+with gray values greater or
+equal to
+are selected.
+If
+LightDark
+LightDark
+LightDark
+lightDark
+light_dark
+=
+'dark'
+"dark"
+"dark"
+"dark"
+"dark"
+all pixels
+p(r,c)
+with gray values smaller than
+are selected.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on tuple level.
+Automatically parallelized on internal data level.
+Parameters
+Image
+Image
+Image
+image
+image
+(input_object)
+singlechannelimage(-array)
+→
+object
+HImage
+HObject
+HObject
+Hobject
+(byte / uint2)
+Input Image.
+Region
+Region
+Region
+region
+region
+(output_object)
+region(-array)
+→
+object
+HRegion
+HObject
+HObject
+Hobject *
+Segmented output region.
+Method
+Method
+Method
+method
+method
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Segmentation method.
+Default:
+'max_separability'
+"max_separability"
+"max_separability"
+"max_separability"
+"max_separability"
+List of values:
+'max_separability'
+"max_separability"
+"max_separability"
+"max_separability"
+"max_separability"
+,
+'smooth_histo'
+"smooth_histo"
+"smooth_histo"
+"smooth_histo"
+"smooth_histo"
+LightDark
+LightDark
+LightDark
+lightDark
+light_dark
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Extract foreground or background?
+Default:
+'dark'
+"dark"
+"dark"
+"dark"
+"dark"
+List of values:
+'dark'
+"dark"
+"dark"
+"dark"
+"dark"
+,
+'light'
+"light"
+"light"
+"light"
+"light"
+UsedThreshold
+UsedThreshold
+UsedThreshold
+usedThreshold
+used_threshold
+(output_control)
+number(-array)
+→
+HTuple
+Sequence[Union[str, int]]
+HTuple
+Htuple
+(integer /
+string)
+(
+int
+/
+long /
+string)
+(
+Hlong
+/
+HString)
+(
+Hlong
+/
+char*)
+Used threshold.
+Possible Successors
+connection
+connection
+Connection
+Connection
+connection
+,
+select_shape
+select_shape
+SelectShape
+SelectShape
+select_shape
+,
+select_gray
+select_gray
+SelectGray
+SelectGray
+select_gray
+Alternatives
+auto_threshold
+auto_threshold
+AutoThreshold
+AutoThreshold
+auto_threshold
+,
+char_threshold
+char_threshold
+CharThreshold
+CharThreshold
+char_threshold
+,
+local_threshold
+local_threshold
+LocalThreshold
+LocalThreshold
+local_threshold
+See also
+gray_histo
+gray_histo
+GrayHisto
+GrayHisto
+gray_histo
+,
+threshold
+threshold
+Threshold
+Threshold
+threshold
+References
+N. Otsu, “A threshold selection method from gray level histograms",
+IEEE Trans. Syst. Man. Cybern., Vol. SMC-9, 62-66 (1979).
+Module
+Foundation
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

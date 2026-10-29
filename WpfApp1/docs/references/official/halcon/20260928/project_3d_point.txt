@@ -1,0 +1,142 @@
+project_3d_point [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Calibration / Projection
+HDevelop
+.NET
+Python
+C++
+C
+Classes Classes | | Operators
+project_3d_point T_project_3d_point Project3dPoint Project3dPoint project_3d_point (Operator)
+Name
+project_3d_point T_project_3d_point Project3dPoint Project3dPoint project_3d_point — Project 3D points into (sub-)pixel image coordinates.
+Signature
+project_3d_point ( : : X , Y , Z , CameraParam : Row , Column )
+Herror T_project_3d_point (const Htuple X , const Htuple Y , const Htuple Z , const Htuple CameraParam , Htuple* Row , Htuple* Column )
+void Project3dPoint (const HTuple& X , const HTuple& Y , const HTuple& Z , const HTuple& CameraParam , HTuple* Row , HTuple* Column )
+void HCamPar :: Project3dPoint (const HTuple& X , const HTuple& Y , const HTuple& Z , HTuple* Row , HTuple* Column ) const
+static void HOperatorSet . Project3dPoint ( HTuple x , HTuple y , HTuple z , HTuple cameraParam , out HTuple row , out HTuple column )
+void HCamPar . Project3dPoint ( HTuple x , HTuple y , HTuple z , out HTuple row , out HTuple column )
+def project_3d_point ( x : Sequence[float], y : Sequence[float], z : Sequence[float], camera_param : Sequence[Union[int, float, str]]) -> Tuple[Sequence[float], Sequence[float]]
+Description
+project_3d_point project_3d_point Project3dPoint Project3dPoint project_3d_point projects one or more 3D points (with coordinates
+X X X x x , Y Y Y y y , and Z Z Z z z ) into the image plane (in pixels) and
+returns the result in Row Row Row row row and Column Column Column column column . The coordinates
+X X X x x , Y Y Y y y , and Z Z Z z z are given in the camera coordinate
+system, i.e., they describe the position of the points relative to the
+camera.
+The internal camera parameters CameraParam CameraParam CameraParam cameraParam camera_param describe the projection
+characteristics of the camera (see Calibration for
+details).
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+Parameters
+X X X x x (input_control) point3d.x-array → HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+X coordinates of the 3D points to be projected in the
+camera coordinate system.
+Y Y Y y y (input_control) point3d.y-array → HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+Y coordinates of the 3D points to be projected in the
+camera coordinate system.
+Z Z Z z z (input_control) point3d.z-array → HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+Z coordinates of the 3D points to be projected in the
+camera coordinate system.
+CameraParam CameraParam CameraParam cameraParam camera_param (input_control) campar → HCamPar , HTuple Sequence[Union[int, float, str]] HTuple Htuple (real / integer / string) ( double / int / long / string) ( double / Hlong / HString) ( double / Hlong / char*)
+Internal camera parameters.
+Row Row Row row row (output_control) point.y-array → HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+Row coordinates of the projected points (in pixels).
+Column Column Column column column (output_control) point.x-array → HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+Column coordinates of the projected points (in pixels).
+Example (HDevelop)
+* Set internal camera parameters and pose of the world coordinate
+* system in camera coordinates.
+* Note that, typically, these values are the result of a prior
+* calibration.
+gen_cam_par_area_scan_division (0.01, -731, 5.2e-006, 5.2e-006, \
+654, 519, 1280, 1024, CameraParam)
+create_pose (0.1, 0.2, 0.3, 40, 50, 60, \
+'Rp+T', 'gba', 'point', WorldPose)
+* Convert pose into transformation matrix.
+pose_to_hom_mat3d(WorldPose, HomMat3D)
+* Transform 3D points from world into the camera coordinate system.
+affine_trans_point_3d(HomMat3D, [3.0, 3.2], [4.5, 4.5], [3.8, 4.2], X, Y, Z)
+* Project 3D points into image.
+project_3d_point(X, Y, Z, CameraParam, Row, Column)
+Example (HDevelop)
+* Set internal camera parameters and pose of the world coordinate
+* system in camera coordinates.
+* Note that, typically, these values are the result of a prior
+* calibration.
+gen_cam_par_area_scan_division (0.01, -731, 5.2e-006, 5.2e-006, \
+654, 519, 1280, 1024, CameraParam)
+create_pose (0.1, 0.2, 0.3, 40, 50, 60, \
+'Rp+T', 'gba', 'point', WorldPose)
+* Convert pose into transformation matrix.
+pose_to_hom_mat3d(WorldPose, HomMat3D)
+* Transform 3D points from world into the camera coordinate system.
+affine_trans_point_3d(HomMat3D, [3.0, 3.2], [4.5, 4.5], [3.8, 4.2], X, Y, Z)
+* Project 3D points into image.
+project_3d_point(X, Y, Z, CameraParam, Row, Column)
+Example (C++)
+HTuple WorldPose, HomMat3D, X1, Y1, Z1, X2, Y2, Z2;
+HTuple CameraParam, Row, Column;
+// Set internal camera parameters and pose of the world coordinate
+// system in camera coordinates.
+// Note that, typically, these values are the result of a prior
+// calibration.
+gen_cam_par_area_scan_division (0.01, -731, 5.2e-006, 5.2e-006,
+654, 519, 1280, 1024, &CameraParam);
+create_pose (0.1, 0.2, 0.3, 40, 50, 60,
+'Rp+T', 'gba', 'point', &WorldPose);
+// Convert pose into transformation matrix.
+pose_to_hom_mat3d(WorldPose, &HomMat3D);
+// Transform 3D points from source into destination coordinate system.
+X1[1] = 3.2;
+X1[0] = 3.0;
+Y1[1] = 4.5;
+Y1[0] = 4.5;
+Z1[1] = 4.2;
+Z1[0] = 3.8;
+affine_trans_point_3d(HomMat3D, X1, Y1, Z1, &X2, &Y2, &Z2);
+// Project 3D points into image.
+project_3d_point(X2, Y2, Z2, CameraParam, &Row, &Column);
+Example (HDevelop)
+* Set internal camera parameters and pose of the world coordinate
+* system in camera coordinates.
+* Note that, typically, these values are the result of a prior
+* calibration.
+gen_cam_par_area_scan_division (0.01, -731, 5.2e-006, 5.2e-006, \
+654, 519, 1280, 1024, CameraParam)
+create_pose (0.1, 0.2, 0.3, 40, 50, 60, \
+'Rp+T', 'gba', 'point', WorldPose)
+* Convert pose into transformation matrix.
+pose_to_hom_mat3d(WorldPose, HomMat3D)
+* Transform 3D points from world into the camera coordinate system.
+affine_trans_point_3d(HomMat3D, [3.0, 3.2], [4.5, 4.5], [3.8, 4.2], X, Y, Z)
+* Project 3D points into image.
+project_3d_point(X, Y, Z, CameraParam, Row, Column)
+Result
+project_3d_point project_3d_point Project3dPoint Project3dPoint project_3d_point returns 2 (
+H_MSG_TRUE )
+if all parameter values are
+correct. If necessary, an exception is raised.
+Possible Predecessors
+read_cam_par read_cam_par ReadCamPar ReadCamPar read_cam_par ,
+affine_trans_point_3d affine_trans_point_3d AffineTransPoint3d AffineTransPoint3d affine_trans_point_3d
+Possible Successors
+gen_region_points gen_region_points GenRegionPoints GenRegionPoints gen_region_points ,
+gen_region_polygon gen_region_polygon GenRegionPolygon GenRegionPolygon gen_region_polygon ,
+disp_polygon disp_polygon DispPolygon DispPolygon disp_polygon
+See also
+camera_calibration camera_calibration CameraCalibration CameraCalibration camera_calibration ,
+disp_caltab disp_caltab DispCaltab DispCaltab disp_caltab ,
+read_cam_par read_cam_par ReadCamPar ReadCamPar read_cam_par ,
+get_line_of_sight get_line_of_sight GetLineOfSight GetLineOfSight get_line_of_sight ,
+affine_trans_point_3d affine_trans_point_3d AffineTransPoint3d AffineTransPoint3d affine_trans_point_3d ,
+image_points_to_world_plane image_points_to_world_plane ImagePointsToWorldPlane ImagePointsToWorldPlane image_points_to_world_plane
+Module
+Calibration
+Classes Classes | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

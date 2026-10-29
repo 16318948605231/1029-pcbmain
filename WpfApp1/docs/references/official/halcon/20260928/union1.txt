@@ -1,0 +1,89 @@
+union1 [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Regions / Sets
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+union1union1Union1Union1union1 (Operator)
+Name
+union1union1Union1Union1union1 — Return the union of all input regions.
+Signature
+union1(Region : RegionUnion :  : )
+Herror union1(const Hobject Region, Hobject* RegionUnion)
+Herror T_union1(const Hobject Region, Hobject* RegionUnion)
+void Union1(const HObject& Region, HObject* RegionUnion)
+HRegion HRegion::Union1() const
+static void HOperatorSet.Union1(HObject region, out HObject regionUnion)
+HRegion HRegion.Union1()
+def union1(region: HObject) -> HObject
+Description
+union1union1Union1Union1union1 computes the union of all input regions and
+returns the result in RegionUnionRegionUnionRegionUnionregionUnionregion_union.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+RegionRegionRegionregionregion (input_object)  region-array → objectHRegionHObjectHObjectHobject
+Regions of which the union is to be computed.
+RegionUnionRegionUnionRegionUnionregionUnionregion_union (output_object)  region → objectHRegionHObjectHObjectHobject *
+Union of all input regions.
+Number of elements:
+RegionUnion <= Region
+Example (HDevelop)
+* Union of segmentation results:
+threshold(Image,Region1,128,255)
+dyn_threshold(Image,Mean,Region2,5,'light')
+concat_obj(Region1,Region2,Regions)
+union1(Regions,RegionUnion)
+Example (C)
+/* Union of segmentation results: */
+threshold(Image,&Region1,128.0,255.0);
+dyn_threshold(Image,Mean,&Region2,5.0,"light");
+concat_obj(Region1,Region2,&Regions);
+union1(Regions,&RegionUnion);
+Example (HDevelop)
+* Union of segmentation results:
+threshold(Image,Region1,128,255)
+dyn_threshold(Image,Mean,Region2,5,'light')
+concat_obj(Region1,Region2,Regions)
+union1(Regions,RegionUnion)
+Example (HDevelop)
+* Union of segmentation results:
+threshold(Image,Region1,128,255)
+dyn_threshold(Image,Mean,Region2,5,'light')
+concat_obj(Region1,Region2,Regions)
+union1(Regions,RegionUnion)
+Complexity
+Let F be the sum of all areas of the input regions.  Then the
+runtime complexity is O(log(sqrt(F)) * sqrt(F)).
+Result
+union1union1Union1Union1union1 always returns 2 (
+H_MSG_TRUE)
+.  The behavior in case of
+empty input (no regions given) can be set via
+set_system('no_object_result',<Result>)set_system("no_object_result",<Result>)SetSystem("no_object_result",<Result>)SetSystem("no_object_result",<Result>)set_system("no_object_result",<Result>)
+and the behavior in case of an empty input region via
+set_system('empty_region_result',<Result>)set_system("empty_region_result",<Result>)SetSystem("empty_region_result",<Result>)SetSystem("empty_region_result",<Result>)set_system("empty_region_result",<Result>).
+If necessary, an exception is raised.
+Possible Predecessors
+thresholdthresholdThresholdThresholdthreshold,
+connectionconnectionConnectionConnectionconnection,
+regiongrowingregiongrowingRegiongrowingRegiongrowingregiongrowing,
+pouringpouringPouringPouringpouring
+Possible Successors
+select_shapeselect_shapeSelectShapeSelectShapeselect_shape,
+disp_regiondisp_regionDispRegionDispRegiondisp_region
+Alternatives
+union2union2Union2Union2union2
+See also
+intersectionintersectionIntersectionIntersectionintersection,
+complementcomplementComplementComplementcomplement
+Module
+Foundation
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

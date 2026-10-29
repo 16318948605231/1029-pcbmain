@@ -1,0 +1,54 @@
+write_shape_model [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Matching / Shape-Based
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+write_shape_modelT_write_shape_modelWriteShapeModelWriteShapeModelwrite_shape_model (Operator)
+Name
+write_shape_modelT_write_shape_modelWriteShapeModelWriteShapeModelwrite_shape_model — Write a shape model to a file.
+Signature
+write_shape_model( :  : ModelID, FileName : )
+Herror T_write_shape_model(const Htuple ModelID, const Htuple FileName)
+void WriteShapeModel(const HTuple& ModelID, const HTuple& FileName)
+void HShapeModel::WriteShapeModel(const HString& FileName) const
+void HShapeModel::WriteShapeModel(const char* FileName) const
+void HShapeModel::WriteShapeModel(const wchar_t* FileName) const
+(
+Windows only)
+static void HOperatorSet.WriteShapeModel(HTuple modelID, HTuple fileName)
+void HShapeModel.WriteShapeModel(string fileName)
+def write_shape_model(model_id: HHandle, file_name: str) -> None
+Description
+The operator write_shape_modelwrite_shape_modelWriteShapeModelWriteShapeModelwrite_shape_model writes a shape model to the
+file FileNameFileNameFileNamefileNamefile_name.  The model can be read again with
+read_shape_modelread_shape_modelReadShapeModelReadShapeModelread_shape_model.  The default HALCON file extension for
+the shape model is 'shm'.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+ModelIDModelIDModelIDmodelIDmodel_id (input_control)  shape_model → HShapeModel, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the model.
+FileNameFileNameFileNamefileNamefile_name (input_control)  filename.write → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+File name.
+File extension:
+.shm
+Result
+If the file name is valid (write permission), the operator
+write_shape_modelwrite_shape_modelWriteShapeModelWriteShapeModelwrite_shape_model returns the value 2 (
+H_MSG_TRUE)
+.  If necessary an
+exception is raised.
+Possible Predecessors
+set_generic_shape_model_paramset_generic_shape_model_paramSetGenericShapeModelParamSetGenericShapeModelParamset_generic_shape_model_param,
+set_generic_shape_model_objectset_generic_shape_model_objectSetGenericShapeModelObjectSetGenericShapeModelObjectset_generic_shape_model_object
+Module
+Matching
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

@@ -1,0 +1,362 @@
+Task.WaitAsync Method (System.Threading.Tasks) | Microsoft Learn
+Skip to main content
+Skip to in-page navigation
+Skip to Ask Learn chat experience
+This browser is no longer supported.
+Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+Download Microsoft Edge
+More info about Internet Explorer and Microsoft Edge
+Table of contents
+Exit editor mode
+Ask Learn
+Ask Learn
+Language
+csharp
+vb
+fsharp
+cpp
+Reading mode
+Table of contents
+Read in English
+Add
+Add to Plans
+Edit
+Copy Markdown
+Print
+Note
+Access to this page requires authorization. You can try
+signing in
+or
+changing directories
+.
+Access to this page requires authorization. You can try
+changing directories
+.
+Task.
+Wait
+Async Method
+Definition
+Namespace:
+System.Threading.Tasks
+Assemblies:
+netstandard.dll, System.Runtime.dll
+Important
+Some information relates to prerelease product that may be substantially modified before it’s released. Microsoft makes no warranties, express or implied, with respect to the information provided here.
+Overloads
+Name
+Description
+WaitAsync(CancellationToken)
+Gets a
+Task
+that will complete when this
+Task
+completes or when the specified
+CancellationToken
+has cancellation requested.
+WaitAsync(TimeSpan)
+Gets a
+Task
+that will complete when this
+Task
+completes or when the specified timeout expires.
+WaitAsync(TimeSpan, CancellationToken)
+Gets a
+Task
+that will complete when this
+Task
+completes, when the specified timeout expires, or when the specified
+CancellationToken
+has cancellation requested.
+WaitAsync(TimeSpan, TimeProvider)
+Gets a
+Task
+that will complete when this
+Task
+completes or when the specified timeout expires.
+WaitAsync(TimeSpan, TimeProvider, CancellationToken)
+Gets a
+Task
+that will complete when this
+Task
+completes, when the specified timeout expires, or when the specified
+CancellationToken
+has cancellation requested.
+WaitAsync(CancellationToken)
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Gets a
+Task
+that will complete when this
+Task
+completes or when the specified
+CancellationToken
+has cancellation requested.
+public:
+ System::Threading::Tasks::Task ^ WaitAsync(System::Threading::CancellationToken cancellationToken);
+public System.Threading.Tasks.Task WaitAsync(System.Threading.CancellationToken cancellationToken);
+member this.WaitAsync : System.Threading.CancellationToken -> System.Threading.Tasks.Task
+Public Function WaitAsync (cancellationToken As CancellationToken) As Task
+Parameters
+cancellationToken
+CancellationToken
+The
+CancellationToken
+to monitor for a cancellation request.
+Returns
+Task
+The
+Task
+representing the asynchronous wait. It may or may not be the same instance as the current instance.
+Exceptions
+OperationCanceledException
+The cancellation token was canceled. This exception is stored into the returned task.
+Remarks
+This method stores in the task it returns all non-usage exceptions that the method's synchronous counterpart can throw. If an exception is stored into the returned task, that exception will be thrown when the task is awaited. Usage exceptions, such as
+ArgumentException
+, are still thrown synchronously. For the stored exceptions, see the exceptions thrown by
+Wait()
+.
+Applies to
+WaitAsync(TimeSpan)
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Gets a
+Task
+that will complete when this
+Task
+completes or when the specified timeout expires.
+public:
+ System::Threading::Tasks::Task ^ WaitAsync(TimeSpan timeout);
+public System.Threading.Tasks.Task WaitAsync(TimeSpan timeout);
+member this.WaitAsync : TimeSpan -> System.Threading.Tasks.Task
+Public Function WaitAsync (timeout As TimeSpan) As Task
+Parameters
+timeout
+TimeSpan
+The timeout after which the
+Task
+should be faulted with a
+TimeoutException
+if it hasn't otherwise completed.
+Returns
+Task
+The
+Task
+representing the asynchronous wait. It may or may not be the same instance as the current instance.
+Remarks
+This method stores in the task it returns all non-usage exceptions that the method's synchronous counterpart can throw. If an exception is stored into the returned task, that exception will be thrown when the task is awaited. Usage exceptions, such as
+ArgumentException
+, are still thrown synchronously. For the stored exceptions, see the exceptions thrown by
+Wait(TimeSpan)
+.
+Applies to
+WaitAsync(TimeSpan, CancellationToken)
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Gets a
+Task
+that will complete when this
+Task
+completes, when the specified timeout expires, or when the specified
+CancellationToken
+has cancellation requested.
+public:
+ System::Threading::Tasks::Task ^ WaitAsync(TimeSpan timeout, System::Threading::CancellationToken cancellationToken);
+public System.Threading.Tasks.Task WaitAsync(TimeSpan timeout, System.Threading.CancellationToken cancellationToken);
+member this.WaitAsync : TimeSpan * System.Threading.CancellationToken -> System.Threading.Tasks.Task
+Public Function WaitAsync (timeout As TimeSpan, cancellationToken As CancellationToken) As Task
+Parameters
+timeout
+TimeSpan
+The timeout after which the
+Task
+should be faulted with a
+TimeoutException
+if it hasn't otherwise completed.
+cancellationToken
+CancellationToken
+The
+CancellationToken
+to monitor for a cancellation request.
+Returns
+Task
+The
+Task
+representing the asynchronous wait. It may or may not be the same instance as the current instance.
+Exceptions
+OperationCanceledException
+The cancellation token was canceled. This exception is stored into the returned task.
+Remarks
+This method stores in the task it returns all non-usage exceptions that the method's synchronous counterpart can throw. If an exception is stored into the returned task, that exception will be thrown when the task is awaited. Usage exceptions, such as
+ArgumentException
+, are still thrown synchronously. For the stored exceptions, see the exceptions thrown by
+Wait(TimeSpan)
+.
+Applies to
+WaitAsync(TimeSpan, TimeProvider)
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Gets a
+Task
+that will complete when this
+Task
+completes or when the specified timeout expires.
+public:
+ System::Threading::Tasks::Task ^ WaitAsync(TimeSpan timeout, TimeProvider ^ timeProvider);
+public System.Threading.Tasks.Task WaitAsync(TimeSpan timeout, TimeProvider timeProvider);
+member this.WaitAsync : TimeSpan * TimeProvider -> System.Threading.Tasks.Task
+Public Function WaitAsync (timeout As TimeSpan, timeProvider As TimeProvider) As Task
+Parameters
+timeout
+TimeSpan
+The timeout after which the
+Task
+should be faulted with a
+TimeoutException
+if it hasn't otherwise completed.
+timeProvider
+TimeProvider
+The
+TimeProvider
+with which to interpret
+timeout
+.
+Returns
+Task
+The
+Task
+representing the asynchronous wait.  It may or may not be the same instance as the current instance.
+Exceptions
+ArgumentNullException
+The
+timeProvider
+argument is
+null
+.
+Applies to
+WaitAsync(TimeSpan, TimeProvider, CancellationToken)
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Source:
+Task.cs
+Gets a
+Task
+that will complete when this
+Task
+completes, when the specified timeout expires, or when the specified
+CancellationToken
+has cancellation requested.
+public:
+ System::Threading::Tasks::Task ^ WaitAsync(TimeSpan timeout, TimeProvider ^ timeProvider, System::Threading::CancellationToken cancellationToken);
+public System.Threading.Tasks.Task WaitAsync(TimeSpan timeout, TimeProvider timeProvider, System.Threading.CancellationToken cancellationToken);
+member this.WaitAsync : TimeSpan * TimeProvider * System.Threading.CancellationToken -> System.Threading.Tasks.Task
+Public Function WaitAsync (timeout As TimeSpan, timeProvider As TimeProvider, cancellationToken As CancellationToken) As Task
+Parameters
+timeout
+TimeSpan
+The timeout after which the
+Task
+should be faulted with a
+TimeoutException
+if it hasn't otherwise completed.
+timeProvider
+TimeProvider
+The
+TimeProvider
+with which to interpret
+timeout
+.
+cancellationToken
+CancellationToken
+The
+CancellationToken
+to monitor for a cancellation request.
+Returns
+Task
+The
+Task
+representing the asynchronous wait.  It may or may not be the same instance as the current instance.
+Exceptions
+ArgumentNullException
+The
+timeProvider
+argument is
+null
+.
+TimeoutException
+The timeout expired. This exception is stored into the returned task.
+OperationCanceledException
+The cancellation token was canceled. This exception is stored into the returned task.
+Applies to
+Collaborate with us on GitHub
+The source for this content can be found on GitHub, where you can also create and review issues and pull requests. For more information, see
+our contributor guide
+.
+.NET
+Open a documentation issue
+Provide product feedback
+Feedback
+Was this page helpful?
+Yes
+No
+No
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+Was this page helpful?
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+en-us
+Your Privacy Choices
+Theme
+Light
+Dark
+High contrast
+AI Disclaimer
+Previous Versions
+Blog
+Contribute
+Privacy
+Consumer Health Privacy
+Terms of Use
+Trademarks
+© Microsoft 2026

@@ -1,0 +1,113 @@
+gen_bundle_adjusted_mosaic [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Tools / Mosaicking
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+gen_bundle_adjusted_mosaicT_gen_bundle_adjusted_mosaicGenBundleAdjustedMosaicGenBundleAdjustedMosaicgen_bundle_adjusted_mosaic (Operator)
+Name
+gen_bundle_adjusted_mosaicT_gen_bundle_adjusted_mosaicGenBundleAdjustedMosaicGenBundleAdjustedMosaicgen_bundle_adjusted_mosaic — Combine multiple images into a mosaic image.
+Signature
+gen_bundle_adjusted_mosaic(Images : MosaicImage : HomMatrices2D, StackingOrder, TransformDomain : TransMat2D)
+Herror T_gen_bundle_adjusted_mosaic(const Hobject Images, Hobject* MosaicImage, const Htuple HomMatrices2D, const Htuple StackingOrder, const Htuple TransformDomain, Htuple* TransMat2D)
+void GenBundleAdjustedMosaic(const HObject& Images, HObject* MosaicImage, const HTuple& HomMatrices2D, const HTuple& StackingOrder, const HTuple& TransformDomain, HTuple* TransMat2D)
+HImage HImage::GenBundleAdjustedMosaic(const HHomMat2DArray& HomMatrices2D, const HTuple& StackingOrder, const HString& TransformDomain, HHomMat2D* TransMat2D) const
+HImage HImage::GenBundleAdjustedMosaic(const HHomMat2DArray& HomMatrices2D, const HString& StackingOrder, const HString& TransformDomain, HHomMat2D* TransMat2D) const
+HImage HImage::GenBundleAdjustedMosaic(const HHomMat2DArray& HomMatrices2D, const char* StackingOrder, const char* TransformDomain, HHomMat2D* TransMat2D) const
+HImage HImage::GenBundleAdjustedMosaic(const HHomMat2DArray& HomMatrices2D, const wchar_t* StackingOrder, const wchar_t* TransformDomain, HHomMat2D* TransMat2D) const
+(
+Windows only)
+static void HOperatorSet.GenBundleAdjustedMosaic(HObject images, out HObject mosaicImage, HTuple homMatrices2D, HTuple stackingOrder, HTuple transformDomain, out HTuple transMat2D)
+HImage HImage.GenBundleAdjustedMosaic(HHomMat2D[] homMatrices2D, HTuple stackingOrder, string transformDomain, out HHomMat2D transMat2D)
+HImage HImage.GenBundleAdjustedMosaic(HHomMat2D[] homMatrices2D, string stackingOrder, string transformDomain, out HHomMat2D transMat2D)
+def gen_bundle_adjusted_mosaic(images: HObject, hom_matrices_2d: Sequence[float], stacking_order: MaybeSequence[Union[str, int]], transform_domain: str) -> Tuple[HObject, Sequence[float]]
+Description
+gen_bundle_adjusted_mosaicgen_bundle_adjusted_mosaicGenBundleAdjustedMosaicGenBundleAdjustedMosaicgen_bundle_adjusted_mosaic combines the input images
+contained in the object ImagesImagesImagesimagesimages into a mosaic image
+MosaicImageMosaicImageMosaicImagemosaicImagemosaic_image.  The relative positions of the images are
+defined by 3x3 projective transformation matrices.
+The array HomMatrices2DHomMatrices2DHomMatrices2DhomMatrices2Dhom_matrices_2d contains a sequence of these
+linearized matrices.  The transformation matrices can be computed
+with bundle_adjust_mosaicbundle_adjust_mosaicBundleAdjustMosaicBundleAdjustMosaicbundle_adjust_mosaic.
+The origin of MosaicImageMosaicImageMosaicImagemosaicImagemosaic_image and its size are automatically
+chosen so that all of the input images are completely visible.
+The order in which the images are added to the mosaic is given by
+the array StackingOrderStackingOrderStackingOrderstackingOrderstacking_order.  The first index in this array
+will end up at the bottom of the image stack while the last one will
+be on top.  If 'default'"default""default""default""default" is given instead of an array of
+integers, the canonical order (images in the order used in
+ImagesImagesImagesimagesimages) will be used.
+The parameter TransformDomainTransformDomainTransformDomaintransformDomaintransform_domain can be used to determine
+whether the domains of ImagesImagesImagesimagesimages are also transformed.  Since
+the transformation of the domains costs runtime, this parameter
+should be used to specify whether this is desired or not.  If
+TransformDomainTransformDomainTransformDomaintransformDomaintransform_domain is set to 'false'"false""false""false""false" the domain of
+the input images is ignored and the complete images are
+transformed.
+On output, the parameter TransMat2DTransMat2DTransMat2DtransMat2Dtrans_mat_2d contains a
+3x3 projective transformation matrix that describes
+the translation that was necessary to transform all images
+completely into the output image.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+ImagesImagesImagesimagesimages (input_object)  (multichannel-)image-array → objectHImageHObjectHObjectHobject (byte / uint2 / real)
+Input images.
+MosaicImageMosaicImageMosaicImagemosaicImagemosaic_image (output_object)  (multichannel-)image → objectHImageHObjectHObjectHobject * (byte / uint2 / real)
+Output image.
+HomMatrices2DHomMatrices2DHomMatrices2DhomMatrices2Dhom_matrices_2d (input_control)  hom_mat2d-array → HHomMat2D, HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Array of 3x3 projective
+transformation matrices.
+StackingOrderStackingOrderStackingOrderstackingOrderstacking_order (input_control)  string(-array) → HTupleMaybeSequence[Union[str, int]]HTupleHtuple (string / integer) (string / int / long) (HString / Hlong) (char* / Hlong)
+Stacking order of the images in the mosaic.
+Default:
+'default'
+"default"
+"default"
+"default"
+"default"
+Suggested values:
+'default'"default""default""default""default"
+TransformDomainTransformDomainTransformDomaintransformDomaintransform_domain (input_control)  string → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Should the domains of the input images also be
+transformed?
+Default:
+'false'
+"false"
+"false"
+"false"
+"false"
+List of values:
+'false'"false""false""false""false", 'true'"true""true""true""true"
+TransMat2DTransMat2DTransMat2DtransMat2Dtrans_mat_2d (output_control)  hom_mat2d → HHomMat2D, HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+3x3 projective transformation matrix
+that describes the translation that was necessary to
+transform all images completely into the output image.
+Possible Predecessors
+bundle_adjust_mosaicbundle_adjust_mosaicBundleAdjustMosaicBundleAdjustMosaicbundle_adjust_mosaic
+Alternatives
+gen_projective_mosaicgen_projective_mosaicGenProjectiveMosaicGenProjectiveMosaicgen_projective_mosaic
+See also
+projective_trans_imageprojective_trans_imageProjectiveTransImageProjectiveTransImageprojective_trans_image,
+projective_trans_image_sizeprojective_trans_image_sizeProjectiveTransImageSizeProjectiveTransImageSizeprojective_trans_image_size,
+projective_trans_regionprojective_trans_regionProjectiveTransRegionProjectiveTransRegionprojective_trans_region,
+projective_trans_contour_xldprojective_trans_contour_xldProjectiveTransContourXldProjectiveTransContourXldprojective_trans_contour_xld,
+projective_trans_point_2dprojective_trans_point_2dProjectiveTransPoint2dProjectiveTransPoint2dprojective_trans_point_2d,
+projective_trans_pixelprojective_trans_pixelProjectiveTransPixelProjectiveTransPixelprojective_trans_pixel
+References
+Richard Hartley, Andrew Zisserman: “Multiple View Geometry in
+Computer Vision”; Cambridge University Press, Cambridge; 2000.
+Olivier Faugeras, Quang-Tuan Luong: “The Geometry of Multiple
+Images: The Laws That Govern the Formation of Multiple Images of a
+Scene and Some of Their Applications”; MIT Press, Cambridge, MA;
+2001.
+Module
+Matching
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

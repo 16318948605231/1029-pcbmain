@@ -1,0 +1,1196 @@
+measure_pairs [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+1D Measuring
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+measure_pairs
+T_measure_pairs
+MeasurePairs
+MeasurePairs
+measure_pairs
+(Operator)
+Name
+measure_pairs
+T_measure_pairs
+MeasurePairs
+MeasurePairs
+measure_pairs
+— Extract straight edge pairs perpendicular to a rectangle or annular arc.
+Signature
+measure_pairs
+(
+Image
+:  :
+MeasureHandle
+,
+Sigma
+,
+Threshold
+,
+Transition
+,
+Select
+:
+RowEdgeFirst
+,
+ColumnEdgeFirst
+,
+AmplitudeFirst
+,
+RowEdgeSecond
+,
+ColumnEdgeSecond
+,
+AmplitudeSecond
+,
+IntraDistance
+,
+InterDistance
+)
+Herror
+T_measure_pairs
+(const Hobject
+Image
+, const Htuple
+MeasureHandle
+, const Htuple
+Sigma
+, const Htuple
+Threshold
+, const Htuple
+Transition
+, const Htuple
+Select
+, Htuple*
+RowEdgeFirst
+, Htuple*
+ColumnEdgeFirst
+, Htuple*
+AmplitudeFirst
+, Htuple*
+RowEdgeSecond
+, Htuple*
+ColumnEdgeSecond
+, Htuple*
+AmplitudeSecond
+, Htuple*
+IntraDistance
+, Htuple*
+InterDistance
+)
+void
+MeasurePairs
+(const HObject&
+Image
+, const HTuple&
+MeasureHandle
+, const HTuple&
+Sigma
+, const HTuple&
+Threshold
+, const HTuple&
+Transition
+, const HTuple&
+Select
+, HTuple*
+RowEdgeFirst
+, HTuple*
+ColumnEdgeFirst
+, HTuple*
+AmplitudeFirst
+, HTuple*
+RowEdgeSecond
+, HTuple*
+ColumnEdgeSecond
+, HTuple*
+AmplitudeSecond
+, HTuple*
+IntraDistance
+, HTuple*
+InterDistance
+)
+void
+HMeasure
+::
+MeasurePairs
+(const HImage&
+Image
+, double
+Sigma
+, double
+Threshold
+, const HString&
+Transition
+, const HString&
+Select
+, HTuple*
+RowEdgeFirst
+, HTuple*
+ColumnEdgeFirst
+, HTuple*
+AmplitudeFirst
+, HTuple*
+RowEdgeSecond
+, HTuple*
+ColumnEdgeSecond
+, HTuple*
+AmplitudeSecond
+, HTuple*
+IntraDistance
+, HTuple*
+InterDistance
+) const
+void
+HMeasure
+::
+MeasurePairs
+(const HImage&
+Image
+, double
+Sigma
+, double
+Threshold
+, const char*
+Transition
+, const char*
+Select
+, HTuple*
+RowEdgeFirst
+, HTuple*
+ColumnEdgeFirst
+, HTuple*
+AmplitudeFirst
+, HTuple*
+RowEdgeSecond
+, HTuple*
+ColumnEdgeSecond
+, HTuple*
+AmplitudeSecond
+, HTuple*
+IntraDistance
+, HTuple*
+InterDistance
+) const
+void
+HMeasure
+::
+MeasurePairs
+(const HImage&
+Image
+, double
+Sigma
+, double
+Threshold
+, const wchar_t*
+Transition
+, const wchar_t*
+Select
+, HTuple*
+RowEdgeFirst
+, HTuple*
+ColumnEdgeFirst
+, HTuple*
+AmplitudeFirst
+, HTuple*
+RowEdgeSecond
+, HTuple*
+ColumnEdgeSecond
+, HTuple*
+AmplitudeSecond
+, HTuple*
+IntraDistance
+, HTuple*
+InterDistance
+) const
+(
+            Windows only)
+void
+HImage
+::
+MeasurePairs
+(const HMeasure&
+MeasureHandle
+, double
+Sigma
+, double
+Threshold
+, const HString&
+Transition
+, const HString&
+Select
+, HTuple*
+RowEdgeFirst
+, HTuple*
+ColumnEdgeFirst
+, HTuple*
+AmplitudeFirst
+, HTuple*
+RowEdgeSecond
+, HTuple*
+ColumnEdgeSecond
+, HTuple*
+AmplitudeSecond
+, HTuple*
+IntraDistance
+, HTuple*
+InterDistance
+) const
+void
+HImage
+::
+MeasurePairs
+(const HMeasure&
+MeasureHandle
+, double
+Sigma
+, double
+Threshold
+, const char*
+Transition
+, const char*
+Select
+, HTuple*
+RowEdgeFirst
+, HTuple*
+ColumnEdgeFirst
+, HTuple*
+AmplitudeFirst
+, HTuple*
+RowEdgeSecond
+, HTuple*
+ColumnEdgeSecond
+, HTuple*
+AmplitudeSecond
+, HTuple*
+IntraDistance
+, HTuple*
+InterDistance
+) const
+void
+HImage
+::
+MeasurePairs
+(const HMeasure&
+MeasureHandle
+, double
+Sigma
+, double
+Threshold
+, const wchar_t*
+Transition
+, const wchar_t*
+Select
+, HTuple*
+RowEdgeFirst
+, HTuple*
+ColumnEdgeFirst
+, HTuple*
+AmplitudeFirst
+, HTuple*
+RowEdgeSecond
+, HTuple*
+ColumnEdgeSecond
+, HTuple*
+AmplitudeSecond
+, HTuple*
+IntraDistance
+, HTuple*
+InterDistance
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+MeasurePairs
+(
+HObject
+image
+,
+HTuple
+measureHandle
+,
+HTuple
+sigma
+,
+HTuple
+threshold
+,
+HTuple
+transition
+,
+HTuple
+select
+, out
+HTuple
+rowEdgeFirst
+, out
+HTuple
+columnEdgeFirst
+, out
+HTuple
+amplitudeFirst
+, out
+HTuple
+rowEdgeSecond
+, out
+HTuple
+columnEdgeSecond
+, out
+HTuple
+amplitudeSecond
+, out
+HTuple
+intraDistance
+, out
+HTuple
+interDistance
+)
+void
+HMeasure
+.
+MeasurePairs
+(
+HImage
+image
+, double
+sigma
+, double
+threshold
+, string
+transition
+, string
+select
+, out
+HTuple
+rowEdgeFirst
+, out
+HTuple
+columnEdgeFirst
+, out
+HTuple
+amplitudeFirst
+, out
+HTuple
+rowEdgeSecond
+, out
+HTuple
+columnEdgeSecond
+, out
+HTuple
+amplitudeSecond
+, out
+HTuple
+intraDistance
+, out
+HTuple
+interDistance
+)
+void
+HImage
+.
+MeasurePairs
+(
+HMeasure
+measureHandle
+, double
+sigma
+, double
+threshold
+, string
+transition
+, string
+select
+, out
+HTuple
+rowEdgeFirst
+, out
+HTuple
+columnEdgeFirst
+, out
+HTuple
+amplitudeFirst
+, out
+HTuple
+rowEdgeSecond
+, out
+HTuple
+columnEdgeSecond
+, out
+HTuple
+amplitudeSecond
+, out
+HTuple
+intraDistance
+, out
+HTuple
+interDistance
+)
+def
+measure_pairs
+(
+image
+: HObject,
+measure_handle
+: HHandle,
+sigma
+: float,
+threshold
+: float,
+transition
+: str,
+select
+: str) -> Tuple[Sequence[float], Sequence[float], Sequence[float], Sequence[float], Sequence[float], Sequence[float], Sequence[float], Sequence[float]]
+Description
+measure_pairs
+measure_pairs
+MeasurePairs
+MeasurePairs
+measure_pairs
+serves to extract
+straight
+edge pairs
+which lie
+perpendicular
+to the major axis of a rectangle or
+annular arc.
+For an explanation of the concept of 1D measuring see the introduction of
+chapter
+1D Measuring
+.
+The extraction algorithm of
+measure_pairs
+measure_pairs
+MeasurePairs
+MeasurePairs
+measure_pairs
+is identical to
+measure_pos
+measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+.  In addition
+the edges are grouped to pairs: If
+Transition
+Transition
+Transition
+transition
+transition
+=
+'positive'
+"positive"
+"positive"
+"positive"
+"positive"
+,
+the edge points with a dark-to-light transition in the direction of the major
+axis of the rectangle are returned in
+RowEdgeFirst
+RowEdgeFirst
+RowEdgeFirst
+rowEdgeFirst
+row_edge_first
+and
+ColumnEdgeFirst
+ColumnEdgeFirst
+ColumnEdgeFirst
+columnEdgeFirst
+column_edge_first
+.  In this case, the corresponding edges with a
+light-to-dark transition are returned in
+RowEdgeSecond
+RowEdgeSecond
+RowEdgeSecond
+rowEdgeSecond
+row_edge_second
+and
+ColumnEdgeSecond
+ColumnEdgeSecond
+ColumnEdgeSecond
+columnEdgeSecond
+column_edge_second
+.  If
+Transition
+Transition
+Transition
+transition
+transition
+=
+'negative'
+"negative"
+"negative"
+"negative"
+"negative"
+, the
+behavior is exactly opposite.  If
+Transition
+Transition
+Transition
+transition
+transition
+=
+'all'
+"all"
+"all"
+"all"
+"all"
+, the
+first detected edge defines the transition for
+RowEdgeFirst
+RowEdgeFirst
+RowEdgeFirst
+rowEdgeFirst
+row_edge_first
+and
+ColumnEdgeFirst
+ColumnEdgeFirst
+ColumnEdgeFirst
+columnEdgeFirst
+column_edge_first
+. I.e., dependent on the positioning of the measure
+object, edge pairs with a light-dark-light transition or edge pairs with a
+dark-light-dark transition are returned. This is suited, e.g., to measure
+objects with different brightness relative to the background.
+If more than one consecutive edge with
+the same transition is found, the first one is used as a pair element.  This
+behavior may cause problems in applications in which the threshold
+Threshold
+Threshold
+Threshold
+threshold
+threshold
+cannot be selected high enough to suppress consecutive
+edges of the same transition.  For these applications, a second pairing mode
+exists that only selects the respective strongest edges of a sequence of
+consecutive rising and falling edges.  This mode is selected by appending
+'_strongest'
+"_strongest"
+"_strongest"
+"_strongest"
+"_strongest"
+to any of the above modes for
+Transition
+Transition
+Transition
+transition
+transition
+,
+e.g.,
+'negative_strongest'
+"negative_strongest"
+"negative_strongest"
+"negative_strongest"
+"negative_strongest"
+.  Finally, it is possible to select which
+edge pairs are returned.  If
+Select
+Select
+Select
+select
+select
+is set to
+'all'
+"all"
+"all"
+"all"
+"all"
+, all
+edge pairs are returned.  If it is set to
+'first'
+"first"
+"first"
+"first"
+"first"
+, only the first of
+the extracted edge pairs is returned, while it is set to
+'last'
+"last"
+"last"
+"last"
+"last"
+,
+only the last one is returned.
+The extracted edges are returned as single points which lie on the
+major axis of the rectangle.  The corresponding edge amplitudes are
+returned in
+AmplitudeFirst
+AmplitudeFirst
+AmplitudeFirst
+amplitudeFirst
+amplitude_first
+and
+AmplitudeSecond
+AmplitudeSecond
+AmplitudeSecond
+amplitudeSecond
+amplitude_second
+.
+In addition, the distance between each edge pair is returned in
+IntraDistance
+IntraDistance
+IntraDistance
+intraDistance
+intra_distance
+and the distance between consecutive edge
+pairs is returned in
+InterDistance
+InterDistance
+InterDistance
+interDistance
+inter_distance
+.  Here, IntraDistance[i]
+corresponds to the distance between EdgeFirst[i] and EdgeSecond[i],
+while InterDistance[i] corresponds to the distance between
+EdgeSecond[i] and EdgeFirst[i+1], i.e., the tuple
+InterDistance
+InterDistance
+InterDistance
+interDistance
+inter_distance
+contains one element less than the tuples
+of the edge pairs.
+Attention
+measure_pairs
+measure_pairs
+MeasurePairs
+MeasurePairs
+measure_pairs
+only returns meaningful results if the
+assumptions that the edges are straight and perpendicular to the
+major axis of the rectangle are fulfilled.  Thus, it should not be
+used to extract edges from curved objects, for example.
+Furthermore, the user should ensure that the rectangle is as close
+to perpendicular as possible to the edges in the image. Additionally,
+Sigma
+Sigma
+Sigma
+sigma
+sigma
+must not become larger than approx. 0.5 * Length1
+(for Length1 see
+gen_measure_rectangle2
+gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+).
+It should be kept in mind that
+measure_pairs
+measure_pairs
+MeasurePairs
+MeasurePairs
+measure_pairs
+ignores the
+domain of
+Image
+Image
+Image
+image
+image
+for efficiency reasons.  If certain regions
+in the image should be excluded from the measurement a new measure
+object with appropriately modified parameters should be generated.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Image
+Image
+Image
+image
+image
+(input_object)
+singlechannelimage
+→
+object
+HImage
+HObject
+HObject
+Hobject
+(byte / uint2 / real)
+Input image.
+MeasureHandle
+MeasureHandle
+MeasureHandle
+measureHandle
+measure_handle
+(input_control)
+measure
+→
+HMeasure
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Measure object handle.
+Sigma
+Sigma
+Sigma
+sigma
+sigma
+(input_control)
+number
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Sigma of gaussian smoothing.
+Default:
+1.0
+Suggested values:
+0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, 4.0, 5.0, 7.0, 10.0
+Value range:
+0.4
+          ≤
+Sigma
+Sigma
+Sigma
+sigma
+sigma
+≤
+          100
+(lin)
+Minimum increment:
+0.01
+Recommended increment:
+0.1
+Threshold
+Threshold
+Threshold
+threshold
+threshold
+(input_control)
+number
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Minimum edge amplitude.
+Default:
+30.0
+Suggested values:
+5.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 90.0, 110.0
+Value range:
+1
+          ≤
+Threshold
+Threshold
+Threshold
+threshold
+threshold
+≤
+          255
+(lin)
+Minimum increment:
+0.5
+Recommended increment:
+2
+Transition
+Transition
+Transition
+transition
+transition
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Type of gray value transition that determines
+how edges are grouped to edge pairs.
+Default:
+'all'
+"all"
+"all"
+"all"
+"all"
+List of values:
+'all'
+"all"
+"all"
+"all"
+"all"
+,
+'all_strongest'
+"all_strongest"
+"all_strongest"
+"all_strongest"
+"all_strongest"
+,
+'negative'
+"negative"
+"negative"
+"negative"
+"negative"
+,
+'negative_strongest'
+"negative_strongest"
+"negative_strongest"
+"negative_strongest"
+"negative_strongest"
+,
+'positive'
+"positive"
+"positive"
+"positive"
+"positive"
+,
+'positive_strongest'
+"positive_strongest"
+"positive_strongest"
+"positive_strongest"
+"positive_strongest"
+Select
+Select
+Select
+select
+select
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Selection of edge pairs.
+Default:
+'all'
+"all"
+"all"
+"all"
+"all"
+List of values:
+'all'
+"all"
+"all"
+"all"
+"all"
+,
+'first'
+"first"
+"first"
+"first"
+"first"
+,
+'last'
+"last"
+"last"
+"last"
+"last"
+RowEdgeFirst
+RowEdgeFirst
+RowEdgeFirst
+rowEdgeFirst
+row_edge_first
+(output_control)
+point.y-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Row coordinate of the center of the first edge.
+ColumnEdgeFirst
+ColumnEdgeFirst
+ColumnEdgeFirst
+columnEdgeFirst
+column_edge_first
+(output_control)
+point.x-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Column coordinate of the center of the first edge.
+AmplitudeFirst
+AmplitudeFirst
+AmplitudeFirst
+amplitudeFirst
+amplitude_first
+(output_control)
+real-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Edge amplitude of the first edge (with sign).
+RowEdgeSecond
+RowEdgeSecond
+RowEdgeSecond
+rowEdgeSecond
+row_edge_second
+(output_control)
+point.y-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Row coordinate of the center of the second edge.
+ColumnEdgeSecond
+ColumnEdgeSecond
+ColumnEdgeSecond
+columnEdgeSecond
+column_edge_second
+(output_control)
+point.x-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Column coordinate of the center of the second
+edge.
+AmplitudeSecond
+AmplitudeSecond
+AmplitudeSecond
+amplitudeSecond
+amplitude_second
+(output_control)
+real-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Edge amplitude of the second edge (with sign).
+IntraDistance
+IntraDistance
+IntraDistance
+intraDistance
+intra_distance
+(output_control)
+real-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Distance between edges of an edge pair.
+InterDistance
+InterDistance
+InterDistance
+interDistance
+inter_distance
+(output_control)
+real-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Distance between consecutive edge pairs.
+Result
+If the parameter values are correct the operator
+measure_pairs
+measure_pairs
+MeasurePairs
+MeasurePairs
+measure_pairs
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    .  Otherwise an exception is raised.
+Possible Predecessors
+gen_measure_rectangle2
+gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+Possible Successors
+close_measure
+close_measure
+CloseMeasure
+CloseMeasure
+close_measure
+Alternatives
+edges_sub_pix
+edges_sub_pix
+EdgesSubPix
+EdgesSubPix
+edges_sub_pix
+,
+fuzzy_measure_pairs
+fuzzy_measure_pairs
+FuzzyMeasurePairs
+FuzzyMeasurePairs
+fuzzy_measure_pairs
+,
+fuzzy_measure_pairing
+fuzzy_measure_pairing
+FuzzyMeasurePairing
+FuzzyMeasurePairing
+fuzzy_measure_pairing
+See also
+measure_pos
+measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+,
+fuzzy_measure_pos
+fuzzy_measure_pos
+FuzzyMeasurePos
+FuzzyMeasurePos
+fuzzy_measure_pos
+Module
+1D Metrology
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

@@ -1,0 +1,414 @@
+map_image [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Filters
+/
+Geometric Transformations
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+map_image
+map_image
+MapImage
+MapImage
+map_image
+(Operator)
+Name
+map_image
+map_image
+MapImage
+MapImage
+map_image
+— Apply a general transformation to an image.
+Signature
+map_image
+(
+Image
+,
+Map
+:
+ImageMapped
+:  : )
+Herror
+map_image
+(const Hobject
+Image
+, const Hobject
+Map
+, Hobject*
+ImageMapped
+)
+Herror
+T_map_image
+(const Hobject
+Image
+, const Hobject
+Map
+, Hobject*
+ImageMapped
+)
+void
+MapImage
+(const HObject&
+Image
+, const HObject&
+Map
+, HObject*
+ImageMapped
+)
+HImage
+HImage
+::
+MapImage
+(const HImage&
+Map
+) const
+static void
+HOperatorSet
+.
+MapImage
+(
+HObject
+image
+,
+HObject
+map
+, out
+HObject
+imageMapped
+)
+HImage
+HImage
+.
+MapImage
+(
+HImage
+map
+)
+def
+map_image
+(
+image
+: HObject,
+map
+: HObject) -> HObject
+Description
+map_image
+map_image
+MapImage
+MapImage
+map_image
+transforms an image
+Image
+Image
+Image
+image
+image
+using an arbitrary
+transformation
+Map
+Map
+Map
+map
+map
+which, for example, was previously generated
+using
+gen_image_to_world_plane_map
+gen_image_to_world_plane_map
+GenImageToWorldPlaneMap
+GenImageToWorldPlaneMap
+gen_image_to_world_plane_map
+or
+gen_radial_distortion_map
+gen_radial_distortion_map
+GenRadialDistortionMap
+GenRadialDistortionMap
+gen_radial_distortion_map
+.  The multi-channel image
+Map
+Map
+Map
+map
+map
+must be organized as follows:
+The height and the width of
+Map
+Map
+Map
+map
+map
+define the size of the output
+image
+ImageMapped
+ImageMapped
+ImageMapped
+imageMapped
+image_mapped
+. The number of channels in
+Map
+Map
+Map
+map
+map
+defines
+whether no interpolation or bilinear interpolation should be used.
+If
+Map
+Map
+Map
+map
+map
+only consists of one channel, no interpolation is applied
+during the transformation. This channel contains 'int4' (resp. 'int8' in
+HALCON XL if the value range of 'int4' is not sufficient) values that
+describe the geometric transformation: For each pixel in the output image
+ImageMapped
+ImageMapped
+ImageMapped
+imageMapped
+image_mapped
+the linearized coordinate of the pixel in the input
+image
+Image
+Image
+Image
+image
+image
+from which the gray value should be taken is stored.
+If bilinear interpolation between the pixels in the input image should be
+applied,
+Map
+Map
+Map
+map
+map
+must consist of 5 channels. The first channel again
+consists of an 'int4' resp. 'int8' image and describes the geometric
+transformation. The channels 2-5 consist of an 'uint2' image each and
+contain the weights [0...1] of the four neighboring pixels that are used
+during bilinear interpolation.  If the overall brightness of the output image
+ImageMapped
+ImageMapped
+ImageMapped
+imageMapped
+image_mapped
+should not differ from the overall brightness of the
+input image
+Image
+Image
+Image
+image
+image
+, the sum of the four unscaled weights must
+be 1 for each pixel. The
+weights [0...1] are scaled to the range of values of the
+'uint2' image and therefore hold integer values from 0 to 65535.
+Furthermore, the weights  must be chosen in a way that the range of values
+of the output image
+ImageMapped
+ImageMapped
+ImageMapped
+imageMapped
+image_mapped
+is not exceeded. The geometric
+relation between
+the four channels 2-5 is illustrated in the following sketch:
+2
+3
+4
+5
+The reference point of the four pixels is the upper left pixel. The
+linearized
+coordinate of the reference point is stored in the first channel.
+It is also possible to use a
+Map
+Map
+Map
+map
+map
+that consists of a vector field
+containing absolute subpixel precise row and column coordinates
+(i.e., the field must be of the semantic type 'vector_field_absolute'). The
+two
+Map
+Map
+Map
+map
+map
+types described above can be converted into this type
+using
+convert_map_type
+convert_map_type
+ConvertMapType
+ConvertMapType
+convert_map_type
+. This type is the only type supported on
+compute devices!
+Attention
+The weights must be chosen in a way that the range of values of the output
+image
+ImageMapped
+ImageMapped
+ImageMapped
+imageMapped
+image_mapped
+is not exceeded.
+For runtime reasons during the mapping process, it is not checked whether
+the linearized coordinates lie inside the input image. Thus, it must
+be ensured by the user that this constraint is fulfilled.
+In case interpolation is used, this also applies to the pixels to the right,
+below, and below to the right of this coordinate. Otherwise, the
+program may crash!
+map_image
+map_image
+MapImage
+MapImage
+map_image
+is parallelized automatically if and only if the
+specified type for
+Map
+Map
+Map
+map
+map
+is either
+'bilinear'
+"bilinear"
+"bilinear"
+"bilinear"
+"bilinear"
+or
+'coord_map_sub_pix'
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+.
+map_image
+map_image
+MapImage
+MapImage
+map_image
+is executed on an OpenCL compute device only if the
+input map is of type
+'coord_map_sub_pix'
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+and if the input image
+does not exceed the maximum size of image objects of the selected device.
+Execution Information
+Supports OpenCL compute devices.
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+Parameters
+Image
+Image
+Image
+image
+image
+(input_object)
+(multichannel-)image(-array)
+→
+object
+HImage
+HObject
+HObject
+Hobject
+(byte / uint2 / real)
+Image to be mapped.
+Map
+Map
+Map
+map
+map
+(input_object)
+(multichannel-)image
+→
+object
+HImage
+HObject
+HObject
+Hobject
+(int4 / int8 / uint2 / vector_field*)
+*allowed for compute devices
+Image containing the mapping data.
+ImageMapped
+ImageMapped
+ImageMapped
+imageMapped
+image_mapped
+(output_object)
+(multichannel-)image(-array)
+→
+object
+HImage
+HObject
+HObject
+Hobject *
+(byte / uint2 / real)
+Mapped image.
+Result
+map_image
+map_image
+MapImage
+MapImage
+map_image
+returns
+2
+(
+H_MSG_TRUE
+)
+     if all parameter values
+are correct. If necessary, an exception is raised.
+Possible Predecessors
+gen_image_to_world_plane_map
+gen_image_to_world_plane_map
+GenImageToWorldPlaneMap
+GenImageToWorldPlaneMap
+gen_image_to_world_plane_map
+,
+gen_radial_distortion_map
+gen_radial_distortion_map
+GenRadialDistortionMap
+GenRadialDistortionMap
+gen_radial_distortion_map
+,
+convert_map_type
+convert_map_type
+ConvertMapType
+ConvertMapType
+convert_map_type
+See also
+affine_trans_image
+affine_trans_image
+AffineTransImage
+AffineTransImage
+affine_trans_image
+,
+rotate_image
+rotate_image
+RotateImage
+RotateImage
+rotate_image
+Module
+Foundation
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

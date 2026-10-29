@@ -1,0 +1,102 @@
+affine_trans_point_2d [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Transformations / 2D Transformations
+HDevelop
+.NET
+Python
+C++
+C
+Classes Classes | | Operators
+affine_trans_point_2d T_affine_trans_point_2d AffineTransPoint2d AffineTransPoint2d affine_trans_point_2d (Operator)
+Name
+affine_trans_point_2d T_affine_trans_point_2d AffineTransPoint2d AffineTransPoint2d affine_trans_point_2d — Apply an arbitrary affine 2D transformation to points.
+Signature
+affine_trans_point_2d ( : : HomMat2D , Px , Py : Qx , Qy )
+Herror T_affine_trans_point_2d (const Htuple HomMat2D , const Htuple Px , const Htuple Py , Htuple* Qx , Htuple* Qy )
+void AffineTransPoint2d (const HTuple& HomMat2D , const HTuple& Px , const HTuple& Py , HTuple* Qx , HTuple* Qy )
+HTuple HHomMat2D :: AffineTransPoint2d (const HTuple& Px , const HTuple& Py , HTuple* Qy ) const
+double HHomMat2D :: AffineTransPoint2d (double Px , double Py , double* Qy ) const
+static void HOperatorSet . AffineTransPoint2d ( HTuple homMat2D , HTuple px , HTuple py , out HTuple qx , out HTuple qy )
+HTuple HHomMat2D . AffineTransPoint2d ( HTuple px , HTuple py , out HTuple qy )
+double HHomMat2D . AffineTransPoint2d (double px , double py , out double qy )
+def affine_trans_point_2d ( hom_mat_2d : Sequence[float], px : MaybeSequence[Union[float, int]], py : MaybeSequence[Union[float, int]]) -> Tuple[Sequence[float], Sequence[float]]
+def affine_trans_point_2d_s ( hom_mat_2d : Sequence[float], px : MaybeSequence[Union[float, int]], py : MaybeSequence[Union[float, int]]) -> Tuple[float, float]
+Description
+affine_trans_point_2d affine_trans_point_2d AffineTransPoint2d AffineTransPoint2d affine_trans_point_2d applies an arbitrary affine 2D transformation,
+i.e., scaling, rotation, translation, and slant (skewing), to the input
+points ( Px Px Px px px , Py Py Py py py ) and returns the resulting points in
+( Qx Qx Qx qx qx , Qy Qy Qy qy qy ). The affine transformation is described by the
+homogeneous transformation matrix given in HomMat2D HomMat2D HomMat2D homMat2D hom_mat_2d . This
+corresponds to the following equation (input and output points as
+homogeneous vectors):
+If the points to transform are specified in standard image coordinates, their
+row coordinates must be passed in Px Px Px px px and their column
+coordinates in Py Py Py py py . This is necessary to obtain a right-handed
+coordinate system for the image. In particular, this assures that rotations
+are performed in the correct direction. Note that the (x,y) order of the
+matrices quite naturally corresponds to the usual (row,column) order for
+coordinates in the image.
+The transformation matrix can be created using the operators
+hom_mat2d_identity hom_mat2d_identity HomMat2dIdentity HomMat2dIdentity hom_mat2d_identity , hom_mat2d_rotate hom_mat2d_rotate HomMat2dRotate HomMat2dRotate hom_mat2d_rotate ,
+hom_mat2d_translate hom_mat2d_translate HomMat2dTranslate HomMat2dTranslate hom_mat2d_translate , etc., or can be the result of operators like
+vector_angle_to_rigid vector_angle_to_rigid VectorAngleToRigid VectorAngleToRigid vector_angle_to_rigid .
+For example, if HomMat2D HomMat2D HomMat2D homMat2D hom_mat_2d corresponds to a rigid transformation,
+i.e., if it consists of a rotation and a translation, the
+points are transformed as follows:
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+Parameters
+HomMat2D HomMat2D HomMat2D homMat2D hom_mat_2d (input_control) hom_mat2d → HHomMat2D , HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+Input transformation matrix.
+Px Px Px px px (input_control) point.x(-array) → HTuple MaybeSequence[Union[float, int]] HTuple Htuple (real / integer) ( double / int / long) ( double / Hlong) ( double / Hlong)
+Input point(s) (x or row coordinate).
+Default:
+64
+Suggested values:
+0, 16, 32, 64, 128, 256, 512, 1024
+Py Py Py py py (input_control) point.y(-array) → HTuple MaybeSequence[Union[float, int]] HTuple Htuple (real / integer) ( double / int / long) ( double / Hlong) ( double / Hlong)
+Input point(s) (y or column coordinate).
+Default:
+64
+Suggested values:
+0, 16, 32, 64, 128, 256, 512, 1024
+Qx Qx Qx qx qx (output_control) point.x(-array) → HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+Output point(s) (x or row coordinate).
+Qy Qy Qy qy qy (output_control) point.y(-array) → HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+Output point(s) (y or column coordinate).
+Result
+If the matrix HomMat2D HomMat2D HomMat2D homMat2D hom_mat_2d represents an affine transformation
+(i.e., not a projective transformation),
+affine_trans_point_2d affine_trans_point_2d AffineTransPoint2d AffineTransPoint2d affine_trans_point_2d returns 2 (
+H_MSG_TRUE )
+. Otherwise, an exception
+is raised.
+Possible Predecessors
+hom_mat2d_translate hom_mat2d_translate HomMat2dTranslate HomMat2dTranslate hom_mat2d_translate ,
+hom_mat2d_translate_local hom_mat2d_translate_local HomMat2dTranslateLocal HomMat2dTranslateLocal hom_mat2d_translate_local ,
+hom_mat2d_scale hom_mat2d_scale HomMat2dScale HomMat2dScale hom_mat2d_scale ,
+hom_mat2d_scale_local hom_mat2d_scale_local HomMat2dScaleLocal HomMat2dScaleLocal hom_mat2d_scale_local ,
+hom_mat2d_rotate hom_mat2d_rotate HomMat2dRotate HomMat2dRotate hom_mat2d_rotate ,
+hom_mat2d_rotate_local hom_mat2d_rotate_local HomMat2dRotateLocal HomMat2dRotateLocal hom_mat2d_rotate_local ,
+hom_mat2d_slant hom_mat2d_slant HomMat2dSlant HomMat2dSlant hom_mat2d_slant ,
+hom_mat2d_slant_local hom_mat2d_slant_local HomMat2dSlantLocal HomMat2dSlantLocal hom_mat2d_slant_local ,
+hom_mat2d_reflect hom_mat2d_reflect HomMat2dReflect HomMat2dReflect hom_mat2d_reflect ,
+hom_mat2d_reflect_local hom_mat2d_reflect_local HomMat2dReflectLocal HomMat2dReflectLocal hom_mat2d_reflect_local
+Possible Successors
+hom_mat2d_translate hom_mat2d_translate HomMat2dTranslate HomMat2dTranslate hom_mat2d_translate ,
+hom_mat2d_translate_local hom_mat2d_translate_local HomMat2dTranslateLocal HomMat2dTranslateLocal hom_mat2d_translate_local ,
+hom_mat2d_scale hom_mat2d_scale HomMat2dScale HomMat2dScale hom_mat2d_scale ,
+hom_mat2d_scale_local hom_mat2d_scale_local HomMat2dScaleLocal HomMat2dScaleLocal hom_mat2d_scale_local ,
+hom_mat2d_rotate hom_mat2d_rotate HomMat2dRotate HomMat2dRotate hom_mat2d_rotate ,
+hom_mat2d_rotate_local hom_mat2d_rotate_local HomMat2dRotateLocal HomMat2dRotateLocal hom_mat2d_rotate_local ,
+hom_mat2d_slant hom_mat2d_slant HomMat2dSlant HomMat2dSlant hom_mat2d_slant ,
+hom_mat2d_slant_local hom_mat2d_slant_local HomMat2dSlantLocal HomMat2dSlantLocal hom_mat2d_slant_local ,
+hom_mat2d_reflect hom_mat2d_reflect HomMat2dReflect HomMat2dReflect hom_mat2d_reflect ,
+hom_mat2d_reflect_local hom_mat2d_reflect_local HomMat2dReflectLocal HomMat2dReflectLocal hom_mat2d_reflect_local
+Module
+Foundation
+Classes Classes | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

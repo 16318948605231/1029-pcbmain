@@ -1,0 +1,358 @@
+find_ncc_model [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Matching / Correlation-Based
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+find_ncc_modelT_find_ncc_modelFindNccModelFindNccModelfind_ncc_model (Operator)
+Name
+find_ncc_modelT_find_ncc_modelFindNccModelFindNccModelfind_ncc_model — Find the best matches of an NCC model in an image.
+Signature
+find_ncc_model(Image :  : ModelID, AngleStart, AngleExtent, MinScore, NumMatches, MaxOverlap, SubPixel, NumLevels : Row, Column, Angle, Score)
+Herror T_find_ncc_model(const Hobject Image, const Htuple ModelID, const Htuple AngleStart, const Htuple AngleExtent, const Htuple MinScore, const Htuple NumMatches, const Htuple MaxOverlap, const Htuple SubPixel, const Htuple NumLevels, Htuple* Row, Htuple* Column, Htuple* Angle, Htuple* Score)
+void FindNccModel(const HObject& Image, const HTuple& ModelID, const HTuple& AngleStart, const HTuple& AngleExtent, const HTuple& MinScore, const HTuple& NumMatches, const HTuple& MaxOverlap, const HTuple& SubPixel, const HTuple& NumLevels, HTuple* Row, HTuple* Column, HTuple* Angle, HTuple* Score)
+void HNCCModel::FindNccModel(const HImage& Image, double AngleStart, double AngleExtent, double MinScore, Hlong NumMatches, double MaxOverlap, const HString& SubPixel, const HTuple& NumLevels, HTuple* Row, HTuple* Column, HTuple* Angle, HTuple* Score) const
+void HNCCModel::FindNccModel(const HImage& Image, double AngleStart, double AngleExtent, double MinScore, Hlong NumMatches, double MaxOverlap, const HString& SubPixel, Hlong NumLevels, HTuple* Row, HTuple* Column, HTuple* Angle, HTuple* Score) const
+void HNCCModel::FindNccModel(const HImage& Image, double AngleStart, double AngleExtent, double MinScore, Hlong NumMatches, double MaxOverlap, const char* SubPixel, Hlong NumLevels, HTuple* Row, HTuple* Column, HTuple* Angle, HTuple* Score) const
+void HNCCModel::FindNccModel(const HImage& Image, double AngleStart, double AngleExtent, double MinScore, Hlong NumMatches, double MaxOverlap, const wchar_t* SubPixel, Hlong NumLevels, HTuple* Row, HTuple* Column, HTuple* Angle, HTuple* Score) const
+(
+Windows only)
+void HImage::FindNccModel(const HNCCModel& ModelID, double AngleStart, double AngleExtent, double MinScore, Hlong NumMatches, double MaxOverlap, const HString& SubPixel, const HTuple& NumLevels, HTuple* Row, HTuple* Column, HTuple* Angle, HTuple* Score) const
+void HImage::FindNccModel(const HNCCModel& ModelID, double AngleStart, double AngleExtent, double MinScore, Hlong NumMatches, double MaxOverlap, const HString& SubPixel, Hlong NumLevels, HTuple* Row, HTuple* Column, HTuple* Angle, HTuple* Score) const
+void HImage::FindNccModel(const HNCCModel& ModelID, double AngleStart, double AngleExtent, double MinScore, Hlong NumMatches, double MaxOverlap, const char* SubPixel, Hlong NumLevels, HTuple* Row, HTuple* Column, HTuple* Angle, HTuple* Score) const
+void HImage::FindNccModel(const HNCCModel& ModelID, double AngleStart, double AngleExtent, double MinScore, Hlong NumMatches, double MaxOverlap, const wchar_t* SubPixel, Hlong NumLevels, HTuple* Row, HTuple* Column, HTuple* Angle, HTuple* Score) const
+(
+Windows only)
+static void HOperatorSet.FindNccModel(HObject image, HTuple modelID, HTuple angleStart, HTuple angleExtent, HTuple minScore, HTuple numMatches, HTuple maxOverlap, HTuple subPixel, HTuple numLevels, out HTuple row, out HTuple column, out HTuple angle, out HTuple score)
+void HNCCModel.FindNccModel(HImage image, double angleStart, double angleExtent, double minScore, int numMatches, double maxOverlap, string subPixel, HTuple numLevels, out HTuple row, out HTuple column, out HTuple angle, out HTuple score)
+void HNCCModel.FindNccModel(HImage image, double angleStart, double angleExtent, double minScore, int numMatches, double maxOverlap, string subPixel, int numLevels, out HTuple row, out HTuple column, out HTuple angle, out HTuple score)
+void HImage.FindNccModel(HNCCModel modelID, double angleStart, double angleExtent, double minScore, int numMatches, double maxOverlap, string subPixel, HTuple numLevels, out HTuple row, out HTuple column, out HTuple angle, out HTuple score)
+void HImage.FindNccModel(HNCCModel modelID, double angleStart, double angleExtent, double minScore, int numMatches, double maxOverlap, string subPixel, int numLevels, out HTuple row, out HTuple column, out HTuple angle, out HTuple score)
+def find_ncc_model(image: HObject, model_id: HHandle, angle_start: float, angle_extent: float, min_score: float, num_matches: int, max_overlap: float, sub_pixel: str, num_levels: MaybeSequence[int]) -> Tuple[Sequence[float], Sequence[float], Sequence[float], Sequence[float]]
+Description
+The operator find_ncc_modelfind_ncc_modelFindNccModelFindNccModelfind_ncc_model finds the best
+NumMatchesNumMatchesNumMatchesnumMatchesnum_matches instances of the NCC model ModelIDModelIDModelIDmodelIDmodel_id in
+the input image ImageImageImageimageimage.  The model must have been created
+previously by calling create_ncc_modelcreate_ncc_modelCreateNccModelCreateNccModelcreate_ncc_model or
+read_ncc_modelread_ncc_modelReadNccModelReadNccModelread_ncc_model.
+The position and rotation of the found instances of the model is
+returned in RowRowRowrowrow, ColumnColumnColumncolumncolumn, and AngleAngleAngleangleangle.
+Additionally, the score of each found instance is returned in
+ScoreScoreScorescorescore.
+If NCC finds no suitable match or the matching scores are to low,
+the search should be performed using a different matching method
+(see, e.g., “Solution Guide II-B - Matching”).
+Input parameters in detail
+ImageImageImageimageimage and its domain:
+The domain of the image ImageImageImageimageimage determines the search space
+for the reference point of the model, i.e., for the center of
+gravity of the domain (region) of the image that was used to create
+the NCC model with create_ncc_modelcreate_ncc_modelCreateNccModelCreateNccModelcreate_ncc_model.  A different origin
+set with set_ncc_model_originset_ncc_model_originSetNccModelOriginSetNccModelOriginset_ncc_model_origin is not taken into account
+here.  The model is searched within those points of the domain of
+the image, in which the model lies completely within the image.
+This means that the model will not be found if it extends beyond the
+borders of the image, even if it would achieve a score greater than
+MinScoreMinScoreMinScoreminScoremin_score (see below). Note that rounding effects can cause
+matches to lie up to
+pixels outside the image.
+AngleStartAngleStartAngleStartangleStartangle_start and AngleExtentAngleExtentAngleExtentangleExtentangle_extent:
+The parameters AngleStartAngleStartAngleStartangleStartangle_start and AngleExtentAngleExtentAngleExtentangleExtentangle_extent
+determine the range of rotations for which the model is searched.
+If necessary, the range of rotations is clipped to the range given
+when the model was created with create_ncc_modelcreate_ncc_modelCreateNccModelCreateNccModelcreate_ncc_model.
+MinScoreMinScoreMinScoreminScoremin_score:
+The parameter MinScoreMinScoreMinScoreminScoremin_score determines what score a potential
+match must at least have to be regarded as an instance of the model
+in the image.  The larger MinScoreMinScoreMinScoreminScoremin_score is chosen, the faster
+the search is.
+NumMatchesNumMatchesNumMatchesnumMatchesnum_matches:
+The maximum number of instances to be found can be determined with
+NumMatchesNumMatchesNumMatchesnumMatchesnum_matches.  If more than NumMatchesNumMatchesNumMatchesnumMatchesnum_matches instances
+with a score greater than MinScoreMinScoreMinScoreminScoremin_score are found in the image,
+only the best NumMatchesNumMatchesNumMatchesnumMatchesnum_matches instances are returned.  If fewer
+than NumMatchesNumMatchesNumMatchesnumMatchesnum_matches are found, only that number is returned,
+i.e., the parameter MinScoreMinScoreMinScoreminScoremin_score takes precedence over
+NumMatchesNumMatchesNumMatchesnumMatchesnum_matches.  If all model instances exceeding
+MinScoreMinScoreMinScoreminScoremin_score in the image should be found, NumMatchesNumMatchesNumMatchesnumMatchesnum_matches
+must be set to 0.
+MaxOverlapMaxOverlapMaxOverlapmaxOverlapmax_overlap:
+If the model exhibits symmetries it may happen that multiple
+instances with similar positions but different rotations are found
+in the image.  If the model has repeating structures it may happen
+that multiple instances with identical rotations are found at
+similar positions in the image.  The parameter MaxOverlapMaxOverlapMaxOverlapmaxOverlapmax_overlap
+determines by what fraction (i.e., a number between 0 and 1) two
+instances may at most overlap in order to consider them as different
+instances, and hence to be returned separately.  If two instances
+overlap each other by more than MaxOverlapMaxOverlapMaxOverlapmaxOverlapmax_overlap only the best
+instance is returned.  The calculation of the overlap is based on
+the smallest enclosing rectangle of arbitrary orientation (see
+smallest_rectangle2smallest_rectangle2SmallestRectangle2SmallestRectangle2smallest_rectangle2) of the found instances.  If
+MaxOverlapMaxOverlapMaxOverlapmaxOverlapmax_overlap=0, the found instances may not overlap at all,
+while for MaxOverlapMaxOverlapMaxOverlapmaxOverlapmax_overlap=1 all instances are returned.
+SubPixelSubPixelSubPixelsubPixelsub_pixel:
+The parameter SubPixelSubPixelSubPixelsubPixelsub_pixel determines whether the instances
+should be extracted with subpixel accuracy.  If SubPixelSubPixelSubPixelsubPixelsub_pixel is
+set to 'false'"false""false""false""false", the model's pose is only determined with
+pixel accuracy and the angle resolution that was specified with
+create_ncc_modelcreate_ncc_modelCreateNccModelCreateNccModelcreate_ncc_model.  If SubPixelSubPixelSubPixelsubPixelsub_pixel is set to
+'true'"true""true""true""true", the position as well as the rotation are determined
+with subpixel accuracy.  In this mode, the model's pose is
+interpolated from the score function.  This mode costs almost no
+computation time and achieves a high accuracy.  Hence,
+SubPixelSubPixelSubPixelsubPixelsub_pixel should usually be set to 'true'"true""true""true""true".
+Note that the subpixel accurate determination of the model's pose is
+only possible if the found instance lies at least 2 pixels away from
+the image border of the lowest used pyramid level.  If the instance
+lies closer to the image border, its pose is only determined with
+pixel accuracy and the angle resolution that was specified with
+create_ncc_modelcreate_ncc_modelCreateNccModelCreateNccModelcreate_ncc_model, even if SubPixelSubPixelSubPixelsubPixelsub_pixel is set to
+'true'"true""true""true""true".
+NumLevelsNumLevelsNumLevelsnumLevelsnum_levels:
+The number of pyramid levels used during the search is determined
+with NumLevelsNumLevelsNumLevelsnumLevelsnum_levels.  If necessary, the number of levels is
+clipped to the range given when the NCC model was created with
+create_ncc_modelcreate_ncc_modelCreateNccModelCreateNccModelcreate_ncc_model.  If NumLevelsNumLevelsNumLevelsnumLevelsnum_levels is set to
+0, the number of pyramid levels specified in
+create_ncc_modelcreate_ncc_modelCreateNccModelCreateNccModelcreate_ncc_model is used.
+In certain cases, the number of pyramid levels that was determined
+automatically with, for example, create_ncc_modelcreate_ncc_modelCreateNccModelCreateNccModelcreate_ncc_model may be too high.
+The consequence may be that some matches that may have a high final score
+are rejected on the highest pyramid level and thus are not found. Instead
+of setting MinScoreMinScoreMinScoreminScoremin_score to a very low value to find all matches, it
+may be better to query the value of NumLevelsNumLevelsNumLevelsnumLevelsnum_levels with
+get_ncc_model_paramsget_ncc_model_paramsGetNccModelParamsGetNccModelParamsget_ncc_model_params and then use a slightly lower value in
+find_ncc_modelfind_ncc_modelFindNccModelFindNccModelfind_ncc_model. This approach is often better regarding the speed
+and robustness of the matching.
+Optionally, NumLevelsNumLevelsNumLevelsnumLevelsnum_levels
+can contain a second value that determines the lowest pyramid level
+to which the found matches are tracked.  Hence, a value of
+[4,2] for NumLevelsNumLevelsNumLevelsnumLevelsnum_levels means that the matching starts
+at the fourth pyramid level and tracks the matches to the second
+lowest pyramid level (the lowest pyramid level is denoted by a value
+of 1).  This mechanism can be used to decrease the runtime of the
+matching.  It should be noted, however, that in general the accuracy
+of the extracted pose parameters is lower in this mode than in the
+normal mode, in which the matches are tracked to the lowest pyramid
+level.  If the lowest pyramid level to use is chosen too large, it
+may happen that the desired accuracy cannot be achieved, or that
+wrong instances of the model are found because the model is not
+specific enough on the higher pyramid levels to facilitate a
+reliable selection of the correct instance of the model.  In this
+case, the lowest pyramid level to use must be set to a smaller
+value.
+Output parameters in detail
+RowRowRowrowrow, ColumnColumnColumncolumncolumn and AngleAngleAngleangleangle:
+The position and rotation of the found instances of the model is
+returned in RowRowRowrowrow, ColumnColumnColumncolumncolumn, and AngleAngleAngleangleangle.
+The coordinates RowRowRowrowrow and ColumnColumnColumncolumncolumn are related to the
+position of the origin of the model in the search image.  However,
+RowRowRowrowrow and ColumnColumnColumncolumncolumn do not exactly correspond to this
+position.  Instead, find_ncc_modelfind_ncc_modelFindNccModelFindNccModelfind_ncc_model returns slightly modified
+values that are optimized for creating a transformation matrix, that
+can be used for alignment or visualization of the model.  (This has to
+do with the way HALCON transforms iconic objects, see
+affine_trans_pixelaffine_trans_pixelAffineTransPixelAffineTransPixelaffine_trans_pixel).  The example below shows how to create
+the transformation matrix for alignment and how to calculate the exact
+coordinates of the found matches.
+By default, the origin is the center of gravity of the domain (region)
+of the image that was used to create the NCC model with
+create_ncc_modelcreate_ncc_modelCreateNccModelCreateNccModelcreate_ncc_model.  A different origin can be set with
+set_ncc_model_originset_ncc_model_originSetNccModelOriginSetNccModelOriginset_ncc_model_origin.
+ScoreScoreScorescorescore:
+Additionally, the score of each found instance is returned in
+ScoreScoreScorescorescore.  The score is the normalized cross correlation of
+the template t(r,c) and the image i(r,c):
+Here, n denotes the number of points in the template, R denotes
+the domain (ROI) of the template,
+is the mean gray
+value of the template
+is the variance of the gray values of the
+template
+is the mean gray value of the image at
+position (r,c) over all points of the template (i.e., the template
+points are shifted by (r,c))
+and
+is the variance of the gray
+values of the image at position (r,c) over all points of the
+template
+The NCC measures how well the template and image correspond at a
+particular point (r,c).  It assumes values between -1 and 1.
+The larger the absolute value of the correlation, the larger the
+degree of correspondence between the template and image.  A value of
+1 means that the gray values in the image are a linear
+transformation of the gray values in the template:
+i(r+u,c+v) = a * t(u,v) + b
+where a > 0.  Similarly, a value of -1 means that the gray
+values in the image are a linear transformation of the gray values
+in the template with a < 0.  Hence, in this case the template
+occurs with a reversed polarity in the image.  Because of the above
+property, the NCC is invariant to linear illumination changes.
+The NCC as defined above is used if the NCC model has been created
+with MetricMetricMetricmetricmetric = 'use_polarity'"use_polarity""use_polarity""use_polarity""use_polarity".  If the model has
+been created with MetricMetricMetricmetricmetric =
+'ignore_global_polarity'"ignore_global_polarity""ignore_global_polarity""ignore_global_polarity""ignore_global_polarity", the absolute value of
+ncc(r,c) is used as the score.
+Specifying a timeout
+Using the operator set_ncc_model_paramset_ncc_model_paramSetNccModelParamSetNccModelParamset_ncc_model_param you can specify a
+'timeout'"timeout""timeout""timeout""timeout" for find_ncc_modelfind_ncc_modelFindNccModelFindNccModelfind_ncc_model. If find_ncc_modelfind_ncc_modelFindNccModelFindNccModelfind_ncc_model
+reaches this 'timeout'"timeout""timeout""timeout""timeout", it terminates without results and
+returns the error code 9400 (H_ERR_TIMEOUT).
+Visualization of the results
+To display the results found by correlation-based matching, we highly
+recommend the usage of the procedure
+dev_display_ncc_matching_results.
+Further Information
+For an explanation of the different 2D coordinate systems
+used in HALCON, see the introduction of chapter
+Transformations / 2D Transformations.
+Attention
+find_ncc_modelfind_ncc_modelFindNccModelFindNccModelfind_ncc_model can be partially executed on OpenCL devices that
+support the cl_khr_global_int32_base_atomics OpenCL extension. Only the
+initial search for the model in the topmost pyramid level is done on the
+OpenCL device, while the tracking of matches is done on the host CPU. If the
+domain of the image to search in is substantially smaller than the size of
+the image, use crop_domaincrop_domainCropDomainCropDomaincrop_domain to reduce the amount of data that needs to
+be copied from the OpenCL device to the host CPU. Note that
+find_ncc_modelfind_ncc_modelFindNccModelFindNccModelfind_ncc_model using OpenCL may run either substantially faster or
+slower depending on a wide number of factors, so the only way to tell if
+using OpenCL is beneficial is by testing with images from the actual
+application.
+Furthermore, note that the internally used memory increases with
+the number of used threads.
+Execution Information
+Supports OpenCL compute devices.
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+Parameters
+ImageImageImageimageimage (input_object)  singlechannelimage → objectHImageHObjectHObjectHobject (byte* / uint2*) *allowed for compute devices
+Input image in which the model should be found.
+ModelIDModelIDModelIDmodelIDmodel_id (input_control)  ncc_model → HNCCModel, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the model.
+AngleStartAngleStartAngleStartangleStartangle_start (input_control)  angle.rad → HTuplefloatHTupleHtuple (real) (double) (double) (double)
+Smallest rotation of the model.
+Default:
+-0.39
+Suggested values:
+-3.14, -1.57, -0.79, -0.39, -0.20, 0.0
+AngleExtentAngleExtentAngleExtentangleExtentangle_extent (input_control)  angle.rad → HTuplefloatHTupleHtuple (real) (double) (double) (double)
+Extent of the rotation angles.
+Default:
+0.79
+Suggested values:
+6.29, 3.14, 1.57, 0.79, 0.39, 0.0
+Restriction:
+AngleExtent >= 0
+MinScoreMinScoreMinScoreminScoremin_score (input_control)  real → HTuplefloatHTupleHtuple (real) (double) (double) (double)
+Minimum score of the instances of the model to
+be found.
+Default:
+0.8
+Suggested values:
+0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+Value range:
+0
+≤
+MinScore
+MinScore
+MinScore
+minScore
+min_score
+≤
+1
+Minimum increment:
+0.01
+Recommended increment:
+0.05
+NumMatchesNumMatchesNumMatchesnumMatchesnum_matches (input_control)  integer → HTupleintHTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Number of instances of the model to be found
+(or 0 for all matches).
+Default:
+1
+Suggested values:
+0, 1, 2, 3, 4, 5, 10, 20
+MaxOverlapMaxOverlapMaxOverlapmaxOverlapmax_overlap (input_control)  real → HTuplefloatHTupleHtuple (real) (double) (double) (double)
+Maximum overlap of the instances of the model
+to be found.
+Default:
+0.5
+Suggested values:
+0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+Value range:
+0
+≤
+MaxOverlap
+MaxOverlap
+MaxOverlap
+maxOverlap
+max_overlap
+≤
+1
+Minimum increment:
+0.01
+Recommended increment:
+0.05
+SubPixelSubPixelSubPixelsubPixelsub_pixel (input_control)  string → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Subpixel accuracy.
+Default:
+'true'
+"true"
+"true"
+"true"
+"true"
+List of values:
+'false'"false""false""false""false", 'true'"true""true""true""true"
+NumLevelsNumLevelsNumLevelsnumLevelsnum_levels (input_control)  integer(-array) → HTupleMaybeSequence[int]HTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Number of pyramid levels used in the matching
+(and lowest pyramid level to use if
+|NumLevelsNumLevelsNumLevelsnumLevelsnum_levels| = 2).
+Default:
+0
+List of values:
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+RowRowRowrowrow (output_control)  point.y-array → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Row coordinate of the found instances of the model.
+ColumnColumnColumncolumncolumn (output_control)  point.x-array → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Column coordinate of the found instances of the model.
+AngleAngleAngleangleangle (output_control)  angle.rad-array → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Rotation angle of the found instances of the model.
+ScoreScoreScorescorescore (output_control)  real-array → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Score of the found instances of the model.
+Example (HDevelop)
+create_ncc_model (TemplateImage, 'auto', rad(-45), rad(90), 'auto', \
+'use_polarity', ModelID)
+find_ncc_model (SearchImage, ModelID, rad(-45), rad(90), 0.7, 1, \
+0.5, 'true', 0, Row, Column, Angle, Score)
+* Create transformation matrix
+vector_angle_to_rigid (0, 0, 0, Row, Column, Angle, HomMat2D)
+* Calculate true position of the model origin in the search image
+affine_trans_pixel (HomMat2D, 0, 0, RowObject, ColumnObject)
+* display the results
+dev_display_ncc_matching_results (ModelID, 'red', Row, Column, \
+Angle, 0)
+Result
+If the parameter values are correct, the operator
+find_ncc_modelfind_ncc_modelFindNccModelFindNccModelfind_ncc_model returns the value 2 (
+H_MSG_TRUE)
+.  If the input is
+empty (no input images are available) the behavior can be set via
+set_system('no_object_result',<Result>)set_system("no_object_result",<Result>)SetSystem("no_object_result",<Result>)SetSystem("no_object_result",<Result>)set_system("no_object_result",<Result>).  If necessary, an
+exception is raised.
+Possible Predecessors
+create_ncc_modelcreate_ncc_modelCreateNccModelCreateNccModelcreate_ncc_model,
+read_ncc_modelread_ncc_modelReadNccModelReadNccModelread_ncc_model,
+set_ncc_model_originset_ncc_model_originSetNccModelOriginSetNccModelOriginset_ncc_model_origin
+Possible Successors
+clear_ncc_modelclear_ncc_modelClearNccModelClearNccModelclear_ncc_model
+Alternatives
+find_generic_shape_modelfind_generic_shape_modelFindGenericShapeModelFindGenericShapeModelfind_generic_shape_model
+Module
+Matching
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

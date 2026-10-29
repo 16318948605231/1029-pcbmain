@@ -1,0 +1,58 @@
+write_deep_ocr [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / OCR / Deep OCR
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+write_deep_ocrT_write_deep_ocrWriteDeepOcrWriteDeepOcrwrite_deep_ocr (Operator)
+Name
+write_deep_ocrT_write_deep_ocrWriteDeepOcrWriteDeepOcrwrite_deep_ocr — Write a Deep OCR model in a file.
+Signature
+write_deep_ocr( :  : DeepOcrHandle, FileName : )
+Herror T_write_deep_ocr(const Htuple DeepOcrHandle, const Htuple FileName)
+void WriteDeepOcr(const HTuple& DeepOcrHandle, const HTuple& FileName)
+void HDlModelOcr::WriteDeepOcr(const HString& FileName) const
+void HDlModelOcr::WriteDeepOcr(const char* FileName) const
+void HDlModelOcr::WriteDeepOcr(const wchar_t* FileName) const
+(
+Windows only)
+static void HOperatorSet.WriteDeepOcr(HTuple deepOcrHandle, HTuple fileName)
+void HDlModelOcr.WriteDeepOcr(string fileName)
+def write_deep_ocr(deep_ocr_handle: HHandle, file_name: str) -> None
+Description
+write_deep_ocrwrite_deep_ocrWriteDeepOcrWriteDeepOcrwrite_deep_ocr writes the Deep OCR model
+DeepOcrHandleDeepOcrHandleDeepOcrHandledeepOcrHandledeep_ocr_handle to the file given by FileNameFileNameFileNamefileNamefile_name.
+Please note that the runtime specific parameters 'gpu'"gpu""gpu""gpu""gpu",
+'runtime'"runtime""runtime""runtime""runtime", and 'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init" are not written.
+The default HALCON file extension for Deep OCR models is
+'.hdo'.
+The Deep OCR model can be read with read_deep_ocrread_deep_ocrReadDeepOcrReadDeepOcrread_deep_ocr.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+DeepOcrHandleDeepOcrHandleDeepOcrHandledeepOcrHandledeep_ocr_handle (input_control)  deep_ocr → HDlModelOcr, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the Deep OCR model.
+FileNameFileNameFileNamefileNamefile_name (input_control)  filename.write → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Filename
+File extension:
+.hdo
+Result
+If the parameters are valid, the operator write_deep_ocrwrite_deep_ocrWriteDeepOcrWriteDeepOcrwrite_deep_ocr
+returns the value 2 (
+H_MSG_TRUE)
+. If necessary, an exception is raised.
+Possible Predecessors
+create_deep_ocrcreate_deep_ocrCreateDeepOcrCreateDeepOcrcreate_deep_ocr,
+set_deep_ocr_paramset_deep_ocr_paramSetDeepOcrParamSetDeepOcrParamset_deep_ocr_param
+Possible Successors
+clear_handleclear_handleClearHandleClearHandleclear_handle
+Module
+OCR/OCV
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

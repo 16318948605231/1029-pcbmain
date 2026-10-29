@@ -1,0 +1,1489 @@
+get_metrology_object_result [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+2D Metrology
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+get_metrology_object_result
+T_get_metrology_object_result
+GetMetrologyObjectResult
+GetMetrologyObjectResult
+get_metrology_object_result
+(Operator)
+Name
+get_metrology_object_result
+T_get_metrology_object_result
+GetMetrologyObjectResult
+GetMetrologyObjectResult
+get_metrology_object_result
+— Get the results of the measurement of a metrology model.
+Signature
+get_metrology_object_result
+( :  :
+MetrologyHandle
+,
+Index
+,
+Instance
+,
+GenParamName
+,
+GenParamValue
+:
+Parameter
+)
+Herror
+T_get_metrology_object_result
+(const Htuple
+MetrologyHandle
+, const Htuple
+Index
+, const Htuple
+Instance
+, const Htuple
+GenParamName
+, const Htuple
+GenParamValue
+, Htuple*
+Parameter
+)
+void
+GetMetrologyObjectResult
+(const HTuple&
+MetrologyHandle
+, const HTuple&
+Index
+, const HTuple&
+Instance
+, const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+, HTuple*
+Parameter
+)
+HTuple
+HMetrologyModel
+::
+GetMetrologyObjectResult
+(const HTuple&
+Index
+, const HTuple&
+Instance
+, const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+) const
+HTuple
+HMetrologyModel
+::
+GetMetrologyObjectResult
+(Hlong
+Index
+, const HString&
+Instance
+, const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+) const
+HTuple
+HMetrologyModel
+::
+GetMetrologyObjectResult
+(Hlong
+Index
+, const char*
+Instance
+, const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+) const
+HTuple
+HMetrologyModel
+::
+GetMetrologyObjectResult
+(Hlong
+Index
+, const wchar_t*
+Instance
+, const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+GetMetrologyObjectResult
+(
+HTuple
+metrologyHandle
+,
+HTuple
+index
+,
+HTuple
+instance
+,
+HTuple
+genParamName
+,
+HTuple
+genParamValue
+, out
+HTuple
+parameter
+)
+HTuple
+HMetrologyModel
+.
+GetMetrologyObjectResult
+(
+HTuple
+index
+,
+HTuple
+instance
+,
+HTuple
+genParamName
+,
+HTuple
+genParamValue
+)
+HTuple
+HMetrologyModel
+.
+GetMetrologyObjectResult
+(int
+index
+, string
+instance
+,
+HTuple
+genParamName
+,
+HTuple
+genParamValue
+)
+def
+get_metrology_object_result
+(
+metrology_handle
+: HHandle,
+index
+: MaybeSequence[Union[int, str]],
+instance
+: MaybeSequence[Union[int, str]],
+gen_param_name
+: Sequence[str],
+gen_param_value
+: Sequence[Union[str, float]]) -> Sequence[Union[float, int, str]]
+def
+get_metrology_object_result_s
+(
+metrology_handle
+: HHandle,
+index
+: MaybeSequence[Union[int, str]],
+instance
+: MaybeSequence[Union[int, str]],
+gen_param_name
+: Sequence[str],
+gen_param_value
+: Sequence[Union[str, float]]) -> Union[float, int, str]
+Description
+get_metrology_object_result
+get_metrology_object_result
+GetMetrologyObjectResult
+GetMetrologyObjectResult
+get_metrology_object_result
+allows to access the results of a
+measurement obtained by
+apply_metrology_model
+apply_metrology_model
+ApplyMetrologyModel
+ApplyMetrologyModel
+apply_metrology_model
+for the metrology
+objects of the metrology model
+MetrologyHandle
+MetrologyHandle
+MetrologyHandle
+metrologyHandle
+metrology_handle
+.
+For an explanation of the concept of 2D metrology see the
+introduction of chapter
+2D Metrology
+.
+The parameter
+Index
+Index
+Index
+index
+index
+specifies for which metrology objects the
+results are queried.  For
+Index
+Index
+Index
+index
+index
+set to
+'all'
+"all"
+"all"
+"all"
+"all"
+, the results
+of all metrology objects are returned.  With the parameter
+Instance
+Instance
+Instance
+instance
+instance
+it can be specified, which instances of the results are returned in
+Parameter
+Parameter
+Parameter
+parameter
+parameter
+. The results for all instances are
+returned by setting
+Instance
+Instance
+Instance
+instance
+instance
+to
+'all'
+"all"
+"all"
+"all"
+"all"
+.  Different generic
+parameters can be used to control the returned values in
+Parameter
+Parameter
+Parameter
+parameter
+parameter
+.
+The generic parameter names are passed in
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+.  The
+corresponding values are passed in
+GenParamValue
+GenParamValue
+GenParamValue
+genParamValue
+gen_param_value
+.  The following
+parameters and values are possible:
+'result_type'
+"result_type"
+"result_type"
+"result_type"
+"result_type"
+:
+If
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+is set to
+'result_type'
+"result_type"
+"result_type"
+"result_type"
+"result_type"
+, then
+GenParamValue
+GenParamValue
+GenParamValue
+genParamValue
+gen_param_value
+allows to control
+how and what results are returned for a metrology object.
+All measured parameters of the queried metrology
+object can be queried at once, specific parameters can be queried
+individually or the score for the metrology object can be queried.
+'Obtaining all parameters'
+:
+If
+GenParamValue
+GenParamValue
+GenParamValue
+genParamValue
+gen_param_value
+is set to
+'all_param'
+"all_param"
+"all_param"
+"all_param"
+"all_param"
+, then all
+measured parameters of a metrology object are returned. If
+camera parameters and a pose
+have been set (see
+set_metrology_model_param
+set_metrology_model_param
+SetMetrologyModelParam
+SetMetrologyModelParam
+set_metrology_model_param
+), the
+results are returned in metric coordinates, otherwise in pixels.
+For a
+circle
+, the return
+values are the coordinates of the center and the radius
+of the circle.  The order is [
+'row'
+"row"
+"row"
+"row"
+"row"
+,
+'column'
+"column"
+"column"
+"column"
+"column"
+,
+'radius'
+"radius"
+"radius"
+"radius"
+"radius"
+] or [
+'x'
+"x"
+"x"
+"x"
+"x"
+,
+'y'
+"y"
+"y"
+"y"
+"y"
+,
+'radius'
+"radius"
+"radius"
+"radius"
+"radius"
+] respectively.
+For an
+ellipse
+, the return
+values are the coordinates of the center, the orientation of the major axis
+'phi'
+"phi"
+"phi"
+"phi"
+"phi"
+, the length of the larger half axis
+'radius1'
+"radius1"
+"radius1"
+"radius1"
+"radius1"
+, and the length of the smaller half axis
+'radius2'
+"radius2"
+"radius2"
+"radius2"
+"radius2"
+of the ellipse.  The order is [
+'row'
+"row"
+"row"
+"row"
+"row"
+,
+'column'
+"column"
+"column"
+"column"
+"column"
+,
+'phi'
+"phi"
+"phi"
+"phi"
+"phi"
+,
+'radius1'
+"radius1"
+"radius1"
+"radius1"
+"radius1"
+,
+'radius2'
+"radius2"
+"radius2"
+"radius2"
+"radius2"
+] or [
+'x'
+"x"
+"x"
+"x"
+"x"
+,
+'y'
+"y"
+"y"
+"y"
+"y"
+,
+'phi'
+"phi"
+"phi"
+"phi"
+"phi"
+,
+'radius1'
+"radius1"
+"radius1"
+"radius1"
+"radius1"
+,
+'radius2'
+"radius2"
+"radius2"
+"radius2"
+"radius2"
+] respectively.
+For a
+line
+, the start and end
+point of the line is returned.
+The order is [
+'row_begin'
+"row_begin"
+"row_begin"
+"row_begin"
+"row_begin"
+,
+'column_begin'
+"column_begin"
+"column_begin"
+"column_begin"
+"column_begin"
+,
+'row_end'
+"row_end"
+"row_end"
+"row_end"
+"row_end"
+,
+'column_end'
+"column_end"
+"column_end"
+"column_end"
+"column_end"
+] or
+[
+'x_begin'
+"x_begin"
+"x_begin"
+"x_begin"
+"x_begin"
+,
+'y_begin'
+"y_begin"
+"y_begin"
+"y_begin"
+"y_begin"
+,
+'x_end'
+"x_end"
+"x_end"
+"x_end"
+"x_end"
+,
+'y_end'
+"y_end"
+"y_end"
+"y_end"
+"y_end"
+]
+For a
+rectangle
+, the return
+values are the coordinates of the center, the orientation of the main axis
+'phi'
+"phi"
+"phi"
+"phi"
+"phi"
+, the length of the larger half edge
+'length1'
+"length1"
+"length1"
+"length1"
+"length1"
+, and the length of the smaller half edge
+'length2'
+"length2"
+"length2"
+"length2"
+"length2"
+of the rectangle.  The order is [
+'row'
+"row"
+"row"
+"row"
+"row"
+,
+'column'
+"column"
+"column"
+"column"
+"column"
+,
+'phi'
+"phi"
+"phi"
+"phi"
+"phi"
+,
+'length1'
+"length1"
+"length1"
+"length1"
+"length1"
+,
+'length2'
+"length2"
+"length2"
+"length2"
+"length2"
+] or [
+'x'
+"x"
+"x"
+"x"
+"x"
+,
+'y'
+"y"
+"y"
+"y"
+"y"
+,
+'phi'
+"phi"
+"phi"
+"phi"
+"phi"
+,
+'length1'
+"length1"
+"length1"
+"length1"
+"length1"
+,
+'length2'
+"length2"
+"length2"
+"length2"
+"length2"
+] respectively.
+'Obtaining specific parameters'
+:
+Measured object parameters can also be queried individually by providing
+the desired parameter name in
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+.
+When
+no camera parameters
+and no measurement plane are set,
+the following parameters can be queried individually, depending on
+whether they are available for the respective object.
+Note that for lines, additionally
+the 3 parameters of the hessian normal form can be queried,
+i.e., the unit normal vector
+'nrow'
+"nrow"
+"nrow"
+"nrow"
+"nrow"
+,
+'ncolumn'
+"ncolumn"
+"ncolumn"
+"ncolumn"
+"ncolumn"
+and the orthogonal distance
+'distance'
+"distance"
+"distance"
+"distance"
+"distance"
+of the line from the origin of the coordinate system.
+The sign of the distance determines the side of the line on which
+the origin is located.
+List of values:
+'row'
+"row"
+"row"
+"row"
+"row"
+,
+'column'
+"column"
+"column"
+"column"
+"column"
+,
+'radius'
+"radius"
+"radius"
+"radius"
+"radius"
+,
+'phi'
+"phi"
+"phi"
+"phi"
+"phi"
+,
+'radius1'
+"radius1"
+"radius1"
+"radius1"
+"radius1"
+,
+'radius2'
+"radius2"
+"radius2"
+"radius2"
+"radius2"
+,
+'length1'
+"length1"
+"length1"
+"length1"
+"length1"
+,
+'length2'
+"length2"
+"length2"
+"length2"
+"length2"
+,
+'row_begin'
+"row_begin"
+"row_begin"
+"row_begin"
+"row_begin"
+,
+'column_begin'
+"column_begin"
+"column_begin"
+"column_begin"
+"column_begin"
+,
+'row_end'
+"row_end"
+"row_end"
+"row_end"
+"row_end"
+,
+'column_end'
+"column_end"
+"column_end"
+"column_end"
+"column_end"
+,
+'nrow'
+"nrow"
+"nrow"
+"nrow"
+"nrow"
+,
+'ncolumn'
+"ncolumn"
+"ncolumn"
+"ncolumn"
+"ncolumn"
+,
+'distance'
+"distance"
+"distance"
+"distance"
+"distance"
+If
+camera parameters
+and a measurement plane
+was set, the parameters are returned in metric coordinates,
+the following parameters can be queried individually, depending on
+whether they are available for the respective object.
+Note that for lines, additionally the 3 parameters of the hessian normal
+form can be queried, i.e., the unit normal vector
+'nx'
+"nx"
+"nx"
+"nx"
+"nx"
+,
+'ny'
+"ny"
+"ny"
+"ny"
+"ny"
+and the orthogonal distance
+'distance'
+"distance"
+"distance"
+"distance"
+"distance"
+of the line from the origin of the coordinate system.
+The sign of the distance determines the side of the line on which
+the origin is located.
+List of values:
+'x'
+"x"
+"x"
+"x"
+"x"
+,
+'y'
+"y"
+"y"
+"y"
+"y"
+,
+'radius'
+"radius"
+"radius"
+"radius"
+"radius"
+,
+'phi'
+"phi"
+"phi"
+"phi"
+"phi"
+,
+'radius1'
+"radius1"
+"radius1"
+"radius1"
+"radius1"
+,
+'radius2'
+"radius2"
+"radius2"
+"radius2"
+"radius2"
+,
+'length1'
+"length1"
+"length1"
+"length1"
+"length1"
+,
+'length2'
+"length2"
+"length2"
+"length2"
+"length2"
+,
+'radius1'
+"radius1"
+"radius1"
+"radius1"
+"radius1"
+,
+'radius2'
+"radius2"
+"radius2"
+"radius2"
+"radius2"
+,
+'length1'
+"length1"
+"length1"
+"length1"
+"length1"
+,
+'length2'
+"length2"
+"length2"
+"length2"
+"length2"
+,
+'x_begin'
+"x_begin"
+"x_begin"
+"x_begin"
+"x_begin"
+,
+'y_begin'
+"y_begin"
+"y_begin"
+"y_begin"
+"y_begin"
+,
+'x_end'
+"x_end"
+"x_end"
+"x_end"
+"x_end"
+,
+'y_end'
+"y_end"
+"y_end"
+"y_end"
+"y_end"
+,
+'nx'
+"nx"
+"nx"
+"nx"
+"nx"
+,
+'ny'
+"ny"
+"ny"
+"ny"
+"ny"
+,
+'distance'
+"distance"
+"distance"
+"distance"
+"distance"
+'Obtaining the score'
+:
+If
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+is set to the
+'score'
+"score"
+"score"
+"score"
+"score"
+, the fitting
+scores are returned. The score represents
+the number of measurements that are used for the calculation of
+the results divided by the maximum number of measure regions.
+'used_edges'
+"used_edges"
+"used_edges"
+"used_edges"
+"used_edges"
+:
+To query the edge points, that were actually
+used for a fitted metrology object, you can choose between following values
+for
+GenParamValue
+GenParamValue
+GenParamValue
+genParamValue
+gen_param_value
+:
+'row'
+"row"
+"row"
+"row"
+"row"
+:
+Return the row coordinate of the edges that
+were used to fit the metrology object.
+'column'
+"column"
+"column"
+"column"
+"column"
+:
+Return the column coordinate of the edges that were used to fit the
+metrology object.
+'amplitude'
+"amplitude"
+"amplitude"
+"amplitude"
+"amplitude"
+:
+Return the edge amplitude of the edges that
+were used to fit the metrology object.
+List of values:
+'row'
+"row"
+"row"
+"row"
+"row"
+,
+'column'
+"column"
+"column"
+"column"
+"column"
+,
+'amplitude'
+"amplitude"
+"amplitude"
+"amplitude"
+"amplitude"
+'angle_direction'
+"angle_direction"
+"angle_direction"
+"angle_direction"
+"angle_direction"
+:
+The parameter determines the rotation
+direction for angles that result from the fitting.  Setting the
+parameter
+'angle_direction'
+"angle_direction"
+"angle_direction"
+"angle_direction"
+"angle_direction"
+to
+'positive'
+"positive"
+"positive"
+"positive"
+"positive"
+the angle is
+specified between the main axis of the object and
+the horizontal axis of the coordinate system in the mathematically
+positive direction (counterclockwise).  Setting the parameter
+'angle_direction'
+"angle_direction"
+"angle_direction"
+"angle_direction"
+"angle_direction"
+to
+'negative'
+"negative"
+"negative"
+"negative"
+"negative"
+the angle is specified
+between the main axis of the object and the horizontal axis
+of the coordinate system in the mathematically negative direction
+(clockwise).  The results of the angles are returned in radians.
+List of values:
+'positive'
+"positive"
+"positive"
+"positive"
+"positive"
+,
+'negative'
+"negative"
+"negative"
+"negative"
+"negative"
+Default:
+'positive'
+"positive"
+"positive"
+"positive"
+"positive"
+It is possible to query the results of several metrology objects (see the
+parameter
+Index
+Index
+Index
+index
+index
+) and several instances (see the parameter
+Instance
+Instance
+Instance
+instance
+instance
+) of the metrology objects simultaneously. The results are
+returned in the following order in
+Parameter
+Parameter
+Parameter
+parameter
+parameter
+: 1st instance
+of 1st metrology object, 2nd instance of 1st metrology object, etc., 1st
+instance of 2nd metrology object, 2nd instance of 2nd metrology object,
+etc.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+MetrologyHandle
+MetrologyHandle
+MetrologyHandle
+metrologyHandle
+metrology_handle
+(input_control)
+metrology_model
+→
+HMetrologyModel
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Handle of the metrology model.
+Index
+Index
+Index
+index
+index
+(input_control)
+integer(-array)
+→
+HTuple
+MaybeSequence[Union[int, str]]
+HTuple
+Htuple
+(integer /
+string)
+(
+int
+/
+long /
+string)
+(
+Hlong
+/
+HString)
+(
+Hlong
+/
+char*)
+Index of the metrology object.
+Default:
+0
+Suggested values:
+'all'
+"all"
+"all"
+"all"
+"all"
+, 0, 1, 2
+Instance
+Instance
+Instance
+instance
+instance
+(input_control)
+integer(-array)
+→
+HTuple
+MaybeSequence[Union[int, str]]
+HTuple
+Htuple
+(string /
+integer)
+(
+string
+/
+int /
+long)
+(
+HString
+/
+Hlong)
+(
+char*
+/
+Hlong)
+Instance of the metrology object.
+Default:
+'all'
+"all"
+"all"
+"all"
+"all"
+Suggested values:
+'all'
+"all"
+"all"
+"all"
+"all"
+, 0, 1, 2
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+(input_control)
+attribute.name-array
+→
+HTuple
+Sequence[str]
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Name of the generic parameter.
+Default:
+'result_type'
+"result_type"
+"result_type"
+"result_type"
+"result_type"
+List of values:
+'angle_direction'
+"angle_direction"
+"angle_direction"
+"angle_direction"
+"angle_direction"
+,
+'result_type'
+"result_type"
+"result_type"
+"result_type"
+"result_type"
+,
+'used_edges'
+"used_edges"
+"used_edges"
+"used_edges"
+"used_edges"
+GenParamValue
+GenParamValue
+GenParamValue
+genParamValue
+gen_param_value
+(input_control)
+attribute.value-array
+→
+HTuple
+Sequence[Union[str, float]]
+HTuple
+Htuple
+(string /
+real)
+(
+string
+/
+double)
+(
+HString
+/
+double)
+(
+char*
+/
+double)
+Value of the generic parameter.
+Default:
+'all_param'
+"all_param"
+"all_param"
+"all_param"
+"all_param"
+Suggested values:
+'all_param'
+"all_param"
+"all_param"
+"all_param"
+"all_param"
+,
+'score'
+"score"
+"score"
+"score"
+"score"
+,
+'true'
+"true"
+"true"
+"true"
+"true"
+,
+'false'
+"false"
+"false"
+"false"
+"false"
+,
+'row'
+"row"
+"row"
+"row"
+"row"
+,
+'column'
+"column"
+"column"
+"column"
+"column"
+,
+'amplitude'
+"amplitude"
+"amplitude"
+"amplitude"
+"amplitude"
+,
+'radius'
+"radius"
+"radius"
+"radius"
+"radius"
+,
+'phi'
+"phi"
+"phi"
+"phi"
+"phi"
+,
+'radius1'
+"radius1"
+"radius1"
+"radius1"
+"radius1"
+,
+'radius2'
+"radius2"
+"radius2"
+"radius2"
+"radius2"
+,
+'length1'
+"length1"
+"length1"
+"length1"
+"length1"
+,
+'length2'
+"length2"
+"length2"
+"length2"
+"length2"
+,
+'row_begin'
+"row_begin"
+"row_begin"
+"row_begin"
+"row_begin"
+,
+'column_begin'
+"column_begin"
+"column_begin"
+"column_begin"
+"column_begin"
+,
+'row_end'
+"row_end"
+"row_end"
+"row_end"
+"row_end"
+,
+'column_end'
+"column_end"
+"column_end"
+"column_end"
+"column_end"
+,
+'nrow'
+"nrow"
+"nrow"
+"nrow"
+"nrow"
+,
+'ncolumn'
+"ncolumn"
+"ncolumn"
+"ncolumn"
+"ncolumn"
+,
+'distance'
+"distance"
+"distance"
+"distance"
+"distance"
+,
+'x'
+"x"
+"x"
+"x"
+"x"
+,
+'y'
+"y"
+"y"
+"y"
+"y"
+,
+'x_begin'
+"x_begin"
+"x_begin"
+"x_begin"
+"x_begin"
+,
+'y_begin'
+"y_begin"
+"y_begin"
+"y_begin"
+"y_begin"
+,
+'x_end'
+"x_end"
+"x_end"
+"x_end"
+"x_end"
+,
+'y_end'
+"y_end"
+"y_end"
+"y_end"
+"y_end"
+,
+'nx'
+"nx"
+"nx"
+"nx"
+"nx"
+,
+'ny'
+"ny"
+"ny"
+"ny"
+"ny"
+,
+'positive'
+"positive"
+"positive"
+"positive"
+"positive"
+,
+'negative'
+"negative"
+"negative"
+"negative"
+"negative"
+Parameter
+Parameter
+Parameter
+parameter
+parameter
+(output_control)
+real(-array)
+→
+HTuple
+Sequence[Union[float, int, str]]
+HTuple
+Htuple
+(real /
+integer /
+string)
+(
+double
+/
+int /
+long /
+string)
+(
+double
+/
+Hlong /
+HString)
+(
+double
+/
+Hlong /
+char*)
+Result values.
+Result
+If the parameters are valid, the operator
+get_metrology_object_result
+get_metrology_object_result
+GetMetrologyObjectResult
+GetMetrologyObjectResult
+get_metrology_object_result
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    .  If
+necessary, an exception is raised.
+Possible Predecessors
+apply_metrology_model
+apply_metrology_model
+ApplyMetrologyModel
+ApplyMetrologyModel
+apply_metrology_model
+Possible Successors
+clear_metrology_model
+clear_metrology_model
+ClearMetrologyModel
+ClearMetrologyModel
+clear_metrology_model
+See also
+get_metrology_object_result_contour
+get_metrology_object_result_contour
+GetMetrologyObjectResultContour
+GetMetrologyObjectResultContour
+get_metrology_object_result_contour
+,
+get_metrology_object_measures
+get_metrology_object_measures
+GetMetrologyObjectMeasures
+GetMetrologyObjectMeasures
+get_metrology_object_measures
+Module
+2D Metrology
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

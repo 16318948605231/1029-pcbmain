@@ -1,0 +1,186 @@
+apply_dl_model [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Deep Learning / Model
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses | | Operators
+apply_dl_modelT_apply_dl_modelApplyDlModelApplyDlModelapply_dl_model (Operator)
+Name
+apply_dl_modelT_apply_dl_modelApplyDlModelApplyDlModelapply_dl_model — Apply a deep-learning-based network on a set of images for inference.
+Signature
+apply_dl_model( : : DLModelHandle, DLSampleBatch, Outputs : DLResultBatch)
+Herror T_apply_dl_model(const Htuple DLModelHandle, const Htuple DLSampleBatch, const Htuple Outputs, Htuple* DLResultBatch)
+void ApplyDlModel(const HTuple& DLModelHandle, const HTuple& DLSampleBatch, const HTuple& Outputs, HTuple* DLResultBatch)
+HDictArray HDlModel::ApplyDlModel(const HDictArray& DLSampleBatch, const HTuple& Outputs) const
+static void HOperatorSet.ApplyDlModel(HTuple DLModelHandle, HTuple DLSampleBatch, HTuple outputs, out HTuple DLResultBatch)
+HDict[] HDlModel.ApplyDlModel(HDict[] DLSampleBatch, HTuple outputs)
+def apply_dl_model(dlmodel_handle: HHandle, dlsample_batch: Sequence[HHandle], outputs: Sequence[str]) -> Sequence[HHandle]
+Description
+apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model applies the deep-learning-based network given
+by DLModelHandleDLModelHandleDLModelHandleDLModelHandledlmodel_handle on the batch of input images
+handed over through the tuple of dictionaries DLSampleBatchDLSampleBatchDLSampleBatchDLSampleBatchdlsample_batch.
+The operator returns DLResultBatchDLResultBatchDLResultBatchDLResultBatchdlresult_batch, a tuple with a result
+dictionary DLResultDLResultDLResultDLResultdlresult for every input image.
+Please see the chapter Deep Learning / Model
+for more information on the concept and the dictionaries of the deep
+learning model in HALCON.
+In order to apply the network on images, you have to hand them over
+through a tuple of dictionaries DLSampleBatchDLSampleBatchDLSampleBatchDLSampleBatchdlsample_batch, where a dictionary
+refers to a single image. You can create such a dictionary conveniently
+using the procedure gen_dl_samples_from_images. The tuple
+DLSampleBatchDLSampleBatchDLSampleBatchDLSampleBatchdlsample_batch can contain an arbitrary number of
+dictionaries. The operator apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model always processes
+a batch with up to 'batch_size'"batch_size""batch_size""batch_size""batch_size" images simultaneously.
+In case the tuple contains more images, apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model iterates
+over the necessary number of batches internally. For a
+DLSampleBatchDLSampleBatchDLSampleBatchDLSampleBatchdlsample_batch with less than 'batch_size'"batch_size""batch_size""batch_size""batch_size" images,
+the tuple is padded to a full batch which means that the time required
+to process a DLSampleBatchDLSampleBatchDLSampleBatchDLSampleBatchdlsample_batch is independent of whether the
+batch is filled up or just consists of a single image. This also means
+that if fewer images than 'batch_size'"batch_size""batch_size""batch_size""batch_size" are processed in one
+operator call, the network still requires the same amount of memory as
+for a full batch. The current value of 'batch_size'"batch_size""batch_size""batch_size""batch_size" can be
+retrieved using get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param.
+Note that the images might have to be preprocessed before feeding them into
+the operator apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model in order to fulfill the network
+requirements. You can retrieve the current requirements of your network,
+such as e.g., the image dimensions, using get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param.
+The procedure preprocess_dl_dataset provides guidance on how to
+implement such a preprocessing stage.
+The results are returned in DLResultBatchDLResultBatchDLResultBatchDLResultBatchdlresult_batch, a tuple with a
+dictionary DLResultDLResultDLResultDLResultdlresult for every input image.
+Please see the chapter Deep Learning / Model
+for more information to the output dictionaries in DLResultBatchDLResultBatchDLResultBatchDLResultBatchdlresult_batch
+and their keys.
+In OutputsOutputsOutputsoutputsoutputs you can specify, which output data is returned in
+DLResultDLResultDLResultDLResultdlresult.
+OutputsOutputsOutputsoutputsoutputs can be a single string, a tuple of strings, or
+an empty tuple with which you retrieve all possible outputs.
+If apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model is used with an AI
+2-interface, it might be
+required to set 'is_inference_output'"is_inference_output""is_inference_output""is_inference_output""is_inference_output" = 'true'"true""true""true""true" for all
+requested layers in OutputsOutputsOutputsoutputsoutputs before the model is optimized for the
+AI
+2-interface, see optimize_dl_model_for_inferenceoptimize_dl_model_for_inferenceOptimizeDlModelForInferenceOptimizeDlModelForInferenceoptimize_dl_model_for_inference and
+set_dl_model_layer_paramset_dl_model_layer_paramSetDlModelLayerParamSetDlModelLayerParamset_dl_model_layer_param for further details.
+The values for OutputsOutputsOutputsoutputsoutputs depend on the model type of your network:
+Models of 'type'"type""type""type""type"='3d_gripping_point_detection'"3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection"
+OutputsOutputsOutputsoutputsoutputs='[]'"[]""[]""[]""[]": DLResultDLResultDLResultDLResultdlresult containing:
+'gripping_map': Binary image, indicating for each pixel of
+the scene whether the model predicted a gripping point
+(pixel value = 1.0) or not (0.0).
+'gripping_confidence': Image, containing raw, uncalibrated
+confidence values for every point in the scene.
+Models of 'type'"type""type""type""type"='3d_pose_estimation'"3d_pose_estimation""3d_pose_estimation""3d_pose_estimation""3d_pose_estimation"
+This model type cannot be run with the operator apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model.
+Models of 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection"
+OutputsOutputsOutputsoutputsoutputs='[]'"[]""[]""[]""[]": DLResultDLResultDLResultDLResultdlresult
+contains an image where each pixel has the score of the according input
+image pixel. Additionally it contains a score for the entire image.
+Models of 'type'"type""type""type""type"='counting'"counting""counting""counting""counting"
+This model type cannot be run with the operator apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model.
+Models of 'type'"type""type""type""type"='gc_anomaly_detection'"gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection"
+For each value of OutputsOutputsOutputsoutputsoutputs, DLResultDLResultDLResultDLResultdlresult
+contains an image where each pixel has the score of the according input
+image pixel.
+Additionally it contains a score for the entire image.
+OutputsOutputsOutputsoutputsoutputs='[]'"[]""[]""[]""[]":
+The scores of each input image pixel are calculated as a combination of
+all available networks.
+OutputsOutputsOutputsoutputsoutputs='anomaly_image_local'"anomaly_image_local""anomaly_image_local""anomaly_image_local""anomaly_image_local":
+The scores of each input image pixel are calculated from the
+'local'"local""local""local""local" network only. If the 'local'"local""local""local""local" network is not
+available, an error is raised.
+OutputsOutputsOutputsoutputsoutputs='anomaly_image_global'"anomaly_image_global""anomaly_image_global""anomaly_image_global""anomaly_image_global":
+The scores of each input image pixel are calculated from the
+'global'"global""global""global""global" network only. If the 'global'"global""global""global""global" network is not
+available, an error is raised.
+OutputsOutputsOutputsoutputsoutputs='anomaly_image_combined'"anomaly_image_combined""anomaly_image_combined""anomaly_image_combined""anomaly_image_combined":
+The scores of each input image pixel are calculated by combining the
+'global'"global""global""global""global" and the 'local'"local""local""local""local" networks.
+If one or both of the networks are not available, an error is raised.
+Models of 'type'"type""type""type""type"='classification'"classification""classification""classification""classification"
+OutputsOutputsOutputsoutputsoutputs='[]'"[]""[]""[]""[]": DLResultDLResultDLResultDLResultdlresult contains a
+tuple with confidence values in descending order and tuples with the
+class names and class IDs sorted accordingly. If Out-of-Distribution
+Detection is available, DLResultDLResultDLResultDLResultdlresult additionally contains the
+out-of-distribution score, the out-of-distribution result and the
+threshold that was used for the prediction.
+Models of 'type'"type""type""type""type"='multi_label_classification'"multi_label_classification""multi_label_classification""multi_label_classification""multi_label_classification"
+OutputsOutputsOutputsoutputsoutputs='[]'"[]""[]""[]""[]": DLResultDLResultDLResultDLResultdlresult contains a
+tuple with the selected class names, class IDs and the corresponding
+confidence values according to the model parameter 'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence".
+Additionally, it contains tuples with all class names, class IDs and
+corresponding confidence values.
+Models of 'type'"type""type""type""type"='detection'"detection""detection""detection""detection"
+OutputsOutputsOutputsoutputsoutputs='[]'"[]""[]""[]""[]": DLResultDLResultDLResultDLResultdlresult contains
+the bounding box coordinates as well as the inferred classes and their
+confidence values resulting from all levels.
+OutputsOutputsOutputsoutputsoutputs=
+'[bboxhead + level + _prediction, classhead + level + _prediction]'"[bboxhead + level + _prediction, classhead + level + _prediction]""[bboxhead + level + _prediction, classhead + level + _prediction]""[bboxhead + level + _prediction, classhead + level + _prediction]""[bboxhead + level + _prediction, classhead + level + _prediction]",
+where 'level'"level""level""level""level" stands for the selected level which lies
+between 'min_level'"min_level""min_level""min_level""min_level" and 'max_level'"max_level""max_level""max_level""max_level":
+DLResultDLResultDLResultDLResultdlresult contains the bounding box coordinates as well
+as the inferred classes and their confidence values resulting from
+specific levels.
+Models of 'type'"type""type""type""type"='ocr_recognition'"ocr_recognition""ocr_recognition""ocr_recognition""ocr_recognition"
+OutputsOutputsOutputsoutputsoutputs='[]'"[]""[]""[]""[]": DLResultDLResultDLResultDLResultdlresult
+contains the recognized word.
+Additionally it contains candidates for each character of the
+word and their confidences.
+Models of 'type'"type""type""type""type"='ocr_detection'"ocr_detection""ocr_detection""ocr_detection""ocr_detection"
+OutputsOutputsOutputsoutputsoutputs='[]'"[]""[]""[]""[]": DLResultDLResultDLResultDLResultdlresult
+contains the bounding boxes coordinates of localized words.
+Models of 'type'"type""type""type""type"='segmentation'"segmentation""segmentation""segmentation""segmentation"
+OutputsOutputsOutputsoutputsoutputs='segmentation_image'"segmentation_image""segmentation_image""segmentation_image""segmentation_image":
+DLResultDLResultDLResultDLResultdlresult contains an image where each pixel has a value
+corresponding to the class
+its corresponding pixel has been assigned to.
+OutputsOutputsOutputsoutputsoutputs='segmentation_confidence'"segmentation_confidence""segmentation_confidence""segmentation_confidence""segmentation_confidence":
+DLResultDLResultDLResultDLResultdlresult contains an image where each pixel has the
+confidence value out of the classification of the according pixel.
+OutputsOutputsOutputsoutputsoutputs='[]'"[]""[]""[]""[]":
+DLResultDLResultDLResultDLResultdlresult contains all output values.
+Attention
+System requirements:
+To run this operator on GPU by setting 'device'"device""device""device""device" to 'gpu'"gpu""gpu""gpu""gpu"
+(see get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param), cuDNN and cuBLAS are required.
+For further details, please refer to the “Installation Guide”,
+paragraph “Requirements for Deep Learning and Deep-Learning-Based Methods”.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+This operator supports canceling timeouts and interrupts.
+This operator supports breaking timeouts and interrupts.
+Parameters
+DLModelHandleDLModelHandleDLModelHandleDLModelHandledlmodel_handle (input_control) dl_model → HDlModel, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the deep learning model.
+DLSampleBatchDLSampleBatchDLSampleBatchDLSampleBatchdlsample_batch (input_control) dict-array → HDict, HTupleSequence[HHandle]HTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Input data.
+OutputsOutputsOutputsoutputsoutputs (input_control) string-array → HTupleSequence[str]HTupleHtuple (string) (string) (HString) (char*)
+Requested outputs.
+Default:
+[]
+List of values:
+[], 'bboxhead2_prediction'"bboxhead2_prediction""bboxhead2_prediction""bboxhead2_prediction""bboxhead2_prediction", 'classhead2_prediction'"classhead2_prediction""classhead2_prediction""classhead2_prediction""classhead2_prediction", 'segmentation_confidence'"segmentation_confidence""segmentation_confidence""segmentation_confidence""segmentation_confidence", 'segmentation_image'"segmentation_image""segmentation_image""segmentation_image""segmentation_image"
+DLResultBatchDLResultBatchDLResultBatchDLResultBatchdlresult_batch (output_control) dict-array → HDict, HTupleSequence[HHandle]HTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Result data.
+Result
+If the parameters are valid, the operator apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model
+returns the value 2 (
+H_MSG_TRUE)
+. If necessary, an exception is raised.
+Possible Predecessors
+read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model,
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch,
+train_dl_model_anomaly_datasettrain_dl_model_anomaly_datasetTrainDlModelAnomalyDatasetTrainDlModelAnomalyDatasettrain_dl_model_anomaly_dataset,
+set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param
+Module
+Foundation. This operator uses dynamic licensing (see the 'Installation Guide'). Which of the following modules is required depends on the specific usage of the operator:3D Metrology, OCR/OCV, Deep Learning Enhanced, Deep Learning Professional
+ClassesClasses | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

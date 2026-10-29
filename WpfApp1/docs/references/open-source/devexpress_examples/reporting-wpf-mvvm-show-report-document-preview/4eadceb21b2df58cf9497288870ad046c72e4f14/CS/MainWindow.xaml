@@ -1,0 +1,51 @@
+<dx:ThemedWindow x:Class="ShowReportPreview_MVVM.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:models="clr-namespace:ShowReportPreview_MVVM.Models"
+                 xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                 xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+                 xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                 xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+                 Title="MainWindow" WindowState="Maximized"
+                 DataContext="{dxmvvm:ViewModelSource Type=models:ReportCatalogViewModel}">
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DXMessageBoxService />
+        <dx:DialogService Name="previewDialogService">
+            <dx:DialogService.ViewTemplate>
+                <DataTemplate>
+                    <dxp:DocumentPreviewControl RequestDocumentCreation="True"
+                                                DocumentSource="{Binding Report}" />
+                </DataTemplate>
+            </dx:DialogService.ViewTemplate>
+        </dx:DialogService>
+    </dxmvvm:Interaction.Behaviors>
+    
+    <DockPanel LastChildFill="True">
+        <StackPanel Width="250" Margin="12">
+            <GroupBox Header="Reports" Margin="0,0,0,6">
+                <dxe:ListBoxEdit Name="reportCatalog" ItemsSource="{Binding AvailableReports}"
+                                 IsEnabled="{Binding Document.InProgress, 
+                                    Converter={dxmvvm:BooleanNegationConverter}, 
+                                    ElementName=preview}"
+                                 DisplayMember="ReportName" ValueMember="ID"
+                                 SelectedIndex="0" ShowBorder="False">
+                </dxe:ListBoxEdit>
+            </GroupBox>
+            <StackPanel>
+                <Button Content="Show Preview" 
+                        Command="{Binding ShowPreviewCommand}" 
+                        CommandParameter="{Binding EditValue, ElementName=reportCatalog}" 
+                        Margin="0,0,0,6" />
+                <Button Content="Show Preview in New Window" 
+                        Command="{Binding ShowPreviewInNewWindowCommand}" 
+                        CommandParameter="{Binding EditValue, ElementName=reportCatalog}" />
+            </StackPanel>
+        </StackPanel>
+        
+        <dx:ThemedBorder BorderThickness="1">
+            <dxp:DocumentPreviewControl Name="preview"
+                                        RequestDocumentCreation="True"
+                                        DocumentSource="{Binding Report}" />
+        </dx:ThemedBorder>
+    </DockPanel>
+</dx:ThemedWindow>

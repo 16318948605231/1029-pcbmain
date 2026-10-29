@@ -1,0 +1,161 @@
+distance_transform [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Regions / Transformations
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses | | Operators
+distance_transformdistance_transformDistanceTransformDistanceTransformdistance_transform (Operator)
+Name
+distance_transformdistance_transformDistanceTransformDistanceTransformdistance_transform — Compute the distance transformation of a region.
+Signature
+distance_transform(Region : DistanceImage : Metric, Foreground, Width, Height : )
+Herror distance_transform(const Hobject Region, Hobject* DistanceImage, const char* Metric, const char* Foreground, const Hlong Width, const Hlong Height)
+Herror T_distance_transform(const Hobject Region, Hobject* DistanceImage, const Htuple Metric, const Htuple Foreground, const Htuple Width, const Htuple Height)
+void DistanceTransform(const HObject& Region, HObject* DistanceImage, const HTuple& Metric, const HTuple& Foreground, const HTuple& Width, const HTuple& Height)
+HImage HRegion::DistanceTransform(const HString& Metric, const HString& Foreground, Hlong Width, Hlong Height) const
+HImage HRegion::DistanceTransform(const char* Metric, const char* Foreground, Hlong Width, Hlong Height) const
+HImage HRegion::DistanceTransform(const wchar_t* Metric, const wchar_t* Foreground, Hlong Width, Hlong Height) const
+(
+Windows only)
+static void HOperatorSet.DistanceTransform(HObject region, out HObject distanceImage, HTuple metric, HTuple foreground, HTuple width, HTuple height)
+HImage HRegion.DistanceTransform(string metric, string foreground, int width, int height)
+def distance_transform(region: HObject, metric: str, foreground: str, width: int, height: int) -> HObject
+Description
+distance_transformdistance_transformDistanceTransformDistanceTransformdistance_transform computes for every point of the input
+region RegionRegionRegionregionregion (or its complement, respectively) the
+distance of the point to the border of the region. The parameter
+ForegroundForegroundForegroundforegroundforeground determines whether the distances are calculated
+for all points within the region (ForegroundForegroundForegroundforegroundforeground =
+'true'"true""true""true""true") or for all points outside the region
+(ForegroundForegroundForegroundforegroundforeground = 'false'"false""false""false""false"). The distance is computed
+for every point of the output image DistanceImageDistanceImageDistanceImagedistanceImagedistance_image, which
+has the specified dimensions WidthWidthWidthwidthwidth and HeightHeightHeightheightheight.
+The input region is always clipped to the extent of the output
+image. If it is important that the distances within the entire
+region should be computed, the region should be moved (see
+move_regionmove_regionMoveRegionMoveRegionmove_region) so that it has only positive coordinates and
+the width and height of the output image should be large enough to
+contain the region. The extent of the input region can be obtained
+with smallest_rectangle1smallest_rectangle1SmallestRectangle1SmallestRectangle1smallest_rectangle1.
+The parameter MetricMetricMetricmetricmetric determines which metric is used for
+the calculation of the distances. If MetricMetricMetricmetricmetric =
+'city-block'"city-block""city-block""city-block""city-block", the distance is calculated from the shortest
+path from the point to the border of the region, where only
+horizontal and vertical “movements” are allowed. They are
+weighted with a weight of 1. If MetricMetricMetricmetricmetric =
+'chessboard'"chessboard""chessboard""chessboard""chessboard", the distance is calculated from the shortest
+path to the border, where horizontal, vertical, and diagonal
+“movements” are allowed. They are weighted with a weight of 1.
+If MetricMetricMetricmetricmetric = 'octagonal'"octagonal""octagonal""octagonal""octagonal", a combination of these
+approaches is used, which leads to diagonal paths receiving a higher
+weight. If MetricMetricMetricmetricmetric = 'chamfer-3-4'"chamfer-3-4""chamfer-3-4""chamfer-3-4""chamfer-3-4", horizontal and
+vertical movements are weighted with a weight of 3, while diagonal
+movements are weighted with a weight of 4. To normalize the
+distances, the resulting distance image is divided by 3. Since this
+normalization step takes some time, and one usually is interested in
+the relative distances of the points, the normalization can be
+suppressed with MetricMetricMetricmetricmetric =
+'chamfer-3-4-unnormalized'"chamfer-3-4-unnormalized""chamfer-3-4-unnormalized""chamfer-3-4-unnormalized""chamfer-3-4-unnormalized". Finally, if MetricMetricMetricmetricmetric =
+'euclidean'"euclidean""euclidean""euclidean""euclidean", the computed distance is approximately
+Euclidean.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+RegionRegionRegionregionregion (input_object) region(-array) → objectHRegionHObjectHObjectHobject
+Region for which the distance to the border is
+computed.
+DistanceImageDistanceImageDistanceImagedistanceImagedistance_image (output_object) image → objectHImageHObjectHObjectHobject * (int4)
+Image containing the distance information.
+MetricMetricMetricmetricmetric (input_control) string → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Type of metric to be used for the distance
+transformation.
+Default:
+'city-block'
+"city-block"
+"city-block"
+"city-block"
+"city-block"
+List of values:
+'chamfer-3-4'"chamfer-3-4""chamfer-3-4""chamfer-3-4""chamfer-3-4", 'chamfer-3-4-unnormalized'"chamfer-3-4-unnormalized""chamfer-3-4-unnormalized""chamfer-3-4-unnormalized""chamfer-3-4-unnormalized", 'chessboard'"chessboard""chessboard""chessboard""chessboard", 'city-block'"city-block""city-block""city-block""city-block", 'euclidean'"euclidean""euclidean""euclidean""euclidean", 'octagonal'"octagonal""octagonal""octagonal""octagonal"
+ForegroundForegroundForegroundforegroundforeground (input_control) string → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Compute the distance for pixels
+inside ('true'"true""true""true""true") or outside
+('false'"false""false""false""false") the input region.
+Default:
+'true'
+"true"
+"true"
+"true"
+"true"
+List of values:
+'false'"false""false""false""false", 'true'"true""true""true""true"
+WidthWidthWidthwidthwidth (input_control) extent.x → HTupleintHTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Width of the output image.
+Default:
+640
+Suggested values:
+160, 192, 320, 384, 640, 768
+Value range:
+1
+≤
+Width
+Width
+Width
+width
+width
+HeightHeightHeightheightheight (input_control) extent.y → HTupleintHTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Height of the output image.
+Default:
+480
+Suggested values:
+120, 144, 240, 288, 480, 576
+Value range:
+1
+≤
+Height
+Height
+Height
+height
+height
+Example (HDevelop)
+* Step towards extracting the medial axis of a shape:
+gen_rectangle1 (Rectangle1, 0, 0, 200, 400)
+gen_rectangle1 (Rectangle2, 200, 0, 400, 200)
+union2 (Rectangle1, Rectangle2, Shape)
+distance_transform (Shape, DistanceImage, 'chessboard', 'true', 640, 480)
+Complexity
+The runtime complexity is O(WidthWidthWidthwidthwidth*HeightHeightHeightheightheight).
+Result
+distance_transformdistance_transformDistanceTransformDistanceTransformdistance_transform returns 2 (
+H_MSG_TRUE)
+if all parameters are
+correct.
+Possible Predecessors
+thresholdthresholdThresholdThresholdthreshold,
+dyn_thresholddyn_thresholdDynThresholdDynThresholddyn_threshold,
+regiongrowingregiongrowingRegiongrowingRegiongrowingregiongrowing
+Possible Successors
+thresholdthresholdThresholdThresholdthreshold
+Alternatives
+closest_point_transformclosest_point_transformClosestPointTransformClosestPointTransformclosest_point_transform
+See also
+skeletonskeletonSkeletonSkeletonskeleton
+References
+P. Soille: “Morphological Image Analysis, Principles and
+Applications”; Springer Verlag Berlin Heidelberg New York,
+1999.
+G. Borgefors: “Distance Transformations in Arbitrary Dimensions”;
+Computer Vision, Graphics, and Image Processing, Vol. 27, pages
+321--345, 1984.
+P.E. Danielsson: “Euclidean Distance Mapping”; Computer Graphics
+and Image Processing, Vol. 14, pages 227--248, 1980.
+Module
+Foundation
+ClassesClasses | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

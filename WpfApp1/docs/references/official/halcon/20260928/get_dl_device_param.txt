@@ -1,0 +1,137 @@
+get_dl_device_param [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Deep Learning
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+get_dl_device_paramT_get_dl_device_paramGetDlDeviceParamGetDlDeviceParamget_dl_device_param (Operator)
+Name
+get_dl_device_paramT_get_dl_device_paramGetDlDeviceParamGetDlDeviceParamget_dl_device_param — Return the parameters of a deep-learning-capable hardware device.
+Signature
+get_dl_device_param( :  : DLDeviceHandle, GenParamName : GenParamValue)
+Herror T_get_dl_device_param(const Htuple DLDeviceHandle, const Htuple GenParamName, Htuple* GenParamValue)
+void GetDlDeviceParam(const HTuple& DLDeviceHandle, const HTuple& GenParamName, HTuple* GenParamValue)
+HTuple HDlDevice::GetDlDeviceParam(const HString& GenParamName) const
+HTuple HDlDevice::GetDlDeviceParam(const char* GenParamName) const
+HTuple HDlDevice::GetDlDeviceParam(const wchar_t* GenParamName) const
+(
+Windows only)
+static void HOperatorSet.GetDlDeviceParam(HTuple DLDeviceHandle, HTuple genParamName, out HTuple genParamValue)
+HTuple HDlDevice.GetDlDeviceParam(string genParamName)
+def get_dl_device_param(dldevice_handle: HHandle, gen_param_name: str) -> Sequence[Union[str, float, int]]
+def get_dl_device_param_s(dldevice_handle: HHandle, gen_param_name: str) -> Union[str, float, int]
+Description
+get_dl_device_paramget_dl_device_paramGetDlDeviceParamGetDlDeviceParamget_dl_device_param returns the parameter values
+GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value of GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name for the
+deep-learning-capable hardware device (hereafter referred to as device)
+DLDeviceHandleDLDeviceHandleDLDeviceHandleDLDeviceHandledldevice_handle.
+See query_available_dl_devicesquery_available_dl_devicesQueryAvailableDlDevicesQueryAvailableDlDevicesquery_available_dl_devices for details about
+deep-learning-capable hardware devices.
+Supported values for GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name are:
+'calibration_precisions'"calibration_precisions""calibration_precisions""calibration_precisions""calibration_precisions":
+Specifies the unit data types that can be used for a calibration
+of a deep learning model.
+List of values:
+'int8'"int8""int8""int8""int8".
+'cast_precisions'"cast_precisions""cast_precisions""cast_precisions""cast_precisions":
+Specifies the unit data types that can be used for a cast of
+a deep learning model.
+When changing the data type the calibration does not require any images.
+List of values:
+'bfloat16'"bfloat16""bfloat16""bfloat16""bfloat16", 'float32'"float32""float32""float32""float32", 'float16'"float16""float16""float16""float16".
+'conversion_supported'"conversion_supported""conversion_supported""conversion_supported""conversion_supported":
+Returns 'true'"true""true""true""true" if unit data types for either a calibration
+or a cast of a deep learning model are available. Returns
+'false'"false""false""false""false" in any other case.
+'id'"id""id""id""id":
+The ID of the device. Within each AI
+2-Interface, the
+IDs of its supported devices are unique. The same holds for devices
+supported through HALCON.
+'inference_only'"inference_only""inference_only""inference_only""inference_only":
+Indicates if the device can only
+be used to infer deep learning models ('true'"true""true""true""true") or
+also supports training or gradient-based operations
+('false'"false""false""false""false").
+'ai2'"ai2""ai2""ai2""ai2":
+AI Accelerator Interface (AI
+2) on which this unit
+DLDeviceHandleDLDeviceHandleDLDeviceHandleDLDeviceHandledldevice_handle is executed.
+In case the device is directly supported by HALCON,
+the value 'none'"none""none""none""none" is returned.
+List of values:
+'tensorrt'"tensorrt""tensorrt""tensorrt""tensorrt", 'openvino'"openvino""openvino""openvino""openvino",
+'none'"none""none""none""none".
+'ai_accelerator_interface'"ai_accelerator_interface""ai_accelerator_interface""ai_accelerator_interface""ai_accelerator_interface":
+warning
+'ai_accelerator_interface'"ai_accelerator_interface""ai_accelerator_interface""ai_accelerator_interface""ai_accelerator_interface" is obsolete and is only provided for
+reasons of backward compatibility. New applications should use
+'ai2'"ai2""ai2""ai2""ai2" instead.
+'info'"info""info""info""info":
+Dictionary containing additional information
+on the device.
+Restriction:
+Only for devices that are supported via an
+AI2-interface.
+'name'"name""name""name""name":
+Name of the device.
+'optimize_for_inference_params'"optimize_for_inference_params""optimize_for_inference_params""optimize_for_inference_params""optimize_for_inference_params":
+Dictionary with default-defined conversion parameters for a
+calibration or cast operation of a deep learning model.
+The entries can be changed.
+In case no parameter applies to the set device, an empty dictionary is
+returned.
+Restriction:
+Only for devices that are supported via an
+AI2-interface.
+'precisions'"precisions""precisions""precisions""precisions":
+Specifies the data types that the
+unit supports for the weights and/or activations of a
+deep-learning-based model.
+List of values:
+'bfloat16'"bfloat16""bfloat16""bfloat16""bfloat16", 'float32'"float32""float32""float32""float32",
+'float16'"float16""float16""float16""float16", 'int8'"int8""int8""int8""int8".
+'settable_device_params'"settable_device_params""settable_device_params""settable_device_params""settable_device_params":
+Dictionary with settable device
+parameters.
+Restriction:
+Only for devices that are supported via an
+AI2-interface.
+'type'"type""type""type""type":
+Type of the device.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+DLDeviceHandleDLDeviceHandleDLDeviceHandleDLDeviceHandledldevice_handle (input_control)  dl_device → HDlDevice, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the deep-learning-capable hardware device.
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name (input_control)  attribute.name → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Name of the generic parameter.
+Default:
+'type'
+"type"
+"type"
+"type"
+"type"
+List of values:
+'ai2'"ai2""ai2""ai2""ai2", 'calibration_precisions'"calibration_precisions""calibration_precisions""calibration_precisions""calibration_precisions", 'cast_precisions'"cast_precisions""cast_precisions""cast_precisions""cast_precisions", 'conversion_supported'"conversion_supported""conversion_supported""conversion_supported""conversion_supported", 'id'"id""id""id""id", 'inference_only'"inference_only""inference_only""inference_only""inference_only", 'info'"info""info""info""info", 'name'"name""name""name""name", 'optimize_for_inference_params'"optimize_for_inference_params""optimize_for_inference_params""optimize_for_inference_params""optimize_for_inference_params", 'precisions'"precisions""precisions""precisions""precisions", 'settable_device_params'"settable_device_params""settable_device_params""settable_device_params""settable_device_params", 'type'"type""type""type""type"
+GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value (output_control)  attribute.name(-array) → HTupleSequence[Union[str, float, int]]HTupleHtuple (string / real / integer) (string / double / int / long) (HString / double / Hlong) (char* / double / Hlong)
+Value of the generic parameter.
+Result
+If the parameters are valid, the operator get_dl_device_paramget_dl_device_paramGetDlDeviceParamGetDlDeviceParamget_dl_device_param
+returns the value 2 (
+H_MSG_TRUE)
+. If necessary, an exception is raised.
+Possible Predecessors
+query_available_dl_devicesquery_available_dl_devicesQueryAvailableDlDevicesQueryAvailableDlDevicesquery_available_dl_devices
+Possible Successors
+set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param
+Module
+Foundation
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

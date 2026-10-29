@@ -1,0 +1,364 @@
+What is the TimeProvider class - .NET | Microsoft Learn
+Skip to main content
+Skip to Ask Learn chat experience
+This browser is no longer supported.
+Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+Download Microsoft Edge
+More info about Internet Explorer and Microsoft Edge
+Table of contents
+Exit editor mode
+Ask Learn
+Ask Learn
+Language
+csharp
+vb
+Reading mode
+Table of contents
+Read in English
+Add
+Add to Plans
+Edit
+Copy Markdown
+Print
+Note
+Access to this page requires authorization. You can try
+signing in
+or
+changing directories
+.
+Access to this page requires authorization. You can try
+changing directories
+.
+What is TimeProvider?
+Feedback
+Summarize this article for me
+System.TimeProvider
+is an abstraction of time that provides a point in time as a
+DateTimeOffset
+type. By using
+TimeProvider
+, you ensure that your code is testable and predictable.
+TimeProvider
+is available on the following frameworks:
+Framework
+Notes
+.NET 8+
+Included in the framework.
+.NET 5 - .NET 7
+Provided in the
+Microsoft.Bcl.TimeProvider
+NuGet package
+.
+.NET Framework 4.6.2+
+Provided in the
+Microsoft.Bcl.TimeProvider
+NuGet package
+.
+.NET Standard 2.0
+Provided in the
+Microsoft.Bcl.TimeProvider
+NuGet package
+.
+The
+TimeProvider
+class defines the following capabilities:
+Provides access to the date and time through
+TimeProvider.GetUtcNow()
+and
+TimeProvider.GetLocalNow()
+.
+High-frequency timestamps with
+TimeProvider.GetTimestamp()
+.
+Measure time between two timestamps with
+TimeProvider.GetElapsedTime
+.
+High-resolution timers with
+TimeProvider.CreateTimer(TimerCallback, Object, TimeSpan, TimeSpan)
+.
+Get the current timezone with
+TimeProvider.LocalTimeZone
+.
+Default implementation
+.NET provides an implementation of
+TimeProvider
+through the
+TimeProvider.System
+property, with the following characteristics:
+Date and time are calculated by using
+DateTimeOffset.UtcNow
+and
+TimeZoneInfo.Local
+.
+Timestamps are provided by
+System.Diagnostics.Stopwatch
+.
+Timers are implemented through an internal class and exposed as
+System.Threading.ITimer
+.
+The following example shows how to use
+TimeProvider
+to get the current date and time:
+Console.WriteLine($"Local: {TimeProvider.System.GetLocalNow()}");
+Console.WriteLine($"Utc:   {TimeProvider.System.GetUtcNow()}");
+
+/* This example produces output similar to the following:
+ *
+ * Local: 12/5/2024 10:41:14 AM -08:00
+ * Utc:   12/5/2024 6:41:14 PM +00:00
+*/
+Console.WriteLine($"Local: {TimeProvider.System.GetLocalNow()}")
+Console.WriteLine($"Utc:   {TimeProvider.System.GetUtcNow()}")
+
+' This example produces output similar to the following
+'
+' Local: 12/5/2024 10:41:14 AM -08:00
+' Utc:   12/5/2024 6:41:14 PM +00:00
+The following example shows how to capture elapsed time by using
+TimeProvider.GetTimestamp()
+:
+long stampStart = TimeProvider.System.GetTimestamp();
+Console.WriteLine($"Starting timestamp: {stampStart}");
+
+long stampEnd = TimeProvider.System.GetTimestamp();
+Console.WriteLine($"Ending timestamp:   {stampEnd}");
+
+Console.WriteLine($"Elapsed time: {TimeProvider.System.GetElapsedTime(stampStart, stampEnd)}");
+Console.WriteLine($"Nanoseconds: {TimeProvider.System.GetElapsedTime(stampStart, stampEnd).TotalNanoseconds}"); 
+
+/* This example produces output similar to the following:
+ *
+ * Starting timestamp: 55185546133
+ * Ending timestamp:   55185549929
+ * Elapsed time: 00:00:00.0003796
+ * Nanoseconds: 379600
+*/
+Dim stampStart As Long = TimeProvider.System.GetTimestamp()
+Console.WriteLine($"Starting timestamp: {stampStart}")
+
+Dim stampEnd As Long = TimeProvider.System.GetTimestamp()
+Console.WriteLine($"Ending timestamp:   {stampEnd}")
+
+Console.WriteLine($"Elapsed time: {TimeProvider.System.GetElapsedTime(stampStart, stampEnd)}")
+Console.WriteLine($"Nanoseconds: {TimeProvider.System.GetElapsedTime(stampStart, stampEnd).TotalNanoseconds}")
+
+' This example produces output similar to the following:
+'
+' Starting timestamp: 55185546133
+' Ending timestamp:   55185549929
+' Elapsed time: 00:00:00.0003796
+' Nanoseconds: 379600
+FakeTimeProvider implementation
+The
+Microsoft.Extensions.TimeProvider.Testing
+NuGet package
+provides a controllable
+TimeProvider
+implementation designed for unit testing.
+The following list describes some of the capabilities of the
+FakeTimeProvider
+class:
+Set a specific date and time.
+Automatically advance the date and time by a specified amount whenever the date and time is read.
+Manually advance the date and time.
+Custom implementation
+While
+FakeTimeProvider
+covers most scenarios that require predictability with time, you can still provide your own implementation. Create a new class that derives from
+TimeProvider
+and override members to control how time is provided. For example, the following class only provides a single date, the date of the moon landing:
+public class MoonLandingTimeProviderPST: TimeProvider
+{
+    // July 20, 1969, at 20:17:40 UTC
+    private readonly DateTimeOffset _specificDateTime = new(1969, 7, 20, 20, 17, 40, TimeZoneInfo.Utc.BaseUtcOffset);
+
+    public override DateTimeOffset GetUtcNow() => _specificDateTime;
+
+    public override TimeZoneInfo LocalTimeZone => TimeZoneInfo.FindSystemTimeZoneById("PST");
+}
+Public Class MoonLandingTimeProviderPST
+    Inherits TimeProvider
+
+    'July 20, 1969, at 20:17:40 UTC
+    Private ReadOnly _specificDateTime As New DateTimeOffset(1969, 7, 20, 20, 17, 40, TimeZoneInfo.Utc.BaseUtcOffset)
+
+    Public Overrides Function GetUtcNow() As DateTimeOffset
+        Return _specificDateTime
+    End Function
+
+    Public Overrides ReadOnly Property LocalTimeZone As TimeZoneInfo
+        Get
+            Return TimeZoneInfo.FindSystemTimeZoneById("PST")
+        End Get
+    End Property
+
+End Class
+If code using this class calls
+MoonLandingTimeProviderPST.GetUtcNow
+, the date of the moon landing in UTC is returned. If
+MoonLandingTimeProviderPST.GetLocalNow
+is called, the base class applies
+MoonLandingTimeProviderPST.LocalTimeZone
+to
+GetUtcNow
+and returns the moon landing date and time in the PST time zone.
+To demonstrate the usefulness of controlling time, consider the following example. Let's say that you're writing a calendar app that sends a greeting to the user when the app is first opened each day. The app says a special greeting when the current day has an event associated with it, such as the anniversary of the moon landing.
+public static class CalendarHelper
+{
+    static readonly DateTimeOffset MoonLandingDateTime = new(1969, 7, 20, 20, 17, 40, TimeZoneInfo.Utc.BaseUtcOffset);
+    
+    public static void SendGreeting(TimeProvider currentTime, string name)
+    {
+        DateTimeOffset localTime = currentTime.GetLocalNow();
+
+        Console.WriteLine($"Good morning, {name}!");
+        Console.WriteLine($"The date is {localTime.Date:d} and the day is {localTime.Date.DayOfWeek}.");
+
+        if (localTime.Date.Month == MoonLandingDateTime.Date.Month
+            && localTime.Date.Day == MoonLandingDateTime.Date.Day)
+        {
+            Console.WriteLine("Did you know that on this day in 1969 humans landed on the Moon?");
+        }
+
+        Console.WriteLine($"I hope you enjoy your day!");
+    }
+}
+Public Module CalendarHelper
+
+    ReadOnly MoonLandingDateTime As DateTimeOffset = #7/20/1969 20:17:40#
+
+    Public Sub SendGreeting(currentTime As TimeProvider, name As String)
+
+        Dim localTime As DateTimeOffset = currentTime.GetLocalNow()
+
+        Console.WriteLine($"Good morning, {name}!")
+        Console.WriteLine($"The date is {localTime.Date:d} and the day is {localTime.Date.DayOfWeek}.")
+
+        If (localTime.Date.Month = MoonLandingDateTime.Date.Month _
+            And localTime.Date.Day = MoonLandingDateTime.Date.Day) Then
+
+            Console.WriteLine("Did you know that on this day in 1969 humans landed on the Moon?")
+        End If
+
+        Console.WriteLine($"I hope you enjoy your day!")
+
+    End Sub
+
+End Module
+You might be inclined to write the previous code with
+DateTime
+or
+DateTimeOffset
+to get the current date and time, instead of
+TimeProvider
+. But with unit testing, it's hard to work around
+DateTime
+or
+DateTimeOffset
+directly. You would need to either run the tests on the day and month of the moon landing or further abstract the code into smaller but testable units.
+The normal operation of your app uses
+TimeProvider.System
+to retrieve the current date and time:
+CalendarHelper.SendGreeting(TimeProvider.System, "Eric Solomon");
+
+/* This example produces output similar to the following:
+ *
+ * Good morning, Eric Solomon! 
+ * The date is 12/5/2024 and the day is Thursday. 
+ * I hope you enjoy your day! 
+*/
+CalendarHelper.SendGreeting(TimeProvider.System, "Eric Solomon")
+
+' This example produces output similar to the following:
+'
+' Good morning, Eric Solomon! 
+' The date is 12/5/2024 and the day is Thursday. 
+' I hope you enjoy your day!
+And unit tests can be written to test specific scenarios, such as testing the anniversary of the moon landing:
+CalendarHelper.SendGreeting(new MoonLandingTimeProviderPST(), "Eric Solomon");
+
+/* This example produces output similar to the following:
+ *
+ * Good morning, Eric Solomon!
+ * The date is 7/20/1969 and the day is Sunday.
+ * Did you know that on this day in 1969 humans landed on the Moon?
+ * I hope you enjoy your day!
+*/
+CalendarHelper.SendGreeting(New MoonLandingTimeProviderPST(), "Eric Solomon")
+
+' This example produces output similar to the following:
+'
+' Good morning, Eric Solomon!
+' The date is 7/20/1969 and the day is Sunday.
+' Did you know that on this day in 1969 humans landed on the Moon?
+' I hope you enjoy your day!
+Use with .NET
+Starting with .NET 8, the runtime library provides the
+TimeProvider
+class. Older versions of .NET or libraries targeting .NET Standard 2.0 must reference the
+Microsoft.Bcl.TimeProvider
+NuGet package
+.
+The following methods related to asynchronous programming work with
+TimeProvider
+:
+CancellationTokenSource(TimeSpan, TimeProvider)
+Task.Delay(TimeSpan, TimeProvider)
+Task.Delay(TimeSpan, TimeProvider, CancellationToken)
+Task.WaitAsync(TimeSpan, TimeProvider)
+Task.WaitAsync(TimeSpan, TimeProvider, CancellationToken)
+Use with .NET Framework
+The
+Microsoft.Bcl.TimeProvider
+NuGet package
+implements
+TimeProvider
+.
+Support for working with
+TimeProvider
+in asynchronous programming scenarios was added through the following extension methods:
+TimeProviderTaskExtensions.CreateCancellationTokenSource(TimeProvider, TimeSpan)
+TimeProviderTaskExtensions.Delay(TimeProvider, TimeSpan, CancellationToken)
+TimeProviderTaskExtensions.WaitAsync(Task, TimeSpan, TimeProvider, CancellationToken)
+TimeProviderTaskExtensions.WaitAsync<TResult>(Task<TResult>, TimeSpan, TimeProvider, CancellationToken)
+Collaborate with us on GitHub
+The source for this content can be found on GitHub, where you can also create and review issues and pull requests. For more information, see
+our contributor guide
+.
+.NET
+Open a documentation issue
+Provide product feedback
+Feedback
+Was this page helpful?
+Yes
+No
+No
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+Additional resources
+Last updated on
+2026-01-20
+Was this page helpful?
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+en-us
+Your Privacy Choices
+Theme
+Light
+Dark
+High contrast
+AI Disclaimer
+Previous Versions
+Blog
+Contribute
+Privacy
+Consumer Health Privacy
+Terms of Use
+Trademarks
+© Microsoft 2026

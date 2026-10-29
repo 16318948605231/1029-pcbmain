@@ -1,0 +1,128 @@
+erosion1 [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Morphology / Region
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+erosion1erosion1Erosion1Erosion1erosion1 (Operator)
+Name
+erosion1erosion1Erosion1Erosion1erosion1 — Erode a region.
+Signature
+erosion1(Region, StructElement : RegionErosion : Iterations : )
+Herror erosion1(const Hobject Region, const Hobject StructElement, Hobject* RegionErosion, const Hlong Iterations)
+Herror T_erosion1(const Hobject Region, const Hobject StructElement, Hobject* RegionErosion, const Htuple Iterations)
+void Erosion1(const HObject& Region, const HObject& StructElement, HObject* RegionErosion, const HTuple& Iterations)
+HRegion HRegion::Erosion1(const HRegion& StructElement, Hlong Iterations) const
+static void HOperatorSet.Erosion1(HObject region, HObject structElement, out HObject regionErosion, HTuple iterations)
+HRegion HRegion.Erosion1(HRegion structElement, int iterations)
+def erosion1(region: HObject, struct_element: HObject, iterations: int) -> HObject
+Description
+erosion1erosion1Erosion1Erosion1erosion1 erodes the input regions with a structuring
+element.  By applying erosion1erosion1Erosion1Erosion1erosion1 to a region, its boundary
+gets smoothed.  In the process, the area of the region is reduced.
+Furthermore, connected regions may be split.  Such regions, however,
+remain logically one region.  The erosion is a set-theoretic region
+operation.  It uses the intersection operation.
+Let M (StructElementStructElementStructElementstructElementstruct_element) and R (RegionRegionRegionregionregion) be
+two regions, where M is the structuring element and R is the
+region to be processed.  Furthermore, let m be a point in M.
+Then the displacement vector
+is defined as the difference of the
+center of gravity of M and the vector
+.  Let
+denote the translation of a
+region R by a vector
+.  Then
+For each point m in M a translation of the region R is
+performed.  The intersection of all these translations is the
+erosion of R with M.  erosion1erosion1Erosion1Erosion1erosion1 is similar to the
+operator minkowski_sub1minkowski_sub1MinkowskiSub1MinkowskiSub1minkowski_sub1, the difference is that in
+erosion1erosion1Erosion1Erosion1erosion1 the structuring element is mirrored at the
+origin.  The position of StructElementStructElementStructElementstructElementstruct_element is meaningless,
+since the displacement vectors are determined with respect to the
+center of gravity of M.
+The parameter IterationsIterationsIterationsiterationsiterations determines the number of
+iterations which are to be performed with the structuring element.
+The result of iteration n-1 is used as input for iteration n.
+From the above definition it follows that the maximum region is
+generated in case of an empty structuring element.
+Structuring elements (StructElementStructElementStructElementstructElementstruct_element) can be generated
+with operators such as gen_circlegen_circleGenCircleGenCirclegen_circle, gen_rectangle1gen_rectangle1GenRectangle1GenRectangle1gen_rectangle1,
+gen_rectangle2gen_rectangle2GenRectangle2GenRectangle2gen_rectangle2,  gen_ellipsegen_ellipseGenEllipseGenEllipsegen_ellipse,
+draw_regiondraw_regionDrawRegionDrawRegiondraw_region, gen_region_polygongen_region_polygonGenRegionPolygonGenRegionPolygongen_region_polygon,
+gen_region_pointsgen_region_pointsGenRegionPointsGenRegionPointsgen_region_points, etc.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on tuple level.
+Parameters
+RegionRegionRegionregionregion (input_object)  region(-array) → objectHRegionHObjectHObjectHobject
+Regions to be eroded.
+StructElementStructElementStructElementstructElementstruct_element (input_object)  region → objectHRegionHObjectHObjectHobject
+Structuring element.
+RegionErosionRegionErosionRegionErosionregionErosionregion_erosion (output_object)  region(-array) → objectHRegionHObjectHObjectHobject *
+Eroded regions.
+IterationsIterationsIterationsiterationsiterations (input_control)  integer → HTupleintHTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Number of iterations.
+Default:
+1
+Suggested values:
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 17, 20, 30, 40, 50
+Value range:
+1
+≤
+Iterations
+Iterations
+Iterations
+iterations
+iterations
+(lin)
+Minimum increment:
+1
+Recommended increment:
+1
+Complexity
+Let F1 be the area of the input region, and F2 be the area of
+the structuring element.  Then the runtime complexity for one region
+is:
+Result
+erosion1erosion1Erosion1Erosion1erosion1 returns 2 (
+H_MSG_TRUE)
+if all parameters are correct.
+The behavior in case of empty or no input region can be set via:
+no region:
+set_system('no_object_result',<RegionResult>)set_system("no_object_result",<RegionResult>)SetSystem("no_object_result",<RegionResult>)SetSystem("no_object_result",<RegionResult>)set_system("no_object_result",<RegionResult>)
+empty region:
+set_system('empty_region_result',<RegionResult>)set_system("empty_region_result",<RegionResult>)SetSystem("empty_region_result",<RegionResult>)SetSystem("empty_region_result",<RegionResult>)set_system("empty_region_result",<RegionResult>)
+Otherwise, an exception is raised.
+Possible Predecessors
+thresholdthresholdThresholdThresholdthreshold,
+regiongrowingregiongrowingRegiongrowingRegiongrowingregiongrowing,
+watershedswatershedsWatershedsWatershedswatersheds,
+class_ndim_normclass_ndim_normClassNdimNormClassNdimNormclass_ndim_norm,
+gen_circlegen_circleGenCircleGenCirclegen_circle,
+gen_ellipsegen_ellipseGenEllipseGenEllipsegen_ellipse,
+gen_rectangle1gen_rectangle1GenRectangle1GenRectangle1gen_rectangle1,
+gen_rectangle2gen_rectangle2GenRectangle2GenRectangle2gen_rectangle2,
+draw_regiondraw_regionDrawRegionDrawRegiondraw_region,
+gen_region_pointsgen_region_pointsGenRegionPointsGenRegionPointsgen_region_points,
+gen_region_polygon_filledgen_region_polygon_filledGenRegionPolygonFilledGenRegionPolygonFilledgen_region_polygon_filled
+Possible Successors
+connectionconnectionConnectionConnectionconnection,
+reduce_domainreduce_domainReduceDomainReduceDomainreduce_domain,
+select_shapeselect_shapeSelectShapeSelectShapeselect_shape,
+area_centerarea_centerAreaCenterAreaCenterarea_center
+Alternatives
+minkowski_sub1minkowski_sub1MinkowskiSub1MinkowskiSub1minkowski_sub1,
+minkowski_sub2minkowski_sub2MinkowskiSub2MinkowskiSub2minkowski_sub2,
+erosion2erosion2Erosion2Erosion2erosion2
+See also
+transpose_regiontranspose_regionTransposeRegionTransposeRegiontranspose_region
+Module
+Foundation
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

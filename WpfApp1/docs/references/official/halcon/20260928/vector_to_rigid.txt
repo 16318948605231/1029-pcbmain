@@ -1,0 +1,95 @@
+vector_to_rigid [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Transformations / 2D Transformations
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+vector_to_rigidT_vector_to_rigidVectorToRigidVectorToRigidvector_to_rigid (Operator)
+Name
+vector_to_rigidT_vector_to_rigidVectorToRigidVectorToRigidvector_to_rigid — Approximate a rigid affine transformation from point correspondences.
+Signature
+vector_to_rigid( :  : Px, Py, Qx, Qy : HomMat2D)
+Herror T_vector_to_rigid(const Htuple Px, const Htuple Py, const Htuple Qx, const Htuple Qy, Htuple* HomMat2D)
+void VectorToRigid(const HTuple& Px, const HTuple& Py, const HTuple& Qx, const HTuple& Qy, HTuple* HomMat2D)
+void HHomMat2D::VectorToRigid(const HTuple& Px, const HTuple& Py, const HTuple& Qx, const HTuple& Qy)
+static void HOperatorSet.VectorToRigid(HTuple px, HTuple py, HTuple qx, HTuple qy, out HTuple homMat2D)
+void HHomMat2D.VectorToRigid(HTuple px, HTuple py, HTuple qx, HTuple qy)
+def vector_to_rigid(px: Sequence[float], py: Sequence[float], qx: Sequence[float], qy: Sequence[float]) -> Sequence[float]
+Description
+vector_to_rigidvector_to_rigidVectorToRigidVectorToRigidvector_to_rigid approximates a rigid affine transformation, i.e., a
+transformation consisting of a rotation and a translation, from at least two
+point correspondences and returns it as the homogeneous
+transformation matrix HomMat2DHomMat2DHomMat2DhomMat2Dhom_mat_2d. The matrix consists of 2 components:
+a rotation matrix R and a translation vector
+t (also see hom_mat2d_rotatehom_mat2d_rotateHomMat2dRotateHomMat2dRotatehom_mat2d_rotate and
+hom_mat2d_translatehom_mat2d_translateHomMat2dTranslateHomMat2dTranslatehom_mat2d_translate):
+The point correspondences are passed in the tuples (PxPxPxpxpx,
+PyPyPypypy) and (QxQxQxqxqx,QyQyQyqyqy), where
+corresponding points must be at the same index positions in the tuples.
+The transformation is always overdetermined.  Therefore, the returned
+transformation is the transformation that minimizes the distances between
+the original points (PxPxPxpxpx,PyPyPypypy) and the transformed points
+(QxQxQxqxqx,QyQyQyqyqy), as described in the following equation
+(points as homogeneous vectors):
+HomMat2DHomMat2DHomMat2DhomMat2Dhom_mat_2d can be used directly with operators that transform data
+using affine transformations, e.g., affine_trans_imageaffine_trans_imageAffineTransImageAffineTransImageaffine_trans_image.
+Attention
+It should be noted that homogeneous transformation matrices refer to
+a general right-handed mathematical coordinate system.  If a
+homogeneous transformation matrix is used to transform images,
+regions, XLD contours, or any other data that has been extracted
+from images, the row coordinates of the transformation must be
+passed in the x coordinates, while the column coordinates must be
+passed in the y coordinates.  Consequently, the order of passing row
+and column coordinates follows the usual order
+(RowRowRowrowrow,ColumnColumnColumncolumncolumn).  This convention is essential to
+obtain a right-handed coordinate system for the transformation of
+iconic data, and consequently to ensure in particular that rotations
+are performed in the correct mathematical direction.
+Furthermore, it should be noted that if a homogeneous transformation
+matrix is used to transform images, regions, XLD contours, or any
+other data that has been extracted from images, it is assumed that
+the origin of the coordinate system of the homogeneous
+transformation matrix lies in the upper left corner of a pixel.  The
+image processing operators that return point coordinates, however,
+assume a coordinate system in which the origin lies in the center of
+a pixel.  Therefore, to obtain a consistent homogeneous
+transformation matrix, 0.5 must be added to the point coordinates
+before computing the transformation.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+PxPxPxpxpx (input_control)  point.x-array → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+X coordinates of the original points.
+PyPyPypypy (input_control)  point.y-array → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Y coordinates of the original points.
+QxQxQxqxqx (input_control)  point.x-array → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+X coordinates of the transformed points.
+QyQyQyqyqy (input_control)  point.y-array → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Y coordinates of the transformed points.
+HomMat2DHomMat2DHomMat2DhomMat2Dhom_mat_2d (output_control)  hom_mat2d → HHomMat2D, HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Output transformation matrix.
+Possible Successors
+affine_trans_imageaffine_trans_imageAffineTransImageAffineTransImageaffine_trans_image,
+affine_trans_image_sizeaffine_trans_image_sizeAffineTransImageSizeAffineTransImageSizeaffine_trans_image_size,
+affine_trans_regionaffine_trans_regionAffineTransRegionAffineTransRegionaffine_trans_region,
+affine_trans_contour_xldaffine_trans_contour_xldAffineTransContourXldAffineTransContourXldaffine_trans_contour_xld,
+affine_trans_polygon_xldaffine_trans_polygon_xldAffineTransPolygonXldAffineTransPolygonXldaffine_trans_polygon_xld,
+affine_trans_point_2daffine_trans_point_2dAffineTransPoint2dAffineTransPoint2daffine_trans_point_2d
+Alternatives
+vector_to_hom_mat2dvector_to_hom_mat2dVectorToHomMat2dVectorToHomMat2dvector_to_hom_mat2d,
+vector_to_anisovector_to_anisoVectorToAnisoVectorToAnisovector_to_aniso,
+vector_to_similarityvector_to_similarityVectorToSimilarityVectorToSimilarityvector_to_similarity
+See also
+vector_field_to_hom_mat2dvector_field_to_hom_mat2dVectorFieldToHomMat2dVectorFieldToHomMat2dvector_field_to_hom_mat2d,
+point_line_to_hom_mat2dpoint_line_to_hom_mat2dPointLineToHomMat2dPointLineToHomMat2dpoint_line_to_hom_mat2d
+Module
+Foundation
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

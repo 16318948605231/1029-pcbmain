@@ -1,0 +1,107 @@
+get_image_pointer1 [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Image / Access
+HDevelop
+.NET
+Python
+C++
+C
+Classes Classes | | Operators
+get_image_pointer1 get_image_pointer1 GetImagePointer1 GetImagePointer1 get_image_pointer1 (Operator)
+Name
+get_image_pointer1 get_image_pointer1 GetImagePointer1 GetImagePointer1 get_image_pointer1 — Access the pointer of a channel.
+Signature
+get_image_pointer1 ( Image : : : Pointer , Type , Width , Height )
+Herror get_image_pointer1 (const Hobject Image , Hlong* Pointer , char* Type , Hlong* Width , Hlong* Height )
+Herror T_get_image_pointer1 (const Hobject Image , Htuple* Pointer , Htuple* Type , Htuple* Width , Htuple* Height )
+void GetImagePointer1 (const HObject& Image , HTuple* Pointer , HTuple* Type , HTuple* Width , HTuple* Height )
+HTuple HImage :: GetImagePointer1 (HTuple* Type , HTuple* Width , HTuple* Height ) const
+void* HImage :: GetImagePointer1 (HString* Type , Hlong* Width , Hlong* Height ) const
+static void HOperatorSet . GetImagePointer1 ( HObject image , out HTuple pointer , out HTuple type , out HTuple width , out HTuple height )
+HTuple HImage . GetImagePointer1 (out HTuple type , out HTuple width , out HTuple height )
+IntPtr HImage . GetImagePointer1 (out string type , out int width , out int height )
+def get_image_pointer1 ( image : HObject) -> Tuple[Sequence[int], Sequence[str], Sequence[int], Sequence[int]]
+def get_image_pointer1_s ( image : HObject) -> Tuple[int, str, int, int]
+Description
+The operator get_image_pointer1 get_image_pointer1 GetImagePointer1 GetImagePointer1 get_image_pointer1 returns a pointer to the
+first channel of the image Image Image Image image image . Additionally, the image
+type ( Type Type Type type type = 'byte', 'int2', 'uint2', etc.) and the image
+size (width and height) are returned. Consequently, a direct access
+to the image data in the HALCON database via the pointer is
+possible from the programming language in which HALCON is used.
+An image is stored in HALCON linearized in row major order, i.e.,
+line by line. Note that the image types 'complex' and 'vector_type'
+are handled in a specific way. In particular, 'complex' images are
+interleaved, i.e., the real and the imaginary parts are alternating.
+In contrast, 'vector_field' images consist of two matrices, one for
+the rows and one for the columns, which are stored in the HALCON database
+one after the other.
+Attention
+The pointer returned by get_image_pointer1 get_image_pointer1 GetImagePointer1 GetImagePointer1 get_image_pointer1 may only be used
+as long as the corresponding image object exists in the HALCON
+database. This is the case as long as the corresponding variable in
+the programming language in which HALCON is used is valid. If
+this is not observed, unexpected behavior or program crashes may
+result.
+If data is written to an existing image via the pointer, all image
+objects that reference the image are modified. If, for example, the
+domain of an image is restricted via reduce_domain reduce_domain ReduceDomain ReduceDomain reduce_domain , the
+original image object with the full domain and the image object with
+the reduced domain share the same image matrix (i.e.,
+get_image_pointer1 get_image_pointer1 GetImagePointer1 GetImagePointer1 get_image_pointer1 returns the same pointer for both
+images). Consequently, if one of the two images in this example is
+modified, both image objects are affected. Therefore, if the
+pointer is used to write image data in the programming language
+in which HALCON is used, the image data should be written into an
+image object that has been created solely for this purpose, e.g.,
+using gen_image1 gen_image1 GenImage1 GenImage1 gen_image1 .
+For multi-channel input images the type and the pointer of the first channel
+is returned.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Image Image Image image image (input_object) singlechannelimage(-array) → object HImage HObject HObject Hobject (byte / direction / cyclic / int1 / int2 / uint2 / int4 / int8 / real / complex / vector_field)
+Input image.
+Pointer Pointer Pointer pointer pointer (output_control) pointer(-array) → HTuple Sequence[int] HTuple Htuple (integer) ( IntPtr ) ( Hlong ) ( Hlong )
+Pointer to the image data in the HALCON database.
+Type Type Type type type (output_control) string(-array) → HTuple Sequence[str] HTuple Htuple (string) ( string ) ( HString ) ( char* )
+Type of image.
+List of values:
+'byte' "byte" "byte" "byte" "byte" , 'complex' "complex" "complex" "complex" "complex" , 'cyclic' "cyclic" "cyclic" "cyclic" "cyclic" , 'direction' "direction" "direction" "direction" "direction" , 'int1' "int1" "int1" "int1" "int1" , 'int2' "int2" "int2" "int2" "int2" , 'int4' "int4" "int4" "int4" "int4" , 'int8' "int8" "int8" "int8" "int8" , 'real' "real" "real" "real" "real" , 'uint2' "uint2" "uint2" "uint2" "uint2" , 'vector_field_absolute' "vector_field_absolute" "vector_field_absolute" "vector_field_absolute" "vector_field_absolute" , 'vector_field_relative' "vector_field_relative" "vector_field_relative" "vector_field_relative" "vector_field_relative"
+Width Width Width width width (output_control) extent.x(-array) → HTuple Sequence[int] HTuple Htuple (integer) ( int / long) ( Hlong ) ( Hlong )
+Width of image.
+Height Height Height height height (output_control) extent.y(-array) → HTuple Sequence[int] HTuple Htuple (integer) ( int / long) ( Hlong ) ( Hlong )
+Height of image.
+Example (C)
+Hobject Image;
+char typ[128];
+Hlong width,height;
+unsigned char *ptr;
+read_image(&Image,"fabrik");
+get_image_pointer1(Image,(Hlong*)&ptr,typ,&width,&height);
+Result
+The operator get_image_pointer1 get_image_pointer1 GetImagePointer1 GetImagePointer1 get_image_pointer1 returns the value 2 (
+H_MSG_TRUE )
+if
+exactly one image was passed.
+The behavior in case of empty input (no input images available) is set via
+the operator set_system('no_object_result',<Result>) set_system("no_object_result",<Result>) SetSystem("no_object_result",<Result>) SetSystem("no_object_result",<Result>) set_system("no_object_result",<Result>) .
+If necessary an exception is raised.
+Possible Predecessors
+read_image read_image ReadImage ReadImage read_image
+Alternatives
+set_grayval set_grayval SetGrayval SetGrayval set_grayval ,
+get_grayval get_grayval GetGrayval GetGrayval get_grayval ,
+get_image_pointer3 get_image_pointer3 GetImagePointer3 GetImagePointer3 get_image_pointer3 ,
+get_image_size get_image_size GetImageSize GetImageSize get_image_size ,
+get_image_type get_image_type GetImageType GetImageType get_image_type
+See also
+paint_region paint_region PaintRegion PaintRegion paint_region ,
+paint_gray paint_gray PaintGray PaintGray paint_gray
+Module
+Foundation
+Classes Classes | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

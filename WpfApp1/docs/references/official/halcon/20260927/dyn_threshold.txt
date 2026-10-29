@@ -1,0 +1,709 @@
+dyn_threshold [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Segmentation
+/
+Threshold
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+dyn_threshold
+dyn_threshold
+DynThreshold
+DynThreshold
+dyn_threshold
+(Operator)
+Name
+dyn_threshold
+dyn_threshold
+DynThreshold
+DynThreshold
+dyn_threshold
+— Segment an image using a local threshold.
+Signature
+dyn_threshold
+(
+OrigImage
+,
+ThresholdImage
+:
+RegionDynThresh
+:
+Offset
+,
+LightDark
+: )
+Herror
+dyn_threshold
+(const Hobject
+OrigImage
+, const Hobject
+ThresholdImage
+, Hobject*
+RegionDynThresh
+, double
+Offset
+, const char*
+LightDark
+)
+Herror
+T_dyn_threshold
+(const Hobject
+OrigImage
+, const Hobject
+ThresholdImage
+, Hobject*
+RegionDynThresh
+, const Htuple
+Offset
+, const Htuple
+LightDark
+)
+void
+DynThreshold
+(const HObject&
+OrigImage
+, const HObject&
+ThresholdImage
+, HObject*
+RegionDynThresh
+, const HTuple&
+Offset
+, const HTuple&
+LightDark
+)
+HRegion
+HImage
+::
+DynThreshold
+(const HImage&
+ThresholdImage
+, const HTuple&
+Offset
+, const HString&
+LightDark
+) const
+HRegion
+HImage
+::
+DynThreshold
+(const HImage&
+ThresholdImage
+, double
+Offset
+, const HString&
+LightDark
+) const
+HRegion
+HImage
+::
+DynThreshold
+(const HImage&
+ThresholdImage
+, double
+Offset
+, const char*
+LightDark
+) const
+HRegion
+HImage
+::
+DynThreshold
+(const HImage&
+ThresholdImage
+, double
+Offset
+, const wchar_t*
+LightDark
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+DynThreshold
+(
+HObject
+origImage
+,
+HObject
+thresholdImage
+, out
+HObject
+regionDynThresh
+,
+HTuple
+offset
+,
+HTuple
+lightDark
+)
+HRegion
+HImage
+.
+DynThreshold
+(
+HImage
+thresholdImage
+,
+HTuple
+offset
+, string
+lightDark
+)
+HRegion
+HImage
+.
+DynThreshold
+(
+HImage
+thresholdImage
+, double
+offset
+, string
+lightDark
+)
+def
+dyn_threshold
+(
+orig_image
+: HObject,
+threshold_image
+: HObject,
+offset
+: Union[int, float],
+light_dark
+: str) -> HObject
+Description
+dyn_threshold
+dyn_threshold
+DynThreshold
+DynThreshold
+dyn_threshold
+selects from the input image those
+regions in which the pixels fulfill a threshold condition.  Let
+g_{o} = g_{
+OrigImage
+OrigImage
+OrigImage
+origImage
+orig_image
+}, and g_{t} =
+g_{
+ThresholdImage
+ThresholdImage
+ThresholdImage
+thresholdImage
+threshold_image
+}.  Then the condition for
+LightDark
+LightDark
+LightDark
+lightDark
+light_dark
+=
+'light'
+"light"
+"light"
+"light"
+"light"
+is:
+For
+LightDark
+LightDark
+LightDark
+lightDark
+light_dark
+=
+'dark'
+"dark"
+"dark"
+"dark"
+"dark"
+the condition is:
+For
+LightDark
+LightDark
+LightDark
+lightDark
+light_dark
+=
+'equal'
+"equal"
+"equal"
+"equal"
+"equal"
+it is:
+Finally, for
+LightDark
+LightDark
+LightDark
+lightDark
+light_dark
+=
+'not_equal'
+"not_equal"
+"not_equal"
+"not_equal"
+"not_equal"
+it is:
+Typically, the threshold images are smoothed versions of the
+original image (e.g., by applying
+mean_image
+mean_image
+MeanImage
+MeanImage
+mean_image
+,
+binomial_filter
+binomial_filter
+BinomialFilter
+BinomialFilter
+binomial_filter
+,
+gauss_filter
+gauss_filter
+GaussFilter
+GaussFilter
+gauss_filter
+, etc.).  Then the
+effect of
+dyn_threshold
+dyn_threshold
+DynThreshold
+DynThreshold
+dyn_threshold
+is similar to applying
+threshold
+threshold
+Threshold
+Threshold
+threshold
+to a highpass-filtered version of the original
+image (see
+highpass_image
+highpass_image
+HighpassImage
+HighpassImage
+highpass_image
+).
+With
+dyn_threshold
+dyn_threshold
+DynThreshold
+DynThreshold
+dyn_threshold
+, contours of an object can be extracted,
+where the objects' size (diameter) is determined by the mask size of
+the lowpass filter and the amplitude of the objects' edges:
+The larger the mask size is chosen, the larger the found regions
+become.  As a rule of thumb, the mask size should be about twice the
+diameter of the objects to be extracted.  It is important not to set
+the parameter
+Offset
+Offset
+Offset
+offset
+offset
+to zero because in this case too
+many small regions will be found (noise).  Values between 5 and 40
+are a useful choice.  The larger
+Offset
+Offset
+Offset
+offset
+offset
+is chosen, the
+smaller the extracted regions become.
+All points of the input image fulfilling the above condition are
+stored jointly in one region.  If necessary, the connected
+components can be obtained by calling
+connection
+connection
+Connection
+Connection
+connection
+.
+Attention
+If
+Offset
+Offset
+Offset
+offset
+offset
+is chosen from  -1 to 1 
+usually a very noisy region is generated, requiring large storage.
+If
+Offset
+Offset
+Offset
+offset
+offset
+is chosen too large (> 60, say) it may happen
+that no points fulfill the threshold condition (i.e., an empty
+region is returned).  If
+Offset
+Offset
+Offset
+offset
+offset
+is chosen too small (<
+-60, say) it may happen that all points fulfill the threshold
+condition (i.e., a full region is returned).
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on tuple level.
+Automatically parallelized on  domain level.
+Parameters
+OrigImage
+OrigImage
+OrigImage
+origImage
+orig_image
+(input_object)
+singlechannelimage(-array)
+→
+object
+HImage
+HObject
+HObject
+Hobject
+(byte / int2 / uint2 / int4 / real)
+Input image.
+ThresholdImage
+ThresholdImage
+ThresholdImage
+thresholdImage
+threshold_image
+(input_object)
+singlechannelimage(-array)
+→
+object
+HImage
+HObject
+HObject
+Hobject
+(byte / int2 / uint2 / int4 / real)
+Image containing the local thresholds.
+RegionDynThresh
+RegionDynThresh
+RegionDynThresh
+regionDynThresh
+region_dyn_thresh
+(output_object)
+region(-array)
+→
+object
+HRegion
+HObject
+HObject
+Hobject *
+Segmented regions.
+Offset
+Offset
+Offset
+offset
+offset
+(input_control)
+number
+→
+HTuple
+Union[int, float]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Offset applied to ThresholdImage.
+Default:
+5.0
+Suggested values:
+1.0, 3.0, 5.0, 7.0, 10.0, 20.0, 30.0
+Value range:
+-255.0
+          ≤
+Offset
+Offset
+Offset
+offset
+offset
+≤
+          255.0
+(lin)
+Minimum increment:
+0.01
+Recommended increment:
+5
+LightDark
+LightDark
+LightDark
+lightDark
+light_dark
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Extract light, dark or similar areas?
+Default:
+'light'
+"light"
+"light"
+"light"
+"light"
+List of values:
+'dark'
+"dark"
+"dark"
+"dark"
+"dark"
+,
+'equal'
+"equal"
+"equal"
+"equal"
+"equal"
+,
+'light'
+"light"
+"light"
+"light"
+"light"
+,
+'not_equal'
+"not_equal"
+"not_equal"
+"not_equal"
+"not_equal"
+Example (HDevelop)
+* Looking for regions with the diameter D
+mean_image(Image,Mean,D*2+1,D*2+1)
+dyn_threshold(Image,Mean,Seg,5,'light')
+connection(Seg,Regions)
+Example (C)
+/* Looking for regions with the diameter D */
+mean_image(Image,&Mean,D*2+1,D*2+1);
+dyn_threshold(Image,Mean,&Seg,5.0,"light");
+connection(Seg,&Region);
+Example (C++)
+#include "HIOStream.h"
+#if !defined(USE_IOSTREAM_H)
+using namespace std;
+#endif
+#include "HalconCpp.h"
+using namespace Halcon;
+
+int main (int argc, char *argv[])
+{
+  HImage   image ("monkey"),
+           mean;
+  HWindow  win;
+
+  if (argc != 2)
+  {
+    cout << "Using: " << argv[0] << " <diameter>" << endl;
+    exit (1);
+  }
+
+  int d = atoi (argv[1]) * 2 + 1;
+
+  image.Display (win);
+
+  mean = image.MeanImage (d, d);
+
+  HRegionArray seg = image.DynThreshold (mean, 5.0, "light");
+  HRegionArray reg = seg.Connection ();
+
+  win.SetColored (12);
+  reg.Display (win);
+  win.Click ();
+
+  return (0);
+}
+Example (HDevelop)
+* Looking for regions with the diameter D
+mean_image(Image,Mean,D*2+1,D*2+1)
+dyn_threshold(Image,Mean,Seg,5,'light')
+connection(Seg,Regions)
+Complexity
+Let A be the area of the input region.  Then the runtime
+complexity is O(A).
+Result
+dyn_threshold
+dyn_threshold
+DynThreshold
+DynThreshold
+dyn_threshold
+returns
+2
+(
+H_MSG_TRUE
+)
+     if all parameters are
+correct.  The behavior with respect to the input images and output
+regions can be determined by setting the values of the flags
+'no_object_result'
+"no_object_result"
+"no_object_result"
+"no_object_result"
+"no_object_result"
+,
+'empty_region_result'
+"empty_region_result"
+"empty_region_result"
+"empty_region_result"
+"empty_region_result"
+, and
+'store_empty_region'
+"store_empty_region"
+"store_empty_region"
+"store_empty_region"
+"store_empty_region"
+with
+set_system
+set_system
+SetSystem
+SetSystem
+set_system
+.
+If necessary, an exception is raised.
+Possible Predecessors
+mean_image
+mean_image
+MeanImage
+MeanImage
+mean_image
+,
+smooth_image
+smooth_image
+SmoothImage
+SmoothImage
+smooth_image
+,
+binomial_filter
+binomial_filter
+BinomialFilter
+BinomialFilter
+binomial_filter
+,
+gauss_filter
+gauss_filter
+GaussFilter
+GaussFilter
+gauss_filter
+Possible Successors
+connection
+connection
+Connection
+Connection
+connection
+,
+select_shape
+select_shape
+SelectShape
+SelectShape
+select_shape
+,
+reduce_domain
+reduce_domain
+ReduceDomain
+ReduceDomain
+reduce_domain
+,
+select_gray
+select_gray
+SelectGray
+SelectGray
+select_gray
+,
+rank_region
+rank_region
+RankRegion
+RankRegion
+rank_region
+,
+dilation1
+dilation1
+Dilation1
+Dilation1
+dilation1
+,
+opening
+opening
+Opening
+Opening
+opening
+,
+erosion1
+erosion1
+Erosion1
+Erosion1
+erosion1
+Alternatives
+check_difference
+check_difference
+CheckDifference
+CheckDifference
+check_difference
+,
+threshold
+threshold
+Threshold
+Threshold
+threshold
+See also
+highpass_image
+highpass_image
+HighpassImage
+HighpassImage
+highpass_image
+,
+sub_image
+sub_image
+SubImage
+SubImage
+sub_image
+Module
+Foundation
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

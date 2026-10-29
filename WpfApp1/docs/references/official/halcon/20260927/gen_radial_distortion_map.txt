@@ -1,0 +1,595 @@
+gen_radial_distortion_map [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Calibration
+/
+Rectification
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+gen_radial_distortion_map
+T_gen_radial_distortion_map
+GenRadialDistortionMap
+GenRadialDistortionMap
+gen_radial_distortion_map
+(Operator)
+Name
+gen_radial_distortion_map
+T_gen_radial_distortion_map
+GenRadialDistortionMap
+GenRadialDistortionMap
+gen_radial_distortion_map
+— Generate a projection map that describes the mapping of images corresponding
+to a changing radial distortion.
+Signature
+gen_radial_distortion_map
+( :
+Map
+:
+CamParamIn
+,
+CamParamOut
+,
+MapType
+: )
+Herror
+T_gen_radial_distortion_map
+(Hobject*
+Map
+, const Htuple
+CamParamIn
+, const Htuple
+CamParamOut
+, const Htuple
+MapType
+)
+void
+GenRadialDistortionMap
+(HObject*
+Map
+, const HTuple&
+CamParamIn
+, const HTuple&
+CamParamOut
+, const HTuple&
+MapType
+)
+void
+HImage
+::
+GenRadialDistortionMap
+(const HCamPar&
+CamParamIn
+, const HCamPar&
+CamParamOut
+, const HString&
+MapType
+)
+void
+HImage
+::
+GenRadialDistortionMap
+(const HCamPar&
+CamParamIn
+, const HCamPar&
+CamParamOut
+, const char*
+MapType
+)
+void
+HImage
+::
+GenRadialDistortionMap
+(const HCamPar&
+CamParamIn
+, const HCamPar&
+CamParamOut
+, const wchar_t*
+MapType
+)
+(
+            Windows only)
+HImage
+HCamPar
+::
+GenRadialDistortionMap
+(const HCamPar&
+CamParamOut
+, const HString&
+MapType
+) const
+HImage
+HCamPar
+::
+GenRadialDistortionMap
+(const HCamPar&
+CamParamOut
+, const char*
+MapType
+) const
+HImage
+HCamPar
+::
+GenRadialDistortionMap
+(const HCamPar&
+CamParamOut
+, const wchar_t*
+MapType
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+GenRadialDistortionMap
+(out
+HObject
+map
+,
+HTuple
+camParamIn
+,
+HTuple
+camParamOut
+,
+HTuple
+mapType
+)
+void
+HImage
+.
+GenRadialDistortionMap
+(
+HCamPar
+camParamIn
+,
+HCamPar
+camParamOut
+, string
+mapType
+)
+HImage
+HCamPar
+.
+GenRadialDistortionMap
+(
+HCamPar
+camParamOut
+, string
+mapType
+)
+def
+gen_radial_distortion_map
+(
+cam_param_in
+: Sequence[Union[int, float, str]],
+cam_param_out
+: Sequence[Union[int, float, str]],
+map_type
+: str) -> HObject
+Description
+gen_radial_distortion_map
+gen_radial_distortion_map
+GenRadialDistortionMap
+GenRadialDistortionMap
+gen_radial_distortion_map
+computes the mapping of images
+corresponding to a changing radial distortion in accordance to the internal
+camera parameters
+CamParamIn
+CamParamIn
+CamParamIn
+camParamIn
+cam_param_in
+and
+CamParamOut
+CamParamOut
+CamParamOut
+camParamOut
+cam_param_out
+which can be
+obtained, e.g., using the operator
+calibrate_cameras
+calibrate_cameras
+CalibrateCameras
+CalibrateCameras
+calibrate_cameras
+.
+CamParamIn
+CamParamIn
+CamParamIn
+camParamIn
+cam_param_in
+and
+CamParamOut
+CamParamOut
+CamParamOut
+camParamOut
+cam_param_out
+contain the old and the new
+camera parameters including the old and the new radial distortion,
+respectively (also see
+Calibration
+for the sequence of
+the parameters and the underlying camera model).  Each pixel of the
+potential output image is transformed into the image plane using
+CamParamOut
+CamParamOut
+CamParamOut
+camParamOut
+cam_param_out
+and subsequently projected into a subpixel position
+of the potential input image using
+CamParamIn
+CamParamIn
+CamParamIn
+camParamIn
+cam_param_in
+. Note that
+gen_radial_distortion_map
+gen_radial_distortion_map
+GenRadialDistortionMap
+GenRadialDistortionMap
+gen_radial_distortion_map
+can only be used with area scan cameras.
+The mapping function is stored in the output image
+Map
+Map
+Map
+map
+map
+. The size of
+Map
+Map
+Map
+map
+map
+is given by the camera parameters
+CamParamOut
+CamParamOut
+CamParamOut
+camParamOut
+cam_param_out
+and
+therefore defines the size of the resulting mapped images using
+map_image
+map_image
+MapImage
+MapImage
+map_image
+. The size of the images to be mapped with
+map_image
+map_image
+MapImage
+MapImage
+map_image
+is determined by the camera parameters
+CamParamIn
+CamParamIn
+CamParamIn
+camParamIn
+cam_param_in
+.
+MapType
+MapType
+MapType
+mapType
+map_type
+is used to specify the type of the output
+Map
+Map
+Map
+map
+map
+.
+If
+'nearest_neighbor'
+"nearest_neighbor"
+"nearest_neighbor"
+"nearest_neighbor"
+"nearest_neighbor"
+is chosen,
+Map
+Map
+Map
+map
+map
+consists of one image
+containing one  channel, in which for each pixel of the resulting image the
+linearized coordinate of the pixel of the input image is stored that is the
+nearest neighbor to the transformed coordinates. If
+'bilinear'
+"bilinear"
+"bilinear"
+"bilinear"
+"bilinear"
+interpolation is chosen,
+Map
+Map
+Map
+map
+map
+consists of one image containing five
+channels. In the first channel for each pixel in the resulting image the
+linearized coordinates of the pixel in the input image is stored that is in
+the upper left position relative to the transformed coordinates.
+The four other channels contain the  weights of the four neighboring pixels
+of the transformed coordinates which are used for the bilinear interpolation,
+in the following order:
+2
+3
+4
+5
+The second channel, for example, contains the weights of the pixels that
+lie to the upper left relative to the transformed coordinates.
+If
+'coord_map_sub_pix'
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+is chosen,
+Map
+Map
+Map
+map
+map
+consists of
+one vector field image of the semantic type 'vector_field_absolute', in
+which for each pixel of the resulting image the subpixel precise
+coordinates in the input image are stored.
+If
+CamParamOut
+CamParamOut
+CamParamOut
+camParamOut
+cam_param_out
+was computed via
+change_radial_distortion_cam_par
+change_radial_distortion_cam_par
+ChangeRadialDistortionCamPar
+ChangeRadialDistortionCamPar
+change_radial_distortion_cam_par
+, the mapping describes the effect
+of a lens with a modified radial distortion
+. If
+, the mapping corresponds to a rectification.
+A subsequent pose estimation (determination of the
+external camera parameters) is not affected by this operation.
+If several images have to be mapped using the same camera parameters,
+gen_radial_distortion_map
+gen_radial_distortion_map
+GenRadialDistortionMap
+GenRadialDistortionMap
+gen_radial_distortion_map
+in combination with
+map_image
+map_image
+MapImage
+MapImage
+map_image
+is much more efficient than the operator
+change_radial_distortion_image
+change_radial_distortion_image
+ChangeRadialDistortionImage
+ChangeRadialDistortionImage
+change_radial_distortion_image
+because the transformation
+must be computed only once.
+If you want to re-use the created map in another program, you can save it as
+a multi-channel image with the operator
+write_image
+write_image
+WriteImage
+WriteImage
+write_image
+, using the format
+'tiff'
+"tiff"
+"tiff"
+"tiff"
+"tiff"
+.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Map
+Map
+Map
+map
+map
+(output_object)
+(multichannel-)image
+→
+object
+HImage
+HObject
+HObject
+Hobject *
+(int4 / int8 / uint2 / vector_field)
+Image containing the mapping data.
+CamParamIn
+CamParamIn
+CamParamIn
+camParamIn
+cam_param_in
+(input_control)
+campar
+→
+HCamPar
+,
+HTuple
+Sequence[Union[int, float, str]]
+HTuple
+Htuple
+(real /
+integer /
+string)
+(
+double
+/
+int /
+long /
+string)
+(
+double
+/
+Hlong /
+HString)
+(
+double
+/
+Hlong /
+char*)
+Old camera parameters.
+CamParamOut
+CamParamOut
+CamParamOut
+camParamOut
+cam_param_out
+(input_control)
+campar
+→
+HCamPar
+,
+HTuple
+Sequence[Union[int, float, str]]
+HTuple
+Htuple
+(real /
+integer /
+string)
+(
+double
+/
+int /
+long /
+string)
+(
+double
+/
+Hlong /
+HString)
+(
+double
+/
+Hlong /
+char*)
+New camera parameters.
+MapType
+MapType
+MapType
+mapType
+map_type
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Type of the mapping.
+Default:
+'bilinear'
+"bilinear"
+"bilinear"
+"bilinear"
+"bilinear"
+List of values:
+'bilinear'
+"bilinear"
+"bilinear"
+"bilinear"
+"bilinear"
+,
+'coord_map_sub_pix'
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+"coord_map_sub_pix"
+,
+'nearest_neighbor'
+"nearest_neighbor"
+"nearest_neighbor"
+"nearest_neighbor"
+"nearest_neighbor"
+Result
+gen_radial_distortion_map
+gen_radial_distortion_map
+GenRadialDistortionMap
+GenRadialDistortionMap
+gen_radial_distortion_map
+returns
+2
+(
+H_MSG_TRUE
+)
+     if all parameter values
+are correct. If necessary, an exception is raised.
+Possible Predecessors
+change_radial_distortion_cam_par
+change_radial_distortion_cam_par
+ChangeRadialDistortionCamPar
+ChangeRadialDistortionCamPar
+change_radial_distortion_cam_par
+,
+camera_calibration
+camera_calibration
+CameraCalibration
+CameraCalibration
+camera_calibration
+,
+hand_eye_calibration
+hand_eye_calibration
+HandEyeCalibration
+HandEyeCalibration
+hand_eye_calibration
+Possible Successors
+map_image
+map_image
+MapImage
+MapImage
+map_image
+Alternatives
+change_radial_distortion_image
+change_radial_distortion_image
+ChangeRadialDistortionImage
+ChangeRadialDistortionImage
+change_radial_distortion_image
+See also
+change_radial_distortion_contours_xld
+change_radial_distortion_contours_xld
+ChangeRadialDistortionContoursXld
+ChangeRadialDistortionContoursXld
+change_radial_distortion_contours_xld
+Module
+Calibration
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

@@ -1,0 +1,130 @@
+image_points_to_world_plane [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Calibration / Rectification
+HDevelop
+.NET
+Python
+C++
+C
+Classes Classes | | Operators
+image_points_to_world_plane T_image_points_to_world_plane ImagePointsToWorldPlane ImagePointsToWorldPlane image_points_to_world_plane (Operator)
+Name
+image_points_to_world_plane T_image_points_to_world_plane ImagePointsToWorldPlane ImagePointsToWorldPlane image_points_to_world_plane — Transform image points into the plane z=0 of a world coordinate system.
+Signature
+image_points_to_world_plane ( : : CameraParam , WorldPose , Rows , Cols , Scale : X , Y )
+Herror T_image_points_to_world_plane (const Htuple CameraParam , const Htuple WorldPose , const Htuple Rows , const Htuple Cols , const Htuple Scale , Htuple* X , Htuple* Y )
+void ImagePointsToWorldPlane (const HTuple& CameraParam , const HTuple& WorldPose , const HTuple& Rows , const HTuple& Cols , const HTuple& Scale , HTuple* X , HTuple* Y )
+void HCamPar :: ImagePointsToWorldPlane (const HPose& WorldPose , const HTuple& Rows , const HTuple& Cols , const HTuple& Scale , HTuple* X , HTuple* Y ) const
+void HCamPar :: ImagePointsToWorldPlane (const HPose& WorldPose , const HTuple& Rows , const HTuple& Cols , const HString& Scale , HTuple* X , HTuple* Y ) const
+void HCamPar :: ImagePointsToWorldPlane (const HPose& WorldPose , const HTuple& Rows , const HTuple& Cols , const char* Scale , HTuple* X , HTuple* Y ) const
+void HCamPar :: ImagePointsToWorldPlane (const HPose& WorldPose , const HTuple& Rows , const HTuple& Cols , const wchar_t* Scale , HTuple* X , HTuple* Y ) const
+(
+Windows only)
+static void HOperatorSet . ImagePointsToWorldPlane ( HTuple cameraParam , HTuple worldPose , HTuple rows , HTuple cols , HTuple scale , out HTuple x , out HTuple y )
+void HCamPar . ImagePointsToWorldPlane ( HPose worldPose , HTuple rows , HTuple cols , HTuple scale , out HTuple x , out HTuple y )
+void HCamPar . ImagePointsToWorldPlane ( HPose worldPose , HTuple rows , HTuple cols , string scale , out HTuple x , out HTuple y )
+def image_points_to_world_plane ( camera_param : Sequence[Union[int, float, str]], world_pose : Sequence[Union[int, float]], rows : Sequence[Union[int, float]], cols : Sequence[Union[int, float]], scale : Union[int, float, str]) -> Tuple[Sequence[float], Sequence[float]]
+Description
+The operator image_points_to_world_plane image_points_to_world_plane ImagePointsToWorldPlane ImagePointsToWorldPlane image_points_to_world_plane transforms image points
+which are given in Rows Rows Rows rows rows and Cols Cols Cols cols cols into the plane z=0 in a
+world coordinate system and returns their 3D coordinates in X X X x x and
+Y Y Y y y . The world coordinate system is chosen by passing its pose
+relative to the camera coordinate system in WorldPose WorldPose WorldPose worldPose world_pose .
+Hence, latter one is expected in the form
+, where
+ccs denotes the camera coordinate system and
+wcs the world coordinate system (see
+Transformations / Poses
+and “Solution Guide III-C - 3D Vision” ).
+In CameraParam CameraParam CameraParam cameraParam camera_param you must pass the internal camera parameters
+(see Calibration for the sequence of the parameters
+and the underlying camera model).
+In many cases CameraParam CameraParam CameraParam cameraParam camera_param and WorldPose WorldPose WorldPose worldPose world_pose are the result of
+calibrating the camera with the operator calibrate_cameras calibrate_cameras CalibrateCameras CalibrateCameras calibrate_cameras . See
+below for an example.
+With the parameter Scale Scale Scale scale scale you can scale the resulting 3D coordinates.
+The parameter Scale Scale Scale scale scale must be specified as the ratio desired
+unit/original unit . The original unit is determined by the coordinates of
+the calibration object. If the original unit is meters (which is the case if
+you use the standard calibration plate), you can set the desired unit
+directly by selecting 'm' "m" "m" "m" "m" , 'cm' "cm" "cm" "cm" "cm" , 'mm' "mm" "mm" "mm" "mm" or
+'um' "um" "um" "um" "um" for the parameter Scale Scale Scale scale scale .
+Internally, the operator first computes the line of sight between the
+projection center and the image contour points in the camera coordinate
+system, taking into account the radial distortions. The line of sight is
+then transformed into the world coordinate system specified in
+WorldPose WorldPose WorldPose worldPose world_pose . By intersecting the plane z=0 with the line of sight the
+3D coordinates X X X x x and Y Y Y y y are obtained.
+It is recommended to use only those image points Rows Rows Rows rows rows and
+Cols Cols Cols cols cols , that lie within the calibrated image size. The mathematical
+model does only work well for image points, that lie within the calibration
+range.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+CameraParam CameraParam CameraParam cameraParam camera_param (input_control) campar → HCamPar , HTuple Sequence[Union[int, float, str]] HTuple Htuple (real / integer / string) ( double / int / long / string) ( double / Hlong / HString) ( double / Hlong / char*)
+Internal camera parameters.
+WorldPose WorldPose WorldPose worldPose world_pose (input_control) pose → HPose , HTuple Sequence[Union[int, float]] HTuple Htuple (real / integer) ( double / int / long) ( double / Hlong) ( double / Hlong)
+3D pose of the world coordinate system in camera
+coordinates.
+Number of elements:
+7
+Rows Rows Rows rows rows (input_control) coordinates.y-array → HTuple Sequence[Union[int, float]] HTuple Htuple (real / integer) ( double / int / long) ( double / Hlong) ( double / Hlong)
+Row coordinates of the points to be transformed.
+Default:
+100.0
+Cols Cols Cols cols cols (input_control) coordinates.x-array → HTuple Sequence[Union[int, float]] HTuple Htuple (real / integer) ( double / int / long) ( double / Hlong) ( double / Hlong)
+Column coordinates of the points to be transformed.
+Default:
+100.0
+Scale Scale Scale scale scale (input_control) number → HTuple Union[int, float, str] HTuple Htuple (string / integer / real) ( string / int / long / double) ( HString / Hlong / double) ( char* / Hlong / double)
+Scale or dimension
+Default:
+'m'
+"m"
+"m"
+"m"
+"m"
+Suggested values:
+'m' "m" "m" "m" "m" , 'cm' "cm" "cm" "cm" "cm" , 'mm' "mm" "mm" "mm" "mm" , 'microns' "microns" "microns" "microns" "microns" , 'um' "um" "um" "um" "um" , 1.0, 0.01, 0.001, 1.0e-6, 0.0254, 0.3048, 0.9144
+Restriction:
+Scale > 0
+X X X x x (output_control) coordinates.x-array → HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+X coordinates of the points in the world coordinate
+system.
+Y Y Y y y (output_control) coordinates.y-array → HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+Y coordinates of the points in the world coordinate
+system.
+Example (HDevelop)
+* Perform camera calibration (with standard calibration plate).
+calibrate_cameras (CalibDataID, Error)
+get_calib_data (CalibDataID, 'camera', 0, 'params', CamParam)
+* Get reference pose (pose 2 of calibration object 0).
+get_calib_data (CalibDataID, 'calib_obj_pose',\
+[0,2], 'pose', WorldPose)
+* Compensate thickness of plate.
+set_origin_pose(ObjInCameraPose, 0, 0, 0.0006, WorldPose)
+* Transform image points into world coordinate system (unit mm).
+image_points_to_world_plane(CamParam, WorldPose, PointRows, PointColumns, \
+'mm', PointXCoord, PointYCoord)
+Result
+image_points_to_world_plane image_points_to_world_plane ImagePointsToWorldPlane ImagePointsToWorldPlane image_points_to_world_plane returns 2 (
+H_MSG_TRUE )
+if all parameter values
+are correct. If necessary, an exception is raised.
+Possible Predecessors
+create_pose create_pose CreatePose CreatePose create_pose ,
+hom_mat3d_to_pose hom_mat3d_to_pose HomMat3dToPose HomMat3dToPose hom_mat3d_to_pose ,
+camera_calibration camera_calibration CameraCalibration CameraCalibration camera_calibration ,
+hand_eye_calibration hand_eye_calibration HandEyeCalibration HandEyeCalibration hand_eye_calibration ,
+set_origin_pose set_origin_pose SetOriginPose SetOriginPose set_origin_pose
+See also
+contour_to_world_plane_xld contour_to_world_plane_xld ContourToWorldPlaneXld ContourToWorldPlaneXld contour_to_world_plane_xld ,
+project_3d_point project_3d_point Project3dPoint Project3dPoint project_3d_point
+Module
+Calibration
+Classes Classes | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

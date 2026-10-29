@@ -1,0 +1,155 @@
+gen_image1_extern [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Image / Creation
+HDevelop
+.NET
+Python
+C++
+C
+Classes Classes | | Operators
+gen_image1_extern gen_image1_extern GenImage1Extern GenImage1Extern gen_image1_extern (Operator)
+Name
+gen_image1_extern gen_image1_extern GenImage1Extern GenImage1Extern gen_image1_extern — Create an image from a pointer on the pixels with storage management.
+Signature
+gen_image1_extern ( : Image : Type , Width , Height , PixelPointer , ClearProc : )
+Herror gen_image1_extern (Hobject* Image , const char* Type , const Hlong Width , const Hlong Height , const Hlong PixelPointer , const Hlong ClearProc )
+Herror T_gen_image1_extern (Hobject* Image , const Htuple Type , const Htuple Width , const Htuple Height , const Htuple PixelPointer , const Htuple ClearProc )
+void GenImage1Extern (HObject* Image , const HTuple& Type , const HTuple& Width , const HTuple& Height , const HTuple& PixelPointer , const HTuple& ClearProc )
+void HImage :: GenImage1Extern (const HString& Type , Hlong Width , Hlong Height , void* PixelPointer , void* ClearProc )
+void HImage :: GenImage1Extern (const char* Type , Hlong Width , Hlong Height , void* PixelPointer , void* ClearProc )
+void HImage :: GenImage1Extern (const wchar_t* Type , Hlong Width , Hlong Height , void* PixelPointer , void* ClearProc )
+(
+Windows only)
+static void HOperatorSet . GenImage1Extern (out HObject image , HTuple type , HTuple width , HTuple height , HTuple pixelPointer , HTuple clearProc )
+void HImage . GenImage1Extern (string type , int width , int height , IntPtr pixelPointer , IntPtr clearProc )
+def gen_image1_extern ( type : str, width : int, height : int, pixel_pointer : int, clear_proc : int) -> HObject
+Description
+The operator gen_image1_extern gen_image1_extern GenImage1Extern GenImage1Extern gen_image1_extern creates an image of the size
+Width Width Width width width * Height Height Height height height .
+The pixels in PixelPointer PixelPointer PixelPointer pixelPointer pixel_pointer are stored line-sequentially.
+The type of the given pixels
+( PixelPointer PixelPointer PixelPointer pixelPointer pixel_pointer ) must correspond to Type Type Type type type
+(see gen_image_const gen_image_const GenImageConst GenImageConst gen_image_const for a more detailed description of the
+image types).
+Note that how to pass a pointer value depends on the used operator
+signature and programming environment. Make sure to pass the
+actual memory address where the image data is stored, not the
+address of a pointer variable. Care must be taken not to
+truncate 64-bit pointers on 64-bit architectures.
+The memory for the new image is not newly allocated
+by HALCON,
+contrary to gen_image1 gen_image1 GenImage1 GenImage1 gen_image1 , and thus is not copied either.
+This means that the memory space that PixelPointer PixelPointer PixelPointer pixelPointer pixel_pointer points
+to must be released by deleting the object Image Image Image image image .
+This is done by the procedure ClearProc ClearProc ClearProc clearProc clear_proc provided by
+the caller. This procedure must have the following signature
+void ClearProc(void* ptr);
+and will be called using __cdecl calling convention
+when deleting Image Image Image image image .
+If the memory shall not be released (in the case of
+frame grabbers or static memory) a procedure
+“without trunk” or the NULL-Pointer can be passed.
+Analogous to the parameter PixelPointer PixelPointer PixelPointer pixelPointer pixel_pointer the
+pointer has to be passed to the procedure depending
+on the used operator signature and programming environment.
+Attention
+gen_image1_extern gen_image1_extern GenImage1Extern GenImage1Extern gen_image1_extern does not check if enough memory for an image of
+Width Width Width width width * Height Height Height height height is allocated in
+PixelPointer PixelPointer PixelPointer pixelPointer pixel_pointer .
+Also, gen_image1_extern gen_image1_extern GenImage1Extern GenImage1Extern gen_image1_extern does not check whether the
+PixelPointer PixelPointer PixelPointer pixelPointer pixel_pointer is valid or not.
+Thus, it must be ensured by the user that it is valid.
+Otherwise, the program may crash!
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Image Image Image image image (output_object) image → object HImage HObject HObject Hobject * (byte / direction / cyclic / int1 / int2 / uint2 / int4 / real)
+Created HALCON image.
+Type Type Type type type (input_control) string → HTuple str HTuple Htuple (string) ( string ) ( HString ) ( char* )
+Pixel type.
+Default:
+'byte'
+"byte"
+"byte"
+"byte"
+"byte"
+List of values:
+'byte' "byte" "byte" "byte" "byte" , 'cyclic' "cyclic" "cyclic" "cyclic" "cyclic" , 'direction' "direction" "direction" "direction" "direction" , 'int1' "int1" "int1" "int1" "int1" , 'int2' "int2" "int2" "int2" "int2" , 'int4' "int4" "int4" "int4" "int4" , 'real' "real" "real" "real" "real" , 'uint2' "uint2" "uint2" "uint2" "uint2"
+Width Width Width width width (input_control) extent.x → HTuple int HTuple Htuple (integer) ( int / long) ( Hlong ) ( Hlong )
+Width of image.
+Default:
+512
+Suggested values:
+128, 256, 512, 1024
+Value range:
+1
+≤
+Width
+Width
+Width
+width
+width
+(lin)
+Minimum increment:
+1
+Recommended increment:
+10
+Height Height Height height height (input_control) extent.y → HTuple int HTuple Htuple (integer) ( int / long) ( Hlong ) ( Hlong )
+Height of image.
+Default:
+512
+Suggested values:
+128, 256, 512, 1024
+Value range:
+1
+≤
+Height
+Height
+Height
+height
+height
+(lin)
+Minimum increment:
+1
+Recommended increment:
+10
+PixelPointer PixelPointer PixelPointer pixelPointer pixel_pointer (input_control) pointer → HTuple int HTuple Htuple (integer) ( IntPtr ) ( Hlong ) ( Hlong )
+Pointer to the first gray value.
+ClearProc ClearProc ClearProc clearProc clear_proc (input_control) pointer → HTuple int HTuple Htuple (integer) ( IntPtr ) ( Hlong ) ( Hlong )
+Pointer to the procedure re-releasing the memory
+of the image when deleting the object.
+Default:
+0
+Example (C)
+void NewImage(Hobject *new)
+{
+unsigned char *image;
+int r,c;
+image = malloc(640*480);
+for (r=0; r<480; r++)
+for (c=0; c<640; c++)
+image[r*640+c] = c % 255;
+gen_image1_extern(new,"byte",640,480,(Hlong)image,(Hlong)free);
+}
+Result
+The operator gen_image1_extern gen_image1_extern GenImage1Extern GenImage1Extern gen_image1_extern returns the value 2 (
+H_MSG_TRUE )
+if the parameter values are correct.
+Otherwise an exception is raised.
+Alternatives
+gen_image1 gen_image1 GenImage1 GenImage1 gen_image1 ,
+gen_image_const gen_image_const GenImageConst GenImageConst gen_image_const ,
+get_image_pointer1 get_image_pointer1 GetImagePointer1 GetImagePointer1 get_image_pointer1 ,
+gen_image3_extern gen_image3_extern GenImage3Extern GenImage3Extern gen_image3_extern
+See also
+reduce_domain reduce_domain ReduceDomain ReduceDomain reduce_domain ,
+paint_gray paint_gray PaintGray PaintGray paint_gray ,
+paint_region paint_region PaintRegion PaintRegion paint_region ,
+set_grayval set_grayval SetGrayval SetGrayval set_grayval
+Module
+Foundation
+Classes Classes | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

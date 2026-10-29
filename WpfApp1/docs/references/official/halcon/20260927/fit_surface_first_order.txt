@@ -1,0 +1,736 @@
+fit_surface_first_order [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Image
+/
+Features
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+fit_surface_first_order
+fit_surface_first_order
+FitSurfaceFirstOrder
+FitSurfaceFirstOrder
+fit_surface_first_order
+(Operator)
+Name
+fit_surface_first_order
+fit_surface_first_order
+FitSurfaceFirstOrder
+FitSurfaceFirstOrder
+fit_surface_first_order
+— Calculate gray value moments and approximation by a first order surface
+(plane).
+Signature
+fit_surface_first_order
+(
+Regions
+,
+Image
+:  :
+Algorithm
+,
+Iterations
+,
+ClippingFactor
+:
+Alpha
+,
+Beta
+,
+Gamma
+)
+Herror
+fit_surface_first_order
+(const Hobject
+Regions
+, const Hobject
+Image
+, const char*
+Algorithm
+, const Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Alpha
+, double*
+Beta
+, double*
+Gamma
+)
+Herror
+T_fit_surface_first_order
+(const Hobject
+Regions
+, const Hobject
+Image
+, const Htuple
+Algorithm
+, const Htuple
+Iterations
+, const Htuple
+ClippingFactor
+, Htuple*
+Alpha
+, Htuple*
+Beta
+, Htuple*
+Gamma
+)
+void
+FitSurfaceFirstOrder
+(const HObject&
+Regions
+, const HObject&
+Image
+, const HTuple&
+Algorithm
+, const HTuple&
+Iterations
+, const HTuple&
+ClippingFactor
+, HTuple*
+Alpha
+, HTuple*
+Beta
+, HTuple*
+Gamma
+)
+HTuple
+HImage
+::
+FitSurfaceFirstOrder
+(const HRegion&
+Regions
+, const HString&
+Algorithm
+, Hlong
+Iterations
+, double
+ClippingFactor
+, HTuple*
+Beta
+, HTuple*
+Gamma
+) const
+double
+HImage
+::
+FitSurfaceFirstOrder
+(const HRegion&
+Regions
+, const HString&
+Algorithm
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Beta
+, double*
+Gamma
+) const
+double
+HImage
+::
+FitSurfaceFirstOrder
+(const HRegion&
+Regions
+, const char*
+Algorithm
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Beta
+, double*
+Gamma
+) const
+double
+HImage
+::
+FitSurfaceFirstOrder
+(const HRegion&
+Regions
+, const wchar_t*
+Algorithm
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Beta
+, double*
+Gamma
+) const
+(
+            Windows only)
+HTuple
+HRegion
+::
+FitSurfaceFirstOrder
+(const HImage&
+Image
+, const HString&
+Algorithm
+, Hlong
+Iterations
+, double
+ClippingFactor
+, HTuple*
+Beta
+, HTuple*
+Gamma
+) const
+double
+HRegion
+::
+FitSurfaceFirstOrder
+(const HImage&
+Image
+, const HString&
+Algorithm
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Beta
+, double*
+Gamma
+) const
+double
+HRegion
+::
+FitSurfaceFirstOrder
+(const HImage&
+Image
+, const char*
+Algorithm
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Beta
+, double*
+Gamma
+) const
+double
+HRegion
+::
+FitSurfaceFirstOrder
+(const HImage&
+Image
+, const wchar_t*
+Algorithm
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Beta
+, double*
+Gamma
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+FitSurfaceFirstOrder
+(
+HObject
+regions
+,
+HObject
+image
+,
+HTuple
+algorithm
+,
+HTuple
+iterations
+,
+HTuple
+clippingFactor
+, out
+HTuple
+alpha
+, out
+HTuple
+beta
+, out
+HTuple
+gamma
+)
+HTuple
+HImage
+.
+FitSurfaceFirstOrder
+(
+HRegion
+regions
+, string
+algorithm
+, int
+iterations
+, double
+clippingFactor
+, out
+HTuple
+beta
+, out
+HTuple
+gamma
+)
+double
+HImage
+.
+FitSurfaceFirstOrder
+(
+HRegion
+regions
+, string
+algorithm
+, int
+iterations
+, double
+clippingFactor
+, out double
+beta
+, out double
+gamma
+)
+HTuple
+HRegion
+.
+FitSurfaceFirstOrder
+(
+HImage
+image
+, string
+algorithm
+, int
+iterations
+, double
+clippingFactor
+, out
+HTuple
+beta
+, out
+HTuple
+gamma
+)
+double
+HRegion
+.
+FitSurfaceFirstOrder
+(
+HImage
+image
+, string
+algorithm
+, int
+iterations
+, double
+clippingFactor
+, out double
+beta
+, out double
+gamma
+)
+def
+fit_surface_first_order
+(
+regions
+: HObject,
+image
+: HObject,
+algorithm
+: str,
+iterations
+: int,
+clipping_factor
+: float) -> Tuple[Sequence[float], Sequence[float], Sequence[float]]
+def
+fit_surface_first_order_s
+(
+regions
+: HObject,
+image
+: HObject,
+algorithm
+: str,
+iterations
+: int,
+clipping_factor
+: float) -> Tuple[float, float, float]
+Description
+The operator
+fit_surface_first_order
+fit_surface_first_order
+FitSurfaceFirstOrder
+FitSurfaceFirstOrder
+fit_surface_first_order
+calculates the gray value
+moments and the parameters of the approximation of the gray values
+by a first order surface.  The calculation is done by minimizing the
+distance between the gray values and the surface. A first order surface is
+described by the following formula:
+and
+are the center
+coordinates  of intersection of the input region with the full image domain.
+By the minimization process the parameters from
+Alpha
+Alpha
+Alpha
+alpha
+alpha
+to
+Gamma
+Gamma
+Gamma
+gamma
+gamma
+is calculated.
+The algorithm used for the fitting can be selected via
+Algorithm
+Algorithm
+Algorithm
+algorithm
+algorithm
+:
+'regression'
+Standard 'least squares' line fitting.
+'huber'
+Weighted 'least squares'  fitting, where the impact of outliers
+is decreased based on the approach of Huber.
+'tukey'
+Weighted 'least squares' fitting, where outliers
+are ignored based on the approach of Tukey.
+The parameter
+ClippingFactor
+ClippingFactor
+ClippingFactor
+clippingFactor
+clipping_factor
+(a scaling factor for the standard
+deviation) controls the amount of damping outliers: The smaller the
+value chosen for
+ClippingFactor
+ClippingFactor
+ClippingFactor
+clippingFactor
+clipping_factor
+the more outliers are
+detected.  The detection of outliers is repeated. The parameter
+Iterations
+Iterations
+Iterations
+iterations
+iterations
+specifies the number of iterations. If
+'regression'
+"regression"
+"regression"
+"regression"
+"regression"
+is set for
+Algorithm
+Algorithm
+Algorithm
+algorithm
+algorithm
+Iterations
+Iterations
+Iterations
+iterations
+iterations
+is ignored.
+Attention
+Note that the operator
+fit_surface_first_order
+fit_surface_first_order
+FitSurfaceFirstOrder
+FitSurfaceFirstOrder
+fit_surface_first_order
+only considers
+the given
+Regions
+Regions
+Regions
+regions
+regions
+and ignores any previously set domain
+of the input image
+Image
+Image
+Image
+image
+image
+.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on tuple level.
+Automatically parallelized on internal data level.
+Parameters
+Regions
+Regions
+Regions
+regions
+regions
+(input_object)
+region(-array)
+→
+object
+HRegion
+HObject
+HObject
+Hobject
+Regions to be checked.
+Image
+Image
+Image
+image
+image
+(input_object)
+singlechannelimage
+→
+object
+HImage
+HObject
+HObject
+Hobject
+(byte / uint2 / direction / cyclic / real)
+Corresponding gray values.
+Algorithm
+Algorithm
+Algorithm
+algorithm
+algorithm
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Algorithm for the fitting.
+Default:
+'regression'
+"regression"
+"regression"
+"regression"
+"regression"
+List of values:
+'huber'
+"huber"
+"huber"
+"huber"
+"huber"
+,
+'regression'
+"regression"
+"regression"
+"regression"
+"regression"
+,
+'tukey'
+"tukey"
+"tukey"
+"tukey"
+"tukey"
+Iterations
+Iterations
+Iterations
+iterations
+iterations
+(input_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Maximum number of iterations (unused for 'regression').
+Default:
+5
+Restriction:
+Iterations >= 0
+ClippingFactor
+ClippingFactor
+ClippingFactor
+clippingFactor
+clipping_factor
+(input_control)
+real
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Clipping factor for the elimination of outliers.
+Default:
+2.0
+List of values:
+1.0, 1.5, 2.0, 2.5, 3.0
+Restriction:
+ClippingFactor > 0
+Alpha
+Alpha
+Alpha
+alpha
+alpha
+(output_control)
+real(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Parameter Alpha of the approximating surface.
+Beta
+Beta
+Beta
+beta
+beta
+(output_control)
+real(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Parameter Beta of the approximating surface.
+Gamma
+Gamma
+Gamma
+gamma
+gamma
+(output_control)
+real(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Parameter Gamma of the approximating surface.
+Result
+The operator
+fit_surface_first_order
+fit_surface_first_order
+FitSurfaceFirstOrder
+FitSurfaceFirstOrder
+fit_surface_first_order
+returns the
+value
+2
+(
+H_MSG_TRUE
+)
+     if an
+image with the defined gray values (byte) is entered and
+the parameters are correct.
+If necessary an exception is raised.
+Possible Successors
+gen_image_surface_first_order
+gen_image_surface_first_order
+GenImageSurfaceFirstOrder
+GenImageSurfaceFirstOrder
+gen_image_surface_first_order
+See also
+moments_gray_plane
+moments_gray_plane
+MomentsGrayPlane
+MomentsGrayPlane
+moments_gray_plane
+,
+fit_surface_second_order
+fit_surface_second_order
+FitSurfaceSecondOrder
+FitSurfaceSecondOrder
+fit_surface_second_order
+Module
+Foundation
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

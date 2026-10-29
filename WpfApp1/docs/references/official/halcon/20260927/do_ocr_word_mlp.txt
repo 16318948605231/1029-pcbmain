@@ -1,0 +1,170 @@
+do_ocr_word_mlp [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / OCR / Neural Nets
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses | | Operators
+do_ocr_word_mlpT_do_ocr_word_mlpDoOcrWordMlpDoOcrWordMlpdo_ocr_word_mlp (Operator)
+Name
+do_ocr_word_mlpT_do_ocr_word_mlpDoOcrWordMlpDoOcrWordMlpdo_ocr_word_mlp — Classify a related group of characters with an OCR classifier.
+Signature
+do_ocr_word_mlp(Character, Image : : OCRHandle, Expression, NumAlternatives, NumCorrections : Class, Confidence, Word, Score)
+Herror T_do_ocr_word_mlp(const Hobject Character, const Hobject Image, const Htuple OCRHandle, const Htuple Expression, const Htuple NumAlternatives, const Htuple NumCorrections, Htuple* Class, Htuple* Confidence, Htuple* Word, Htuple* Score)
+void DoOcrWordMlp(const HObject& Character, const HObject& Image, const HTuple& OCRHandle, const HTuple& Expression, const HTuple& NumAlternatives, const HTuple& NumCorrections, HTuple* Class, HTuple* Confidence, HTuple* Word, HTuple* Score)
+HTuple HRegion::DoOcrWordMlp(const HImage& Image, const HOCRMlp& OCRHandle, const HString& Expression, Hlong NumAlternatives, Hlong NumCorrections, HTuple* Confidence, HString* Word, double* Score) const
+HString HRegion::DoOcrWordMlp(const HImage& Image, const HOCRMlp& OCRHandle, const HString& Expression, Hlong NumAlternatives, Hlong NumCorrections, double* Confidence, HString* Word, double* Score) const
+HString HRegion::DoOcrWordMlp(const HImage& Image, const HOCRMlp& OCRHandle, const char* Expression, Hlong NumAlternatives, Hlong NumCorrections, double* Confidence, HString* Word, double* Score) const
+HString HRegion::DoOcrWordMlp(const HImage& Image, const HOCRMlp& OCRHandle, const wchar_t* Expression, Hlong NumAlternatives, Hlong NumCorrections, double* Confidence, HString* Word, double* Score) const
+(
+Windows only)
+HTuple HOCRMlp::DoOcrWordMlp(const HRegion& Character, const HImage& Image, const HString& Expression, Hlong NumAlternatives, Hlong NumCorrections, HTuple* Confidence, HString* Word, double* Score) const
+HString HOCRMlp::DoOcrWordMlp(const HRegion& Character, const HImage& Image, const HString& Expression, Hlong NumAlternatives, Hlong NumCorrections, double* Confidence, HString* Word, double* Score) const
+HString HOCRMlp::DoOcrWordMlp(const HRegion& Character, const HImage& Image, const char* Expression, Hlong NumAlternatives, Hlong NumCorrections, double* Confidence, HString* Word, double* Score) const
+HString HOCRMlp::DoOcrWordMlp(const HRegion& Character, const HImage& Image, const wchar_t* Expression, Hlong NumAlternatives, Hlong NumCorrections, double* Confidence, HString* Word, double* Score) const
+(
+Windows only)
+static void HOperatorSet.DoOcrWordMlp(HObject character, HObject image, HTuple OCRHandle, HTuple expression, HTuple numAlternatives, HTuple numCorrections, out HTuple classVal, out HTuple confidence, out HTuple word, out HTuple score)
+HTuple HRegion.DoOcrWordMlp(HImage image, HOCRMlp OCRHandle, string expression, int numAlternatives, int numCorrections, out HTuple confidence, out string word, out double score)
+string HRegion.DoOcrWordMlp(HImage image, HOCRMlp OCRHandle, string expression, int numAlternatives, int numCorrections, out double confidence, out string word, out double score)
+HTuple HOCRMlp.DoOcrWordMlp(HRegion character, HImage image, string expression, int numAlternatives, int numCorrections, out HTuple confidence, out string word, out double score)
+string HOCRMlp.DoOcrWordMlp(HRegion character, HImage image, string expression, int numAlternatives, int numCorrections, out double confidence, out string word, out double score)
+def do_ocr_word_mlp(character: HObject, image: HObject, ocrhandle: HHandle, expression: str, num_alternatives: int, num_corrections: int) -> Tuple[Sequence[str], Sequence[float], str, float]
+def do_ocr_word_mlp_s(character: HObject, image: HObject, ocrhandle: HHandle, expression: str, num_alternatives: int, num_corrections: int) -> Tuple[str, float, str, float]
+Description
+do_ocr_word_mlpdo_ocr_word_mlpDoOcrWordMlpDoOcrWordMlpdo_ocr_word_mlp works like do_ocr_multi_class_mlpdo_ocr_multi_class_mlpDoOcrMultiClassMlpDoOcrMultiClassMlpdo_ocr_multi_class_mlp insofar
+as it computes the best class for each of the characters given by the
+regions CharacterCharacterCharactercharactercharacter and the gray values ImageImageImageimageimage with the
+OCR classifier OCRHandleOCRHandleOCRHandleOCRHandleocrhandle, and returns the classes in ClassClassClassclassValclass
+and the corresponding confidences (probabilities) of the classes
+in ConfidenceConfidenceConfidenceconfidenceconfidence.
+In contrast to do_ocr_multi_class_mlpdo_ocr_multi_class_mlpDoOcrMultiClassMlpDoOcrMultiClassMlpdo_ocr_multi_class_mlp, do_ocr_word_mlpdo_ocr_word_mlpDoOcrWordMlpDoOcrWordMlpdo_ocr_word_mlp
+treats the group of characters as an entity which yields a WordWordWordwordword
+by concatenating the class names for each character region. This allows
+to restrict the allowed classification results on a textual level by
+specifying an ExpressionExpressionExpressionexpressionexpression describing the expected word.
+The ExpressionExpressionExpressionexpressionexpression may restrict the word to belong to a predefined
+lexicon created using create_lexiconcreate_lexiconCreateLexiconCreateLexiconcreate_lexicon or import_lexiconimport_lexiconImportLexiconImportLexiconimport_lexicon,
+by specifying the name of the lexicon in angular
+brackets as in '<mylexicon>'"<mylexicon>""<mylexicon>""<mylexicon>""<mylexicon>". If the ExpressionExpressionExpressionexpressionexpression is of
+any other form, it is interpreted as a regular expression with the same
+syntax as specified for tuple_regexp_matchtuple_regexp_matchTupleRegexpMatchTupleRegexpMatchtuple_regexp_match. Note that you will
+usually want to use an expression of the form
+'^...$'
+when using variable quantifiers like '*', to ensure that the entire word
+is used in the expression. Also note that in contrast to
+tuple_regexp_matchtuple_regexp_matchTupleRegexpMatchTupleRegexpMatchtuple_regexp_match, do_ocr_word_mlpdo_ocr_word_mlpDoOcrWordMlpDoOcrWordMlpdo_ocr_word_mlp does not
+support passing extra options in an expression tuple.
+If the word derived from the best class for each character does not match
+the ExpressionExpressionExpressionexpressionexpression, do_ocr_word_mlpdo_ocr_word_mlpDoOcrWordMlpDoOcrWordMlpdo_ocr_word_mlp attempts to correct it by
+considering the NumAlternativesNumAlternativesNumAlternativesnumAlternativesnum_alternatives best classes for each character.
+The alternatives used are identical to those returned by
+do_ocr_single_class_mlpdo_ocr_single_class_mlpDoOcrSingleClassMlpDoOcrSingleClassMlpdo_ocr_single_class_mlp for a single character. It does so by
+testing all possible corrections for which the classification result
+is changed for at most NumCorrectionsNumCorrectionsNumCorrectionsnumCorrectionsnum_corrections character regions.
+Note that NumAlternativesNumAlternativesNumAlternativesnumAlternativesnum_alternatives and NumCorrectionsNumCorrectionsNumCorrectionsnumCorrectionsnum_corrections affect the
+complexity of the algorithm, so that in some cases internal restrictions
+are made. See the section 'Complexity' below for further information.
+In case the ExpressionExpressionExpressionexpressionexpression is a lexicon and the above procedure did
+not yield a result, the most similar word in the lexicon is returned as long
+as it requires less than NumCorrectionsNumCorrectionsNumCorrectionsnumCorrectionsnum_corrections edit operations for the
+correction (see suggest_lexiconsuggest_lexiconSuggestLexiconSuggestLexiconsuggest_lexicon).
+The resulting word is graded by a ScoreScoreScorescorescore between 0.0 (no correction
+found) and 1.0 (original word correct). The ScoreScoreScorescorescore is lowered by
+adding a penalty according to the number of corrected characters and another
+(minor) penalty depending on how many classes with higher confidences have
+been ignored in order to match the ExpressionExpressionExpressionexpressionexpression:
+with num_corr being the actual number of applied corrections and
+num_alt the total number of discarded alternatives.
+Note that this is a combinatorial score which does not reflect
+the original ConfidenceConfidenceConfidenceconfidenceconfidence of the best ClassClassClassclassValclass.
+A string of the number
+(alternatively
+displayed as ) in
+ClassClassClassclassValclass signifies that the region has been classified as rejection
+class.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+CharacterCharacterCharactercharactercharacter (input_object) region(-array) → objectHRegionHObjectHObjectHobject
+Characters to be recognized.
+ImageImageImageimageimage (input_object) singlechannelimage → objectHImageHObjectHObjectHobject (byte / uint2)
+Gray values of the characters.
+OCRHandleOCRHandleOCRHandleOCRHandleocrhandle (input_control) ocr_mlp → HOCRMlp, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the OCR classifier.
+ExpressionExpressionExpressionexpressionexpression (input_control) string → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Expression describing the allowed word structure.
+NumAlternativesNumAlternativesNumAlternativesnumAlternativesnum_alternatives (input_control) integer → HTupleintHTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Number of classes per character considered for the
+internal word correction.
+Default:
+3
+Suggested values:
+3, 4, 5
+Value range:
+1
+≤
+NumAlternatives
+NumAlternatives
+NumAlternatives
+numAlternatives
+num_alternatives
+NumCorrectionsNumCorrectionsNumCorrectionsnumCorrectionsnum_corrections (input_control) integer → HTupleintHTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Maximum number of corrected characters.
+Default:
+2
+Suggested values:
+1, 2, 3, 4, 5
+Value range:
+0
+≤
+NumCorrections
+NumCorrections
+NumCorrections
+numCorrections
+num_corrections
+ClassClassClassclassValclass (output_control) string(-array) → HTupleSequence[str]HTupleHtuple (string) (string) (HString) (char*)
+Result of classifying the characters with the
+MLP.
+Number of elements:
+Class == Character
+ConfidenceConfidenceConfidenceconfidenceconfidence (output_control) real(-array) → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Confidence of the class of the characters.
+Number of elements:
+Confidence == Character
+WordWordWordwordword (output_control) string → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Word text after classification and correction.
+ScoreScoreScorescorescore (output_control) real → HTuplefloatHTupleHtuple (real) (double) (double) (double)
+Measure of similarity between corrected word
+and uncorrected classification results.
+Complexity
+The complexity of checking all possible corrections is of magnitude
+,
+where a is the number of alternatives, n is the
+number of character regions, and c is the number of allowed corrections.
+However, to guard against a near-infinite loop in case of large n,
+c is internally clipped to 5, 3, or 1 if
+a*n >= 30, 60, or 90, respectively.
+Result
+If the parameters are valid, the operator
+do_ocr_word_mlpdo_ocr_word_mlpDoOcrWordMlpDoOcrWordMlpdo_ocr_word_mlp returns the value 2 (
+H_MSG_TRUE)
+. If
+necessary, an exception is raised.
+Possible Predecessors
+trainf_ocr_class_mlptrainf_ocr_class_mlpTrainfOcrClassMlpTrainfOcrClassMlptrainf_ocr_class_mlp,
+read_ocr_class_mlpread_ocr_class_mlpReadOcrClassMlpReadOcrClassMlpread_ocr_class_mlp
+Alternatives
+do_ocr_multi_class_mlpdo_ocr_multi_class_mlpDoOcrMultiClassMlpDoOcrMultiClassMlpdo_ocr_multi_class_mlp
+See also
+create_ocr_class_mlpcreate_ocr_class_mlpCreateOcrClassMlpCreateOcrClassMlpcreate_ocr_class_mlp,
+classify_class_mlpclassify_class_mlpClassifyClassMlpClassifyClassMlpclassify_class_mlp
+Module
+OCR/OCV
+ClassesClasses | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

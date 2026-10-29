@@ -1,0 +1,223 @@
+set_part [HALCON Operator Reference / Version 25.11.0.0]
+
+HALCON
+25.11.0.0 / HALCON Operator Reference / Graphics / Parameters
+
+HDevelop
+
+.NET
+
+Python
+
+C++
+
+C
+
+ClassesClasses | | Operators
+
+set_partT_set_partSetPartSetPartset_part (Operator)
+
+Name
+
+set_partT_set_partSetPartSetPartset_part — Modify the displayed image part.
+
+Signature
+
+set_part( : : WindowHandle, Row1, Column1, Row2, Column2 : )
+
+Herror T_set_part(const Htuple WindowHandle, const Htuple Row1, const Htuple Column1, const Htuple Row2, const Htuple Column2)
+
+void SetPart(const HTuple& WindowHandle, const HTuple& Row1, const HTuple& Column1, const HTuple& Row2, const HTuple& Column2)
+
+void HWindow::SetPart(const HTuple& Row1, const HTuple& Column1, const HTuple& Row2, const HTuple& Column2) const
+
+void HWindow::SetPart(Hlong Row1, Hlong Column1, Hlong Row2, Hlong Column2) const
+
+static void HOperatorSet.SetPart(HTuple windowHandle, HTuple row1, HTuple column1, HTuple row2, HTuple column2)
+
+void HWindow.SetPart(HTuple row1, HTuple column1, HTuple row2, HTuple column2)
+
+void HWindow.SetPart(int row1, int column1, int row2, int column2)
+
+def set_part(window_handle: HHandle, row_1: Union[int, float], column_1: Union[int, float], row_2: Union[int, float], column_2: Union[int, float]) -> None
+
+Description
+
+set_partset_partSetPartSetPartset_part modifies the image part that is displayed in
+the window. (Row1Row1Row1row1row_1,Column1Column1Column1column1column_1) denotes the
+upper left corner and (Row2Row2Row2row2row_2,Column2Column2Column2column2column_2) the lower
+right corner of the image part to display. The changed values are
+used by gray value output operators (disp_imagedisp_imageDispImageDispImagedisp_image,
+disp_colordisp_colorDispColorDispColordisp_color) as well as region output operators
+(disp_regiondisp_regionDispRegionDispRegiondisp_region).
+
+If only part of an image is displayed, it will be zoomed to full
+window size. The zooming interpolation method can be set with
+set_part_styleset_part_styleSetPartStyleSetPartStyleset_part_style. get_partget_partGetPartGetPartget_part returns the
+values of the image part to display.
+Adapting the size of the window to the size of the image part to be
+displayed will prevent slowing down the display due to necessary
+interpolations.
+Thus, the window preferably has the same size as the image part to be
+displayed, or otherwise half its size, quarter its size, etc.
+
+Beside setting the image part directly, the following special modes are
+supported:
+
+Row1Row1Row1row1row_1 = Column1Column1Column1column1column_1 =
+Row2Row2Row2row2row_2 = Column2Column2Column2column2column_2 = -1:
+
+The window size is chosen as the image part, i.e. no
+zooming of the image will be performed.
+
+Row1Row1Row1row1row_1, Column1Column1Column1column1column_1 > -1 and
+Row2Row2Row2row2row_2 = Column2Column2Column2column2column_2 = -1:
+
+The size of the last displayed image (in this window) is chosen
+as the image part, i.e. the image can completely be displayed in
+the image. For this the image will be zoomed if necessary.
+
+Row1Row1Row1row1row_1 = Column1Column1Column1column1column_1 = 0 and
+Row2Row2Row2row2row_2 = Column2Column2Column2column2column_2 = -2:
+
+The size of the last displayed image (in this window) is used
+to adapt the image part such that the image fits completely into the
+window, preserving the aspect ratio of the image. For this the image
+will be zoomed if necessary.
+
+Execution Information
+
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+
+Multithreading scope: global (may be called from any thread).
+
+Processed without parallelization.
+
+Parameters
+
+WindowHandleWindowHandleWindowHandlewindowHandlewindow_handle (input_control) window → HWindow, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+
+Window handle.
+
+Row1Row1Row1row1row_1 (input_control) rectangle.origin.y → HTupleUnion[int, float]HTupleHtuple (integer / real) (int / long / double) (Hlong / double) (Hlong / double)
+
+Row of the upper left corner of the
+chosen image part.
+
+Default:
+0
+
+Column1Column1Column1column1column_1 (input_control) rectangle.origin.x → HTupleUnion[int, float]HTupleHtuple (integer / real) (int / long / double) (Hlong / double) (Hlong / double)
+
+Column of the upper left corner of the
+chosen image part.
+
+Default:
+0
+
+Row2Row2Row2row2row_2 (input_control) rectangle.corner.y → HTupleUnion[int, float]HTupleHtuple (integer / real) (int / long / double) (Hlong / double) (Hlong / double)
+
+Row of the lower right corner of the
+chosen image part.
+
+Default:
+-1
+
+Restriction:
+Row2 >= Row1 || Row2 == -1 || Row1 == 0 && Row2 == -2
+
+Column2Column2Column2column2column_2 (input_control) rectangle.corner.x → HTupleUnion[int, float]HTupleHtuple (integer / real) (int / long / double) (Hlong / double) (Hlong / double)
+
+Column of the lower right corner of the
+chosen image part.
+
+Default:
+-1
+
+Restriction:
+Column2 >= Column1 || Column2 == -1 || Column1 == 0 && Column2 == -2
+
+Example (HDevelop)
+
+get_system('width',Width)
+get_system('height',Height)
+set_part(WindowHandle,0,0,Height-1,Width-1)
+disp_image(Image,WindowHandle)
+draw_rectangle1(WindowHandle,Row1,Column1,Row2,Column2)
+set_part(WindowHandle,Row1,Column1,Row2,Column2)
+disp_image(Image,WindowHandle)
+
+Example (C)
+
+get_system("width",width);
+get_system("height",height);
+create_tuple_i(&twidth, width-1);
+create_tuple_i(&theight, height-1);
+create_tuple_i(&zero, 0);
+T_set_part(WindowHandle,zero,zero,theight,twidth);
+destroy_tuple(twidth); destroy_tuple(theight); destroy_tuple(zero);
+T_disp_image(Image,WindowHandle);
+T_draw_rectangle1(WindowHandle,&Row1,&Col1,&Row2,&Col2);
+T_set_part(WindowHandle,Row1,Col1,Row2,Col2);
+T_disp_image(Image,WindowHandle);
+destroy_tuple(Row1); destroy_tuple(Col1);
+destroy_tuple(Row2); destroy_tuple(Col2);
+
+Example (HDevelop)
+
+get_system('width',Width)
+get_system('height',Height)
+set_part(WindowHandle,0,0,Height-1,Width-1)
+disp_image(Image,WindowHandle)
+draw_rectangle1(WindowHandle,Row1,Column1,Row2,Column2)
+set_part(WindowHandle,Row1,Column1,Row2,Column2)
+disp_image(Image,WindowHandle)
+
+Example (HDevelop)
+
+get_system('width',Width)
+get_system('height',Height)
+set_part(WindowHandle,0,0,Height-1,Width-1)
+disp_image(Image,WindowHandle)
+draw_rectangle1(WindowHandle,Row1,Column1,Row2,Column2)
+set_part(WindowHandle,Row1,Column1,Row2,Column2)
+disp_image(Image,WindowHandle)
+
+Result
+
+set_partset_partSetPartSetPartset_part returns 2 (
+H_MSG_TRUE)
+if the window is valid.
+Otherwise an exception is raised.
+
+Possible Predecessors
+
+get_partget_partGetPartGetPartget_part
+
+Possible Successors
+
+set_part_styleset_part_styleSetPartStyleSetPartStyleset_part_style,
+disp_imagedisp_imageDispImageDispImagedisp_image,
+disp_regiondisp_regionDispRegionDispRegiondisp_region
+
+Alternatives
+
+affine_trans_imageaffine_trans_imageAffineTransImageAffineTransImageaffine_trans_image
+
+See also
+
+get_partget_partGetPartGetPartget_part,
+set_part_styleset_part_styleSetPartStyleSetPartStyleset_part_style,
+disp_regiondisp_regionDispRegionDispRegiondisp_region,
+disp_imagedisp_imageDispImageDispImagedisp_image,
+disp_colordisp_colorDispColorDispColordisp_color
+
+Module
+
+Foundation
+
+ClassesClasses | | Operators
+
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+
+Follow us on

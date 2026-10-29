@@ -1,0 +1,73 @@
+read_deep_ocr [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / OCR / Deep OCR
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+read_deep_ocrT_read_deep_ocrReadDeepOcrReadDeepOcrread_deep_ocr (Operator)
+Name
+read_deep_ocrT_read_deep_ocrReadDeepOcrReadDeepOcrread_deep_ocr — Read a Deep OCR model from a file.
+Signature
+read_deep_ocr( :  : FileName : DeepOcrHandle)
+Herror T_read_deep_ocr(const Htuple FileName, Htuple* DeepOcrHandle)
+void ReadDeepOcr(const HTuple& FileName, HTuple* DeepOcrHandle)
+void HDlModelOcr::HDlModelOcr(const HString& FileName)
+void HDlModelOcr::HDlModelOcr(const char* FileName)
+void HDlModelOcr::HDlModelOcr(const wchar_t* FileName)
+(
+Windows only)
+void HDlModelOcr::ReadDeepOcr(const HString& FileName)
+void HDlModelOcr::ReadDeepOcr(const char* FileName)
+void HDlModelOcr::ReadDeepOcr(const wchar_t* FileName)
+(
+Windows only)
+static void HOperatorSet.ReadDeepOcr(HTuple fileName, out HTuple deepOcrHandle)
+public HDlModelOcr(string fileName)
+void HDlModelOcr.ReadDeepOcr(string fileName)
+def read_deep_ocr(file_name: str) -> HHandle
+Description
+The operator read_deep_ocrread_deep_ocrReadDeepOcrReadDeepOcrread_deep_ocr reads a Deep OCR model.
+Such models have to be in the HALCON format.
+As a result, the handle DeepOcrHandleDeepOcrHandleDeepOcrHandledeepOcrHandledeep_ocr_handle is returned.
+The model is loaded from the file FileNameFileNameFileNamefileNamefile_name.
+This file is thereby searched in the directory $HALCONROOT/dl/
+as well as in the currently used directory.
+The default HALCON file extension for Deep OCR models is
+'.hdo'.
+Please note that the values of runtime specific parameters are not written
+to file, see write_deep_ocrwrite_deep_ocrWriteDeepOcrWriteDeepOcrwrite_deep_ocr.
+As a consequence when reading a model these parameters are initialized with
+their default value, see get_deep_ocr_paramget_deep_ocr_paramGetDeepOcrParamGetDeepOcrParamget_deep_ocr_param.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+This operator returns a handle. Note that the state of an instance of this handle type may be changed by specific operators even though the handle is used as an input parameter by those operators.
+Parameters
+FileNameFileNameFileNamefileNamefile_name (input_control)  filename.read → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Filename
+File extension:
+.hdo
+DeepOcrHandleDeepOcrHandleDeepOcrHandledeepOcrHandledeep_ocr_handle (output_control)  deep_ocr → HDlModelOcr, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the Deep OCR model.
+Result
+If the parameters are valid, the operator read_deep_ocrread_deep_ocrReadDeepOcrReadDeepOcrread_deep_ocr
+returns the value 2 (
+H_MSG_TRUE)
+. If necessary, an exception is raised.
+Possible Predecessors
+create_deep_ocrcreate_deep_ocrCreateDeepOcrCreateDeepOcrcreate_deep_ocr
+Possible Successors
+set_deep_ocr_paramset_deep_ocr_paramSetDeepOcrParamSetDeepOcrParamset_deep_ocr_param,
+get_deep_ocr_paramget_deep_ocr_paramGetDeepOcrParamGetDeepOcrParamget_deep_ocr_param,
+apply_deep_ocrapply_deep_ocrApplyDeepOcrApplyDeepOcrapply_deep_ocr
+Alternatives
+create_deep_ocrcreate_deep_ocrCreateDeepOcrCreateDeepOcrcreate_deep_ocr
+Module
+OCR/OCV
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

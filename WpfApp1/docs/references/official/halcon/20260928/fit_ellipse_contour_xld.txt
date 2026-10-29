@@ -1,0 +1,1500 @@
+fit_ellipse_contour_xld [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+XLD
+/
+Features
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+fit_ellipse_contour_xld
+fit_ellipse_contour_xld
+FitEllipseContourXld
+FitEllipseContourXld
+fit_ellipse_contour_xld
+(Operator)
+Name
+fit_ellipse_contour_xld
+fit_ellipse_contour_xld
+FitEllipseContourXld
+FitEllipseContourXld
+fit_ellipse_contour_xld
+— Approximate XLD contours by ellipses or elliptic arcs.
+Signature
+fit_ellipse_contour_xld
+(
+Contours
+:  :
+Algorithm
+,
+MaxNumPoints
+,
+MaxClosureDist
+,
+ClippingEndPoints
+,
+VossTabSize
+,
+Iterations
+,
+ClippingFactor
+:
+Row
+,
+Column
+,
+Phi
+,
+Radius1
+,
+Radius2
+,
+StartPhi
+,
+EndPhi
+,
+PointOrder
+)
+Herror
+fit_ellipse_contour_xld
+(const Hobject
+Contours
+, const char*
+Algorithm
+, const Hlong
+MaxNumPoints
+, double
+MaxClosureDist
+, const Hlong
+ClippingEndPoints
+, const Hlong
+VossTabSize
+, const Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Row
+, double*
+Column
+, double*
+Phi
+, double*
+Radius1
+, double*
+Radius2
+, double*
+StartPhi
+, double*
+EndPhi
+, char*
+PointOrder
+)
+Herror
+T_fit_ellipse_contour_xld
+(const Hobject
+Contours
+, const Htuple
+Algorithm
+, const Htuple
+MaxNumPoints
+, const Htuple
+MaxClosureDist
+, const Htuple
+ClippingEndPoints
+, const Htuple
+VossTabSize
+, const Htuple
+Iterations
+, const Htuple
+ClippingFactor
+, Htuple*
+Row
+, Htuple*
+Column
+, Htuple*
+Phi
+, Htuple*
+Radius1
+, Htuple*
+Radius2
+, Htuple*
+StartPhi
+, Htuple*
+EndPhi
+, Htuple*
+PointOrder
+)
+void
+FitEllipseContourXld
+(const HObject&
+Contours
+, const HTuple&
+Algorithm
+, const HTuple&
+MaxNumPoints
+, const HTuple&
+MaxClosureDist
+, const HTuple&
+ClippingEndPoints
+, const HTuple&
+VossTabSize
+, const HTuple&
+Iterations
+, const HTuple&
+ClippingFactor
+, HTuple*
+Row
+, HTuple*
+Column
+, HTuple*
+Phi
+, HTuple*
+Radius1
+, HTuple*
+Radius2
+, HTuple*
+StartPhi
+, HTuple*
+EndPhi
+, HTuple*
+PointOrder
+)
+void
+HXLDCont
+::
+FitEllipseContourXld
+(const HString&
+Algorithm
+, Hlong
+MaxNumPoints
+, double
+MaxClosureDist
+, Hlong
+ClippingEndPoints
+, Hlong
+VossTabSize
+, Hlong
+Iterations
+, double
+ClippingFactor
+, HTuple*
+Row
+, HTuple*
+Column
+, HTuple*
+Phi
+, HTuple*
+Radius1
+, HTuple*
+Radius2
+, HTuple*
+StartPhi
+, HTuple*
+EndPhi
+, HTuple*
+PointOrder
+) const
+void
+HXLDCont
+::
+FitEllipseContourXld
+(const HString&
+Algorithm
+, Hlong
+MaxNumPoints
+, double
+MaxClosureDist
+, Hlong
+ClippingEndPoints
+, Hlong
+VossTabSize
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Row
+, double*
+Column
+, double*
+Phi
+, double*
+Radius1
+, double*
+Radius2
+, double*
+StartPhi
+, double*
+EndPhi
+, HString*
+PointOrder
+) const
+void
+HXLDCont
+::
+FitEllipseContourXld
+(const char*
+Algorithm
+, Hlong
+MaxNumPoints
+, double
+MaxClosureDist
+, Hlong
+ClippingEndPoints
+, Hlong
+VossTabSize
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Row
+, double*
+Column
+, double*
+Phi
+, double*
+Radius1
+, double*
+Radius2
+, double*
+StartPhi
+, double*
+EndPhi
+, HString*
+PointOrder
+) const
+void
+HXLDCont
+::
+FitEllipseContourXld
+(const wchar_t*
+Algorithm
+, Hlong
+MaxNumPoints
+, double
+MaxClosureDist
+, Hlong
+ClippingEndPoints
+, Hlong
+VossTabSize
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Row
+, double*
+Column
+, double*
+Phi
+, double*
+Radius1
+, double*
+Radius2
+, double*
+StartPhi
+, double*
+EndPhi
+, HString*
+PointOrder
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+FitEllipseContourXld
+(
+HObject
+contours
+,
+HTuple
+algorithm
+,
+HTuple
+maxNumPoints
+,
+HTuple
+maxClosureDist
+,
+HTuple
+clippingEndPoints
+,
+HTuple
+vossTabSize
+,
+HTuple
+iterations
+,
+HTuple
+clippingFactor
+, out
+HTuple
+row
+, out
+HTuple
+column
+, out
+HTuple
+phi
+, out
+HTuple
+radius1
+, out
+HTuple
+radius2
+, out
+HTuple
+startPhi
+, out
+HTuple
+endPhi
+, out
+HTuple
+pointOrder
+)
+void
+HXLDCont
+.
+FitEllipseContourXld
+(string
+algorithm
+, int
+maxNumPoints
+, double
+maxClosureDist
+, int
+clippingEndPoints
+, int
+vossTabSize
+, int
+iterations
+, double
+clippingFactor
+, out
+HTuple
+row
+, out
+HTuple
+column
+, out
+HTuple
+phi
+, out
+HTuple
+radius1
+, out
+HTuple
+radius2
+, out
+HTuple
+startPhi
+, out
+HTuple
+endPhi
+, out
+HTuple
+pointOrder
+)
+void
+HXLDCont
+.
+FitEllipseContourXld
+(string
+algorithm
+, int
+maxNumPoints
+, double
+maxClosureDist
+, int
+clippingEndPoints
+, int
+vossTabSize
+, int
+iterations
+, double
+clippingFactor
+, out double
+row
+, out double
+column
+, out double
+phi
+, out double
+radius1
+, out double
+radius2
+, out double
+startPhi
+, out double
+endPhi
+, out string
+pointOrder
+)
+def
+fit_ellipse_contour_xld
+(
+contours
+: HObject,
+algorithm
+: str,
+max_num_points
+: int,
+max_closure_dist
+: float,
+clipping_end_points
+: int,
+voss_tab_size
+: int,
+iterations
+: int,
+clipping_factor
+: float) -> Tuple[Sequence[float], Sequence[float], Sequence[float], Sequence[float], Sequence[float], Sequence[float], Sequence[float], Sequence[str]]
+def
+fit_ellipse_contour_xld_s
+(
+contours
+: HObject,
+algorithm
+: str,
+max_num_points
+: int,
+max_closure_dist
+: float,
+clipping_end_points
+: int,
+voss_tab_size
+: int,
+iterations
+: int,
+clipping_factor
+: float) -> Tuple[float, float, float, float, float, float, float, str]
+Description
+fit_ellipse_contour_xld
+fit_ellipse_contour_xld
+FitEllipseContourXld
+FitEllipseContourXld
+fit_ellipse_contour_xld
+approximates the XLD contours
+Contours
+Contours
+Contours
+contours
+contours
+by elliptic arcs or closed ellipses. It does not
+perform a segmentation of the input contours. Thus, one has to make sure
+that each contour corresponds to one and only one elliptic structure.
+The operator returns for each contour the center
+(
+Row
+Row
+Row
+row
+row
+,
+Column
+Column
+Column
+column
+column
+), the orientation of the main
+axis
+Phi
+Phi
+Phi
+phi
+phi
+, the length of the larger half axis
+Radius1
+Radius1
+Radius1
+radius1
+radius_1
+,
+and the length of the smaller half axis
+Radius2
+Radius2
+Radius2
+radius2
+radius_2
+of the underlying
+ellipse. In addition to that, the angle corresponding to the start point
+and the end point
+StartPhi
+StartPhi
+StartPhi
+startPhi
+start_phi
+,
+EndPhi
+EndPhi
+EndPhi
+endPhi
+end_phi
+,
+and the point order along the boundary
+PointOrder
+PointOrder
+PointOrder
+pointOrder
+point_order
+is returned for elliptic arcs. These parameters are set to
+0,
+, and 'positive' for closed ellipses.
+The algorithm used for the fitting of ellipses can be selected via
+Algorithm
+Algorithm
+Algorithm
+algorithm
+algorithm
+:
+'fitzgibbon'
+"fitzgibbon"
+"fitzgibbon"
+"fitzgibbon"
+"fitzgibbon"
+This approach minimizes the algebraic distance
+between the contour points
+and the resulting
+ellipse. The constraint
+guarantees that the
+resulting polynomial characterizes an ellipse (instead of a hyperbola or a
+parabola).
+'fhuber'
+"fhuber"
+"fhuber"
+"fhuber"
+"fhuber"
+Similar to
+'fitzgibbon'
+"fitzgibbon"
+"fitzgibbon"
+"fitzgibbon"
+"fitzgibbon"
+. Here the contour points are weighted
+to decrease the impact of outliers based on
+the approach of Huber (see below).
+'ftukey'
+"ftukey"
+"ftukey"
+"ftukey"
+"ftukey"
+Similar to
+'fitzgibbon'
+"fitzgibbon"
+"fitzgibbon"
+"fitzgibbon"
+"fitzgibbon"
+. Here the contour points are weighted
+and outliers are ignored based on
+the approach of Tukey (see below).
+'geometric'
+"geometric"
+"geometric"
+"geometric"
+"geometric"
+This approach minimizes the geometric distance
+between the contour points and the resulting ellipse.
+The distance measure is statistically optimal, but takes more
+computational time, because the computation is an iterative process.
+This option is recommended if the contour
+points are considerably distorted by noise.
+'geohuber'
+"geohuber"
+"geohuber"
+"geohuber"
+"geohuber"
+Similar to
+'geometric'
+"geometric"
+"geometric"
+"geometric"
+"geometric"
+. Here the contour points are weighted
+to decrease the impact of outliers based on
+the approach of Huber (see below).
+'geotukey'
+"geotukey"
+"geotukey"
+"geotukey"
+"geotukey"
+Similar to
+'geometric'
+"geometric"
+"geometric"
+"geometric"
+"geometric"
+. Here the contour points are weighted
+and outliers are ignored based on
+the approach of Tukey (see below).
+'voss'
+"voss"
+"voss"
+"voss"
+"voss"
+Each input contour is transformed in an affine standard position.
+Based on the moments of the transformed contour (that is of the
+enclosed image region) the standard circular segment is chosen
+whose standard position matches best with the standard position
+of the contour. The ellipse corresponding to the standard
+position of the selected circular segment is re-transformed
+based on the affine transformation which produced the standard position
+of the contour resulting in the ellipse matching the original contour.
+VossTabSize
+VossTabSize
+VossTabSize
+vossTabSize
+voss_tab_size
+standard circular segments are used for
+this computation. To speed up the process the corresponding moments
+and other data is stored in a table which is created during the
+first call (with a specific value for
+VossTabSize
+VossTabSize
+VossTabSize
+vossTabSize
+voss_tab_size
+) to
+fit_ellipse_contour_xld
+fit_ellipse_contour_xld
+FitEllipseContourXld
+FitEllipseContourXld
+fit_ellipse_contour_xld
+.
+'focpoints'
+"focpoints"
+"focpoints"
+"focpoints"
+"focpoints"
+Each point P on an ellipse satisfies the constraint that the sum
+of distances to the focal points
+equals twice the
+length of the larger half axis a. In this approach, the deviation
+is minimized for all contour
+points by a least squares optimization.
+'fphuber'
+"fphuber"
+"fphuber"
+"fphuber"
+"fphuber"
+Similar to
+'focpoints'
+"focpoints"
+"focpoints"
+"focpoints"
+"focpoints"
+. Here a
+weighted
+least squares
+optimization is done to decrease the impact of outliers based on
+the approach of Huber (see below).
+'fptukey'
+"fptukey"
+"fptukey"
+"fptukey"
+"fptukey"
+Similar to
+'focpoints'
+"focpoints"
+"focpoints"
+"focpoints"
+"focpoints"
+. Here a
+weighted
+least squares
+optimization is done and outliers are ignored based on
+the approach of Tukey (see below).
+For
+'*huber'
+and
+'*tukey'
+a robust error statistics is used
+to estimate the standard deviation of the distances from the contour points
+without
+outliers from the approximating ellipse.  The parameter
+ClippingFactor
+ClippingFactor
+ClippingFactor
+clippingFactor
+clipping_factor
+(a scaling factor for the standard deviation)
+controls the amount of outliers: the smaller the value chosen for
+ClippingFactor
+ClippingFactor
+ClippingFactor
+clippingFactor
+clipping_factor
+the more points are classified as outliers.
+Every contour point is individually weighted and contributes according to
+its weight in the fitting process. The bundle of robust weighting and
+fitting can be iterated. The overall number of iterations is
+given by
+Iterations
+Iterations
+Iterations
+iterations
+iterations
+. This parameter is of relevance for all
+algorithms except the two based on the geometric distance,
+i.e.,
+'geohuber'
+"geohuber"
+"geohuber"
+"geohuber"
+"geohuber"
+and
+'geotukey'
+"geotukey"
+"geotukey"
+"geotukey"
+"geotukey"
+, where this parameter
+is ignored. If the algorithm does
+not find a fitting ellipse within this number of iterations, it fits a line;
+in this case
+Radius2
+Radius2
+Radius2
+radius2
+radius_2
+is zero.
+In the Tukey algorithm outliers are removed, whereas in the Huber algorithm
+outliers are only damped, or more precisely they are weighted linearly.
+Without any robust weighting the squares of the distances are taken as
+error values in the optimization, i.e., a least square formulation.
+In practice, the approach of Tukey is recommended.
+To reduce the computational load, the fitting of ellipses can be
+restricted to a subset of the contour points: If a value other than
+-1
+is assigned to
+MaxNumPoints
+MaxNumPoints
+MaxNumPoints
+maxNumPoints
+max_num_points
+, only up to
+MaxNumPoints
+MaxNumPoints
+MaxNumPoints
+maxNumPoints
+max_num_points
+points - uniformly distributed over the
+contour - are used.
+For elliptic arcs, the points on the ellipse closest to the
+start points and end points of the original contours are chosen
+as start and end points. The corresponding angles referring to the
+main axis of the ellipse are returned in
+StartPhi
+StartPhi
+StartPhi
+startPhi
+start_phi
+and
+EndPhi
+EndPhi
+EndPhi
+endPhi
+end_phi
+, see also
+gen_ellipse_contour_xld
+gen_ellipse_contour_xld
+GenEllipseContourXld
+GenEllipseContourXld
+gen_ellipse_contour_xld
+.
+Contours, for which the distance between their start points and
+their end points is less or equal
+MaxClosureDist
+MaxClosureDist
+MaxClosureDist
+maxClosureDist
+max_closure_dist
+are considered to be closed. Thus, they are approximated by
+ellipses instead of elliptic arcs. The
+'focpoints'
+"focpoints"
+"focpoints"
+"focpoints"
+"focpoints"
+algorithms
+determine the initial parameters for the optimization for closed contours in
+a faster and less accurate way than for open contours.
+As a result, in some cases more
+Iterations
+Iterations
+Iterations
+iterations
+iterations
+may be necessary when applied to closed contours.
+Due to artifacts in the pre-processing the start and end points
+of a contour might be faulty. Therefore, it is possible to
+exclude
+ClippingEndPoints
+ClippingEndPoints
+ClippingEndPoints
+clippingEndPoints
+clipping_end_points
+points at the beginning and at the
+end of a contour from the fitting of ellipses. However, they are still
+used for the determination of
+StartPhi
+StartPhi
+StartPhi
+startPhi
+start_phi
+and
+EndPhi
+EndPhi
+EndPhi
+endPhi
+end_phi
+.
+The minimum necessary number of contour points for fitting an ellipse
+is five.
+Therefore, it is required that the number of contour points is at least
+.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Contours
+Contours
+Contours
+contours
+contours
+(input_object)
+xld_cont(-array)
+→
+object
+HXLDCont
+HObject
+HObject
+Hobject
+Input contours.
+Algorithm
+Algorithm
+Algorithm
+algorithm
+algorithm
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Algorithm for the fitting of ellipses.
+Default:
+'fitzgibbon'
+"fitzgibbon"
+"fitzgibbon"
+"fitzgibbon"
+"fitzgibbon"
+List of values:
+'fhuber'
+"fhuber"
+"fhuber"
+"fhuber"
+"fhuber"
+,
+'fitzgibbon'
+"fitzgibbon"
+"fitzgibbon"
+"fitzgibbon"
+"fitzgibbon"
+,
+'focpoints'
+"focpoints"
+"focpoints"
+"focpoints"
+"focpoints"
+,
+'fphuber'
+"fphuber"
+"fphuber"
+"fphuber"
+"fphuber"
+,
+'fptukey'
+"fptukey"
+"fptukey"
+"fptukey"
+"fptukey"
+,
+'ftukey'
+"ftukey"
+"ftukey"
+"ftukey"
+"ftukey"
+,
+'geohuber'
+"geohuber"
+"geohuber"
+"geohuber"
+"geohuber"
+,
+'geometric'
+"geometric"
+"geometric"
+"geometric"
+"geometric"
+,
+'geotukey'
+"geotukey"
+"geotukey"
+"geotukey"
+"geotukey"
+,
+'voss'
+"voss"
+"voss"
+"voss"
+"voss"
+MaxNumPoints
+MaxNumPoints
+MaxNumPoints
+maxNumPoints
+max_num_points
+(input_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Maximum number of contour points used for the
+computation (-1 for all points).
+Default:
+-1
+Restriction:
+MaxNumPoints >= 5
+MaxClosureDist
+MaxClosureDist
+MaxClosureDist
+maxClosureDist
+max_closure_dist
+(input_control)
+real
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Maximum distance between the end points of a
+contour to be considered as 'closed'.
+Default:
+0.0
+Restriction:
+MaxClosureDist >= 0.0
+ClippingEndPoints
+ClippingEndPoints
+ClippingEndPoints
+clippingEndPoints
+clipping_end_points
+(input_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Number of points at the beginning and at the end of the
+contours to be ignored for the fitting.
+Default:
+0
+Restriction:
+ClippingEndPoints >= 0
+VossTabSize
+VossTabSize
+VossTabSize
+vossTabSize
+voss_tab_size
+(input_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Number of circular segments used for the Voss approach.
+Default:
+200
+Restriction:
+VossTabSize >= 25 && VossTabSize <= 5000
+Iterations
+Iterations
+Iterations
+iterations
+iterations
+(input_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Maximum number of iterations for the robust weighted
+fitting.
+Default:
+3
+Restriction:
+Iterations >= 0
+ClippingFactor
+ClippingFactor
+ClippingFactor
+clippingFactor
+clipping_factor
+(input_control)
+real
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Clipping factor for the elimination of outliers
+(typical: 1.0 for '*huber' and 2.0 for '*tukey').
+Default:
+2.0
+Suggested values:
+1.0, 1.5, 2.0, 2.5, 3.0
+Restriction:
+ClippingFactor > 0
+Row
+Row
+Row
+row
+row
+(output_control)
+ellipse.center.y(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Row coordinate of the center of the ellipse.
+Column
+Column
+Column
+column
+column
+(output_control)
+ellipse.center.x(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Column coordinate of the center of the ellipse.
+Phi
+Phi
+Phi
+phi
+phi
+(output_control)
+ellipse.angle.rad(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Orientation of the main axis [rad].
+Radius1
+Radius1
+Radius1
+radius1
+radius_1
+(output_control)
+ellipse.radius1(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Length of the larger half axis.
+Radius2
+Radius2
+Radius2
+radius2
+radius_2
+(output_control)
+ellipse.radius2(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Length of the smaller half axis.
+StartPhi
+StartPhi
+StartPhi
+startPhi
+start_phi
+(output_control)
+angle.rad(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Angle of the start point [rad].
+EndPhi
+EndPhi
+EndPhi
+endPhi
+end_phi
+(output_control)
+angle.rad(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Angle of the end point [rad].
+PointOrder
+PointOrder
+PointOrder
+pointOrder
+point_order
+(output_control)
+string(-array)
+→
+HTuple
+Sequence[str]
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+point order along the boundary.
+List of values:
+'negative'
+"negative"
+"negative"
+"negative"
+"negative"
+,
+'positive'
+"positive"
+"positive"
+"positive"
+"positive"
+Example (HDevelop)
+read_image (Image, 'caltab')
+find_caltab (Image, CalPlate, 'caltab_800mm.descr', 3, 112, 5)
+reduce_domain (Image, CalPlate, ImageReduced)
+edges_sub_pix (ImageReduced, Edges, 'lanser2', 0.5, 20, 40)
+select_contours_xld (Edges, EdgesClosed, 'closed', 0, 2.0, 0, 0)
+select_contours_xld (EdgesClosed, EdgesMarks, 'length', 20, 80, 0, 0)
+fit_ellipse_contour_xld (EdgesMarks, 'fitzgibbon', -1, 2, 0, 200, 3, 2.0, \
+                         Row, Column, Phi, Radius1, Radius2, StartPhi, \
+                         EndPhi, PointOrder)
+gen_ellipse_contour_xld (EllMarks, Row, Column, Phi, Radius1, Radius2, \
+                         StartPhi, EndPhi, PointOrder, 1.5)
+length_xld(EllMarks,Length)
+Example (HDevelop)
+read_image (Image, 'caltab')
+find_caltab (Image, CalPlate, 'caltab_800mm.descr', 3, 112, 5)
+reduce_domain (Image, CalPlate, ImageReduced)
+edges_sub_pix (ImageReduced, Edges, 'lanser2', 0.5, 20, 40)
+select_contours_xld (Edges, EdgesClosed, 'closed', 0, 2.0, 0, 0)
+select_contours_xld (EdgesClosed, EdgesMarks, 'length', 20, 80, 0, 0)
+fit_ellipse_contour_xld (EdgesMarks, 'fitzgibbon', -1, 2, 0, 200, 3, 2.0, \
+                         Row, Column, Phi, Radius1, Radius2, StartPhi, \
+                         EndPhi, PointOrder)
+gen_ellipse_contour_xld (EllMarks, Row, Column, Phi, Radius1, Radius2, \
+                         StartPhi, EndPhi, PointOrder, 1.5)
+length_xld(EllMarks,Length)
+Example (C++)
+read_image (Image, "caltab");
+find_caltab (Image, &CalPlate, "caltab_800mm.descr", 3, 112, 5)
+reduce_domain (Image, CalPlate, &ImageReduced);
+edges_sub_pix (ImageReduced, &Edges, "lanser2", 0.5, 20, 40);
+select_contours_xld (Edges, &EdgesClosed, "closed", 0, 2.0, 0, 0);
+select_contours_xld (EdgesClosed, &EdgesMarks, "length", 20, 80, 0, 0);
+fit_ellipse_contour_xld (EdgesMarks, "fitzgibbon", -1, 2, 0, 200, 3, 2.0,
+                         &Row, &Column, &Phi, &Radius1, &Radius2, &StartPhi,
+                         &EndPhi, &PointOrder);
+gen_ellipse_contour_xld (&EllMarks, Row, Column, Phi, Radius1, Radius2,
+                         StartPhi, EndPhi, PointOrder, 1.5);
+length_xld(EllMarks,&Length);
+Example (HDevelop)
+read_image (Image, 'caltab')
+find_caltab (Image, CalPlate, 'caltab_800mm.descr', 3, 112, 5)
+reduce_domain (Image, CalPlate, ImageReduced)
+edges_sub_pix (ImageReduced, Edges, 'lanser2', 0.5, 20, 40)
+select_contours_xld (Edges, EdgesClosed, 'closed', 0, 2.0, 0, 0)
+select_contours_xld (EdgesClosed, EdgesMarks, 'length', 20, 80, 0, 0)
+fit_ellipse_contour_xld (EdgesMarks, 'fitzgibbon', -1, 2, 0, 200, 3, 2.0, \
+                         Row, Column, Phi, Radius1, Radius2, StartPhi, \
+                         EndPhi, PointOrder)
+gen_ellipse_contour_xld (EllMarks, Row, Column, Phi, Radius1, Radius2, \
+                         StartPhi, EndPhi, PointOrder, 1.5)
+length_xld(EllMarks,Length)
+Result
+fit_ellipse_contour_xld
+fit_ellipse_contour_xld
+FitEllipseContourXld
+FitEllipseContourXld
+fit_ellipse_contour_xld
+returns
+2
+(
+H_MSG_TRUE
+)
+     if all parameter values
+are correct, and ellipses could be fitted to the input contours.
+If the input is empty the behavior can be set via
+set_system('no_object_result',<Result>)
+set_system("no_object_result",<Result>)
+SetSystem("no_object_result",<Result>)
+SetSystem("no_object_result",<Result>)
+set_system("no_object_result",<Result>)
+.
+If necessary, an exception is raised.
+If the parameter
+ClippingFactor
+ClippingFactor
+ClippingFactor
+clippingFactor
+clipping_factor
+is chosen too small, i.e.,
+all points are classified as outliers, the error 3264 is raised.
+Possible Predecessors
+gen_contours_skeleton_xld
+gen_contours_skeleton_xld
+GenContoursSkeletonXld
+GenContoursSkeletonXld
+gen_contours_skeleton_xld
+,
+lines_gauss
+lines_gauss
+LinesGauss
+LinesGauss
+lines_gauss
+,
+lines_facet
+lines_facet
+LinesFacet
+LinesFacet
+lines_facet
+,
+edges_sub_pix
+edges_sub_pix
+EdgesSubPix
+EdgesSubPix
+edges_sub_pix
+,
+smooth_contours_xld
+smooth_contours_xld
+SmoothContoursXld
+SmoothContoursXld
+smooth_contours_xld
+Possible Successors
+gen_ellipse_contour_xld
+gen_ellipse_contour_xld
+GenEllipseContourXld
+GenEllipseContourXld
+gen_ellipse_contour_xld
+,
+disp_ellipse
+disp_ellipse
+DispEllipse
+DispEllipse
+disp_ellipse
+,
+get_points_ellipse
+get_points_ellipse
+GetPointsEllipse
+GetPointsEllipse
+get_points_ellipse
+See also
+fit_line_contour_xld
+fit_line_contour_xld
+FitLineContourXld
+FitLineContourXld
+fit_line_contour_xld
+,
+fit_circle_contour_xld
+fit_circle_contour_xld
+FitCircleContourXld
+FitCircleContourXld
+fit_circle_contour_xld
+,
+fit_rectangle2_contour_xld
+fit_rectangle2_contour_xld
+FitRectangle2ContourXld
+FitRectangle2ContourXld
+fit_rectangle2_contour_xld
+Module
+Foundation
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

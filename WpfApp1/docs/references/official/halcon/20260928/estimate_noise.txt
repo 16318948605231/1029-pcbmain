@@ -1,0 +1,196 @@
+estimate_noise [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Image / Features
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+estimate_noiseestimate_noiseEstimateNoiseEstimateNoiseestimate_noise (Operator)
+Name
+estimate_noiseestimate_noiseEstimateNoiseEstimateNoiseestimate_noise — Estimate the image noise from a single image.
+Signature
+estimate_noise(Image :  : Method, Percent : Sigma)
+Herror estimate_noise(const Hobject Image, const char* Method, double Percent, double* Sigma)
+Herror T_estimate_noise(const Hobject Image, const Htuple Method, const Htuple Percent, Htuple* Sigma)
+void EstimateNoise(const HObject& Image, const HTuple& Method, const HTuple& Percent, HTuple* Sigma)
+HTuple HImage::EstimateNoise(const HString& Method, const HTuple& Percent) const
+double HImage::EstimateNoise(const HString& Method, double Percent) const
+double HImage::EstimateNoise(const char* Method, double Percent) const
+double HImage::EstimateNoise(const wchar_t* Method, double Percent) const
+(
+Windows only)
+static void HOperatorSet.EstimateNoise(HObject image, HTuple method, HTuple percent, out HTuple sigma)
+HTuple HImage.EstimateNoise(string method, HTuple percent)
+double HImage.EstimateNoise(string method, double percent)
+def estimate_noise(image: HObject, method: str, percent: Union[int, float]) -> Sequence[float]
+def estimate_noise_s(image: HObject, method: str, percent: Union[int, float]) -> float
+Description
+The operator estimate_noiseestimate_noiseEstimateNoiseEstimateNoiseestimate_noise estimates the standard deviation
+of additive noise within the domain of the image that is passed in
+ImageImageImageimageimage. The standard deviation is returned in
+SigmaSigmaSigmasigmasigma.
+To estimate the noise, one of the following four methods can be
+selected in MethodMethodMethodmethodmethod:
+'foerstner'"foerstner""foerstner""foerstner""foerstner": If MethodMethodMethodmethodmethod is set to
+'foerstner'"foerstner""foerstner""foerstner""foerstner", first for each pixel a homogeneity measure is
+computed based on the first derivatives of the gray values of
+ImageImageImageimageimage. By thresholding the homogeneity measure one obtains the
+homogeneous regions in the image. The threshold is computed based on a
+starting value for the image noise. The starting value is obtained by
+applying the method 'immerkaer'"immerkaer""immerkaer""immerkaer""immerkaer" (see below) in the first step. It
+is assumed that the gray value fluctuations within the homogeneous regions
+are solely caused by the image noise. Furthermore it is assumed that the
+image noise is Gaussian distributed. The average homogeneity measure within
+the homogeneous regions is then used to calculate a refined estimate for
+the image noise. The refined estimate leads to a new threshold for the
+homogeneity. The described process is iterated until the estimated image
+noise remains constant between two successive iterations.  Finally, the
+standard deviation of the estimated image noise is returned in
+SigmaSigmaSigmasigmasigma.
+Note that in some cases the iteration falsely converges to the value
+0. This happens, for example, if the gray value histogram of the
+input image contains gaps that are caused either by an automatic
+radiometric scaling of the camera or frame grabber, respectively, or by a
+manual spreading of the gray values using a scaling factor > 1.
+Also note that the result obtained by this method is independent
+of the value passed in PercentPercentPercentpercentpercent.
+'immerkaer'"immerkaer""immerkaer""immerkaer""immerkaer": If MethodMethodMethodmethodmethod is set to
+'immerkaer'"immerkaer""immerkaer""immerkaer""immerkaer", first the following filter mask is applied
+to the input image:
+The advantage of this method is that
+is almost insensitive to image
+structure but only depends on the noise in the image. Assuming a Gaussian
+distributed noise, its standard deviation is finally obtained as
+where
+is the number of image pixels to which
+is applied. Note that the result obtained by this method is
+independent of the value passed in PercentPercentPercentpercentpercent.
+'least_squares'"least_squares""least_squares""least_squares""least_squares": If MethodMethodMethodmethodmethod is set
+to 'least_squares'"least_squares""least_squares""least_squares""least_squares", the fluctuations of the gray values
+with respect to a locally fitted gray value plane are used to
+estimate the image noise. First, a homogeneity measure is computed
+based on the first derivatives of the gray values of
+ImageImageImageimageimage. Homogeneous image regions are determined by
+selecting the PercentPercentPercentpercentpercent percent most homogeneous pixels in
+the domain of the input image, i.e., pixels with small magnitudes
+of the first derivatives. For each homogeneous pixel a gray value
+plane is fitted to its 3x3 neighborhood. The
+differences between the gray values within the 3x3
+neighborhood and the locally fitted plane are used to estimate the
+standard deviation of the noise. Finally, the average standard
+deviation over all homogeneous pixels is returned in
+SigmaSigmaSigmasigmasigma.
+'mean'"mean""mean""mean""mean": If MethodMethodMethodmethodmethod is set to
+'mean'"mean""mean""mean""mean", the noise estimation is based on the difference
+between the input image and a noiseless version of the input
+image. First, a homogeneity measure is computed based on the first
+derivatives of the gray values of ImageImageImageimageimage. Homogeneous
+image regions are determined by selecting the PercentPercentPercentpercentpercent
+percent most homogeneous pixels in the domain of the input image,
+i.e., pixels with small magnitudes of the first derivatives. A
+mean filter is applied to the homogeneous image regions in order
+to eliminate the noise. It is assumed that the difference between
+the input image and the thus obtained noiseless version of the
+image represents the image noise. Finally, the standard deviation
+of the differences is returned in SigmaSigmaSigmasigmasigma.  It should be
+noted that this method requires large connected homogeneous image
+regions to be able to reliably estimate the noise.
+Note that the methods 'foerstner'"foerstner""foerstner""foerstner""foerstner" and 'immerkaer'"immerkaer""immerkaer""immerkaer""immerkaer"
+assume a Gaussian distribution of the image noise, whereas the
+methods 'least_squares'"least_squares""least_squares""least_squares""least_squares" and'mean'"mean""mean""mean""mean" can be applied
+to images with arbitrarily distributed noise. In general, the method
+'foerstner'"foerstner""foerstner""foerstner""foerstner" returns the most accurate results while the
+method 'immerkaer'"immerkaer""immerkaer""immerkaer""immerkaer" shows the fastest computation.
+If the image noise could not be estimated reliably, the error 3175
+is raised. This may happen if the image does not contain enough
+homogeneous regions, if the image was artificially created, or if
+the noise is not of Gaussian type. In order to avoid this error, it
+might be useful in some cases to try one of the following
+modifications in dependence of the estimation method that is passed
+in MethodMethodMethodmethodmethod:
+Increase the size of the input image domain (useful
+for all methods).
+Increase the value of the parameter PercentPercentPercentpercentpercent
+(useful for methods 'least_squares'"least_squares""least_squares""least_squares""least_squares" and 'mean'"mean""mean""mean""mean").
+Use the method 'immerkaer'"immerkaer""immerkaer""immerkaer""immerkaer", instead of the
+methods 'foerstner'"foerstner""foerstner""foerstner""foerstner", 'least_squares'"least_squares""least_squares""least_squares""least_squares", or
+'mean'"mean""mean""mean""mean". The method 'immerkaer'"immerkaer""immerkaer""immerkaer""immerkaer" does not rely on
+the existence of homogeneous image regions, and hence is almost
+always applicable.
+Attention
+Note that filter operators may return unexpected results if
+an image with a reduced domain is used as input. Please refer to the
+chapter Filters.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on tuple level.
+Parameters
+ImageImageImageimageimage (input_object)  singlechannelimage(-array) → objectHImageHObjectHObjectHobject (byte / uint2)
+Input image.
+MethodMethodMethodmethodmethod (input_control)  string → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Method to estimate the image noise.
+Default:
+'foerstner'
+"foerstner"
+"foerstner"
+"foerstner"
+"foerstner"
+List of values:
+'foerstner'"foerstner""foerstner""foerstner""foerstner", 'immerkaer'"immerkaer""immerkaer""immerkaer""immerkaer", 'least_squares'"least_squares""least_squares""least_squares""least_squares", 'mean'"mean""mean""mean""mean"
+PercentPercentPercentpercentpercent (input_control)  number → HTupleUnion[int, float]HTupleHtuple (real / integer) (double / int / long) (double / Hlong) (double / Hlong)
+Percentage of used image points.
+Default:
+20
+Suggested values:
+1, 2, 5, 7, 10, 15, 20, 30, 40, 50
+Restriction:
+0 < Percent && Percent <= 50.
+SigmaSigmaSigmasigmasigma (output_control)  real(-array) → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Standard deviation of the image noise.
+Assertion:
+Sigma >= 0
+Example (HDevelop)
+read_image (Image, 'combine')
+estimate_noise (ImageNoise, 'foerstner', 20, SigmaFoerstner)
+estimate_noise (ImageNoise, 'immerkaer', 20, SigmaImmerkaer)
+estimate_noise (ImageNoise, 'least_squares', 20, SigmaLeastSquares)
+estimate_noise (ImageNoise, 'mean', 20, SigmaMean)
+Result
+If the parameters are valid, the operator estimate_noiseestimate_noiseEstimateNoiseEstimateNoiseestimate_noise
+returns the value 2 (
+H_MSG_TRUE)
+.  If necessary an exception is raised.  If
+the image noise could not be estimated reliably, the error 3175 is
+raised.
+Possible Predecessors
+grab_imagegrab_imageGrabImageGrabImagegrab_image,
+grab_image_asyncgrab_image_asyncGrabImageAsyncGrabImageAsyncgrab_image_async,
+read_imageread_imageReadImageReadImageread_image,
+reduce_domainreduce_domainReduceDomainReduceDomainreduce_domain
+Possible Successors
+binomial_filterbinomial_filterBinomialFilterBinomialFilterbinomial_filter,
+gauss_filtergauss_filterGaussFilterGaussFiltergauss_filter,
+mean_imagemean_imageMeanImageMeanImagemean_image,
+smooth_imagesmooth_imageSmoothImageSmoothImagesmooth_image
+Alternatives
+noise_distribution_meannoise_distribution_meanNoiseDistributionMeanNoiseDistributionMeannoise_distribution_mean,
+intensityintensityIntensityIntensityintensity,
+min_max_graymin_max_grayMinMaxGrayMinMaxGraymin_max_gray
+See also
+gauss_distributiongauss_distributionGaussDistributionGaussDistributiongauss_distribution,
+add_noise_distributionadd_noise_distributionAddNoiseDistributionAddNoiseDistributionadd_noise_distribution
+References
+W. Förstner: “Image Preprocessing for Feature Extraction in Digital
+Intensity, Color and Range Images“, Springer Lecture Notes on Earth
+Sciences, Summer School on Data Analysis and the Statistical
+Foundations of Geomatics, 1999
+J. Immerkaer: “Fast Noise Variance Estimation“, Computer Vision
+and Image Understanding, Vol. 64, No. 2, pp. 300-302, 1996
+Module
+Foundation
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

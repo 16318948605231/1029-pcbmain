@@ -1,0 +1,1052 @@
+gen_measure_rectangle2 [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+1D Measuring
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+gen_measure_rectangle2
+T_gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+(Operator)
+Name
+gen_measure_rectangle2
+T_gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+— Prepare the extraction of straight edges perpendicular to a rectangle.
+Signature
+gen_measure_rectangle2
+( :  :
+Row
+,
+Column
+,
+Phi
+,
+Length1
+,
+Length2
+,
+Width
+,
+Height
+,
+Interpolation
+:
+MeasureHandle
+)
+Herror
+T_gen_measure_rectangle2
+(const Htuple
+Row
+, const Htuple
+Column
+, const Htuple
+Phi
+, const Htuple
+Length1
+, const Htuple
+Length2
+, const Htuple
+Width
+, const Htuple
+Height
+, const Htuple
+Interpolation
+, Htuple*
+MeasureHandle
+)
+void
+GenMeasureRectangle2
+(const HTuple&
+Row
+, const HTuple&
+Column
+, const HTuple&
+Phi
+, const HTuple&
+Length1
+, const HTuple&
+Length2
+, const HTuple&
+Width
+, const HTuple&
+Height
+, const HTuple&
+Interpolation
+, HTuple*
+MeasureHandle
+)
+void
+HMeasure
+::
+HMeasure
+(const HTuple&
+Row
+, const HTuple&
+Column
+, const HTuple&
+Phi
+, const HTuple&
+Length1
+, const HTuple&
+Length2
+, Hlong
+Width
+, Hlong
+Height
+, const HString&
+Interpolation
+)
+void
+HMeasure
+::
+HMeasure
+(double
+Row
+, double
+Column
+, double
+Phi
+, double
+Length1
+, double
+Length2
+, Hlong
+Width
+, Hlong
+Height
+, const HString&
+Interpolation
+)
+void
+HMeasure
+::
+HMeasure
+(double
+Row
+, double
+Column
+, double
+Phi
+, double
+Length1
+, double
+Length2
+, Hlong
+Width
+, Hlong
+Height
+, const char*
+Interpolation
+)
+void
+HMeasure
+::
+HMeasure
+(double
+Row
+, double
+Column
+, double
+Phi
+, double
+Length1
+, double
+Length2
+, Hlong
+Width
+, Hlong
+Height
+, const wchar_t*
+Interpolation
+)
+(
+            Windows only)
+void
+HMeasure
+::
+GenMeasureRectangle2
+(const HTuple&
+Row
+, const HTuple&
+Column
+, const HTuple&
+Phi
+, const HTuple&
+Length1
+, const HTuple&
+Length2
+, Hlong
+Width
+, Hlong
+Height
+, const HString&
+Interpolation
+)
+void
+HMeasure
+::
+GenMeasureRectangle2
+(double
+Row
+, double
+Column
+, double
+Phi
+, double
+Length1
+, double
+Length2
+, Hlong
+Width
+, Hlong
+Height
+, const HString&
+Interpolation
+)
+void
+HMeasure
+::
+GenMeasureRectangle2
+(double
+Row
+, double
+Column
+, double
+Phi
+, double
+Length1
+, double
+Length2
+, Hlong
+Width
+, Hlong
+Height
+, const char*
+Interpolation
+)
+void
+HMeasure
+::
+GenMeasureRectangle2
+(double
+Row
+, double
+Column
+, double
+Phi
+, double
+Length1
+, double
+Length2
+, Hlong
+Width
+, Hlong
+Height
+, const wchar_t*
+Interpolation
+)
+(
+            Windows only)
+static void
+HOperatorSet
+.
+GenMeasureRectangle2
+(
+HTuple
+row
+,
+HTuple
+column
+,
+HTuple
+phi
+,
+HTuple
+length1
+,
+HTuple
+length2
+,
+HTuple
+width
+,
+HTuple
+height
+,
+HTuple
+interpolation
+, out
+HTuple
+measureHandle
+)
+public
+HMeasure
+(
+HTuple
+row
+,
+HTuple
+column
+,
+HTuple
+phi
+,
+HTuple
+length1
+,
+HTuple
+length2
+, int
+width
+, int
+height
+, string
+interpolation
+)
+public
+HMeasure
+(double
+row
+, double
+column
+, double
+phi
+, double
+length1
+, double
+length2
+, int
+width
+, int
+height
+, string
+interpolation
+)
+void
+HMeasure
+.
+GenMeasureRectangle2
+(
+HTuple
+row
+,
+HTuple
+column
+,
+HTuple
+phi
+,
+HTuple
+length1
+,
+HTuple
+length2
+, int
+width
+, int
+height
+, string
+interpolation
+)
+void
+HMeasure
+.
+GenMeasureRectangle2
+(double
+row
+, double
+column
+, double
+phi
+, double
+length1
+, double
+length2
+, int
+width
+, int
+height
+, string
+interpolation
+)
+def
+gen_measure_rectangle2
+(
+row
+: Union[int, float],
+column
+: Union[int, float],
+phi
+: Union[int, float],
+length_1
+: Union[int, float],
+length_2
+: Union[int, float],
+width
+: int,
+height
+: int,
+interpolation
+: str) -> HHandle
+Description
+gen_measure_rectangle2
+gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+prepares the extraction of
+straight
+edges which lie
+perpendicular
+to the major
+axis of a rectangle.  The center of the rectangle is passed in the
+parameters
+Row
+Row
+Row
+row
+row
+and
+Column
+Column
+Column
+column
+column
+, the direction of the
+major axis of the rectangle in
+Phi
+Phi
+Phi
+phi
+phi
+, and the length of the
+two axes, i.e., half the diameter of the rectangle, in
+Length1
+Length1
+Length1
+length1
+length_1
+and
+Length2
+Length2
+Length2
+length2
+length_2
+.
+For an explanation of the concept of 1D measuring see the introduction of
+chapter
+1D Measuring
+.
+The edge extraction algorithm is described in the documentation of
+the operator
+measure_pos
+measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+.  As discussed there, different
+types of interpolation can be used for the calculation of the
+one-dimensional gray value profile.  For
+Interpolation
+Interpolation
+Interpolation
+interpolation
+interpolation
+=
+'nearest_neighbor'
+"nearest_neighbor"
+"nearest_neighbor"
+"nearest_neighbor"
+"nearest_neighbor"
+, the gray values in the measurement are
+obtained from the gray values of the closest pixel, i.e., by
+constant interpolation.  For
+Interpolation
+Interpolation
+Interpolation
+interpolation
+interpolation
+=
+'bilinear'
+"bilinear"
+"bilinear"
+"bilinear"
+"bilinear"
+, bilinear interpolation is used, while for
+Interpolation
+Interpolation
+Interpolation
+interpolation
+interpolation
+=
+'bicubic'
+"bicubic"
+"bicubic"
+"bicubic"
+"bicubic"
+, bicubic interpolation
+is used.
+To perform the actual measurement at optimal speed, all computations that can
+be used for multiple measurements are already performed in the operator
+gen_measure_rectangle2
+gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+. For this, an optimized data structure, a
+so-called measure object, is constructed and returned in
+MeasureHandle
+MeasureHandle
+MeasureHandle
+measureHandle
+measure_handle
+. The size of the images in which measurements will be
+performed must be specified in the parameters
+Width
+Width
+Width
+width
+width
+and
+Height
+Height
+Height
+height
+height
+.
+The system parameter
+'int_zooming'
+"int_zooming"
+"int_zooming"
+"int_zooming"
+"int_zooming"
+(see
+set_system
+set_system
+SetSystem
+SetSystem
+set_system
+)
+affects the accuracy and speed of the calculations used to construct
+the measure object.  If
+'int_zooming'
+"int_zooming"
+"int_zooming"
+"int_zooming"
+"int_zooming"
+is set to
+'true'
+"true"
+"true"
+"true"
+"true"
+, the internal calculations are performed using fixed
+point arithmetic, leading to much shorter execution times.  However,
+the geometric accuracy is slightly lower in this mode.  If
+'int_zooming'
+"int_zooming"
+"int_zooming"
+"int_zooming"
+"int_zooming"
+is set to
+'false'
+"false"
+"false"
+"false"
+"false"
+, the internal
+calculations are performed using floating point arithmetic, leading
+to the maximum geometric accuracy, but also to significantly
+increased execution times.
+Attention
+Note that when using bilinear or bicubic interpolation, not only the
+measurement rectangle but additionally the margin around the
+rectangle must fit into the image.  The width of the margin (in all
+four directions) must be at least one pixel for bilinear
+interpolation and two pixels for bicubic interpolation.  For
+projection lines that do not fulfill this condition, no gray value
+is computed.  Thus, no edge can be extracted at these positions.
+Please also note that the center coordinates of the rectangle are rounded
+internally, so that the center lies on the pixel grid.
+This is done to ensure consistency.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+This operator returns a handle. Note that the state of an instance of this handle type may be changed by specific operators even though the handle is used as an input parameter by those operators.
+Parameters
+Row
+Row
+Row
+row
+row
+(input_control)
+rectangle2.center.y
+→
+HTuple
+Union[int, float]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Row coordinate of the center of the rectangle.
+Default:
+300.0
+Suggested values:
+10.0, 20.0, 50.0, 100.0, 200.0, 300.0, 400.0, 500.0
+Value range:
+0.0
+          ≤
+Row
+Row
+Row
+row
+row
+≤
+          511.0
+(lin)
+Minimum increment:
+1.0
+Recommended increment:
+10.0
+Column
+Column
+Column
+column
+column
+(input_control)
+rectangle2.center.x
+→
+HTuple
+Union[int, float]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Column coordinate of the center of the rectangle.
+Default:
+200.0
+Suggested values:
+10.0, 20.0, 50.0, 100.0, 200.0, 300.0, 400.0, 500.0
+Value range:
+0.0
+          ≤
+Column
+Column
+Column
+column
+column
+≤
+          511.0
+(lin)
+Minimum increment:
+1.0
+Recommended increment:
+10.0
+Phi
+Phi
+Phi
+phi
+phi
+(input_control)
+rectangle2.angle.rad
+→
+HTuple
+Union[int, float]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Angle of longitudinal axis of the rectangle to
+horizontal (radians).
+Default:
+0.0
+Suggested values:
+-1.178097, -0.785398, -0.392699, 0.0, 0.392699, 0.785398, 1.178097
+Value range:
+Phi
+Phi
+Phi
+phi
+phi
+(lin)
+Minimum increment:
+0.001
+Recommended increment:
+0.1
+Length1
+Length1
+Length1
+length1
+length_1
+(input_control)
+rectangle2.hwidth
+→
+HTuple
+Union[int, float]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Half width of the rectangle.
+Default:
+100.0
+Suggested values:
+3.0, 5.0, 10.0, 15.0, 20.0, 50.0, 100.0, 200.0, 300.0, 500.0
+Value range:
+1.0
+          ≤
+Length1
+Length1
+Length1
+length1
+length_1
+(lin)
+Minimum increment:
+1.0
+Recommended increment:
+10.0
+Length2
+Length2
+Length2
+length2
+length_2
+(input_control)
+rectangle2.hheight
+→
+HTuple
+Union[int, float]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Half height of the rectangle.
+Default:
+20.0
+Suggested values:
+1.0, 2.0, 3.0, 5.0, 10.0, 15.0, 20.0, 50.0, 100.0, 200.0
+Value range:
+0.0
+          ≤
+Length2
+Length2
+Length2
+length2
+length_2
+(lin)
+Minimum increment:
+1.0
+Recommended increment:
+10.0
+Width
+Width
+Width
+width
+width
+(input_control)
+extent.x
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Width of the image to be processed subsequently.
+Default:
+512
+Suggested values:
+128, 160, 192, 256, 320, 384, 512, 640, 768
+Value range:
+0
+          ≤
+Width
+Width
+Width
+width
+width
+(lin)
+Minimum increment:
+1
+Recommended increment:
+16
+Height
+Height
+Height
+height
+height
+(input_control)
+extent.y
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Height of the image to be processed subsequently.
+Default:
+512
+Suggested values:
+120, 128, 144, 240, 256, 288, 480, 512, 576
+Value range:
+0
+          ≤
+Height
+Height
+Height
+height
+height
+(lin)
+Minimum increment:
+1
+Recommended increment:
+16
+Interpolation
+Interpolation
+Interpolation
+interpolation
+interpolation
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Type of interpolation to be used.
+Default:
+'nearest_neighbor'
+"nearest_neighbor"
+"nearest_neighbor"
+"nearest_neighbor"
+"nearest_neighbor"
+List of values:
+'bicubic'
+"bicubic"
+"bicubic"
+"bicubic"
+"bicubic"
+,
+'bilinear'
+"bilinear"
+"bilinear"
+"bilinear"
+"bilinear"
+,
+'nearest_neighbor'
+"nearest_neighbor"
+"nearest_neighbor"
+"nearest_neighbor"
+"nearest_neighbor"
+MeasureHandle
+MeasureHandle
+MeasureHandle
+measureHandle
+measure_handle
+(output_control)
+measure
+→
+HMeasure
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Measure object handle.
+Result
+If the parameter values are correct the operator
+gen_measure_rectangle2
+gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    .
+Otherwise an exception is raised.
+Possible Predecessors
+draw_rectangle2
+draw_rectangle2
+DrawRectangle2
+DrawRectangle2
+draw_rectangle2
+Possible Successors
+measure_pos
+measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+,
+measure_pairs
+measure_pairs
+MeasurePairs
+MeasurePairs
+measure_pairs
+,
+fuzzy_measure_pos
+fuzzy_measure_pos
+FuzzyMeasurePos
+FuzzyMeasurePos
+fuzzy_measure_pos
+,
+fuzzy_measure_pairs
+fuzzy_measure_pairs
+FuzzyMeasurePairs
+FuzzyMeasurePairs
+fuzzy_measure_pairs
+,
+fuzzy_measure_pairing
+fuzzy_measure_pairing
+FuzzyMeasurePairing
+FuzzyMeasurePairing
+fuzzy_measure_pairing
+,
+measure_thresh
+measure_thresh
+MeasureThresh
+MeasureThresh
+measure_thresh
+Alternatives
+edges_sub_pix
+edges_sub_pix
+EdgesSubPix
+EdgesSubPix
+edges_sub_pix
+See also
+gen_measure_arc
+gen_measure_arc
+GenMeasureArc
+GenMeasureArc
+gen_measure_arc
+Module
+1D Metrology
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

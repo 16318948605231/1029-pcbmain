@@ -1,0 +1,286 @@
+create_structured_light_model [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Inspection
+/
+Structured Light
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+create_structured_light_model
+T_create_structured_light_model
+CreateStructuredLightModel
+CreateStructuredLightModel
+create_structured_light_model
+(Operator)
+Name
+create_structured_light_model
+T_create_structured_light_model
+CreateStructuredLightModel
+CreateStructuredLightModel
+create_structured_light_model
+— Create a structured light model.
+Signature
+create_structured_light_model
+( :  :
+ModelType
+:
+StructuredLightModel
+)
+Herror
+T_create_structured_light_model
+(const Htuple
+ModelType
+, Htuple*
+StructuredLightModel
+)
+void
+CreateStructuredLightModel
+(const HTuple&
+ModelType
+, HTuple*
+StructuredLightModel
+)
+void
+HStructuredLightModel
+::
+HStructuredLightModel
+(const HString&
+ModelType
+)
+void
+HStructuredLightModel
+::
+HStructuredLightModel
+(const char*
+ModelType
+)
+void
+HStructuredLightModel
+::
+HStructuredLightModel
+(const wchar_t*
+ModelType
+)
+(
+            Windows only)
+void
+HStructuredLightModel
+::
+CreateStructuredLightModel
+(const HString&
+ModelType
+)
+void
+HStructuredLightModel
+::
+CreateStructuredLightModel
+(const char*
+ModelType
+)
+void
+HStructuredLightModel
+::
+CreateStructuredLightModel
+(const wchar_t*
+ModelType
+)
+(
+            Windows only)
+static void
+HOperatorSet
+.
+CreateStructuredLightModel
+(
+HTuple
+modelType
+, out
+HTuple
+structuredLightModel
+)
+public
+HStructuredLightModel
+(string
+modelType
+)
+void
+HStructuredLightModel
+.
+CreateStructuredLightModel
+(string
+modelType
+)
+def
+create_structured_light_model
+(
+model_type
+: str) -> HHandle
+Description
+create_structured_light_model
+create_structured_light_model
+CreateStructuredLightModel
+CreateStructuredLightModel
+create_structured_light_model
+creates a new structured light
+model of type
+ModelType
+ModelType
+ModelType
+modelType
+model_type
+. Currently, the types
+'deflectometry'
+"deflectometry"
+"deflectometry"
+"deflectometry"
+"deflectometry"
+and
+'3d_reconstruction'
+"3d_reconstruction"
+"3d_reconstruction"
+"3d_reconstruction"
+"3d_reconstruction"
+are supported.
+The parameters of the structured light model can be queried with
+get_structured_light_model_param
+get_structured_light_model_param
+GetStructuredLightModelParam
+GetStructuredLightModelParam
+get_structured_light_model_param
+and manipulated by calls to
+set_structured_light_model_param
+set_structured_light_model_param
+SetStructuredLightModelParam
+SetStructuredLightModelParam
+set_structured_light_model_param
+.
+For an explanation of the concept of structured light and its supported
+applications, see the introduction of chapter
+Inspection / Structured Light
+.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+This operator returns a handle. Note that the state of an instance of this handle type may be changed by specific operators even though the handle is used as an input parameter by those operators.
+Parameters
+ModelType
+ModelType
+ModelType
+modelType
+model_type
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+The type of the created structured light model.
+Default:
+'deflectometry'
+"deflectometry"
+"deflectometry"
+"deflectometry"
+"deflectometry"
+List of values:
+'3d_reconstruction'
+"3d_reconstruction"
+"3d_reconstruction"
+"3d_reconstruction"
+"3d_reconstruction"
+,
+'deflectometry'
+"deflectometry"
+"deflectometry"
+"deflectometry"
+"deflectometry"
+StructuredLightModel
+StructuredLightModel
+StructuredLightModel
+structuredLightModel
+structured_light_model
+(output_control)
+structured_light_model
+→
+HStructuredLightModel
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Handle for using and accessing the structured
+light model.
+Example (HDevelop)
+* Create the model
+create_structured_light_model ('deflectometry', StructuredLightModel)
+* Generate the patterns to project
+gen_structured_light_pattern (PatternImages, StructuredLightModel)
+* Decode the camera images
+decode_structured_light_pattern (CameraImages, StructuredLightModel)
+Result
+The operator
+create_structured_light_model
+create_structured_light_model
+CreateStructuredLightModel
+CreateStructuredLightModel
+create_structured_light_model
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    
+if the structured light model can be allocated correctly. Otherwise, an
+exception will be raised.
+Possible Successors
+set_structured_light_model_param
+set_structured_light_model_param
+SetStructuredLightModelParam
+SetStructuredLightModelParam
+set_structured_light_model_param
+,
+get_structured_light_model_param
+get_structured_light_model_param
+GetStructuredLightModelParam
+GetStructuredLightModelParam
+get_structured_light_model_param
+Module
+3D Metrology
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

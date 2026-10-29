@@ -1,0 +1,571 @@
+disp_object_model_3d [HALCON Operator Reference / Version 25.11.0.0]
+
+HALCON
+25.11.0.0 / HALCON Operator Reference / Graphics / Output
+
+HDevelop
+
+.NET
+
+Python
+
+C++
+
+C
+
+ClassesClasses | | Operators
+
+disp_object_model_3dT_disp_object_model_3dDispObjectModel3dDispObjectModel3ddisp_object_model_3d (Operator)
+
+Name
+
+disp_object_model_3dT_disp_object_model_3dDispObjectModel3dDispObjectModel3ddisp_object_model_3d — Display 3D object models.
+
+Signature
+
+disp_object_model_3d( : : WindowHandle, ObjectModel3D, CamParam, Pose, GenParamName, GenParamValue : )
+
+Herror T_disp_object_model_3d(const Htuple WindowHandle, const Htuple ObjectModel3D, const Htuple CamParam, const Htuple Pose, const Htuple GenParamName, const Htuple GenParamValue)
+
+void DispObjectModel3d(const HTuple& WindowHandle, const HTuple& ObjectModel3D, const HTuple& CamParam, const HTuple& Pose, const HTuple& GenParamName, const HTuple& GenParamValue)
+
+static void HObjectModel3D::DispObjectModel3d(const HWindow& WindowHandle, const HObjectModel3DArray& ObjectModel3D, const HCamPar& CamParam, const HPoseArray& Pose, const HTuple& GenParamName, const HTuple& GenParamValue)
+
+void HObjectModel3D::DispObjectModel3d(const HWindow& WindowHandle, const HCamPar& CamParam, const HPose& Pose, const HTuple& GenParamName, const HTuple& GenParamValue) const
+
+void HCamPar::DispObjectModel3d(const HWindow& WindowHandle, const HObjectModel3DArray& ObjectModel3D, const HPoseArray& Pose, const HTuple& GenParamName, const HTuple& GenParamValue) const
+
+void HCamPar::DispObjectModel3d(const HWindow& WindowHandle, const HObjectModel3D& ObjectModel3D, const HPose& Pose, const HTuple& GenParamName, const HTuple& GenParamValue) const
+
+static void HPose::DispObjectModel3d(const HWindow& WindowHandle, const HObjectModel3DArray& ObjectModel3D, const HCamPar& CamParam, const HPoseArray& Pose, const HTuple& GenParamName, const HTuple& GenParamValue)
+
+void HPose::DispObjectModel3d(const HWindow& WindowHandle, const HObjectModel3D& ObjectModel3D, const HCamPar& CamParam, const HTuple& GenParamName, const HTuple& GenParamValue) const
+
+static void HOperatorSet.DispObjectModel3d(HTuple windowHandle, HTuple objectModel3D, HTuple camParam, HTuple pose, HTuple genParamName, HTuple genParamValue)
+
+static void HObjectModel3D.DispObjectModel3d(HWindow windowHandle, HObjectModel3D[] objectModel3D, HCamPar camParam, HPose[] pose, HTuple genParamName, HTuple genParamValue)
+
+void HObjectModel3D.DispObjectModel3d(HWindow windowHandle, HCamPar camParam, HPose pose, HTuple genParamName, HTuple genParamValue)
+
+void HCamPar.DispObjectModel3d(HWindow windowHandle, HObjectModel3D[] objectModel3D, HPose[] pose, HTuple genParamName, HTuple genParamValue)
+
+void HCamPar.DispObjectModel3d(HWindow windowHandle, HObjectModel3D objectModel3D, HPose pose, HTuple genParamName, HTuple genParamValue)
+
+static void HPose.DispObjectModel3d(HWindow windowHandle, HObjectModel3D[] objectModel3D, HCamPar camParam, HPose[] pose, HTuple genParamName, HTuple genParamValue)
+
+void HPose.DispObjectModel3d(HWindow windowHandle, HObjectModel3D objectModel3D, HCamPar camParam, HTuple genParamName, HTuple genParamValue)
+
+def disp_object_model_3d(window_handle: HHandle, object_model_3d: MaybeSequence[HHandle], cam_param: Sequence[Union[int, float, str]], pose: Sequence[Union[int, float]], gen_param_name: Sequence[str], gen_param_value: Sequence[Union[str, int, float]]) -> None
+
+Description
+
+disp_object_model_3ddisp_object_model_3dDispObjectModel3dDispObjectModel3ddisp_object_model_3d displays the 3D object models of
+ObjectModel3DObjectModel3DObjectModel3DobjectModel3Dobject_model_3d in the window WindowHandleWindowHandleWindowHandlewindowHandlewindow_handle.
+Set CamParamCamParamCamParamcamParamcam_param and the individual poses (in PosePosePoseposepose) of the
+3D object models to setup the displayed scene.
+If an empty tuple is given for CamParamCamParamCamParamcamParamcam_param,
+disp_object_model_3ddisp_object_model_3dDispObjectModel3dDispObjectModel3ddisp_object_model_3d uses default camera parameters that correspond
+to the window size.
+If CamParamCamParamCamParamcamParamcam_param is not empty, note that sometimes the aspect ratio
+of WindowHandleWindowHandleWindowHandlewindowHandlewindow_handle should be similar to width and height
+stored in CamParamCamParamCamParamcamParamcam_param in order to obtain the wanted results.
+PosePosePoseposepose can contain either multiple poses (one pose for each 3D
+object model) or one pose for all 3D object models.
+Thereby the poses are in the form
+
+,
+where ccs denotes the camera coordinate system and
+mcs the model coordinate system (which is a 3D world coordinate
+system), see Transformations / Poses and
+“Solution Guide III-C - 3D Vision”.
+
+If an empty tuple is given for PosePosePoseposepose, disp_object_model_3ddisp_object_model_3dDispObjectModel3dDispObjectModel3ddisp_object_model_3d
+estimates a pose, such that all 3D object models are visible.
+
+3D object models containing triangles or polygons are displayed as solids,
+whereas 3D object models containing only coordinates are displayed as point
+clouds. 3D primitives (e.g., obtained by
+fit_primitives_object_model_3dfit_primitives_object_model_3dFitPrimitivesObjectModel3dFitPrimitivesObjectModel3dfit_primitives_object_model_3d) are displayed as solids as well.
+The generic parameter 'attribute'"attribute""attribute""attribute""attribute" can be used to explicitly select
+in which way a 3D object model is visualized.
+
+To render the 3D object models into an image, the operator
+render_object_model_3drender_object_model_3dRenderObjectModel3dRenderObjectModel3drender_object_model_3d can be used.
+
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name and GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value are used to further
+configure the scene. The following values influence the whole scene:
+
+'disp_background'"disp_background""disp_background""disp_background""disp_background":
+
+Flag, if the current window content should be used as background.
+
+List of values:
+'true'"true""true""true""true", 'false'"false""false""false""false".
+
+Default:
+'false'"false""false""false""false".
+
+'light_position'"light_position""light_position""light_position""light_position":
+
+Position of the light source. Must be given as a string
+containing four space separated floating point numbers.
+If the fourth number is 0.0, a directional light source is
+used (the first three components represent the direction),
+otherwise a point light source is used (with the first
+three components representing the position).
+
+Default:
+'-100.0 -100.0 0.0 1.0'"-100.0 -100.0 0.0 1.0""-100.0 -100.0 0.0 1.0""-100.0 -100.0 0.0 1.0""-100.0 -100.0 0.0 1.0".
+
+'light_ambient'"light_ambient""light_ambient""light_ambient""light_ambient":
+
+Ambient part of the light source. Must be given as a string
+containing three space separated floating point numbers.
+
+Default:
+'0.2 0.2 0.2'"0.2 0.2 0.2""0.2 0.2 0.2""0.2 0.2 0.2""0.2 0.2 0.2".
+
+'light_diffuse'"light_diffuse""light_diffuse""light_diffuse""light_diffuse":
+
+Diffuse part of the light source. Must be given as a string
+containing three space separated floating point numbers.
+
+Default:
+'0.8 0.8 0.8'"0.8 0.8 0.8""0.8 0.8 0.8""0.8 0.8 0.8""0.8 0.8 0.8".
+
+'colored'"colored""colored""colored""colored":
+
+Display 3D object models in different colors. The value of this
+parameter defines the number of colors that are used.
+
+List of values:
+3, 6, 12.
+
+Default:
+all objects are displayed white.
+
+'object_index_persistence'"object_index_persistence""object_index_persistence""object_index_persistence""object_index_persistence":
+
+Must be set to 'true'"true""true""true""true" to enable the object index query
+with get_disp_object_model_3d_infoget_disp_object_model_3d_infoGetDispObjectModel3dInfoGetDispObjectModel3dInfoget_disp_object_model_3d_info.
+
+List of values:
+'true'"true""true""true""true", 'false'"false""false""false""false".
+
+Default:
+'false'"false""false""false""false".
+
+'depth_persistence'"depth_persistence""depth_persistence""depth_persistence""depth_persistence":
+
+Must be set to 'true'"true""true""true""true" to enable the depth query with
+get_disp_object_model_3d_infoget_disp_object_model_3d_infoGetDispObjectModel3dInfoGetDispObjectModel3dInfoget_disp_object_model_3d_info.
+
+List of values:
+'true'"true""true""true""true", 'false'"false""false""false""false".
+
+Default:
+'false'"false""false""false""false".
+
+'quality'"quality""quality""quality""quality":
+
+Must be set to 'low'"low""low""low""low" to enable faster rendering without
+anti aliasing.
+
+List of values:
+'low'"low""low""low""low", 'high'"high""high""high""high".
+
+Default:
+'high'"high""high""high""high".
+
+The following parameters can be set for all 3D object models in the scene or
+for a specific 3D object model by appending the index of the 3D object model
+to the parameter name (e.g., 'color_0'"color_0""color_0""color_0""color_0" to set the color of the
+first 3D object model).
+
+'attribute'"attribute""attribute""attribute""attribute"
+
+Explicitly select in which way a 3D object model is visualized.
+
+List of values:
+'auto'"auto""auto""auto""auto", 'faces'"faces""faces""faces""faces",
+'primitive'"primitive""primitive""primitive""primitive", 'points'"points""points""points""points",
+'lines'"lines""lines""lines""lines".
+
+Default:
+'auto'"auto""auto""auto""auto".
+
+'color'"color""color""color""color":
+
+Color of the 3D object models. The available colors can be queried
+with the operator query_colorquery_colorQueryColorQueryColorquery_color. In addition, the color may
+be specified as an RGB triplet in the form '#rrggbb'"#rrggbb""#rrggbb""#rrggbb""#rrggbb",
+where 'rr', 'gg', and 'bb' are hexadecimal numbers between '00'
+and 'ff', respectively.
+
+Suggested values:
+'red'"red""red""red""red", 'green'"green""green""green""green".
+
+Default:
+'white'"white""white""white""white".
+
+'alpha'"alpha""alpha""alpha""alpha":
+
+Translucency of the 3D object models. Displaying 3D object models
+with translucency set to less than 1.0 may significantly increase
+the runtime of disp_object_model_3ddisp_object_model_3dDispObjectModel3dDispObjectModel3ddisp_object_model_3d.
+
+Value range:
+[0.0 (fully transparent) ...
+1.0 (fully opaque)].
+
+Default:
+1.0.
+
+'disp_pose'"disp_pose""disp_pose""disp_pose""disp_pose":
+
+Flag, if the pose of the 3D object models should be visualized.
+
+List of values:
+'true'"true""true""true""true", 'false'"false""false""false""false".
+
+Default:
+'false'"false""false""false""false".
+
+'disp_lines'"disp_lines""disp_lines""disp_lines""disp_lines":
+
+Flag, if the contours of the 3D object models' polygons should be
+displayed.
+
+List of values:
+'true'"true""true""true""true", 'false'"false""false""false""false".
+
+Default:
+'false'"false""false""false""false".
+
+'disp_normals'"disp_normals""disp_normals""disp_normals""disp_normals":
+
+Flag, if the surface normals of the 3D object models should be
+visualized.
+
+List of values:
+'true'"true""true""true""true", 'false'"false""false""false""false".
+
+Default:
+'false'"false""false""false""false".
+
+'line_color'"line_color""line_color""line_color""line_color":
+
+Color of the lines if 'disp_lines'"disp_lines""disp_lines""disp_lines""disp_lines" is set to
+'true'"true""true""true""true". The available colors can be queried with the
+operator query_colorquery_colorQueryColorQueryColorquery_color. In addition, the color may be
+specified as an RGB triplet in the form '#rrggbb'"#rrggbb""#rrggbb""#rrggbb""#rrggbb",
+where 'rr', 'gg', and 'bb' are hexadecimal numbers.
+
+Suggested values:
+'red'"red""red""red""red", 'green'"green""green""green""green".
+
+Default:
+The value of 'color'"color""color""color""color".
+
+'line_width'"line_width""line_width""line_width""line_width":
+
+Sets the width of lines in pixel.
+
+Default:
+1.0.
+
+'normal_color'"normal_color""normal_color""normal_color""normal_color":
+
+Color of the visualized normals if 'disp_normals'"disp_normals""disp_normals""disp_normals""disp_normals" is set
+to 'true'"true""true""true""true". The available colors can be queried with the
+operator query_colorquery_colorQueryColorQueryColorquery_color. In addition, the color may be
+specified as an RGB triplet in the form '#rrggbb'"#rrggbb""#rrggbb""#rrggbb""#rrggbb",
+where 'rr', 'gg', and 'bb' are hexadecimal numbers.
+
+Suggested values:
+'red'"red""red""red""red", 'green'"green""green""green""green".
+
+Default:
+The value of 'color'"color""color""color""color".
+
+'point_size'"point_size""point_size""point_size""point_size":
+
+Sets the diameter of the points in pixel.
+
+Default:
+3.5.
+
+'lut'"lut""lut""lut""lut":
+
+Sets the LUT that transforms the values of the attribute set with
+'color_attrib'"color_attrib""color_attrib""color_attrib""color_attrib" into a color.
+
+See set_lutset_lutSetLutSetLutset_lut for available LUTs. If 'lut'"lut""lut""lut""lut" is set to
+anything but 'default'"default""default""default""default", 'color'"color""color""color""color" is ignored.
+
+Default:
+'default'"default""default""default""default".
+
+'color_attrib'"color_attrib""color_attrib""color_attrib""color_attrib":
+
+Name of a point attribute that is used for false color visualization.
+
+If an attribute is set, the color of the displayed 3D points is
+determined by the point's attribute value and the currently set
+LUT (see 'lut'"lut""lut""lut""lut"). This way, it is possible to visualize
+attributes in false colors.
+
+Example: If 'color_attrib'"color_attrib""color_attrib""color_attrib""color_attrib" is set to 'coord_z'"coord_z""coord_z""coord_z""coord_z", and
+'lut'"lut""lut""lut""lut" is set to 'color1'"color1""color1""color1""color1", the z-coordinates will be
+color coded from red to blue.
+
+If 'lut'"lut""lut""lut""lut" is set to 'default'"default""default""default""default", the attribute values are
+used to scale the color that was set by the parameter 'color'"color""color""color""color".
+
+If 'lut'"lut""lut""lut""lut" is set to a different value, the attribute values of
+all points are internally scaled to the interval [0,255] and used as
+input value for the LUT function.
+
+The mapping is also controlled by the parameters
+'color_attrib_start'"color_attrib_start""color_attrib_start""color_attrib_start""color_attrib_start" and 'color_attrib_end'"color_attrib_end""color_attrib_end""color_attrib_end""color_attrib_end" (see below).
+
+If faces are displayed, their color is interpolated between the
+color of the corner points.
+
+Suggested values:
+'none'"none""none""none""none", '&distance'"&distance""&distance""&distance""&distance",
+'coord_x'"coord_x""coord_x""coord_x""coord_x", 'coord_y'"coord_y""coord_y""coord_y""coord_y",
+'coord_z'"coord_z""coord_z""coord_z""coord_z",
+user defined point attributes, or any other
+point attribute available.
+
+Default:
+'none'"none""none""none""none".
+
+'color_attrib_start'"color_attrib_start""color_attrib_start""color_attrib_start""color_attrib_start",'color_attrib_end'"color_attrib_end""color_attrib_end""color_attrib_end""color_attrib_end":
+
+The range of interest of the values of the attribute set with
+'color_attrib'"color_attrib""color_attrib""color_attrib""color_attrib".
+
+The attribute values between 'color_attrib_start'"color_attrib_start""color_attrib_start""color_attrib_start""color_attrib_start" and
+'color_attrib_end'"color_attrib_end""color_attrib_end""color_attrib_end""color_attrib_end" are scaled to the start and end of the
+selected LUT. Attribute values outside the selected range are clipped.
+This allows to use a fixed color mapping which will not be distorted by
+outliers.
+
+If set to 'auto'"auto""auto""auto""auto", the minimum attribute value is mapped to the
+start of the LUT, the maximum is mapped to the end of the LUT,
+except if 'color_attrib'"color_attrib""color_attrib""color_attrib""color_attrib" is 'normal_x'"normal_x""normal_x""normal_x""normal_x",
+'normal_y'"normal_y""normal_y""normal_y""normal_y", or 'normal_z'"normal_z""normal_z""normal_z""normal_z".
+In this case, start and end are automatically set to -1 and
+1.
+
+It is possible to enter start value that is higher than the end value.
+This will in effect flip the used LUT.
+
+Suggested values:
+'auto'"auto""auto""auto""auto", 0, 0.1,
+1, 100, 255.
+
+Default:
+'auto'"auto""auto""auto""auto".
+
+'red_channel_attrib'"red_channel_attrib""red_channel_attrib""red_channel_attrib""red_channel_attrib",
+'green_channel_attrib'"green_channel_attrib""green_channel_attrib""green_channel_attrib""green_channel_attrib",
+'blue_channel_attrib'"blue_channel_attrib""blue_channel_attrib""blue_channel_attrib""blue_channel_attrib":
+
+Name of a point attribute that is used for the red, green, or blue
+color channel.
+
+This is most useful when used with a group of three connected
+attributes, like RGB colors or normal vectors.
+This way it is possible to display points in colored texture, e.g.,
+display the object model with overlayed RGB-sensor data, or display
+point normals in false colors.
+
+To display only a single attribute in false colors, please use
+'color_attrib'"color_attrib""color_attrib""color_attrib""color_attrib" (see above).
+
+By default, the attribute values are assumed to lie between
+0 and 255.
+If the attributes have a different range, you additionally have to set
+the parameters 'rgb_channel_attrib_start'"rgb_channel_attrib_start""rgb_channel_attrib_start""rgb_channel_attrib_start""rgb_channel_attrib_start" and
+'rgb_channel_attrib_end'"rgb_channel_attrib_end""rgb_channel_attrib_end""rgb_channel_attrib_end""rgb_channel_attrib_end" (see below).
+
+If only 1 or 2 channels are set, the remaining channels use the RGB
+value of the color set with 'color'"color""color""color""color".
+
+If faces are displayed, their color is interpolated between the
+color of the corner points.
+
+Suggested values:
+'none'"none""none""none""none", '&red'"&red""&red""&red""&red",
+'&green'"&green""&green""&green""&green", '&blue'"&blue""&blue""&blue""&blue",
+'normal_x'"normal_x""normal_x""normal_x""normal_x", 'normal_y'"normal_y""normal_y""normal_y""normal_y",
+'normal_z'"normal_z""normal_z""normal_z""normal_z", user defined point
+attributes, or any other point
+attribute available.
+
+Default:
+'none'"none""none""none""none".
+
+'rgb_channel_attrib_start'"rgb_channel_attrib_start""rgb_channel_attrib_start""rgb_channel_attrib_start""rgb_channel_attrib_start",
+'rgb_channel_attrib_end'"rgb_channel_attrib_end""rgb_channel_attrib_end""rgb_channel_attrib_end""rgb_channel_attrib_end":
+
+The range of interest of the values of attributes set with
+'red_channel_attrib'"red_channel_attrib""red_channel_attrib""red_channel_attrib""red_channel_attrib", 'green_channel_attrib'"green_channel_attrib""green_channel_attrib""green_channel_attrib""green_channel_attrib", and
+'blue_channel_attrib'"blue_channel_attrib""blue_channel_attrib""blue_channel_attrib""blue_channel_attrib".
+
+These parameters define the value range that is scaled to the full RGB
+channels. This is useful, if the input attribute values are not in the
+interval [0,255].
+
+If set to 'auto'"auto""auto""auto""auto", the minimum attribute value is mapped to
+0, the maximum is mapped to 255, except
+if the attribute is 'normal_x'"normal_x""normal_x""normal_x""normal_x", 'normal_y'"normal_y""normal_y""normal_y""normal_y",
+or 'normal_z'"normal_z""normal_z""normal_z""normal_z".
+In this case, start and end are automatically set to -1 and
+1.
+
+It is possible to enter start value that is higher than the end value.
+This will in effect invert the displayed RGB colors.
+
+The range can be set for the channels individually by replacing
+'rgb'"rgb""rgb""rgb""rgb" in the parameter name with the channel name, e.g.,
+'green_channel_attrib_start'"green_channel_attrib_start""green_channel_attrib_start""green_channel_attrib_start""green_channel_attrib_start".
+
+Suggested values:
+'auto'"auto""auto""auto""auto", 0, 0.1,
+1, 100, 255.
+
+Default:
+0, 255.
+
+All generic parameters are evaluated from left to right. For example, to set
+the color of the first 3D object model to red and the color of all other
+3D object models to green, set GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name to
+['color','color_0']["color","color_0"]["color","color_0"]["color","color_0"]["color","color_0"] and GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value to
+['green','red']["green","red"]["green","red"]["green","red"]["green","red"].
+
+disp_object_model_3ddisp_object_model_3dDispObjectModel3dDispObjectModel3ddisp_object_model_3d requires OpenGL 2.1, GLSL 1.2, and the OpenGL
+extensions GL_EXT_framebuffer_object and GL_EXT_framebuffer_blit.
+Otherwise the compatibility mode is automatically enabled.
+On graphics cards with low memory the following error messages could occur
+if rendering in a window with high resolution:
+
+Low level error: 'Incomplete attachment'
+
+Unhanded Exception: 'Required framebuffer object is unsupported'
+
+Solutions:
+
+Set the parameter 'quality'"quality""quality""quality""quality" to 'low'"low""low""low""low" or use the
+compatibility mode to reduce the requirements of the graphics card.
+
+The system variable (see set_systemset_systemSetSystemSetSystemset_system)
+'opengl_compatibility_mode_enable'"opengl_compatibility_mode_enable""opengl_compatibility_mode_enable""opengl_compatibility_mode_enable""opengl_compatibility_mode_enable" can be set to 'true'"true""true""true""true"
+to permanently enable the visualization in compatibility mode with lower
+OpenGL requirements.
+This mode requires OpenGL 1.1.
+In compatibility mode the parameters 'object_index_persistence'"object_index_persistence""object_index_persistence""object_index_persistence""object_index_persistence",
+'depth_persistence'"depth_persistence""depth_persistence""depth_persistence""depth_persistence" and 'quality'"quality""quality""quality""quality" are not used.
+
+On Linux Remote Desktop 'disp_background'"disp_background""disp_background""disp_background""disp_background" is not supported.
+
+Attention
+
+Cameras with hypercentric lenses are not supported.
+For displaying large faces (or primitives) with a non-zero distortion
+in CamParamCamParamCamParamcamParamcam_param, note that the distortion is only applied to the
+points of the model. In the projection, these points are subsequently
+connected by straight lines. For a good approximation of the distorted
+lines, please use a triangulation with sufficiently small triangles.
+
+Execution Information
+
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+
+Multithreading scope: global (may be called from any thread).
+
+Processed without parallelization.
+
+Parameters
+
+WindowHandleWindowHandleWindowHandlewindowHandlewindow_handle (input_control) window → HWindow, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+
+Window handle.
+
+ObjectModel3DObjectModel3DObjectModel3DobjectModel3Dobject_model_3d (input_control) object_model_3d(-array) → HObjectModel3D, HTupleMaybeSequence[HHandle]HTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+
+Handles of the 3D object models.
+
+CamParamCamParamCamParamcamParamcam_param (input_control) campar → HCamPar, HTupleSequence[Union[int, float, str]]HTupleHtuple (real / integer / string) (double / int / long / string) (double / Hlong / HString) (double / Hlong / char*)
+
+Camera parameters of the scene.
+
+Default:
+[]
+
+PosePosePoseposepose (input_control) pose(-array) → HPose, HTupleSequence[Union[int, float]]HTupleHtuple (real / integer) (double / int / long) (double / Hlong) (double / Hlong)
+
+3D poses of the objects.
+
+Default:
+[]
+
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name (input_control) string-array → HTupleSequence[str]HTupleHtuple (string) (string) (HString) (char*)
+
+Names of the generic parameters.
+
+Default:
+[]
+
+List of values:
+'alpha'"alpha""alpha""alpha""alpha", 'attribute'"attribute""attribute""attribute""attribute", 'blue_channel_attrib'"blue_channel_attrib""blue_channel_attrib""blue_channel_attrib""blue_channel_attrib", 'color'"color""color""color""color", 'color_attrib'"color_attrib""color_attrib""color_attrib""color_attrib", 'color_attrib_end'"color_attrib_end""color_attrib_end""color_attrib_end""color_attrib_end", 'color_attrib_start'"color_attrib_start""color_attrib_start""color_attrib_start""color_attrib_start", 'colored'"colored""colored""colored""colored", 'compatibility_mode_enable'"compatibility_mode_enable""compatibility_mode_enable""compatibility_mode_enable""compatibility_mode_enable", 'depth_persistence'"depth_persistence""depth_persistence""depth_persistence""depth_persistence", 'disp_background'"disp_background""disp_background""disp_background""disp_background", 'disp_lines'"disp_lines""disp_lines""disp_lines""disp_lines", 'disp_normals'"disp_normals""disp_normals""disp_normals""disp_normals", 'disp_pose'"disp_pose""disp_pose""disp_pose""disp_pose", 'green_channel_attrib'"green_channel_attrib""green_channel_attrib""green_channel_attrib""green_channel_attrib", 'light_ambient'"light_ambient""light_ambient""light_ambient""light_ambient", 'light_diffuse'"light_diffuse""light_diffuse""light_diffuse""light_diffuse", 'light_position'"light_position""light_position""light_position""light_position", 'line_color'"line_color""line_color""line_color""line_color", 'line_width'"line_width""line_width""line_width""line_width", 'lut'"lut""lut""lut""lut", 'normal_color'"normal_color""normal_color""normal_color""normal_color", 'object_index_persistence'"object_index_persistence""object_index_persistence""object_index_persistence""object_index_persistence", 'point_size'"point_size""point_size""point_size""point_size", 'quality'"quality""quality""quality""quality", 'red_channel_attrib'"red_channel_attrib""red_channel_attrib""red_channel_attrib""red_channel_attrib", 'rgb_channel_attrib_end'"rgb_channel_attrib_end""rgb_channel_attrib_end""rgb_channel_attrib_end""rgb_channel_attrib_end", 'rgb_channel_attrib_start'"rgb_channel_attrib_start""rgb_channel_attrib_start""rgb_channel_attrib_start""rgb_channel_attrib_start"
+
+GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value (input_control) string-array → HTupleSequence[Union[str, int, float]]HTupleHtuple (string / integer / real) (string / int / long / double) (HString / Hlong / double) (char* / Hlong / double)
+
+Values of the generic parameters.
+
+Default:
+[]
+
+List of values:
+'auto'"auto""auto""auto""auto", 'blue'"blue""blue""blue""blue", 'coord_x'"coord_x""coord_x""coord_x""coord_x", 'coord_y'"coord_y""coord_y""coord_y""coord_y", 'coord_z'"coord_z""coord_z""coord_z""coord_z", 'faces'"faces""faces""faces""faces", 'false'"false""false""false""false", 'green'"green""green""green""green", 'lines'"lines""lines""lines""lines", 'normal_x'"normal_x""normal_x""normal_x""normal_x", 'normal_y'"normal_y""normal_y""normal_y""normal_y", 'normal_z'"normal_z""normal_z""normal_z""normal_z", 'points'"points""points""points""points", 'primitive'"primitive""primitive""primitive""primitive", 'red'"red""red""red""red", 'true'"true""true""true""true"
+
+Result
+
+disp_object_model_3ddisp_object_model_3dDispObjectModel3dDispObjectModel3ddisp_object_model_3d returns 2 (
+H_MSG_TRUE)
+if all parameters are
+correct. If necessary, an exception is raised.
+If the image rendering exceeds the available memory of the graphics card, the
+error 5188 is raised.
+
+Possible Predecessors
+
+find_surface_modelfind_surface_modelFindSurfaceModelFindSurfaceModelfind_surface_model,
+fit_primitives_object_model_3dfit_primitives_object_model_3dFitPrimitivesObjectModel3dFitPrimitivesObjectModel3dfit_primitives_object_model_3d,
+read_object_model_3dread_object_model_3dReadObjectModel3dReadObjectModel3dread_object_model_3d,
+segment_object_model_3dsegment_object_model_3dSegmentObjectModel3dSegmentObjectModel3dsegment_object_model_3d
+
+Possible Successors
+
+get_disp_object_model_3d_infoget_disp_object_model_3d_infoGetDispObjectModel3dInfoGetDispObjectModel3dInfoget_disp_object_model_3d_info
+
+See also
+
+render_object_model_3drender_object_model_3dRenderObjectModel3dRenderObjectModel3drender_object_model_3d,
+project_object_model_3dproject_object_model_3dProjectObjectModel3dProjectObjectModel3dproject_object_model_3d,
+project_shape_model_3dproject_shape_model_3dProjectShapeModel3dProjectShapeModel3dproject_shape_model_3d,
+object_model_3d_to_xyzobject_model_3d_to_xyzObjectModel3dToXyzObjectModel3dToXyzobject_model_3d_to_xyz
+
+Module
+
+3D Metrology
+
+ClassesClasses | | Operators
+
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+
+Follow us on

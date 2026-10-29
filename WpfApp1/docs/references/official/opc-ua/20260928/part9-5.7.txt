@@ -1,0 +1,145 @@
+Acknowledgeable Condition Model – OPC Unified Architecture - Part 9: Alarms & Conditions
+OPC Unified Architecture - Part 9: Alarms & Conditions
+Go
+v1.05.06
+1 Scope 2 Normative references 3 Terms, definitions, and abbreviations 3.1 Terms and definitions 3.1.1 Acknowledge 3.1.2 Active 3.1.3 AdaptiveAlarm 3.1.4 AlarmFlood 3.1.5 AlarmManager 3.1.6 AlarmSuppressionGroup 3.1.7 ConditionClass 3.1.8 ConditionBranch 3.1.9 ConditionSource 3.1.10 Confirm 3.1.11 Disable 3.1.12 HighlyManagedAlarm 3.1.13 LatchingAlarm 3.1.14 Operator 3.1.15 RateOfChangeAlarm 3.1.16 Refresh 3.1.17 Retain 3.1.18 Shelving 3.1.19 Suppress 3.2 Abbreviations and symbols 4 Concepts 4.1 General 4.2 Conditions 4.3 Acknowledgeable Conditions 4.4 Previous states of Conditions 4.5 Condition state synchronization 4.6 Severity, quality, and comment 4.7 Dialogs 4.8 Alarms 4.9 Multiple active states 4.10 Condition instances in the AddressSpace 4.11 Alarm and Condition auditing 4.12 Alarms in a system 5 Model 5.1 General 5.2 Two-state state machines 5.3 ConditionVariable 5.4 ReferenceTypes 5.4.1 General 5.4.2 HasTrueSubState ReferenceType 5.4.3 HasFalseSubState ReferenceType 5.4.4 HasAlarmSuppressionGroup ReferenceType 5.4.5 AlarmGroupMember ReferenceType 5.4.6 AlarmSuppressionGroupMember ReferenceType 5.5 Condition Model 5.5.1 General 5.5.2 ConditionType 5.5.3 Condition and branch instances 5.5.4 Disable Method 5.5.5 Enable Method 5.5.6 AddComment Method 5.5.7 ConditionRefresh Method 5.5.8 ConditionRefresh2 Method 5.6 Dialog Model 5.6.1 General 5.6.2 DialogConditionType 5.6.3 Respond Method 5.6.4 Respond2 Method 5.7 Acknowledgeable Condition Model 5.7.1 General 5.7.2 AcknowledgeableConditionType 5.7.3 Acknowledge Method 5.7.4 Confirm Method 5.8 Alarm model 5.8.1 General 5.8.2 AlarmConditionType 5.8.3 AlarmGroupType 5.8.4 AlarmSuppressionGroupType 5.8.5 Reset Method 5.8.6 Reset2 Method 5.8.7 Silence Method 5.8.8 Suppress Method 5.8.9 Suppress2 Method 5.8.10 Unsuppress Method 5.8.11 Unsuppress2 Method 5.8.12 RemoveFromService Method 5.8.13 RemoveFromService2 Method 5.8.14 PlaceInService Method 5.8.15 PlaceInService2 Method 5.8.16 GetGroupMemberships Method 5.8.17 ShelvedStateMachineType 5.8.17.1 Overview 5.8.17.2 Unshelve Method 5.8.17.3 Unshelve2 Method 5.8.17.4 TimedShelve Method 5.8.17.5 TimedShelve2 Method 5.8.17.6 OneShotShelve Method 5.8.17.7 OneShotShelve2 Method 5.8.18 LimitAlarmType 5.8.19 Exclusive Limit Types 5.8.19.1 Overview 5.8.19.2 ExclusiveLimitStateMachineType 5.8.19.3 ExclusiveLimitAlarmType 5.8.20 NonExclusiveLimitAlarmType 5.8.21 Level Alarm 5.8.21.1 Overview 5.8.21.2 NonExclusiveLevelAlarmType 5.8.21.3 ExclusiveLevelAlarmType 5.8.22 Deviation Alarm 5.8.22.1 Overview 5.8.22.2 NonExclusiveDeviationAlarmType 5.8.22.3 ExclusiveDeviationAlarmType 5.8.23 Rate of change Alarms 5.8.23.1 Overview 5.8.23.2 NonExclusiveRateOfChangeAlarmType 5.8.23.3 ExclusiveRateOfChangeAlarmType 5.8.24 Discrete Alarms 5.8.24.1 DiscreteAlarmType 5.8.24.2 OffNormalAlarmType 5.8.24.3 SystemOffNormalAlarmType 5.8.24.4 TripAlarmType 5.8.24.5 InstrumentDiagnosticAlarmType 5.8.24.6 SystemDiagnosticAlarmType 5.8.24.7 CertificateExpirationAlarmType 5.8.25 DiscrepancyAlarmType 5.9 ConditionClasses 5.9.1 Overview 5.9.2 BaseConditionClassType 5.9.3 ProcessConditionClassType 5.9.4 MaintenanceConditionClassType 5.9.5 SystemConditionClassType 5.9.6 SafetyConditionClassType 5.9.7 HighlyManagedAlarmConditionClassType 5.9.8 TrainingConditionClassType 5.9.9 StatisticalConditionClassType 5.9.10 TestingConditionClassType 5.10 Audit Events 5.10.1 Overview 5.10.2 AuditConditionEventType 5.10.3 AuditConditionEnableEventType 5.10.4 AuditConditionCommentEventType 5.10.5 AuditConditionRespondEventType 5.10.6 AuditConditionAcknowledgeEventType 5.10.7 AuditConditionConfirmEventType 5.10.8 AuditConditionShelvingEventType 5.10.9 AuditConditionSuppressionEventType 5.10.10 AuditConditionSilenceEventType 5.10.11 AuditConditionResetEventType 5.10.12 AuditConditionOutOfServiceEventType 5.11 Condition Refresh related Events 5.11.1 Overview 5.11.2 RefreshStartEventType 5.11.3 RefreshEndEventType 5.11.4 RefreshRequiredEventType 5.12 HasCondition Reference type 5.13 Alarm & Condition status codes 5.14 Expected A & C server behaviours 5.14.1 General 5.14.2 Communication problems 5.14.3 Redundant A & C servers 6 AddressSpace organisation 6.1 General 6.2 EventNotifier and source hierarchy 6.3 Adding Conditions to the hierarchy 6.4 Conditions in InstanceDeclarations 6.5 Conditions in a VariableType 7 System State & Alarms 7.1 Overview 7.2 HasEffectDisable 7.3 HasEffectEnable 7.4 HasEffectSuppressed 7.5 HasEffectUnsuppressed 8 Alarm Summary and Objects 8.1 Overview 8.2 AlarmState Variable 8.3 AlarmMask 9 Alarm Metrics 9.1 Overview 9.2 AlarmMetricsType 9.3 AlarmRateVariableType 9.4 Reset Method Annex A Recommended localized names (Informative) A.1 Recommended state names for TwoState Variables A.1.1 LocaleId "en" A.1.2 LocaleId "de" A.1.3 LocaleId "fr" A.2 Recommended dialog response options Annex B Examples (Informative) B.1 Examples for Event sequences from Condition instances B.1.1 Overview B.1.2 Server maintains current state only B.1.3 Server maintains previous states B.1.4 Server current-State Model with Suppression B.1.5 Example for On-Delay, Off Delay and ReAlarmTime B.2 AddressSpace examples Annex C Mapping to EEMUA (Informative) Annex D Mapping from OPC A&E to OPC UA A & C (Informative) D.1 Overview D.2 Alarms and Events COM UA wrapper D.2.1 Event areas D.2.2 Event sources D.2.3 Event categories D.2.4 Event attributes D.2.5 Event subscriptions D.2.6 Condition instances D.2.7 Condition Refresh D.3 Alarms and Events COM UA proxy D.3.1 General D.3.2 Server status mapping D.3.3 Event Type mapping D.3.4 Event category mapping D.3.5 Event Category attribute mapping D.3.6 Event Condition mapping D.3.7 Browse mapping D.3.8 Qualified names D.3.8.1 Qualified name syntax D.3.8.2 Namespace table D.3.9 Subscription filters D.3.9.1 General D.3.9.2 Filter by Event, category or severity D.3.9.3 Filter by source D.3.9.4 Filter by area Annex E - IEC 62682 Mapping E.1 Overview E.2 Terms E.3 Alarm records & State Indications Annex F System State (Informative) F.1 Overview F.2 SystemStateStateMachineType Bibliography
+5.7 Acknowledgeable Condition Model
+5.7.1 General
+The Acknowledgeable Condition Model extends the Condition model. States for acknowledgement and confirmation are added to the Condition model.
+AcknowledgeableConditions are represented by the AcknowledgeableConditionType which is a subtype of the ConditionType . The model is formally defined in the following sub clauses.
+5.7.2 AcknowledgeableConditionType
+The AcknowledgeableConditionType extends the ConditionType by defining acknowledgement characteristics. The AcknowledgeableConditionType is illustrated in Figure 13 and formally defined in Table 32 and Table 33 .
+Figure 13 - AcknowledgeableConditionType overview
+Table 32 - AcknowledgeableConditionType definition
+Attribute
+Value
+BrowseName AcknowledgeableConditionType
+IsAbstract False
+References
+NodeClass
+BrowseName
+DataType
+TypeDefinition
+ModellingRule
+Subtype of the ConditionType defined in clause 5.5.2 .
+HasSubtype ObjectType AlarmConditionType Defined in Clause 5.8.2
+HasComponent Variable AckedState LocalizedText TwoStateVariableType Mandatory
+HasComponent Variable ConfirmedState LocalizedText TwoStateVariableType Optional
+HasComponent Method Acknowledge Defined in Clause 5.7.3 Mandatory
+HasComponent Method Confirm Defined in Clause 5.7.4 Optional
+ConformanceUnits
+A & C Acknowledge
+Table 33 - AcknowledgeableConditionType Additional Subcomponents
+BrowsePath
+References
+NodeClass
+BrowseName
+DataType
+TypeDefinition
+Others
+AckedState HasProperty Variable TrueState LocalizedText PropertyType
+AckedState HasProperty Variable FalseState LocalizedText PropertyType
+ConfirmedState HasProperty Variable TrueState LocalizedText PropertyType
+ConfirmedState HasProperty Variable FalseState LocalizedText PropertyType
+The empty " Others" column indicates that no ModellingRule applies.
+The AcknowledgeableConditionType inherits all Properties of the ConditionType .
+AckedState when False indicates that the Condition instance requires acknowledgement for the reported Condition state. When the Condition instance is acknowledged the AckedState is set to True. ConfirmedState indicates whether it requires confirmation. Recommended state names are described in A.1 . The two states are sub-states of the True EnabledState . See 4.3 for more information about acknowledgement and confirmation models. The EventId used in the Event Notification is considered the identifier of this state and has to be used when calling the Methods for acknowledgement or confirmation.
+A Server may require that previous states be acknowledged. If the acknowledgement of a previous state is still open and a new state also requires acknowledgement, the Server shall create a branch of the Condition instance as specified in 4.2 . Clients are expected to keep track of all ConditionBranches where AckedState /Id is False to allow acknowledgement of those. See also 5.5.2 for more information about ConditionBranches and the examples in Clause B.1 . The handling of the AckedState and branches also applies to the ConfirmedState .
+In the event of a restart of an AlarmManager , the AlarmManager should recover the AckedState and ConfirmedState (if supported) of all current conditions. If the system can not determine if the condition is Acknowledged or Confirmed , they shall be set to false (not Acknowledged and not Confirmed ).
+5.7.3 Acknowledge Method
+The Acknowledge Method is used to acknowledge an Event Notification for a Condition instance state where AckedState is False. Normally, the NodeId of the object instance is passed as the ObjectId to the Call Service . However, some Servers do not expose Condition instances in the AddressSpace. Therefore, Servers shall allow Clients to call the Acknowledge Method by specifying ConditionId as the ObjectId. The Method cannot be called with an ObjectId of the AcknowledgeableConditionType Node .
+Signature
+Acknowledge(
+[in] ByteString EventId
+[in] LocalizedText Comment
+); The parameters are defined in Table 34
+Table 34 - Acknowledge parameters
+Argument
+Description
+EventId EventId identifying a particular Event Notification .
+Only Event Notifications where AckedState/Id was False can be acknowledged.
+Comment A localized text that shall be applied to the Condition .
+Method result codes in Table 35 (defined in Call Service)
+Table 35 - Acknowledge result codes
+Result Code
+Description
+Bad_ConditionBranchAlreadyAcked See Table 137 for the description of this result code.
+Bad_MethodInvalid The MethodId is not the well-known method of the AcknowledgeableConditionType or MethodId does not refer to a Method for the specified Object or ConditionId .
+Bad_EventIdUnknown See Table 137 for the description of this result code.
+Bad_NodeIdInvalid Used to indicate that the specified ObjectId is not valid or that the Method was called on the AcknowledgeableConditionType Node . See 10000-4 for the general description of this result code.
+Bad_InvalidArgument The Comment string provided exceeds the allowed length for the comment or is invalid in some other manner.
+Comments
+A Server is responsible to ensure that each Event has a unique EventId . This allows Clients to identify and acknowledge a particular Event Notification .
+The EventId identifies a specific Event Notification with an acknowledgeable state was reported. Acknowledgement and the optional comment will be applied to the state identified with the EventId . If the comment field is NULL (both locale and text are empty) it will be ignored and any existing comments will remain unchanged. To reset the comment, an empty text with a locale shall be provided.
+A valid EventId will result in an Event Notification where AckedState /Id is set to True and the Comment Property contains the text of the optional comment argument. If a previous state is acknowledged, the BranchId and all Condition values of this branch will be reported. Table 36 specifies the AddressSpace representation for the Acknowledge Method .
+Table 36 - Acknowledge Method AddressSpace definition
+Attribute
+Value
+BrowseName Acknowledge
+References
+NodeClass
+BrowseName
+DataType
+TypeDefinition
+ModellingRule
+HasProperty
+Variable
+InputArguments Argument[] PropertyType Mandatory
+AlwaysGeneratesEvent ObjectType AuditConditionAcknowledge
+EventType
+Defined in 5.10.5
+ConformanceUnits
+A & C Acknowledge
+If Auditing is supported, this Method shall generate an Event of AuditConditionAcknowledgeEventType for all invocations of the Method .
+5.7.4 Confirm Method
+The Confirm Method is used to confirm an Event Notifications for a Condition instance state where ConfirmedState is False. Normally, the NodeId of the object instance is passed as the ObjectId to the Call Service . However, some Servers do not expose Condition instances in the AddressSpace. Therefore, Servers shall allow Clients to call the Confirm Method by specifying ConditionId as the ObjectId. The Method cannot be called with an ObjectId of the AcknowledgeableConditionType Node.
+Signature
+Confirm(
+[in] ByteString EventId
+[in] LocalizedText Comment
+);
+The parameters are defined in Table 37
+Table 37 - Confirm Method parameters
+Argument
+Description
+EventId
+EventId identifying a particular Event Notification .
+Only Event Notifications where the Id property of the ConfirmedState is False can be confirmed.
+Comment A localized text that shall be applied to the Conditions .
+Method result codes in Table 38 (defined in Call Service)
+Table 38 - Confirm result codes
+Result Code
+Description
+Bad_ConditionBranchAlreadyConfirmed See Table 137 for the description of this result code.
+Bad_MethodInvalid The method id does not refer to a method for the specified object or ConditionId .
+See 10000-4 for the general description of this result code.
+Bad_EventIdUnknown See Table 137 for the description of this result code.
+Bad_NodeIdInvalid Used to indicate that the specified ObjectId is not valid or that the Method was called on the AcknowledgeableConditionType Node .
+See 10000-4 for the general description of this result code.
+Bad_InvalidArgument The Comment string provided exceeds the allowed length for the comment or is invalid in some other manner.
+Comments
+A Server is responsible to ensure that each Event has a unique EventId . This allows Clients to identify and confirm a particular Event Notification .
+The EventId identifies a specific Event Notification with a confirmable state was reported.
+A Comment can be provided which will be applied to the state identified with the EventId . If the comment argument is NULL (both locale and text are empty) it will be ignored and any existing comments will remain unchanged. If the comment is to be reset, an empty text with a locale shall be provided.
+A valid EventId will result in an Event Notification where ConfirmedState /Id is set to True and the Comment Property contains the text of the optional comment argument. If a previous state is confirmed, the BranchId and all Condition values of this branch will be reported. A Client can confirm only events that have a ConfirmedState /Id set to False. The logic for setting ConfirmedState /Id to False is Server specific and may even be event or condition specific.
+Table 39 specifies the AddressSpace representation for the Confirm Method .
+Table 39 - Confirm Method AddressSpace definition
+Attribute
+Value
+BrowseName Confirm
+References
+NodeClass
+BrowseName
+DataType
+TypeDefinition
+ModellingRule
+HasProperty
+Variable
+InputArguments Argument[] PropertyType Mandatory
+AlwaysGeneratesEvent ObjectType AuditConditionConfirmEventType Defined in 5.10.7
+ConformanceUnits
+A & C Confirm
+If Auditing is supported, this Method shall generate an Event of AuditConditionConfirmEventType for all invocations of the Method .
+↑
+↓
+✕

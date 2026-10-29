@@ -1,0 +1,100 @@
+gray_histo [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Image / Features
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+gray_histoT_gray_histoGrayHistoGrayHistogray_histo (Operator)
+Name
+gray_histoT_gray_histoGrayHistoGrayHistogray_histo — Calculate the gray value distribution.
+Signature
+gray_histo(Region, Image :  :  : AbsoluteHisto, RelativeHisto)
+Herror T_gray_histo(const Hobject Region, const Hobject Image, Htuple* AbsoluteHisto, Htuple* RelativeHisto)
+void GrayHisto(const HObject& Region, const HObject& Image, HTuple* AbsoluteHisto, HTuple* RelativeHisto)
+HTuple HImage::GrayHisto(const HRegion& Region, HTuple* RelativeHisto) const
+HTuple HRegion::GrayHisto(const HImage& Image, HTuple* RelativeHisto) const
+static void HOperatorSet.GrayHisto(HObject region, HObject image, out HTuple absoluteHisto, out HTuple relativeHisto)
+HTuple HImage.GrayHisto(HRegion region, out HTuple relativeHisto)
+HTuple HRegion.GrayHisto(HImage image, out HTuple relativeHisto)
+def gray_histo(region: HObject, image: HObject) -> Tuple[Sequence[int], Sequence[float]]
+Description
+The operator gray_histogray_histoGrayHistoGrayHistogray_histo calculates for the image
+(ImageImageImageimageimage) within RegionRegionRegionregionregion the absolute
+(AbsoluteHistoAbsoluteHistoAbsoluteHistoabsoluteHistoabsolute_histo) and relative (RelativeHistoRelativeHistoRelativeHistorelativeHistorelative_histo)
+histogram of the gray values.
+Both histograms are tuples of 256 values, which --- beginning at 0
+--- contain the frequencies of the individual gray values of the
+image.
+AbsoluteHistoAbsoluteHistoAbsoluteHistoabsoluteHistoabsolute_histo indicates the absolute frequencies of the
+gray values in integers, and RelativeHistoRelativeHistoRelativeHistorelativeHistorelative_histo indicates the
+relative, i.e. the absolute frequencies divided by the area of the
+image as floating point numbers.
+'real'"real""real""real""real"-, 'int2'"int2""int2""int2""int2"-, 'uint2'"uint2""uint2""uint2""uint2"-, and 'int4'"int4""int4""int4""int4"-images
+are transformed into 'byte'"byte""byte""byte""byte"-images (first the largest and smallest
+gray value in the image are determined, and then the original gray values are
+mapped linearly into the area 0..255) and then processed as
+mentioned above.
+Attention
+Note that the operator gray_histogray_histoGrayHistoGrayHistogray_histo only considers
+the given RegionRegionRegionregionregion and ignores any previously set domain
+of the input image ImageImageImageimageimage.
+Real, int2, uint2, and int4 images are reduced to 256 gray values.
+gray_histogray_histoGrayHistoGrayHistogray_histo can be executed on OpenCL devices for byte, int1,
+directional and cyclic images if the OpenCL device supports the
+cl_khr_local_int32_base_atomics and cl_khr_global_int32_base_atomics
+extensions (which are optional in OpenCL 1.0). Unlike most other HALCON
+operators, gray_histogray_histoGrayHistoGrayHistogray_histo can be substantially slower on an OpenCL
+device if the ImageImageImageimageimage is not completely included in the
+RegionRegionRegionregionregion.
+OpenCL support is not available in HALCON XL, as 64 bit atomic integer
+arithmetic would be required.
+Execution Information
+Supports OpenCL compute devices.
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+Parameters
+RegionRegionRegionregionregion (input_object)  region → objectHRegionHObjectHObjectHobject
+Region in which the histogram is to be calculated.
+ImageImageImageimageimage (input_object)  singlechannelimage → objectHImageHObjectHObjectHobject (byte* / cyclic* / direction* / int1* / int2 / uint2 / int4 / real) *allowed for compute devices
+Image the gray value distribution of which is
+to be calculated.
+AbsoluteHistoAbsoluteHistoAbsoluteHistoabsoluteHistoabsolute_histo (output_control)  histogram-array → HTupleSequence[int]HTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Absolute frequencies of the gray values.
+RelativeHistoRelativeHistoRelativeHistorelativeHistorelative_histo (output_control)  histogram-array → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Frequencies, normalized to the area of the region.
+Complexity
+If F is the area of the region the runtime complexity is
+O(F + 255).
+Result
+The operator gray_histogray_histoGrayHistoGrayHistogray_histo returns the value 2 (
+H_MSG_TRUE)
+if the image
+has defined gray values and the parameters are correct.  The
+behavior in case of empty input (no input images available) is set
+via the operator
+set_system(::'no_object_result',<Result>:)set_system("no_object_result",<Result>)SetSystem("no_object_result",<Result>)SetSystem("no_object_result",<Result>)set_system("no_object_result",<Result>), the behavior
+in case of empty region is set via
+set_system(::'empty_region_result',<Result>:)set_system("empty_region_result",<Result>)SetSystem("empty_region_result",<Result>)SetSystem("empty_region_result",<Result>)set_system("empty_region_result",<Result>).
+If necessary an exception is raised.
+Possible Successors
+histo_to_threshhisto_to_threshHistoToThreshHistoToThreshhisto_to_thresh,
+gen_region_histogen_region_histoGenRegionHistoGenRegionHistogen_region_histo
+Alternatives
+min_max_graymin_max_grayMinMaxGrayMinMaxGraymin_max_gray,
+intensityintensityIntensityIntensityintensity,
+gray_histo_absgray_histo_absGrayHistoAbsGrayHistoAbsgray_histo_abs,
+gray_histo_rangegray_histo_rangeGrayHistoRangeGrayHistoRangegray_histo_range
+See also
+set_paintset_paintSetPaintSetPaintset_paint,
+histo_2dimhisto_2dimHisto2dimHisto2dimhisto_2dim,
+scale_image_maxscale_image_maxScaleImageMaxScaleImageMaxscale_image_max,
+entropy_grayentropy_grayEntropyGrayEntropyGrayentropy_gray
+Module
+Foundation
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

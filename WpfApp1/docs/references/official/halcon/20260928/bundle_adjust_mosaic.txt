@@ -1,0 +1,193 @@
+bundle_adjust_mosaic [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Tools / Mosaicking
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+bundle_adjust_mosaicT_bundle_adjust_mosaicBundleAdjustMosaicBundleAdjustMosaicbundle_adjust_mosaic (Operator)
+Name
+bundle_adjust_mosaicT_bundle_adjust_mosaicBundleAdjustMosaicBundleAdjustMosaicbundle_adjust_mosaic — Perform a bundle adjustment of an image mosaic.
+Signature
+bundle_adjust_mosaic( :  : NumImages, ReferenceImage, MappingSource, MappingDest, HomMatrices2D, Rows1, Cols1, Rows2, Cols2, NumCorrespondences, Transformation : MosaicMatrices2D, Rows, Cols, Error)
+Herror T_bundle_adjust_mosaic(const Htuple NumImages, const Htuple ReferenceImage, const Htuple MappingSource, const Htuple MappingDest, const Htuple HomMatrices2D, const Htuple Rows1, const Htuple Cols1, const Htuple Rows2, const Htuple Cols2, const Htuple NumCorrespondences, const Htuple Transformation, Htuple* MosaicMatrices2D, Htuple* Rows, Htuple* Cols, Htuple* Error)
+void BundleAdjustMosaic(const HTuple& NumImages, const HTuple& ReferenceImage, const HTuple& MappingSource, const HTuple& MappingDest, const HTuple& HomMatrices2D, const HTuple& Rows1, const HTuple& Cols1, const HTuple& Rows2, const HTuple& Cols2, const HTuple& NumCorrespondences, const HTuple& Transformation, HTuple* MosaicMatrices2D, HTuple* Rows, HTuple* Cols, HTuple* Error)
+static HHomMat2DArray HHomMat2D::BundleAdjustMosaic(Hlong NumImages, Hlong ReferenceImage, const HTuple& MappingSource, const HTuple& MappingDest, const HHomMat2DArray& HomMatrices2D, const HTuple& Rows1, const HTuple& Cols1, const HTuple& Rows2, const HTuple& Cols2, const HTuple& NumCorrespondences, const HString& Transformation, HTuple* Rows, HTuple* Cols, HTuple* Error)
+static HHomMat2DArray HHomMat2D::BundleAdjustMosaic(Hlong NumImages, Hlong ReferenceImage, const HTuple& MappingSource, const HTuple& MappingDest, const HHomMat2DArray& HomMatrices2D, const HTuple& Rows1, const HTuple& Cols1, const HTuple& Rows2, const HTuple& Cols2, const HTuple& NumCorrespondences, const HString& Transformation, HTuple* Rows, HTuple* Cols, double* Error)
+static HHomMat2DArray HHomMat2D::BundleAdjustMosaic(Hlong NumImages, Hlong ReferenceImage, const HTuple& MappingSource, const HTuple& MappingDest, const HHomMat2DArray& HomMatrices2D, const HTuple& Rows1, const HTuple& Cols1, const HTuple& Rows2, const HTuple& Cols2, const HTuple& NumCorrespondences, const char* Transformation, HTuple* Rows, HTuple* Cols, double* Error)
+static HHomMat2DArray HHomMat2D::BundleAdjustMosaic(Hlong NumImages, Hlong ReferenceImage, const HTuple& MappingSource, const HTuple& MappingDest, const HHomMat2DArray& HomMatrices2D, const HTuple& Rows1, const HTuple& Cols1, const HTuple& Rows2, const HTuple& Cols2, const HTuple& NumCorrespondences, const wchar_t* Transformation, HTuple* Rows, HTuple* Cols, double* Error)
+(
+Windows only)
+static void HOperatorSet.BundleAdjustMosaic(HTuple numImages, HTuple referenceImage, HTuple mappingSource, HTuple mappingDest, HTuple homMatrices2D, HTuple rows1, HTuple cols1, HTuple rows2, HTuple cols2, HTuple numCorrespondences, HTuple transformation, out HTuple mosaicMatrices2D, out HTuple rows, out HTuple cols, out HTuple error)
+static HHomMat2D[] HHomMat2D.BundleAdjustMosaic(int numImages, int referenceImage, HTuple mappingSource, HTuple mappingDest, HHomMat2D[] homMatrices2D, HTuple rows1, HTuple cols1, HTuple rows2, HTuple cols2, HTuple numCorrespondences, string transformation, out HTuple rows, out HTuple cols, out HTuple error)
+static HHomMat2D[] HHomMat2D.BundleAdjustMosaic(int numImages, int referenceImage, HTuple mappingSource, HTuple mappingDest, HHomMat2D[] homMatrices2D, HTuple rows1, HTuple cols1, HTuple rows2, HTuple cols2, HTuple numCorrespondences, string transformation, out HTuple rows, out HTuple cols, out double error)
+def bundle_adjust_mosaic(num_images: int, reference_image: int, mapping_source: Sequence[int], mapping_dest: Sequence[int], hom_matrices_2d: Sequence[float], rows_1: Sequence[Union[float, int]], cols_1: Sequence[Union[float, int]], rows_2: Sequence[Union[float, int]], cols_2: Sequence[Union[float, int]], num_correspondences: Sequence[int], transformation: str) -> Tuple[Sequence[float], Sequence[float], Sequence[float], Sequence[float]]
+def bundle_adjust_mosaic_s(num_images: int, reference_image: int, mapping_source: Sequence[int], mapping_dest: Sequence[int], hom_matrices_2d: Sequence[float], rows_1: Sequence[Union[float, int]], cols_1: Sequence[Union[float, int]], rows_2: Sequence[Union[float, int]], cols_2: Sequence[Union[float, int]], num_correspondences: Sequence[int], transformation: str) -> Tuple[Sequence[float], Sequence[float], Sequence[float], float]
+Description
+bundle_adjust_mosaicbundle_adjust_mosaicBundleAdjustMosaicBundleAdjustMosaicbundle_adjust_mosaic performs a bundle adjustment of an
+image mosaic.  This can be used to determine the geometry of a
+mosaic as robustly as possible, and hence to determine the
+transformations of the images in the mosaic more accurately than
+with single image pairs.
+To achieve this, the projective transformation for each overlapping
+image pair in the mosaic should be determined with
+proj_match_points_ransacproj_match_points_ransacProjMatchPointsRansacProjMatchPointsRansacproj_match_points_ransac.  For example, for a
+2×2 block of images in the following layout
+1
+2
+3
+4
+the following projective transformations should be determined,
+assuming that all images overlap each other: 1->2,
+1->3, 1->4, 2->3,
+2->4 and 3->4.  The indices of the
+images that determine the respective transformation are given by
+MappingSourceMappingSourceMappingSourcemappingSourcemapping_source and MappingDestMappingDestMappingDestmappingDestmapping_dest.  The indices are
+start at 1.  Consequently, in the above example
+MappingSourceMappingSourceMappingSourcemappingSourcemapping_source = [1,1,1,2,2,3] and
+MappingDestMappingDestMappingDestmappingDestmapping_dest = [2,3,4,3,4,4] must be used.  The
+number of images in the mosaic is given by NumImagesNumImagesNumImagesnumImagesnum_images.  It
+is used to check whether each image can be reached by a chain of
+transformations.  The index of the reference image is given by
+ReferenceImageReferenceImageReferenceImagereferenceImagereference_image.  On output, this image has the identity
+matrix as its transformation matrix.
+The 3×3 projective transformation matrices that
+correspond to the image pairs are passed in HomMatrices2DHomMatrices2DHomMatrices2DhomMatrices2Dhom_matrices_2d.
+Additionally, the coordinates of the matched point pairs in the
+image pairs must be passed in Rows1Rows1Rows1rows1rows_1, Cols1Cols1Cols1cols1cols_1,
+Rows2Rows2Rows2rows2rows_2, and Cols2Cols2Cols2cols2cols_2.  They can be determined from the
+output of proj_match_points_ransacproj_match_points_ransacProjMatchPointsRansacProjMatchPointsRansacproj_match_points_ransac with tuple_selecttuple_selectTupleSelectTupleSelecttuple_select
+or with the HDevelop function subset.  To enable
+bundle_adjust_mosaicbundle_adjust_mosaicBundleAdjustMosaicBundleAdjustMosaicbundle_adjust_mosaic to determine which point pair belongs
+to which image pair, NumCorrespondencesNumCorrespondencesNumCorrespondencesnumCorrespondencesnum_correspondences must contain the
+number of found point matches for each image pair.
+The parameter TransformationTransformationTransformationtransformationtransformation determines the class of
+transformations that is used in the bundle adjustment to transform
+the image points.  This can be used to restrict the allowable
+transformations.  For TransformationTransformationTransformationtransformationtransformation =
+'projective'"projective""projective""projective""projective", projective transformations are used (see
+vector_to_proj_hom_mat2dvector_to_proj_hom_mat2dVectorToProjHomMat2dVectorToProjHomMat2dvector_to_proj_hom_mat2d).  For TransformationTransformationTransformationtransformationtransformation =
+'affine'"affine""affine""affine""affine", affine transformations are used (see
+vector_to_hom_mat2dvector_to_hom_mat2dVectorToHomMat2dVectorToHomMat2dvector_to_hom_mat2d), for TransformationTransformationTransformationtransformationtransformation =
+'similarity'"similarity""similarity""similarity""similarity", similarity transformations (see
+vector_to_similarityvector_to_similarityVectorToSimilarityVectorToSimilarityvector_to_similarity), and for TransformationTransformationTransformationtransformationtransformation =
+'rigid'"rigid""rigid""rigid""rigid" rigid transformations (see
+vector_to_rigidvector_to_rigidVectorToRigidVectorToRigidvector_to_rigid).
+The resulting bundle-adjusted transformations are returned as an
+array of 3×3 projective transformation matrices in
+MosaicMatrices2DMosaicMatrices2DMosaicMatrices2DmosaicMatrices2Dmosaic_matrices_2d.  In addition, the points reconstructed by
+the bundle adjustment are returned in (RowsRowsRowsrowsrows,
+ColsColsColscolscols).  The average projection error of the reconstructed
+points is returned in ErrorErrorErrorerrorerror.  This can be used to check
+whether the optimization has converged to useful values.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+NumImagesNumImagesNumImagesnumImagesnum_images (input_control)  integer → HTupleintHTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Number of different images that are used for
+the calibration.
+Restriction:
+NumImages >= 2
+ReferenceImageReferenceImageReferenceImagereferenceImagereference_image (input_control)  integer → HTupleintHTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Index of the reference image.
+MappingSourceMappingSourceMappingSourcemappingSourcemapping_source (input_control)  integer-array → HTupleSequence[int]HTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Indices of the source images of the transformations.
+MappingDestMappingDestMappingDestmappingDestmapping_dest (input_control)  integer-array → HTupleSequence[int]HTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Indices of the target images of the transformations.
+HomMatrices2DHomMatrices2DHomMatrices2DhomMatrices2Dhom_matrices_2d (input_control)  hom_mat2d-array → HHomMat2D, HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Array of 3×3 projective
+transformation matrices.
+Rows1Rows1Rows1rows1rows_1 (input_control)  point.x-array → HTupleSequence[Union[float, int]]HTupleHtuple (real / integer) (double / int / long) (double / Hlong) (double / Hlong)
+Row coordinates of corresponding points in the
+respective source images.
+Cols1Cols1Cols1cols1cols_1 (input_control)  point.y-array → HTupleSequence[Union[float, int]]HTupleHtuple (real / integer) (double / int / long) (double / Hlong) (double / Hlong)
+Column coordinates of corresponding points in
+the respective source images.
+Rows2Rows2Rows2rows2rows_2 (input_control)  point.x-array → HTupleSequence[Union[float, int]]HTupleHtuple (real / integer) (double / int / long) (double / Hlong) (double / Hlong)
+Row coordinates of corresponding points in the
+respective destination images.
+Cols2Cols2Cols2cols2cols_2 (input_control)  point.y-array → HTupleSequence[Union[float, int]]HTupleHtuple (real / integer) (double / int / long) (double / Hlong) (double / Hlong)
+Column coordinates of corresponding points in
+the respective destination images.
+NumCorrespondencesNumCorrespondencesNumCorrespondencesnumCorrespondencesnum_correspondences (input_control)  integer-array → HTupleSequence[int]HTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Number of point correspondences in the
+respective image pair.
+TransformationTransformationTransformationtransformationtransformation (input_control)  string → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Transformation class to be used.
+Default:
+'projective'
+"projective"
+"projective"
+"projective"
+"projective"
+List of values:
+'affine'"affine""affine""affine""affine", 'projective'"projective""projective""projective""projective", 'rigid'"rigid""rigid""rigid""rigid", 'similarity'"similarity""similarity""similarity""similarity"
+MosaicMatrices2DMosaicMatrices2DMosaicMatrices2DmosaicMatrices2Dmosaic_matrices_2d (output_control)  hom_mat2d-array → HHomMat2D, HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Array of 3×3 projective
+transformation matrices that determine the
+position of the images in the mosaic.
+RowsRowsRowsrowsrows (output_control)  point.x-array → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Row coordinates of the points reconstructed by the
+bundle adjustment.
+ColsColsColscolscols (output_control)  point.y-array → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Column coordinates of the points reconstructed by the
+bundle adjustment.
+ErrorErrorErrorerrorerror (output_control)  real(-array) → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+Average error per reconstructed point.
+Example (HDevelop)
+* Assume that Images contains the four images of the mosaic in the
+* layout given in the above description.  Then the following example
+* computes the bundle-adjusted transformation matrices.
+From := [1,1,1,2,2,3]
+To := [2,3,4,3,4,4]
+HomMatrices2D := []
+Rows1 := []
+Cols1 := []
+Rows2 := []
+Cols2 := []
+NumMatches := []
+for J := 0 to |From|-1 by 1
+select_obj (Images, ImageF, From[J])
+select_obj (Images, ImageT, To[J])
+points_foerstner (ImageF, 1, 2, 3, 100, 0.1, 'gauss', 'true', \
+RowsF, ColsF, _, _, _, _, _, _, _, _)
+points_foerstner (ImageT, 1, 2, 3, 100, 0.1, 'gauss', 'true', \
+RowsT, ColsT, _, _, _, _, _, _, _, _)
+proj_match_points_ransac (ImageF, ImageT, RowsF, ColsF, RowsT, ColsT, \
+'ncc', 10, 0, 0, 480, 640, 0, 0.5, \
+'gold_standard', 2, 42, HomMat2D, \
+Points1, Points2)
+HomMatrices2D := [HomMatrices2D,HomMat2D]
+Rows1 := [Rows1,subset(RowsF,Points1)]
+Cols1 := [Cols1,subset(ColsF,Points1)]
+Rows2 := [Rows2,subset(RowsT,Points2)]
+Cols2 := [Cols2,subset(ColsT,Points2)]
+NumMatches := [NumMatches,|Points1|]
+endfor
+bundle_adjust_mosaic (4, 1, From, To, HomMatrices2D, Rows1, Cols1, \
+Rows2, Cols2, NumMatches, 'rigid', MosaicMatrices, \
+Rows, Columns, Error)
+gen_bundle_adjusted_mosaic (Images, MosaicImage, HomMatrices2D, \
+'default', 'false', TransMat2D)
+Result
+If the parameters are valid, the operator
+bundle_adjust_mosaicbundle_adjust_mosaicBundleAdjustMosaicBundleAdjustMosaicbundle_adjust_mosaic returns the value 2 (
+H_MSG_TRUE)
+.  If
+necessary an exception is raised.
+Possible Predecessors
+proj_match_points_ransacproj_match_points_ransacProjMatchPointsRansacProjMatchPointsRansacproj_match_points_ransac,
+proj_match_points_ransac_guidedproj_match_points_ransac_guidedProjMatchPointsRansacGuidedProjMatchPointsRansacGuidedproj_match_points_ransac_guided
+Possible Successors
+gen_bundle_adjusted_mosaicgen_bundle_adjusted_mosaicGenBundleAdjustedMosaicGenBundleAdjustedMosaicgen_bundle_adjusted_mosaic
+See also
+gen_projective_mosaicgen_projective_mosaicGenProjectiveMosaicGenProjectiveMosaicgen_projective_mosaic
+Module
+Matching
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

@@ -1,0 +1,107 @@
+find_text [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / OCR / Segmentation
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses | | Operators
+find_textT_find_textFindTextFindTextfind_text (Operator)
+Name
+find_textT_find_textFindTextFindTextfind_text — Find text in an image.
+Signature
+find_text(Image : : TextModel : TextResultID)
+Herror T_find_text(const Hobject Image, const Htuple TextModel, Htuple* TextResultID)
+void FindText(const HObject& Image, const HTuple& TextModel, HTuple* TextResultID)
+HTextResult HImage::FindText(const HTextModel& TextModel) const
+HTextResult HTextModel::FindText(const HImage& Image) const
+void HTextResult::HTextResult(const HImage& Image, const HTextModel& TextModel)
+void HTextResult::FindText(const HImage& Image, const HTextModel& TextModel)
+static void HOperatorSet.FindText(HObject image, HTuple textModel, out HTuple textResultID)
+HTextResult HImage.FindText(HTextModel textModel)
+HTextResult HTextModel.FindText(HImage image)
+public HTextResult(HImage image, HTextModel textModel)
+void HTextResult.FindText(HImage image, HTextModel textModel)
+def find_text(image: HObject, text_model: HHandle) -> HHandle
+Description
+find_textfind_textFindTextFindTextfind_text finds text specified by the TextModelTextModelTextModeltextModeltext_model in the
+ImageImageImageimageimage and returns the result in TextResultIDTextResultIDTextResultIDtextResultIDtext_result_id.
+Specific results of TextResultIDTextResultIDTextResultIDtextResultIDtext_result_id can be obtained with
+get_text_resultget_text_resultGetTextResultGetTextResultget_text_result and get_text_objectget_text_objectGetTextObjectGetTextObjectget_text_object.
+The text results in TextResultIDTextResultIDTextResultIDtextResultIDtext_result_id differ, depending on how
+ModeModeModemodemode was set when creating the TextModelTextModelTextModeltextModeltext_model with
+create_text_model_readercreate_text_model_readerCreateTextModelReaderCreateTextModelReadercreate_text_model_reader.
+For a text model with ModeModeModemodemode = 'auto'"auto""auto""auto""auto" find_textfind_textFindTextFindTextfind_text
+extracts and classifies text of arbitrary size within the ImageImageImageimageimage.
+It is possible to restrict the search to characters with specific
+attributes, see set_text_model_paramset_text_model_paramSetTextModelParamSetTextModelParamset_text_model_param for details.
+For a text model with ModeModeModemodemode = 'manual'"manual""manual""manual""manual" reasonable
+parameters for the text model, including the expected character height and
+width, need to be set using set_text_model_paramset_text_model_paramSetTextModelParamSetTextModelParamset_text_model_param.
+Furthermore, the ImageImageImageimageimage is preprocessed such that character like
+structures are enhanced. The resulting compensated image can be queried from
+TextResultIDTextResultIDTextResultIDtextResultIDtext_result_id if 'persistence'"persistence""persistence""persistence""persistence" was set to 'true'"true""true""true""true" in
+TextModelTextModelTextModeltextModeltext_model.
+Both the text models with ModeModeModemodemode = 'auto'"auto""auto""auto""auto" and
+ModeModeModemodemode = 'manual'"manual""manual""manual""manual" apply various thresholds to the input
+image and segment character candidates based on region and gray value
+features. These candidates are further clustered to lines. Each line is
+individually completed and tested if it fulfills the constraints of a text
+line. Text models with ModeModeModemodemode set to 'auto'"auto""auto""auto""auto" require a text
+line to consist of at least two characters, whereas text models with
+ModeModeModemodemode set to 'manual'"manual""manual""manual""manual" require a text line to consist of at
+least three characters. In a further step, punctuations and separators are
+added if the correspondent parameters were set via
+set_text_model_paramset_text_model_paramSetTextModelParamSetTextModelParamset_text_model_param. Finally, if TextModelTextModelTextModeltextModeltext_model contains
+'text_line_structure'"text_line_structure""text_line_structure""text_line_structure""text_line_structure" entries, the completed line is fitted to
+these structures.
+find_textfind_textFindTextFindTextfind_text finds text which is roughly horizontally aligned
+in ImageImageImageimageimage. text_line_orientationtext_line_orientationTextLineOrientationTextLineOrientationtext_line_orientation and rotate_imagerotate_imageRotateImageRotateImagerotate_image
+can be used to achieve this alignment.
+Since memory is allocated for the text result during the call of
+find_textfind_textFindTextFindTextfind_text and during the following operations, the text result
+should be
+freed explicitly by the operator clear_text_resultclear_text_resultClearTextResultClearTextResultclear_text_result as soon as it is
+no longer used.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+This operator returns a handle. Note that the state of an instance of this handle type may be changed by specific operators even though the handle is used as an input parameter by those operators.
+This operator supports canceling timeouts and interrupts.
+Parameters
+ImageImageImageimageimage (input_object) singlechannelimage → objectHImageHObjectHObjectHobject (byte / uint2)
+Input image.
+TextModelTextModelTextModeltextModeltext_model (input_control) text_model → HTextModel, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Text model specifying the text to be segmented.
+TextResultIDTextResultIDTextResultIDtextResultIDtext_result_id (output_control) text_result → HTextResult, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Result of the segmentation.
+Example (HDevelop)
+read_image (Image, 'numbers_scale')
+create_text_model_reader ('auto', 'Document_Rej.omc', TextModel)
+* Optionally specify text properties
+set_text_model_param (TextModel, 'min_char_height', 20)
+find_text (Image, TextModel, TextResultID)
+* Return character regions and corresponding classification results
+get_text_object (Characters, TextResultID, 'all_lines')
+get_text_result (TextResultID, 'class', Class)
+Result
+If the parameters are valid, the operator
+find_textfind_textFindTextFindTextfind_text returns the value 2 (
+H_MSG_TRUE)
+. If
+necessary, an exception is raised.
+Possible Predecessors
+create_text_model_readercreate_text_model_readerCreateTextModelReaderCreateTextModelReadercreate_text_model_reader,
+set_text_model_paramset_text_model_paramSetTextModelParamSetTextModelParamset_text_model_param,
+text_line_orientationtext_line_orientationTextLineOrientationTextLineOrientationtext_line_orientation,
+text_line_slanttext_line_slantTextLineSlantTextLineSlanttext_line_slant
+Possible Successors
+get_text_resultget_text_resultGetTextResultGetTextResultget_text_result,
+get_text_objectget_text_objectGetTextObjectGetTextObjectget_text_object
+Module
+OCR/OCV
+ClassesClasses | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

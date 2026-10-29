@@ -1,0 +1,2301 @@
+get_bar_code_result [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Identification
+/
+Bar Code
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+get_bar_code_result
+T_get_bar_code_result
+GetBarCodeResult
+GetBarCodeResult
+get_bar_code_result
+(Operator)
+Name
+get_bar_code_result
+T_get_bar_code_result
+GetBarCodeResult
+GetBarCodeResult
+get_bar_code_result
+— Get the alphanumerical results that were accumulated during the
+decoding of bar code symbols.
+Signature
+get_bar_code_result
+( :  :
+BarCodeHandle
+,
+CandidateHandle
+,
+ResultName
+:
+BarCodeResults
+)
+Herror
+T_get_bar_code_result
+(const Htuple
+BarCodeHandle
+, const Htuple
+CandidateHandle
+, const Htuple
+ResultName
+, Htuple*
+BarCodeResults
+)
+void
+GetBarCodeResult
+(const HTuple&
+BarCodeHandle
+, const HTuple&
+CandidateHandle
+, const HTuple&
+ResultName
+, HTuple*
+BarCodeResults
+)
+HTuple
+HBarCode
+::
+GetBarCodeResult
+(const HTuple&
+CandidateHandle
+, const HString&
+ResultName
+) const
+HTuple
+HBarCode
+::
+GetBarCodeResult
+(const HString&
+CandidateHandle
+, const HString&
+ResultName
+) const
+HTuple
+HBarCode
+::
+GetBarCodeResult
+(const char*
+CandidateHandle
+, const char*
+ResultName
+) const
+HTuple
+HBarCode
+::
+GetBarCodeResult
+(const wchar_t*
+CandidateHandle
+, const wchar_t*
+ResultName
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+GetBarCodeResult
+(
+HTuple
+barCodeHandle
+,
+HTuple
+candidateHandle
+,
+HTuple
+resultName
+, out
+HTuple
+barCodeResults
+)
+HTuple
+HBarCode
+.
+GetBarCodeResult
+(
+HTuple
+candidateHandle
+, string
+resultName
+)
+HTuple
+HBarCode
+.
+GetBarCodeResult
+(string
+candidateHandle
+, string
+resultName
+)
+def
+get_bar_code_result
+(
+bar_code_handle
+: HHandle,
+candidate_handle
+: Union[int, str],
+result_name
+: str) -> Sequence[Union[int, float, str]]
+def
+get_bar_code_result_s
+(
+bar_code_handle
+: HHandle,
+candidate_handle
+: Union[int, str],
+result_name
+: str) -> Union[int, float, str]
+Description
+The operator
+get_bar_code_result
+get_bar_code_result
+GetBarCodeResult
+GetBarCodeResult
+get_bar_code_result
+returns
+alphanumeric results of the reading process in
+BarCodeResults
+BarCodeResults
+BarCodeResults
+barCodeResults
+bar_code_results
+.
+In order to obtain a result, the bar code model (
+BarCodeHandle
+BarCodeHandle
+BarCodeHandle
+barCodeHandle
+bar_code_handle
+)
+and the index of the resulting symbol or candidate
+(
+CandidateHandle
+CandidateHandle
+CandidateHandle
+candidateHandle
+candidate_handle
+) are needed.
+ResultName
+ResultName
+ResultName
+resultName
+result_name
+determines what
+kind of result is to be returned.
+CandidateHandle
+CandidateHandle
+CandidateHandle
+candidateHandle
+candidate_handle
+refers to the read candidates in the order as
+returned by the operator
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+.
+This implies, the possible values for
+CandidateHandle
+CandidateHandle
+CandidateHandle
+candidateHandle
+candidate_handle
+depend on the
+queried result:
+Referring to decoded symbols, values from 0 to (n-1) are
+possible (with n as the total number of successfully decoded symbols).
+Referring to candidates, values from 0 to (m-1) are possible
+(with m as the total number of candidates).
+In case the asked result is single valued,
+CandidateHandle
+CandidateHandle
+CandidateHandle
+candidateHandle
+candidate_handle
+can also be set to
+'all'
+"all"
+"all"
+"all"
+"all"
+to return the results of all symbols or candidates.
+The following values are supported for
+ResultName
+ResultName
+ResultName
+resultName
+result_name
+:
+'decoded_strings'
+"decoded_strings"
+"decoded_strings"
+"decoded_strings"
+"decoded_strings"
+:
+returns the decoded result as a string in a human-readable format.
+Note that only data characters are contained in the decoded string.
+Start, stop, and check characters are excluded. For optional
+check characters the behavior depends on the value of the
+'check_char'
+"check_char"
+"check_char"
+"check_char"
+"check_char"
+(see
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+for details)
+parameter.
+The returned result is a single value.
+'decoded_types'
+"decoded_types"
+"decoded_types"
+"decoded_types"
+"decoded_types"
+:
+returns the bar code type of the decoded result as a string. This is
+especially important in the context of autodiscrimination (see
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+).
+The returned result is a single value.
+'decoded_data'
+"decoded_data"
+"decoded_data"
+"decoded_data"
+"decoded_data"
+:
+returns the decoded result as a tuple of byte values. In contrast
+to
+'decoded_reference'
+"decoded_reference"
+"decoded_reference"
+"decoded_reference"
+"decoded_reference"
+, this contains the same high level
+processed data that is also returned for
+'decoded_strings'
+"decoded_strings"
+"decoded_strings"
+"decoded_strings"
+"decoded_strings"
+.
+However, if the data contains binary non-printable characters, this
+parameter is more convenient. Also, for Code 128 or Code 93, the
+decoded data may contain NULL characters. In this case, the data
+can only be fully retrieved using this parameter, as the NULL
+character will otherwise terminate the string.
+'decoded_reference'
+"decoded_reference"
+"decoded_reference"
+"decoded_reference"
+"decoded_reference"
+:
+returns the underlying decoded reference data. It comprises all
+original characters of the symbol, i.e., data characters,
+potential start or stop characters and check characters if present.
+The specific result depends on the code type:
+For codes taking only numeric data, like, e.g., the
+EAN/UPC codes, the GS1 DataBar codes (except the GS1 DataBar
+Expanded variants), or the 2/5 codes, the decoded reference data
+takes the same values as the decoded string data including check
+characters.
+For codes with alphanumeric data, like for example
+Code 128 or Code 39 the decoded reference data are the indices
+of the respective decoding table.
+For GS1-128, the decoded reference data are the indices
+of the respective decoding table.
+The special character FNC1 appears with value 102.
+For GS1 DataBar Expanded and GS1 DataBar Expanded Stacked, the
+reference values are the ASCII codes of the decoded data (see also
+Tuple / String Operations
+), where the special character FNC1
+appears with value 29.
+Furthermore, for all codes
+from the GS1 DataBar family the first reference value represents
+a linkage flag with value of 1 if the flag is set and 0 otherwise.
+The result is returned as a tuple.
+'composite_strings'
+"composite_strings"
+"composite_strings"
+"composite_strings"
+"composite_strings"
+:
+returns the decoded string of a GS1 Composite component. For further
+details see the description of the parameter
+'composite_code'
+"composite_code"
+"composite_code"
+"composite_code"
+"composite_code"
+of
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+.
+The returned result is a single value.
+'composite_reference'
+"composite_reference"
+"composite_reference"
+"composite_reference"
+"composite_reference"
+:
+returns the decoded string of a GS1 Composite component as a tuple of
+byte values. If the data contains binary non-printable characters, this
+parameter is more convenient than
+'composite_strings'
+"composite_strings"
+"composite_strings"
+"composite_strings"
+"composite_strings"
+.
+'orientation'
+"orientation"
+"orientation"
+"orientation"
+"orientation"
+:
+returns the orientation for the specified result. The
+'orientation'
+"orientation"
+"orientation"
+"orientation"
+"orientation"
+of a bar code is defined as the angle between
+its reading direction and the horizontal image axis. The angle is
+positive in counter clockwise direction and is given in degrees.
+Note that the reading direction is perpendicular to the bars of the bar
+code. In cases where the orientation of the bars can not be determined
+reliably, e.g., for distorted codes, the orientation of the scanlines is
+returned.
+The returned result is a single value.
+Value range:
+-180.0
+..
+180.0
+.
+'element_size'
+"element_size"
+"element_size"
+"element_size"
+"element_size"
+:
+returns the size of bar code elements for the specified result.
+The returned result is a single value.
+'aborted'
+"aborted"
+"aborted"
+"aborted"
+"aborted"
+:
+returns a value indicating whether
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+was aborted or
+not:
+0 -
+completed
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+completed.
+1 -
+aborted
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+was aborted by a timeout,
+see
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+.
+2 -
+aborted
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+was aborted using
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+with
+'abort'
+"abort"
+"abort"
+"abort"
+"abort"
+.
+The returned result is a single value.
+'quality_isoiec15416'
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+:
+returns a tuple with the assessment of print quality in compliance
+with the international standard ISO/IEC 15416:2016.
+Note that the print quality of a bar code can only be evaluated
+if the bar code was decoded by
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+in
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+mode (see
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+for
+further details).
+The first tuple element always contains the overall print quality of the
+symbol. The length of the tuple and the interpretation of the remaining
+elements depend on whether a simple 1D bar code is evaluated
+(e.g., EAN-13, Code 128, GS1 DataBar) or a composite bar code
+(e.g., GS1 DataBar Omnidirectional CC-A, GS1 DataBar Limited CC-B).
+The names of the grades can be queried by setting
+ResultName
+ResultName
+ResultName
+resultName
+result_name
+to
+'quality_isoiec15416_labels'
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+, see below.
+For the print quality assessment a set of scan reflectance
+profiles (scan lines) is generated across the symbol. For each scan
+line a grade for each of the evaluated parameters is allocated.
+For compatibility reasons these grades are numbers from 0 to 4,
+where 0 is the worst and 4 the best possible grade.
+Setting
+ResultName
+ResultName
+ResultName
+resultName
+result_name
+to
+'quality_isoiec15416_float_grades'
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+, the grades are returned
+in accordance with the standard with one decimal place.
+The worst of all parameter grades of a scan line is defined
+as the scan reflectance profile grade. Thus, each scan line has an own
+grade representing the respective minimum grade of all parameter grades
+of this scan line. The arithmetic mean of all those scan line grades is
+then returned as the overall symbol grade.
+If a grade is not defined for the bar code type of the decoded symbol,
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+is returned. In this case, the overall symbol grade is
+also
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+.
+It is important to note that, even though the implementation is
+strictly based on the standard, the computation of the print quality
+grades depends on the decoding algorithm used. Thus, different
+bar code readers (of different vendors) can potentially produce
+slightly different results in the print quality assessment.
+The tuple describing the print quality depends on whether the bar code
+is simple or composite:
+simple 1D bar codes
+:
+The valuation of the print quality is described in a tuple with the
+following nine elements:
+0 -
+overall quality
+:
+The arithmetic mean of the scan reflectance profile grade of each
+scan line. Note, that this value is, in most cases, not the minimum
+of the other symbol grades, because it depends on the individual
+scan reflectance profile grades.
+1 -
+decode
+:
+Set to
+4
+when the reflectance profile of the symbol
+could be decoded according to the reference decode algorithm for the
+symbology and
+0
+, otherwise.
+Note that HALCON's decode algorithm differs from the reference
+decode algorithm. Thus, in many cases HALCON can decode the symbol
+although the
+decode
+grade according to the standard is
+0
+.
+2 -
+symbol contrast
+:
+The range between the minimum and the maximum value in the
+reflectance profile. A strong contrast results in a good grading.
+3 -
+minimum reflectance
+:
+Set to
+4
+if the lowest reflectance value in the scan
+reflectance profile is lower or equal to 0.5 of the maximum
+reflectance value. Otherwise a value of
+0
+is assigned.
+4 -
+minimum edge contrast
+:
+The contrast between any two adjacent elements, both
+bar-to-space or space-to-bar. The
+minimum edge contrast
+grades the minimum of the edge contrast values measured in the
+reflectance profile.
+5 -
+modulation
+:
+Indicates how strong the amplitudes of the bar code elements are.
+Big amplitudes make the assignment of the elements to bars or spaces
+more certain, resulting in a high modulation grade.
+6 -
+defects
+:
+Reflects irregularities in the gray value profile found within
+elements and quiet zones.
+7 -
+decodability
+:
+Reflects deviations of the element widths from the nominal widths
+defined for the corresponding symbology.
+8 -
+additional requirements
+:
+A grade concerning symbology specific requirements of the bar code.
+It mostly regards the required quiet zones, but sometimes it can
+also be related to e.g., wide/narrow ratio, inter-character gaps,
+guarding patterns.
+For the following code types the conformity to the corresponding
+ISO/IEC standard cannot be guaranteed. This is mainly because the
+computation of the
+additional requirements
+requires the
+availability of metrical information.
+Code 39:
+the grade of the inter-character gap depends on the measured
+narrow element width given in millimeters.
+Since in
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+neither metric information is
+available nor can be calculated,
+get_bar_code_result
+get_bar_code_result
+GetBarCodeResult
+GetBarCodeResult
+get_bar_code_result
+will
+only return the grade for the inter-character gap assuming that
+the measured narrow element width is less than 0.287mm.
+EAN-13, EAN-8, UPC-A, UPC-E (including all add-on variants):
+ISO/IEC 15420:2009 specifies the magnification factors as an
+additional criterion. A computation of this criterion is not
+possible since this would require knowledge of the metrical size
+of the bar code.
+While
+overall quality
+is the final symbol grade to be
+reported, the rest of the grades give information for possible
+causes for poor quality of a symbol. A detailed list of frequently
+appearing defects and their effect on the individual grades can be
+found with the ISO/IEC 15416:2016 standard.
+composite bar codes
+:
+The valuation of the print quality is described in a tuple with 24
+elements, which we organize for better clarity in three groups:
+OVERALL
+,
+LINEAR
+, and
+COMPOSITE
+,
+the latter one including a sub group.
+The overall grades that are listed in the group
+OVERALL
+.
+The grades in the groups
+LINEAR
+and
+COMPOSITE
+give
+information of possible causes for poor quality of the symbol.
+In the following, the individual tuple elements with their
+corresponding index and definition are listed in groups.
+The group
+OVERALL
+:
+These grades represent the respective minimum of all individual
+grades of each group.
+0 -
+overall quality
+:
+The final symbol grade to be reported.
+It returns the minimum of all grades.
+1 -
+overall linear
+:
+The overall grade for the symbols of the group
+LINEAR
+, the linear 1D symbols. This grade returns the
+minimum of all grades belonging to the group.
+2 -
+overall composite
+:
+The overall grade for the symbols of the group
+COMPOSITE
+, the composite 2D symbols. This grade returns
+the minimum of all grades belonging to the group.
+The group
+LINEAR
+:
+The interpretation of the grades in the
+LINEAR
+group
+correspond to those for simple 1D bar codes described above.
+3 -
+decode
+4 -
+symbol contrast
+5 -
+minimum reflectance
+6 -
+minimum edge contrast
+7 -
+modulation
+8 -
+defects
+9 -
+decodability
+10 -
+additional requirements
+The group
+COMPOSITE
+:
+these grades are equivalent to the quality grades for PDF 417 data
+code symbols, thus of two-dimensional symbols according to
+ISO/IEC 15415:2024 (see
+'quality_isoiec15415'
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+in
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+).
+However, there is a difference:
+For PDF 417 data code symbols a start/stop pattern is used for the
+evaluation concerning the quality of the reflectance profile.
+In contrast, for composite bar codes so-called Raw Address
+Patterns (RAP) are used instead of a start/stop pattern.
+The grades of the respective RAP symbols are organized in the
+sub group
+COMPOSITE RAP
+and are consistent with the grades
+for simple 1D bar codes.
+11 -
+decode
+:
+Grade for the decodability of the composite symbol part.
+Its meaning and determination is equivalent to the one for simple
+1D bar codes described above.
+12 -
+RAP overall
+:
+Minimum of all individual grades of the sub group
+COMPOSITE RAP
+.
+13 -
+RAP contrast
+:
+Grade of the
+COMPOSITE RAP
+sub group, corresponds to the
+one for simple 1D bar codes as described above.
+14 -
+RAP minimum reflectance
+:
+Grade of the
+COMPOSITE RAP
+sub group, corresponds to the
+one for simple 1D bar codes as described above.
+15 -
+RAP minimum edge contrast
+:
+Grade of the
+COMPOSITE RAP
+sub group, corresponds to the
+one for simple 1D bar codes as described above.
+16 -
+RAP modulation
+:
+Grade of the
+COMPOSITE RAP
+sub group, corresponds to the
+one for simple 1D bar codes as described above.
+17 -
+RAP defects
+:
+Grade of the
+COMPOSITE RAP
+sub group, corresponds to the
+one for simple 1D bar codes as described above.
+18 -
+RAP decodability
+:
+Grade of the
+COMPOSITE RAP
+sub group, corresponds to the
+one for simple 1D bar codes as described above.
+19 -
+codeword yield
+:
+Counts and evaluates the relative number
+of correct decoded words acquired by the set of scan profiles.
+20 -
+unused error correction
+:
+Counts and evaluates the relative number
+of false decoded words within the error correction blocks.
+21 -
+modulation
+:
+Grades the ratio of the minimum edge contrast to the symbol
+contrast.
+indicates how strong the amplitudes, i.e.,
+the extremal intensities, of the bars and spaces are.
+22 -
+decodability
+:
+Grades the uniformity of reflectance of the dark and light
+modules, respectively.
+23 -
+defects
+:
+Refers to a measurement of how perfect the reflectance profiles
+of bars and spaces are.
+'quality_isoiec15416_float_grades'
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+:
+returns a tuple with the same assessment of print quality like
+'quality_isoiec15416'
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+.
+In compliance with the international standard ISO/IEC 15416:2016 the
+grades are returned with one decimal place.
+The names of the grades can be queried by setting
+ResultName
+ResultName
+ResultName
+resultName
+result_name
+to
+'quality_isoiec15416_labels'
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+, see below.
+Note that the print quality of a bar code can only be evaluated
+if the bar code was decoded by
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+in
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+mode (see
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+for
+further details).
+'quality_isoiec15416_values'
+"quality_isoiec15416_values"
+"quality_isoiec15416_values"
+"quality_isoiec15416_values"
+"quality_isoiec15416_values"
+:
+returns a tuple with the raw values for all
+'directly
+  measurable'
+grades (returned with
+ResultName
+ResultName
+ResultName
+resultName
+result_name
+to
+'quality_isoiec15416'
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+).
+These are the grades, whose definition in the ISO/IEC 15416:2016
+standard is a
+'direct derivative'
+of the reflectance
+(i.e., the gray values) properties of the symbol or grades that are
+the result of a
+'direct counting'
+.
+Additionally the three overall grades
+overall quality
+,
+overall linear
+, and
+overall composite
+are returned
+(see their explanation above in
+'quality_isoiec15416'
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+).
+Note that the print quality of a bar code can only be evaluated
+if the bar code was decoded by
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+in
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+mode (see
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+for
+further details).
+The names of the tuple elements can be queried by setting
+ResultName
+ResultName
+ResultName
+resultName
+result_name
+to
+'quality_isoiec15416_labels'
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+, see below.
+All values (not grades) are normalized between
+0.0
+and
+1.0
+.
+Hence, for example, a
+symbol contrast
+value of
+0.75
+will correspond to a gray value of
+191.25
+(for byte images).
+Which values make up the tuple depends on whether the bar code
+is a simple 1D or a composite bar code:
+simple 1D bar codes
+:
+The following values are returned by the respective index:
+0 -
+overall quality
+2 -
+symbol contrast
+3 -
+minimum reflectance
+4 -
+minimum edge contrast
+5 -
+modulation
+6 -
+defects
+7 -
+decodability
+composite bar codes
+:
+The following values are returned by the respective index:
+0 -
+overall quality
+1 -
+overall linear
+2 -
+overall composite
+4 -
+symbol contrast
+5 -
+minimum reflectance
+6 -
+minimum edge contrast
+7 -
+modulation
+8 -
+defects
+9 -
+decodability
+13 -
+RAP contrast
+14 -
+RAP minimum reflectance
+15 -
+RAP minimum edge contrast
+16 -
+RAP modulation
+17 -
+RAP defects
+18 -
+RAP decodability
+19 -
+codeword yield
+20 -
+unused error correction
+These tuples have the same length as the tuple with the grades
+returned when setting
+ResultName
+ResultName
+ResultName
+resultName
+result_name
+to
+'quality_isoiec15416'
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+and
+'quality_isoiec15416_float_grades'
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+, respectively.
+For the entries not listed above, the operator reports
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+.
+In case of simple 1D bar codes, the grades
+decode
+and
+additional requirements
+do not have any interpretation in the
+reflectance profile and as a consequence the value
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+is returned.
+For composite bar codes this is the case for the grades
+decode
+(
+LINEAR
+),
+additional requirements
+(
+LINEAR
+),
+decode
+(
+COMPOSITE
+), and
+RAP overall
+(
+COMPOSITE
+).
+Note that although the grades
+modulation
+(
+COMPOSITE
+),
+decodability
+(
+COMPOSITE
+),
+and
+defects
+(
+COMPOSITE
+) are grading the gray value
+reflectance profile of a composite symbol,
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+is reported for them as well.
+This is because they are computed in a complicated scheme involving
+the symbology decoding routine and the error correction mechanism.
+As a consequence they do not have a direct raw measurement
+interpretation.
+If a grade is not defined for the bar code type of the decoded symbol,
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+is returned as its value. In this case, the value of the
+overall symbol grade is also
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+.
+'quality_isoiec15416_labels'
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+:
+returns convenience grade labels of the elements of the tuple returned
+when calling
+get_bar_code_result
+get_bar_code_result
+GetBarCodeResult
+GetBarCodeResult
+get_bar_code_result
+with
+'quality_isoiec15416'
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+. Note, that in order to be able to
+discriminate the composite from the linear grading case, the operator
+needs a handle of a valid result to be passed in
+CandidateHandle
+CandidateHandle
+CandidateHandle
+candidateHandle
+candidate_handle
+.
+'gs1_lint_passed'
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+:
+If the symbol contains a GS1 formatted string, additional
+linting can be performed on the contained string.
+'gs1_lint_passed'
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+will return
+'true'
+"true"
+"true"
+"true"
+"true"
+,
+if this is successful. Otherwise,
+'false'
+"false"
+"false"
+"false"
+"false"
+is returned.
+Linting checks that
+one AI (Application Identifier) does not occur multiple times with
+different contents,
+AIs required by other AIs are contained,
+AIs excluded by other AIs are not included, and that
+specific formatting rules for AIs are respected.
+'gs1_lint_result'
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+:
+'gs1_lint_result'
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+performs the linting tests documented in
+'gs1_lint_passed'
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+. If the linting fails,
+a list of human-readable error messages is returned, if it is successful,
+'ok'
+"ok"
+"ok"
+"ok"
+"ok"
+is returned.
+'status'
+"status"
+"status"
+"status"
+"status"
+:
+determines and returns additional information about scanlines of a
+given candidate region in a human-readable format.
+Note in order to evaluate the status of the bar code scanlines
+the preceding call of the operator
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+or
+decode_bar_code_rectangle2
+decode_bar_code_rectangle2
+DecodeBarCodeRectangle2
+DecodeBarCodeRectangle2
+decode_bar_code_rectangle2
+needs to be done in the mode
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+, see
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+.
+For the calculation of additional information the given candidate region
+is scanned again.
+In doing so, the bar code reader exits only after evaluation of all
+scanlines and not usual after a successful decoding.
+This is computationally expensive and should be queried only if additional
+information is needed.
+For further information on setting scanline parameters, see
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+.
+The operator returns for every scanline of the candidate region
+a status message and possible warning message, which will be added to the
+string containing the status message.
+These messages are sorted in the same order as the scanlines themselves
+are returned by
+get_bar_code_object
+get_bar_code_object
+GetBarCodeObject
+GetBarCodeObject
+get_bar_code_object
+with the parameter
+'scanlines_all'
+"scanlines_all"
+"scanlines_all"
+"scanlines_all"
+"scanlines_all"
+.
+The possible messages of these categories are listed below.
+Status messages:
+The following list shows the possible messages grouped
+into stages in which the message can appear.
+The numbers are the corresponding status codes returned by
+'status_id'
+"status_id"
+"status_id"
+"status_id"
+"status_id"
+(see below).
+0 -
+'unknown status.'
+"unknown status."
+"unknown status."
+"unknown status."
+"unknown status."
+The status of this scanline is unknown. The scanline will be ignored.
+1 -
+'success.'
+"success."
+"success."
+"success."
+"success."
+The scanline could be decoded successfully.
+2 -
+'edges: not enough edges detected.'
+"edges: not enough edges detected."
+"edges: not enough edges detected."
+"edges: not enough edges detected."
+"edges: not enough edges detected."
+The number of edges in this scanline is too low for this bar code
+type.
+3 -
+'edges: not enough edges for a start, a stop and
+      at least one data character.'
+"edges: not enough edges for a start, a stop and
+      at least one data character."
+"edges: not enough edges for a start, a stop and
+      at least one data character."
+"edges: not enough edges for a start, a stop and
+      at least one data character."
+"edges: not enough edges for a start, a stop and
+      at least one data character."
+The number of edges in this scanline is too low to find at
+least the start pattern, the stop pattern and a data character.
+4 -
+'edges: too many edges detected.'
+"edges: too many edges detected."
+"edges: too many edges detected."
+"edges: too many edges detected."
+"edges: too many edges detected."
+The number of edges in this scanline is too high for this bar
+code type.
+5 -
+'edges: center of scanline not within image domain.'
+"edges: center of scanline not within image domain."
+"edges: center of scanline not within image domain."
+"edges: center of scanline not within image domain."
+"edges: center of scanline not within image domain."
+6 -
+'decoding: could not find stop character.'
+"decoding: could not find stop character."
+"decoding: could not find stop character."
+"decoding: could not find stop character."
+"decoding: could not find stop character."
+The symbology specific stop character could not be found.
+7 -
+'decoding: could not find start and stop characters.'
+"decoding: could not find start and stop characters."
+"decoding: could not find start and stop characters."
+"decoding: could not find start and stop characters."
+"decoding: could not find start and stop characters."
+The symbology specific start and stop characters could not be found.
+8 -
+'decoding: internal error when estimating the
+      maximum string length.'
+"decoding: internal error when estimating the
+      maximum string length."
+"decoding: internal error when estimating the
+      maximum string length."
+"decoding: internal error when estimating the
+      maximum string length."
+"decoding: internal error when estimating the
+      maximum string length."
+Internal error.
+9 -
+'decoding: internal error when decoding a single
+      character.'
+"decoding: internal error when decoding a single
+      character."
+"decoding: internal error when decoding a single
+      character."
+"decoding: internal error when decoding a single
+      character."
+"decoding: internal error when decoding a single
+      character."
+Internal error.
+10 -
+'decoding: number of wide bars of a single
+      character is not equal to 2.'
+"decoding: number of wide bars of a single
+      character is not equal to 2."
+"decoding: number of wide bars of a single
+      character is not equal to 2."
+"decoding: number of wide bars of a single
+      character is not equal to 2."
+"decoding: number of wide bars of a single
+      character is not equal to 2."
+For bar code types
+'2/5 Industrial'
+"2/5 Industrial"
+"2/5 Industrial"
+"2/5 Industrial"
+"2/5 Industrial"
+and
+'2/5 Interleaved'
+"2/5 Interleaved"
+"2/5 Interleaved"
+"2/5 Interleaved"
+"2/5 Interleaved"
+, the number of wide bars in a single
+character must be two.
+11 -
+'decoding: invalid encoding pattern.'
+"decoding: invalid encoding pattern."
+"decoding: invalid encoding pattern."
+"decoding: invalid encoding pattern."
+"decoding: invalid encoding pattern."
+The encoding pattern does not correspond to a character in the
+symbology specific decoding table.
+12 -
+'decoding: invalid mix of character sets.'
+"decoding: invalid mix of character sets."
+"decoding: invalid mix of character sets."
+"decoding: invalid mix of character sets."
+"decoding: invalid mix of character sets."
+For bar code types
+'EAN-13'
+"EAN-13"
+"EAN-13"
+"EAN-13"
+"EAN-13"
+and
+'UPC-A'
+"UPC-A"
+"UPC-A"
+"UPC-A"
+"UPC-A"
+, the left
+half of the symbol contains an invalid mix of the number sets A and B.
+13 -
+'decoding: error decoding the reference to a human
+      readable string.'
+"decoding: error decoding the reference to a human
+      readable string."
+"decoding: error decoding the reference to a human
+      readable string."
+"decoding: error decoding the reference to a human
+      readable string."
+"decoding: error decoding the reference to a human
+      readable string."
+For example, this could happen if not enough characters
+(depending on whether a check character is expected) could be found.
+14 -
+'decoding: could not detect center guard pattern.'
+"decoding: could not detect center guard pattern."
+"decoding: could not detect center guard pattern."
+"decoding: could not detect center guard pattern."
+"decoding: could not detect center guard pattern."
+For bar code types
+'EAN-13'
+"EAN-13"
+"EAN-13"
+"EAN-13"
+"EAN-13"
+,
+'EAN-8'
+"EAN-8"
+"EAN-8"
+"EAN-8"
+"EAN-8"
+, and
+'UPC-A'
+"UPC-A"
+"UPC-A"
+"UPC-A"
+"UPC-A"
+(including add-on variants) the obligatory center
+guard pattern could not be found.
+15 -
+'decoding: could not detect left and/or right
+      guard patterns.'
+"decoding: could not detect left and/or right
+      guard patterns."
+"decoding: could not detect left and/or right
+      guard patterns."
+"decoding: could not detect left and/or right
+      guard patterns."
+"decoding: could not detect left and/or right
+      guard patterns."
+For bar code types
+'EAN-13'
+"EAN-13"
+"EAN-13"
+"EAN-13"
+"EAN-13"
+,
+'EAN-8'
+"EAN-8"
+"EAN-8"
+"EAN-8"
+"EAN-8"
+, and
+'UPC-A'
+"UPC-A"
+"UPC-A"
+"UPC-A"
+"UPC-A"
+(including add-on variants) either the
+obligatory left or right normal guard patterns could not be found.
+For bar code types
+'UPC-E'
+"UPC-E"
+"UPC-E"
+"UPC-E"
+"UPC-E"
+(including add-on variants)
+either the left normal or right special guard patterns could not
+be found.
+16 -
+'decoding: could not detect add-on guard pattern.'
+"decoding: could not detect add-on guard pattern."
+"decoding: could not detect add-on guard pattern."
+"decoding: could not detect add-on guard pattern."
+"decoding: could not detect add-on guard pattern."
+For bar code types
+'EAN-13'
+"EAN-13"
+"EAN-13"
+"EAN-13"
+"EAN-13"
+,
+'EAN-8'
+"EAN-8"
+"EAN-8"
+"EAN-8"
+"EAN-8"
+,
+'UPC-A'
+"UPC-A"
+"UPC-A"
+"UPC-A"
+"UPC-A"
+, and
+'UPC-E'
+"UPC-E"
+"UPC-E"
+"UPC-E"
+"UPC-E"
+containing add-on symbols,
+the obligatory add-on guard pattern could not be found.
+17 -
+'decoding: could not detect enough finder patterns.'
+"decoding: could not detect enough finder patterns."
+"decoding: could not detect enough finder patterns."
+"decoding: could not detect enough finder patterns."
+"decoding: could not detect enough finder patterns."
+For bar code types of the GS1 DataBar family, not enough finder
+patterns could be found.
+18 -
+'decoding: no segment found.'
+"decoding: no segment found."
+"decoding: no segment found."
+"decoding: no segment found."
+"decoding: no segment found."
+For stacked bar code types no segment could be found.
+19 -
+'check: checksum test failed.'
+"check: checksum test failed."
+"check: checksum test failed."
+"check: checksum test failed."
+"check: checksum test failed."
+The check character test failed. For bar codes with an optional
+check character, it is possible to disable the check character
+testing with
+'check_char'
+"check_char"
+"check_char"
+"check_char"
+"check_char"
+in
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+.
+20 -
+'check: check of add-on symbol failed.'
+"check: check of add-on symbol failed."
+"check: check of add-on symbol failed."
+"check: check of add-on symbol failed."
+"check: check of add-on symbol failed."
+For bar code types
+'EAN-13'
+"EAN-13"
+"EAN-13"
+"EAN-13"
+"EAN-13"
+,
+'EAN-8'
+"EAN-8"
+"EAN-8"
+"EAN-8"
+"EAN-8"
+,
+'UPC-A'
+"UPC-A"
+"UPC-A"
+"UPC-A"
+"UPC-A"
+, and
+'UPC-E'
+"UPC-E"
+"UPC-E"
+"UPC-E"
+"UPC-E"
+containing add-on symbols,
+the mix of the number sets A and B does not match the implicit
+check digit.
+21 -
+'check: detected EAN-13 bar code type instead of
+      specified type.'
+"check: detected EAN-13 bar code type instead of
+      specified type."
+"check: detected EAN-13 bar code type instead of
+      specified type."
+"check: detected EAN-13 bar code type instead of
+      specified type."
+"check: detected EAN-13 bar code type instead of
+      specified type."
+For the bar code type
+'UPC-A'
+"UPC-A"
+"UPC-A"
+"UPC-A"
+"UPC-A"
+and its add-on variants,
+the left half of the symbol must consist of six symbol characters
+of number set A, but a
+'EAN-13'
+"EAN-13"
+"EAN-13"
+"EAN-13"
+"EAN-13"
+compatible mix of number
+sets A and B has been found instead. Try decoding the bar code
+as
+'EAN-13'
+"EAN-13"
+"EAN-13"
+"EAN-13"
+"EAN-13"
+.
+22 -
+'check: symbol region overlaps with another symbol
+      region'
+"check: symbol region overlaps with another symbol
+      region"
+"check: symbol region overlaps with another symbol
+      region"
+"check: symbol region overlaps with another symbol
+      region"
+"check: symbol region overlaps with another symbol
+      region"
+The bar code could be decoded, but its symbol region intersects
+with the symbol region of another successfully decoded symbol.
+23 -
+'decoding: could not detect the bar code type.'
+"decoding: could not detect the bar code type."
+"decoding: could not detect the bar code type."
+"decoding: could not detect the bar code type."
+"decoding: could not detect the bar code type."
+While scanning a candidate region in autodiscrimination mode
+(see
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+with
+CodeType
+CodeType
+CodeType
+codeType
+code_type
+=
+'auto'
+"auto"
+"auto"
+"auto"
+"auto"
+),
+the decoder was unable to detect which bar code type the symbol
+belongs to.
+24 -
+'decoding: quiet zone is disturbed.'
+"decoding: quiet zone is disturbed."
+"decoding: quiet zone is disturbed."
+"decoding: quiet zone is disturbed."
+"decoding: quiet zone is disturbed."
+The quiet zone check was not successful. See the section
+'quiet_zone'
+"quiet_zone"
+"quiet_zone"
+"quiet_zone"
+"quiet_zone"
+in
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+for further
+information.
+25 -
+'check: symbol region detected outside of the
+      candidate region.'
+"check: symbol region detected outside of the
+      candidate region."
+"check: symbol region detected outside of the
+      candidate region."
+"check: symbol region detected outside of the
+      candidate region."
+"check: symbol region detected outside of the
+      candidate region."
+A bar code could be decoded, but the resulting symbol region does
+not intersect the original candidate region. This is an indication
+that random clutter or another candidate was detected by accident
+by the scanlines used to scan the original candidate.
+26 -
+'decoding: minimum code length not reached
+      (see min_code_length).'
+"decoding: minimum code length not reached
+      (see min_code_length)."
+"decoding: minimum code length not reached
+      (see min_code_length)."
+"decoding: minimum code length not reached
+      (see min_code_length)."
+"decoding: minimum code length not reached
+      (see min_code_length)."
+The number of characters in the found code is smaller than the
+required amount.
+See the section
+'min_code_length'
+"min_code_length"
+"min_code_length"
+"min_code_length"
+"min_code_length"
+in
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+for further information about the
+minimum required code length.
+27 -
+'decoding: maximum code length exceeded
+      (see max_code_length).'
+"decoding: maximum code length exceeded
+      (see max_code_length)."
+"decoding: maximum code length exceeded
+      (see max_code_length)."
+"decoding: maximum code length exceeded
+      (see max_code_length)."
+"decoding: maximum code length exceeded
+      (see max_code_length)."
+The number of characters in the found code exceeds the maximum.
+See the section
+'max_code_length'
+"max_code_length"
+"max_code_length"
+"max_code_length"
+"max_code_length"
+in
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+for further information about the
+maximum allowed code length.
+28 -
+'decoding: could not estimate bar width threshold.'
+"decoding: could not estimate bar width threshold."
+"decoding: could not estimate bar width threshold."
+"decoding: could not estimate bar width threshold."
+"decoding: could not estimate bar width threshold."
+Specific to Pharmacode. It was not possible to estimate a
+threshold to distinguish between wide and narrow bars.
+Warning messages:
+The messages listed below are only warnings, not errors. They can
+appear in combination with a status message and are then added to
+the status message string.
+These messages are returned if the bar code reader detects possible
+quality issues in the input image. The messages 1000 to 1003 can
+appear only for successfully decoded scanlines and only for the
+following bar code types:
+'Codabar'
+"Codabar"
+"Codabar"
+"Codabar"
+"Codabar"
+,
+'2/5 Industrial'
+"2/5 Industrial"
+"2/5 Industrial"
+"2/5 Industrial"
+"2/5 Industrial"
+,
+'2/5 Interleaved'
+"2/5 Interleaved"
+"2/5 Interleaved"
+"2/5 Interleaved"
+"2/5 Interleaved"
+,
+'Code 39'
+"Code 39"
+"Code 39"
+"Code 39"
+"Code 39"
+,
+'Code 93'
+"Code 93"
+"Code 93"
+"Code 93"
+"Code 93"
+,
+'GS1-128'
+"GS1-128"
+"GS1-128"
+"GS1-128"
+"GS1-128"
+,
+'Code 128'
+"Code 128"
+"Code 128"
+"Code 128"
+"Code 128"
+,
+'MSI'
+"MSI"
+"MSI"
+"MSI"
+"MSI"
+, all
+'EAN'
+"EAN"
+"EAN"
+"EAN"
+"EAN"
+-,
+'UPC-A'
+"UPC-A"
+"UPC-A"
+"UPC-A"
+"UPC-A"
+- and
+'UPC-E'
+"UPC-E"
+"UPC-E"
+"UPC-E"
+"UPC-E"
+-variants.
+Note that in cases where scanlines were already decoded incorrectly
+but not recognized as invalid by the bar code reader, these warnings
+will be wrong and must be ignored.
+1000 -
+'White spaces too wide.'
+"White spaces too wide."
+"White spaces too wide."
+"White spaces too wide."
+"White spaces too wide."
+The measured width of the white spaces is bigger than internally
+expected. This is not a decoding error, but a warning that
+increasing white spaces could lead to undecodable symbols.
+1001 -
+'White spaces too narrow.'
+"White spaces too narrow."
+"White spaces too narrow."
+"White spaces too narrow."
+"White spaces too narrow."
+The measured width of the white spaces is smaller than internally
+expected. This is not a decoding error, but a warning that
+decreasing white spaces could lead to undecodable symbols.
+1002 -
+'Bars too wide.'
+"Bars too wide."
+"Bars too wide."
+"Bars too wide."
+"Bars too wide."
+The measured width of the bars is bigger than internally
+expected. This is not a decoding error, but a warning that
+increasing the width of the bars could lead to undecodable symbols.
+1003 -
+'Bars too narrow.'
+"Bars too narrow."
+"Bars too narrow."
+"Bars too narrow."
+"Bars too narrow."
+The measured width of the bars is smaller than internally
+expected. This is not a decoding error, but a warning that
+decreasing the width of the bars could lead to undecodable symbols.
+1004 -
+'Possible saturation of gray values.'
+"Possible saturation of gray values."
+"Possible saturation of gray values."
+"Possible saturation of gray values."
+"Possible saturation of gray values."
+Internal algorithms show that the white pixels in the symbol
+region could be saturated.
+This warning is not bar code type specific.
+This warning is returned for each scanline.
+For example, the combination of the status messages 1001/1004 or
+1003/1004 is a hint, that the input images might be overexposed.
+1005 -
+'No composite component found.'
+"No composite component found."
+"No composite component found."
+"No composite component found."
+"No composite component found."
+The linkage flag in the linear bar code component indicates
+that there should be a composite component, but the composite
+component could not be found. The decoder returned
+the linear component only. This warning is returned for each scanline.
+1006 -
+'Used for merging.'
+"Used for merging."
+"Used for merging."
+"Used for merging."
+"Used for merging."
+This message is an information that some edges of the current
+scanline were used to compute the merged scanline.
+'status_id'
+"status_id"
+"status_id"
+"status_id"
+"status_id"
+:
+returns additional information about scanlines in a numeric format that
+can be easily parsed.
+The description of this functionality and the message numbers are
+described with the parameter
+'status'
+"status"
+"status"
+"status"
+"status"
+above.
+The numbers of the warnings can be returned together with
+other status numbers. The single status message and warning numbers for
+each scanline are returned as a
+string, separated by a semicolon, e.g.,
+'1;1000;1004'
+.
+'status_small_elements_robustness'
+"status_small_elements_robustness"
+"status_small_elements_robustness"
+"status_small_elements_robustness"
+"status_small_elements_robustness"
+:
+determines the status of an optional decoding attempt, which is described
+in the section about
+'small_elements_robustness'
+"small_elements_robustness"
+"small_elements_robustness"
+"small_elements_robustness"
+"small_elements_robustness"
+in
+set_bar_code_param
+set_bar_code_param
+SetBarCodeParam
+SetBarCodeParam
+set_bar_code_param
+.  Additionally to the messages listed for
+'status'
+"status"
+"status"
+"status"
+"status"
+,
+'status_small_elements_robustness'
+"status_small_elements_robustness"
+"status_small_elements_robustness"
+"status_small_elements_robustness"
+"status_small_elements_robustness"
+can return
+the status
+'small_elements_robustness: no scan.'
+"small_elements_robustness: no scan."
+"small_elements_robustness: no scan."
+"small_elements_robustness: no scan."
+"small_elements_robustness: no scan."
+if for some
+reason the algorithm was not executed or failed.
+'decode_feature'
+"decode_feature"
+"decode_feature"
+"decode_feature"
+"decode_feature"
+:
+returns the feature that is used for the successful symbol decoding.
+The returned result is a single value.
+Suggested values:
+'standard'
+"standard"
+"standard"
+"standard"
+"standard"
+,
+'merge_scanlines'
+"merge_scanlines"
+"merge_scanlines"
+"merge_scanlines"
+"merge_scanlines"
+,
+'small_elements_robustness'
+"small_elements_robustness"
+"small_elements_robustness"
+"small_elements_robustness"
+"small_elements_robustness"
+.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+BarCodeHandle
+BarCodeHandle
+BarCodeHandle
+barCodeHandle
+bar_code_handle
+(input_control)
+barcode
+→
+HBarCode
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Handle of the bar code model.
+CandidateHandle
+CandidateHandle
+CandidateHandle
+candidateHandle
+candidate_handle
+(input_control)
+integer
+→
+HTuple
+Union[int, str]
+HTuple
+Htuple
+(string /
+integer)
+(
+string
+/
+int /
+long)
+(
+HString
+/
+Hlong)
+(
+char*
+/
+Hlong)
+Indicating the bar code results respectively
+candidates for which the data is required.
+Default:
+'all'
+"all"
+"all"
+"all"
+"all"
+Suggested values:
+0, 1, 2,
+'all'
+"all"
+"all"
+"all"
+"all"
+ResultName
+ResultName
+ResultName
+resultName
+result_name
+(input_control)
+attribute.name
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Names of the resulting data to return.
+Default:
+'decoded_types'
+"decoded_types"
+"decoded_types"
+"decoded_types"
+"decoded_types"
+Suggested values:
+'decoded_types'
+"decoded_types"
+"decoded_types"
+"decoded_types"
+"decoded_types"
+,
+'decoded_strings'
+"decoded_strings"
+"decoded_strings"
+"decoded_strings"
+"decoded_strings"
+,
+'decoded_data'
+"decoded_data"
+"decoded_data"
+"decoded_data"
+"decoded_data"
+,
+'decoded_reference'
+"decoded_reference"
+"decoded_reference"
+"decoded_reference"
+"decoded_reference"
+,
+'element_size'
+"element_size"
+"element_size"
+"element_size"
+"element_size"
+,
+'orientation'
+"orientation"
+"orientation"
+"orientation"
+"orientation"
+,
+'composite_strings'
+"composite_strings"
+"composite_strings"
+"composite_strings"
+"composite_strings"
+,
+'composite_reference'
+"composite_reference"
+"composite_reference"
+"composite_reference"
+"composite_reference"
+,
+'aborted'
+"aborted"
+"aborted"
+"aborted"
+"aborted"
+,
+'gs1_lint_result'
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+,
+'gs1_lint_passed'
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+,
+'quality_isoiec15416'
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+"quality_isoiec15416"
+,
+'quality_isoiec15416_labels'
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+"quality_isoiec15416_labels"
+,
+'quality_isoiec15416_values'
+"quality_isoiec15416_values"
+"quality_isoiec15416_values"
+"quality_isoiec15416_values"
+"quality_isoiec15416_values"
+,
+'quality_isoiec15416_float_grades'
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+"quality_isoiec15416_float_grades"
+,
+'status'
+"status"
+"status"
+"status"
+"status"
+,
+'status_id'
+"status_id"
+"status_id"
+"status_id"
+"status_id"
+,
+'status_small_elements_robustness'
+"status_small_elements_robustness"
+"status_small_elements_robustness"
+"status_small_elements_robustness"
+"status_small_elements_robustness"
+,
+'decode_feature'
+"decode_feature"
+"decode_feature"
+"decode_feature"
+"decode_feature"
+BarCodeResults
+BarCodeResults
+BarCodeResults
+barCodeResults
+bar_code_results
+(output_control)
+attribute.value(-array)
+→
+HTuple
+Sequence[Union[int, float, str]]
+HTuple
+Htuple
+(string /
+integer /
+real)
+(
+string
+/
+int /
+long /
+double)
+(
+HString
+/
+Hlong /
+double)
+(
+char*
+/
+Hlong /
+double)
+List with the results.
+Result
+The operator
+get_bar_code_result
+get_bar_code_result
+GetBarCodeResult
+GetBarCodeResult
+get_bar_code_result
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    
+if the given parameters are correct and the requested results are
+available for the last symbol search.
+Otherwise, an exception will be raised.
+Possible Predecessors
+find_bar_code
+find_bar_code
+FindBarCode
+FindBarCode
+find_bar_code
+See also
+get_bar_code_object
+get_bar_code_object
+GetBarCodeObject
+GetBarCodeObject
+get_bar_code_object
+Module
+Bar Code
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

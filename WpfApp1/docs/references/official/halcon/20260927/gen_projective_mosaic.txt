@@ -1,0 +1,828 @@
+gen_projective_mosaic [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Tools
+/
+Mosaicking
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+gen_projective_mosaic
+T_gen_projective_mosaic
+GenProjectiveMosaic
+GenProjectiveMosaic
+gen_projective_mosaic
+(Operator)
+Name
+gen_projective_mosaic
+T_gen_projective_mosaic
+GenProjectiveMosaic
+GenProjectiveMosaic
+gen_projective_mosaic
+— Combine multiple images into a mosaic image.
+Signature
+gen_projective_mosaic
+(
+Images
+:
+MosaicImage
+:
+StartImage
+,
+MappingSource
+,
+MappingDest
+,
+HomMatrices2D
+,
+StackingOrder
+,
+TransformDomain
+:
+MosaicMatrices2D
+)
+Herror
+T_gen_projective_mosaic
+(const Hobject
+Images
+, Hobject*
+MosaicImage
+, const Htuple
+StartImage
+, const Htuple
+MappingSource
+, const Htuple
+MappingDest
+, const Htuple
+HomMatrices2D
+, const Htuple
+StackingOrder
+, const Htuple
+TransformDomain
+, Htuple*
+MosaicMatrices2D
+)
+void
+GenProjectiveMosaic
+(const HObject&
+Images
+, HObject*
+MosaicImage
+, const HTuple&
+StartImage
+, const HTuple&
+MappingSource
+, const HTuple&
+MappingDest
+, const HTuple&
+HomMatrices2D
+, const HTuple&
+StackingOrder
+, const HTuple&
+TransformDomain
+, HTuple*
+MosaicMatrices2D
+)
+HImage
+HImage
+::
+GenProjectiveMosaic
+(Hlong
+StartImage
+, const HTuple&
+MappingSource
+, const HTuple&
+MappingDest
+, const HHomMat2DArray&
+HomMatrices2D
+, const HTuple&
+StackingOrder
+, const HString&
+TransformDomain
+, HHomMat2DArray*
+MosaicMatrices2D
+) const
+HImage
+HImage
+::
+GenProjectiveMosaic
+(Hlong
+StartImage
+, const HTuple&
+MappingSource
+, const HTuple&
+MappingDest
+, const HHomMat2DArray&
+HomMatrices2D
+, const HString&
+StackingOrder
+, const HString&
+TransformDomain
+, HHomMat2DArray*
+MosaicMatrices2D
+) const
+HImage
+HImage
+::
+GenProjectiveMosaic
+(Hlong
+StartImage
+, const HTuple&
+MappingSource
+, const HTuple&
+MappingDest
+, const HHomMat2DArray&
+HomMatrices2D
+, const char*
+StackingOrder
+, const char*
+TransformDomain
+, HHomMat2DArray*
+MosaicMatrices2D
+) const
+HImage
+HImage
+::
+GenProjectiveMosaic
+(Hlong
+StartImage
+, const HTuple&
+MappingSource
+, const HTuple&
+MappingDest
+, const HHomMat2DArray&
+HomMatrices2D
+, const wchar_t*
+StackingOrder
+, const wchar_t*
+TransformDomain
+, HHomMat2DArray*
+MosaicMatrices2D
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+GenProjectiveMosaic
+(
+HObject
+images
+, out
+HObject
+mosaicImage
+,
+HTuple
+startImage
+,
+HTuple
+mappingSource
+,
+HTuple
+mappingDest
+,
+HTuple
+homMatrices2D
+,
+HTuple
+stackingOrder
+,
+HTuple
+transformDomain
+, out
+HTuple
+mosaicMatrices2D
+)
+HImage
+HImage
+.
+GenProjectiveMosaic
+(int
+startImage
+,
+HTuple
+mappingSource
+,
+HTuple
+mappingDest
+,
+HHomMat2D[]
+homMatrices2D
+,
+HTuple
+stackingOrder
+, string
+transformDomain
+, out
+HHomMat2D[]
+mosaicMatrices2D
+)
+HImage
+HImage
+.
+GenProjectiveMosaic
+(int
+startImage
+,
+HTuple
+mappingSource
+,
+HTuple
+mappingDest
+,
+HHomMat2D[]
+homMatrices2D
+, string
+stackingOrder
+, string
+transformDomain
+, out
+HHomMat2D[]
+mosaicMatrices2D
+)
+def
+gen_projective_mosaic
+(
+images
+: HObject,
+start_image
+: int,
+mapping_source
+: Sequence[int],
+mapping_dest
+: Sequence[int],
+hom_matrices_2d
+: Sequence[float],
+stacking_order
+: MaybeSequence[Union[str, int]],
+transform_domain
+: str) -> Tuple[HObject, Sequence[float]]
+Description
+gen_projective_mosaic
+gen_projective_mosaic
+GenProjectiveMosaic
+GenProjectiveMosaic
+gen_projective_mosaic
+combines the input images contained in
+the object
+Images
+Images
+Images
+images
+images
+into a mosaic image
+MosaicImage
+MosaicImage
+MosaicImage
+mosaicImage
+mosaic_image
+.
+The relative positions of the images are defined by
+3x3 projective transformation matrices.  The array
+HomMatrices2D
+HomMatrices2D
+HomMatrices2D
+homMatrices2D
+hom_matrices_2d
+contains a sequence of these linearized
+matrices.  The values in
+MappingSource
+MappingSource
+MappingSource
+mappingSource
+mapping_source
+and
+MappingDest
+MappingDest
+MappingDest
+mappingDest
+mapping_dest
+are the indices of the images that the
+corresponding matrix applies to.
+MappingSource
+MappingSource
+MappingSource
+mappingSource
+mapping_source
+=
+4
+and
+MappingDest
+MappingDest
+MappingDest
+mappingDest
+mapping_dest
+=
+7
+means that the matrix describes
+the transformation of the image number
+4
+into the
+projective plane of image
+7
+.  The transformation matrices
+between the respective image pairs given by
+MappingSource
+MappingSource
+MappingSource
+mappingSource
+mapping_source
+and
+MappingDest
+MappingDest
+MappingDest
+mappingDest
+mapping_dest
+are typically determined with
+proj_match_points_ransac
+proj_match_points_ransac
+ProjMatchPointsRansac
+ProjMatchPointsRansac
+proj_match_points_ransac
+.
+As usual for operators that access image objects (e.g.,
+select_obj
+select_obj
+SelectObj
+SelectObj
+select_obj
+), the images are numbered starting from 1, i.e.,
+MappingSource
+MappingSource
+MappingSource
+mappingSource
+mapping_source
+,
+MappingDest
+MappingDest
+MappingDest
+mappingDest
+mapping_dest
+,
+StartImage
+StartImage
+StartImage
+startImage
+start_image
+,
+and
+StackingOrder
+StackingOrder
+StackingOrder
+stackingOrder
+stacking_order
+) must contain values between 1 and the
+number of images passed in
+Images
+Images
+Images
+images
+images
+.
+The parameter
+StartImage
+StartImage
+StartImage
+startImage
+start_image
+states which image defines the
+image plane of the final image, that is, which input image remains
+unchanged in the output image. This is usually an image that is
+located near the center of the image mosaic.
+The origin of
+MosaicImage
+MosaicImage
+MosaicImage
+mosaicImage
+mosaic_image
+and its size are automatically
+chosen so that all of the input images are completely visible.
+The order in which the images are added to the mosaic is given by
+the array
+StackingOrder
+StackingOrder
+StackingOrder
+stackingOrder
+stacking_order
+.  The first index in this array
+will end up at the bottom of the image stack while the last one will
+be on top.  If
+'default'
+"default"
+"default"
+"default"
+"default"
+is given instead of an array of
+integers, the canonical order (images in the order used in
+Images
+Images
+Images
+images
+images
+) will be used.
+The parameter
+TransformDomain
+TransformDomain
+TransformDomain
+transformDomain
+transform_domain
+can be used to determine
+whether the domains of
+Images
+Images
+Images
+images
+images
+are also transformed.  Since
+the transformation of the domains costs runtime, this parameter
+should be used to specify whether this is desired or not.  If
+TransformDomain
+TransformDomain
+TransformDomain
+transformDomain
+transform_domain
+is set to
+'false'
+"false"
+"false"
+"false"
+"false"
+the domain of
+the input images is ignored and the complete images are
+transformed.
+On output, the parameter
+MosaicMatrices2D
+MosaicMatrices2D
+MosaicMatrices2D
+mosaicMatrices2D
+mosaic_matrices_2d
+contains a set of
+3x3 projective transformation matrices that describe
+for each image in
+Images
+Images
+Images
+images
+images
+the mapping of the image to its
+position in the mosaic.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Images
+Images
+Images
+images
+images
+(input_object)
+(multichannel-)image-array
+→
+object
+HImage
+HObject
+HObject
+Hobject
+(byte / uint2 / real)
+Input images.
+MosaicImage
+MosaicImage
+MosaicImage
+mosaicImage
+mosaic_image
+(output_object)
+(multichannel-)image
+→
+object
+HImage
+HObject
+HObject
+Hobject *
+(byte / uint2 / real)
+Output image.
+StartImage
+StartImage
+StartImage
+startImage
+start_image
+(input_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Index of the central input image.
+MappingSource
+MappingSource
+MappingSource
+mappingSource
+mapping_source
+(input_control)
+integer-array
+→
+HTuple
+Sequence[int]
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Indices of the source images of the transformations.
+MappingDest
+MappingDest
+MappingDest
+mappingDest
+mapping_dest
+(input_control)
+integer-array
+→
+HTuple
+Sequence[int]
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Indices of the target images of the transformations.
+HomMatrices2D
+HomMatrices2D
+HomMatrices2D
+homMatrices2D
+hom_matrices_2d
+(input_control)
+hom_mat2d-array
+→
+HHomMat2D
+,
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Array of 3x3 projective
+transformation matrices.
+StackingOrder
+StackingOrder
+StackingOrder
+stackingOrder
+stacking_order
+(input_control)
+string(-array)
+→
+HTuple
+MaybeSequence[Union[str, int]]
+HTuple
+Htuple
+(string /
+integer)
+(
+string
+/
+int /
+long)
+(
+HString
+/
+Hlong)
+(
+char*
+/
+Hlong)
+Stacking order of the images in the mosaic.
+Default:
+'default'
+"default"
+"default"
+"default"
+"default"
+Suggested values:
+'default'
+"default"
+"default"
+"default"
+"default"
+TransformDomain
+TransformDomain
+TransformDomain
+transformDomain
+transform_domain
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Should the domains of the input images also be
+transformed?
+Default:
+'false'
+"false"
+"false"
+"false"
+"false"
+List of values:
+'false'
+"false"
+"false"
+"false"
+"false"
+,
+'true'
+"true"
+"true"
+"true"
+"true"
+MosaicMatrices2D
+MosaicMatrices2D
+MosaicMatrices2D
+mosaicMatrices2D
+mosaic_matrices_2d
+(output_control)
+hom_mat2d-array
+→
+HHomMat2D
+,
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Array of 3x3 projective
+transformation matrices that determine the
+position of the images in the mosaic.
+Example (HDevelop)
+gen_empty_obj (Images)
+for J := 1 to 6 by 1
+    read_image (Image, 'mosaic/pcb_'+J$'02')
+    concat_obj (Images, Image, Images)
+endfor
+From := [1,2,3,4,5]
+To := [2,3,4,5,6]
+Num := |From|
+ProjMatrices := []
+for J := 0 to Num-1 by 1
+    F := From[J]
+    T := To[J]
+    select_obj (Images, ImageF, F)
+    select_obj (Images, ImageT, T)
+    points_foerstner (ImageF, 1, 2, 3, 200, 0.3, 'gauss', 'false', \
+                      RowJunctionsF, ColJunctionsF, CoRRJunctionsF, \
+                      CoRCJunctionsF, CoCCJunctionsF, RowAreaF, \
+                      ColAreaF, CoRRAreaF, CoRCAreaF, CoCCAreaF)
+    points_foerstner (ImageT, 1, 2, 3, 200, 0.3, 'gauss', 'false', \
+                      RowJunctionsT, ColJunctionsT, CoRRJunctionsT, \
+                      CoRCJunctionsT, CoCCJunctionsT, RowAreaT, \
+                      ColAreaT, CoRRAreaT, CoRCAreaT, CoCCAreaT)
+    proj_match_points_ransac (ImageF, ImageT, RowJunctionsF, \
+                              ColJunctionsF, RowJunctionsT, \
+                              ColJunctionsT, 'ncc', 21, 0, 0, 480, 640, \
+                              0, 0.5, 'gold_standard', 1, 4364537, \
+                              ProjMatrix, Points1, Points2)
+    ProjMatrices := [ProjMatrices,ProjMatrix]
+endfor
+gen_projective_mosaic (Images, MosaicImage, 2, From, To, ProjMatrices, \
+                       'default', 'false', MosaicMatrices2D)
+Possible Predecessors
+proj_match_points_ransac
+proj_match_points_ransac
+ProjMatchPointsRansac
+ProjMatchPointsRansac
+proj_match_points_ransac
+,
+proj_match_points_ransac_guided
+proj_match_points_ransac_guided
+ProjMatchPointsRansacGuided
+ProjMatchPointsRansacGuided
+proj_match_points_ransac_guided
+,
+vector_to_proj_hom_mat2d
+vector_to_proj_hom_mat2d
+VectorToProjHomMat2d
+VectorToProjHomMat2d
+vector_to_proj_hom_mat2d
+,
+hom_vector_to_proj_hom_mat2d
+hom_vector_to_proj_hom_mat2d
+HomVectorToProjHomMat2d
+HomVectorToProjHomMat2d
+hom_vector_to_proj_hom_mat2d
+See also
+projective_trans_image
+projective_trans_image
+ProjectiveTransImage
+ProjectiveTransImage
+projective_trans_image
+,
+projective_trans_image_size
+projective_trans_image_size
+ProjectiveTransImageSize
+ProjectiveTransImageSize
+projective_trans_image_size
+,
+projective_trans_region
+projective_trans_region
+ProjectiveTransRegion
+ProjectiveTransRegion
+projective_trans_region
+,
+projective_trans_contour_xld
+projective_trans_contour_xld
+ProjectiveTransContourXld
+ProjectiveTransContourXld
+projective_trans_contour_xld
+,
+projective_trans_point_2d
+projective_trans_point_2d
+ProjectiveTransPoint2d
+ProjectiveTransPoint2d
+projective_trans_point_2d
+,
+projective_trans_pixel
+projective_trans_pixel
+ProjectiveTransPixel
+ProjectiveTransPixel
+projective_trans_pixel
+References
+Richard Hartley, Andrew Zisserman: “Multiple View Geometry in
+Computer Vision”; Cambridge University Press, Cambridge; 2000.
+Olivier Faugeras, Quang-Tuan Luong: “The Geometry of Multiple
+Images: The Laws That Govern the Formation of Multiple Images of a
+Scene and Some of Their Applications”; MIT Press, Cambridge, MA;
+2001.
+Module
+Matching
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

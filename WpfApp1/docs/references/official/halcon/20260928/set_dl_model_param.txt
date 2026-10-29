@@ -1,0 +1,271 @@
+set_dl_model_param [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Deep Learning / Model
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+set_dl_model_paramT_set_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param (Operator)
+Name
+set_dl_model_paramT_set_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param — Set the parameters of a deep learning model.
+Signature
+set_dl_model_param( :  : DLModelHandle, GenParamName, GenParamValue : )
+Herror T_set_dl_model_param(const Htuple DLModelHandle, const Htuple GenParamName, const Htuple GenParamValue)
+void SetDlModelParam(const HTuple& DLModelHandle, const HTuple& GenParamName, const HTuple& GenParamValue)
+void HDlModel::SetDlModelParam(const HString& GenParamName, const HTuple& GenParamValue) const
+void HDlModel::SetDlModelParam(const HString& GenParamName, Hlong GenParamValue) const
+void HDlModel::SetDlModelParam(const char* GenParamName, Hlong GenParamValue) const
+void HDlModel::SetDlModelParam(const wchar_t* GenParamName, Hlong GenParamValue) const
+(
+Windows only)
+static void HOperatorSet.SetDlModelParam(HTuple DLModelHandle, HTuple genParamName, HTuple genParamValue)
+void HDlModel.SetDlModelParam(string genParamName, HTuple genParamValue)
+void HDlModel.SetDlModelParam(string genParamName, int genParamValue)
+def set_dl_model_param(dlmodel_handle: HHandle, gen_param_name: str, gen_param_value: MaybeSequence[Union[str, float, int]]) -> None
+Description
+set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param sets the parameters and hyperparameters
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name of the deep learning model DLModelHandleDLModelHandleDLModelHandleDLModelHandledlmodel_handle
+to the values GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value.
+The values GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name can attain, depend on the model type:
+There are parameters which can be set for any deep learning model while
+others can only be set for specific model types.
+A description of the parameters whose value you can only set but not
+retrieve is given below. For all other parameters the specific description
+is given in get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param.
+In get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param we also give an overview,
+for which type of model and using which operator a parameter can be set.
+In the following we list the parameters GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name you can set
+using this operator, set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param.
+Thereby, the following symbols denote the model type for which the parameter
+can be set and has a possible influence:
+'Any': any method
+'3D-GPD': 'type'"type""type""type""type"='3d_gripping_point_detection'"3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection"
+'3D-PE': 'type'"type""type""type""type"='3d_pose_estimation'"3d_pose_estimation""3d_pose_estimation""3d_pose_estimation""3d_pose_estimation"
+'AD': 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection"
+'CL': 'type'"type""type""type""type"='classification'"classification""classification""classification""classification"
+'MLC': 'type'"type""type""type""type"='multi_label_classification'"multi_label_classification""multi_label_classification""multi_label_classification""multi_label_classification"
+'DC': 'type'"type""type""type""type"='counting'"counting""counting""counting""counting"
+'OCR-D': 'type'"type""type""type""type"='ocr_detection'"ocr_detection""ocr_detection""ocr_detection""ocr_detection"
+'OCR-R': 'type'"type""type""type""type"='ocr_recognition'"ocr_recognition""ocr_recognition""ocr_recognition""ocr_recognition"
+'GC-AD': 'type'"type""type""type""type"='gc_anomaly_detection'"gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection"
+'OD': 'type'"type""type""type""type"='detection'"detection""detection""detection""detection"
+'SE': 'type'"type""type""type""type"='segmentation'"segmentation""segmentation""segmentation""segmentation"
+'Gen': 'type'"type""type""type""type"='generic'"generic""generic""generic""generic"
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1": 3D-GPD 3D-PE CL OCR-D OCR-R GC-AD OD SE Gen
+Moment for linear term in Adam solver. Only applicable if
+'solver_type'"solver_type""solver_type""solver_type""solver_type" = 'adam'"adam""adam""adam""adam".
+'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2": 3D-GPD 3D-PE CL OCR-D OCR-R GC-AD OD SE Gen
+Moment for quadratic term in Adam solver. Only applicable if
+'solver_type'"solver_type""solver_type""solver_type""solver_type" = 'adam'"adam""adam""adam""adam".
+'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon": 3D-GPD 3D-PE CL OCR-D OCR-R GC-AD OD SE Gen
+Epsilon for numeric stability in Adam solver. Only applicable if
+'solver_type'"solver_type""solver_type""solver_type""solver_type" = 'adam'"adam""adam""adam""adam".
+'alignment'"alignment""alignment""alignment""alignment": OCR-R
+'alignment_available'"alignment_available""alignment_available""alignment_available""alignment_available": OCR-R
+'alphabet'"alphabet""alphabet""alphabet""alphabet": OCR-R
+'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal": OCR-R
+'alphabet_mapping'"alphabet_mapping""alphabet_mapping""alphabet_mapping""alphabet_mapping": OCR-R
+'anomaly_score_tolerance'"anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance": GC-AD
+'backbone_docking_layers'"backbone_docking_layers""backbone_docking_layers""backbone_docking_layers""backbone_docking_layers": CL
+The docking layers can be specified for every classifier, also without
+using them as backbone.
+The specification is only considered for object detection backbones.
+'batch_size'"batch_size""batch_size""batch_size""batch_size": Any
+'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier": 3D-GPD 3D-PE CL MLC OCR-D OCR-R GC-AD OD SE Gen
+'batchnorm_momentum'"batchnorm_momentum""batchnorm_momentum""batchnorm_momentum""batchnorm_momentum": Any except DC
+Calling this option sets the momentum of all batch normalization layers
+within the network. The settable values are the same as described in
+create_dl_layer_batch_normalizationcreate_dl_layer_batch_normalizationCreateDlLayerBatchNormalizationCreateDlLayerBatchNormalizationcreate_dl_layer_batch_normalization for the parameter
+MomentumMomentumMomentummomentummomentum.
+Note, if the network has no such layer, nothing is done and therewith
+the operation is regarded as successful.
+'bbox_heads_weight'"bbox_heads_weight""bbox_heads_weight""bbox_heads_weight""bbox_heads_weight", 'class_heads_weight'"class_heads_weight""class_heads_weight""class_heads_weight""class_heads_weight": OD
+'class_ids'"class_ids""class_ids""class_ids""class_ids": 3D-GPD MLC OD SE
+'class_names'"class_names""class_names""class_names""class_names": CL MLC OD SE
+'class_weights'"class_weights""class_weights""class_weights""class_weights": CL
+'complexity'"complexity""complexity""complexity""complexity": AD
+'device'"device""device""device""device": Any
+'enable_resizing'"enable_resizing""enable_resizing""enable_resizing""enable_resizing": Any except DC
+Calling this option converts certain pooling layers within the
+network. More precisely, every non-global pooling layer with a
+resulting feature map of size 1x1 is converted into a global pooling
+layer. This means, a pooling layer performing e.g., average pooling is
+converted into one performing global average pooling.
+For more information about pooling layer and possible modes of operation,
+see the “Solution Guide on Classification”.
+Note, if this operation is performed, it can not be undone.
+Accordingly, you can only call it with the value 'true'"true""true""true""true".
+Also, if the network has no such layer, nothing is done and therewith
+the operation is regarded as successful.
+'extract_feature_maps'"extract_feature_maps""extract_feature_maps""extract_feature_maps""extract_feature_maps": CL
+'freeze_backbone_level'"freeze_backbone_level""freeze_backbone_level""freeze_backbone_level""freeze_backbone_level": OD
+'fuse_bn_relu'"fuse_bn_relu""fuse_bn_relu""fuse_bn_relu""fuse_bn_relu": Any except DC
+Calling this option fuses layer pairs consisting of a batch normalization
+layer without activation and a directly connected activation layer
+with ReLU activation.
+To do so, the output of the batch normalization layer must be used exclusively
+as input for the activation layer.
+As a result, a batch normalization layer with activation mode ReLU is obtained.
+For more information about layers and possible modes of operation,
+see the “Solution Guide on Classification”.
+Please note that if this operation is performed, it cannot be undone.
+Accordingly, it can only be called with the value 'true'"true""true""true""true".
+Also, if the network contains no such fusible layers, no changes are made
+and the operation is still considered successful.
+Restriction:
+Leaky ReLU layers cannot be fused with
+batch normalization layers.
+'fuse_conv_bn'"fuse_conv_bn""fuse_conv_bn""fuse_conv_bn""fuse_conv_bn": Any except DC
+Calling this option fuses layer pairs consisting of a convolution
+layer without activation and a directly connected batch normalization layer.
+To do so, the output of the convolution layer must be used exclusively
+as input for the batch normalization layer.
+As a result, a single convolution layer is obtained that produces
+the same output as the original layer pair.
+This fusion can improve the runtime performance and memory consumption
+of the network during inference.
+For more information about layers and possible modes of operation,
+see the “Solution Guide on Classification”.
+Please note that if this operation is performed, it cannot be undone.
+Accordingly, it can only be called with the value 'true'"true""true""true""true".
+Also, if the network contains no such fusible layers, no changes are made
+and the operation is still considered successful.
+'fuse_conv_relu'"fuse_conv_relu""fuse_conv_relu""fuse_conv_relu""fuse_conv_relu": Any except DC
+Calling this option fuses layer pairs consisting of a convolution
+layer without activation and a directly connected activation layer
+with ReLU activation.
+To do so, the output of the convolution layer must be used exclusively
+as input for the activation layer.
+As a result, a convolution layer with activation mode ReLU is obtained.
+For more information about layers and possible modes of operation,
+see the “Solution Guide on Classification”.
+Please note that if this operation is performed, it cannot be undone.
+Accordingly, it can only be called with the value 'true'"true""true""true""true".
+Also, if the network contains no such fusible layers, no changes are made
+and the operation is still considered successful.
+Restriction:
+Leaky ReLU layers cannot be fused with
+convolution layers.
+'gc_anomaly_networks'"gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks": GC-AD
+'gpu'"gpu""gpu""gpu""gpu": Any
+'ignore_class_ids'"ignore_class_ids""ignore_class_ids""ignore_class_ids""ignore_class_ids": SE
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions": 3D-GPD AD CL MLC OCR-D OCR-R GC-AD SE
+'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width": 3D-GPD AD CL MLC OCR-D OCR-R GC-AD SE
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels": AD CL MLC OCR-D OCR-R GC-AD SE
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min": 3D-GPD OCR-D OCR-R SE
+'image_size'"image_size""image_size""image_size""image_size": 3D-GPD AD CL MLC OCR-D OCR-R GC-AD SE
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions": AD CL MLC OCR-D OCR-R SE Gen
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate": 3D-GPD 3D-PE CL MLC OCR-D OCR-R GC-AD OD SE Gen
+'mask_head_weight'"mask_head_weight""mask_head_weight""mask_head_weight""mask_head_weight": OD
+This parameter is only available for models with
+'instance_segmentation'"instance_segmentation""instance_segmentation""instance_segmentation""instance_segmentation"='true'"true""true""true""true".
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm": Any
+'max_num_detections'"max_num_detections""max_num_detections""max_num_detections""max_num_detections": OD
+'max_overlap'"max_overlap""max_overlap""max_overlap""max_overlap": OD
+'max_overlap_class_agnostic'"max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic": OD
+'meta_data'"meta_data""meta_data""meta_data""meta_data": Any
+'min_character_score'"min_character_score""min_character_score""min_character_score""min_character_score": OCR-D
+'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence": MLC OD
+'min_link_score'"min_link_score""min_link_score""min_link_score""min_link_score": OCR-D
+'min_word_area'"min_word_area""min_word_area""min_word_area""min_word_area": OCR-D
+'min_word_score'"min_word_score""min_word_score""min_word_score""min_word_score": OCR-D
+'momentum'"momentum""momentum""momentum""momentum": 3D-GPD 3D-PE CL MLC OCR-D OCR-R GC-AD OD SE Gen
+Momentum for SGD solver.
+Restriction:
+Only applicable for 'solver_type'"solver_type""solver_type""solver_type""solver_type" =
+'sgd'"sgd""sgd""sgd""sgd".
+'ood_threshold'"ood_threshold""ood_threshold""ood_threshold""ood_threshold": CL
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference": 3D-GPD 3D-PE CL MLC OCR-D OCR-R GC-AD OD SE Gen
+'orientation'"orientation""orientation""orientation""orientation": OCR-D
+'patch_size'"patch_size""patch_size""patch_size""patch_size": GC-AD
+'runtime'"runtime""runtime""runtime""runtime": Any
+'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init": Any except DC
+If called with 'immediately'"immediately""immediately""immediately""immediately", the GPU memory is initialized
+and the corresponding handle created. Otherwise this is done on
+demand, which may result in significantly larger execution times for
+the first call of apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model or
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch.
+If the network architecture is changed subsequently, the GPU memory
+is reinitialized.
+This can happen e.g., for changes of 'batch_size'"batch_size""batch_size""batch_size""batch_size",
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions" or 'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions" with
+subsequent calls of set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param.
+Note, this parameter has no effect if:
+Running on CPUs, thus if 'runtime'"runtime""runtime""runtime""runtime" is set to 'cpu'"cpu""cpu""cpu""cpu".
+Running with an AI
+2-interface.
+The device has been set before using 'device'"device""device""device""device".
+'solver_type'"solver_type""solver_type""solver_type""solver_type": 3D-GPD 3D-PE CL MLC OCR-D OCR-R GC-AD OD SE Gen
+'sort_by_line'"sort_by_line""sort_by_line""sort_by_line""sort_by_line": OCR-D
+'standard_deviation_factor'"standard_deviation_factor""standard_deviation_factor""standard_deviation_factor""standard_deviation_factor": AD
+'tiling'"tiling""tiling""tiling""tiling": OCR-D
+'tiling_overlap'"tiling_overlap""tiling_overlap""tiling_overlap""tiling_overlap": OCR-D
+'type'"type""type""type""type": Gen
+This parameter returns the HALCON-specific model type.
+Models of 'generic'"generic""generic""generic""generic" fulfill all model functions. But several
+deep learning procedures rely a specific 'type'"type""type""type""type".
+The value of 'type'"type""type""type""type" can be set from 'generic'"generic""generic""generic""generic" to the
+following values:
+'classification'"classification""classification""classification""classification"
+'segmentation'"segmentation""segmentation""segmentation""segmentation"
+'detection'"detection""detection""detection""detection"
+Setting a value for 'type'"type""type""type""type" to model it is checked if it has all
+layers necessary for inference and training. In case of
+'detection'"detection""detection""detection""detection", the model must have a BoxProposals-layer. For other
+values for 'type'"type""type""type""type" missing necessary layers are added, if possible.
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay": 3D-GPD 3D-PE CL OCR-D OCR-R GC-AD OD SE Gen
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior": 3D-GPD 3D-PE CL OCR-D OCR-R GC-AD OD SE Gen
+Attention
+System requirements:
+To successfully set 'gpu'"gpu""gpu""gpu""gpu" parameters, cuDNN and cuBLAS are
+required, i.e., to set the parameter GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+'runtime'"runtime""runtime""runtime""runtime" to 'gpu'"gpu""gpu""gpu""gpu".
+For further details, please refer to the “Installation Guide”,
+paragraph “Requirements for Deep Learning and Deep-Learning-Based Methods”.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+DLModelHandleDLModelHandleDLModelHandleDLModelHandledlmodel_handle (input_control)  dl_model → HDlModel, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the deep learning model.
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name (input_control)  attribute.name → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Name of the generic parameter.
+Default:
+'batch_size'
+"batch_size"
+"batch_size"
+"batch_size"
+"batch_size"
+List of values:
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1", 'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2", 'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon", 'alignment'"alignment""alignment""alignment""alignment", 'alphabet'"alphabet""alphabet""alphabet""alphabet", 'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal", 'alphabet_mapping'"alphabet_mapping""alphabet_mapping""alphabet_mapping""alphabet_mapping", 'anchor_angles'"anchor_angles""anchor_angles""anchor_angles""anchor_angles", 'anchor_aspect_ratios'"anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios", 'anchor_num_subscales'"anchor_num_subscales""anchor_num_subscales""anchor_num_subscales""anchor_num_subscales", 'anomaly_score_tolerance'"anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance", 'backbone'"backbone""backbone""backbone""backbone", 'backbone_docking_layers'"backbone_docking_layers""backbone_docking_layers""backbone_docking_layers""backbone_docking_layers", 'batch_size'"batch_size""batch_size""batch_size""batch_size", 'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier", 'batchnorm_momentum'"batchnorm_momentum""batchnorm_momentum""batchnorm_momentum""batchnorm_momentum", 'bbox_heads_weight'"bbox_heads_weight""bbox_heads_weight""bbox_heads_weight""bbox_heads_weight", 'capacity'"capacity""capacity""capacity""capacity", 'class_heads_weight'"class_heads_weight""class_heads_weight""class_heads_weight""class_heads_weight", 'class_ids'"class_ids""class_ids""class_ids""class_ids", 'class_names'"class_names""class_names""class_names""class_names", 'class_weights'"class_weights""class_weights""class_weights""class_weights", 'complexity'"complexity""complexity""complexity""complexity", 'device'"device""device""device""device", 'enable_resizing'"enable_resizing""enable_resizing""enable_resizing""enable_resizing", 'extract_feature_maps'"extract_feature_maps""extract_feature_maps""extract_feature_maps""extract_feature_maps", 'freeze_backbone_level'"freeze_backbone_level""freeze_backbone_level""freeze_backbone_level""freeze_backbone_level", 'fuse_bn_relu'"fuse_bn_relu""fuse_bn_relu""fuse_bn_relu""fuse_bn_relu", 'fuse_conv_bn'"fuse_conv_bn""fuse_conv_bn""fuse_conv_bn""fuse_conv_bn", 'fuse_conv_relu'"fuse_conv_relu""fuse_conv_relu""fuse_conv_relu""fuse_conv_relu", 'gc_anomaly_networks'"gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks", 'gpu'"gpu""gpu""gpu""gpu", 'ignore_class_ids'"ignore_class_ids""ignore_class_ids""ignore_class_ids""ignore_class_ids", 'ignore_direction'"ignore_direction""ignore_direction""ignore_direction""ignore_direction", 'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions", 'image_height'"image_height""image_height""image_height""image_height", 'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels", 'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min", 'image_size'"image_size""image_size""image_size""image_size", 'image_width'"image_width""image_width""image_width""image_width", 'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions", 'instance_type'"instance_type""instance_type""instance_type""instance_type", 'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate", 'mask_head_weight'"mask_head_weight""mask_head_weight""mask_head_weight""mask_head_weight", 'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm", 'max_level'"max_level""max_level""max_level""max_level", 'max_num_detections'"max_num_detections""max_num_detections""max_num_detections""max_num_detections", 'max_overlap'"max_overlap""max_overlap""max_overlap""max_overlap", 'max_overlap_class_agnostic'"max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic", 'meta_data'"meta_data""meta_data""meta_data""meta_data", 'min_character_score'"min_character_score""min_character_score""min_character_score""min_character_score", 'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence", 'min_level'"min_level""min_level""min_level""min_level", 'min_link_score'"min_link_score""min_link_score""min_link_score""min_link_score", 'min_word_area'"min_word_area""min_word_area""min_word_area""min_word_area", 'min_word_score'"min_word_score""min_word_score""min_word_score""min_word_score", 'momentum'"momentum""momentum""momentum""momentum", 'num_classes'"num_classes""num_classes""num_classes""num_classes", 'ood_threshold'"ood_threshold""ood_threshold""ood_threshold""ood_threshold", 'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference", 'orientation'"orientation""orientation""orientation""orientation", 'patch_size'"patch_size""patch_size""patch_size""patch_size", 'runtime'"runtime""runtime""runtime""runtime", 'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init", 'solver_type'"solver_type""solver_type""solver_type""solver_type", 'sort_by_line'"sort_by_line""sort_by_line""sort_by_line""sort_by_line", 'standard_deviation_factor'"standard_deviation_factor""standard_deviation_factor""standard_deviation_factor""standard_deviation_factor", 'summary'"summary""summary""summary""summary", 'tiling'"tiling""tiling""tiling""tiling", 'tiling_overlap'"tiling_overlap""tiling_overlap""tiling_overlap""tiling_overlap", 'type'"type""type""type""type", 'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay", 'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value (input_control)  attribute.value(-array) → HTupleMaybeSequence[Union[str, float, int]]HTupleHtuple (integer / string / real) (int / long / string / double) (Hlong / HString / double) (Hlong / char* / double)
+Value of the generic parameter.
+Default:
+1
+Suggested values:
+1, 2, 3, 50, [80,60], 80, 60, 0.001, -127, 128, 'adam'"adam""adam""adam""adam", 'cpu'"cpu""cpu""cpu""cpu", 'gpu'"gpu""gpu""gpu""gpu", 'immediately'"immediately""immediately""immediately""immediately", 'sgd'"sgd""sgd""sgd""sgd"
+Result
+If the parameters are valid, the operator
+set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param returns the value 2 (
+H_MSG_TRUE)
+.  If
+necessary, an exception is raised.
+Possible Predecessors
+read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model,
+get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param
+Possible Successors
+get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param,
+apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model,
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch,
+train_dl_model_anomaly_datasettrain_dl_model_anomaly_datasetTrainDlModelAnomalyDatasetTrainDlModelAnomalyDatasettrain_dl_model_anomaly_dataset
+See also
+get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param
+Module
+Foundation. This operator uses dynamic licensing (see the 'Installation Guide'). Which of the following modules is required depends on the specific usage of the operator:
+3D Metrology, OCR/OCV, Matching, Deep Learning Enhanced, Deep Learning Professional
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

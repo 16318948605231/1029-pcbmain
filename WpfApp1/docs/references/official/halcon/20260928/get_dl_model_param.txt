@@ -1,0 +1,2365 @@
+get_dl_model_param [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Deep Learning / Model
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+get_dl_model_paramT_get_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param (Operator)
+Name
+get_dl_model_paramT_get_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param — Return the parameters of a deep learning model.
+Signature
+get_dl_model_param( :  : DLModelHandle, GenParamName : GenParamValue)
+Herror T_get_dl_model_param(const Htuple DLModelHandle, const Htuple GenParamName, Htuple* GenParamValue)
+void GetDlModelParam(const HTuple& DLModelHandle, const HTuple& GenParamName, HTuple* GenParamValue)
+HTuple HDlModel::GetDlModelParam(const HString& GenParamName) const
+HTuple HDlModel::GetDlModelParam(const char* GenParamName) const
+HTuple HDlModel::GetDlModelParam(const wchar_t* GenParamName) const
+(
+Windows only)
+static void HOperatorSet.GetDlModelParam(HTuple DLModelHandle, HTuple genParamName, out HTuple genParamValue)
+HTuple HDlModel.GetDlModelParam(string genParamName)
+def get_dl_model_param(dlmodel_handle: HHandle, gen_param_name: str) -> Sequence[Union[str, float, int]]
+def get_dl_model_param_s(dlmodel_handle: HHandle, gen_param_name: str) -> Union[str, float, int]
+Description
+get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param returns the parameter values
+GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value of GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name for the deep learning
+model DLModelHandleDLModelHandleDLModelHandleDLModelHandledlmodel_handle.
+For a deep learning model, parameters GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name can be set using
+set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param or create_dl_model_detectioncreate_dl_model_detectionCreateDlModelDetectionCreateDlModelDetectioncreate_dl_model_detection, depending
+on the parameter and the model type.
+With this operator, get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param, you can retrieve
+the parameter values GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value.
+Below we give an overview of the different parameters and an explanation,
+except of those you can only set. For latter ones, please see the
+documentation of corresponding operator.
+The parameters are listed corresponding to the deep learning model methods:
+To mark which operators are available for the methods, we use the following
+notations:
+set: The parameter can be set using set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param.
+get: The parameter can be retrieved using
+get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param.
+create: The parameter can be set using
+create_dl_model_detectioncreate_dl_model_detectionCreateDlModelDetectionCreateDlModelDetectioncreate_dl_model_detection.
+Certain parameters are set as non-optional parameters, the corresponding
+notation is given in brackets.
+3D Gripping Point Detection
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+set
+get
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1"
+x
+x
+'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2"
+x
+x
+'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon"
+x
+x
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+x
+x
+'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier"
+x
+x
+'batchnorm_momentum'"batchnorm_momentum""batchnorm_momentum""batchnorm_momentum""batchnorm_momentum"
+x
+'class_ids'"class_ids""class_ids""class_ids""class_ids"
+x
+x
+'class_names'"class_names""class_names""class_names""class_names"
+x
+'device'"device""device""device""device"
+x
+x
+'enable_resizing'"enable_resizing""enable_resizing""enable_resizing""enable_resizing"
+x
+'fuse_bn_relu'"fuse_bn_relu""fuse_bn_relu""fuse_bn_relu""fuse_bn_relu"
+x
+'fuse_conv_bn'"fuse_conv_bn""fuse_conv_bn""fuse_conv_bn""fuse_conv_bn"
+x
+'fuse_conv_relu'"fuse_conv_relu""fuse_conv_relu""fuse_conv_relu""fuse_conv_relu"
+x
+'gpu'"gpu""gpu""gpu""gpu"
+x
+x
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions"
+x
+x
+'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width"
+x
+x
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels"
+x
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min"
+x
+x
+'image_size'"image_size""image_size""image_size""image_size"
+x
+x
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions"
+x
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+x
+x
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+x
+x
+'meta_data'"meta_data""meta_data""meta_data""meta_data"
+x
+x
+'min_version'"min_version""min_version""min_version""min_version"
+x
+'momentum'"momentum""momentum""momentum""momentum"
+x
+x
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params"
+x
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference"
+x
+x
+'precision'"precision""precision""precision""precision"
+x
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted"
+x
+'runtime'"runtime""runtime""runtime""runtime"
+x
+x
+'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init"
+x
+'solver_type'"solver_type""solver_type""solver_type""solver_type"
+x
+x
+'type'"type""type""type""type"
+x
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay"
+x
+x
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+x
+x
+Deep 3D Matching pose estimation component
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+set
+get
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1"
+x
+x
+'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2"
+x
+x
+'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon"
+x
+x
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+x
+x
+'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier"
+x
+x
+'batchnorm_momentum'"batchnorm_momentum""batchnorm_momentum""batchnorm_momentum""batchnorm_momentum"
+x
+'device'"device""device""device""device"
+x
+x
+'enable_resizing'"enable_resizing""enable_resizing""enable_resizing""enable_resizing"
+x
+'fuse_bn_relu'"fuse_bn_relu""fuse_bn_relu""fuse_bn_relu""fuse_bn_relu"
+x
+'fuse_conv_bn'"fuse_conv_bn""fuse_conv_bn""fuse_conv_bn""fuse_conv_bn"
+x
+'fuse_conv_relu'"fuse_conv_relu""fuse_conv_relu""fuse_conv_relu""fuse_conv_relu"
+x
+'gpu'"gpu""gpu""gpu""gpu"
+x
+x
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions"
+x
+'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width"
+x
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels"
+x
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min"
+x
+'image_size'"image_size""image_size""image_size""image_size"
+x
+'layer_names'"layer_names""layer_names""layer_names""layer_names"
+x
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+x
+x
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+x
+x
+'meta_data'"meta_data""meta_data""meta_data""meta_data"
+x
+x
+'min_version'"min_version""min_version""min_version""min_version"
+x
+'momentum'"momentum""momentum""momentum""momentum"
+x
+x
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params"
+x
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference"
+x
+x
+'precision'"precision""precision""precision""precision"
+x
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted"
+x
+'runtime'"runtime""runtime""runtime""runtime"
+x
+x
+'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init"
+x
+'solver_type'"solver_type""solver_type""solver_type""solver_type"
+x
+x
+'summary'"summary""summary""summary""summary"
+x
+'type'"type""type""type""type"
+x
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay"
+x
+x
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+x
+x
+Anomaly Detection
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+set
+get
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+x
+x
+'batchnorm_momentum'"batchnorm_momentum""batchnorm_momentum""batchnorm_momentum""batchnorm_momentum"
+x
+'complexity'"complexity""complexity""complexity""complexity"
+x
+x
+'device'"device""device""device""device"
+x
+x
+'enable_resizing'"enable_resizing""enable_resizing""enable_resizing""enable_resizing"
+x
+'fuse_bn_relu'"fuse_bn_relu""fuse_bn_relu""fuse_bn_relu""fuse_bn_relu"
+x
+'fuse_conv_bn'"fuse_conv_bn""fuse_conv_bn""fuse_conv_bn""fuse_conv_bn"
+x
+'fuse_conv_relu'"fuse_conv_relu""fuse_conv_relu""fuse_conv_relu""fuse_conv_relu"
+x
+'gpu'"gpu""gpu""gpu""gpu"
+x
+x
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions"
+x
+x
+'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width"
+x
+x
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels"
+x
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min"
+x
+'image_size'"image_size""image_size""image_size""image_size"
+x
+x
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions"
+x
+x
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+x
+x
+'meta_data'"meta_data""meta_data""meta_data""meta_data"
+x
+x
+'min_version'"min_version""min_version""min_version""min_version"
+x
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params"
+x
+'precision'"precision""precision""precision""precision"
+x
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted"
+x
+'runtime'"runtime""runtime""runtime""runtime"
+x
+x
+'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init"
+x
+'standard_deviation_factor'"standard_deviation_factor""standard_deviation_factor""standard_deviation_factor""standard_deviation_factor"
+x
+x
+'type'"type""type""type""type"
+x
+Classification
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+set
+get
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1"
+x
+x
+'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2"
+x
+x
+'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon"
+x
+x
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+x
+x
+'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier"
+x
+x
+'batchnorm_momentum'"batchnorm_momentum""batchnorm_momentum""batchnorm_momentum""batchnorm_momentum"
+x
+'class_ids'"class_ids""class_ids""class_ids""class_ids"
+x
+'class_names'"class_names""class_names""class_names""class_names"
+x
+x
+'class_weights'"class_weights""class_weights""class_weights""class_weights"
+x
+x
+'clear_ood'"clear_ood""clear_ood""clear_ood""clear_ood"
+x
+'continual_learning_available'"continual_learning_available""continual_learning_available""continual_learning_available""continual_learning_available"
+x
+'device'"device""device""device""device"
+x
+x
+'enable_resizing'"enable_resizing""enable_resizing""enable_resizing""enable_resizing"
+x
+'extract_feature_maps'"extract_feature_maps""extract_feature_maps""extract_feature_maps""extract_feature_maps"
+x
+x
+'fuse_bn_relu'"fuse_bn_relu""fuse_bn_relu""fuse_bn_relu""fuse_bn_relu"
+x
+'fuse_conv_bn'"fuse_conv_bn""fuse_conv_bn""fuse_conv_bn""fuse_conv_bn"
+x
+'fuse_conv_relu'"fuse_conv_relu""fuse_conv_relu""fuse_conv_relu""fuse_conv_relu"
+x
+'gpu'"gpu""gpu""gpu""gpu"
+x
+x
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions"
+x
+x
+'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width"
+x
+x
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels"
+x
+x
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min"
+x
+'image_size'"image_size""image_size""image_size""image_size"
+x
+x
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions"
+x
+x
+'layer_names'"layer_names""layer_names""layer_names""layer_names"
+x
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+x
+x
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+x
+x
+'meta_data'"meta_data""meta_data""meta_data""meta_data"
+x
+x
+'min_version'"min_version""min_version""min_version""min_version"
+x
+'momentum'"momentum""momentum""momentum""momentum"
+x
+x
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params"
+x
+'ood_available'"ood_available""ood_available""ood_available""ood_available"
+x
+'ood_threshold'"ood_threshold""ood_threshold""ood_threshold""ood_threshold"
+x
+x
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference"
+x
+x
+'precision'"precision""precision""precision""precision"
+x
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted"
+x
+'runtime'"runtime""runtime""runtime""runtime"
+x
+x
+'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init"
+x
+'solver_type'"solver_type""solver_type""solver_type""solver_type"
+x
+x
+'summary'"summary""summary""summary""summary"
+x
+'type'"type""type""type""type"
+x
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay"
+x
+x
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+x
+x
+Multi-Label Classification
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+set
+get
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+x
+x
+'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier"
+x
+x
+'class_ids'"class_ids""class_ids""class_ids""class_ids"
+x
+x
+'class_names'"class_names""class_names""class_names""class_names"
+x
+x
+'device'"device""device""device""device"
+x
+x
+'gpu'"gpu""gpu""gpu""gpu"
+x
+x
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions"
+x
+x
+'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width"
+x
+x
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels"
+x
+x
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min"
+x
+'image_size'"image_size""image_size""image_size""image_size"
+x
+x
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions"
+x
+x
+'layer_names'"layer_names""layer_names""layer_names""layer_names"
+x
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+x
+x
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+x
+x
+'meta_data'"meta_data""meta_data""meta_data""meta_data"
+x
+x
+'min_version'"min_version""min_version""min_version""min_version"
+x
+'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence"
+x
+x
+'momentum'"momentum""momentum""momentum""momentum"
+x
+x
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params"
+x
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference"
+x
+x
+'precision'"precision""precision""precision""precision"
+x
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted"
+x
+'runtime'"runtime""runtime""runtime""runtime"
+x
+x
+'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init"
+x
+'solver_type'"solver_type""solver_type""solver_type""solver_type"
+x
+x
+'summary'"summary""summary""summary""summary"
+x
+'type'"type""type""type""type"
+x
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay"
+x
+x
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+x
+x
+Deep Counting component
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+set
+get
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+x
+x
+'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier"
+x
+x
+'device'"device""device""device""device"
+x
+x
+'gpu'"gpu""gpu""gpu""gpu"
+x
+x
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions"
+x
+'layer_names'"layer_names""layer_names""layer_names""layer_names"
+x
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+x
+x
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+x
+x
+'meta_data'"meta_data""meta_data""meta_data""meta_data"
+x
+x
+'min_version'"min_version""min_version""min_version""min_version"
+x
+'momentum'"momentum""momentum""momentum""momentum"
+x
+x
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params"
+x
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference"
+x
+'precision'"precision""precision""precision""precision"
+x
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted"
+x
+'runtime'"runtime""runtime""runtime""runtime"
+x
+x
+'solver_type'"solver_type""solver_type""solver_type""solver_type"
+x
+'summary'"summary""summary""summary""summary"
+x
+'type'"type""type""type""type"
+x
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay"
+x
+x
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+x
+x
+Deep OCR detection component
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+set
+get
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1"
+x
+x
+'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2"
+x
+x
+'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon"
+x
+x
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+x
+x
+'batchnorm_momentum'"batchnorm_momentum""batchnorm_momentum""batchnorm_momentum""batchnorm_momentum"
+x
+'device'"device""device""device""device"
+x
+x
+'enable_resizing'"enable_resizing""enable_resizing""enable_resizing""enable_resizing"
+x
+'fuse_bn_relu'"fuse_bn_relu""fuse_bn_relu""fuse_bn_relu""fuse_bn_relu"
+x
+'fuse_conv_bn'"fuse_conv_bn""fuse_conv_bn""fuse_conv_bn""fuse_conv_bn"
+x
+'fuse_conv_relu'"fuse_conv_relu""fuse_conv_relu""fuse_conv_relu""fuse_conv_relu"
+x
+'gpu'"gpu""gpu""gpu""gpu"
+x
+x
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions"
+x
+x
+'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width"
+x
+x
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels"
+x
+x
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min"
+x
+x
+'image_size'"image_size""image_size""image_size""image_size"
+x
+x
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions"
+x
+x
+'layer_names'"layer_names""layer_names""layer_names""layer_names"
+x
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+x
+x
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+x
+x
+'meta_data'"meta_data""meta_data""meta_data""meta_data"
+x
+x
+'min_character_score'"min_character_score""min_character_score""min_character_score""min_character_score"
+x
+x
+'min_link_score'"min_link_score""min_link_score""min_link_score""min_link_score"
+x
+x
+'min_version'"min_version""min_version""min_version""min_version"
+x
+'min_word_area'"min_word_area""min_word_area""min_word_area""min_word_area"
+x
+x
+'min_word_score'"min_word_score""min_word_score""min_word_score""min_word_score"
+x
+x
+'momentum'"momentum""momentum""momentum""momentum"
+x
+x
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params"
+x
+'orientation'"orientation""orientation""orientation""orientation"
+x
+x
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference"
+x
+x
+'precision'"precision""precision""precision""precision"
+x
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted"
+x
+'runtime'"runtime""runtime""runtime""runtime"
+x
+x
+'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init"
+x
+'solver_type'"solver_type""solver_type""solver_type""solver_type"
+x
+x
+'sort_by_line'"sort_by_line""sort_by_line""sort_by_line""sort_by_line"
+x
+x
+'summary'"summary""summary""summary""summary"
+x
+'tiling'"tiling""tiling""tiling""tiling"
+x
+x
+'tiling_overlap'"tiling_overlap""tiling_overlap""tiling_overlap""tiling_overlap"
+x
+x
+'type'"type""type""type""type"
+x
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay"
+x
+x
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+x
+x
+Deep OCR recognition component
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+set
+get
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1"
+x
+x
+'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2"
+x
+x
+'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon"
+x
+x
+'alignment'"alignment""alignment""alignment""alignment"
+x
+x
+'alignment_available'"alignment_available""alignment_available""alignment_available""alignment_available"
+x
+'alphabet'"alphabet""alphabet""alphabet""alphabet"
+x
+x
+'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal"
+x
+x
+'alphabet_mapping'"alphabet_mapping""alphabet_mapping""alphabet_mapping""alphabet_mapping"
+x
+x
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+x
+x
+'batchnorm_momentum'"batchnorm_momentum""batchnorm_momentum""batchnorm_momentum""batchnorm_momentum"
+x
+'device'"device""device""device""device"
+x
+x
+'enable_resizing'"enable_resizing""enable_resizing""enable_resizing""enable_resizing"
+x
+'fuse_bn_relu'"fuse_bn_relu""fuse_bn_relu""fuse_bn_relu""fuse_bn_relu"
+x
+'fuse_conv_bn'"fuse_conv_bn""fuse_conv_bn""fuse_conv_bn""fuse_conv_bn"
+x
+'fuse_conv_relu'"fuse_conv_relu""fuse_conv_relu""fuse_conv_relu""fuse_conv_relu"
+x
+'gpu'"gpu""gpu""gpu""gpu"
+x
+x
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions"
+x
+x
+'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width"
+x
+x
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels"
+x
+x
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min"
+x
+x
+'image_size'"image_size""image_size""image_size""image_size"
+x
+x
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions"
+x
+x
+'layer_names'"layer_names""layer_names""layer_names""layer_names"
+x
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+x
+x
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+x
+x
+'meta_data'"meta_data""meta_data""meta_data""meta_data"
+x
+x
+'min_version'"min_version""min_version""min_version""min_version"
+x
+'momentum'"momentum""momentum""momentum""momentum"
+x
+x
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params"
+x
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference"
+x
+x
+'precision'"precision""precision""precision""precision"
+x
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted"
+x
+'runtime'"runtime""runtime""runtime""runtime"
+x
+x
+'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init"
+x
+'solver_type'"solver_type""solver_type""solver_type""solver_type"
+x
+x
+'summary'"summary""summary""summary""summary"
+x
+'type'"type""type""type""type"
+x
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay"
+x
+x
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+x
+x
+Global Context Anomaly Detection
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+set
+get
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1"
+x
+x
+'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2"
+x
+x
+'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon"
+x
+x
+'anomaly_score_tolerance'"anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance"
+x
+x
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+x
+x
+'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier"
+x
+x
+'batchnorm_momentum'"batchnorm_momentum""batchnorm_momentum""batchnorm_momentum""batchnorm_momentum"
+x
+'device'"device""device""device""device"
+x
+x
+'enable_resizing'"enable_resizing""enable_resizing""enable_resizing""enable_resizing"
+x
+'fuse_bn_relu'"fuse_bn_relu""fuse_bn_relu""fuse_bn_relu""fuse_bn_relu"
+x
+'fuse_conv_bn'"fuse_conv_bn""fuse_conv_bn""fuse_conv_bn""fuse_conv_bn"
+x
+'fuse_conv_relu'"fuse_conv_relu""fuse_conv_relu""fuse_conv_relu""fuse_conv_relu"
+x
+'gc_anomaly_networks'"gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks"
+x
+x
+'gpu'"gpu""gpu""gpu""gpu"
+x
+x
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions"
+x
+x
+'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width"
+x
+x
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels"
+x
+x
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min"
+x
+'image_size'"image_size""image_size""image_size""image_size"
+x
+x
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions"
+x
+'layer_names'"layer_names""layer_names""layer_names""layer_names"
+x
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+x
+x
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+x
+x
+'meta_data'"meta_data""meta_data""meta_data""meta_data"
+x
+x
+'min_version'"min_version""min_version""min_version""min_version"
+x
+'momentum'"momentum""momentum""momentum""momentum"
+x
+x
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params"
+x
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference"
+x
+x
+'patch_size'"patch_size""patch_size""patch_size""patch_size"
+x
+x
+'precision'"precision""precision""precision""precision"
+x
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted"
+x
+'runtime'"runtime""runtime""runtime""runtime"
+x
+x
+'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init"
+x
+'solver_type'"solver_type""solver_type""solver_type""solver_type"
+x
+x
+'summary'"summary""summary""summary""summary"
+x
+'type'"type""type""type""type"
+x
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay"
+x
+x
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+x
+x
+Object Detection, Instance Segmentation
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+set
+get
+create
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1"
+x
+x
+'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2"
+x
+x
+'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon"
+x
+x
+'anchor_angles'"anchor_angles""anchor_angles""anchor_angles""anchor_angles"
+x
+x
+'anchor_aspect_ratios'"anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios"
+x
+x
+'anchor_num_subscales'"anchor_num_subscales""anchor_num_subscales""anchor_num_subscales""anchor_num_subscales"
+x
+x
+'backbone'"backbone""backbone""backbone""backbone" (BackboneBackboneBackbonebackbonebackbone)
+x
+x
+'backbone_docking_layers'"backbone_docking_layers""backbone_docking_layers""backbone_docking_layers""backbone_docking_layers"
+x
+x
+x
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+x
+x
+'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier"
+x
+x
+'batchnorm_momentum'"batchnorm_momentum""batchnorm_momentum""batchnorm_momentum""batchnorm_momentum"
+x
+'bbox_heads_weight'"bbox_heads_weight""bbox_heads_weight""bbox_heads_weight""bbox_heads_weight", 'class_heads_weight'"class_heads_weight""class_heads_weight""class_heads_weight""class_heads_weight"
+x
+x
+x
+'capacity'"capacity""capacity""capacity""capacity"
+x
+x
+'class_ids'"class_ids""class_ids""class_ids""class_ids"
+x
+x
+x
+'class_ids_no_orientation'"class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation"
+x
+x
+'class_names'"class_names""class_names""class_names""class_names"
+x
+x
+x
+'class_weights'"class_weights""class_weights""class_weights""class_weights"
+x
+'device'"device""device""device""device"
+x
+x
+'enable_resizing'"enable_resizing""enable_resizing""enable_resizing""enable_resizing"
+x
+'freeze_backbone_level'"freeze_backbone_level""freeze_backbone_level""freeze_backbone_level""freeze_backbone_level"
+x
+x
+x
+'fuse_bn_relu'"fuse_bn_relu""fuse_bn_relu""fuse_bn_relu""fuse_bn_relu"
+x
+'fuse_conv_bn'"fuse_conv_bn""fuse_conv_bn""fuse_conv_bn""fuse_conv_bn"
+x
+'fuse_conv_relu'"fuse_conv_relu""fuse_conv_relu""fuse_conv_relu""fuse_conv_relu"
+x
+'gpu'"gpu""gpu""gpu""gpu"
+x
+x
+'ignore_direction'"ignore_direction""ignore_direction""ignore_direction""ignore_direction"
+x
+x
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions"
+x
+x
+'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width"
+x
+x
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels"
+x
+x
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min"
+x
+'image_size'"image_size""image_size""image_size""image_size"
+x
+x
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions"
+x
+'instance_segmentation'"instance_segmentation""instance_segmentation""instance_segmentation""instance_segmentation"
+x
+x
+'instance_type'"instance_type""instance_type""instance_type""instance_type"
+x
+x
+'layer_names'"layer_names""layer_names""layer_names""layer_names"
+x
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+x
+x
+'mask_head_weight'"mask_head_weight""mask_head_weight""mask_head_weight""mask_head_weight"
+x
+x
+x
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+x
+x
+'max_level'"max_level""max_level""max_level""max_level", 'min_level'"min_level""min_level""min_level""min_level"
+x
+x
+'max_num_detections'"max_num_detections""max_num_detections""max_num_detections""max_num_detections"
+x
+x
+x
+'max_overlap'"max_overlap""max_overlap""max_overlap""max_overlap"
+x
+x
+x
+'max_overlap_class_agnostic'"max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic"
+x
+x
+x
+'meta_data'"meta_data""meta_data""meta_data""meta_data"
+x
+x
+'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence"
+x
+x
+x
+'min_version'"min_version""min_version""min_version""min_version"
+x
+'momentum'"momentum""momentum""momentum""momentum"
+x
+x
+'num_classes'"num_classes""num_classes""num_classes""num_classes" (NumClassesNumClassesNumClassesnumClassesnum_classes)
+x
+x
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params"
+x
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference"
+x
+x
+x
+'precision'"precision""precision""precision""precision"
+x
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted"
+x
+'runtime'"runtime""runtime""runtime""runtime"
+x
+x
+'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init"
+x
+'solver_type'"solver_type""solver_type""solver_type""solver_type"
+x
+x
+'summary'"summary""summary""summary""summary"
+x
+'type'"type""type""type""type"
+x
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay"
+x
+x
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+x
+x
+Semantic Segmentation, Edge Extraction
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+set
+get
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1"
+x
+x
+'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2"
+x
+x
+'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon"
+x
+x
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+x
+x
+'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier"
+x
+x
+'batchnorm_momentum'"batchnorm_momentum""batchnorm_momentum""batchnorm_momentum""batchnorm_momentum"
+x
+'class_ids'"class_ids""class_ids""class_ids""class_ids"
+x
+x
+'class_names'"class_names""class_names""class_names""class_names"
+x
+x
+'device'"device""device""device""device"
+x
+x
+'enable_resizing'"enable_resizing""enable_resizing""enable_resizing""enable_resizing"
+x
+'fuse_bn_relu'"fuse_bn_relu""fuse_bn_relu""fuse_bn_relu""fuse_bn_relu"
+x
+'fuse_conv_bn'"fuse_conv_bn""fuse_conv_bn""fuse_conv_bn""fuse_conv_bn"
+x
+'fuse_conv_relu'"fuse_conv_relu""fuse_conv_relu""fuse_conv_relu""fuse_conv_relu"
+x
+'gpu'"gpu""gpu""gpu""gpu"
+x
+x
+'ignore_class_ids'"ignore_class_ids""ignore_class_ids""ignore_class_ids""ignore_class_ids"
+x
+x
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions"
+x
+x
+'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width"
+x
+x
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels"
+x
+x
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min"
+x
+x
+'image_size'"image_size""image_size""image_size""image_size"
+x
+x
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions"
+x
+x
+'layer_names'"layer_names""layer_names""layer_names""layer_names"
+x
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+x
+x
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+x
+x
+'meta_data'"meta_data""meta_data""meta_data""meta_data"
+x
+x
+'min_version'"min_version""min_version""min_version""min_version"
+x
+'momentum'"momentum""momentum""momentum""momentum"
+x
+x
+'num_classes'"num_classes""num_classes""num_classes""num_classes"
+x
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params"
+x
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference"
+x
+x
+'precision'"precision""precision""precision""precision"
+x
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted"
+x
+'runtime'"runtime""runtime""runtime""runtime"
+x
+x
+'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init"
+x
+'solver_type'"solver_type""solver_type""solver_type""solver_type"
+x
+x
+'summary'"summary""summary""summary""summary"
+x
+'type'"type""type""type""type"
+x
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay"
+x
+x
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+x
+x
+In the following we list and explain the parameters GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name
+for which you can retrieve their value using this operator,
+get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param.
+Note, that only parameters that do not change the model architecture can be
+set after the model has been optimized with
+optimize_dl_model_for_inferenceoptimize_dl_model_for_inferenceOptimizeDlModelForInferenceOptimizeDlModelForInferenceoptimize_dl_model_for_inference. A list of these parameters can be
+found at optimize_dl_model_for_inferenceoptimize_dl_model_for_inferenceOptimizeDlModelForInferenceOptimizeDlModelForInferenceoptimize_dl_model_for_inference.
+Thereby, the following symbols denote the model type for which the parameter
+can be get:
+'Any': any method
+'3D-GPD': 'type'"type""type""type""type"='3d_gripping_point_detection'"3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection"
+'3D-PE': 'type'"type""type""type""type"='3d_pose_estimation'"3d_pose_estimation""3d_pose_estimation""3d_pose_estimation""3d_pose_estimation"
+'AD': 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection"
+'CL': 'type'"type""type""type""type"='classification'"classification""classification""classification""classification"
+'MLC': 'type'"type""type""type""type"='multi_label_classification'"multi_label_classification""multi_label_classification""multi_label_classification""multi_label_classification"
+'DC': 'type'"type""type""type""type"='counting'"counting""counting""counting""counting"
+'OCR-D': 'type'"type""type""type""type"='ocr_detection'"ocr_detection""ocr_detection""ocr_detection""ocr_detection"
+'OCR-R': 'type'"type""type""type""type"='ocr_recognition'"ocr_recognition""ocr_recognition""ocr_recognition""ocr_recognition"
+'GC-AD': 'type'"type""type""type""type"='gc_anomaly_detection'"gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection"
+'OD': 'type'"type""type""type""type"='detection'"detection""detection""detection""detection"
+'SE': 'type'"type""type""type""type"='segmentation'"segmentation""segmentation""segmentation""segmentation"
+'Gen': 'type'"type""type""type""type"='generic'"generic""generic""generic""generic"
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1": 3D-GPD 3D-PE CL OCR-D OCR-R GC-AD OD SE Gen
+This value defines the moment for the linear term in Adam solver.
+For more information we refer to the documentation of
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch.
+Restriction:
+Only applicable for
+'solver_type'"solver_type""solver_type""solver_type""solver_type" = 'adam'"adam""adam""adam""adam".
+Default:
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1" = 0.9
+'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2": 3D-GPD 3D-PE CL OCR-D OCR-R GC-AD OD SE Gen
+This value defines the moment for the quadratic term in Adam solver.
+For more information we refer to the documentation of
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch.
+Restriction:
+Only applicable for
+'solver_type'"solver_type""solver_type""solver_type""solver_type" = 'adam'"adam""adam""adam""adam".
+Default:
+'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2" = 0.999
+'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon": 3D-GPD 3D-PE CL OCR-D OCR-R GC-AD OD SE Gen
+This value defines the epsilon in the Adam solver formula and is
+purposed to guarantee the numeric stability.
+For more information we refer to the documentation of
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch.
+Restriction:
+Only applicable for
+'solver_type'"solver_type""solver_type""solver_type""solver_type" = 'adam'"adam""adam""adam""adam".
+Default:
+'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon" = 1e-08
+'alignment'"alignment""alignment""alignment""alignment": OCR-R
+This parameter specifies whether word alignment is performed
+prior to recognizing the text. Enabling this feature ('true'"true""true""true""true")
+improves the recognition accuracy for inaccurately cropped words.
+Therefore, it can be used in scenarios where the position of the text
+within the image is only approximately known.
+The parameter 'alignment'"alignment""alignment""alignment""alignment" can only be set to 'true'"true""true""true""true"
+if the recognition component includes word alignment. To check whether
+the model supports alignment, use the parameter
+'alignment_available'"alignment_available""alignment_available""alignment_available""alignment_available".
+Note that in contrast to recognition of tightly cropped words,
+aligned recognition requires to be trained with samples containing
+real image backgrounds around the words. In this manner, the model
+learns to suppress false readings in the background which can be
+present after aligning inaccurately cropped words.
+List of values:
+'true'"true""true""true""true", 'false'"false""false""false""false"
+Default:
+'false'"false""false""false""false"
+'alignment_available'"alignment_available""alignment_available""alignment_available""alignment_available": OCR-R
+This parameter indicates whether the recognition component contains
+word alignment functionality. If it returns 'true'"true""true""true""true", it means
+that word alignment can be enabled using the parameter
+'alignment'"alignment""alignment""alignment""alignment".
+List of values:
+'true'"true""true""true""true", 'false'"false""false""false""false"
+'alphabet'"alphabet""alphabet""alphabet""alphabet": OCR-R
+The character set that can be recognized by the Deep OCR model.
+It contains all characters that are not mapped to the Blank character
+of the internal alphabet (see parameters
+'alphabet_mapping'"alphabet_mapping""alphabet_mapping""alphabet_mapping""alphabet_mapping" and 'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal").
+The alphabet can be changed or extended if needed. Changing the
+alphabet with this parameter will edit the internal alphabet and
+mapping in such a way that it tries to keep the length of the internal
+alphabet unchanged.
+After changing the alphabet, it is recommended to retrain the model on
+application specific data (see the HDevelop example
+deep_ocr_recognition_training_workflow.hdev).
+Previously unknown characters will need more training data.
+Note, that if the length of the internal alphabet changes, the last
+model layers have to be randomly initialized and thus the output of the
+model will be random strings (see 'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal").
+In that case it is required to retrain the model.
+'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal": OCR-R
+The full character set which the Deep OCR recognition component has
+been trained on.
+The first character of the internal alphabet is a special character.
+In the pretrained model this character is specified as Blank
+(U+2800) and is not to be confused with a space.
+The Blank is never returned in a word output but can occur in the
+reported character candidates. It is required and cannot be omitted.
+If the internal alphabet is changed, the first character has to be
+the Blank.
+Furthermore, if 'alphabet'"alphabet""alphabet""alphabet""alphabet" is used to change
+the alphabet, the Blank symbol is added automatically to the
+character set.
+The length of this tuple corresponds to the depth of the last
+convolution layer in the model. If the length changes, the last
+convolution layer and all layers after it have to be resized and
+potentially reinitialized randomly. After such a change, it is required
+to retrain the model (see HDevelop example
+deep_ocr_recognition_training_workflow.hdev).
+It is recommended to use the parameter 'alphabet'"alphabet""alphabet""alphabet""alphabet" to
+change the alphabet, as it will automatically try to preserve the
+length of the internal alphabet.
+'alphabet_mapping'"alphabet_mapping""alphabet_mapping""alphabet_mapping""alphabet_mapping": OCR-R
+Tuple of integer indices.
+It is a mapping that is applied by the model during the decoding step
+of each word. The mapping overwrites a character of
+'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal" with the character at the specified
+index in 'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal".
+In the decoding step each prediction is mapped according to the index
+specified in this tuple.
+The tuple has to be of same length as the tuple
+'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal". Each integer index of the
+mapping has to be within 0 and
+|'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal"|-1.
+In some applications it can be helpful to map certain characters onto
+other characters. E.g. if only numeric words occur in an application it
+might be helpful to map the character "O" to the "0" character
+without the need to retrain the model.
+If an entry contains a 0, the corresponding character in
+'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal" will not be decoded in the
+word.
+'anchor_angles'"anchor_angles""anchor_angles""anchor_angles""anchor_angles": OD
+The parameter 'anchor_angles'"anchor_angles""anchor_angles""anchor_angles""anchor_angles" determines the orientation
+angle of the anchors for a model of
+'instance_type'"instance_type""instance_type""instance_type""instance_type" = 'rectangle2'"rectangle2""rectangle2""rectangle2""rectangle2".
+Thereby, the orientation is given in arc measure and indicates
+the angle between the horizontal axis and Length1Length1Length1length1length_1
+(mathematically positive).
+See the chapter Deep Learning / Object Detection and Instance Segmentation for more
+explanations to anchors.
+You can set a tuple of values.
+A higher number of angles increases the number of anchors
+which might lead to a better localization but also increases the
+runtime and memory-consumption.
+Value range:
+'anchor_angles'"anchor_angles""anchor_angles""anchor_angles""anchor_angles"
+for 'ignore_direction'"ignore_direction""ignore_direction""ignore_direction""ignore_direction" = 'false'"false""false""false""false",
+'anchor_angles'"anchor_angles""anchor_angles""anchor_angles""anchor_angles"
+for 'ignore_direction'"ignore_direction""ignore_direction""ignore_direction""ignore_direction" = 'true'"true""true""true""true"
+Default:
+'anchor_angles'"anchor_angles""anchor_angles""anchor_angles""anchor_angles" = [0.0]
+'anchor_aspect_ratios'"anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios"
+(legacy: 'aspect_ratios'"aspect_ratios""aspect_ratios""aspect_ratios""aspect_ratios"): OD
+The parameter 'anchor_aspect_ratios'"anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios" determines the aspect
+ratio of the anchors. Thereby, the definition of the ratio depends on
+the 'instance_type'"instance_type""instance_type""instance_type""instance_type":
+'rectangle1'"rectangle1""rectangle1""rectangle1""rectangle1": height-to-width ratio
+'rectangle2'"rectangle2""rectangle2""rectangle2""rectangle2": ratio length1 to length2
+E.g., for instance type 'rectangle1'"rectangle1""rectangle1""rectangle1""rectangle1" the ratio 2 gives
+a narrow and 0.5 a broad anchor.
+The size of the anchor is affected by the parameter
+'anchor_num_subscales'"anchor_num_subscales""anchor_num_subscales""anchor_num_subscales""anchor_num_subscales" and with its explanation we give the
+formula for the sizes and lengths of the generated anchors.
+See the chapter Deep Learning / Object Detection and Instance Segmentation for more
+explanations to anchors.
+You can set a tuple of values.
+A higher number of aspect ratios increases the number of anchors
+which might lead to a better localization but also increases the
+runtime and memory-consumption.
+For reasons of backward compatibility, the parameter name
+'aspect_ratios'"aspect_ratios""aspect_ratios""aspect_ratios""aspect_ratios" can be used instead of
+'anchor_aspect_ratios'"anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios".
+Default:
+'anchor_aspect_ratios'"anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios" =
+[1.0, 2.0, 0.5]
+'anchor_num_subscales'"anchor_num_subscales""anchor_num_subscales""anchor_num_subscales""anchor_num_subscales"
+(legacy: 'num_subscales'"num_subscales""num_subscales""num_subscales""num_subscales"): OD
+This parameter determines the number of different sizes with which
+the anchors are generated at the different levels used.
+In HALCON for every anchor point, thus every pixel of every feature
+map of the feature pyramid, a set of anchors is proposed.
+See the chapter Deep Learning / Object Detection and Instance Segmentation for
+more explanations to anchors.
+Thereby the parameter 'anchor_num_subscales'"anchor_num_subscales""anchor_num_subscales""anchor_num_subscales""anchor_num_subscales" affects the size
+of the anchors.
+An example is shown in the figure below.
+image/svg+xml
+With 'anchor_num_subscales'"anchor_num_subscales""anchor_num_subscales""anchor_num_subscales""anchor_num_subscales"=2 we generate for every aspect
+ratio 2 anchors of different size on each level: One with the base
+length (solid line) and an additional, larger one (dotted line).
+Thereby, in the image these additional anchors of
+the lower level (orange) converge to the anchor of
+the next higher level (blue).
+An anchor of level
+has by default a edge lengths of
+in the input image, whereby
+the parameter has the value
+.
+With the parameter 'anchor_num_subscales'"anchor_num_subscales""anchor_num_subscales""anchor_num_subscales""anchor_num_subscales" additional anchors
+can be generated, which converge in size to the smallest anchor
+of the level
+. More precisely, these anchors
+of level
+have in the input image the edge lengths
+where
+.
+For subscale
+, this results on level
+in an
+anchor of height
+and width
+equal
+where
+is the ratio of this anchor
+(see 'anchor_aspect_ratios'"anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios").
+A larger number of subscales increases the number of anchors
+and will therefore increase the runtime and memory-consumption.
+For reasons of backward compatibility, the parameter name
+'num_subscales'"num_subscales""num_subscales""num_subscales""num_subscales" can be used instead of
+'anchor_num_subscales'"anchor_num_subscales""anchor_num_subscales""anchor_num_subscales""anchor_num_subscales".
+Default:
+'anchor_num_subscales'"anchor_num_subscales""anchor_num_subscales""anchor_num_subscales""anchor_num_subscales" = 3
+'anomaly_score_tolerance'"anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance": GC-AD
+The image-level anomaly score is calculated internally such that
+a certain fraction of the pixel-level anomaly scores in
+anomaly_image is greater or equal to the image-level
+anomaly score. The value of this fraction can be set by
+'anomaly_score_tolerance'"anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance" and has to be in the interval
+[0.0, 1.0].
+For example, for 'anomaly_score_tolerance'"anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance"=0.01,
+1 percent of the pixel anomaly scores are larger or equal to the
+image anomaly score. This can be used to suppress outliers
+that might appear in the pixel anomaly scores.
+Default:
+'anomaly_score_tolerance'"anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance" = 0.0
+'backbone'"backbone""backbone""backbone""backbone": OD
+The parameter 'backbone'"backbone""backbone""backbone""backbone" is the name (together with the path)
+of the backbone network which is used to create the model. A list of
+the delivered backbone networks can be found under
+create_dl_model_detectioncreate_dl_model_detectionCreateDlModelDetectionCreateDlModelDetectioncreate_dl_model_detection.
+'backbone_docking_layers'"backbone_docking_layers""backbone_docking_layers""backbone_docking_layers""backbone_docking_layers": CL
+The parameter 'backbone_docking_layers'"backbone_docking_layers""backbone_docking_layers""backbone_docking_layers""backbone_docking_layers" specifies which
+layers of the backbone are to be used as docking layers by the
+feature pyramid.
+Thereby the layers are referenced by their names.
+The docking layers can be specified for every classifier, also without
+using them as backbone.
+The specification is only considered for object detection backbones.
+When selecting the docking layers, consider that the feature map
+lengths have to be halved from one docking layer to the other.
+Rule of thumb: Use the deepest layers for every (lateral) resolution
+in the backbone (corresponding to one of the required levels for your
+object detection task).
+Information about the names and sizes of the layers in a model can be
+enquired using 'summary'"summary""summary""summary""summary".
+Default:
+For the pretrained backbones delivered by HALCON
+the defaults depend on the classifier. Other classifiers do not have
+any docking layers set by default and therefore need to have this
+parameter set before they can be used as backbone.
+'batch_size'"batch_size""batch_size""batch_size""batch_size": Any
+Number of input images (and corresponding labels) in a batch that
+is transferred to device memory.
+For a training using train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch, the batch of images
+which are processed simultaneously in a single training iteration
+contains a number of images which is equal to 'batch_size'"batch_size""batch_size""batch_size""batch_size"
+times 'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier". Please refer to
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch for further details.
+For inference, the 'batch_size'"batch_size""batch_size""batch_size""batch_size" can be generally set
+independently from the number of input images.
+See apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model for details on how to set this parameter
+for greater efficiency.
+Models of 'type'"type""type""type""type"='classification'"classification""classification""classification""classification":
+The parameter 'batch_size'"batch_size""batch_size""batch_size""batch_size" is stored in the pretrained
+classifier. Per default, the 'batch_size'"batch_size""batch_size""batch_size""batch_size" is set such
+that a training of the pretrained classifier with up to
+100 classes can be easily performed on a device with
+8 gigabyte of memory.
+For the pretrained classifiers, the default values are hence
+given as follows:
+pretrained classifier
+default value of
+'batch_size'"batch_size""batch_size""batch_size""batch_size"
+'pretrained_dl_classifier_alexnet.hdl'"pretrained_dl_classifier_alexnet.hdl""pretrained_dl_classifier_alexnet.hdl""pretrained_dl_classifier_alexnet.hdl""pretrained_dl_classifier_alexnet.hdl"
+230
+'pretrained_dl_classifier_compact.hdl'"pretrained_dl_classifier_compact.hdl""pretrained_dl_classifier_compact.hdl""pretrained_dl_classifier_compact.hdl""pretrained_dl_classifier_compact.hdl"
+160
+'pretrained_dl_classifier_enhanced.hdl'"pretrained_dl_classifier_enhanced.hdl""pretrained_dl_classifier_enhanced.hdl""pretrained_dl_classifier_enhanced.hdl""pretrained_dl_classifier_enhanced.hdl"
+96
+'pretrained_dl_classifier_mobilenet_v2.hdl'"pretrained_dl_classifier_mobilenet_v2.hdl""pretrained_dl_classifier_mobilenet_v2.hdl""pretrained_dl_classifier_mobilenet_v2.hdl""pretrained_dl_classifier_mobilenet_v2.hdl"
+40
+'pretrained_dl_classifier_resnet18.hdl'"pretrained_dl_classifier_resnet18.hdl""pretrained_dl_classifier_resnet18.hdl""pretrained_dl_classifier_resnet18.hdl""pretrained_dl_classifier_resnet18.hdl"
+24
+'pretrained_dl_classifier_resnet50.hdl'"pretrained_dl_classifier_resnet50.hdl""pretrained_dl_classifier_resnet50.hdl""pretrained_dl_classifier_resnet50.hdl""pretrained_dl_classifier_resnet50.hdl"
+23
+Models of 'type'"type""type""type""type"='counting'"counting""counting""counting""counting":
+The parameter 'batch_size'"batch_size""batch_size""batch_size""batch_size" has no effect.
+'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier": Any
+Multiplier for 'batch_size'"batch_size""batch_size""batch_size""batch_size" to enable training with larger
+numbers of images in one step which would otherwise not be possible
+due to GPU memory limitations. This model parameter does only affect
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch and thus has no
+impact during evaluation and inference.
+For detailed information see train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch.
+Models of 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection":
+The parameter 'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier" has no effect.
+Models of 'type'"type""type""type""type"='counting'"counting""counting""counting""counting":
+The parameter 'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier" has no effect.
+Models of 'type'"type""type""type""type"='ocr_recognition'"ocr_recognition""ocr_recognition""ocr_recognition""ocr_recognition":
+The parameter 'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier" has no effect.
+Default:
+'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier" = 1
+'bbox_heads_weight'"bbox_heads_weight""bbox_heads_weight""bbox_heads_weight""bbox_heads_weight",
+'class_heads_weight'"class_heads_weight""class_heads_weight""class_heads_weight""class_heads_weight": OD
+The parameters 'bbox_heads_weight'"bbox_heads_weight""bbox_heads_weight""bbox_heads_weight""bbox_heads_weight" and
+'class_heads_weight'"class_heads_weight""class_heads_weight""class_heads_weight""class_heads_weight" are weighting factors for the
+calculation of the total loss.
+This means, when the losses of the individual networks are summed up,
+the contributions from the bounding box regression heads are weighted
+by a factor 'bbox_heads_weight'"bbox_heads_weight""bbox_heads_weight""bbox_heads_weight""bbox_heads_weight" and the contributions from
+the classification heads are weighted by a factor
+'class_heads_weight'"class_heads_weight""class_heads_weight""class_heads_weight""class_heads_weight".
+Default:
+'bbox_heads_weight'"bbox_heads_weight""bbox_heads_weight""bbox_heads_weight""bbox_heads_weight" = 1.0,
+'class_heads_weight'"class_heads_weight""class_heads_weight""class_heads_weight""class_heads_weight" = 1.0
+'capacity'"capacity""capacity""capacity""capacity": OD
+This parameter roughly determines the number of parameters
+(or filter weights) in the deeper sections of the object detection
+network (after the backbone). Its possible values are
+'high'"high""high""high""high", 'medium'"medium""medium""medium""medium", and 'low'"low""low""low""low".
+It can be used to trade-off between detection performance and
+speed. For simpler object detection tasks, the 'low'"low""low""low""low" or
+'medium'"medium""medium""medium""medium" settings may be sufficient to achieve the same
+detection performance as with 'high'"high""high""high""high".
+Default:
+'capacity'"capacity""capacity""capacity""capacity" = 'high'"high""high""high""high"
+'class_ids'"class_ids""class_ids""class_ids""class_ids": 3D-GPD CL MLC OD SE
+Unique IDs of the classes the model shall distinguish.
+The tuple is of length 'num_classes'"num_classes""num_classes""num_classes""num_classes".
+We stress out the slightly different meanings and restrictions
+depending on the model type:
+Models of 'type'"type""type""type""type"='3d_gripping_point_detection'"3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection":
+Two classes, in fixed order ['gripping_map'"gripping_map""gripping_map""gripping_map""gripping_map", 'background'"background""background""background""background"],
+are supported for this model. Therefore, for such a model the tuple
+has a fixed length of 2. Thereby, you can set any integer within
+the interval
+as class ID value.
+Models of 'type'"type""type""type""type"='classification'"classification""classification""classification""classification":
+The IDs are unique identifiers, which are automatically assigned
+to each class. The ID of a class corresponds to the index within
+the tuple 'class_names'"class_names""class_names""class_names""class_names".
+Models of 'type'"type""type""type""type"='multi_label_classification'"multi_label_classification""multi_label_classification""multi_label_classification""multi_label_classification":
+The IDs are unique identifiers of the classes to be detected.
+Thereby, you can set any integer as class ID value.
+Value range:
+.
+Models of 'type'"type""type""type""type"='detection'"detection""detection""detection""detection":
+Only the classes of the objects to be detected are included and
+therewith no background class.
+Thereby, you can set any integer within the interval
+as class ID value.
+Note that the values of 'class_ids_no_orientation'"class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation" depend
+on 'class_ids'"class_ids""class_ids""class_ids""class_ids". Thus if 'class_ids'"class_ids""class_ids""class_ids""class_ids" is changed
+after the creation of the model,
+'class_ids_no_orientation'"class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation" is reset to an empty tuple.
+Default:
+'class_ids'"class_ids""class_ids""class_ids""class_ids" =
+'[0,...,num_classes-1]'"[0,...,num_classes-1]""[0,...,num_classes-1]""[0,...,num_classes-1]""[0,...,num_classes-1]"
+Models of 'type'"type""type""type""type"='segmentation'"segmentation""segmentation""segmentation""segmentation":
+Every class used for training has to be included and therewith
+also the class ID of the 'background' class.
+Therefore, for such a model the tuple has a minimal length of 2.
+Thereby, you can set any integer within the interval
+as class ID value.
+'class_ids_no_orientation'"class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation": OD
+With this parameter you can declare classes, for which the orientation
+will not be considered,
+e.g., round or other point symmetrical objects.
+For each class, whose class ID is present in
+'class_ids_no_orientation'"class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation", the network returns
+axis-aligned bounding boxes.
+Note, this parameter only affects networks of
+'instance_type'"instance_type""instance_type""instance_type""instance_type" = 'rectangle2'"rectangle2""rectangle2""rectangle2""rectangle2".
+Note that the values of 'class_ids_no_orientation'"class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation" depend
+on 'class_ids'"class_ids""class_ids""class_ids""class_ids". Thus if 'class_ids'"class_ids""class_ids""class_ids""class_ids" is changed
+after the creation of the model,
+'class_ids_no_orientation'"class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation" is reset to an empty tuple.
+Default:
+'class_ids_no_orientation'"class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation" = []
+'class_names'"class_names""class_names""class_names""class_names": 3D-GPD CL MLC OD SE
+Unique names of the classes the model shall distinguish.
+The order of the class names remains unchanged after the setting.
+The tuple is of length 'num_classes'"num_classes""num_classes""num_classes""num_classes".
+Restriction:
+For a '3d_gripping_point_detection'"3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection" model,
+the 'class_names'"class_names""class_names""class_names""class_names" tuple has a fixed length of 2,
+with constant value ['gripping_map'"gripping_map""gripping_map""gripping_map""gripping_map", 'background'"background""background""background""background"].
+'class_weights'"class_weights""class_weights""class_weights""class_weights": CL OD
+The parameter 'class_weights'"class_weights""class_weights""class_weights""class_weights" is a tuple
+of class specific weighting factors for the loss.
+Giving the unique classes a different weight, it is possible
+to force the network to learn the classes with different importance.
+This is useful in cases where a class dominates the dataset.
+The weighting factors have to be within the interval
+. Thereby a class gets a stronger
+impact during the training the larger its weight is.
+The weights in the tuple 'class_weights'"class_weights""class_weights""class_weights""class_weights" are sorted the same
+way as the classes in the tuple 'class_ids'"class_ids""class_ids""class_ids""class_ids".
+We stress out the slightly different meanings and restrictions
+depending on the model type:
+Models of 'type'"type""type""type""type"='classification'"classification""classification""classification""classification":
+Default:
+'class_weights'"class_weights""class_weights""class_weights""class_weights" = 1.0 for each class.
+Models of 'type'"type""type""type""type"='detection'"detection""detection""detection""detection":
+Default:
+'class_weights'"class_weights""class_weights""class_weights""class_weights" = 0.25 for each class.
+'clear_ood'"clear_ood""clear_ood""clear_ood""clear_ood": CL
+This parameter deactivates the out-of-distribution detection of a deep
+learning model. All related information will be deleted.
+fit_dl_out_of_distributionfit_dl_out_of_distributionFitDlOutOfDistributionFitDlOutOfDistributionfit_dl_out_of_distribution can be called to fit the
+out-of-distribution detection again.
+Default:
+'true'"true""true""true""true"
+'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm": Any
+This parameter controls the maximum L2 norm of the gradients during training,
+also known as gradient clipping.
+The default value 'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm" = 0.0 disables
+gradient norm limiting. For 'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm" > 0.0,
+the total norm of the gradients is limited to this value, which can help
+stabilizing the training of a deep learning model.
+All gradients of the model's weights and biases are scaled as follows:
+where
+is the L2 norm of gradient
+, which can be
+retrieved using the operator get_dl_model_layer_weightsget_dl_model_layer_weightsGetDlModelLayerWeightsGetDlModelLayerWeightsget_dl_model_layer_weights.
+For typical applications, we recommend testing the values for 'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm"
+between
+.
+Default:
+0.0
+'complexity'"complexity""complexity""complexity""complexity": AD
+This parameter controls the capacity of the model to deal with more
+complex applications. A higher value allows for the model to represent
+images showing more complexity.
+Increasing the parameter leads to higher runtimes during training and
+inference.
+Please note that this parameter can only be set before the model is
+trained. Setting 'complexity'"complexity""complexity""complexity""complexity" on an already trained model
+would render this model useless. When trying to do so, an error is
+returned but the model itself is unchanged.
+Default:
+'complexity'"complexity""complexity""complexity""complexity" = 15
+'continual_learning_available'"continual_learning_available""continual_learning_available""continual_learning_available""continual_learning_available": CL
+This parameter specifies whether a classification model has been initialized for
+Continual Learning.
+If the operator init_dl_continual_learninginit_dl_continual_learningInitDlContinualLearningInitDlContinualLearninginit_dl_continual_learning has been called for
+the model, the value of 'continual_learning_available'"continual_learning_available""continual_learning_available""continual_learning_available""continual_learning_available" is 'true'"true""true""true""true".
+Otherwise it is 'false'"false""false""false""false".
+Default:
+'false'"false""false""false""false"
+'device'"device""device""device""device": Any
+Handle of the device on which the deep learning operators will be
+executed.
+If the model was already optimized for a device, setting 'device'"device""device""device""device"
+might not be necessary anymore, see
+optimize_dl_model_for_inferenceoptimize_dl_model_for_inferenceOptimizeDlModelForInferenceOptimizeDlModelForInferenceoptimize_dl_model_for_inference for details.
+To get a tuple of handles of all available potentially deep-learning capable
+hardware devices use query_available_dl_devicesquery_available_dl_devicesQueryAvailableDlDevicesQueryAvailableDlDevicesquery_available_dl_devices.
+Default:
+Handle of the default device, thus the GPU with index
+0. If not available, this is an empty tuple.
+'extract_feature_maps'"extract_feature_maps""extract_feature_maps""extract_feature_maps""extract_feature_maps": CL
+With this parameter value you can extract feature maps of the
+specified model layer for an inferred image.
+The selected layer must be part of the existing network. An overview of
+all existing layers of the model can be returned by the operator
+get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param with the corresponding parameter
+'summary'"summary""summary""summary""summary".
+Note, using this option modifies the network architecture:
+The network is truncated after a selected layer.
+This modification can not be reversed.
+If the original network architecture should be used again
+it must be read in again with the operator read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model.
+'freeze_backbone_level'"freeze_backbone_level""freeze_backbone_level""freeze_backbone_level""freeze_backbone_level": OD
+This parameter determines the backbone levels whose weights are
+kept (meaning not updated and thus frozen) during training.
+Thereby the given number signifies the highest level whose layers
+are frozen in the backbone. Setting 'freeze_backbone_level'"freeze_backbone_level""freeze_backbone_level""freeze_backbone_level""freeze_backbone_level"
+to 0, for no level the weights are frozen and as a
+consequence the weights of all layers are updated. It is
+recommended to set this in case the weights have been randomly
+initialized (e.g., after certain changes of the number of image
+channels) or the in case the backbone is not pretrained.
+Default:
+'freeze_backbone_level'"freeze_backbone_level""freeze_backbone_level""freeze_backbone_level""freeze_backbone_level" = 2
+'gc_anomaly_networks'"gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks": GC-AD
+This parameter is used to select the subnetworks of the model.
+The following values can be set:
+'local'"local""local""local""local": The local subnetwork will be extracted.
+'global'"global""global""global""global": The global subnetwork will be extracted.
+We refer to Deep Learning / Anomaly Detection and Global Context Anomaly Detection
+for more general information on the subnetworks and their properties.
+Note, the original model contains both a 'local'"local""local""local""local" and a
+'global'"global""global""global""global" subnetwork. Once the model architecture is reduced
+to a single subnetwork, the original network is truncated. This cannot
+be undone. If the original model architecture is to be used again,
+it must be read in again with read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model.
+Default:
+'gc_anomaly_networks'"gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks" =
+['local', 'global']["local", "global"]["local", "global"]["local", "global"]["local", "global"]
+'gpu'"gpu""gpu""gpu""gpu": Any
+Identifier of the GPU where the training and inference operators
+(train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch and apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model) are executed.
+Per default, the first available GPU is used.
+get_systemget_systemGetSystemGetSystemget_system with 'cuda_devices'"cuda_devices""cuda_devices""cuda_devices""cuda_devices" can be used to
+retrieve a list of available GPUs. Pass the index in this list to
+'gpu'"gpu""gpu""gpu""gpu".
+Note that the parameter 'gpu'"gpu""gpu""gpu""gpu" is only taken into account for
+'runtime'"runtime""runtime""runtime""runtime" = 'gpu'"gpu""gpu""gpu""gpu".
+Therefore, it is preferable to set the GPU device, on which operators are
+run, using the parameter 'device'"device""device""device""device".
+executed.
+Default:
+'gpu'"gpu""gpu""gpu""gpu" = 0
+'ignore_class_ids'"ignore_class_ids""ignore_class_ids""ignore_class_ids""ignore_class_ids": SE
+With this parameter you can declare one or multiple classes as
+'ignore' classes, see the chapter
+Deep Learning / Semantic Segmentation and Edge Extraction for further information.
+These classes are declared over their ID (integers).
+Note, you can not set a class ID in 'ignore_class_ids'"ignore_class_ids""ignore_class_ids""ignore_class_ids""ignore_class_ids" and
+'class_ids'"class_ids""class_ids""class_ids""class_ids" simultaneously.
+'ignore_direction'"ignore_direction""ignore_direction""ignore_direction""ignore_direction": OD
+This parameter determines whether for the oriented bounding box
+also the direction of the object within the bounding box is considered
+or not.
+In case the direction within the bounding box is not to be considered
+you can set 'ignore_direction'"ignore_direction""ignore_direction""ignore_direction""ignore_direction" to 'true'"true""true""true""true".
+In order to determine the bounding box unambiguously, in this case
+(but only in this case) the following conventions apply:
+'phi'"phi""phi""phi""phi"
+'bbox_length1'"bbox_length1""bbox_length1""bbox_length1""bbox_length1" > 'bbox_length2'"bbox_length2""bbox_length2""bbox_length2""bbox_length2"
+This is consistent to smallest_rectangle2smallest_rectangle2SmallestRectangle2SmallestRectangle2smallest_rectangle2.
+Note, this parameter only affects networks of
+'instance_type'"instance_type""instance_type""instance_type""instance_type" = 'rectangle2'"rectangle2""rectangle2""rectangle2""rectangle2".
+List of values:
+'true'"true""true""true""true", 'false'"false""false""false""false"
+Default:
+'ignore_direction'"ignore_direction""ignore_direction""ignore_direction""ignore_direction" = 'false'"false""false""false""false"
+'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions": 3D-GPD 3D-PE AD CL MLC OCR-D OCR-R GC-AD OD SE
+Tuple containing the input image dimensions 'image_width'"image_width""image_width""image_width""image_width",
+'image_height'"image_height""image_height""image_height""image_height", and number of channels
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels".
+The respective default values and possible value ranges depend on the
+model and model type.
+Please see the individual dimension parameter description for more
+details.
+'image_height'"image_height""image_height""image_height""image_height",
+'image_width'"image_width""image_width""image_width""image_width": 3D-GPD 3D-PE AD CL MLC OCR-D OCR-R GC-AD OD SE
+Height and width of the input images, respectively, that the network
+will process.
+This parameter can attain different values depending on the model type:
+Models of 'type'"type""type""type""type"='3d_gripping_point_detection'"3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection":
+The network architectures allow changes of the image height and width.
+The default values are given by the network, see
+read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model.
+Models of 'type'"type""type""type""type"='3d_pose_estimation'"3d_pose_estimation""3d_pose_estimation""3d_pose_estimation""3d_pose_estimation":
+The network architecture does not allow changes of the image height and width.
+The default values are given by the network, see
+create_deep_matching_3dcreate_deep_matching_3dCreateDeepMatching3dCreateDeepMatching3dcreate_deep_matching_3d.
+Models of 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection":
+The default values depend on the specific pretrained network,
+see read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model.
+The network architectures allow changes of the image dimensions,
+which can be done using set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param. Please also
+refer to read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model for restrictions each of the
+delivered networks has on the input image size.
+Note that these parameters have to be set before training the model.
+Setting them on an already trained model would render this model
+useless. When trying to do so, an error is returned but the model
+itself is unchanged.
+Models of 'type'"type""type""type""type"='classification'"classification""classification""classification""classification":
+The default values depend on the specific pretrained classifier,
+see read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model.
+The network architectures allow changes of the image dimensions,
+which can be done using set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param.
+But for networks with at least one fully connected layer such a
+change makes a retraining necessary.
+Networks without fully connected layers are directly applicable to
+different image sizes. However, images with a size differing from
+the size with which the classifier has been trained are likely to
+show a reduced classification accuracy.
+Models of 'type'"type""type""type""type"='detection'"detection""detection""detection""detection":
+The network architectures allow changes of the image dimensions.
+But the image lengths are halved for every level, that is why the
+dimensions 'image_width'"image_width""image_width""image_width""image_width" and 'image_height'"image_height""image_height""image_height""image_height"
+need to be an integer multiple of
+.
+depends on the 'backbone'"backbone""backbone""backbone""backbone"
+and the parameter 'max_level'"max_level""max_level""max_level""max_level", see
+create_dl_model_detectioncreate_dl_model_detectionCreateDlModelDetectionCreateDlModelDetectioncreate_dl_model_detection for further information.
+Default:
+'image_height'"image_height""image_height""image_height""image_height" = 640,
+'image_width'"image_width""image_width""image_width""image_width" = 640
+Models of 'type'"type""type""type""type"='gc_anomaly_detection'"gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection":
+The network architecture allows changes of the image dimensions.
+Note that these parameters have to be set before training the model.
+Setting them on an already trained model would render this model
+useless.
+Restriction:
+The 'image_width'"image_width""image_width""image_width""image_width" and the
+'image_height'"image_height""image_height""image_height""image_height" must be
+greater than or equal to the value of the 'patch_size'"patch_size""patch_size""patch_size""patch_size"
+parameter.
+Default:
+'image_height'"image_height""image_height""image_height""image_height" = 256,
+'image_width'"image_width""image_width""image_width""image_width" = 256
+Models of 'type'"type""type""type""type"='ocr_recognition'"ocr_recognition""ocr_recognition""ocr_recognition""ocr_recognition":
+The network architectures allow changes of the image width.
+The default and minimal values are given by the network, see
+read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model.
+Models of 'type'"type""type""type""type"='segmentation'"segmentation""segmentation""segmentation""segmentation":
+The network architectures allow changes of the image dimensions.
+The default and minimal values are given by the network, see
+read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model.
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels": 3D-GPD 3D-PE AD CL MLC OCR-D OCR-R GC-AD OD SE
+Number of channels of the input images the network will process.
+The default value is given by the network, see
+read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model and create_dl_model_detectioncreate_dl_model_detectionCreateDlModelDetectionCreateDlModelDetectioncreate_dl_model_detection.
+For models of 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection" or
+'type'"type""type""type""type"='gc_anomaly_detection'"gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection", only the
+values 1 and 3 are supported.
+In addition, this parameter should be set before the model is
+trained.
+For models of 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection",
+setting 'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels" on an already
+trained model would render this model useless. Therefore,
+an error is returned when trying to do so, but the model
+itself is unchanged.
+For Deep OCR detection and recognition components, the number
+of channels can only be set to the respective default value
+(3 for'type'"type""type""type""type"='ocr_detection'"ocr_detection""ocr_detection""ocr_detection""ocr_detection"
+and 1 for 'type'"type""type""type""type"='ocr_recognition'"ocr_recognition""ocr_recognition""ocr_recognition""ocr_recognition").
+For models of 'type'"type""type""type""type"='3d_gripping_point_detection'"3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection"
+and of 'type'"type""type""type""type"='3d_pose_estimation'"3d_pose_estimation""3d_pose_estimation""3d_pose_estimation""3d_pose_estimation" the parameter
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels" cannot be set.
+For other models, any number of input image channels is possible.
+If number of channels is changed to a value >1,
+the weights of the first layers after the input image layer will
+be initialized with random values.
+Note, in this case more data for the retraining is needed.
+If the number of channels is changed to 1,
+the weights of the concerned layers are fused.
+Models of 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection":
+Default:
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels" = 3
+Models of 'type'"type""type""type""type"='detection'"detection""detection""detection""detection":
+Default:
+'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels" = 3
+'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max",
+'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min": 3D-GPD AD CL MLC OCR-D OCR-R GC-AD OD SE
+Maximum and minimum gray value of the input images, respectively,
+the network will process.
+The default values are given by the network, see
+read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model and create_dl_model_detectioncreate_dl_model_detectionCreateDlModelDetectionCreateDlModelDetectioncreate_dl_model_detection.
+'image_size'"image_size""image_size""image_size""image_size": 3D-GPD 3D-PE AD CL MLC OCR-D OCR-R GC-AD OD SE
+Tuple containing the input image size 'image_width'"image_width""image_width""image_width""image_width",
+'image_height'"image_height""image_height""image_height""image_height".
+The respective default values and possible value ranges depend on the
+model and model type.
+Please see the individual dimension parameter description for more
+details.
+'inference_outputs'"inference_outputs""inference_outputs""inference_outputs""inference_outputs": Any
+This parameter returns a tuple of strings containing the names of the
+outputs of the model that are available during inference.
+Depending on the model, the tuple may contain one or multiple strings.
+'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions": Any except 3D-PE
+This parameter returns a dictionary containing all input dimensions
+of the network. Examples for such inputs: input image,
+weight_image (for models of
+'type'"type""type""type""type"='segmentation'"segmentation""segmentation""segmentation""segmentation").
+These dimensions are given in the dictionary as a tuple
+[width, height, depth].
+In case this parameter is used to set the  dimension, for every dimension
+a value of -1 may be set to keep the current value.
+'instance_segmentation'"instance_segmentation""instance_segmentation""instance_segmentation""instance_segmentation": OD
+This parameter determines if the model is created for instance
+segmentation.
+If the parameter is set to 'true'"true""true""true""true" in
+create_dl_model_detectioncreate_dl_model_detectionCreateDlModelDetectionCreateDlModelDetectioncreate_dl_model_detection, the detection deep learning network
+is extended by additional layers for instance segmentation.
+List of values:
+'true'"true""true""true""true", 'false'"false""false""false""false"
+Default:
+'instance_segmentation'"instance_segmentation""instance_segmentation""instance_segmentation""instance_segmentation" = 'false'"false""false""false""false"
+'instance_type'"instance_type""instance_type""instance_type""instance_type": OD
+The parameter 'instance_type'"instance_type""instance_type""instance_type""instance_type" determines, which instance type
+is used for the object model. The current implementations differ
+regarding the allowed orientations of the bounding boxes.
+See the chapter Deep Learning / Object Detection and Instance Segmentation for more
+explanations to the different types and their bounding boxes.
+List of values:
+'rectangle1'"rectangle1""rectangle1""rectangle1""rectangle1", 'rectangle2'"rectangle2""rectangle2""rectangle2""rectangle2"
+Default:
+'instance_type'"instance_type""instance_type""instance_type""instance_type" = 'rectangle1'"rectangle1""rectangle1""rectangle1""rectangle1"
+'layer_names'"layer_names""layer_names""layer_names""layer_names": Any except 3D-GPD
+This parameter returns a tuple containing the name for every layer
+of the model.
+This name is the same human-readable identifier as is returned by
+get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param with 'summary'"summary""summary""summary""summary".
+Note, for some networks distributed with HALCON, the network
+architecture is confidential. In this case
+get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param returns an empty tuple with
+'layer_names'"layer_names""layer_names""layer_names""layer_names".
+'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate": Any
+Value of the factor determining the gradient influence during
+training using train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch.
+Please refer to train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch for further details.
+The default values depend on the model. Note that changing
+'solver_type'"solver_type""solver_type""solver_type""solver_type" sets 'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+back to its default value.
+Models of 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection":
+The parameter 'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate" has no effect.
+Models of 'type'"type""type""type""type"='counting'"counting""counting""counting""counting":
+The parameter 'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate" has no effect.
+'mask_head_weight'"mask_head_weight""mask_head_weight""mask_head_weight""mask_head_weight": OD
+The parameter 'mask_head_weight'"mask_head_weight""mask_head_weight""mask_head_weight""mask_head_weight" is a weighting factor for the
+calculation of the total loss.
+This means, when the losses of the individual network heads are summed up,
+the contribution from the mask prediction head is weighted
+by a factor 'mask_head_weight'"mask_head_weight""mask_head_weight""mask_head_weight""mask_head_weight".
+Restriction:
+Only applicable to models with
+'instance_segmentation'"instance_segmentation""instance_segmentation""instance_segmentation""instance_segmentation"='true'"true""true""true""true"
+Default:
+'mask_head_weight'"mask_head_weight""mask_head_weight""mask_head_weight""mask_head_weight" = 1.0
+'max_level'"max_level""max_level""max_level""max_level", 'min_level'"min_level""min_level""min_level""min_level": OD
+These parameters determine on which levels the additional networks are
+attached on the feature pyramid.
+We refer to the chapter Deep Learning / Object Detection and Instance Segmentation for
+further explanations to the feature pyramid and the attached networks.
+From these ('max_level'"max_level""max_level""max_level""max_level" - 'min_level'"min_level""min_level""min_level""min_level" + 1) networks
+all predictions with a minimum confidence value are kept as long they
+do not strongly overlap
+(see 'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence" and 'max_overlap'"max_overlap""max_overlap""max_overlap""max_overlap").
+The level declares how often the size of the feature map already has
+been scaled down.
+Thus, level 0 corresponds to the feature maps with size of the input
+image, level 1 to feature maps subscaled once, and so on.
+As a consequence, smaller objects are detected in the lower levels,
+whereas larger objects are detected in higher levels.
+The value for 'min_level'"min_level""min_level""min_level""min_level" needs to be at least 2.
+If 'max_level'"max_level""max_level""max_level""max_level" is larger than the number of levels the
+backbone can provide, the backbone is extended with additional
+(randomly initialized) convolutional layers in order to generate
+deeper levels.
+Further, 'max_level'"max_level""max_level""max_level""max_level" may have an influence on the minimal
+input image size.
+Note, for small input image dimensions, high levels might not be
+meaningful, as the feature maps could already be too small to contain
+meaningful information.
+A higher number of used levels might increase the runtime and
+memory-consumption, whereby especially lower levels carry weight.
+Default:
+'max_level'"max_level""max_level""max_level""max_level" = 6,
+'min_level'"min_level""min_level""min_level""min_level" = 2
+'max_num_detections'"max_num_detections""max_num_detections""max_num_detections""max_num_detections": OD
+This parameter determines the maximum number of detections
+(bounding boxes) per image proposed from the network.
+Default:
+'max_num_detections'"max_num_detections""max_num_detections""max_num_detections""max_num_detections" = 100
+'max_overlap'"max_overlap""max_overlap""max_overlap""max_overlap": OD
+The maximum allowed intersection over union (IoU) for two predicted
+bounding boxes of the same class.
+Or, vice-versa, when two bounding boxes are classified into the same
+class and have an IoU higher than 'max_overlap'"max_overlap""max_overlap""max_overlap""max_overlap", the one
+with lower confidence value gets suppressed.
+We refer to the chapter Deep Learning / Object Detection and Instance Segmentation for
+further explanations to the IoU.
+Default:
+'max_overlap'"max_overlap""max_overlap""max_overlap""max_overlap" = 0.5
+'max_overlap_class_agnostic'"max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic": OD
+The maximum allowed intersection over union (IoU) for two predicted
+bounding boxes independently of their predicted classes.
+Or, vice-versa, when two bounding boxes have an IoU higher than
+'max_overlap_class_agnostic'"max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic", the one with lower confidence
+value gets suppressed.
+As default, 'max_overlap_class_agnostic'"max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic" is set to 1.0, hence
+class agnostic bounding box suppression has no influence.
+Default:
+'max_overlap_class_agnostic'"max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic" = 1.0
+'meta_data'"meta_data""meta_data""meta_data""meta_data": Any
+Dictionary with user defined meta data, whose entries can be set
+freely. The meta data may be used to store information such as
+the model author or a model version along with the model.
+Restriction:
+Dictionary values are limited to strings.
+'min_character_score'"min_character_score""min_character_score""min_character_score""min_character_score": OCR-D
+The parameter 'min_character_score'"min_character_score""min_character_score""min_character_score""min_character_score" specifies the lower
+threshold used for the character score map to estimate the dimensions of
+the characters.
+By adjusting the parameter, suggested instances can be split up or
+neighboring instances can be merged.
+Value range:
+.
+Default:
+0.5
+'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence": MLC OD
+Models of 'type'"type""type""type""type"='detection'"detection""detection""detection""detection":
+This parameter determines the minimum confidence, when the image part
+within the bounding box is classified in order to keep the proposed
+bounding box.
+This means, when apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model is called, all output bounding
+boxes with a confidence value smaller than 'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence"
+are suppressed.
+Models of 'type'"type""type""type""type"='multi_label_classification'"multi_label_classification""multi_label_classification""multi_label_classification""multi_label_classification":
+This parameter determines the minimum confidence level required for a
+class to be considered as detected. This means, classes with a confidence
+score below 'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence" are regarded as not detected,
+while classes with a confidence value equal to or exceeding
+'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence" are deemed as detected.
+Default:
+'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence" = 0.5
+'min_link_score'"min_link_score""min_link_score""min_link_score""min_link_score": OCR-D
+The parameter 'min_link_score'"min_link_score""min_link_score""min_link_score""min_link_score" defines the minimum link
+score required between two localized characters to recognize these
+characters as coherent word.
+Value range:
+.
+Default:
+0.3
+'min_version'"min_version""min_version""min_version""min_version": Any
+The parameter 'min_version'"min_version""min_version""min_version""min_version" defines the minimum required
+HALCON version to use this model.
+'min_word_area'"min_word_area""min_word_area""min_word_area""min_word_area": OCR-D
+The parameter 'min_word_area'"min_word_area""min_word_area""min_word_area""min_word_area" defines the minimum size
+that a localized word must have in order to be suggested.
+This parameter can be used to filter suggestions that are too small.
+Value range:
+.
+Default:
+10.
+'min_word_score'"min_word_score""min_word_score""min_word_score""min_word_score": OCR-D
+The parameter 'min_word_score'"min_word_score""min_word_score""min_word_score""min_word_score" defines the minimum
+score a localized instance must contain to be suggested as valid word.
+With this parameter uncertain words can be filtered out.
+Value range:
+.
+Default:
+0.7
+'momentum'"momentum""momentum""momentum""momentum": Any
+When updating the weights of the network,
+the hyperparameter 'momentum'"momentum""momentum""momentum""momentum" specifies to which extent
+previous updating vectors will be added to the current updating
+vector.
+Only applicable for 'solver_type'"solver_type""solver_type""solver_type""solver_type" = 'sgd'"sgd""sgd""sgd""sgd".
+Please refer to train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch for further details.
+The default value is given by the model.
+Models of 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection":
+The parameter 'momentum'"momentum""momentum""momentum""momentum" has no effect.
+Models of 'type'"type""type""type""type"='counting'"counting""counting""counting""counting":
+The parameter 'momentum'"momentum""momentum""momentum""momentum" has no effect.
+'num_classes'"num_classes""num_classes""num_classes""num_classes": OD SE
+Number of distinct classes that the model is able to distinguish
+for its predictions.
+This parameter differs between the model types:
+Models of 'type'"type""type""type""type"='detection'"detection""detection""detection""detection":
+This parameter is set as NumClassesNumClassesNumClassesnumClassesnum_classes over
+create_dl_model_detectioncreate_dl_model_detectionCreateDlModelDetectionCreateDlModelDetectioncreate_dl_model_detection. 'class_ids'"class_ids""class_ids""class_ids""class_ids" and
+'class_names'"class_names""class_names""class_names""class_names" always need to have 'num_classes'"num_classes""num_classes""num_classes""num_classes"
+entries.
+Models of 'type'"type""type""type""type"='segmentation'"segmentation""segmentation""segmentation""segmentation":
+A model of 'type'"type""type""type""type"='segmentation'"segmentation""segmentation""segmentation""segmentation" does predict
+background and therefore in this case the 'background' class is
+included in 'num_classes'"num_classes""num_classes""num_classes""num_classes". For these models,
+'num_classes'"num_classes""num_classes""num_classes""num_classes" is determined implicitly by the length of
+'class_ids'"class_ids""class_ids""class_ids""class_ids".
+'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params": Any
+Number of trainable parameters (weights and biases) of the model.
+This value is an indicator for the size of the model when it is serialized.
+'ood_available'"ood_available""ood_available""ood_available""ood_available": CL
+This parameter specifies whether a classification model has been extended for
+Out-of-Distribution Detection.
+If one of the operators fit_dl_out_of_distributionfit_dl_out_of_distributionFitDlOutOfDistributionFitDlOutOfDistributionfit_dl_out_of_distribution or
+init_dl_continual_learninginit_dl_continual_learningInitDlContinualLearningInitDlContinualLearninginit_dl_continual_learning has been called for
+the model, the value of 'ood_available'"ood_available""ood_available""ood_available""ood_available" is 'true'"true""true""true""true".
+Otherwise it is 'false'"false""false""false""false".
+Default:
+'false'"false""false""false""false"
+'ood_threshold'"ood_threshold""ood_threshold""ood_threshold""ood_threshold": CL
+A threshold that determines when a sample is classified as
+Out-of-Distribution.
+After calling fit_dl_out_of_distributionfit_dl_out_of_distributionFitDlOutOfDistributionFitDlOutOfDistributionfit_dl_out_of_distribution or
+init_dl_continual_learninginit_dl_continual_learningInitDlContinualLearningInitDlContinualLearninginit_dl_continual_learning for a classification
+model, apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model additionally returns an
+'ood_score'"ood_score""ood_score""ood_score""ood_score" and an
+'ood_result'"ood_result""ood_result""ood_result""ood_result" in the output dictionaries. If the
+value of 'ood_score'"ood_score""ood_score""ood_score""ood_score" is greater than or equal to
+'ood_threshold'"ood_threshold""ood_threshold""ood_threshold""ood_threshold", the value of
+'ood_result'"ood_result""ood_result""ood_result""ood_result" is 'true'"true""true""true""true". Otherwise it is
+'false'"false""false""false""false".
+'ood_threshold'"ood_threshold""ood_threshold""ood_threshold""ood_threshold" is only available after
+fit_dl_out_of_distributionfit_dl_out_of_distributionFitDlOutOfDistributionFitDlOutOfDistributionfit_dl_out_of_distribution or
+init_dl_continual_learninginit_dl_continual_learningInitDlContinualLearningInitDlContinualLearninginit_dl_continual_learning has been called. These operators
+calculate a value for 'ood_threshold'"ood_threshold""ood_threshold""ood_threshold""ood_threshold" based on the provided
+dataset. When calling the operator extend_dl_continual_learningextend_dl_continual_learningExtendDlContinualLearningExtendDlContinualLearningextend_dl_continual_learning,
+'ood_threshold'"ood_threshold""ood_threshold""ood_threshold""ood_threshold" will be updated to take into account the added
+dataset.
+Value range:
+.
+'orientation'"orientation""orientation""orientation""orientation": OCR-D
+This parameter allows to set a predefined orientation angle for the word
+detection. To revert to default behavior using the internal orientation
+estimation, 'orientation'"orientation""orientation""orientation""orientation" is set to 'auto'"auto""auto""auto""auto".
+Value range:
+.
+Default:
+'auto'"auto""auto""auto""auto"
+'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference": 3D-GPD 3D-PE CL MLC OCR-D OCR-R GC-AD OD SE Gen
+Defines whether the model is optimized and only applicable for inference.
+The model remains executable on HALCON standard devices even after
+optimization (unlike optimize_dl_model_for_inferenceoptimize_dl_model_for_inferenceOptimizeDlModelForInferenceOptimizeDlModelForInferenceoptimize_dl_model_for_inference).
+Setting this parameter to 'true'"true""true""true""true" frees model memory not needed
+for inference (e.g., memory of gradients).
+This can significantly reduce the amount of memory needed by the model.
+As a consequence, models with this characteristic have no gradients
+accessible (needed e.g., for training or calculations of heatmaps).
+Operators using values from freed memory (e.g.,
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch) will automatically reset this parameter
+value to 'false'"false""false""false""false".
+In case the value is reset to 'false'"false""false""false""false" (both, manually or
+automatically), memory needed by the model for training is reallocated.
+This implies, a following training behaves as if 'momentum'"momentum""momentum""momentum""momentum" is
+temporarily set to 0
+(as possible updating vectors have to be accumulated again).
+Default:
+'false'"false""false""false""false"
+Restriction:
+For models of 'type'"type""type""type""type"='counting'"counting""counting""counting""counting" the
+parameter 'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference" cannot be set to 'true'"true""true""true""true".
+'patch_size'"patch_size""patch_size""patch_size""patch_size": GC-AD
+This parameter determines the size of the patches analyzed by the
+'local'"local""local""local""local" subnetwork.
+The patch size should be chosen such that patches containing defects
+will differ clearly from patches without defects. This should
+cover all kinds of anomalies that might occur during
+inference. The patch size does not need to cover the defects as a
+whole. Note that the image is not divided into separate patches, but
+'patch_size'"patch_size""patch_size""patch_size""patch_size" solely determines the scale on which the image
+is gradually analyzed by the 'local'"local""local""local""local" subnetwork.
+If the image size is changed 'patch_size'"patch_size""patch_size""patch_size""patch_size" should be
+adjusted accordingly.
+(
+1)
+(
+2)
+(1) Examples of patches with a suitable size (green).
+(2) The example patches (red) are either too large or too small to
+work for all possible defect classes that could occur in the
+images.
+Restriction:
+The parameter 'patch_size'"patch_size""patch_size""patch_size""patch_size" must be
+smaller than or equal to 'image_width'"image_width""image_width""image_width""image_width" and
+'image_height'"image_height""image_height""image_height""image_height".
+Default:
+'patch_size'"patch_size""patch_size""patch_size""patch_size" = 33
+'precision'"precision""precision""precision""precision": Any
+Defines the data type that is internally used for the calculation
+of a forward pass of a deep learning model.
+Default:
+'float32'"float32""float32""float32""float32"
+'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted": Any
+Indicates whether the model was subjected to a conversion
+process after training done by optimize_dl_model_for_inferenceoptimize_dl_model_for_inferenceOptimizeDlModelForInferenceOptimizeDlModelForInferenceoptimize_dl_model_for_inference.
+Default:
+'false'"false""false""false""false"
+'runtime'"runtime""runtime""runtime""runtime": Any
+Defines the device on which the deep learning operators will be executed.
+Note that the parameter 'device'"device""device""device""device" should be preferred to set the
+devices on which the deep learning operators will be executed.
+Default:
+'runtime'"runtime""runtime""runtime""runtime" = 'gpu'"gpu""gpu""gpu""gpu"
+'cpu'"cpu""cpu""cpu""cpu":
+The training and inference operator will be executed on CPU.
+Note, training is only supported for specific platform types,
+please see the HALCON “Installation Guide”.
+In case the GPU has been used before, CPU memory is
+initialized, and if necessary values stored on the
+GPU memory are moved to the CPU memory.
+For parallelization:
+The runtime is highly dependent on the number of threads set.
+The use of all available threads does not necessarily create
+a faster performance.
+How many threads are currently set can be queried with the operator
+get_systemget_systemGetSystemGetSystemget_system.
+The implemented CPU parallelization is dependent on the architecture:
+Intel or AMD architecture: OpenMP.
+By default all available threads of the OpenMP runtime environment
+are used.
+The number of threads used can be specified with the parameter
+'tsp_thread_num'"tsp_thread_num""tsp_thread_num""tsp_thread_num""tsp_thread_num" of the operator set_systemset_systemSetSystemSetSystemset_system.
+Arm architectures: Global Thread Pool.
+The number of threads can be set with the global parameter
+'thread_num'"thread_num""thread_num""thread_num""thread_num" of the operator set_systemset_systemSetSystemSetSystemset_system.
+For both architectures mentioned above, it is not possible
+to specify a thread-specific number of threads (via the parameter
+'tsp_thread_num'"tsp_thread_num""tsp_thread_num""tsp_thread_num""tsp_thread_num" of the operator set_systemset_systemSetSystemSetSystemset_system).
+'gpu'"gpu""gpu""gpu""gpu":
+The GPU memory is initialized.
+The operators apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model, train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch, and
+train_dl_model_anomaly_datasettrain_dl_model_anomaly_datasetTrainDlModelAnomalyDatasetTrainDlModelAnomalyDatasettrain_dl_model_anomaly_dataset will be executed on the GPU.
+For the specific requirements please refer to the HALCON
+“Installation Guide”.
+'solver_type'"solver_type""solver_type""solver_type""solver_type": Any
+This value defines the optimization algorithm with the goal to
+minimize the value of the total loss function.
+For more information we refer to the documentation of
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch.
+The following values can be set:
+'adam'"adam""adam""adam""adam": Adaptive moment estimation
+'sgd'"sgd""sgd""sgd""sgd": Stochastic gradient descent
+Note that changing 'solver_type'"solver_type""solver_type""solver_type""solver_type" sets 'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate"
+back to its default value.
+Models of 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection":
+The parameter 'solver_type'"solver_type""solver_type""solver_type""solver_type" has no effect.
+Models of 'type'"type""type""type""type"='counting'"counting""counting""counting""counting":
+The parameter 'solver_type'"solver_type""solver_type""solver_type""solver_type" has no effect.
+'sort_by_line'"sort_by_line""sort_by_line""sort_by_line""sort_by_line": OCR-D
+The words are sorted line-wise based on the orientation of the localized
+word instances. If the parameter 'sort_by_line'"sort_by_line""sort_by_line""sort_by_line""sort_by_line" is
+set to 'false'"false""false""false""false", the results will not be sorted.
+Default:
+'true'"true""true""true""true"
+'standard_deviation_factor'"standard_deviation_factor""standard_deviation_factor""standard_deviation_factor""standard_deviation_factor": AD
+The anomaly score is calculated internally as the mean of certain
+internal scores s plus lambda times their standard deviation.
+Where s denotes a pixel value of the internal
+anomaly_image,
+the mean value of s and
+the standard deviation of s.
+The parameter 'standard_deviation_factor'"standard_deviation_factor""standard_deviation_factor""standard_deviation_factor""standard_deviation_factor" sets the value
+and thus controls how important the standard
+deviation is in comparison to the mean.
+Default:
+'standard_deviation_factor'"standard_deviation_factor""standard_deviation_factor""standard_deviation_factor""standard_deviation_factor" = 3.0
+'summary'"summary""summary""summary""summary": Any
+This parameter returns information on the layers of the model.
+More precisely, it returns a tuple with a string for every layer.
+The string is as follows:
+ID; NAME; TYPE; OUTPUT_SHAPE; CONNECTED_NODES
+ID: Index of the layer in the CNN graph.
+NAME: Human-readable identifier (optional).
+TYPE: Human-readable identifier
+representing the type of the layer (e.g., input or
+convolution).
+OUTPUT_SHAPE: Size of the output, given in the form
+(Width, Height, Depth,
+'batch_size'"batch_size""batch_size""batch_size""batch_size").
+This means, the layer has feature maps of size Width times
+Height and therefrom Depth many.
+Together they form an iconic object with a channel for every
+feature map.
+The parameter 'batch_size'"batch_size""batch_size""batch_size""batch_size" determines, how many objects
+are returned together.
+CONNECTED_NODES: Comma separated list with IDs
+of the layers using the output of the current layer as input
+E.g., '3; conv1; convolution; (112, 112, 64, 160); 4'.
+Note, for some networks distributed with HALCON, the network
+architecture is confidential. In this case
+get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param returns an empty tuple with 'summary'"summary""summary""summary""summary".
+'tiling'"tiling""tiling""tiling""tiling": OCR-D
+The input image is automatically split into overlapping tile images of
+size 'image_size'"image_size""image_size""image_size""image_size", which are processed separately by
+the model. This allows processing images that are much
+larger than the actual 'image_size'"image_size""image_size""image_size""image_size" without having to
+zoom the input image.
+Default:
+'false'"false""false""false""false"
+'tiling_overlap'"tiling_overlap""tiling_overlap""tiling_overlap""tiling_overlap": OCR-D
+This parameter defines how much neighboring tiles overlap when input
+images are split (see 'tiling'"tiling""tiling""tiling""tiling"). The overlap
+is given in pixels.
+Value range:
+.
+Default:
+64
+'type'"type""type""type""type": Any
+This parameter returns the HALCON-specific model type.
+The following types are distinguished:
+'3d_gripping_point_detection'"3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection""3d_gripping_point_detection"
+'3d_pose_estimation'"3d_pose_estimation""3d_pose_estimation""3d_pose_estimation""3d_pose_estimation"
+'anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection"
+'classification'"classification""classification""classification""classification"
+'counting'"counting""counting""counting""counting"
+'detection'"detection""detection""detection""detection"
+'gc_anomaly_detection'"gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection""gc_anomaly_detection"
+'segmentation'"segmentation""segmentation""segmentation""segmentation"
+'ocr_recognition'"ocr_recognition""ocr_recognition""ocr_recognition""ocr_recognition"
+'ocr_detection'"ocr_detection""ocr_detection""ocr_detection""ocr_detection"
+'generic'"generic""generic""generic""generic" - for certain read in models or models created
+with the DL framework, see set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param.
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay": Any
+Regularization parameter
+used to control
+the decay of the model's weights.
+Weight decay works by directly shrinking the magnitude of the weights by a
+small factor in each iteration of the training.
+For a detailed description of the weight decay mechanism, we refer to
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch.
+In contrast to the parameter 'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior", this parameter leads
+to a weight decay that is decoupled from the gradient-based update.
+When the SGD solver is used, this parameter has the same effect as
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior".
+When the Adam solver is used with 'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay", this is
+commonly referred to as AdamW.
+For typical applications, we recommend testing values for 'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay"
+between
+.
+Models of 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection":
+The parameter 'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay" has no effect.
+Models of 'type'"type""type""type""type"='counting'"counting""counting""counting""counting":
+The parameter 'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay" has no effect.
+Default:
+'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay" = 0.0
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior": Any
+Regularization parameter
+used to control
+the L2 regularization of the model's weights.
+L2 regularization works by adding an extra term to the loss function, which
+penalizes the squared magnitude of the weights.
+For a detailed description of the regularization term, we refer to
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch.
+Simply put: Regularization favors simpler models that are less likely
+to learn noise in the data and generalize better.
+In case the classifier overfits the data, it is strongly
+recommended to try different values for the parameter
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior" to improve the generalization properties of
+the neural network. Choosing its value is a trade-off between the
+model's ability to generalize, overfitting, and underfitting.
+If
+is too small, the model might overfit, if its too
+large the model might loose its ability to fit the data, because all
+weights are pushed too close to zero. For finding an ideal value for
+, we recommend a cross-validation, i.e. to perform the
+training for a range of values and choose the value that results in
+the best validation error.
+For typical applications, we recommend
+testing the values for 'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior" on a logarithmic scale
+between
+. If the training
+takes a very long time, one might consider performing the
+hyperparameter optimization on a reduced amount of data.
+Models of 'type'"type""type""type""type"='anomaly_detection'"anomaly_detection""anomaly_detection""anomaly_detection""anomaly_detection":
+The parameter 'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior" has no effect.
+Models of 'type'"type""type""type""type"='counting'"counting""counting""counting""counting":
+The parameter 'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior" has no effect.
+Default:
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior" = 0.0,
+with exception of the pretrained classifiers
+pretrained_dl_classifier_resnet18:
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior" = 0.0001
+pretrained_dl_classifier_resnet50:
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior" = 0.0001
+pretrained_dl_classifier_alexnet:
+'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior" = 0.0005
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+DLModelHandleDLModelHandleDLModelHandleDLModelHandledlmodel_handle (input_control)  dl_model → HDlModel, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the deep learning model.
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name (input_control)  attribute.name → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Name of the generic parameter.
+Default:
+'batch_size'
+"batch_size"
+"batch_size"
+"batch_size"
+"batch_size"
+List of values:
+'adam_beta1'"adam_beta1""adam_beta1""adam_beta1""adam_beta1", 'adam_beta2'"adam_beta2""adam_beta2""adam_beta2""adam_beta2", 'adam_epsilon'"adam_epsilon""adam_epsilon""adam_epsilon""adam_epsilon", 'alignment'"alignment""alignment""alignment""alignment", 'alignment_available'"alignment_available""alignment_available""alignment_available""alignment_available", 'alphabet'"alphabet""alphabet""alphabet""alphabet", 'alphabet_internal'"alphabet_internal""alphabet_internal""alphabet_internal""alphabet_internal", 'alphabet_mapping'"alphabet_mapping""alphabet_mapping""alphabet_mapping""alphabet_mapping", 'anchor_angles'"anchor_angles""anchor_angles""anchor_angles""anchor_angles", 'anchor_aspect_ratios'"anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios""anchor_aspect_ratios", 'anchor_num_subscales'"anchor_num_subscales""anchor_num_subscales""anchor_num_subscales""anchor_num_subscales", 'anomaly_score_tolerance'"anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance""anomaly_score_tolerance", 'backbone'"backbone""backbone""backbone""backbone", 'backbone_docking_layers'"backbone_docking_layers""backbone_docking_layers""backbone_docking_layers""backbone_docking_layers", 'batch_size'"batch_size""batch_size""batch_size""batch_size", 'batch_size_multiplier'"batch_size_multiplier""batch_size_multiplier""batch_size_multiplier""batch_size_multiplier", 'bbox_heads_weight'"bbox_heads_weight""bbox_heads_weight""bbox_heads_weight""bbox_heads_weight", 'capacity'"capacity""capacity""capacity""capacity", 'class_heads_weight'"class_heads_weight""class_heads_weight""class_heads_weight""class_heads_weight", 'class_ids'"class_ids""class_ids""class_ids""class_ids", 'class_ids_no_orientation'"class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation""class_ids_no_orientation", 'class_names'"class_names""class_names""class_names""class_names", 'class_weights'"class_weights""class_weights""class_weights""class_weights", 'complexity'"complexity""complexity""complexity""complexity", 'continual_learning_available'"continual_learning_available""continual_learning_available""continual_learning_available""continual_learning_available", 'device'"device""device""device""device", 'extract_feature_maps'"extract_feature_maps""extract_feature_maps""extract_feature_maps""extract_feature_maps", 'freeze_backbone_level'"freeze_backbone_level""freeze_backbone_level""freeze_backbone_level""freeze_backbone_level", 'gc_anomaly_networks'"gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks""gc_anomaly_networks", 'gpu'"gpu""gpu""gpu""gpu", 'ignore_class_ids'"ignore_class_ids""ignore_class_ids""ignore_class_ids""ignore_class_ids", 'ignore_direction'"ignore_direction""ignore_direction""ignore_direction""ignore_direction", 'image_dimensions'"image_dimensions""image_dimensions""image_dimensions""image_dimensions", 'image_height'"image_height""image_height""image_height""image_height", 'image_num_channels'"image_num_channels""image_num_channels""image_num_channels""image_num_channels", 'image_range_max'"image_range_max""image_range_max""image_range_max""image_range_max", 'image_range_min'"image_range_min""image_range_min""image_range_min""image_range_min", 'image_size'"image_size""image_size""image_size""image_size", 'image_width'"image_width""image_width""image_width""image_width", 'inference_outputs'"inference_outputs""inference_outputs""inference_outputs""inference_outputs", 'input_dimensions'"input_dimensions""input_dimensions""input_dimensions""input_dimensions", 'instance_segmentation'"instance_segmentation""instance_segmentation""instance_segmentation""instance_segmentation", 'instance_type'"instance_type""instance_type""instance_type""instance_type", 'layer_names'"layer_names""layer_names""layer_names""layer_names", 'learning_rate'"learning_rate""learning_rate""learning_rate""learning_rate", 'mask_head_weight'"mask_head_weight""mask_head_weight""mask_head_weight""mask_head_weight", 'max_gradient_norm'"max_gradient_norm""max_gradient_norm""max_gradient_norm""max_gradient_norm", 'max_level'"max_level""max_level""max_level""max_level", 'max_num_detections'"max_num_detections""max_num_detections""max_num_detections""max_num_detections", 'max_overlap'"max_overlap""max_overlap""max_overlap""max_overlap", 'max_overlap_class_agnostic'"max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic""max_overlap_class_agnostic", 'meta_data'"meta_data""meta_data""meta_data""meta_data", 'min_character_score'"min_character_score""min_character_score""min_character_score""min_character_score", 'min_confidence'"min_confidence""min_confidence""min_confidence""min_confidence", 'min_level'"min_level""min_level""min_level""min_level", 'min_link_score'"min_link_score""min_link_score""min_link_score""min_link_score", 'min_version'"min_version""min_version""min_version""min_version", 'min_word_area'"min_word_area""min_word_area""min_word_area""min_word_area", 'min_word_score'"min_word_score""min_word_score""min_word_score""min_word_score", 'model_uid'"model_uid""model_uid""model_uid""model_uid", 'momentum'"momentum""momentum""momentum""momentum", 'num_classes'"num_classes""num_classes""num_classes""num_classes", 'num_trainable_params'"num_trainable_params""num_trainable_params""num_trainable_params""num_trainable_params", 'ood_available'"ood_available""ood_available""ood_available""ood_available", 'ood_threshold'"ood_threshold""ood_threshold""ood_threshold""ood_threshold", 'optimize_for_inference'"optimize_for_inference""optimize_for_inference""optimize_for_inference""optimize_for_inference", 'orientation'"orientation""orientation""orientation""orientation", 'patch_size'"patch_size""patch_size""patch_size""patch_size", 'precision'"precision""precision""precision""precision", 'precision_is_converted'"precision_is_converted""precision_is_converted""precision_is_converted""precision_is_converted", 'release_version'"release_version""release_version""release_version""release_version", 'runtime'"runtime""runtime""runtime""runtime", 'solver_type'"solver_type""solver_type""solver_type""solver_type", 'sort_by_line'"sort_by_line""sort_by_line""sort_by_line""sort_by_line", 'standard_deviation_factor'"standard_deviation_factor""standard_deviation_factor""standard_deviation_factor""standard_deviation_factor", 'summary'"summary""summary""summary""summary", 'tiling'"tiling""tiling""tiling""tiling", 'tiling_overlap'"tiling_overlap""tiling_overlap""tiling_overlap""tiling_overlap", 'type'"type""type""type""type", 'weight_decay'"weight_decay""weight_decay""weight_decay""weight_decay", 'weight_prior'"weight_prior""weight_prior""weight_prior""weight_prior"
+GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value (output_control)  attribute.name(-array) → HTupleSequence[Union[str, float, int]]HTupleHtuple (integer / string / real) (int / long / string / double) (Hlong / HString / double) (Hlong / char* / double)
+Value of the generic parameter.
+Result
+If the parameters are valid, the operator get_dl_model_paramget_dl_model_paramGetDlModelParamGetDlModelParamget_dl_model_param
+returns the value 2 (
+H_MSG_TRUE)
+.  If necessary, an exception is raised.
+Possible Predecessors
+read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model,
+set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param
+Possible Successors
+set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param,
+apply_dl_modelapply_dl_modelApplyDlModelApplyDlModelapply_dl_model,
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch,
+train_dl_model_anomaly_datasettrain_dl_model_anomaly_datasetTrainDlModelAnomalyDatasetTrainDlModelAnomalyDatasettrain_dl_model_anomaly_dataset
+See also
+set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param
+Module
+Foundation. This operator uses dynamic licensing (see the 'Installation Guide'). Which of the following modules is required depends on the specific usage of the operator:
+3D Metrology, OCR/OCV, Matching, Deep Learning Enhanced, Deep Learning Professional
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

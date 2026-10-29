@@ -1,0 +1,471 @@
+create_deep_ocr [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+OCR
+/
+Deep OCR
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+create_deep_ocr
+T_create_deep_ocr
+CreateDeepOcr
+CreateDeepOcr
+create_deep_ocr
+(Operator)
+Name
+create_deep_ocr
+T_create_deep_ocr
+CreateDeepOcr
+CreateDeepOcr
+create_deep_ocr
+— Create a Deep OCR model.
+Signature
+create_deep_ocr
+( :  :
+GenParamName
+,
+GenParamValue
+:
+DeepOcrHandle
+)
+Herror
+T_create_deep_ocr
+(const Htuple
+GenParamName
+, const Htuple
+GenParamValue
+, Htuple*
+DeepOcrHandle
+)
+void
+CreateDeepOcr
+(const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+, HTuple*
+DeepOcrHandle
+)
+void
+HDlModelOcr
+::
+HDlModelOcr
+(const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+)
+void
+HDlModelOcr
+::
+HDlModelOcr
+(const HString&
+GenParamName
+, const HString&
+GenParamValue
+)
+void
+HDlModelOcr
+::
+HDlModelOcr
+(const char*
+GenParamName
+, const char*
+GenParamValue
+)
+void
+HDlModelOcr
+::
+HDlModelOcr
+(const wchar_t*
+GenParamName
+, const wchar_t*
+GenParamValue
+)
+(
+            Windows only)
+void
+HDlModelOcr
+::
+CreateDeepOcr
+(const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+)
+void
+HDlModelOcr
+::
+CreateDeepOcr
+(const HString&
+GenParamName
+, const HString&
+GenParamValue
+)
+void
+HDlModelOcr
+::
+CreateDeepOcr
+(const char*
+GenParamName
+, const char*
+GenParamValue
+)
+void
+HDlModelOcr
+::
+CreateDeepOcr
+(const wchar_t*
+GenParamName
+, const wchar_t*
+GenParamValue
+)
+(
+            Windows only)
+static void
+HOperatorSet
+.
+CreateDeepOcr
+(
+HTuple
+genParamName
+,
+HTuple
+genParamValue
+, out
+HTuple
+deepOcrHandle
+)
+public
+HDlModelOcr
+(
+HTuple
+genParamName
+,
+HTuple
+genParamValue
+)
+public
+HDlModelOcr
+(string
+genParamName
+, string
+genParamValue
+)
+void
+HDlModelOcr
+.
+CreateDeepOcr
+(
+HTuple
+genParamName
+,
+HTuple
+genParamValue
+)
+void
+HDlModelOcr
+.
+CreateDeepOcr
+(string
+genParamName
+, string
+genParamValue
+)
+def
+create_deep_ocr
+(
+gen_param_name
+: MaybeSequence[str],
+gen_param_value
+: MaybeSequence[Union[int, float, str]]) -> HHandle
+Description
+create_deep_ocr
+create_deep_ocr
+CreateDeepOcr
+CreateDeepOcr
+create_deep_ocr
+creates a Deep OCR model out of pretrained components
+and returns its handle in
+DeepOcrHandle
+DeepOcrHandle
+DeepOcrHandle
+deepOcrHandle
+deep_ocr_handle
+.
+The handle states all parameters needed to run an inference.
+A Deep OCR model usually consists of two components that are searched in the
+directory
+$HALCONROOT/dl/
+by default:
+'detection_model'
+: detects words (connected characters) in
+the image.
+'recognition_model'
+: recognizes the word in the detected
+image part.
+The following options may be set using
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+and according
+GenParamValue
+GenParamValue
+GenParamValue
+genParamValue
+gen_param_value
+:
+'mode'
+"mode"
+"mode"
+"mode"
+"mode"
+:
+Specify a mode and with it, which component is
+executed. Supported values:
+'detection'
+"detection"
+"detection"
+"detection"
+"detection"
+:
+Perform only the detection part.
+Hence, the model will merely localize the word regions within the image.
+'recognition'
+"recognition"
+"recognition"
+"recognition"
+"recognition"
+:
+Perform only the recognition part.
+The model expects a tight crop of a single word. If the alignment is
+enabled, the word crop can be wider, less precise and include background.
+Before the actual recognition, the alignment applies a transformation step
+to accurately position the word.
+'auto'
+"auto"
+"auto"
+"auto"
+"auto"
+:
+Perform both parts, detection of the words and their
+recognition.
+'empty'
+"empty"
+"empty"
+"empty"
+"empty"
+:
+This mode creates an empty Deep OCR model handle.
+Neither recognition nor detection model components are instantiated.
+Recognition and detection components can be set
+subsequently using
+set_deep_ocr_param
+set_deep_ocr_param
+SetDeepOcrParam
+SetDeepOcrParam
+set_deep_ocr_param
+.
+Default:
+'auto'
+"auto"
+"auto"
+"auto"
+"auto"
+.
+The character set, which the model can recognize through its recognition
+component, can be retrieved using
+get_deep_ocr_param
+get_deep_ocr_param
+GetDeepOcrParam
+GetDeepOcrParam
+get_deep_ocr_param
+with
+'recognition_alphabet'
+"recognition_alphabet"
+"recognition_alphabet"
+"recognition_alphabet"
+"recognition_alphabet"
+.
+To get an overview of the Deep OCR workflow see
+OCR / Deep OCR
+.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+This operator returns a handle. Note that the state of an instance of this handle type may be changed by specific operators even though the handle is used as an input parameter by those operators.
+Parameters
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+(input_control)
+attribute.name(-array)
+→
+HTuple
+MaybeSequence[str]
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Name of the generic parameter.
+Default:
+[]
+List of values:
+'mode'
+"mode"
+"mode"
+"mode"
+"mode"
+GenParamValue
+GenParamValue
+GenParamValue
+genParamValue
+gen_param_value
+(input_control)
+attribute.value(-array)
+→
+HTuple
+MaybeSequence[Union[int, float, str]]
+HTuple
+Htuple
+(string /
+integer /
+real)
+(
+string
+/
+int /
+long /
+double)
+(
+HString
+/
+Hlong /
+double)
+(
+char*
+/
+Hlong /
+double)
+Value of the generic parameter.
+Default:
+[]
+List of values:
+'auto'
+"auto"
+"auto"
+"auto"
+"auto"
+,
+'detection'
+"detection"
+"detection"
+"detection"
+"detection"
+,
+'empty'
+"empty"
+"empty"
+"empty"
+"empty"
+,
+'recognition'
+"recognition"
+"recognition"
+"recognition"
+"recognition"
+DeepOcrHandle
+DeepOcrHandle
+DeepOcrHandle
+deepOcrHandle
+deep_ocr_handle
+(output_control)
+deep_ocr
+→
+HDlModelOcr
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Handle of the Deep OCR model.
+Result
+If the parameters are valid, the operator
+create_deep_ocr
+create_deep_ocr
+CreateDeepOcr
+CreateDeepOcr
+create_deep_ocr
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    . If necessary, an exception is raised.
+Possible Successors
+write_deep_ocr
+write_deep_ocr
+WriteDeepOcr
+WriteDeepOcr
+write_deep_ocr
+,
+apply_deep_ocr
+apply_deep_ocr
+ApplyDeepOcr
+ApplyDeepOcr
+apply_deep_ocr
+,
+get_deep_ocr_param
+get_deep_ocr_param
+GetDeepOcrParam
+GetDeepOcrParam
+get_deep_ocr_param
+,
+set_deep_ocr_param
+set_deep_ocr_param
+SetDeepOcrParam
+SetDeepOcrParam
+set_deep_ocr_param
+Module
+OCR/OCV
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

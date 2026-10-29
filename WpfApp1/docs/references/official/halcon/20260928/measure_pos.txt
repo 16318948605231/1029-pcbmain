@@ -1,0 +1,998 @@
+measure_pos [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+1D Measuring
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+measure_pos
+T_measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+(Operator)
+Name
+measure_pos
+T_measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+— Extract straight edges perpendicular to a rectangle or annular arc.
+Signature
+measure_pos
+(
+Image
+:  :
+MeasureHandle
+,
+Sigma
+,
+Threshold
+,
+Transition
+,
+Select
+:
+RowEdge
+,
+ColumnEdge
+,
+Amplitude
+,
+Distance
+)
+Herror
+T_measure_pos
+(const Hobject
+Image
+, const Htuple
+MeasureHandle
+, const Htuple
+Sigma
+, const Htuple
+Threshold
+, const Htuple
+Transition
+, const Htuple
+Select
+, Htuple*
+RowEdge
+, Htuple*
+ColumnEdge
+, Htuple*
+Amplitude
+, Htuple*
+Distance
+)
+void
+MeasurePos
+(const HObject&
+Image
+, const HTuple&
+MeasureHandle
+, const HTuple&
+Sigma
+, const HTuple&
+Threshold
+, const HTuple&
+Transition
+, const HTuple&
+Select
+, HTuple*
+RowEdge
+, HTuple*
+ColumnEdge
+, HTuple*
+Amplitude
+, HTuple*
+Distance
+)
+void
+HMeasure
+::
+MeasurePos
+(const HImage&
+Image
+, double
+Sigma
+, double
+Threshold
+, const HString&
+Transition
+, const HString&
+Select
+, HTuple*
+RowEdge
+, HTuple*
+ColumnEdge
+, HTuple*
+Amplitude
+, HTuple*
+Distance
+) const
+void
+HMeasure
+::
+MeasurePos
+(const HImage&
+Image
+, double
+Sigma
+, double
+Threshold
+, const char*
+Transition
+, const char*
+Select
+, HTuple*
+RowEdge
+, HTuple*
+ColumnEdge
+, HTuple*
+Amplitude
+, HTuple*
+Distance
+) const
+void
+HMeasure
+::
+MeasurePos
+(const HImage&
+Image
+, double
+Sigma
+, double
+Threshold
+, const wchar_t*
+Transition
+, const wchar_t*
+Select
+, HTuple*
+RowEdge
+, HTuple*
+ColumnEdge
+, HTuple*
+Amplitude
+, HTuple*
+Distance
+) const
+(
+            Windows only)
+void
+HImage
+::
+MeasurePos
+(const HMeasure&
+MeasureHandle
+, double
+Sigma
+, double
+Threshold
+, const HString&
+Transition
+, const HString&
+Select
+, HTuple*
+RowEdge
+, HTuple*
+ColumnEdge
+, HTuple*
+Amplitude
+, HTuple*
+Distance
+) const
+void
+HImage
+::
+MeasurePos
+(const HMeasure&
+MeasureHandle
+, double
+Sigma
+, double
+Threshold
+, const char*
+Transition
+, const char*
+Select
+, HTuple*
+RowEdge
+, HTuple*
+ColumnEdge
+, HTuple*
+Amplitude
+, HTuple*
+Distance
+) const
+void
+HImage
+::
+MeasurePos
+(const HMeasure&
+MeasureHandle
+, double
+Sigma
+, double
+Threshold
+, const wchar_t*
+Transition
+, const wchar_t*
+Select
+, HTuple*
+RowEdge
+, HTuple*
+ColumnEdge
+, HTuple*
+Amplitude
+, HTuple*
+Distance
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+MeasurePos
+(
+HObject
+image
+,
+HTuple
+measureHandle
+,
+HTuple
+sigma
+,
+HTuple
+threshold
+,
+HTuple
+transition
+,
+HTuple
+select
+, out
+HTuple
+rowEdge
+, out
+HTuple
+columnEdge
+, out
+HTuple
+amplitude
+, out
+HTuple
+distance
+)
+void
+HMeasure
+.
+MeasurePos
+(
+HImage
+image
+, double
+sigma
+, double
+threshold
+, string
+transition
+, string
+select
+, out
+HTuple
+rowEdge
+, out
+HTuple
+columnEdge
+, out
+HTuple
+amplitude
+, out
+HTuple
+distance
+)
+void
+HImage
+.
+MeasurePos
+(
+HMeasure
+measureHandle
+, double
+sigma
+, double
+threshold
+, string
+transition
+, string
+select
+, out
+HTuple
+rowEdge
+, out
+HTuple
+columnEdge
+, out
+HTuple
+amplitude
+, out
+HTuple
+distance
+)
+def
+measure_pos
+(
+image
+: HObject,
+measure_handle
+: HHandle,
+sigma
+: float,
+threshold
+: float,
+transition
+: str,
+select
+: str) -> Tuple[Sequence[float], Sequence[float], Sequence[float], Sequence[float]]
+Description
+measure_pos
+measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+extracts
+straight
+edges which
+lie
+perpendicular
+to the major axis of a rectangle or annular arc.
+For an explanation of the concept of 1D measuring see the introduction of
+chapter
+1D Measuring
+.
+The algorithm of
+measure_pos
+measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+works by averaging the gray values in “slices”
+perpendicular to the major axis of the rectangle or annular arc
+in order to obtain
+a one-dimensional edge profile.  The sampling is done at subpixel
+positions in the image
+Image
+Image
+Image
+image
+image
+at integer row and column
+distances (in the coordinate frame of the rectangle) from the center
+of the rectangle.  Since this involves some calculations which can
+be used repeatedly in several measurements, the operator
+gen_measure_rectangle2
+gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+or
+gen_measure_arc
+gen_measure_arc
+GenMeasureArc
+GenMeasureArc
+gen_measure_arc
+is used to
+perform these calculations
+only once, thus increasing the speed of
+measure_pos
+measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+significantly.  Since there is a trade-off between accuracy and
+speed in the subpixel calculations of the gray values, and thus in
+the accuracy of the extracted edge positions, different
+interpolation schemes can be selected in
+gen_measure_rectangle2
+gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+.  (The interpolation only influences
+rectangles not aligned with the image axes.)  The measure object
+generated with
+gen_measure_rectangle2
+gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+is passed in
+MeasureHandle
+MeasureHandle
+MeasureHandle
+measureHandle
+measure_handle
+.
+After the one-dimensional edge profile has been calculated, subpixel
+edge locations are computed by convolving the profile with the
+derivatives of a Gaussian smoothing kernel of standard deviation
+Sigma
+Sigma
+Sigma
+sigma
+sigma
+.  Salient edges can be selected with the parameter
+Threshold
+Threshold
+Threshold
+threshold
+threshold
+, which constitutes a threshold on the amplitude
+values (
+Amplitude
+Amplitude
+Amplitude
+amplitude
+amplitude
+), i.e., the absolute value of the first
+derivative of the edge.
+Note that the amplitude values are scaled by the factor
+.
+Additionally, it is possible to select only positive edges, i.e.,
+edges which constitute a dark-to-light transition in the direction
+of the major axis of the rectangle or the arc (
+Transition
+Transition
+Transition
+transition
+transition
+=
+'positive'
+"positive"
+"positive"
+"positive"
+"positive"
+), only negative edges, i.e., light-to-dark
+transitions (
+Transition
+Transition
+Transition
+transition
+transition
+=
+'negative'
+"negative"
+"negative"
+"negative"
+"negative"
+), or both
+types of edges (
+Transition
+Transition
+Transition
+transition
+transition
+=
+'all'
+"all"
+"all"
+"all"
+"all"
+).  Finally, it
+is possible to select which edge points are returned.  If
+Select
+Select
+Select
+select
+select
+is set to
+'all'
+"all"
+"all"
+"all"
+"all"
+, all edge points are
+returned.  If it is set to
+'first'
+"first"
+"first"
+"first"
+"first"
+, only the first of the
+extracted edge points is returned, while it is set to
+'last'
+"last"
+"last"
+"last"
+"last"
+, only the last one is returned.
+The extracted edges are returned as single points which lie on the
+major axis of the rectangle or arc in (
+RowEdge
+RowEdge
+RowEdge
+rowEdge
+row_edge
+,
+ColumnEdge
+ColumnEdge
+ColumnEdge
+columnEdge
+column_edge
+).
+The corresponding edge amplitudes are returned in
+Amplitude
+Amplitude
+Amplitude
+amplitude
+amplitude
+.  In addition, the distance between consecutive
+edge points is returned in
+Distance
+Distance
+Distance
+distance
+distance
+.  Here, Distance[i]
+corresponds to the distance between Edge[i] and Edge[i+1], i.e., the
+tuple
+Distance
+Distance
+Distance
+distance
+distance
+contains one element less than the tuples
+RowEdge
+RowEdge
+RowEdge
+rowEdge
+row_edge
+and
+ColumnEdge
+ColumnEdge
+ColumnEdge
+columnEdge
+column_edge
+.
+Attention
+measure_pos
+measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+only returns meaningful results if the
+assumptions that the edges are straight and perpendicular to the
+major axis of the rectangle or arc are fulfilled.  Thus, it should
+not be used to extract edges from curved objects, for example.
+Furthermore, the user should ensure that the rectangle or arc is as
+close to perpendicular as possible to the edges in the image. Additionally,
+Sigma
+Sigma
+Sigma
+sigma
+sigma
+must not become larger than approx. 0.5 *
+Length1
+Length1
+Length1
+length1
+length_1
+(for
+Length1
+Length1
+Length1
+length1
+length_1
+see
+gen_measure_rectangle2
+gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+).
+It should be kept in mind that
+measure_pos
+measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+ignores the
+domain of
+Image
+Image
+Image
+image
+image
+for efficiency reasons.  If certain regions
+in the image should be excluded from the measurement a new measure
+object with appropriately modified parameters should be generated.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Image
+Image
+Image
+image
+image
+(input_object)
+singlechannelimage
+→
+object
+HImage
+HObject
+HObject
+Hobject
+(byte / uint2 / real)
+Input image.
+MeasureHandle
+MeasureHandle
+MeasureHandle
+measureHandle
+measure_handle
+(input_control)
+measure
+→
+HMeasure
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Measure object handle.
+Sigma
+Sigma
+Sigma
+sigma
+sigma
+(input_control)
+number
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Sigma of gaussian smoothing.
+Default:
+1.0
+Suggested values:
+0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, 4.0, 5.0, 7.0, 10.0
+Value range:
+0.4
+          ≤
+Sigma
+Sigma
+Sigma
+sigma
+sigma
+≤
+          100
+(lin)
+Minimum increment:
+0.01
+Recommended increment:
+0.1
+Threshold
+Threshold
+Threshold
+threshold
+threshold
+(input_control)
+number
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Minimum edge amplitude.
+Default:
+30.0
+Suggested values:
+5.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 90.0, 110.0
+Value range:
+1
+          ≤
+Threshold
+Threshold
+Threshold
+threshold
+threshold
+≤
+          255
+(lin)
+Minimum increment:
+0.5
+Recommended increment:
+2
+Transition
+Transition
+Transition
+transition
+transition
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Light/dark or dark/light edge.
+Default:
+'all'
+"all"
+"all"
+"all"
+"all"
+List of values:
+'all'
+"all"
+"all"
+"all"
+"all"
+,
+'negative'
+"negative"
+"negative"
+"negative"
+"negative"
+,
+'positive'
+"positive"
+"positive"
+"positive"
+"positive"
+Select
+Select
+Select
+select
+select
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Selection of end points.
+Default:
+'all'
+"all"
+"all"
+"all"
+"all"
+List of values:
+'all'
+"all"
+"all"
+"all"
+"all"
+,
+'first'
+"first"
+"first"
+"first"
+"first"
+,
+'last'
+"last"
+"last"
+"last"
+"last"
+RowEdge
+RowEdge
+RowEdge
+rowEdge
+row_edge
+(output_control)
+point.y-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Row coordinate of the center of the edge.
+ColumnEdge
+ColumnEdge
+ColumnEdge
+columnEdge
+column_edge
+(output_control)
+point.x-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Column coordinate of the center of the edge.
+Amplitude
+Amplitude
+Amplitude
+amplitude
+amplitude
+(output_control)
+real-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Edge amplitude of the edge (with sign).
+Distance
+Distance
+Distance
+distance
+distance
+(output_control)
+real-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Distance between consecutive edges.
+Result
+If the parameter values are correct the operator
+measure_pos
+measure_pos
+MeasurePos
+MeasurePos
+measure_pos
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    .  Otherwise an exception is raised.
+Possible Predecessors
+gen_measure_rectangle2
+gen_measure_rectangle2
+GenMeasureRectangle2
+GenMeasureRectangle2
+gen_measure_rectangle2
+Possible Successors
+close_measure
+close_measure
+CloseMeasure
+CloseMeasure
+close_measure
+Alternatives
+edges_sub_pix
+edges_sub_pix
+EdgesSubPix
+EdgesSubPix
+edges_sub_pix
+,
+fuzzy_measure_pos
+fuzzy_measure_pos
+FuzzyMeasurePos
+FuzzyMeasurePos
+fuzzy_measure_pos
+See also
+measure_pairs
+measure_pairs
+MeasurePairs
+MeasurePairs
+measure_pairs
+,
+fuzzy_measure_pairs
+fuzzy_measure_pairs
+FuzzyMeasurePairs
+FuzzyMeasurePairs
+fuzzy_measure_pairs
+,
+fuzzy_measure_pairing
+fuzzy_measure_pairing
+FuzzyMeasurePairing
+FuzzyMeasurePairing
+fuzzy_measure_pairing
+Module
+1D Metrology
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

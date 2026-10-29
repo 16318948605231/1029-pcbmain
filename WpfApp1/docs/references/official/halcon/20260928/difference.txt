@@ -1,0 +1,94 @@
+difference [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Regions / Sets
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+differencedifferenceDifferenceDifferencedifference (Operator)
+Name
+differencedifferenceDifferenceDifferencedifference — Calculate the difference of two regions.
+Signature
+difference(Region, Sub : RegionDifference :  : )
+Herror difference(const Hobject Region, const Hobject Sub, Hobject* RegionDifference)
+Herror T_difference(const Hobject Region, const Hobject Sub, Hobject* RegionDifference)
+void Difference(const HObject& Region, const HObject& Sub, HObject* RegionDifference)
+HRegion HRegion::Difference(const HRegion& Sub) const
+static void HOperatorSet.Difference(HObject region, HObject sub, out HObject regionDifference)
+HRegion HRegion.Difference(HRegion sub)
+def difference(region: HObject, sub: HObject) -> HObject
+Description
+differencedifferenceDifferenceDifferencedifference calculates the set-theoretic difference of
+two regions:
+(Regions in Region) - (Regions in Sub)
+The resulting region is defined as the input region
+(RegionRegionRegionregionregion) with all points from SubSubSubsubsub removed.
+Note that, internally, all regions of SubSubSubsubsub are united to
+a single region before the differences between the individual regions of
+RegionRegionRegionregionregion and the united region are calculated.
+Attention
+Empty regions are valid for both parameters.  On output, empty
+regions may result.  The value of the system flag
+'store_empty_region'"store_empty_region""store_empty_region""store_empty_region""store_empty_region" determines the behavior in this
+case.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+RegionRegionRegionregionregion (input_object)  region(-array) → objectHRegionHObjectHObjectHobject
+Regions to be processed.
+SubSubSubsubsub (input_object)  region(-array) → objectHRegionHObjectHObjectHobject
+The union of these regions is subtracted from Region.
+RegionDifferenceRegionDifferenceRegionDifferenceregionDifferenceregion_difference (output_object)  region(-array) → objectHRegionHObjectHObjectHobject *
+Resulting region.
+Example (HDevelop)
+* provides the region X without the points in Y
+difference(X,Y,RegionDifference)
+Example (C)
+/* provides the region X without the points in Y */
+difference(X,Y,&RegionDifference);
+Example (HDevelop)
+* provides the region X without the points in Y
+difference(X,Y,RegionDifference)
+Example (HDevelop)
+* provides the region X without the points in Y
+difference(X,Y,RegionDifference)
+Complexity
+Let
+be the number of regions,
+be their average area, and
+be the total area of all regions in SubSubSubsubsub.  Then
+the runtime complexity is
+.
+Result
+differencedifferenceDifferenceDifferencedifference always returns the value 2 (
+H_MSG_TRUE)
+.  The
+behavior in case of empty input (no regions given) can be set via
+set_system('no_object_result',<Result>)set_system("no_object_result",<Result>)SetSystem("no_object_result",<Result>)SetSystem("no_object_result",<Result>)set_system("no_object_result",<Result>)
+and the behavior in case of an empty input region via
+set_system('empty_region_result',<Result>)set_system("empty_region_result",<Result>)SetSystem("empty_region_result",<Result>)SetSystem("empty_region_result",<Result>)set_system("empty_region_result",<Result>).
+If necessary, an exception is raised.
+Possible Predecessors
+thresholdthresholdThresholdThresholdthreshold,
+connectionconnectionConnectionConnectionconnection,
+regiongrowingregiongrowingRegiongrowingRegiongrowingregiongrowing,
+pouringpouringPouringPouringpouring,
+class_ndim_normclass_ndim_normClassNdimNormClassNdimNormclass_ndim_norm
+Possible Successors
+select_shapeselect_shapeSelectShapeSelectShapeselect_shape,
+disp_regiondisp_regionDispRegionDispRegiondisp_region
+See also
+intersectionintersectionIntersectionIntersectionintersection,
+union1union1Union1Union1union1,
+union2union2Union2Union2union2,
+complementcomplementComplementComplementcomplement,
+symm_differencesymm_differenceSymmDifferenceSymmDifferencesymm_difference
+Module
+Foundation
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

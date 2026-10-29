@@ -1,0 +1,524 @@
+get_grayval_interpolated [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Image
+/
+Access
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+get_grayval_interpolated
+get_grayval_interpolated
+GetGrayvalInterpolated
+GetGrayvalInterpolated
+get_grayval_interpolated
+(Operator)
+Name
+get_grayval_interpolated
+get_grayval_interpolated
+GetGrayvalInterpolated
+GetGrayvalInterpolated
+get_grayval_interpolated
+— Return gray values of an image at the positions given by tuples of
+rows and columns.
+Signature
+get_grayval_interpolated
+(
+Image
+:  :
+Row
+,
+Column
+,
+Interpolation
+:
+Grayval
+)
+Herror
+get_grayval_interpolated
+(const Hobject
+Image
+, double
+Row
+, double
+Column
+, const char*
+Interpolation
+, double*
+Grayval
+)
+Herror
+T_get_grayval_interpolated
+(const Hobject
+Image
+, const Htuple
+Row
+, const Htuple
+Column
+, const Htuple
+Interpolation
+, Htuple*
+Grayval
+)
+void
+GetGrayvalInterpolated
+(const HObject&
+Image
+, const HTuple&
+Row
+, const HTuple&
+Column
+, const HTuple&
+Interpolation
+, HTuple*
+Grayval
+)
+HTuple
+HImage
+::
+GetGrayvalInterpolated
+(const HTuple&
+Row
+, const HTuple&
+Column
+, const HString&
+Interpolation
+) const
+double
+HImage
+::
+GetGrayvalInterpolated
+(double
+Row
+, double
+Column
+, const HString&
+Interpolation
+) const
+double
+HImage
+::
+GetGrayvalInterpolated
+(double
+Row
+, double
+Column
+, const char*
+Interpolation
+) const
+double
+HImage
+::
+GetGrayvalInterpolated
+(double
+Row
+, double
+Column
+, const wchar_t*
+Interpolation
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+GetGrayvalInterpolated
+(
+HObject
+image
+,
+HTuple
+row
+,
+HTuple
+column
+,
+HTuple
+interpolation
+, out
+HTuple
+grayval
+)
+HTuple
+HImage
+.
+GetGrayvalInterpolated
+(
+HTuple
+row
+,
+HTuple
+column
+, string
+interpolation
+)
+double
+HImage
+.
+GetGrayvalInterpolated
+(double
+row
+, double
+column
+, string
+interpolation
+)
+def
+get_grayval_interpolated
+(
+image
+: HObject,
+row
+: MaybeSequence[Union[float, int]],
+column
+: MaybeSequence[Union[float, int]],
+interpolation
+: str) -> Sequence[float]
+def
+get_grayval_interpolated_s
+(
+image
+: HObject,
+row
+: MaybeSequence[Union[float, int]],
+column
+: MaybeSequence[Union[float, int]],
+interpolation
+: str) -> float
+Description
+The operator
+get_grayval_interpolated
+get_grayval_interpolated
+GetGrayvalInterpolated
+GetGrayvalInterpolated
+get_grayval_interpolated
+returns interpolated
+gray values at several subpixel positions of an
+Image
+Image
+Image
+image
+image
+.  The
+coordinates of the row positions are given in the tuple
+Row
+Row
+Row
+row
+row
+, the coordinates of column positions are given in the
+tuple
+Column
+Column
+Column
+column
+column
+.  The gray values are returned in
+Grayval
+Grayval
+Grayval
+grayval
+grayval
+as a tuple of floating point numbers.
+The interpolation method can be selected via the parameter
+Interpolation
+Interpolation
+Interpolation
+interpolation
+interpolation
+. The following interpolation methods are
+supported:
+'bilinear'
+"bilinear"
+"bilinear"
+"bilinear"
+"bilinear"
+:
+The parameter
+Grayval
+Grayval
+Grayval
+grayval
+grayval
+is computed using a bilinear interpolation of the
+four neighboring gray values of the selected coordinates.  Note:
+direction and cyclic images are treated like byte images.
+'bicubic'
+"bicubic"
+"bicubic"
+"bicubic"
+"bicubic"
+:
+The parameter
+Grayval
+Grayval
+Grayval
+grayval
+grayval
+is computed using a bicubic interpolation of
+sixteen neighboring gray values of the selected coordinates.
+Direction and cyclic images are treated like byte images.  In this
+mode, the resulting gray values may contain values that lie
+outside of the range of numbers that can be represented by the
+input image type.
+'bicubic_clipped'
+"bicubic_clipped"
+"bicubic_clipped"
+"bicubic_clipped"
+"bicubic_clipped"
+:
+The parameter
+Grayval
+Grayval
+Grayval
+grayval
+grayval
+is computed using a bicubic interpolation of
+sixteen neighboring gray values of the selected coordinates.
+Direction and cyclic images are treated like byte images.  In this
+mode, resulting gray values that lie outside of the range of
+numbers that can be represented by the input image type are
+clipped to that range.
+Note that
+get_grayval_interpolated
+get_grayval_interpolated
+GetGrayvalInterpolated
+GetGrayvalInterpolated
+get_grayval_interpolated
+does not take the domain of
+the image into account, i.e., if the domain has been reduced, e.g.,
+with
+reduce_domain
+reduce_domain
+ReduceDomain
+ReduceDomain
+reduce_domain
+, gray values are returned even for points
+that lie outside the domain.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Image
+Image
+Image
+image
+image
+(input_object)
+singlechannelimage
+→
+object
+HImage
+HObject
+HObject
+Hobject
+(byte / direction / cyclic / int1 / int2 / uint2 / int4 / real / complex)
+Image whose gray values are to be accessed.
+Row
+Row
+Row
+row
+row
+(input_control)
+point.y(-array)
+→
+HTuple
+MaybeSequence[Union[float, int]]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Row coordinates of positions.
+Default:
+0
+Suggested values:
+0, 64, 128, 256, 512, 1024
+Value range:
+-0.5
+          ≤
+Row
+Row
+Row
+row
+row
+Restriction:
+-0.5 <= Row && Row < height(Image) - 0.5
+Column
+Column
+Column
+column
+column
+(input_control)
+point.x(-array)
+→
+HTuple
+MaybeSequence[Union[float, int]]
+HTuple
+Htuple
+(real /
+integer)
+(
+double
+/
+int /
+long)
+(
+double
+/
+Hlong)
+(
+double
+/
+Hlong)
+Column coordinates of positions.
+Number of elements:
+Column == Row
+Default:
+0
+Suggested values:
+0, 64, 128, 256, 512, 1024
+Value range:
+-0.5
+          ≤
+Column
+Column
+Column
+column
+column
+Restriction:
+-0.5 <= Column && Column < width(Image) - 0.5
+Interpolation
+Interpolation
+Interpolation
+interpolation
+interpolation
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Interpolation method.
+Default:
+'bilinear'
+"bilinear"
+"bilinear"
+"bilinear"
+"bilinear"
+List of values:
+'bicubic'
+"bicubic"
+"bicubic"
+"bicubic"
+"bicubic"
+,
+'bicubic_clipped'
+"bicubic_clipped"
+"bicubic_clipped"
+"bicubic_clipped"
+"bicubic_clipped"
+,
+'bilinear'
+"bilinear"
+"bilinear"
+"bilinear"
+"bilinear"
+Grayval
+Grayval
+Grayval
+grayval
+grayval
+(output_control)
+grayval(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Gray values of the selected image coordinates.
+Result
+If the parameters are valid, the operator
+get_grayval_interpolated
+get_grayval_interpolated
+GetGrayvalInterpolated
+GetGrayvalInterpolated
+get_grayval_interpolated
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    .  If
+necessary, an exception is raised.
+Possible Predecessors
+read_image
+read_image
+ReadImage
+ReadImage
+read_image
+Alternatives
+get_grayval_contour_xld
+get_grayval_contour_xld
+GetGrayvalContourXld
+GetGrayvalContourXld
+get_grayval_contour_xld
+,
+get_grayval
+get_grayval
+GetGrayval
+GetGrayval
+get_grayval
+Module
+Foundation
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

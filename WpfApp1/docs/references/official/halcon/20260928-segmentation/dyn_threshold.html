@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>dyn_threshold [HALCON Operator Reference / Version 25.11.0.0]</title>
+<style type="text/css">
+      body {
+    color: #000000;
+    background-color: #ffffff;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.body_main {
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+@media screen and (min-width:992px) {
+
+    .body_main {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    table.toctable {
+        width: 80%
+    }
+}
+
+@media screen and (min-width:1400px) {
+
+    .body_main {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    table.toctable {
+        width: 70%
+    }
+}
+
+body>div ul ul {
+    margin-left: inherit;
+}
+
+a:link {
+    color: #0044cc;
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+a:link:hover,
+a:visited:hover {
+    text-decoration: underline;
+}
+
+th {
+    text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-rendering: optimizeLegibility;
+    color: #666666;
+}
+
+code {
+    font-family: monospace,monospace;
+}
+
+h1 a.halconoperator {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #666666;
+}
+
+h2 a.halconoperator {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #666666;
+}
+
+hr {
+    border: 0;
+    border-top: solid 1px #f28d26;
+}
+
+.pre {
+    display: block;
+    padding-bottom: 1ex;
+    font-family: monospace;
+    white-space: pre;
+}
+
+pre {
+    font-family: monospace, monospace;
+    padding: 1ex;
+    white-space: pre-wrap;
+}
+
+.toc {
+    font-size: 80%;
+    border-top: 1px dashed #f28d26;
+    border-bottom: 1px dashed #f28d26;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.inv {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.banner {
+    color: #666666;
+    padding-left: 1em;
+}
+
+.logo {
+    background-color: white;
+}
+
+.keyboard {
+    font-size: 80%;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #f28d26;
+    background-color: #f3f3f3;
+}
+
+.warning {
+    margin-top: 2ex;
+    margin-bottom: 1ex;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid;
+    color: #bb0000;
+    background-color: #fff7f7
+}
+
+.imprint {
+    margin-top: 1ex;
+    font-size: 80%;
+    color: #666666;
+}
+
+.imprinthead {
+    font-weight: bolder;
+    color: #666666;
+}
+
+.indexlink {
+    text-align: right;
+    padding-bottom: 5px;
+}
+
+.postscript {
+    margin-top: 2ex;
+    font-size: 80%;
+    color: #666666
+}
+
+.evenrow {
+    background-color: #e7e7ef;
+    vertical-align: top;
+}
+
+.oddrow {
+    background-color: #f7f7ff;
+    vertical-align: top;
+}
+
+.headrow {
+    background-color: #97979f;
+    color: #ffffff;
+    vertical-align: top;
+}
+
+.logorow {
+    vertical-align: top;
+}
+
+.error {
+    color: red;
+}
+
+.var {
+    font-style: italic
+}
+
+.halconoperator {
+    font-family: monospace, monospace;
+}
+
+span.operator {
+    font-family: monospace, monospace;
+}
+
+span.procedure {
+    font-family: monospace, monospace;
+}
+
+span.operation {
+    font-family: monospace, monospace;
+}
+
+span.feature {
+    font-family: Arial, Helvetica, Homerton, sans-serif;
+}
+
+ul {
+    padding-left: 1.2em;
+}
+
+li.dot {
+    list-style-type: square;
+    color: #f28d26;
+}
+
+.breadcrumb {
+    font-size: 80%;
+    color: white;
+    background-color: #062d64;
+    margin-bottom: 20px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 15px;
+}
+
+.webbar {
+    font-size: 80%;
+    background-color: #dddddd;
+    margin-top: 0px;
+    margin-left: -35px;
+    margin-right: -35px;
+    margin-bottom: 0px;
+    padding-top: 5px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 5px;
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-top: 1px dashed #f28d26;
+    font-size: 80%;
+    color: #666666;
+    padding-bottom: 8px;
+}
+
+.footer .socialmedia a {
+    padding-left: 7px;
+}
+
+.socialmedia {
+    padding-top: 10px;
+}
+
+.copyright {
+    margin-top: 19px;
+}
+
+.breadcrumb a {
+    color: #ffffff;
+    border-bottom: 1px solid white;
+}
+
+.breadcrumb a:link:hover,
+.breadcrumb a:visited:hover {
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.heading {
+    margin-top: 1ex;
+    font-size: 110%;
+    font-weight: bold;
+    color: #666666;
+}
+
+.text {
+    color: black;
+}
+
+.example {
+    font-size: 80%;
+    background-color: #f3f3f3;
+    border: 1px dashed #666666;
+    padding: 10px;
+}
+
+.verbatimblock {
+    font-family: monospace, monospace;
+    display: block;
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+}
+
+.displaymath {
+    display: block;
+    text-align: center;
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+}
+
+.title {
+    float: left;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.signnote {
+    font-family: Arial, Helvetica, Homerton, sans-serif;
+    font-size: 80%;
+    color: #666666;
+    font-weight: lighter;
+    font-style: italic
+}
+
+.par {
+    margin-bottom: 1.5em;
+}
+
+.parhead {
+    text-align: right;
+}
+
+.parname {
+    float: left;
+}
+
+.pardesc {
+    font-size: 85%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 2em;
+}
+
+.parcat {
+    color: #666;
+    font-weight: bold;
+}
+
+*[data-if=cpp],
+*[data-if=c],
+*[data-if=dotnet],
+*[data-if=com],
+*[data-if=python] {
+    display: none;
+}
+
+.tabbar {
+    text-align: right;
+    border-bottom: 1px solid #f28d26;
+    margin-bottom: 0.5em;
+}
+
+ul.tabs {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 80%
+}
+
+ul.tabs li {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    display: inline;
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    margin-left: 8px;
+    border-top: 1px solid #666;
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+}
+
+ul.tabs li.active {
+    border-left: 1px solid #f28d26;
+    border-right: 1px solid #f28d26;
+    border-top: 1px solid #f28d26;
+    border-bottom: 1px solid #fff;
+}
+
+ul.tabs li.inactive {
+    background-color: #eee;
+}
+
+ul.tabs li a {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #666;
+}
+
+ul.tabs li a:link:hover {
+    text-decoration: none;
+}
+
+ul.tabs li.inactive a {
+    color: #666;
+}
+
+ul.tabs li.active a {
+    color: black;
+}
+
+dl.generic dd {
+    margin-bottom: 1em;
+}
+
+.pari {
+    color: olive;
+}
+
+.paro {
+    color: maroon;
+}
+
+.comment {
+    font-size: 80%;
+    color: green;
+    white-space: nowrap;
+}
+
+table.grid {
+    border-collapse: collapse;
+}
+
+table.grid td {
+    padding: 5px;
+    border: 1px solid;
+}
+
+table.layout {
+    border: 0px;
+}
+
+table.layout td {
+    padding: 5px;
+}
+
+table.table {
+    border-collapse: collapse;
+}
+
+table.table td {
+    padding: 5px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+table.table tr:last-child {
+    border-bottom: 1px solid;
+}
+
+table.table th {
+    padding: 5px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.details_summary {
+    cursor: pointer;
+}
+
+table.toctable {
+    width: 100%;
+}
+
+table.toctable col:first-child {
+    width: 20%;
+}
+
+table.toctable col:nth-last-child(2) {
+    width: 8%;
+}
+
+table.altcolored tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+    </style>
+<!--OP_REF_STYLE_END-->
+<script>
+    <!--
+var active_lang='hdevelop';function switchVisibility(obj,active_lang,new_lang)
+{var display_style='inline';
+for(var i=0;i<obj.length;i++)
+{if(obj.item(i).getAttribute('data-if')==new_lang)
+{obj.item(i).style.display=display_style;}
+if(obj.item(i).getAttribute('data-if')==active_lang)
+{obj.item(i).style.display='none';}}
+return;}
+function toggleLanguage(new_lang,initial)
+{if(active_lang!=new_lang)
+{var lis=document.getElementsByTagName('li');for(var i=0;i<lis.length;i++)
+{if(lis.item(i).id=='syn-'+new_lang)
+{lis.item(i).className='active';}
+else
+{lis.item(i).className='inactive';}}
+var divs=document.getElementsByTagName('div');var spans=document.getElementsByTagName('span');switchVisibility(divs,active_lang,new_lang);switchVisibility(spans,active_lang,new_lang);if(!initial)
+{setCookie("halcon_reference_language",new_lang,null,null);}
+active_lang=new_lang;}
+return;}
+function setCookie(name,value,domain,exp_offset,path,secure)
+{localStorage.setItem(name,value);}
+function getCookie(name)
+{return localStorage.getItem(name);}
+function initialize()
+{var qs=location.href.split('?')[1];var qs_lang_raw=location.href.split('interface=')[1];var qs_lang;if(qs_lang_raw)
+{qs_lang=qs_lang_raw.split('#')[0];}
+var cookie_lang=getCookie("halcon_reference_language");var new_lang;if((qs_lang=="hdevelop")||(qs_lang=="dotnet")||(qs_lang=="python")||(qs_lang=="cpp")||(qs_lang=="c"))
+{new_lang=qs_lang;setCookie("halcon_reference_language",new_lang,null,null);}
+else if((cookie_lang=="hdevelop")||(cookie_lang=="dotnet")||(cookie_lang=="python")||(cookie_lang=="cpp")||(cookie_lang=="c"))
+{new_lang=cookie_lang;}
+else
+{new_lang="hdevelop";}
+toggleLanguage(new_lang,1);return;}
+-->
+
+  </script>
+</head>
+<body onload="initialize();">
+<div class="breadcrumb" style="height:47px;padding-top:4px;padding-bottom:0px;padding-right:20px;">
+<span style="margin:0px;float:right;"><a title="Go to MVTec homepage" href="http://www.mvtec.com/" style="border:0px">
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="108px" height="43px" viewBox="0 0 108 43" enable-background="new 0 0 108 43" xml:space="preserve">
+<rect fill="#FFFFFF" width="108" height="43"/>
+<g>
+<path fill="#062D64" d="M18.623,5.836h11.375l1.646,15.537h0.065c0.419-1.338,6.954-15.537,6.954-15.537h11.263l0.178,30.415
+H39.421L40.567,19.6c-0.371,1-7.632,16.651-7.632,16.651h-6.793c0,0-2.307-15.393-2.227-16.651h-0.016
+c-0.274,1.21-4.325,16.651-4.325,16.651H8.876L18.623,5.836L18.623,5.836z"/>
+<polygon fill="#FBBA00" points="71.516,5.836 54.928,36.251 52.056,36.251 52.04,24.197 59.979,5.836 "/>
+<polygon fill="#062D64" points="73.902,5.836 84.537,5.836 82.955,15.728 79.775,15.71 76.469,36.251 65.416,36.251 68.725,15.388 
+"/>
+<polygon fill="#062D64" points="88.828,8.046 88.57,9.692 91.441,9.692 91.104,11.854 88.23,11.854 87.958,13.533 90.991,13.533 
+90.65,15.694 85.068,15.694 86.618,5.884 92.202,5.884 91.861,8.046 "/>
+<path fill="#062D64" d="M99.414,8.386c-0.081-0.065-0.438-0.291-1.21-0.291c-1.565,0-2.808,1.21-3.052,2.727
+c-0.24,1.549,0.646,2.662,2.228,2.662c0.663,0,1.082-0.209,1.228-0.258l-0.402,2.582c-0.26,0.016-0.63,0.162-1.26,0.145
+c-1.37-0.031-2.582-0.516-3.452-1.436c-0.921-0.983-1.228-2.26-0.984-3.711c0.21-1.34,0.921-2.631,2.019-3.582
+c1.111-1.001,2.598-1.598,3.968-1.598c0.662,0,1.099,0.113,1.34,0.178L99.414,8.386L99.414,8.386z"/>
+</g>
+</svg>
+</a></span>
+<div style="padding-top:16px"><a href="../../../../documentation.html">HALCON
+      25.11.0.0</a> / <a href="index.html">HALCON Operator Reference</a> / <a href="toc_segmentation.html">Segmentation</a> / <a href="toc_segmentation_threshold.html">Threshold</a>
+<html lang="en-US"></div>
+</div>
+<div class="body_main">
+<div class="tabbar"><ul class="tabs">
+<li id="syn-hdevelop" class="active"><a href="javascript:void(0);" onclick="toggleLanguage('hdevelop')" onfocus="blur()">HDevelop</a></li>
+<li id="syn-dotnet" class="inactive"><a href="javascript:void(0);" onclick="toggleLanguage('dotnet')" onfocus="blur()">.NET</a></li>
+<li id="syn-python" class="inactive"><a href="javascript:void(0);" onclick="toggleLanguage('python')" onfocus="blur()">Python</a></li>
+<li id="syn-cpp" class="inactive"><a href="javascript:void(0);" onclick="toggleLanguage('cpp')" onfocus="blur()">C++</a></li>
+<li id="syn-c" class="inactive"><a href="javascript:void(0);" onclick="toggleLanguage('c')" onfocus="blur()">C</a></li>
+</ul></div>
+<div class="indexlink">
+<a href="index_classes.html"><span data-if="dotnet" style="display:none;">Classes</span><span data-if="cpp" style="display:none;">Classes</span></a><span data-if="dotnet" style="display:none;"> | </span><span data-if="cpp" style="display:none;"> | </span><a href="index_by_name.html">Operators</a>
+</div>
+<!--OP_REF_HEADER_END-->
+<h1 id="sec_name">
+<span data-if="hdevelop" style="display:inline;">dyn_threshold</span><span data-if="c" style="display:none;">dyn_threshold</span><span data-if="cpp" style="display:none;">DynThreshold</span><span data-if="dotnet" style="display:none;">DynThreshold</span><span data-if="python" style="display:none;">dyn_threshold</span> (Operator)</h1>
+<h2>Name</h2>
+<p><code><span data-if="hdevelop" style="display:inline;">dyn_threshold</span><span data-if="c" style="display:none;">dyn_threshold</span><span data-if="cpp" style="display:none;">DynThreshold</span><span data-if="dotnet" style="display:none;">DynThreshold</span><span data-if="python" style="display:none;">dyn_threshold</span></code> — Segment an image using a local threshold.</p>
+<h2 id="sec_synopsis">Signature</h2>
+<div data-if="hdevelop" style="display:inline;">
+<p>
+<code><b>dyn_threshold</b>(<a href="#OrigImage"><i>OrigImage</i></a>, <a href="#ThresholdImage"><i>ThresholdImage</i></a> : <a href="#RegionDynThresh"><i>RegionDynThresh</i></a> : <a href="#Offset"><i>Offset</i></a>, <a href="#LightDark"><i>LightDark</i></a> : )</code></p>
+</div>
+<div data-if="c" style="display:none;">
+<p>
+<code>Herror <b>dyn_threshold</b>(const Hobject <a href="#OrigImage"><i>OrigImage</i></a>, const Hobject <a href="#ThresholdImage"><i>ThresholdImage</i></a>, Hobject* <a href="#RegionDynThresh"><i>RegionDynThresh</i></a>, double <a href="#Offset"><i>Offset</i></a>, const char* <a href="#LightDark"><i>LightDark</i></a>)</code></p>
+<p>
+<code>Herror <b>T_dyn_threshold</b>(const Hobject <a href="#OrigImage"><i>OrigImage</i></a>, const Hobject <a href="#ThresholdImage"><i>ThresholdImage</i></a>, Hobject* <a href="#RegionDynThresh"><i>RegionDynThresh</i></a>, const Htuple <a href="#Offset"><i>Offset</i></a>, const Htuple <a href="#LightDark"><i>LightDark</i></a>)</code></p>
+</div>
+<div data-if="cpp" style="display:none;">
+<p>
+<code>void <b>DynThreshold</b>(const HObject&amp; <a href="#OrigImage"><i>OrigImage</i></a>, const HObject&amp; <a href="#ThresholdImage"><i>ThresholdImage</i></a>, HObject* <a href="#RegionDynThresh"><i>RegionDynThresh</i></a>, const HTuple&amp; <a href="#Offset"><i>Offset</i></a>, const HTuple&amp; <a href="#LightDark"><i>LightDark</i></a>)</code></p>
+<p>
+<code><a href="HRegion.html">HRegion</a> <a href="HImage.html">HImage</a>::<b>DynThreshold</b>(const HImage&amp; <a href="#ThresholdImage"><i>ThresholdImage</i></a>, const HTuple&amp; <a href="#Offset"><i>Offset</i></a>, const HString&amp; <a href="#LightDark"><i>LightDark</i></a>) const</code></p>
+<p>
+<code><a href="HRegion.html">HRegion</a> <a href="HImage.html">HImage</a>::<b>DynThreshold</b>(const HImage&amp; <a href="#ThresholdImage"><i>ThresholdImage</i></a>, double <a href="#Offset"><i>Offset</i></a>, const HString&amp; <a href="#LightDark"><i>LightDark</i></a>) const</code></p>
+<p>
+<code><a href="HRegion.html">HRegion</a> <a href="HImage.html">HImage</a>::<b>DynThreshold</b>(const HImage&amp; <a href="#ThresholdImage"><i>ThresholdImage</i></a>, double <a href="#Offset"><i>Offset</i></a>, const char* <a href="#LightDark"><i>LightDark</i></a>) const</code></p>
+<p>
+<code><a href="HRegion.html">HRegion</a> <a href="HImage.html">HImage</a>::<b>DynThreshold</b>(const HImage&amp; <a href="#ThresholdImage"><i>ThresholdImage</i></a>, double <a href="#Offset"><i>Offset</i></a>, const wchar_t* <a href="#LightDark"><i>LightDark</i></a>) const  <span class="signnote">
+            (
+            Windows only)
+          </span></code></p>
+</div>
+<div data-if="dotnet" style="display:none;">
+<p>
+<code>static void <a href="HOperatorSet.html">HOperatorSet</a>.<b>DynThreshold</b>(<a href="HObject.html">HObject</a> <a href="#OrigImage"><i>origImage</i></a>, <a href="HObject.html">HObject</a> <a href="#ThresholdImage"><i>thresholdImage</i></a>, out <a href="HObject.html">HObject</a> <a href="#RegionDynThresh"><i>regionDynThresh</i></a>, <a href="HTuple.html">HTuple</a> <a href="#Offset"><i>offset</i></a>, <a href="HTuple.html">HTuple</a> <a href="#LightDark"><i>lightDark</i></a>)</code></p>
+<p>
+<code><a href="HRegion.html">HRegion</a> <a href="HImage.html">HImage</a>.<b>DynThreshold</b>(<a href="HImage.html">HImage</a> <a href="#ThresholdImage"><i>thresholdImage</i></a>, <a href="HTuple.html">HTuple</a> <a href="#Offset"><i>offset</i></a>, string <a href="#LightDark"><i>lightDark</i></a>)</code></p>
+<p>
+<code><a href="HRegion.html">HRegion</a> <a href="HImage.html">HImage</a>.<b>DynThreshold</b>(<a href="HImage.html">HImage</a> <a href="#ThresholdImage"><i>thresholdImage</i></a>, double <a href="#Offset"><i>offset</i></a>, string <a href="#LightDark"><i>lightDark</i></a>)</code></p>
+</div>
+<div data-if="python" style="display:none;">
+<p>
+<code>def <b>dyn_threshold</b>(<a href="#OrigImage"><i>orig_image</i></a>: HObject, <a href="#ThresholdImage"><i>threshold_image</i></a>: HObject, <a href="#Offset"><i>offset</i></a>: Union[int, float], <a href="#LightDark"><i>light_dark</i></a>: str) -&gt; HObject</code></p>
+</div>
+<h2 id="sec_description">Description</h2>
+<p><code><span data-if="hdevelop" style="display:inline">dyn_threshold</span><span data-if="c" style="display:none">dyn_threshold</span><span data-if="cpp" style="display:none">DynThreshold</span><span data-if="dotnet" style="display:none">DynThreshold</span><span data-if="python" style="display:none">dyn_threshold</span></code> selects from the input image those
+regions in which the pixels fulfill a threshold condition.  Let
+g_{o} = g_{<a href="#OrigImage"><i><code><span data-if="hdevelop" style="display:inline">OrigImage</span><span data-if="c" style="display:none">OrigImage</span><span data-if="cpp" style="display:none">OrigImage</span><span data-if="dotnet" style="display:none">origImage</span><span data-if="python" style="display:none">orig_image</span></code></i></a>}, and g_{t} =
+g_{<a href="#ThresholdImage"><i><code><span data-if="hdevelop" style="display:inline">ThresholdImage</span><span data-if="c" style="display:none">ThresholdImage</span><span data-if="cpp" style="display:none">ThresholdImage</span><span data-if="dotnet" style="display:none">thresholdImage</span><span data-if="python" style="display:none">threshold_image</span></code></i></a>}.  Then the condition for
+<a href="#LightDark"><i><code><span data-if="hdevelop" style="display:inline">LightDark</span><span data-if="c" style="display:none">LightDark</span><span data-if="cpp" style="display:none">LightDark</span><span data-if="dotnet" style="display:none">lightDark</span><span data-if="python" style="display:none">light_dark</span></code></i></a> = <i><span data-if="hdevelop" style="display:inline">'light'</span><span data-if="c" style="display:none">"light"</span><span data-if="cpp" style="display:none">"light"</span><span data-if="dotnet" style="display:none">"light"</span><span data-if="python" style="display:none">"light"</span></i> is:
+<span title="1" class="displaymath"><!-- Created by MetaPost 1.902 on 2025.11.04:1301 --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="8.00177em" height="0.955831em" viewBox="0 0 128.028320 15.293304">
+<!-- Original BoundingBox: -64.014160 -7.646652 64.014160 7.646652 -->
+  <defs>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_79">
+      <path style="fill-rule: evenodd;" d="M300.000000 -576.000000C161.000000 -576.000000,51.000000 -445.000000,51.000000 -280.000000C51.000000 -115.000000,161.000000 16.000000,300.000000 16.000000C437.000000 16.000000,549.000000 -115.000000,549.000000 -276.000000C549.000000 -446.000000,441.000000 -576.000000,300.000000 -576.000000M300.000000 -535.000000C416.000000 -535.000000,508.000000 -421.000000,508.000000 -277.000000C508.000000 -140.000000,413.000000 -25.000000,300.000000 -25.000000C186.000000 -25.000000,92.000000 -140.000000,92.000000 -280.000000C92.000000 -420.000000,185.000000 -535.000000,300.000000 -535.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_101">
+      <path style="fill-rule: evenodd;" d="M520.000000 -199.000000C520.000000 -245.000000,517.000000 -264.000000,503.000000 -297.000000C467.000000 -380.000000,387.000000 -431.000000,291.000000 -431.000000C163.000000 -431.000000,63.000000 -338.000000,63.000000 -217.000000C63.000000 -87.000000,170.000000 16.000000,305.000000 16.000000C396.000000 16.000000,516.000000 -31.000000,516.000000 -66.000000C516.000000 -77.000000,507.000000 -86.000000,497.000000 -86.000000C492.000000 -86.000000,488.000000 -84.000000,481.000000 -79.000000C441.000000 -47.000000,368.000000 -25.000000,306.000000 -25.000000C198.000000 -25.000000,118.000000 -94.000000,104.000000 -199.000000M104.000000 -240.000000C122.000000 -332.000000,194.000000 -390.000000,291.000000 -390.000000C388.000000 -390.000000,462.000000 -331.000000,478.000000 -240.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_102">
+      <path style="fill-rule: evenodd;" d="M271.000000 -376.000000L460.000000 -376.000000C478.000000 -376.000000,487.000000 -383.000000,487.000000 -397.000000C487.000000 -410.000000,478.000000 -417.000000,460.000000 -417.000000L271.000000 -417.000000L271.000000 -478.000000C271.000000 -528.000000,316.000000 -563.000000,382.000000 -563.000000C404.000000 -563.000000,443.000000 -560.000000,470.000000 -557.000000C518.000000 -551.000000,518.000000 -551.000000,520.000000 -551.000000C532.000000 -551.000000,541.000000 -559.000000,541.000000 -571.000000C541.000000 -581.000000,535.000000 -588.000000,523.000000 -591.000000C491.000000 -597.000000,422.000000 -604.000000,384.000000 -604.000000C294.000000 -604.000000,230.000000 -551.000000,230.000000 -478.000000L230.000000 -417.000000L142.000000 -417.000000C124.000000 -417.000000,115.000000 -410.000000,115.000000 -397.000000C115.000000 -383.000000,124.000000 -376.000000,142.000000 -376.000000L230.000000 -376.000000L230.000000 -41.000000L132.000000 -41.000000C114.000000 -41.000000,105.000000 -34.000000,105.000000 -21.000000C105.000000 -7.000000,114.000000 -0.000000,132.000000 -0.000000L449.000000 -0.000000C466.000000 -0.000000,476.000000 -7.000000,476.000000 -21.000000C476.000000 -34.000000,467.000000 -41.000000,449.000000 -41.000000L271.000000 -41.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_115">
+      <path style="fill-rule: evenodd;" d="M432.000000 -385.000000C397.000000 -416.000000,352.000000 -431.000000,295.000000 -431.000000C197.000000 -431.000000,124.000000 -383.000000,124.000000 -318.000000C124.000000 -287.000000,142.000000 -257.000000,170.000000 -239.000000C198.000000 -222.000000,226.000000 -215.000000,300.000000 -207.000000C355.000000 -201.000000,382.000000 -194.000000,408.000000 -180.000000C435.000000 -165.000000,452.000000 -140.000000,452.000000 -117.000000C452.000000 -64.000000,386.000000 -25.000000,298.000000 -25.000000C213.000000 -25.000000,144.000000 -62.000000,144.000000 -108.000000L144.000000 -115.000000C144.000000 -128.000000,136.000000 -137.000000,124.000000 -137.000000C110.000000 -137.000000,103.000000 -128.000000,103.000000 -110.000000L103.000000 -27.000000C103.000000 -9.000000,110.000000 -0.000000,124.000000 -0.000000C137.000000 -0.000000,144.000000 -9.000000,144.000000 -27.000000L144.000000 -38.000000C186.000000 -1.000000,236.000000 16.000000,301.000000 16.000000C414.000000 16.000000,497.000000 -40.000000,497.000000 -116.000000C497.000000 -151.000000,478.000000 -185.000000,447.000000 -206.000000C415.000000 -227.000000,378.000000 -238.000000,317.000000 -245.000000C229.000000 -254.000000,223.000000 -256.000000,201.000000 -270.000000C180.000000 -282.000000,169.000000 -299.000000,169.000000 -315.000000C169.000000 -358.000000,225.000000 -390.000000,299.000000 -390.000000C375.000000 -390.000000,427.000000 -361.000000,432.000000 -316.000000C434.000000 -300.000000,441.000000 -293.000000,453.000000 -293.000000C466.000000 -293.000000,473.000000 -302.000000,473.000000 -320.000000L473.000000 -389.000000C473.000000 -408.000000,466.000000 -417.000000,453.000000 -417.000000C440.000000 -417.000000,432.000000 -406.000000,432.000000 -389.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_116">
+      <path style="fill-rule: evenodd;" d="M186.000000 -417.000000L186.000000 -536.000000C186.000000 -555.000000,180.000000 -563.000000,166.000000 -563.000000C152.000000 -563.000000,145.000000 -554.000000,145.000000 -536.000000L145.000000 -417.000000L71.000000 -417.000000C52.000000 -417.000000,43.000000 -410.000000,43.000000 -397.000000C43.000000 -383.000000,52.000000 -376.000000,71.000000 -376.000000L145.000000 -376.000000L145.000000 -107.000000C145.000000 -32.000000,206.000000 16.000000,300.000000 16.000000C385.000000 16.000000,499.000000 -22.000000,499.000000 -51.000000C499.000000 -61.000000,490.000000 -71.000000,480.000000 -71.000000C475.000000 -71.000000,472.000000 -70.000000,464.000000 -65.000000C425.000000 -42.000000,354.000000 -25.000000,298.000000 -25.000000C229.000000 -25.000000,186.000000 -58.000000,186.000000 -109.000000L186.000000 -376.000000L406.000000 -376.000000C424.000000 -376.000000,433.000000 -383.000000,433.000000 -397.000000C433.000000 -410.000000,424.000000 -417.000000,406.000000 -417.000000"></path>
+    </g>
+    <g transform="scale(0.006974,0.006974)" id="GLYPHcmmi7_111">
+      <path style="fill-rule: evenodd;" d="M531.000000 -266.000000C531.000000 -377.000000,448.000000 -441.000000,350.000000 -441.000000C202.000000 -441.000000,62.000000 -302.000000,62.000000 -165.000000C62.000000 -65.000000,135.000000 10.000000,244.000000 10.000000C387.000000 10.000000,531.000000 -122.000000,531.000000 -266.000000M245.000000 -18.000000C195.000000 -18.000000,145.000000 -50.000000,145.000000 -129.000000C145.000000 -170.000000,164.000000 -268.000000,203.000000 -325.000000C246.000000 -387.000000,304.000000 -413.000000,349.000000 -413.000000C403.000000 -413.000000,449.000000 -376.000000,449.000000 -302.000000C449.000000 -278.000000,437.000000 -179.000000,393.000000 -109.000000C355.000000 -50.000000,295.000000 -18.000000,245.000000 -18.000000"></path>
+    </g>
+    <g transform="scale(0.006974,0.006974)" id="GLYPHcmmi7_116">
+      <path style="fill-rule: evenodd;" d="M246.000000 -395.000000L348.000000 -395.000000C367.000000 -395.000000,380.000000 -395.000000,380.000000 -417.000000C380.000000 -431.000000,367.000000 -431.000000,350.000000 -431.000000L255.000000 -431.000000L292.000000 -579.000000C293.000000 -584.000000,295.000000 -589.000000,295.000000 -593.000000C295.000000 -611.000000,281.000000 -625.000000,261.000000 -625.000000C236.000000 -625.000000,221.000000 -608.000000,214.000000 -582.000000C207.000000 -557.000000,220.000000 -605.000000,176.000000 -431.000000L74.000000 -431.000000C55.000000 -431.000000,42.000000 -431.000000,42.000000 -409.000000C42.000000 -395.000000,54.000000 -395.000000,72.000000 -395.000000L167.000000 -395.000000L108.000000 -159.000000C102.000000 -134.000000,93.000000 -98.000000,93.000000 -85.000000C93.000000 -26.000000,143.000000 10.000000,200.000000 10.000000C311.000000 10.000000,374.000000 -130.000000,374.000000 -143.000000C374.000000 -156.000000,361.000000 -156.000000,358.000000 -156.000000C346.000000 -156.000000,345.000000 -154.000000,337.000000 -137.000000C309.000000 -74.000000,258.000000 -18.000000,203.000000 -18.000000C182.000000 -18.000000,168.000000 -31.000000,168.000000 -67.000000C168.000000 -77.000000,172.000000 -98.000000,174.000000 -108.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmr10_43">
+      <path style="fill-rule: evenodd;" d="M409.000000 -230.000000L688.000000 -230.000000C702.000000 -230.000000,721.000000 -230.000000,721.000000 -250.000000C721.000000 -270.000000,702.000000 -270.000000,688.000000 -270.000000L409.000000 -270.000000L409.000000 -550.000000C409.000000 -564.000000,409.000000 -583.000000,389.000000 -583.000000C369.000000 -583.000000,369.000000 -564.000000,369.000000 -550.000000L369.000000 -270.000000L89.000000 -270.000000C75.000000 -270.000000,56.000000 -270.000000,56.000000 -250.000000C56.000000 -230.000000,75.000000 -230.000000,89.000000 -230.000000L369.000000 -230.000000L369.000000 50.000000C369.000000 64.000000,369.000000 83.000000,389.000000 83.000000C409.000000 83.000000,409.000000 64.000000,409.000000 50.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmsy10_21">
+      <path style="fill-rule: evenodd;" d="M674.000000 -324.000000C688.000000 -330.000000,694.000000 -337.000000,694.000000 -346.000000C694.000000 -356.000000,690.000000 -362.000000,674.000000 -369.000000L123.000000 -629.000000C109.000000 -636.000000,105.000000 -636.000000,103.000000 -636.000000C91.000000 -636.000000,83.000000 -627.000000,83.000000 -616.000000C83.000000 -604.000000,91.000000 -599.000000,102.000000 -594.000000L627.000000 -347.000000L104.000000 -100.000000C84.000000 -91.000000,83.000000 -83.000000,83.000000 -77.000000C83.000000 -66.000000,92.000000 -57.000000,103.000000 -57.000000C106.000000 -57.000000,108.000000 -57.000000,121.000000 -64.000000M659.000000 137.000000C676.000000 137.000000,694.000000 137.000000,694.000000 117.000000C694.000000 97.000000,673.000000 97.000000,658.000000 97.000000L119.000000 97.000000C104.000000 97.000000,83.000000 97.000000,83.000000 117.000000C83.000000 137.000000,101.000000 137.000000,118.000000 137.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmmi10_103">
+      <path style="fill-rule: evenodd;" d="M471.000000 -377.000000C472.000000 -383.000000,474.000000 -388.000000,474.000000 -395.000000C474.000000 -412.000000,462.000000 -422.000000,445.000000 -422.000000C435.000000 -422.000000,408.000000 -415.000000,404.000000 -379.000000C386.000000 -416.000000,351.000000 -442.000000,311.000000 -442.000000C197.000000 -442.000000,73.000000 -302.000000,73.000000 -158.000000C73.000000 -59.000000,134.000000 -0.000000,206.000000 -0.000000C265.000000 -0.000000,312.000000 -47.000000,322.000000 -58.000000L323.000000 -57.000000C302.000000 32.000000,290.000000 73.000000,290.000000 75.000000C286.000000 84.000000,252.000000 183.000000,146.000000 183.000000C127.000000 183.000000,94.000000 182.000000,66.000000 173.000000C96.000000 164.000000,107.000000 138.000000,107.000000 121.000000C107.000000 105.000000,96.000000 86.000000,69.000000 86.000000C47.000000 86.000000,15.000000 104.000000,15.000000 144.000000C15.000000 185.000000,52.000000 205.000000,148.000000 205.000000C273.000000 205.000000,345.000000 127.000000,360.000000 67.000000M341.000000 -128.000000C335.000000 -102.000000,312.000000 -77.000000,290.000000 -58.000000C269.000000 -40.000000,238.000000 -22.000000,209.000000 -22.000000C159.000000 -22.000000,144.000000 -74.000000,144.000000 -114.000000C144.000000 -162.000000,173.000000 -280.000000,200.000000 -331.000000C227.000000 -380.000000,270.000000 -420.000000,312.000000 -420.000000C378.000000 -420.000000,392.000000 -339.000000,392.000000 -334.000000C392.000000 -329.000000,390.000000 -323.000000,389.000000 -319.000000"></path>
+    </g>
+  </defs>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,0.985840 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_103"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,8.588928 12.938187)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi7_111"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,20.105591 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_21"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,36.931412 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_103"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,44.534317 12.938187)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi7_116"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,53.688919 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmr10_43"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,69.629150 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHpcrr8r_79"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="6.000092"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="12.000185"></use>
+    <use xlink:href="#GLYPHpcrr8r_115" x="18.000277"></use>
+    <use xlink:href="#GLYPHpcrr8r_101" x="24.000369"></use>
+    <use xlink:href="#GLYPHpcrr8r_116" x="30.000462"></use>
+  </g>
+</svg></span>
+For <a href="#LightDark"><i><code><span data-if="hdevelop" style="display:inline">LightDark</span><span data-if="c" style="display:none">LightDark</span><span data-if="cpp" style="display:none">LightDark</span><span data-if="dotnet" style="display:none">lightDark</span><span data-if="python" style="display:none">light_dark</span></code></i></a> = <i><span data-if="hdevelop" style="display:inline">'dark'</span><span data-if="c" style="display:none">"dark"</span><span data-if="cpp" style="display:none">"dark"</span><span data-if="dotnet" style="display:none">"dark"</span><span data-if="python" style="display:none">"dark"</span></i> the condition is:
+<span title="2" class="displaymath"><!-- Created by MetaPost 1.902 on 2025.11.04:1301 --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="8.00177em" height="0.955831em" viewBox="0 0 128.028320 15.293304">
+<!-- Original BoundingBox: -64.014160 -7.646652 64.014160 7.646652 -->
+  <defs>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_79">
+      <path style="fill-rule: evenodd;" d="M300.000000 -576.000000C161.000000 -576.000000,51.000000 -445.000000,51.000000 -280.000000C51.000000 -115.000000,161.000000 16.000000,300.000000 16.000000C437.000000 16.000000,549.000000 -115.000000,549.000000 -276.000000C549.000000 -446.000000,441.000000 -576.000000,300.000000 -576.000000M300.000000 -535.000000C416.000000 -535.000000,508.000000 -421.000000,508.000000 -277.000000C508.000000 -140.000000,413.000000 -25.000000,300.000000 -25.000000C186.000000 -25.000000,92.000000 -140.000000,92.000000 -280.000000C92.000000 -420.000000,185.000000 -535.000000,300.000000 -535.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_101">
+      <path style="fill-rule: evenodd;" d="M520.000000 -199.000000C520.000000 -245.000000,517.000000 -264.000000,503.000000 -297.000000C467.000000 -380.000000,387.000000 -431.000000,291.000000 -431.000000C163.000000 -431.000000,63.000000 -338.000000,63.000000 -217.000000C63.000000 -87.000000,170.000000 16.000000,305.000000 16.000000C396.000000 16.000000,516.000000 -31.000000,516.000000 -66.000000C516.000000 -77.000000,507.000000 -86.000000,497.000000 -86.000000C492.000000 -86.000000,488.000000 -84.000000,481.000000 -79.000000C441.000000 -47.000000,368.000000 -25.000000,306.000000 -25.000000C198.000000 -25.000000,118.000000 -94.000000,104.000000 -199.000000M104.000000 -240.000000C122.000000 -332.000000,194.000000 -390.000000,291.000000 -390.000000C388.000000 -390.000000,462.000000 -331.000000,478.000000 -240.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_102">
+      <path style="fill-rule: evenodd;" d="M271.000000 -376.000000L460.000000 -376.000000C478.000000 -376.000000,487.000000 -383.000000,487.000000 -397.000000C487.000000 -410.000000,478.000000 -417.000000,460.000000 -417.000000L271.000000 -417.000000L271.000000 -478.000000C271.000000 -528.000000,316.000000 -563.000000,382.000000 -563.000000C404.000000 -563.000000,443.000000 -560.000000,470.000000 -557.000000C518.000000 -551.000000,518.000000 -551.000000,520.000000 -551.000000C532.000000 -551.000000,541.000000 -559.000000,541.000000 -571.000000C541.000000 -581.000000,535.000000 -588.000000,523.000000 -591.000000C491.000000 -597.000000,422.000000 -604.000000,384.000000 -604.000000C294.000000 -604.000000,230.000000 -551.000000,230.000000 -478.000000L230.000000 -417.000000L142.000000 -417.000000C124.000000 -417.000000,115.000000 -410.000000,115.000000 -397.000000C115.000000 -383.000000,124.000000 -376.000000,142.000000 -376.000000L230.000000 -376.000000L230.000000 -41.000000L132.000000 -41.000000C114.000000 -41.000000,105.000000 -34.000000,105.000000 -21.000000C105.000000 -7.000000,114.000000 -0.000000,132.000000 -0.000000L449.000000 -0.000000C466.000000 -0.000000,476.000000 -7.000000,476.000000 -21.000000C476.000000 -34.000000,467.000000 -41.000000,449.000000 -41.000000L271.000000 -41.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_115">
+      <path style="fill-rule: evenodd;" d="M432.000000 -385.000000C397.000000 -416.000000,352.000000 -431.000000,295.000000 -431.000000C197.000000 -431.000000,124.000000 -383.000000,124.000000 -318.000000C124.000000 -287.000000,142.000000 -257.000000,170.000000 -239.000000C198.000000 -222.000000,226.000000 -215.000000,300.000000 -207.000000C355.000000 -201.000000,382.000000 -194.000000,408.000000 -180.000000C435.000000 -165.000000,452.000000 -140.000000,452.000000 -117.000000C452.000000 -64.000000,386.000000 -25.000000,298.000000 -25.000000C213.000000 -25.000000,144.000000 -62.000000,144.000000 -108.000000L144.000000 -115.000000C144.000000 -128.000000,136.000000 -137.000000,124.000000 -137.000000C110.000000 -137.000000,103.000000 -128.000000,103.000000 -110.000000L103.000000 -27.000000C103.000000 -9.000000,110.000000 -0.000000,124.000000 -0.000000C137.000000 -0.000000,144.000000 -9.000000,144.000000 -27.000000L144.000000 -38.000000C186.000000 -1.000000,236.000000 16.000000,301.000000 16.000000C414.000000 16.000000,497.000000 -40.000000,497.000000 -116.000000C497.000000 -151.000000,478.000000 -185.000000,447.000000 -206.000000C415.000000 -227.000000,378.000000 -238.000000,317.000000 -245.000000C229.000000 -254.000000,223.000000 -256.000000,201.000000 -270.000000C180.000000 -282.000000,169.000000 -299.000000,169.000000 -315.000000C169.000000 -358.000000,225.000000 -390.000000,299.000000 -390.000000C375.000000 -390.000000,427.000000 -361.000000,432.000000 -316.000000C434.000000 -300.000000,441.000000 -293.000000,453.000000 -293.000000C466.000000 -293.000000,473.000000 -302.000000,473.000000 -320.000000L473.000000 -389.000000C473.000000 -408.000000,466.000000 -417.000000,453.000000 -417.000000C440.000000 -417.000000,432.000000 -406.000000,432.000000 -389.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_116">
+      <path style="fill-rule: evenodd;" d="M186.000000 -417.000000L186.000000 -536.000000C186.000000 -555.000000,180.000000 -563.000000,166.000000 -563.000000C152.000000 -563.000000,145.000000 -554.000000,145.000000 -536.000000L145.000000 -417.000000L71.000000 -417.000000C52.000000 -417.000000,43.000000 -410.000000,43.000000 -397.000000C43.000000 -383.000000,52.000000 -376.000000,71.000000 -376.000000L145.000000 -376.000000L145.000000 -107.000000C145.000000 -32.000000,206.000000 16.000000,300.000000 16.000000C385.000000 16.000000,499.000000 -22.000000,499.000000 -51.000000C499.000000 -61.000000,490.000000 -71.000000,480.000000 -71.000000C475.000000 -71.000000,472.000000 -70.000000,464.000000 -65.000000C425.000000 -42.000000,354.000000 -25.000000,298.000000 -25.000000C229.000000 -25.000000,186.000000 -58.000000,186.000000 -109.000000L186.000000 -376.000000L406.000000 -376.000000C424.000000 -376.000000,433.000000 -383.000000,433.000000 -397.000000C433.000000 -410.000000,424.000000 -417.000000,406.000000 -417.000000"></path>
+    </g>
+    <g transform="scale(0.006974,0.006974)" id="GLYPHcmmi7_111">
+      <path style="fill-rule: evenodd;" d="M531.000000 -266.000000C531.000000 -377.000000,448.000000 -441.000000,350.000000 -441.000000C202.000000 -441.000000,62.000000 -302.000000,62.000000 -165.000000C62.000000 -65.000000,135.000000 10.000000,244.000000 10.000000C387.000000 10.000000,531.000000 -122.000000,531.000000 -266.000000M245.000000 -18.000000C195.000000 -18.000000,145.000000 -50.000000,145.000000 -129.000000C145.000000 -170.000000,164.000000 -268.000000,203.000000 -325.000000C246.000000 -387.000000,304.000000 -413.000000,349.000000 -413.000000C403.000000 -413.000000,449.000000 -376.000000,449.000000 -302.000000C449.000000 -278.000000,437.000000 -179.000000,393.000000 -109.000000C355.000000 -50.000000,295.000000 -18.000000,245.000000 -18.000000"></path>
+    </g>
+    <g transform="scale(0.006974,0.006974)" id="GLYPHcmmi7_116">
+      <path style="fill-rule: evenodd;" d="M246.000000 -395.000000L348.000000 -395.000000C367.000000 -395.000000,380.000000 -395.000000,380.000000 -417.000000C380.000000 -431.000000,367.000000 -431.000000,350.000000 -431.000000L255.000000 -431.000000L292.000000 -579.000000C293.000000 -584.000000,295.000000 -589.000000,295.000000 -593.000000C295.000000 -611.000000,281.000000 -625.000000,261.000000 -625.000000C236.000000 -625.000000,221.000000 -608.000000,214.000000 -582.000000C207.000000 -557.000000,220.000000 -605.000000,176.000000 -431.000000L74.000000 -431.000000C55.000000 -431.000000,42.000000 -431.000000,42.000000 -409.000000C42.000000 -395.000000,54.000000 -395.000000,72.000000 -395.000000L167.000000 -395.000000L108.000000 -159.000000C102.000000 -134.000000,93.000000 -98.000000,93.000000 -85.000000C93.000000 -26.000000,143.000000 10.000000,200.000000 10.000000C311.000000 10.000000,374.000000 -130.000000,374.000000 -143.000000C374.000000 -156.000000,361.000000 -156.000000,358.000000 -156.000000C346.000000 -156.000000,345.000000 -154.000000,337.000000 -137.000000C309.000000 -74.000000,258.000000 -18.000000,203.000000 -18.000000C182.000000 -18.000000,168.000000 -31.000000,168.000000 -67.000000C168.000000 -77.000000,172.000000 -98.000000,174.000000 -108.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmsy10_0">
+      <path style="fill-rule: evenodd;" d="M659.000000 -230.000000C676.000000 -230.000000,694.000000 -230.000000,694.000000 -250.000000C694.000000 -270.000000,676.000000 -270.000000,659.000000 -270.000000L118.000000 -270.000000C101.000000 -270.000000,83.000000 -270.000000,83.000000 -250.000000C83.000000 -230.000000,101.000000 -230.000000,118.000000 -230.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmsy10_20">
+      <path style="fill-rule: evenodd;" d="M675.000000 -594.000000C686.000000 -599.000000,694.000000 -604.000000,694.000000 -616.000000C694.000000 -627.000000,686.000000 -636.000000,674.000000 -636.000000C669.000000 -636.000000,660.000000 -632.000000,656.000000 -630.000000L103.000000 -369.000000C86.000000 -361.000000,83.000000 -354.000000,83.000000 -346.000000C83.000000 -337.000000,89.000000 -330.000000,103.000000 -324.000000L656.000000 -64.000000C669.000000 -57.000000,671.000000 -57.000000,674.000000 -57.000000C685.000000 -57.000000,694.000000 -66.000000,694.000000 -77.000000C694.000000 -86.000000,690.000000 -92.000000,673.000000 -100.000000L150.000000 -346.000000M659.000000 137.000000C676.000000 137.000000,694.000000 137.000000,694.000000 117.000000C694.000000 97.000000,673.000000 97.000000,658.000000 97.000000L119.000000 97.000000C104.000000 97.000000,83.000000 97.000000,83.000000 117.000000C83.000000 137.000000,101.000000 137.000000,118.000000 137.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmmi10_103">
+      <path style="fill-rule: evenodd;" d="M471.000000 -377.000000C472.000000 -383.000000,474.000000 -388.000000,474.000000 -395.000000C474.000000 -412.000000,462.000000 -422.000000,445.000000 -422.000000C435.000000 -422.000000,408.000000 -415.000000,404.000000 -379.000000C386.000000 -416.000000,351.000000 -442.000000,311.000000 -442.000000C197.000000 -442.000000,73.000000 -302.000000,73.000000 -158.000000C73.000000 -59.000000,134.000000 -0.000000,206.000000 -0.000000C265.000000 -0.000000,312.000000 -47.000000,322.000000 -58.000000L323.000000 -57.000000C302.000000 32.000000,290.000000 73.000000,290.000000 75.000000C286.000000 84.000000,252.000000 183.000000,146.000000 183.000000C127.000000 183.000000,94.000000 182.000000,66.000000 173.000000C96.000000 164.000000,107.000000 138.000000,107.000000 121.000000C107.000000 105.000000,96.000000 86.000000,69.000000 86.000000C47.000000 86.000000,15.000000 104.000000,15.000000 144.000000C15.000000 185.000000,52.000000 205.000000,148.000000 205.000000C273.000000 205.000000,345.000000 127.000000,360.000000 67.000000M341.000000 -128.000000C335.000000 -102.000000,312.000000 -77.000000,290.000000 -58.000000C269.000000 -40.000000,238.000000 -22.000000,209.000000 -22.000000C159.000000 -22.000000,144.000000 -74.000000,144.000000 -114.000000C144.000000 -162.000000,173.000000 -280.000000,200.000000 -331.000000C227.000000 -380.000000,270.000000 -420.000000,312.000000 -420.000000C378.000000 -420.000000,392.000000 -339.000000,392.000000 -334.000000C392.000000 -329.000000,390.000000 -323.000000,389.000000 -319.000000"></path>
+    </g>
+  </defs>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,0.985840 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_103"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,8.588928 12.938187)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi7_111"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,20.105591 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_20"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,36.931412 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_103"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,44.534317 12.938187)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi7_116"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,53.688919 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_0"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,69.629150 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHpcrr8r_79"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="6.000092"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="12.000185"></use>
+    <use xlink:href="#GLYPHpcrr8r_115" x="18.000277"></use>
+    <use xlink:href="#GLYPHpcrr8r_101" x="24.000369"></use>
+    <use xlink:href="#GLYPHpcrr8r_116" x="30.000462"></use>
+  </g>
+</svg></span>
+For <a href="#LightDark"><i><code><span data-if="hdevelop" style="display:inline">LightDark</span><span data-if="c" style="display:none">LightDark</span><span data-if="cpp" style="display:none">LightDark</span><span data-if="dotnet" style="display:none">lightDark</span><span data-if="python" style="display:none">light_dark</span></code></i></a> = <i><span data-if="hdevelop" style="display:inline">'equal'</span><span data-if="c" style="display:none">"equal"</span><span data-if="cpp" style="display:none">"equal"</span><span data-if="dotnet" style="display:none">"equal"</span><span data-if="python" style="display:none">"equal"</span></i> it is:
+<span title="3" class="displaymath"><!-- Created by MetaPost 1.902 on 2025.11.04:1301 --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="14.9603em" height="0.955831em" viewBox="0 0 239.364746 15.293304">
+<!-- Original BoundingBox: -119.682373 -7.646652 119.682373 7.646652 -->
+  <defs>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_79">
+      <path style="fill-rule: evenodd;" d="M300.000000 -576.000000C161.000000 -576.000000,51.000000 -445.000000,51.000000 -280.000000C51.000000 -115.000000,161.000000 16.000000,300.000000 16.000000C437.000000 16.000000,549.000000 -115.000000,549.000000 -276.000000C549.000000 -446.000000,441.000000 -576.000000,300.000000 -576.000000M300.000000 -535.000000C416.000000 -535.000000,508.000000 -421.000000,508.000000 -277.000000C508.000000 -140.000000,413.000000 -25.000000,300.000000 -25.000000C186.000000 -25.000000,92.000000 -140.000000,92.000000 -280.000000C92.000000 -420.000000,185.000000 -535.000000,300.000000 -535.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_101">
+      <path style="fill-rule: evenodd;" d="M520.000000 -199.000000C520.000000 -245.000000,517.000000 -264.000000,503.000000 -297.000000C467.000000 -380.000000,387.000000 -431.000000,291.000000 -431.000000C163.000000 -431.000000,63.000000 -338.000000,63.000000 -217.000000C63.000000 -87.000000,170.000000 16.000000,305.000000 16.000000C396.000000 16.000000,516.000000 -31.000000,516.000000 -66.000000C516.000000 -77.000000,507.000000 -86.000000,497.000000 -86.000000C492.000000 -86.000000,488.000000 -84.000000,481.000000 -79.000000C441.000000 -47.000000,368.000000 -25.000000,306.000000 -25.000000C198.000000 -25.000000,118.000000 -94.000000,104.000000 -199.000000M104.000000 -240.000000C122.000000 -332.000000,194.000000 -390.000000,291.000000 -390.000000C388.000000 -390.000000,462.000000 -331.000000,478.000000 -240.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_102">
+      <path style="fill-rule: evenodd;" d="M271.000000 -376.000000L460.000000 -376.000000C478.000000 -376.000000,487.000000 -383.000000,487.000000 -397.000000C487.000000 -410.000000,478.000000 -417.000000,460.000000 -417.000000L271.000000 -417.000000L271.000000 -478.000000C271.000000 -528.000000,316.000000 -563.000000,382.000000 -563.000000C404.000000 -563.000000,443.000000 -560.000000,470.000000 -557.000000C518.000000 -551.000000,518.000000 -551.000000,520.000000 -551.000000C532.000000 -551.000000,541.000000 -559.000000,541.000000 -571.000000C541.000000 -581.000000,535.000000 -588.000000,523.000000 -591.000000C491.000000 -597.000000,422.000000 -604.000000,384.000000 -604.000000C294.000000 -604.000000,230.000000 -551.000000,230.000000 -478.000000L230.000000 -417.000000L142.000000 -417.000000C124.000000 -417.000000,115.000000 -410.000000,115.000000 -397.000000C115.000000 -383.000000,124.000000 -376.000000,142.000000 -376.000000L230.000000 -376.000000L230.000000 -41.000000L132.000000 -41.000000C114.000000 -41.000000,105.000000 -34.000000,105.000000 -21.000000C105.000000 -7.000000,114.000000 -0.000000,132.000000 -0.000000L449.000000 -0.000000C466.000000 -0.000000,476.000000 -7.000000,476.000000 -21.000000C476.000000 -34.000000,467.000000 -41.000000,449.000000 -41.000000L271.000000 -41.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_115">
+      <path style="fill-rule: evenodd;" d="M432.000000 -385.000000C397.000000 -416.000000,352.000000 -431.000000,295.000000 -431.000000C197.000000 -431.000000,124.000000 -383.000000,124.000000 -318.000000C124.000000 -287.000000,142.000000 -257.000000,170.000000 -239.000000C198.000000 -222.000000,226.000000 -215.000000,300.000000 -207.000000C355.000000 -201.000000,382.000000 -194.000000,408.000000 -180.000000C435.000000 -165.000000,452.000000 -140.000000,452.000000 -117.000000C452.000000 -64.000000,386.000000 -25.000000,298.000000 -25.000000C213.000000 -25.000000,144.000000 -62.000000,144.000000 -108.000000L144.000000 -115.000000C144.000000 -128.000000,136.000000 -137.000000,124.000000 -137.000000C110.000000 -137.000000,103.000000 -128.000000,103.000000 -110.000000L103.000000 -27.000000C103.000000 -9.000000,110.000000 -0.000000,124.000000 -0.000000C137.000000 -0.000000,144.000000 -9.000000,144.000000 -27.000000L144.000000 -38.000000C186.000000 -1.000000,236.000000 16.000000,301.000000 16.000000C414.000000 16.000000,497.000000 -40.000000,497.000000 -116.000000C497.000000 -151.000000,478.000000 -185.000000,447.000000 -206.000000C415.000000 -227.000000,378.000000 -238.000000,317.000000 -245.000000C229.000000 -254.000000,223.000000 -256.000000,201.000000 -270.000000C180.000000 -282.000000,169.000000 -299.000000,169.000000 -315.000000C169.000000 -358.000000,225.000000 -390.000000,299.000000 -390.000000C375.000000 -390.000000,427.000000 -361.000000,432.000000 -316.000000C434.000000 -300.000000,441.000000 -293.000000,453.000000 -293.000000C466.000000 -293.000000,473.000000 -302.000000,473.000000 -320.000000L473.000000 -389.000000C473.000000 -408.000000,466.000000 -417.000000,453.000000 -417.000000C440.000000 -417.000000,432.000000 -406.000000,432.000000 -389.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_116">
+      <path style="fill-rule: evenodd;" d="M186.000000 -417.000000L186.000000 -536.000000C186.000000 -555.000000,180.000000 -563.000000,166.000000 -563.000000C152.000000 -563.000000,145.000000 -554.000000,145.000000 -536.000000L145.000000 -417.000000L71.000000 -417.000000C52.000000 -417.000000,43.000000 -410.000000,43.000000 -397.000000C43.000000 -383.000000,52.000000 -376.000000,71.000000 -376.000000L145.000000 -376.000000L145.000000 -107.000000C145.000000 -32.000000,206.000000 16.000000,300.000000 16.000000C385.000000 16.000000,499.000000 -22.000000,499.000000 -51.000000C499.000000 -61.000000,490.000000 -71.000000,480.000000 -71.000000C475.000000 -71.000000,472.000000 -70.000000,464.000000 -65.000000C425.000000 -42.000000,354.000000 -25.000000,298.000000 -25.000000C229.000000 -25.000000,186.000000 -58.000000,186.000000 -109.000000L186.000000 -376.000000L406.000000 -376.000000C424.000000 -376.000000,433.000000 -383.000000,433.000000 -397.000000C433.000000 -410.000000,424.000000 -417.000000,406.000000 -417.000000"></path>
+    </g>
+    <g transform="scale(0.006974,0.006974)" id="GLYPHcmmi7_111">
+      <path style="fill-rule: evenodd;" d="M531.000000 -266.000000C531.000000 -377.000000,448.000000 -441.000000,350.000000 -441.000000C202.000000 -441.000000,62.000000 -302.000000,62.000000 -165.000000C62.000000 -65.000000,135.000000 10.000000,244.000000 10.000000C387.000000 10.000000,531.000000 -122.000000,531.000000 -266.000000M245.000000 -18.000000C195.000000 -18.000000,145.000000 -50.000000,145.000000 -129.000000C145.000000 -170.000000,164.000000 -268.000000,203.000000 -325.000000C246.000000 -387.000000,304.000000 -413.000000,349.000000 -413.000000C403.000000 -413.000000,449.000000 -376.000000,449.000000 -302.000000C449.000000 -278.000000,437.000000 -179.000000,393.000000 -109.000000C355.000000 -50.000000,295.000000 -18.000000,245.000000 -18.000000"></path>
+    </g>
+    <g transform="scale(0.006974,0.006974)" id="GLYPHcmmi7_116">
+      <path style="fill-rule: evenodd;" d="M246.000000 -395.000000L348.000000 -395.000000C367.000000 -395.000000,380.000000 -395.000000,380.000000 -417.000000C380.000000 -431.000000,367.000000 -431.000000,350.000000 -431.000000L255.000000 -431.000000L292.000000 -579.000000C293.000000 -584.000000,295.000000 -589.000000,295.000000 -593.000000C295.000000 -611.000000,281.000000 -625.000000,261.000000 -625.000000C236.000000 -625.000000,221.000000 -608.000000,214.000000 -582.000000C207.000000 -557.000000,220.000000 -605.000000,176.000000 -431.000000L74.000000 -431.000000C55.000000 -431.000000,42.000000 -431.000000,42.000000 -409.000000C42.000000 -395.000000,54.000000 -395.000000,72.000000 -395.000000L167.000000 -395.000000L108.000000 -159.000000C102.000000 -134.000000,93.000000 -98.000000,93.000000 -85.000000C93.000000 -26.000000,143.000000 10.000000,200.000000 10.000000C311.000000 10.000000,374.000000 -130.000000,374.000000 -143.000000C374.000000 -156.000000,361.000000 -156.000000,358.000000 -156.000000C346.000000 -156.000000,345.000000 -154.000000,337.000000 -137.000000C309.000000 -74.000000,258.000000 -18.000000,203.000000 -18.000000C182.000000 -18.000000,168.000000 -31.000000,168.000000 -67.000000C168.000000 -77.000000,172.000000 -98.000000,174.000000 -108.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmr10_43">
+      <path style="fill-rule: evenodd;" d="M409.000000 -230.000000L688.000000 -230.000000C702.000000 -230.000000,721.000000 -230.000000,721.000000 -250.000000C721.000000 -270.000000,702.000000 -270.000000,688.000000 -270.000000L409.000000 -270.000000L409.000000 -550.000000C409.000000 -564.000000,409.000000 -583.000000,389.000000 -583.000000C369.000000 -583.000000,369.000000 -564.000000,369.000000 -550.000000L369.000000 -270.000000L89.000000 -270.000000C75.000000 -270.000000,56.000000 -270.000000,56.000000 -250.000000C56.000000 -230.000000,75.000000 -230.000000,89.000000 -230.000000L369.000000 -230.000000L369.000000 50.000000C369.000000 64.000000,369.000000 83.000000,389.000000 83.000000C409.000000 83.000000,409.000000 64.000000,409.000000 50.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmsy10_0">
+      <path style="fill-rule: evenodd;" d="M659.000000 -230.000000C676.000000 -230.000000,694.000000 -230.000000,694.000000 -250.000000C694.000000 -270.000000,676.000000 -270.000000,659.000000 -270.000000L118.000000 -270.000000C101.000000 -270.000000,83.000000 -270.000000,83.000000 -250.000000C83.000000 -230.000000,101.000000 -230.000000,118.000000 -230.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmsy10_20">
+      <path style="fill-rule: evenodd;" d="M675.000000 -594.000000C686.000000 -599.000000,694.000000 -604.000000,694.000000 -616.000000C694.000000 -627.000000,686.000000 -636.000000,674.000000 -636.000000C669.000000 -636.000000,660.000000 -632.000000,656.000000 -630.000000L103.000000 -369.000000C86.000000 -361.000000,83.000000 -354.000000,83.000000 -346.000000C83.000000 -337.000000,89.000000 -330.000000,103.000000 -324.000000L656.000000 -64.000000C669.000000 -57.000000,671.000000 -57.000000,674.000000 -57.000000C685.000000 -57.000000,694.000000 -66.000000,694.000000 -77.000000C694.000000 -86.000000,690.000000 -92.000000,673.000000 -100.000000L150.000000 -346.000000M659.000000 137.000000C676.000000 137.000000,694.000000 137.000000,694.000000 117.000000C694.000000 97.000000,673.000000 97.000000,658.000000 97.000000L119.000000 97.000000C104.000000 97.000000,83.000000 97.000000,83.000000 117.000000C83.000000 137.000000,101.000000 137.000000,118.000000 137.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmmi10_103">
+      <path style="fill-rule: evenodd;" d="M471.000000 -377.000000C472.000000 -383.000000,474.000000 -388.000000,474.000000 -395.000000C474.000000 -412.000000,462.000000 -422.000000,445.000000 -422.000000C435.000000 -422.000000,408.000000 -415.000000,404.000000 -379.000000C386.000000 -416.000000,351.000000 -442.000000,311.000000 -442.000000C197.000000 -442.000000,73.000000 -302.000000,73.000000 -158.000000C73.000000 -59.000000,134.000000 -0.000000,206.000000 -0.000000C265.000000 -0.000000,312.000000 -47.000000,322.000000 -58.000000L323.000000 -57.000000C302.000000 32.000000,290.000000 73.000000,290.000000 75.000000C286.000000 84.000000,252.000000 183.000000,146.000000 183.000000C127.000000 183.000000,94.000000 182.000000,66.000000 173.000000C96.000000 164.000000,107.000000 138.000000,107.000000 121.000000C107.000000 105.000000,96.000000 86.000000,69.000000 86.000000C47.000000 86.000000,15.000000 104.000000,15.000000 144.000000C15.000000 185.000000,52.000000 205.000000,148.000000 205.000000C273.000000 205.000000,345.000000 127.000000,360.000000 67.000000M341.000000 -128.000000C335.000000 -102.000000,312.000000 -77.000000,290.000000 -58.000000C269.000000 -40.000000,238.000000 -22.000000,209.000000 -22.000000C159.000000 -22.000000,144.000000 -74.000000,144.000000 -114.000000C144.000000 -162.000000,173.000000 -280.000000,200.000000 -331.000000C227.000000 -380.000000,270.000000 -420.000000,312.000000 -420.000000C378.000000 -420.000000,392.000000 -339.000000,392.000000 -334.000000C392.000000 -329.000000,390.000000 -323.000000,389.000000 -319.000000"></path>
+    </g>
+  </defs>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,0.317627 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_103"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,7.920715 12.938187)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi7_116"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,17.075134 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_0"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,33.015366 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHpcrr8r_79"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="6.000092"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="12.000185"></use>
+    <use xlink:href="#GLYPHpcrr8r_115" x="18.000277"></use>
+    <use xlink:href="#GLYPHpcrr8r_101" x="24.000369"></use>
+    <use xlink:href="#GLYPHpcrr8r_116" x="30.000462"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,94.828217 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_20"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,111.653885 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_103"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,119.256973 12.938187)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi7_111"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,130.773636 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_20"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,147.599457 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_103"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,155.202545 12.938187)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi7_116"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,164.356979 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmr10_43"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,180.297348 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHpcrr8r_79"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="6.000092"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="12.000185"></use>
+    <use xlink:href="#GLYPHpcrr8r_115" x="18.000277"></use>
+    <use xlink:href="#GLYPHpcrr8r_101" x="24.000369"></use>
+    <use xlink:href="#GLYPHpcrr8r_116" x="30.000462"></use>
+  </g>
+</svg></span>
+Finally, for <a href="#LightDark"><i><code><span data-if="hdevelop" style="display:inline">LightDark</span><span data-if="c" style="display:none">LightDark</span><span data-if="cpp" style="display:none">LightDark</span><span data-if="dotnet" style="display:none">lightDark</span><span data-if="python" style="display:none">light_dark</span></code></i></a> = <i><span data-if="hdevelop" style="display:inline">'not_equal'</span><span data-if="c" style="display:none">"not_equal"</span><span data-if="cpp" style="display:none">"not_equal"</span><span data-if="dotnet" style="display:none">"not_equal"</span><span data-if="python" style="display:none">"not_equal"</span></i> it is:
+<span title="4" class="displaymath"><!-- Created by MetaPost 1.902 on 2025.11.04:1301 --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="16.9855em" height="0.955831em" viewBox="0 0 271.767899 15.293304">
+<!-- Original BoundingBox: -135.883957 -7.646652 135.883942 7.646652 -->
+  <defs>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_79">
+      <path style="fill-rule: evenodd;" d="M300.000000 -576.000000C161.000000 -576.000000,51.000000 -445.000000,51.000000 -280.000000C51.000000 -115.000000,161.000000 16.000000,300.000000 16.000000C437.000000 16.000000,549.000000 -115.000000,549.000000 -276.000000C549.000000 -446.000000,441.000000 -576.000000,300.000000 -576.000000M300.000000 -535.000000C416.000000 -535.000000,508.000000 -421.000000,508.000000 -277.000000C508.000000 -140.000000,413.000000 -25.000000,300.000000 -25.000000C186.000000 -25.000000,92.000000 -140.000000,92.000000 -280.000000C92.000000 -420.000000,185.000000 -535.000000,300.000000 -535.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_101">
+      <path style="fill-rule: evenodd;" d="M520.000000 -199.000000C520.000000 -245.000000,517.000000 -264.000000,503.000000 -297.000000C467.000000 -380.000000,387.000000 -431.000000,291.000000 -431.000000C163.000000 -431.000000,63.000000 -338.000000,63.000000 -217.000000C63.000000 -87.000000,170.000000 16.000000,305.000000 16.000000C396.000000 16.000000,516.000000 -31.000000,516.000000 -66.000000C516.000000 -77.000000,507.000000 -86.000000,497.000000 -86.000000C492.000000 -86.000000,488.000000 -84.000000,481.000000 -79.000000C441.000000 -47.000000,368.000000 -25.000000,306.000000 -25.000000C198.000000 -25.000000,118.000000 -94.000000,104.000000 -199.000000M104.000000 -240.000000C122.000000 -332.000000,194.000000 -390.000000,291.000000 -390.000000C388.000000 -390.000000,462.000000 -331.000000,478.000000 -240.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_102">
+      <path style="fill-rule: evenodd;" d="M271.000000 -376.000000L460.000000 -376.000000C478.000000 -376.000000,487.000000 -383.000000,487.000000 -397.000000C487.000000 -410.000000,478.000000 -417.000000,460.000000 -417.000000L271.000000 -417.000000L271.000000 -478.000000C271.000000 -528.000000,316.000000 -563.000000,382.000000 -563.000000C404.000000 -563.000000,443.000000 -560.000000,470.000000 -557.000000C518.000000 -551.000000,518.000000 -551.000000,520.000000 -551.000000C532.000000 -551.000000,541.000000 -559.000000,541.000000 -571.000000C541.000000 -581.000000,535.000000 -588.000000,523.000000 -591.000000C491.000000 -597.000000,422.000000 -604.000000,384.000000 -604.000000C294.000000 -604.000000,230.000000 -551.000000,230.000000 -478.000000L230.000000 -417.000000L142.000000 -417.000000C124.000000 -417.000000,115.000000 -410.000000,115.000000 -397.000000C115.000000 -383.000000,124.000000 -376.000000,142.000000 -376.000000L230.000000 -376.000000L230.000000 -41.000000L132.000000 -41.000000C114.000000 -41.000000,105.000000 -34.000000,105.000000 -21.000000C105.000000 -7.000000,114.000000 -0.000000,132.000000 -0.000000L449.000000 -0.000000C466.000000 -0.000000,476.000000 -7.000000,476.000000 -21.000000C476.000000 -34.000000,467.000000 -41.000000,449.000000 -41.000000L271.000000 -41.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_115">
+      <path style="fill-rule: evenodd;" d="M432.000000 -385.000000C397.000000 -416.000000,352.000000 -431.000000,295.000000 -431.000000C197.000000 -431.000000,124.000000 -383.000000,124.000000 -318.000000C124.000000 -287.000000,142.000000 -257.000000,170.000000 -239.000000C198.000000 -222.000000,226.000000 -215.000000,300.000000 -207.000000C355.000000 -201.000000,382.000000 -194.000000,408.000000 -180.000000C435.000000 -165.000000,452.000000 -140.000000,452.000000 -117.000000C452.000000 -64.000000,386.000000 -25.000000,298.000000 -25.000000C213.000000 -25.000000,144.000000 -62.000000,144.000000 -108.000000L144.000000 -115.000000C144.000000 -128.000000,136.000000 -137.000000,124.000000 -137.000000C110.000000 -137.000000,103.000000 -128.000000,103.000000 -110.000000L103.000000 -27.000000C103.000000 -9.000000,110.000000 -0.000000,124.000000 -0.000000C137.000000 -0.000000,144.000000 -9.000000,144.000000 -27.000000L144.000000 -38.000000C186.000000 -1.000000,236.000000 16.000000,301.000000 16.000000C414.000000 16.000000,497.000000 -40.000000,497.000000 -116.000000C497.000000 -151.000000,478.000000 -185.000000,447.000000 -206.000000C415.000000 -227.000000,378.000000 -238.000000,317.000000 -245.000000C229.000000 -254.000000,223.000000 -256.000000,201.000000 -270.000000C180.000000 -282.000000,169.000000 -299.000000,169.000000 -315.000000C169.000000 -358.000000,225.000000 -390.000000,299.000000 -390.000000C375.000000 -390.000000,427.000000 -361.000000,432.000000 -316.000000C434.000000 -300.000000,441.000000 -293.000000,453.000000 -293.000000C466.000000 -293.000000,473.000000 -302.000000,473.000000 -320.000000L473.000000 -389.000000C473.000000 -408.000000,466.000000 -417.000000,453.000000 -417.000000C440.000000 -417.000000,432.000000 -406.000000,432.000000 -389.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHpcrr8r_116">
+      <path style="fill-rule: evenodd;" d="M186.000000 -417.000000L186.000000 -536.000000C186.000000 -555.000000,180.000000 -563.000000,166.000000 -563.000000C152.000000 -563.000000,145.000000 -554.000000,145.000000 -536.000000L145.000000 -417.000000L71.000000 -417.000000C52.000000 -417.000000,43.000000 -410.000000,43.000000 -397.000000C43.000000 -383.000000,52.000000 -376.000000,71.000000 -376.000000L145.000000 -376.000000L145.000000 -107.000000C145.000000 -32.000000,206.000000 16.000000,300.000000 16.000000C385.000000 16.000000,499.000000 -22.000000,499.000000 -51.000000C499.000000 -61.000000,490.000000 -71.000000,480.000000 -71.000000C475.000000 -71.000000,472.000000 -70.000000,464.000000 -65.000000C425.000000 -42.000000,354.000000 -25.000000,298.000000 -25.000000C229.000000 -25.000000,186.000000 -58.000000,186.000000 -109.000000L186.000000 -376.000000L406.000000 -376.000000C424.000000 -376.000000,433.000000 -383.000000,433.000000 -397.000000C433.000000 -410.000000,424.000000 -417.000000,406.000000 -417.000000"></path>
+    </g>
+    <g transform="scale(0.006974,0.006974)" id="GLYPHcmmi7_111">
+      <path style="fill-rule: evenodd;" d="M531.000000 -266.000000C531.000000 -377.000000,448.000000 -441.000000,350.000000 -441.000000C202.000000 -441.000000,62.000000 -302.000000,62.000000 -165.000000C62.000000 -65.000000,135.000000 10.000000,244.000000 10.000000C387.000000 10.000000,531.000000 -122.000000,531.000000 -266.000000M245.000000 -18.000000C195.000000 -18.000000,145.000000 -50.000000,145.000000 -129.000000C145.000000 -170.000000,164.000000 -268.000000,203.000000 -325.000000C246.000000 -387.000000,304.000000 -413.000000,349.000000 -413.000000C403.000000 -413.000000,449.000000 -376.000000,449.000000 -302.000000C449.000000 -278.000000,437.000000 -179.000000,393.000000 -109.000000C355.000000 -50.000000,295.000000 -18.000000,245.000000 -18.000000"></path>
+    </g>
+    <g transform="scale(0.006974,0.006974)" id="GLYPHcmmi7_116">
+      <path style="fill-rule: evenodd;" d="M246.000000 -395.000000L348.000000 -395.000000C367.000000 -395.000000,380.000000 -395.000000,380.000000 -417.000000C380.000000 -431.000000,367.000000 -431.000000,350.000000 -431.000000L255.000000 -431.000000L292.000000 -579.000000C293.000000 -584.000000,295.000000 -589.000000,295.000000 -593.000000C295.000000 -611.000000,281.000000 -625.000000,261.000000 -625.000000C236.000000 -625.000000,221.000000 -608.000000,214.000000 -582.000000C207.000000 -557.000000,220.000000 -605.000000,176.000000 -431.000000L74.000000 -431.000000C55.000000 -431.000000,42.000000 -431.000000,42.000000 -409.000000C42.000000 -395.000000,54.000000 -395.000000,72.000000 -395.000000L167.000000 -395.000000L108.000000 -159.000000C102.000000 -134.000000,93.000000 -98.000000,93.000000 -85.000000C93.000000 -26.000000,143.000000 10.000000,200.000000 10.000000C311.000000 10.000000,374.000000 -130.000000,374.000000 -143.000000C374.000000 -156.000000,361.000000 -156.000000,358.000000 -156.000000C346.000000 -156.000000,345.000000 -154.000000,337.000000 -137.000000C309.000000 -74.000000,258.000000 -18.000000,203.000000 -18.000000C182.000000 -18.000000,168.000000 -31.000000,168.000000 -67.000000C168.000000 -77.000000,172.000000 -98.000000,174.000000 -108.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmr10_43">
+      <path style="fill-rule: evenodd;" d="M409.000000 -230.000000L688.000000 -230.000000C702.000000 -230.000000,721.000000 -230.000000,721.000000 -250.000000C721.000000 -270.000000,702.000000 -270.000000,688.000000 -270.000000L409.000000 -270.000000L409.000000 -550.000000C409.000000 -564.000000,409.000000 -583.000000,389.000000 -583.000000C369.000000 -583.000000,369.000000 -564.000000,369.000000 -550.000000L369.000000 -270.000000L89.000000 -270.000000C75.000000 -270.000000,56.000000 -270.000000,56.000000 -250.000000C56.000000 -230.000000,75.000000 -230.000000,89.000000 -230.000000L369.000000 -230.000000L369.000000 50.000000C369.000000 64.000000,369.000000 83.000000,389.000000 83.000000C409.000000 83.000000,409.000000 64.000000,409.000000 50.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmsy10_0">
+      <path style="fill-rule: evenodd;" d="M659.000000 -230.000000C676.000000 -230.000000,694.000000 -230.000000,694.000000 -250.000000C694.000000 -270.000000,676.000000 -270.000000,659.000000 -270.000000L118.000000 -270.000000C101.000000 -270.000000,83.000000 -270.000000,83.000000 -250.000000C83.000000 -230.000000,101.000000 -230.000000,118.000000 -230.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmsy10_95">
+      <path style="fill-rule: evenodd;" d="M604.000000 -558.000000C610.000000 -571.000000,611.000000 -573.000000,611.000000 -578.000000C611.000000 -589.000000,602.000000 -598.000000,591.000000 -598.000000C581.000000 -598.000000,575.000000 -591.000000,568.000000 -576.000000L333.000000 -47.000000L98.000000 -577.000000C90.000000 -596.000000,82.000000 -598.000000,75.000000 -598.000000C64.000000 -598.000000,55.000000 -589.000000,55.000000 -578.000000C55.000000 -576.000000,55.000000 -574.000000,61.000000 -562.000000L310.000000 1.000000C318.000000 18.000000,324.000000 22.000000,333.000000 22.000000C346.000000 22.000000,349.000000 15.000000,355.000000 1.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmmi10_62">
+      <path style="fill-rule: evenodd;" d="M675.000000 -228.000000C686.000000 -233.000000,694.000000 -238.000000,694.000000 -250.000000C694.000000 -262.000000,686.000000 -267.000000,675.000000 -272.000000L121.000000 -533.000000C108.000000 -540.000000,106.000000 -540.000000,103.000000 -540.000000C92.000000 -540.000000,83.000000 -531.000000,83.000000 -520.000000C83.000000 -511.000000,88.000000 -505.000000,102.000000 -498.000000L627.000000 -250.000000L102.000000 -2.000000C88.000000 5.000000,83.000000 11.000000,83.000000 20.000000C83.000000 31.000000,92.000000 40.000000,103.000000 40.000000C106.000000 40.000000,108.000000 40.000000,121.000000 33.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmmi10_103">
+      <path style="fill-rule: evenodd;" d="M471.000000 -377.000000C472.000000 -383.000000,474.000000 -388.000000,474.000000 -395.000000C474.000000 -412.000000,462.000000 -422.000000,445.000000 -422.000000C435.000000 -422.000000,408.000000 -415.000000,404.000000 -379.000000C386.000000 -416.000000,351.000000 -442.000000,311.000000 -442.000000C197.000000 -442.000000,73.000000 -302.000000,73.000000 -158.000000C73.000000 -59.000000,134.000000 -0.000000,206.000000 -0.000000C265.000000 -0.000000,312.000000 -47.000000,322.000000 -58.000000L323.000000 -57.000000C302.000000 32.000000,290.000000 73.000000,290.000000 75.000000C286.000000 84.000000,252.000000 183.000000,146.000000 183.000000C127.000000 183.000000,94.000000 182.000000,66.000000 173.000000C96.000000 164.000000,107.000000 138.000000,107.000000 121.000000C107.000000 105.000000,96.000000 86.000000,69.000000 86.000000C47.000000 86.000000,15.000000 104.000000,15.000000 144.000000C15.000000 185.000000,52.000000 205.000000,148.000000 205.000000C273.000000 205.000000,345.000000 127.000000,360.000000 67.000000M341.000000 -128.000000C335.000000 -102.000000,312.000000 -77.000000,290.000000 -58.000000C269.000000 -40.000000,238.000000 -22.000000,209.000000 -22.000000C159.000000 -22.000000,144.000000 -74.000000,144.000000 -114.000000C144.000000 -162.000000,173.000000 -280.000000,200.000000 -331.000000C227.000000 -380.000000,270.000000 -420.000000,312.000000 -420.000000C378.000000 -420.000000,392.000000 -339.000000,392.000000 -334.000000C392.000000 -329.000000,390.000000 -323.000000,389.000000 -319.000000"></path>
+    </g>
+  </defs>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,0.116043 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_103"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,7.719131 12.938187)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi7_116"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,16.873550 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_0"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,32.813782 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHpcrr8r_79"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="6.000092"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="12.000185"></use>
+    <use xlink:href="#GLYPHpcrr8r_115" x="18.000277"></use>
+    <use xlink:href="#GLYPHpcrr8r_101" x="24.000369"></use>
+    <use xlink:href="#GLYPHpcrr8r_116" x="30.000462"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,94.626633 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_62"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,111.452301 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_103"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,119.055389 12.938187)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi7_111"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,129.686600 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_95"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,143.855637 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_103"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,151.458710 12.938187)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi7_111"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,162.975388 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_62"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,179.801208 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_103"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,187.404282 12.938187)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi7_116"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,196.558716 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmr10_43"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,212.498932 10.547134)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHpcrr8r_79"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="6.000092"></use>
+    <use xlink:href="#GLYPHpcrr8r_102" x="12.000185"></use>
+    <use xlink:href="#GLYPHpcrr8r_115" x="18.000277"></use>
+    <use xlink:href="#GLYPHpcrr8r_101" x="24.000369"></use>
+    <use xlink:href="#GLYPHpcrr8r_116" x="30.000462"></use>
+  </g>
+</svg></span>
+</p>
+<p>Typically, the threshold images are smoothed versions of the
+original image (e.g., by applying <a href="mean_image.html"><code><span data-if="hdevelop" style="display:inline">mean_image</span><span data-if="c" style="display:none">mean_image</span><span data-if="cpp" style="display:none">MeanImage</span><span data-if="dotnet" style="display:none">MeanImage</span><span data-if="python" style="display:none">mean_image</span></code></a>,
+<a href="binomial_filter.html"><code><span data-if="hdevelop" style="display:inline">binomial_filter</span><span data-if="c" style="display:none">binomial_filter</span><span data-if="cpp" style="display:none">BinomialFilter</span><span data-if="dotnet" style="display:none">BinomialFilter</span><span data-if="python" style="display:none">binomial_filter</span></code></a>, <a href="gauss_filter.html"><code><span data-if="hdevelop" style="display:inline">gauss_filter</span><span data-if="c" style="display:none">gauss_filter</span><span data-if="cpp" style="display:none">GaussFilter</span><span data-if="dotnet" style="display:none">GaussFilter</span><span data-if="python" style="display:none">gauss_filter</span></code></a>, etc.).  Then the
+effect of <code><span data-if="hdevelop" style="display:inline">dyn_threshold</span><span data-if="c" style="display:none">dyn_threshold</span><span data-if="cpp" style="display:none">DynThreshold</span><span data-if="dotnet" style="display:none">DynThreshold</span><span data-if="python" style="display:none">dyn_threshold</span></code> is similar to applying
+<a href="threshold.html"><code><span data-if="hdevelop" style="display:inline">threshold</span><span data-if="c" style="display:none">threshold</span><span data-if="cpp" style="display:none">Threshold</span><span data-if="dotnet" style="display:none">Threshold</span><span data-if="python" style="display:none">threshold</span></code></a> to a highpass-filtered version of the original
+image (see <a href="highpass_image.html"><code><span data-if="hdevelop" style="display:inline">highpass_image</span><span data-if="c" style="display:none">highpass_image</span><span data-if="cpp" style="display:none">HighpassImage</span><span data-if="dotnet" style="display:none">HighpassImage</span><span data-if="python" style="display:none">highpass_image</span></code></a>).
+</p>
+<p>With <code><span data-if="hdevelop" style="display:inline">dyn_threshold</span><span data-if="c" style="display:none">dyn_threshold</span><span data-if="cpp" style="display:none">DynThreshold</span><span data-if="dotnet" style="display:none">DynThreshold</span><span data-if="python" style="display:none">dyn_threshold</span></code>, contours of an object can be extracted,
+where the objects' size (diameter) is determined by the mask size of
+the lowpass filter and the amplitude of the objects' edges:
+</p>
+<p>The larger the mask size is chosen, the larger the found regions
+become.  As a rule of thumb, the mask size should be about twice the
+diameter of the objects to be extracted.  It is important not to set
+the parameter <a href="#Offset"><i><code><span data-if="hdevelop" style="display:inline">Offset</span><span data-if="c" style="display:none">Offset</span><span data-if="cpp" style="display:none">Offset</span><span data-if="dotnet" style="display:none">offset</span><span data-if="python" style="display:none">offset</span></code></i></a> to zero because in this case too
+many small regions will be found (noise).  Values between 5 and 40
+are a useful choice.  The larger <a href="#Offset"><i><code><span data-if="hdevelop" style="display:inline">Offset</span><span data-if="c" style="display:none">Offset</span><span data-if="cpp" style="display:none">Offset</span><span data-if="dotnet" style="display:none">offset</span><span data-if="python" style="display:none">offset</span></code></i></a> is chosen, the
+smaller the extracted regions become.
+</p>
+<p>All points of the input image fulfilling the above condition are
+stored jointly in one region.  If necessary, the connected
+components can be obtained by calling <a href="connection.html"><code><span data-if="hdevelop" style="display:inline">connection</span><span data-if="c" style="display:none">connection</span><span data-if="cpp" style="display:none">Connection</span><span data-if="dotnet" style="display:none">Connection</span><span data-if="python" style="display:none">connection</span></code></a>.</p>
+<h2 id="sec_attention">Attention</h2>
+<p>If <a href="#Offset"><i><code><span data-if="hdevelop" style="display:inline">Offset</span><span data-if="c" style="display:none">Offset</span><span data-if="cpp" style="display:none">Offset</span><span data-if="dotnet" style="display:none">offset</span><span data-if="python" style="display:none">offset</span></code></i></a> is chosen from  -1 to 1 
+usually a very noisy region is generated, requiring large storage.
+If <a href="#Offset"><i><code><span data-if="hdevelop" style="display:inline">Offset</span><span data-if="c" style="display:none">Offset</span><span data-if="cpp" style="display:none">Offset</span><span data-if="dotnet" style="display:none">offset</span><span data-if="python" style="display:none">offset</span></code></i></a> is chosen too large (&gt; 60, say) it may happen
+that no points fulfill the threshold condition (i.e., an empty
+region is returned).  If <a href="#Offset"><i><code><span data-if="hdevelop" style="display:inline">Offset</span><span data-if="c" style="display:none">Offset</span><span data-if="cpp" style="display:none">Offset</span><span data-if="dotnet" style="display:none">offset</span><span data-if="python" style="display:none">offset</span></code></i></a> is chosen too small (&lt;
+-60, say) it may happen that all points fulfill the threshold
+condition (i.e., a full region is returned).</p>
+<h2 id="sec_execution">Execution Information</h2>
+<ul>
+  <li>Multithreading type: reentrant (runs in parallel with non-exclusive operators).</li>
+<li>Multithreading scope: global (may be called from any thread).</li>
+  
+    <li>Automatically parallelized on tuple level.</li>
+    <li>Automatically parallelized on  domain level.</li>
+  
+</ul>
+<h2 id="sec_parameters">Parameters</h2>
+  <div class="par">
+<div class="parhead">
+<span id="OrigImage" class="parname"><b><code><span data-if="hdevelop" style="display:inline">OrigImage</span><span data-if="c" style="display:none">OrigImage</span><span data-if="cpp" style="display:none">OrigImage</span><span data-if="dotnet" style="display:none">origImage</span><span data-if="python" style="display:none">orig_image</span></code></b> (input_object)  </span><span>singlechannelimage(-array) <code>→</code> <span data-if="hdevelop" style="display:inline">object</span><span data-if="dotnet" style="display:none"><a href="HImage.html">HImage</a></span><span data-if="python" style="display:none">HObject</span><span data-if="cpp" style="display:none"><a href="HImage.html">HObject</a></span><span data-if="c" style="display:none">Hobject</span> (byte / int2 / uint2 / int4 / real)</span>
+</div>
+<p class="pardesc">Input image.</p>
+</div>
+  <div class="par">
+<div class="parhead">
+<span id="ThresholdImage" class="parname"><b><code><span data-if="hdevelop" style="display:inline">ThresholdImage</span><span data-if="c" style="display:none">ThresholdImage</span><span data-if="cpp" style="display:none">ThresholdImage</span><span data-if="dotnet" style="display:none">thresholdImage</span><span data-if="python" style="display:none">threshold_image</span></code></b> (input_object)  </span><span>singlechannelimage(-array) <code>→</code> <span data-if="hdevelop" style="display:inline">object</span><span data-if="dotnet" style="display:none"><a href="HImage.html">HImage</a></span><span data-if="python" style="display:none">HObject</span><span data-if="cpp" style="display:none"><a href="HImage.html">HObject</a></span><span data-if="c" style="display:none">Hobject</span> (byte / int2 / uint2 / int4 / real)</span>
+</div>
+<p class="pardesc">Image containing the local thresholds.</p>
+</div>
+  <div class="par">
+<div class="parhead">
+<span id="RegionDynThresh" class="parname"><b><code><span data-if="hdevelop" style="display:inline">RegionDynThresh</span><span data-if="c" style="display:none">RegionDynThresh</span><span data-if="cpp" style="display:none">RegionDynThresh</span><span data-if="dotnet" style="display:none">regionDynThresh</span><span data-if="python" style="display:none">region_dyn_thresh</span></code></b> (output_object)  </span><span>region(-array) <code>→</code> <span data-if="hdevelop" style="display:inline">object</span><span data-if="dotnet" style="display:none"><a href="HRegion.html">HRegion</a></span><span data-if="python" style="display:none">HObject</span><span data-if="cpp" style="display:none"><a href="HRegion.html">HObject</a></span><span data-if="c" style="display:none">Hobject *</span></span>
+</div>
+<p class="pardesc">Segmented regions.</p>
+</div>
+  <div class="par">
+<div class="parhead">
+<span id="Offset" class="parname"><b><code><span data-if="hdevelop" style="display:inline">Offset</span><span data-if="c" style="display:none">Offset</span><span data-if="cpp" style="display:none">Offset</span><span data-if="dotnet" style="display:none">offset</span><span data-if="python" style="display:none">offset</span></code></b> (input_control)  </span><span>number <code>→</code> <span data-if="dotnet" style="display:none"><a href="HTuple.html">HTuple</a></span><span data-if="python" style="display:none">Union[int, float]</span><span data-if="cpp" style="display:none"><a href="HTuple.html">HTuple</a></span><span data-if="c" style="display:none">Htuple</span><span data-if="hdevelop" style="display:inline"> (real / </span><span data-if="hdevelop" style="display:inline">integer)</span><span data-if="dotnet" style="display:none"> (<i>double</i> / </span><span data-if="dotnet" style="display:none">int / </span><span data-if="dotnet" style="display:none">long)</span><span data-if="cpp" style="display:none"> (<i>double</i> / </span><span data-if="cpp" style="display:none">Hlong)</span><span data-if="c" style="display:none"> (<i>double</i> / </span><span data-if="c" style="display:none">Hlong)</span></span>
+</div>
+<p class="pardesc">Offset applied to ThresholdImage.</p>
+<p class="pardesc"><span class="parcat">Default:
+      </span>5.0</p>
+<p class="pardesc"><span class="parcat">Suggested values:
+      </span>1.0, 3.0, 5.0, 7.0, 10.0, 20.0, 30.0</p>
+<p class="pardesc"><span class="parcat">Value range:
+      </span><code>-255.0
+          ≤
+        
+    <span data-if="hdevelop" style="display:inline">Offset</span>
+    <span data-if="c" style="display:none">Offset</span>
+    <span data-if="cpp" style="display:none">Offset</span>
+    <span data-if="dotnet" style="display:none">offset</span>
+    <span data-if="python" style="display:none">offset</span>
+    
+          ≤
+          255.0</code> (lin)</p>
+<p class="pardesc"><span class="parcat">Minimum increment:
+      </span>0.01</p>
+<p class="pardesc"><span class="parcat">Recommended increment:
+      </span>5</p>
+</div>
+  <div class="par">
+<div class="parhead">
+<span id="LightDark" class="parname"><b><code><span data-if="hdevelop" style="display:inline">LightDark</span><span data-if="c" style="display:none">LightDark</span><span data-if="cpp" style="display:none">LightDark</span><span data-if="dotnet" style="display:none">lightDark</span><span data-if="python" style="display:none">light_dark</span></code></b> (input_control)  </span><span>string <code>→</code> <span data-if="dotnet" style="display:none"><a href="HTuple.html">HTuple</a></span><span data-if="python" style="display:none">str</span><span data-if="cpp" style="display:none"><a href="HTuple.html">HTuple</a></span><span data-if="c" style="display:none">Htuple</span><span data-if="hdevelop" style="display:inline"> (string)</span><span data-if="dotnet" style="display:none"> (<i>string</i>)</span><span data-if="cpp" style="display:none"> (<i>HString</i>)</span><span data-if="c" style="display:none"> (<i>char*</i>)</span></span>
+</div>
+<p class="pardesc">Extract light, dark or similar areas?</p>
+<p class="pardesc"><span class="parcat">Default:
+      </span>
+    <span data-if="hdevelop" style="display:inline">'light'</span>
+    <span data-if="c" style="display:none">"light"</span>
+    <span data-if="cpp" style="display:none">"light"</span>
+    <span data-if="dotnet" style="display:none">"light"</span>
+    <span data-if="python" style="display:none">"light"</span>
+</p>
+<p class="pardesc"><span class="parcat">List of values:
+      </span><span data-if="hdevelop" style="display:inline">'dark'</span><span data-if="c" style="display:none">"dark"</span><span data-if="cpp" style="display:none">"dark"</span><span data-if="dotnet" style="display:none">"dark"</span><span data-if="python" style="display:none">"dark"</span>, <span data-if="hdevelop" style="display:inline">'equal'</span><span data-if="c" style="display:none">"equal"</span><span data-if="cpp" style="display:none">"equal"</span><span data-if="dotnet" style="display:none">"equal"</span><span data-if="python" style="display:none">"equal"</span>, <span data-if="hdevelop" style="display:inline">'light'</span><span data-if="c" style="display:none">"light"</span><span data-if="cpp" style="display:none">"light"</span><span data-if="dotnet" style="display:none">"light"</span><span data-if="python" style="display:none">"light"</span>, <span data-if="hdevelop" style="display:inline">'not_equal'</span><span data-if="c" style="display:none">"not_equal"</span><span data-if="cpp" style="display:none">"not_equal"</span><span data-if="dotnet" style="display:none">"not_equal"</span><span data-if="python" style="display:none">"not_equal"</span></p>
+</div>
+<div data-if="hdevelop" style="display:inline">
+<h2 id="sec_example_hdevelop">Example (HDevelop)</h2>
+<pre class="example">
+* Looking for regions with the diameter D
+mean_image(Image,Mean,D*2+1,D*2+1)
+dyn_threshold(Image,Mean,Seg,5,'light')
+connection(Seg,Regions)
+</pre>
+</div>
+<div data-if="c" style="display:none">
+<h2 id="sec_example_c">Example (C)</h2>
+<pre class="example">
+/* Looking for regions with the diameter D */
+mean_image(Image,&amp;Mean,D*2+1,D*2+1);
+dyn_threshold(Image,Mean,&amp;Seg,5.0,"light");
+connection(Seg,&amp;Region);
+</pre>
+</div>
+<div data-if="cpp" style="display:none">
+<h2 id="sec_example_cpp">Example (C++)</h2>
+<pre class="example">
+#include "HIOStream.h"
+#if !defined(USE_IOSTREAM_H)
+using namespace std;
+#endif
+#include "HalconCpp.h"
+using namespace Halcon;
+
+int main (int argc, char *argv[])
+{
+  HImage   image ("monkey"),
+           mean;
+  HWindow  win;
+
+  if (argc != 2)
+  {
+    cout &lt;&lt; "Using: " &lt;&lt; argv[0] &lt;&lt; " &lt;diameter&gt;" &lt;&lt; endl;
+    exit (1);
+  }
+
+  int d = atoi (argv[1]) * 2 + 1;
+
+  image.Display (win);
+
+  mean = image.MeanImage (d, d);
+
+  HRegionArray seg = image.DynThreshold (mean, 5.0, "light");
+  HRegionArray reg = seg.Connection ();
+
+  win.SetColored (12);
+  reg.Display (win);
+  win.Click ();
+
+  return (0);
+}
+</pre>
+</div>
+<div data-if="dotnet" style="display:none">
+<h2 id="sec_example_dotnet">Example (HDevelop)</h2>
+<pre class="example">
+* Looking for regions with the diameter D
+mean_image(Image,Mean,D*2+1,D*2+1)
+dyn_threshold(Image,Mean,Seg,5,'light')
+connection(Seg,Regions)
+</pre>
+</div>
+<h2 id="sec_complexity">Complexity</h2>
+<p>Let A be the area of the input region.  Then the runtime
+complexity is O(A).</p>
+<h2 id="sec_result">Result</h2>
+<p><code><span data-if="hdevelop" style="display:inline">dyn_threshold</span><span data-if="c" style="display:none">dyn_threshold</span><span data-if="cpp" style="display:none">DynThreshold</span><span data-if="dotnet" style="display:none">DynThreshold</span><span data-if="python" style="display:none">dyn_threshold</span></code> returns <TT>2</TT> (
+      <TT>H_MSG_TRUE</TT>)
+     if all parameters are
+correct.  The behavior with respect to the input images and output
+regions can be determined by setting the values of the flags
+<i><span data-if="hdevelop" style="display:inline">'no_object_result'</span><span data-if="c" style="display:none">"no_object_result"</span><span data-if="cpp" style="display:none">"no_object_result"</span><span data-if="dotnet" style="display:none">"no_object_result"</span><span data-if="python" style="display:none">"no_object_result"</span></i>, <i><span data-if="hdevelop" style="display:inline">'empty_region_result'</span><span data-if="c" style="display:none">"empty_region_result"</span><span data-if="cpp" style="display:none">"empty_region_result"</span><span data-if="dotnet" style="display:none">"empty_region_result"</span><span data-if="python" style="display:none">"empty_region_result"</span></i>, and
+<i><span data-if="hdevelop" style="display:inline">'store_empty_region'</span><span data-if="c" style="display:none">"store_empty_region"</span><span data-if="cpp" style="display:none">"store_empty_region"</span><span data-if="dotnet" style="display:none">"store_empty_region"</span><span data-if="python" style="display:none">"store_empty_region"</span></i> with <a href="set_system.html"><code><span data-if="hdevelop" style="display:inline">set_system</span><span data-if="c" style="display:none">set_system</span><span data-if="cpp" style="display:none">SetSystem</span><span data-if="dotnet" style="display:none">SetSystem</span><span data-if="python" style="display:none">set_system</span></code></a>.
+If necessary, an exception is raised.</p>
+<h2 id="sec_predecessors">Possible Predecessors</h2>
+<p>
+<code><a href="mean_image.html"><span data-if="hdevelop" style="display:inline">mean_image</span><span data-if="c" style="display:none">mean_image</span><span data-if="cpp" style="display:none">MeanImage</span><span data-if="dotnet" style="display:none">MeanImage</span><span data-if="python" style="display:none">mean_image</span></a></code>, 
+<code><a href="smooth_image.html"><span data-if="hdevelop" style="display:inline">smooth_image</span><span data-if="c" style="display:none">smooth_image</span><span data-if="cpp" style="display:none">SmoothImage</span><span data-if="dotnet" style="display:none">SmoothImage</span><span data-if="python" style="display:none">smooth_image</span></a></code>, 
+<code><a href="binomial_filter.html"><span data-if="hdevelop" style="display:inline">binomial_filter</span><span data-if="c" style="display:none">binomial_filter</span><span data-if="cpp" style="display:none">BinomialFilter</span><span data-if="dotnet" style="display:none">BinomialFilter</span><span data-if="python" style="display:none">binomial_filter</span></a></code>, 
+<code><a href="gauss_filter.html"><span data-if="hdevelop" style="display:inline">gauss_filter</span><span data-if="c" style="display:none">gauss_filter</span><span data-if="cpp" style="display:none">GaussFilter</span><span data-if="dotnet" style="display:none">GaussFilter</span><span data-if="python" style="display:none">gauss_filter</span></a></code>
+</p>
+<h2 id="sec_successors">Possible Successors</h2>
+<p>
+<code><a href="connection.html"><span data-if="hdevelop" style="display:inline">connection</span><span data-if="c" style="display:none">connection</span><span data-if="cpp" style="display:none">Connection</span><span data-if="dotnet" style="display:none">Connection</span><span data-if="python" style="display:none">connection</span></a></code>, 
+<code><a href="select_shape.html"><span data-if="hdevelop" style="display:inline">select_shape</span><span data-if="c" style="display:none">select_shape</span><span data-if="cpp" style="display:none">SelectShape</span><span data-if="dotnet" style="display:none">SelectShape</span><span data-if="python" style="display:none">select_shape</span></a></code>, 
+<code><a href="reduce_domain.html"><span data-if="hdevelop" style="display:inline">reduce_domain</span><span data-if="c" style="display:none">reduce_domain</span><span data-if="cpp" style="display:none">ReduceDomain</span><span data-if="dotnet" style="display:none">ReduceDomain</span><span data-if="python" style="display:none">reduce_domain</span></a></code>, 
+<code><a href="select_gray.html"><span data-if="hdevelop" style="display:inline">select_gray</span><span data-if="c" style="display:none">select_gray</span><span data-if="cpp" style="display:none">SelectGray</span><span data-if="dotnet" style="display:none">SelectGray</span><span data-if="python" style="display:none">select_gray</span></a></code>, 
+<code><a href="rank_region.html"><span data-if="hdevelop" style="display:inline">rank_region</span><span data-if="c" style="display:none">rank_region</span><span data-if="cpp" style="display:none">RankRegion</span><span data-if="dotnet" style="display:none">RankRegion</span><span data-if="python" style="display:none">rank_region</span></a></code>, 
+<code><a href="dilation1.html"><span data-if="hdevelop" style="display:inline">dilation1</span><span data-if="c" style="display:none">dilation1</span><span data-if="cpp" style="display:none">Dilation1</span><span data-if="dotnet" style="display:none">Dilation1</span><span data-if="python" style="display:none">dilation1</span></a></code>, 
+<code><a href="opening.html"><span data-if="hdevelop" style="display:inline">opening</span><span data-if="c" style="display:none">opening</span><span data-if="cpp" style="display:none">Opening</span><span data-if="dotnet" style="display:none">Opening</span><span data-if="python" style="display:none">opening</span></a></code>, 
+<code><a href="erosion1.html"><span data-if="hdevelop" style="display:inline">erosion1</span><span data-if="c" style="display:none">erosion1</span><span data-if="cpp" style="display:none">Erosion1</span><span data-if="dotnet" style="display:none">Erosion1</span><span data-if="python" style="display:none">erosion1</span></a></code>
+</p>
+<h2 id="sec_alternatives">Alternatives</h2>
+<p>
+<code><a href="check_difference.html"><span data-if="hdevelop" style="display:inline">check_difference</span><span data-if="c" style="display:none">check_difference</span><span data-if="cpp" style="display:none">CheckDifference</span><span data-if="dotnet" style="display:none">CheckDifference</span><span data-if="python" style="display:none">check_difference</span></a></code>, 
+<code><a href="threshold.html"><span data-if="hdevelop" style="display:inline">threshold</span><span data-if="c" style="display:none">threshold</span><span data-if="cpp" style="display:none">Threshold</span><span data-if="dotnet" style="display:none">Threshold</span><span data-if="python" style="display:none">threshold</span></a></code>
+</p>
+<h2 id="sec_see">See also</h2>
+<p>
+<code><a href="highpass_image.html"><span data-if="hdevelop" style="display:inline">highpass_image</span><span data-if="c" style="display:none">highpass_image</span><span data-if="cpp" style="display:none">HighpassImage</span><span data-if="dotnet" style="display:none">HighpassImage</span><span data-if="python" style="display:none">highpass_image</span></a></code>, 
+<code><a href="sub_image.html"><span data-if="hdevelop" style="display:inline">sub_image</span><span data-if="c" style="display:none">sub_image</span><span data-if="cpp" style="display:none">SubImage</span><span data-if="dotnet" style="display:none">SubImage</span><span data-if="python" style="display:none">sub_image</span></a></code>
+</p>
+<h2 id="sec_module">Module</h2>
+<p>
+Foundation</p>
+<!--OP_REF_FOOTER_START-->
+<hr>
+<div class="indexlink">
+<a href="index_classes.html"><span data-if="dotnet" style="display:none;">Classes</span><span data-if="cpp" style="display:none;">Classes</span></a><span data-if="dotnet" style="display:none;"> | </span><span data-if="cpp" style="display:none;"> | </span><a href="index_by_name.html">Operators</a>
+</div>
+<div class="footer">
+<div class="copyright">HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH</div>
+<div class="socialmedia">Follow us on
+        <a title="LinkedIn" href="https://www.linkedin.com/company/mvtec-software-gmbh" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24.7px" height="21px" enable-background="new 0 0 24.7 21" version="1.1" viewBox="0 0 24.7 21" xml:space="preserve">
+            <style type="text/css">.st0{fill:#0A66C1;}</style>
+            <g>
+              <g>
+                <rect x="1.7863" y="2.301" width="17.409" height="16.743" fill="#fff"></rect>
+                <path class="st0" d="m23.2 18.3c0.7 0 1.3 0.6 1.3 1.3s-0.6 1.3-1.3 1.3-1.3-0.6-1.3-1.3c0.1-0.7 0.6-1.3 1.3-1.3m0-0.2c-0.8 0-1.4 0.6-1.4 1.4s0.6 1.4 1.4 1.4 1.4-0.6 1.4-1.4c0.1-0.7-0.6-1.4-1.4-1.4z"></path>
+                <path class="st0" d="m23.5 19.7c0.2 0 0.4-0.2 0.4-0.4 0-0.3-0.2-0.4-0.5-0.4h-0.6v1.5h0.2v-0.7h0.3l0.4 0.6h0.2l-0.4-0.6zm-0.3-0.2h-0.2v-0.5h0.3c0.2 0 0.4 0 0.4 0.2-0.1 0.3-0.3 0.3-0.5 0.3"></path>
+                <path class="st0" d="m17.8 17.8h-3.1v-4.8c0-1.2 0-2.6-1.6-2.6s-1.9 1.3-1.9 2.6v4.9h-3.1v-10h3v1.4c0.6-1 1.7-1.7 2.9-1.6 3.1 0 3.7 2.1 3.7 4.7l0.1 5.4zm-13.2-11.3c-1 0-1.8-0.8-1.8-1.8s0.8-1.8 1.8-1.8 1.8 0.8 1.8 1.8-0.8 1.8-1.8 1.8m1.6 11.3h-3.1v-10h3.1v10zm13.1-17.8h-17.8c-0.8 0-1.5 0.7-1.5 1.5v17.8c0 0.8 0.7 1.5 1.5 1.5h17.8c0.8 0 1.5-0.7 1.5-1.5v-17.8c0.1-0.8-0.6-1.5-1.5-1.5" fill="#0a66c1" fill-opacity="1"></path>
+              </g>
+            </g>
+            <g fill-opacity="0">
+              <path d="m3.1146 12.806v-4.9834h3.0743v9.9668h-3.0743z"></path>
+              <path d="m4.2179 6.4484c-0.626-0.14447-1.1028-0.57558-1.3186-1.1921-0.0639-0.18261-0.069347-0.22686-0.068678-0.55784 6.624e-4 -0.32786 0.0067872-0.37695 0.069593-0.55784 0.037877-0.10909 0.097838-0.24855 0.13325-0.30991 0.48158-0.83456 1.498-1.1512 2.3497-0.73205 0.38776 0.19083 0.63099 0.43426 0.81815 0.81883 0.24765 0.50885 0.24786 1.0586 5.851e-4 1.562-0.22735 0.46283-0.58524 0.77205-1.0791 0.93231-0.20816 0.067553-0.6871 0.086978-0.90495 0.036703z"></path>
+              <path d="m8.1228 12.905v-4.9834h2.9752v1.3981l0.14185-0.20735c0.45246-0.66135 1.1062-1.123 1.8893-1.3342 0.22379-0.060362 0.26874-0.063848 0.78634-0.060992 0.92593 0.00511 1.4855 0.11689 2.0476 0.409 0.96939 0.50381 1.5023 1.4781 1.6663 3.0468 0.04646 0.44422 0.05641 0.78261 0.10086 3.4304 0.01969 1.1727 0.04274 2.3693 0.05122 2.6591l0.01543 0.52685h-3.0758l-0.01077-2.8574c-0.01142-3.0302-0.01039-3.0024-0.12981-3.4707-0.13987-0.54839-0.50964-0.91538-1.0345-1.0267-0.23173-0.04915-0.8285-0.03292-1.0473 0.02849-0.72431 0.20333-1.1332 0.7766-1.262 1.7693-0.03417 0.26341-0.03963 0.6735-0.03963 2.9808v2.6754h-3.0743z"></path>
+            </g>
+          </svg></a><a title="YouTube" href="https://www.youtube.com/mvtecsoftware" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="29.8px" height="21px" viewBox="0 0 29.8 21" style="enable-background:new 0 0 29.8 21;" xml:space="preserve">
+            <style type="text/css">.st2{fill:#FF0000;} .st1{fill:#FFFFFF;}</style>
+            <g id="XMLID_184_">
+              <path id="XMLID_182_" class="st2" d="M29.2,3.3C28.8,2,27.8,1,26.5,0.6C24.2,0,14.9,0,14.9,0S5.6,0,3.3,0.6C2,1,1,2,0.6,3.3 C0,5.6,0,10.5,0,10.5s0,4.9,0.6,7.2C1,19,2,20,3.3,20.4C5.6,21,14.9,21,14.9,21s9.3,0,11.7-0.6c1.3-0.3,2.3-1.4,2.6-2.7 c0.6-2.3,0.6-7.2,0.6-7.2S29.8,5.6,29.2,3.3z"></path>
+              <polygon id="XMLID_1355_" class="st1" points="11.9,14.9 19.6,10.5 11.9,6.1  "></polygon>
+            </g>
+          </svg></a>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AOI · Design review</title>
+<style>
+:root{--bg:#edf2f6;--panel:#fff;--soft:#f4f7fa;--line:#d5e0e9;--text:#162c40;--muted:#526a80;--accent:#006b99;--accent-soft:#e0f2fa;--warn:#9c5800;--good:#15725c;--shadow:0 6px 22px #21364b09;--board:#183d40;--focus:#a35200;color-scheme:light}
+body.dark{--bg:#0b1520;--panel:#132232;--soft:#182b3e;--line:#294257;--text:#e5eff7;--muted:#9db2c5;--accent:#65c9ff;--accent-soft:#183b51;--warn:#ffca7c;--good:#73dab6;--shadow:0 6px 22px #0002;--board:#153a3d;--focus:#ffce83;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;font:14px/1.55 "Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit;color:inherit}button,select,input,textarea{border:1px solid var(--line);background:var(--panel);border-radius:7px;padding:9px 12px;max-width:100%}button{cursor:pointer;transition:background .14s,border-color .14s}button:hover:not(:disabled){background:var(--accent-soft);border-color:var(--accent)}button:disabled{opacity:.48;cursor:not-allowed}.primary{background:var(--accent);color:var(--panel);border-color:var(--accent);font-weight:650}.primary:hover:not(:disabled){color:var(--text)}:focus-visible{outline:3px solid var(--focus);outline-offset:2px}.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}h1{font-size:23px;letter-spacing:-.6px;margin:0}h2{font-size:20px;margin:0}h3{font-size:14px;margin:0}p{margin:10px 0}.small,small{font-size:12px;color:var(--muted)}.eyebrow{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}.brand{display:flex;align-items:center;gap:13px}.logo{background:var(--accent);color:var(--panel);padding:12px;border-radius:12px;font-weight:800;letter-spacing:-1px}header{padding:16px 24px;background:var(--panel);display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid var(--line)}.tools,.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.field{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted)}.field select,.field input,.field textarea{color:var(--text);width:100%;min-width:0}.context{display:flex;gap:28px;padding:12px 24px;border-bottom:1px solid var(--line);background:var(--soft);flex-wrap:wrap}.context strong{display:block;font-size:13px}.tag{display:inline-block;border:1px solid var(--line);border-radius:5px;padding:3px 7px;font-size:11px;white-space:normal;overflow-wrap:anywhere}.warn{color:var(--warn)}nav{display:flex;gap:4px;padding:8px 24px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}nav button{border:0;border-radius:4px;padding:10px 16px}nav button.active{box-shadow:inset 0 -3px var(--accent)}main{padding:22px 24px 110px;max-width:1900px;margin:auto}.heading{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:18px}.heading p{margin:4px 0 0;max-width:900px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);min-width:0;overflow:hidden}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}.body{padding:16px}.workbench{display:grid;grid-template-columns:225px minmax(350px,1fr) 315px;gap:16px;align-items:start}.stack{display:grid;gap:16px;min-width:0}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}.engineering{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:16px}.list{padding:8px;display:grid;gap:6px}.target{width:100%;text-align:left;padding:12px;display:block;background:transparent}.target strong{display:block}.target small{display:block;font-size:11px}.treefoot{padding:12px;border-top:1px solid var(--line)}.board{display:block;width:100%;height:auto;min-height:260px;background:var(--board)}.board text{font:14px "Segoe UI",sans-serif;fill:#dfeff2}.board .trace{stroke:#74baae25;fill:none;stroke-width:6}.board .unit{fill:none;stroke:#6da99b;stroke-width:1.5}.board .chip{fill:#203445;stroke:#829da9;stroke-width:1.5}.board .sel{stroke:#6edaff;stroke-width:3}.board .window{fill:none;stroke:#ffce75;stroke-dasharray:6 5;stroke-width:2}.board .pad{fill:#b4a06b}.board .pin{fill:#b8c9d0}.legend{padding:10px 16px;font-size:11px;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap}.dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;background:var(--accent)}.dot.yellow{background:#cf973b}.dot.green{background:var(--good)}.kv{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:10px 0;font-size:12px}.kv span{color:var(--muted)}.kv strong{text-align:right;overflow-wrap:anywhere}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.metric{background:var(--soft);border:1px solid var(--line);border-radius:7px;padding:12px;min-width:0}.metric strong{display:block;font-size:25px;font-weight:650;letter-spacing:-.7px;overflow-wrap:anywhere}.metric small{display:block;font-size:11px}.callout{padding:12px;border-left:3px solid var(--warn);background:var(--soft);font-size:12px;line-height:1.7;border-radius:3px}.info{border-color:var(--accent)}.steps{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:7px;margin:18px 0}.steps button{text-align:left;padding:9px 11px;font-size:12px}.steps small{display:block}.tablewrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:12px;table-layout:fixed}th,td{text-align:left;vertical-align:top;padding:11px 10px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}th{background:var(--soft);color:var(--muted);font-weight:500}td button{font-size:12px;padding:6px 8px}.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.merge{margin:14px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden}.mergeheader{padding:12px;background:var(--soft)}.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.three>div{padding:12px;border-right:1px solid var(--line);min-width:0}.three>div:last-child{border:0}.bar{display:flex;height:16px;border-radius:3px;overflow:hidden;margin:14px 0}.bar i{height:100%;display:block}.figure{width:100%;display:block;height:auto;color:var(--text)}.figure text{fill:currentColor;font:13px "Segoe UI",sans-serif}.figure line,.figure path{vector-effect:non-scaling-stroke}.empty{padding:45px 16px;text-align:center;color:var(--muted)}details{margin-top:12px}summary{cursor:pointer;color:var(--accent);font-size:12px}pre{white-space:pre-wrap;font-size:11px;overflow-wrap:anywhere}footer{position:fixed;bottom:0;left:0;right:0;z-index:10;background:var(--panel);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 24px;box-shadow:0 -6px 22px #00000008}footer small{display:block}footer strong{font-size:12px}dialog{padding:0;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--text);width:min(850px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;box-shadow:0 24px 100px #0005}dialog::backdrop{background:#031322a8;backdrop-filter:blur(4px)}.dialoghead{position:sticky;top:0;background:var(--panel);z-index:1;padding:16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.dialogfoot{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;justify-content:flex-end}.progress{height:4px;background:var(--soft);overflow:hidden}.progress:after{content:"";display:block;background:var(--accent);width:35%;height:100%;animation:slide 1s ease-in-out infinite}@keyframes slide{to{transform:translateX(280%)}}.sectiontabs{margin-bottom:12px}.schema{color:var(--muted);font-size:11px;letter-spacing:.5px}.pinselected{background:var(--accent-soft)}.split{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.count{font-size:33px;font-weight:650;letter-spacing:-1px}.casecard{padding:14px;border:1px solid var(--line);border-radius:7px;margin:8px 0}.readonly{background:var(--soft)}
+@media(max-width:1150px){.workbench{grid-template-columns:210px minmax(0,1fr)}.inspector{grid-column:1/-1}.inspector .body{display:grid;grid-template-columns:1fr 1fr;gap:16px}.engineering{grid-template-columns:minmax(0,1fr) 265px}.context{gap:16px}.steps{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:700px){header{padding:12px;align-items:flex-start;flex-direction:column;gap:14px}h1{font-size:21px}header .tools{width:100%}.context{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px}.context>div{min-width:0;overflow-wrap:anywhere}nav{padding:6px 10px;gap:0}nav button{padding:10px;font-size:12px}main{padding:16px 12px 130px}.heading{flex-direction:column}.workbench,.engineering,.two{grid-template-columns:1fr}.navigator{order:2}.visual{order:1}.inspector{order:3;grid-column:auto}.inspector .body{display:block}.form{grid-template-columns:1fr}.three{grid-template-columns:1fr}.three>div{border-right:0;border-bottom:1px solid var(--line)}.three .kv{padding:7px 0}.steps{gap:5px}.steps button{padding:7px;font-size:11px}.body{padding:12px}footer{padding:10px 12px;align-items:center}footer>div{max-width:65%}.board{min-height:210px}.tablewrap table{font-size:11px}th,td{padding:9px 6px}.metric strong{font-size:23px}.dialoghead{padding:12px}dialog .body{padding:14px}.panelhead{padding:12px}.toolbar button{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body><div id="app"></div><dialog id="modal"></dialog>
+<script>
+'use strict';
+const resources={};function add(s){s.trim().split('\n').forEach(row=>{const [k,...v]=row.split('|');resources[k]=v;});}
+add(`title|AOI 工作台|AOI 工作臺|AOI workbench
+designReview|设计评审 · 合成样例|設計評審 · 合成範例|Design review · Synthetic fixtures
+production|生产观测|生產觀測|Production observation
+engineering|工程编程|工程編程|Engineering
+method|方法调查|方法調查|Method investigation
+history|固定历史|固定歷史|Fixed history
+language|语言|語言|Language
+role|角色|角色|Role
+operator|操作员|操作員|Operator
+engineer|工程师|工程師|Engineer
+reviewer|复判员|複判員|Reviewer
+theme|明暗|明暗|Theme
+board|板 / 工序尝试|板 / 工序嘗試|Board / process attempt
+program|运行程序|執行程式|Running program
+context|当前上下文|目前上下文|Current context
+source|来源|來源|Source
+synthetic|合成数据 · 无设备连接|合成資料 · 無設備連線|Synthetic data · No device connection
+fixedFacts|原事实固定；工程试检与人工意见分别记录。|原事實固定；工程試檢與人工意見分別記錄。|Original facts stay fixed; trials and human opinions are separate.
+targets|实例导航|實例導覽|Instances
+search|搜索完整实例ID|搜尋完整實例ID|Search full instance ID
+clear|清除筛选|清除篩選|Clear filter
+scope|板面 / 拼板|板面 / 拼板|Side / panel unit
+all|全部|全部|All
+top|顶面|頂面|Top
+bottom|底面|底面|Bottom
+selected|当前对象|目前物件|Current object
+loading|载入当前对象；旧结果不会回填。|載入目前物件；舊結果不會回填。|Loading this object; old results will not replace it.
+empty|没有匹配的对象。清除筛选继续。|沒有符合的物件。清除篩選繼續。|No matching object. Clear the filter to continue.
+image|板图与原观察|板圖與原觀察|Board and original observation
+local|局部与针序|局部與針序|Local view and pin order
+section|截面与高度|截面與高度|Section and height
+overview|全板|全板|Board
+mirror|显示镜像|顯示鏡像|Display mirror
+mirrorHint|只改变显示；面别、针序和原坐标不变。|只改變顯示；面別、針序及原座標不變。|Display only; side, pin order and source coordinates stay fixed.
+schematic|合成示意 · 不用于量测|合成示意 · 不用於量測|Synthetic schematic · Not a measurement
+nominal|名义焊盘 D|名義焊盤 D|Nominal pad D
+searchDomain|搜索域 W|搜尋域 W|Search domain W
+original|原提交|原提交|Original commit
+next|下一个对象|下一個物件|Next object
+details|对象证据|物件證據|Object evidence
+body|本体 / 身份|本體 / 身分|Body / identity
+pins|引脚 / 高度|引腳 / 高度|Leads / height
+solder|焊料 / 多视|焊料 / 多視|Solder / views
+shifted|本体已观察；偏位候选|本體已觀察；偏位候選|Body observed; displacement candidate
+pinGap|针2缺少有效高度|針2缺少有效高度|Pin 2 has no valid height
+polarityUnknown|外形模180°；极性未决|外形模180°；極性未決|Shape modulo 180°; polarity unresolved
+hidden|底部焊接不可见|底部焊接不可見|Bottom joints not visible
+missing|名义位置缺件候选|名義位置缺件候選|Absence candidate at nominal site
+dnp|应不装；仍检查残留|應不裝；仍檢查殘留|Not fitted; residual check retained
+observed|本体有支持|本體有支持|Body evidence available
+raw|OCR 原读|OCR 原讀|Raw OCR
+expected|期待内容|預期內容|Expected content
+ocrHelp|ABB 不替换为 AB8；内容、字形与极性分别评价。|ABB 不替換為 AB8；內容、字形與極性分別評價。|Keep ABB unchanged; content, glyph quality and polarity are separate.
+nominalPose|板轴名义位置|板軸名義位置|Nominal board position
+actualPose|板轴实测位置|板軸實測位置|Observed board position
+offset|板轴偏移 X|板軸偏移 X|Board-axis offset X
+symmetry|外形角 / 物理极性|外形角 / 物理極性|Shape angle / physical polarity
+bounds|本体条件占比界|本體條件占比界|Body condition fraction bounds
+known|已知本体 F|已知本體 F|Known body F
+background|已知背景 B|已知背景 B|Known background B
+unknown|未知 U|未知 U|Unknown U
+fractionHelp|D固定100格；[0.70,0.80]是未知补全界，不是置信区间。|D固定100格；[0.70,0.80]是未知補全界，不是信賴區間。|D is fixed at 100 cells; [0.70,0.80] bounds unknown completion, not confidence.
+absenceHelp|独立板定位、空位见证和完整邻域搜索均属本合成输入；未配对本身不是缺件。|獨立板定位、空位見證與完整鄰域搜尋均屬本合成輸入；未配對本身不是缺件。|This fixture includes independent board alignment, empty-site evidence and complete local search. Unmatched alone is not absence.
+hiddenHelp|保留底部观察缺口；表面图不能证明内部连接。|保留底部觀察缺口；表面圖不能證明內部連接。|Retain the bottom-view gap; surface images cannot prove hidden connections.
+pin|针号|針號|Pin
+height|上表面高度|上表面高度|Top-surface height
+support|有效支撑|有效支撐|Valid support
+unmeasured|未测|未測|Not measured
+partialRange|有效两脚范围|有效兩腳範圍|Range of two valid leads
+pinHelp|针序1/2/3不压缩；两脚范围不能代表全封装共面。|針序1/2/3不壓縮；兩腳範圍不能代表全封裝共面。|Keep pins 1/2/3; a two-lead range is not full-package coplanarity.
+datum|独立板基准|獨立板基準|Independent board datum
+modelHeight|顶面模型中心高|頂面模型中心高|Model top-center height
+modelHelp|z=1+0.1x+0.2y；四角0.7/0.9/1.1/1.3。模型量不是不可见底面的实测间隙。|z=1+0.1x+0.2y；四角0.7/0.9/1.1/1.3。模型量不是不可見底面的實測間隙。|z=1+0.1x+0.2y; corners 0.7/0.9/1.1/1.3. Model values do not measure a hidden bottom gap.
+noPins|本样例没有可评价的外露引脚。|本範例沒有可評價的外露引腳。|This fixture has no evaluable exposed leads.
+quantile|离散高度中位数|離散高度中位數|Discrete median height
+quantileHelp|排序样本0.1/0.2/0.9；中位数0.2，最大0.9。不是连续面积分位。|排序樣本0.1/0.2/0.9；中位數0.2，最大0.9。不是連續面積分位。|Samples 0.1/0.2/0.9: median 0.2, maximum 0.9. Not a continuous-area quantile.
+bridge|局部桥关系|局部橋關係|Local bridge relation
+bridgeHelp|C23关联P1/P2/P3；保留三对关系，不用一对一删边。|C23關聯P1/P2/P3；保留三對關係，不用一對一刪邊。|C23 touches P1/P2/P3; retain all three pair relations.
+connectionUnknown|连接未知|連接未知|Connection unknown
+connectionYes|局部连接有支持|局部連接有支持|Local connection supported
+connectionNo|局部断开有支持|局部斷開有支持|Local disconnection supported
+multiview|多视来源|多視來源|View sources
+viewConflict|V1焊料候选 / V2反证；冲突保留|V1焊料候選 / V2反證；衝突保留|V1 solder candidate / V2 contrary evidence; retain conflict
+viewHelp|不平均冲突图，不用“最好视角”抹掉缺项。|不平均衝突圖，不用「最佳視角」抹掉缺項。|Do not average conflicting views or use the best view to erase a gap.
+review|打开独立复判|開啟獨立複判|Open independent review
+engineeringHelp|来源、候选、试检和审批交接分开；生产仍固定r7。|來源、候選、試檢與審批交接分開；生產仍固定r7。|Sources, candidates, trials and approval handoff are separate; production stays at r7.
+p0|来源|來源|Sources
+p1|意图|意圖|Intent
+p2|对应|對應|Binding
+p3|候选|候選|Candidates
+p4|计划|計畫|Plan
+p5|试检|試檢|Trial
+p6|审阅|審閱|Review
+p7|审批交接|審批交接|Approval handoff
+importCAD|载入合成 CAD|載入合成 CAD|Load synthetic CAD
+importPnP|载入合成 PnP|載入合成 PnP|Load synthetic PnP
+loaded|已载入|已載入|Loaded
+notLoaded|未载入|未載入|Not loaded
+reconcile|对账原行|對帳原列|Reconcile source rows
+issue|差异 / 影响|差異 / 影響|Difference / impact
+missingRow|R7缺位置；不能推为应不装|R7缺位置；不能推為應不裝|R7 position missing; not evidence of DNP
+duplicateRow|I2/U1重复位置行|I2/U1重複位置列|Duplicate I2/U1 placement rows
+bottomSource|底面来源已翻X；不重复镜像|底面來源已翻X；不重複鏡像|Bottom source already X-mirrored; no second mirror
+correctSource|载入已对账来源 r2|載入已對帳來源 r2|Load reconciled source r2
+refreshSource|同值新来源|同值新來源|New source, same values
+sourceHelp|新来源使冻结、对应、候选、计划、试检和审阅失效；原件不被改写。|新來源使凍結、對應、候選、計畫、試檢及審閱失效；原件不被改寫。|A new source invalidates freeze, binding, candidates, plan, trial and review; original bytes stay fixed.
+freeze|冻结来源继续|凍結來源繼續|Freeze sources and continue
+process|工序|工序|Process
+pre|炉前|爐前|Pre-reflow
+post|炉后|爐後|Post-reflow
+intent|必检意图样例|必檢意圖範例|Required-scope fixture
+visible|已定义可见范围|已定義可見範圍|Defined visible scope
+hiddenRequired|另要求隐藏底部焊接|另要求隱藏底部焊接|Also require hidden bottom joints
+intentHelp|本样例炉前11项、炉后12项。要求隐藏焊接时另列4项未覆盖，不能删掉后继续。|本範例爐前11項、爐後12項。要求隱藏焊接時另列4項未覆蓋，不能刪除後繼續。|This fixture has 11 pre-reflow or 12 post-reflow obligations. Requiring hidden joints adds 4 uncovered items that remain required.
+confirmIntent|确认当前意图|確認目前意圖|Confirm this intent
+binding|封装 / 稳定针序|封裝 / 穩定針序|Package / stable pin order
+package|库候选|庫候選|Library candidate
+packageA|A · 三外露脚，Pin1映射明确|A · 三外露腳，Pin1映射明確|A · Three exposed leads, explicit Pin1 mapping
+packageB|B · 相似本体，针序不符|B · 相似本體，針序不符|B · Similar body, incompatible pin order
+bind|绑定精确版本|繫結精確版本|Bind exact revision
+bindingHelp|库DEMO-PKG-A/r2；Pin1→PAD1/PAD1B，Pin2→PAD2，Pin3→PAD3；一脚多盘不被改成一对一。|庫DEMO-PKG-A/r2；Pin1→PAD1/PAD1B，Pin2→PAD2，Pin3→PAD3；一腳多盤不改成一對一。|DEMO-PKG-A/r2: Pin1→PAD1/PAD1B, Pin2→PAD2, Pin3→PAD3. One lead may map to several pads.
+alternates|批准替代组|批准替代組|Approved alternatives
+alternatesHelp|替代A本体成立但OCR不符；B相反。没有完整候选，不拼接为通过。|替代A本體成立但OCR不符；B相反。沒有完整候選，不拼接為通過。|A matches body but fails OCR; B does the reverse. Neither is complete; do not combine them into a pass.
+generate|生成候选 R|產生候選 R|Generate candidate R
+edit|编辑本地组 L|編輯本機組 L|Edit local group L
+geometryGroup|几何 / 搜索 / 参考组|幾何 / 搜尋 / 參考組|Geometry / search / reference group
+identityGroup|身份 / 文字 / 替代组|身分 / 文字 / 替代組|Identity / text / alternatives group
+margin|搜索外扩|搜尋外擴|Search margin
+methodRevision|方法修订|方法修訂|Method revision
+reason|理由|理由|Reason
+lock|锁定整组|鎖定整組|Lock whole group
+unlock|恢复继承|恢復繼承|Restore inheritance
+locked|人工锁定|人工鎖定|Manually locked
+inherited|继承|繼承|Inherited
+choose|选择整组|選擇整組|Choose whole group
+keepL|保留 L|保留 L|Keep L
+takeR|采纳 R|採納 R|Take R
+merge|采纳并回到计划|採納並回到計畫|Apply and return to plan
+mergeHelp|B上次生成，L本地，R新候选；冲突及主动保留差异必须填理由。锁定组只能保留L。|B上次產生，L本機，R新候選；衝突及主動保留差異必須填理由。鎖定組只能保留L。|B is the previous generation, L local, R new. Conflicts and retained differences need a reason. Locked groups keep L.
+staleCandidate|候选已陈旧，请重新生成。|候選已過期，請重新產生。|Candidate is stale. Generate it again.
+noCandidate|完成来源、意图和对应后生成候选。|完成來源、意圖和對應後產生候選。|Complete sources, intent and binding, then generate a candidate.
+capability|试检输入样例|試檢輸入範例|Trial input fixture
+available|所需可见输入齐全|所需可見輸入齊全|Required visible inputs available
+noHeight|缺必需高度|缺必需高度|Required height missing
+missingView|缺必需侧视|缺必需側視|Required side view missing
+coverage|计划 / 必需义务|計畫 / 必需義務|Planned / required obligations
+gap|缺项保留，定位原因后恢复输入。|缺項保留，定位原因後恢復輸入。|Retain the gap; inspect the cause and restore input.
+confirmPlan|确认当前计划|確認目前計畫|Confirm current plan
+trial|冻结草稿并试检|凍結草稿並試檢|Freeze draft and run trial
+trialHelp|700ms为模拟迟到窗口；未运行图像算法。样例故意含偏位、文字、缺脚和不可见项。|700ms為模擬延遲窗口；未執行影像演算法。範例刻意含偏位、文字、缺腳與不可見項。|700 ms simulates a late callback; no image algorithm runs. Fixtures include displacement, OCR, lead and visibility issues.
+cancel|取消当前试检|取消目前試檢|Cancel trial
+cancelled|试检已取消|試檢已取消|Trial cancelled
+trialDone|合成试检已完成|合成試檢已完成|Synthetic trial completed
+trialResult|样例差异保持：偏位0.3、ABB≠AB8、针2未测、隐藏焊接未覆盖。|範例差異保留：偏位0.3、ABB≠AB8、針2未測、隱藏焊接未覆蓋。|Fixture differences retained: offset 0.3, ABB≠AB8, pin 2 unmeasured, hidden joints uncovered.
+ack|已核对当前修订与缺项|已核對目前修訂與缺項|Review current revision and gaps
+save|保存工程草稿|儲存工程草稿|Save engineering draft
+saveUnknown|模拟保存响应丢失|模擬儲存回應遺失|Simulate lost save response
+cas|模拟远端修订变化|模擬遠端修訂變更|Simulate remote revision change
+casConflict|保存发生版本冲突。查看远端修订，保留本地草稿。|儲存發生版本衝突。查看遠端修訂，保留本機草稿。|Save version conflict. Inspect the remote revision; local draft is retained.
+rebase|核对远端版本|核對遠端版本|Inspect remote revision
+query|查询原回执|查詢原回執|Query original receipt
+unknownReceipt|响应未知；已冻结原请求，只能查询。|回應未知；已凍結原請求，只能查詢。|Response unknown. Original request is frozen; query it.
+saved|模拟草稿已保存|模擬草稿已儲存|Simulated draft saved
+savedRev|保存修订|儲存修訂|Saved revision
+draft|工程草稿|工程草稿|Engineering draft
+revision|修订|修訂|Revision
+approval|预览审批交接|預覽審批交接|Preview approval handoff
+approvalHelp|仅记录审批请求，不批准、不发布、不激活；运行板仍使用r7。|僅記錄審批請求，不批准、不發布、不啟用；執行板仍使用r7。|Record an approval request only; no approval, publication or activation. Running board stays at r7.
+sendApproval|模拟提交审批请求|模擬提交審批請求|Simulate approval request
+received|审批请求已收悉|審批請求已收悉|Approval request received
+response|模拟响应|模擬回應|Simulated response
+normal|正常回执|正常回執|Known receipt
+lost|响应丢失|回應遺失|Response lost
+readonly|当前角色只读；可查看证据与原回执。|目前角色唯讀；可查看證據與原回執。|This role is read-only; evidence and original receipts remain available.
+methodHelp|独立合成调查；不写入工程草稿或生产事实。|獨立合成調查；不寫入工程草稿或生產事實。|Independent synthetic investigation; no writes to drafts or production facts.
+materialCase|本体支持样例|本體支撐範例|Body-support fixture
+partial|部分本体支持|部分本體支撐|Partial body support
+allUnknown|全域未知|全域未知|Entire domain unknown
+emptyWitness|可见空位，40格未知|可見空位，40格未知|Visible empty site, 40 unknown cells
+bridgeCase|局部路径样例|局部路徑範例|Local-path fixture
+FUF|F / U / F|F / U / F|F / U / F
+FBF|F / B / F|F / B / F|F / B / F
+FFF|F / F / F|F / F / F|F / F / F
+edgeUnknown|F / F / F，空间边未知|F / F / F，空間邊未知|F / F / F, spatial edge unknown
+lower|已知下图|已知下圖|Known lower graph
+upper|可能上图|可能上圖|Possible upper graph
+bridgeLimit|固定W23及锚区A2/A3；未知边不能因两端有效变成已知。|固定W23與錨區A2/A3；未知邊不能因兩端有效變成已知。|Fixed W23 and anchors A2/A3; valid endpoints do not make an unknown edge valid.
+thickness|平行层对应|平行層對應|Parallel-layer correspondence
+thicknessHelp|m=(0.6,0,0.8)，n=z，t=0.1；需已证平行、厚度及两层支撑。仅模型推导。|m=(0.6,0,0.8)，n=z，t=0.1；需已證平行、厚度與兩層支撐。僅模型推導。|m=(0.6,0,0.8), n=z, t=0.1; parallel layers, thickness and both supports must be valid. Model inference only.
+ray|同一参考射线|同一參考射線|Same reference ray
+normalOffset|沿目标法向偏置|沿目標法向偏置|Offset along target normal
+heightDrop|参考方向高度差|參考方向高度差|Reference-direction height difference
+newCard|保留独立调查卡|保留獨立調查卡|Keep separate investigation card
+historyHelp|原提交、试检、调查卡与人工意见各有身份；刷新会清除内存演示记录。|原提交、試檢、調查卡與人工意見各有身分；重新整理會清除記憶體示範記錄。|Original commits, trials, investigations and human opinions have separate IDs. Refresh clears in-memory demo records.
+open|查看原记录|查看原記錄|Open record
+record|记录|記錄|Record
+close|关闭|關閉|Close
+confirm|确认|確認|Confirm
+leave|离开工程页|離開工程頁|Leave engineering
+leaveHelp|草稿保留在当前页面内存。取消试检仅停止当前试检，不影响生产。|草稿保留在目前頁面記憶體。取消試檢僅停止目前試檢，不影響生產。|Draft stays in this page's memory. Cancelling a trial does not affect production.
+keepLeave|保留草稿并离开|保留草稿並離開|Keep draft and leave
+discardLeave|恢复已存参数并离开|恢復已存參數並離開|Restore saved configuration and leave
+stay|继续编辑|繼續編輯|Keep editing
+editHelp|仅修改当前草稿的完整几何组；外扩0–1mm是合成输入范围，不是工艺限值。|僅修改目前草稿的完整幾何組；外擴0–1mm是合成輸入範圍，不是製程限值。|Edit the draft geometry group only. 0–1 mm is a synthetic input range, not a process limit.
+reviewTitle|独立复判 · UI005语义演示|獨立複判 · UI005語義示範|Independent review · UI005 semantics demo
+reviewHelp|本例为非盲审。领取、草稿、正式意见分开；意见不改原量或机判，不关闭整板。|本例為非盲審。領取、草稿、正式意見分開；意見不改原量或機判，不關閉整板。|Non-blind fixture. Claim, draft and submitted opinion are separate; no change to original facts or board closure.
+claim|模拟领取当前项|模擬領取目前項|Simulate claim for this item
+claimed|已领取|已領取|Claimed
+unclaimed|尚未领取|尚未領取|Not claimed
+expire|模拟领取失效|模擬領取失效|Simulate claim expiry
+expired|领取已失效；草稿保留，请重新领取。|領取已失效；草稿保留，請重新領取。|Claim expired; draft retained. Claim again to continue.
+outcome|人工意见|人工意見|Human opinion
+defer|无法判断 / 需补证据|無法判斷 / 需補證據|Unable to decide / evidence needed
+confirmDefect|确认当前可见候选|確認目前可見候選|Confirm this visible candidate
+previewReview|预览意见提交|預覽意見提交|Preview opinion submission
+submitReview|显式模拟提交意见|明確模擬提交意見|Explicitly simulate opinion submission
+reviewReceived|本项意见已记录；整板未闭合。|本項意見已記錄；整板未閉合。|Item opinion recorded; board remains open.
+draftOnly|草稿，尚未提交|草稿，尚未提交|Draft, not submitted
+reviewItem|复判问题|複判問題|Review question
+reviewQuestion|本体/可见外观候选；其它原因仍独立保留。|本體/可見外觀候選；其他原因仍獨立保留。|Body / visible appearance candidate; other reasons remain separate.
+Ready|就绪|就緒|Ready
+Busy|处理中|處理中|Busy
+Empty|无选择|無選擇|Empty
+Stale|依赖已失效|依賴已失效|Stale
+Blocked|缺必要输入|缺必要輸入|Blocked
+RecoverableError|等待原回执|等待原回執|Recovery required
+PermissionDenied|只读权限|唯讀權限|Read-only permission
+Completed|本次操作完成|本次操作完成|Operation completed
+statusHelp|查看原证据；状态不表示质量放行。|查看原證據；狀態不表示品質放行。|Inspect original evidence; state is not quality release.
+advanced|高级诊断与模拟故障|進階診斷與模擬故障|Diagnostics and simulated faults
+stageMissing|前置阶段未完成。返回来源或当前缺项。|前置階段未完成。返回來源或目前缺項。|Prerequisite incomplete. Return to sources or the current gap.
+sourceEpoch|来源代次|來源代次|Source generation
+latest|当前修订|目前修訂|Current revision
+audit|来源 / 原因|來源 / 原因|Source / reason
+scopeFixed|6个实例，双面身份固定；筛选不改变全集。|6個實例，雙面身分固定；篩選不改變全集。|6 instances with fixed side identity; filters do not change the population.
+investigationRecord|独立调查|獨立調查|Separate investigation
+trialRecord|工程试检|工程試檢|Engineering trial
+approvalRecord|审批请求|審批請求|Approval request
+reviewRecord|人工意见|人工意見|Human opinion
+cancelRecord|取消的试检|取消的試檢|Cancelled trial`);
+add(`decimalHelp|使用小数点“.”，输入0到1之间的数；不使用逗号或指数。|使用小數點「.」，輸入0到1之間的數；不使用逗號或指數。|Use a decimal point (.) and a value from 0 to 1; no commas or exponents.
+decimalInvalid|数值未完整或超出范围，请输入0到1之间的小数。|數值未完整或超出範圍，請輸入0到1之間的小數。|Value is incomplete or out of range. Enter a decimal from 0 to 1.
+reviewPending|提交结果未知；查询原回执。|提交結果未知；查詢原回執。|Submission outcome unknown; query the original receipt.
+reviewExpiredDraft|领取已失效，草稿尚未提交；重新领取后再预览。|領取已失效，草稿尚未提交；重新領取後再預覽。|Claim expired. Draft is not submitted; claim again before previewing.
+productionBaseline|生产基线（只读）|生產基線（唯讀）|Production baseline (read-only)
+inspectionMethod|检测项|檢測項|Inspection item
+polarityPending|极性未决|極性未決|Polarity unresolved
+planOnly|计划覆盖只表示输入已安排；试检中的未测、未知和缺陷仍需保留。|計畫覆蓋僅表示輸入已安排；試檢中的未測、未知與缺陷仍須保留。|Plan coverage means inputs are scheduled; unmeasured, unknown and defective observations remain.
+residual|残留物检查|殘留物檢查|Residual inspection
+presence|装配存在性|裝配存在性|Assembly presence
+planeHeight|独立基准高度|獨立基準高度|Independent-datum height
+polarity|物理极性|物理極性|Physical polarity
+hiddenJoint|隐藏焊接|隱藏焊接|Hidden joint
+planned|已安排输入|已安排輸入|Input scheduled
+uncovered|未覆盖|未覆蓋|Uncovered
+restoreHelp|恢复已存配置后需重新冻结、绑定和试检。|還原已存設定後須重新凍結、綁定與試檢。|Restored configuration requires a new freeze, binding and trial.
+groupScope|这两个组用于当前六实例工程样例，不是单实例编辑器。|這兩個群組用於目前六實例工程範例，並非單實例編輯器。|These groups belong to this six-instance engineering fixture.
+materialCoverage|材料占比界|材料占比界|Material fraction bounds`);
+const clone=o=>JSON.parse(JSON.stringify(o)), eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let lang='zh-CN',theme='light',role='operator',mode='production',selected='TOP/I1/U1',selectedPin=1,detail='body',imageTab='overview',query='',side='all',mirror=false,loading=false,selectionSeq=0,dialog=null,opSeq=0,run=null,notice='statusHelp',conflict=false,diagnosticsOpen=false;
+const T=k=>resources[k]?.[['zh-CN','zh-TW','en-US'].indexOf(lang)]??k;
+const objects=[{id:'TOP/I1/U1',ref:'U1',unit:'I1',side:'TOP',kind:'shifted',x:100,y:135,pkg:'DEMO-QFP3',pins:true},{id:'TOP/I2/U1',ref:'U1',unit:'I2',side:'TOP',kind:'pinGap',x:435,y:135,pkg:'DEMO-QFP3',pins:true},{id:'BOTTOM/I1/U1',ref:'U1',unit:'I1',side:'BOTTOM',kind:'polarityUnknown',x:125,y:200,pkg:'DEMO-QFP3',pins:true},{id:'TOP/I1/R7',ref:'R7',unit:'I1',side:'TOP',kind:'missing',x:210,y:300,pkg:'DEMO-CHIP'},{id:'TOP/I2/BGA1',ref:'BGA1',unit:'I2',side:'TOP',kind:'hidden',x:530,y:290,pkg:'DEMO-BGA'},{id:'TOP/I1/DNP1',ref:'DNP1',unit:'I1',side:'TOP',kind:'dnp',x:100,y:370,pkg:'DEMO-CHIP'}];
+const original=Object.freeze({id:'DEMO-COMMIT-AOI-042',board:'DEMO-B0042',attempt:'POST-03',program:'DEMO-AOI/r7',objects:clone(objects),offset:.3,raw:'ABB',expected:'AB8',pinHeights:[.10,null,.18]});
+const initialParams={geometry:{margin:.10,method:'DEMO-GEO/r1',datum:'DEMO-BOARD/r3'},identity:{text:'AB8',alternate:'DEMO-AVL-A/r2',pinmap:'DEMO-PINS/r2'}};
+let q={step:0,epoch:1,cad:false,pnp:false,reconciled:false,process:'post',pendingIntent:'visible',intent:null,frozen:0,binding:false,package:'A',input:'available',candidate:null,plan:0};
+let draft={rev:1,clock:1,params:clone(initialParams),base:clone(initialParams),locks:{geometry:'',identity:''},dirty:false,savedRev:1,trial:0,reviewed:0,handoff:0,remote:1,expected:1,pending:null};
+let savedConfig={q:clone(q),params:clone(draft.params),base:clone(draft.base),locks:clone(draft.locks)};
+let lab={body:'partial',bridge:'FUF',graph:'lower',correspondence:'ray'};
+const reviews={};const history=[{kind:'original',id:original.id,data:clone(original)}];
+const writable=()=>role==='engineer'&&!run&&!draft.pending;
+function touch(){draft.rev=++draft.clock;draft.dirty=true;q.plan=0;draft.trial=0;draft.reviewed=0;draft.handoff=0;if(q.candidate)q.candidate.stale=true;notice='Stale';}
+function sourceChanged(){q.epoch++;q.frozen=0;q.intent=null;q.binding=false;touch();}
+function config(){return {q:{...clone(q),candidate:null,plan:0,step:0},params:clone(draft.params),base:clone(draft.base),locks:clone(draft.locks)};}
+function canPlan(){return !!q.candidate?.applied&&!q.candidate.stale&&q.intent==='visible'&&q.input==='available'&&q.binding&&q.frozen===q.epoch;}
+function canTrial(){return writable()&&canPlan()&&q.plan===draft.rev;}
+function canApproval(){return writable()&&canPlan()&&draft.trial===draft.rev&&draft.reviewed===draft.rev&&draft.savedRev===draft.rev&&draft.handoff!==draft.rev;}
+function state(){if(mode==='engineering'){if(draft.pending||conflict)return 'RecoverableError';if(run)return 'Busy';if(role!=='engineer')return 'PermissionDenied';if(q.candidate?.stale)return 'Stale';if(!q.reconciled||!q.cad||!q.pnp||q.intent==='hiddenRequired'||q.input!=='available')return 'Blocked';if(draft.handoff===draft.rev)return 'Completed';return 'Ready';}if(mode==='production'&&loading)return 'Busy';if(mode==='production'&&!selected)return 'Empty';return 'Ready';}
+function btn(id,key,disabled=false,cls=''){return `<button id="${id}" ${disabled?'disabled':''} class="${cls}">${T(key)}</button>`;}
+function select(id,key,values,value,disabled=false){return `<label class="field">${T(key)}<select id="${id}" ${disabled?'disabled':''}>${values.map(v=>{const [val,label]=Array.isArray(v)?v:[v,v];return `<option value="${val}" ${value===val?'selected':''}>${T(label)}</option>`;}).join('')}</select></label>`;}
+function kv(key,v){return `<div class="kv"><span>${T(key)}</span><strong>${v}</strong></div>`;}
+function metric(key,v,unit='',id=''){return `<div class="metric" ${id?`id="${id}"`:''}><small>${T(key)}</small><strong>${v}</strong><small>${unit}</small></div>`;}
+function panel(key,body,cls='',extra=''){return `<section class="panel ${cls}"><div class="panelhead"><h3>${T(key)}</h3>${extra}</div><div class="body">${body}</div></section>`;}
+const heading=(title,sub,actions='')=>`<div class="heading"><div><h2>${T(title)}</h2><p class="small">${T(sub)}</p></div><div class="toolbar">${actions}</div></div>`;
+function filtered(){return objects.filter(o=>(side==='all'||o.side===side)&&o.id.toLowerCase().includes(query.toLowerCase()));}
+function current(){return loading?null:objects.find(o=>o.id===selected);}
+function selectObject(id){selected=id;selectedPin=1;loading=true;const seq=++selectionSeq;render();setTimeout(()=>{if(seq===selectionSeq&&id===selected){loading=false;render();}},140);}
+function filterChanged(){selectionSeq++;loading=false;const list=filtered();if(!list.some(o=>o.id===selected))selected=list[0]?.id??null;selectedPin=1;render();}
+function boardSvg(){const o=current();const face=o?.side??(side==='BOTTOM'?'BOTTOM':'TOP');return `<svg class="board" viewBox="0 0 700 475" role="img" aria-label="${T('schematic')}"><defs><pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="#ffffff08"/></pattern></defs><rect width="700" height="475" fill="url(#grid)"/><g transform="${mirror?'translate(700 0) scale(-1 1)':''}"><rect x="35" y="45" width="630" height="390" rx="20" fill="#163f40" stroke="#579986" stroke-width="3"/><rect class="unit" x="50" y="65" width="280" height="350" rx="10"/><rect class="unit" x="355" y="65" width="290" height="350" rx="10"/><path class="trace" d="M70 100H290V225H180V395 M385 100H600V215H420V380H610 M60 245H300 M375 245H630"/>${objects.filter(a=>a.side===face).map(a=>`<g role="button" tabindex="0" data-object="${a.id}" aria-label="${a.id}"><rect x="${a.x-18}" y="${a.y-20}" width="110" height="76" rx="6" class="window"/><rect x="${a.x}" y="${a.y}" width="75" height="38" rx="4" class="chip ${selected===a.id?'sel':''}" ${a.kind==='missing'?'style="fill:none;stroke-dasharray:4 3"':''}/>${a.pins?[0,1,2].map((p)=>`<rect x="${a.x+8+p*23}" y="${a.y+38}" width="10" height="18" class="pin"/>`).join(''):''}<text x="${a.x}" y="${a.y-30}">${a.unit} / ${a.ref}</text></g>`).join('')}<text x="63" y="91">I1</text><text x="368" y="91">I2</text></g><text x="20" y="26">DEMO · ${face} · ${T('schematic')}</text></svg>`;}
+function localSvg(o=current()){if(!o?.pins)return `<p class="callout">${T(o?.kind==='hidden'?'hiddenHelp':'noPins')}</p>`;return `<svg class="figure" viewBox="0 0 650 300" role="img" aria-label="${T('local')}"><rect x="115" y="35" width="400" height="115" rx="10" fill="var(--soft)" stroke="var(--line)"/><circle cx="140" cy="57" r="6" fill="var(--accent)"/><text x="250" y="90">${esc(o?.id??'—')}</text><text x="260" y="114">ABB ≠ AB8</text>${[1,2,3].map((n)=>`<g data-pin="${n}" role="button" tabindex="0" aria-label="${T('pin')} ${n}"><rect x="${115+n*90}" y="185" width="58" height="60" fill="#bd9e6644" stroke="#ba9552"/><rect x="${123+n*90}" y="130" width="34" height="89" fill="${n===2?'none':'#7ba3b9'}" stroke="${selectedPin===n?'var(--accent)':'var(--line)'}" stroke-width="${selectedPin===n?4:2}" ${n===2?'stroke-dasharray="5 4"':''}/><text x="${132+n*90}" y="271">${n}</text></g>`).join('')}<rect x="175" y="166" width="370" height="95" fill="none" stroke="#cb923e" stroke-dasharray="5 5"/></svg>`;}
+function sectionSvg(){if(!current()?.pins)return `<p class="callout">${T(current()?.kind==='hidden'?'hiddenHelp':'noPins')}</p>`;return `<svg class="figure" viewBox="0 0 620 230" role="img" aria-label="${T('section')}"><path d="M50 180H560" stroke="var(--muted)" stroke-width="2"/><path d="M70 120L550 50" stroke="var(--accent)" stroke-width="3"/><path d="M130 170V111 M500 170V60" stroke="var(--line)" stroke-dasharray="5 4"/><text x="55" y="207">DEMO-BOARD/r3 · z=0</text><text x="105" y="88">0.7</text><text x="489" y="43">1.3 mm</text><text x="265" y="160">${T('modelHeight')}: 1.0 mm</text></svg>`;}
+function bodyEvidence(o){if(o.kind==='missing')return `<p class="callout">${T('missing')}</p>${kv('bounds','[0.00, 0.00]')}${kv('support','100 / 100')}<p class="small">${T('absenceHelp')}</p>`;if(o.kind==='hidden')return `<p class="callout">${T('hidden')}</p><p>${T('hiddenHelp')}</p>${kv('bounds','[0.90, 1.00]')}`;if(o.kind==='dnp')return `<p class="callout info">${T('dnp')}</p>${kv('source','DEMO-BOM/r2 · DNP=1')}${kv('scope','DEMO-RESIDUAL')}`;return `<p class="schema">${o.id} · ${o.pkg}</p><div class="metrics">${metric('offset',o.id==='TOP/I1/U1'?'+0.300':'0.000','mm')}${metric('bounds','0.70–0.80','D = 100')}</div>${kv('nominalPose','(10.000, 5.000) mm')}${kv('actualPose',o.id==='TOP/I1/U1'?'(10.300, 5.000) mm':'(10.000, 5.000) mm')}${kv('symmetry','0° (mod 180°) / '+T('polarityPending'))}${kv('raw','ABB')}${kv('expected','AB8')}<p class="small">${T('ocrHelp')}</p>`;}
+function pinEvidence(o){if(!o.pins)return `<p class="callout">${T('noPins')}</p>`;return `<table><thead><tr><th>${T('pin')}</th><th>${T('height')}</th><th>${T('support')}</th></tr></thead><tbody>${[1,2,3].map(n=>`<tr class="${selectedPin===n?'pinselected':''}"><td><button data-pin="${n}">${o.ref}/${n}</button></td><td>${n===2?T('unmeasured'):n===1?'0.100 mm':'0.180 mm'}</td><td>${n===2?'U_h':'DEMO-FOV1'}</td></tr>`).join('')}</tbody></table><div class="metrics">${metric('partialRange','0.080','mm · 2/3')}${metric('modelHeight','1.000','mm')}</div>${kv('datum','DEMO-BOARD/r3')}<p class="callout">${T('pinHelp')}</p><p class="small">${T('modelHelp')}</p>`;}
+function solderEvidence(o){if(!o.pins)return `<p class="callout">${o.kind==='hidden'?T('hiddenHelp'):T('noPins')}</p>`;return `<div class="metrics">${metric('quantile','0.200','mm')}${metric('materialCoverage','0.60–0.80','D = 10 mm²')}</div><p class="small">${T('quantileHelp')}</p><table><thead><tr><th>${T('bridge')}</th><th>${T('support')}</th></tr></thead><tbody><tr><td>P1 ↔ P2</td><td>${T('connectionUnknown')}</td></tr><tr><td>P2 ↔ P3</td><td>${T('connectionYes')}</td></tr><tr><td>P1 ↔ P3</td><td>${T('connectionUnknown')}</td></tr></tbody></table><p class="small">${T('bridgeHelp')}</p><p class="callout">${T('viewConflict')}</p><p class="small">${T('viewHelp')}</p>`;}
+function productionHtml(){const o=current();return heading('production','fixedFacts',btn('open-review','review',!o))+`<div class="workbench"><section class="panel navigator"><div class="panelhead"><h3>${T('targets')}</h3><span class="tag">6</span></div><div class="body"><label class="field">${T('search')}<input id="search" value="${esc(query)}"></label>${select('side','scope',[['all','all'],['TOP','top'],['BOTTOM','bottom']],side)}</div><div class="list">${filtered().map(a=>`<button class="target ${a.id===selected?'active':''}" data-object="${a.id}"><strong>${a.ref} · ${a.unit} · ${a.side}</strong><small>${a.id}</small><small>${T(a.kind)}</small></button>`).join('')}</div><div class="treefoot small">${T('scopeFixed')} ${btn('clear-search','clear')}</div></section><div class="stack visual"><section class="panel"><div class="panelhead"><h3>${T('image')}</h3><span class="tag">${selected??'—'}</span></div><div class="body toolbar">${['overview','local','section'].map(k=>btn('image-'+k,k,false,imageTab===k?'active':'')).join('')}<label class="small"><input id="mirror" type="checkbox" ${mirror?'checked':''} title="${T('mirrorHint')}"> ${T('mirror')}</label></div>${loading?`<div class="empty">${T('loading')}</div>`:!o?`<div class="empty">${T('empty')}</div>`:imageTab==='overview'?boardSvg():imageTab==='local'?localSvg():sectionSvg()}<div class="legend"><span><i class="dot"></i>${T('selected')}</span><span><i class="dot yellow"></i>${T('searchDomain')}</span><span>${T('schematic')}</span></div></section>${panel('local',o?.pins?localSvg():`<p class="small">${o?T(o.kind):T('empty')}</p>`)}</div>${panel('details',`<div><div class="toolbar sectiontabs">${['body','pins','solder'].map(k=>btn('detail-'+k,k,false,detail===k?'active':'')).join('')}</div>${o?(detail==='body'?bodyEvidence(o):detail==='pins'?pinEvidence(o):solderEvidence(o)):`<p class="empty">${T(loading?'loading':'empty')}</p>`}</div><div><p class="callout info">${T('fixedFacts')}</p>${kv('original',original.id)}${kv('program',original.program)}</div>`,'inspector')}</div>`;}
+function groupHtml(group){return group.margin!==undefined?kv('margin',group.margin.toFixed(2)+' mm')+kv('methodRevision',group.method)+kv('datum',group.datum):kv('expected',group.text)+kv('alternates',group.alternate)+kv('pins',group.pinmap);}
+function canMerge(){const c=q.candidate;if(!writable()||!c||c.stale||c.rev!==draft.rev||c.epoch!==q.epoch)return false;return ['geometry','identity'].every(k=>{const d=c.decisions[k];return ['L','R'].includes(d.choice)&&(!draft.locks[k]||d.choice==='L')&&(!(d.choice==='L'&&!eq(c.L[k],c.R[k]))||d.reason.trim());});}
+function mergeHtml(){const c=q.candidate;if(!c)return `<p class="callout">${T('noCandidate')}</p>`;return `${c.stale?`<p class="callout">${T('staleCandidate')}</p>`:''}<p class="small">${T('mergeHelp')}</p><p class="callout info">${T('groupScope')}</p>${['geometry','identity'].map(k=>`<div class="merge"><div class="mergeheader"><strong>${T(k+'Group')}</strong><div class="small">${T(draft.locks[k]?'locked':'inherited')} ${esc(draft.locks[k])}</div></div><div class="three">${['B','L','R'].map(v=>`<div><strong>${v}</strong>${groupHtml(c[v][k])}</div>`).join('')}</div><div class="body toolbar"><label class="field">${T('choose')}<select id="choice-${k}" ${!writable()?'disabled':''}><option value="">${T('choose')}</option><option value="L" ${c.decisions[k].choice==='L'?'selected':''}>${T('keepL')}</option><option value="R" ${c.decisions[k].choice==='R'?'selected':''} ${draft.locks[k]?'disabled':''}>${T('takeR')}</option></select></label><label class="field" style="flex:1">${T('reason')}<input id="reason-${k}" value="${esc(c.decisions[k].reason)}" ${!writable()?'disabled':''}></label>${btn('lock-'+k,draft.locks[k]?'unlock':'lock',!writable())}</div></div>`).join('')}<div class="toolbar">${btn('apply-merge','merge',!canMerge(),'primary')}${btn('regenerate','generate',!writable()||!q.binding)}</div>`;}
+function obligations(){
+ const rows=[['TOP/I1/U1','body'],['TOP/I1/U1','OCR'],['TOP/I1/U1','pins'],['TOP/I1/U1','planeHeight'],['TOP/I2/U1','body'],['TOP/I2/U1','pins'],['BOTTOM/I1/U1','body'],['BOTTOM/I1/U1','polarity'],['TOP/I1/R7','presence'],['TOP/I2/BGA1','body'],['TOP/I1/DNP1','residual']];
+ if(q.process==='post')rows.push(['TOP/I1/U1','solder']);
+ if(q.intent==='hiddenRequired')for(let i=1;i<=4;i++)rows.push(['TOP/I2/BGA1','hiddenJoint',i]);
+ return rows.map(([id,method,index])=>({id,method,index:index??null,covered:method!=='hiddenJoint'&&!(q.input==='noHeight'&&['pins','planeHeight'].includes(method))&&!(q.input==='missingView'&&['polarity','solder'].includes(method))}));
+}
+function planCount(){const rows=obligations();return rows.filter(r=>r.covered).length+' / '+rows.length;}
+function planTable(){return `<p class="callout info">${T('planOnly')}</p><table id="obligations"><thead><tr><th>${T('selected')}</th><th>${T('inspectionMethod')}</th><th>${T('coverage')}</th></tr></thead><tbody>${obligations().map(r=>`<tr><td>${r.id}</td><td>${T(r.method)}${r.index?' / '+r.index:''}</td><td>${T(r.covered?'planned':'uncovered')}</td></tr>`).join('')}</tbody></table>`;}
+function engineeringObservations(){return {id:'DEMO-ENGINEERING-OBSERVATIONS',process:q.process,obligations:clone(obligations()),challenges:{offsetMm:.3,raw:'ABB',expected:'AB8',pinHeightsMm:[.1,null,.18],hidden:'uncovered',...(q.process==='post'?{solder:{fractionBounds:[.6,.8],viewConflict:true}}:{})}};}
+function programHtml(){let body='';const disabled=!writable();
+ if(q.step===0)body=`<div class="toolbar">${btn('import-cad','importCAD',disabled)}${btn('import-pnp','importPnP',disabled)}</div>${kv('source',`CAD: ${T(q.cad?'loaded':'notLoaded')} · PnP: ${T(q.pnp?'loaded':'notLoaded')}`)}<div class="form" style="margin:14px 0">${select('process','process',['pre','post'],q.process,disabled)}</div><table><thead><tr><th>${T('source')}</th><th>${T('issue')}</th></tr></thead><tbody><tr><td>DEMO-PnP/r${q.reconciled?2:1} · #7</td><td>${q.reconciled?'R7: (20,30) mm':T('missingRow')}</td></tr><tr><td>DEMO-PnP/r${q.reconciled?2:1} · #2/#9</td><td>${q.reconciled?'I2/U1 → DEMO-CAD#12':T('duplicateRow')}</td></tr><tr><td>BOTTOM/I1/U1</td><td>${T('bottomSource')}</td></tr></tbody></table><p class="small">${T('sourceHelp')}</p><div class="toolbar">${btn('correct-source','correctSource',disabled||!q.cad||!q.pnp)}${btn('refresh-source','refreshSource',disabled)}${btn('freeze','freeze',disabled||!q.cad||!q.pnp||!q.reconciled,'primary')}</div>`;
+ if(q.step===1)body=select('intent','intent',['visible','hiddenRequired'],q.pendingIntent,disabled)+`<p class="callout info">${T('intentHelp')}</p>${kv('process',T(q.process))}${btn('confirm-intent','confirmIntent',disabled||q.frozen!==q.epoch,'primary')}`;
+ if(q.step===2)body=select('package','package',[['A','packageA'],['B','packageB']],q.package,disabled)+`<p class="callout info">${T('bindingHelp')}</p>${panel('alternates',`<p>${T('alternatesHelp')}</p><div class="tag">A: ${T('body')} ✓ / OCR ≠ · B: ${T('body')} ≠ / OCR ✓</div>`)}<div class="toolbar" style="margin-top:16px">${btn('bind','bind',disabled||!q.intent||q.package!=='A'||q.frozen!==q.epoch,'primary')}</div>`;
+ if(q.step===3)body=`<p class="small">${T('noCandidate')}</p><div class="toolbar">${btn('generate','generate',disabled||!q.binding||q.frozen!==q.epoch,'primary')}${btn('edit','edit',disabled)}</div>${groupHtml(draft.params.geometry)}${q.candidate?mergeHtml():''}`;
+ if(q.step===4)body=`${select('input','capability',['available','noHeight','missingView'],q.input,disabled)}<div class="metrics">${metric('coverage',planCount(),'DEMO-PLAN')}${metric('revision',draft.rev,'DEMO-DRAFT')}</div><p class="callout ${canPlan()?'info':''}">${T(canPlan()?'intentHelp':'gap')}</p>${planTable()}${btn('confirm-plan','confirmPlan',!writable()||!canPlan(),'primary')}`;
+ if(q.step===5)body=`<p>${T('trialHelp')}</p>${run?`<div class="progress"></div><p class="schema">${run.id} · r${run.rev}</p>${btn('cancel','cancel')}`:`<div class="toolbar">${btn('trial','trial',!canTrial(),'primary')}${btn('step-review','p6',draft.trial!==draft.rev)}</div>`}${draft.trial===draft.rev?`<p class="callout info">${T('trialDone')}</p><p>${T('trialResult')}</p>`:''}`;
+ if(q.step===6)body=`${mergeHtml()}<p class="callout info">${T('trialResult')}</p><div class="toolbar">${btn('edit','edit',disabled)}${btn('ack','ack',disabled||draft.trial!==draft.rev,'primary')}${btn('to-handoff','p7',draft.reviewed!==draft.rev)}</div>`;
+ if(q.step===7)body=`${kv('sourceEpoch',q.epoch)}${kv('revision',draft.rev)}${kv('trial',draft.trial===draft.rev?'r'+draft.trial:'—')}${kv('savedRev','r'+draft.savedRev)}<p class="callout">${T('approvalHelp')}</p>${btn('approval','approval',!canApproval(),'primary')}${draft.handoff===draft.rev?`<p class="callout info">${T('received')}</p>`:''}`;
+ return heading('engineering','engineeringHelp')+`<div class="steps">${Array.from({length:8},(_,i)=>`<button id="step-${i}" class="${q.step===i?'active':''}"><small>P${i}</small>${T('p'+i)}</button>`).join('')}</div><div class="engineering"><div>${panel('p'+q.step,body)}</div><div class="stack">${panel('draft',`${kv('sourceEpoch',q.epoch)}${kv('revision','r'+draft.rev)}${kv('process',T(q.process))}${kv('intent',q.intent?T(q.intent):'—')}${kv('confirmPlan','r'+q.plan)}${kv('trial','r'+draft.trial)}${kv('p6','r'+draft.reviewed)}${kv('savedRev','r'+draft.savedRev)}${role!=='engineer'?`<p class="callout">${T('readonly')}</p>`:''}<p class="small">${T('approvalHelp')}</p>`)}${panel('save',`<p class="schema">CAS ${draft.expected} / ${draft.remote}</p><div class="toolbar">${btn('save','save',disabled)}${draft.pending?btn('query-save','query'):''}</div>${draft.pending?`<p class="callout">${T('unknownReceipt')}<br>${draft.pending.id}</p>`:''}${conflict?`<p class="callout">${T('casConflict')}</p>${btn('rebase','rebase',disabled)}`:''}<details id="diagnostics" ${diagnosticsOpen?'open':''}><summary>${T('advanced')}</summary><div class="stack" style="margin-top:10px">${btn('save-unknown','saveUnknown',disabled)}${btn('cas','cas',disabled)}${btn('aside-refresh-source','refreshSource',disabled)}</div></details>`)}</div></div>`;
+}
+function methodHtml(){const data=lab.body==='partial'?[70,20,10]:lab.body==='allUnknown'?[0,0,100]:[0,60,40];const result=lab.bridge==='FFF'?'connectionYes':lab.bridge==='FBF'?'connectionNo':'connectionUnknown';return heading('method','methodHelp',btn('new-card','newCard'))+`<div class="two"><div class="stack">${panel('body',`${select('lab-body','materialCase',['partial','allUnknown','emptyWitness'],lab.body)}<div class="bar"><i style="width:${data[0]}%;background:var(--accent)"></i><i style="width:${data[1]}%;background:#739784"></i><i style="width:${data[2]}%;background:#b98240"></i></div>${kv('known',data[0])}${kv('background',data[1])}${kv('unknown',data[2])}<div class="metrics">${metric('bounds',`[${(data[0]/100).toFixed(2)}, ${((data[0]+data[2])/100).toFixed(2)}]`,'D = 100','body-bounds')}</div><p class="small">${T(lab.body==='partial'?'fractionHelp':'absenceHelp')}</p>`)}${panel('thickness',`${select('correspondence','thickness',['ray','normalOffset'],lab.correspondence)}<div class="metrics">${metric('heightDrop',lab.correspondence==='ray'?'0.125':'0.080','mm','layer-drop')}</div><p class="small">${T('thicknessHelp')}</p>`)}</div>${panel('bridge',`${select('lab-bridge','bridgeCase',['FUF','FBF','FFF','edgeUnknown'],lab.bridge)}<div class="toolbar" style="margin:15px 0">${btn('graph-lower','lower',false,lab.graph==='lower'?'active':'')}${btn('graph-upper','upper',false,lab.graph==='upper'?'active':'')}</div><svg class="figure" viewBox="0 0 500 200" role="img" aria-label="${T('bridge')}"><rect x="15" y="35" width="470" height="140" fill="none" stroke="var(--line)" stroke-dasharray="5 4"/><text x="35" y="25">W23 · A2 / M / A3</text><path d="M100 100H400" stroke="${result==='connectionYes'?'var(--good)':lab.graph==='upper'&&result==='connectionUnknown'?'var(--warn)':'var(--line)'}" stroke-width="5" ${result!=='connectionYes'?'stroke-dasharray="7 6"':''}/>${[0,1,2].map(i=>`<circle cx="${100+i*150}" cy="100" r="26" fill="var(--panel)" stroke="var(--accent)"/><text x="${95+i*150}" y="106">${i!==1?'F':lab.bridge==='FUF'?'U':lab.bridge==='FBF'?'B':'F'}</text>`).join('')}</svg><p id="bridge-result" class="callout">${T(result)}</p><p class="small">${T('bridgeLimit')}</p>${kv('bridge','P1↔P2 · P2↔P3 · P1↔P3')}<p class="small">${T('bridgeHelp')}</p>`)}</div>`;}
+function historyHtml(){return heading('history','historyHelp')+panel('history',`<table><thead><tr><th>${T('record')}</th><th>${T('context')}</th><th>${T('open')}</th></tr></thead><tbody>${history.map((h,i)=>`<tr><td>${T(h.kind)}</td><td>${h.id}</td><td>${btn('record-'+i,'open')}</td></tr>`).join('')}</tbody></table>`);}
+function render(){const active=document.activeElement?.id,caret=document.activeElement?.selectionStart,caretEnd=document.activeElement?.selectionEnd,caretDirection=document.activeElement?.selectionDirection;document.documentElement.lang=lang;document.body.className=theme==='dark'?'dark':'';document.title=T('title');document.getElementById('app').innerHTML=`<header><div class="brand"><div class="logo">AOI</div><div><div class="eyebrow">${T('designReview')}</div><h1>${T('title')}</h1></div></div><div class="tools">${select('lang','language',['zh-CN','zh-TW','en-US'],lang)}${select('role','role',['operator','engineer','reviewer'],role)}${btn('theme','theme')}</div></header><div class="context"><div><small>${T(mode==='engineering'?'productionBaseline':'board')}</small><strong>${original.board} · ${original.attempt}</strong></div><div><small>${T('program')}</small><strong>${original.program}</strong></div><div><small>${T('context')}</small><strong>${T(mode)}${mode==='engineering'?' · '+T(q.process)+' · r'+draft.rev:''}</strong></div><div><small>${T('source')}</small><strong>${mode==='production'?original.id:mode==='engineering'?'DEMO-SOURCE/e'+q.epoch:'DEMO-'+mode.toUpperCase()}</strong></div><div><span class="tag warn">${T('synthetic')}</span></div></div><nav>${['production','engineering','method','history'].map(k=>btn('view-'+k,k,false,mode===k?'active':'')).join('')}</nav><main>${mode==='production'?productionHtml():mode==='engineering'?programHtml():mode==='method'?methodHtml():historyHtml()}</main><footer><div><strong>${T(state())} · ${T(mode)}</strong><small id="notice">${T(notice)}</small></div>${mode==='production'?btn('next','next',!filtered().length):mode==='engineering'?btn('footer-save','save',!writable()):`<span class="tag">${T('synthetic')}</span>`}</footer>`;bindEvents();renderDialog();if(active){const el=document.getElementById(active);if(el){el.focus({preventScroll:true});if(typeof caret==='number'&&el.setSelectionRange&&(el.type==='text'||el.tagName==='TEXTAREA'))el.setSelectionRange(caret,caretEnd??caret,caretDirection??'none');}}}
+function openDialog(d){dialog=d;renderDialog();document.querySelector('#modal button:not(:disabled),#modal input:not(:disabled),#modal select:not(:disabled)')?.focus();}
+function closeDialog(){dialog=null;document.getElementById('modal').close();}
+function reviewData(id){return reviews[id]??(reviews[id]={claim:0,expired:false,outcome:'defer',reason:'',pending:null,submitted:null});}
+function reviewWritable(r){return role==='reviewer'&&r.claim&&!r.expired&&!r.pending&&!r.submitted;}
+function parseMargin(raw){const text=raw.trim();if(!/^(?:\d+(?:\.\d+)?|\.\d+)$/.test(text))return null;const [integer,fraction=""]=text.split("."),whole=integer.replace(/^0+/,"")||"0";if(whole!=="0"&&(whole!=="1"||/[1-9]/.test(fraction)))return null;const value=Number(text);return Number.isFinite(value)&&value>=0&&value<=1?value:null;}
+function updateMarginInput(e){if(dialog?.kind!=='edit')return;dialog.margin=e.target.value;const invalid=parseMargin(dialog.margin)===null;e.target.setAttribute('aria-invalid',String(invalid));document.getElementById('edit-margin-error').textContent=invalid?T('decimalInvalid'):'';document.getElementById('confirm-edit').disabled=!writable()||invalid;}
+function renderDialog(){const modal=document.getElementById('modal');if(!dialog){if(modal.open)modal.close();return;}const d=dialog;let title='record',body='';
+ if(d.kind==='leave'){title='leave';body=`<p>${T('leaveHelp')}</p>${draft.pending?`<p class="callout">${T('unknownReceipt')}</p>`:''}<div class="dialogfoot">${btn('stay','stay')}${btn('discard-leave','discardLeave',!!draft.pending||!!run)}${btn('keep-leave','keepLeave',false,'primary')}</div>`;}
+ if(d.kind==='edit'){title='edit';body=`<p>${T('editHelp')}</p><label class="field">${T('margin')} · mm<input id="edit-margin" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="edit-margin-help edit-margin-error" aria-invalid="${parseMargin(d.margin)===null}" value="${esc(d.margin)}"></label><p id="edit-margin-help" class="small">${T('decimalHelp')}</p><p id="edit-margin-error" class="small warn" role="status">${parseMargin(d.margin)===null?T('decimalInvalid'):''}</p><div class="dialogfoot">${btn('confirm-edit','confirm',!writable()||parseMargin(d.margin)===null,'primary')}</div>`;}
+ if(d.kind==='lock'){title='lock';body=`<p>${T(d.key+'Group')}</p><label class="field">${T('reason')}<input id="lock-reason" value="${esc(d.reason)}"></label><div class="dialogfoot">${btn('confirm-lock','confirm',!writable()||!d.reason.trim(),'primary')}</div>`;}
+ if(d.kind==='rebase'){title='rebase';body=`<p>${T('casConflict')}</p>${kv('revision',draft.expected+' → '+draft.remote)}<p class="small">${T('draftOnly')}</p><div class="dialogfoot">${btn('confirm-rebase','confirm',!writable(),'primary')}</div>`;}
+ if(d.kind==='approval'){title='approval';body=`${kv('draft','r'+d.rev)}${kv('sourceEpoch',d.epoch)}${kv('scope',planCount()+' · '+T(q.process))}${planTable()}<p class="callout">${T('approvalHelp')}</p>${select('approval-response','response',['normal','lost'],d.response)}<div class="dialogfoot">${btn('send-approval','sendApproval',!canApproval()||d.rev!==draft.rev,'primary')}</div>`;}
+ if(d.kind==='record'){title=d.record.kind;body=`${kv('record',d.record.id)}<p class="callout info">${T('fixedFacts')}</p><pre>${esc(JSON.stringify(d.record.data,null,2))}</pre>`;}
+ if(d.kind==='review'){const r=reviewData(d.id);const obj=objects.find(o=>o.id===d.id);title='reviewTitle';body=`<p class="schema">${original.id} · ${d.id} · DEMO-ITEM-BODY</p><p class="callout info">${T('reviewHelp')}</p>${kv('reviewItem',T('reviewQuestion'))}${kv('selected',T(obj.kind))}<section class="casecard" id="review-evidence">${bodyEvidence(obj)}</section>${kv('claim',r.expired?T('expired'):r.claim?'DEMO-CLAIM-'+r.claim:T('unclaimed'))}<div class="toolbar">${btn('claim','claim',role!=='reviewer'||!!r.pending||!!r.submitted)}${btn('expire','expire',!r.claim||!!r.pending||!!r.submitted)}</div><div class="form" style="margin-top:16px">${select('review-outcome','outcome',obj.kind==='hidden'||obj.kind==='dnp'?['defer']:['defer','confirmDefect'],r.outcome,!reviewWritable(r))}<label class="field">${T('reason')}<textarea id="review-reason" ${!reviewWritable(r)?'disabled':''}>${esc(r.reason)}</textarea></label></div><p id="review-status" class="small" role="status">${T(r.pending?'reviewPending':r.submitted?'reviewReceived':r.expired?'reviewExpiredDraft':'draftOnly')}</p>${r.pending?`<p class="callout">${T('unknownReceipt')}<br>${r.pending.id}</p>${btn('query-review','query')}`:''}${d.preview?`<div class="casecard">${kv('outcome',T(r.outcome))}${kv('reason',esc(r.reason))}${select('review-response','response',['normal','lost'],d.response??'normal')}<div class="dialogfoot">${btn('submit-review','submitReview',!reviewWritable(r)||!r.reason.trim(),'primary')}</div></div>`:btn('preview-review','previewReview',!reviewWritable(r)||!r.reason.trim(),'primary')}`;}
+ modal.innerHTML=`<div class="dialoghead"><h2>${T(title)}</h2><div class="toolbar">${select('dialog-lang','language',['zh-CN','zh-TW','en-US'],lang)}${btn('close-dialog','close')}</div></div><div class="body">${body}</div>`;if(!modal.open)modal.showModal();bindDialog();}
+function navigate(next){if(next===mode)return;if(mode==='engineering'&&(draft.dirty||run||draft.pending)){openDialog({kind:'leave',next});return;}mode=next;render();}
+function generate(){if(!writable()||!q.binding||q.frozen!==q.epoch)return;const B=clone(draft.base),L=clone(draft.params),R={geometry:{margin:.15,method:'DEMO-GEO/r2',datum:'DEMO-BOARD/r3'},identity:{text:'AB8',alternate:'DEMO-AVL-A/r2',pinmap:'DEMO-PINS/r2'}};q.candidate={B,L,R,rev:draft.rev,epoch:q.epoch,stale:false,applied:false,decisions:{}};for(const k of ['geometry','identity'])q.candidate.decisions[k]={choice:draft.locks[k]?'L':eq(L[k],B[k])?'R':eq(L[k],R[k])?'L':'',reason:draft.locks[k]};q.step=3;render();}
+function applyMerge(){if(!canMerge())return;const c=q.candidate;draft.params={geometry:clone(c[c.decisions.geometry.choice].geometry),identity:clone(c[c.decisions.identity.choice].identity)};draft.base=clone(c.R);touch();c.rev=draft.rev;c.stale=false;c.applied=true;q.step=4;notice='Ready';render();}
+function startTrial(){if(!canTrial())return;draft.trial=0;draft.reviewed=0;draft.handoff=0;const r={id:'DEMO-TRIAL-'+(++opSeq),rev:draft.rev,epoch:q.epoch,config:config(),observations:engineeringObservations(),cancelled:false};run=r;notice='Busy';render();setTimeout(()=>{const valid=!r.cancelled&&run===r&&draft.rev===r.rev&&q.epoch===r.epoch&&role==='engineer'&&canPlan();history.push({kind:valid?'trialRecord':'cancelRecord',id:r.id,data:{revision:r.rev,sourceEpoch:r.epoch,config:r.config,observations:clone(r.observations)}});if(run===r)run=null;if(valid){draft.trial=r.rev;notice='trialDone';}else notice='cancelled';render();},700);}
+function cancelRun(){if(run){run.cancelled=true;notice='cancelled';}}
+function saveDraft(lost=false){if(!writable())return;if(draft.expected!==draft.remote){conflict=true;notice='casConflict';render();return;}const request={kind:'save',id:'DEMO-SAVE-'+(++opSeq),revision:draft.rev,snapshot:config()};if(lost){draft.pending=request;notice='unknownReceipt';}else{savedConfig=request.snapshot;draft.savedRev=request.revision;draft.remote++;draft.expected=draft.remote;draft.dirty=false;notice='saved';}render();}
+function querySave(){const p=draft.pending;if(!p)return;if(p.kind==='save'){savedConfig=clone(p.snapshot);draft.savedRev=p.revision;draft.remote++;draft.expected=draft.remote;draft.dirty=draft.rev!==p.revision;notice='saved';}else{draft.handoff=p.revision;history.push({kind:'approvalRecord',id:p.id,data:clone(p)});notice='received';}draft.pending=null;render();}
+function action(id,fn,event='click'){const e=document.getElementById(id);if(e)e.addEventListener(event,fn);}
+function bindEvents(){action('diagnostics',e=>{diagnosticsOpen=e.target.open;},'toggle');action('aside-refresh-source',()=>{if(writable()){sourceChanged();render();}});action('lang',e=>{lang=e.target.value;render();},'change');action('theme',()=>{theme=theme==='light'?'dark':'light';render();});action('role',e=>{role=e.target.value;if(role!=='engineer')cancelRun();render();},'change');for(const k of ['production','engineering','method','history'])action('view-'+k,()=>navigate(k));
+ for(const el of document.querySelectorAll('[data-object]')){el.addEventListener('click',()=>selectObject(el.dataset.object));el.addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&el.tagName.toLowerCase()==='g'){e.preventDefault();selectObject(el.dataset.object);}});}
+ for(const el of document.querySelectorAll('[data-pin]')){el.addEventListener('click',()=>{selectedPin=Number(el.dataset.pin);detail='pins';render();});el.addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&el.tagName.toLowerCase()==='g'){e.preventDefault();selectedPin=Number(el.dataset.pin);detail='pins';render();}});}
+ action('search',e=>{query=e.target.value;filterChanged();},'input');action('side',e=>{side=e.target.value;filterChanged();},'change');action('clear-search',()=>{query='';side='all';selectionSeq++;loading=false;selected=objects[0].id;selectedPin=1;render();});action('mirror',e=>{mirror=e.target.checked;render();},'change');for(const k of ['overview','local','section'])action('image-'+k,()=>{imageTab=k;render();});for(const k of ['body','pins','solder'])action('detail-'+k,()=>{detail=k;render();});action('next',()=>{const list=filtered();selectObject(list[(list.findIndex(o=>o.id===selected)+1)%list.length].id);});action('open-review',()=>{if(current())openDialog({kind:'review',id:selected});});
+ for(let i=0;i<8;i++)action('step-'+i,()=>{q.step=i;render();});for(const key of ['cad','pnp'])action('import-'+key,()=>{if(!writable())return;q[key]=true;sourceChanged();render();});action('correct-source',()=>{if(!writable()||!q.cad||!q.pnp)return;q.reconciled=true;sourceChanged();render();});action('refresh-source',()=>{if(writable()){sourceChanged();render();}});action('process',e=>{if(writable()){q.process=e.target.value;sourceChanged();render();}},'change');action('freeze',()=>{if(!writable()||!q.reconciled||!q.cad||!q.pnp)return;touch();q.frozen=q.epoch;q.intent=null;q.binding=false;q.step=1;render();});action('intent',e=>{if(writable()){q.pendingIntent=e.target.value;render();}},'change');action('confirm-intent',()=>{if(!writable()||q.frozen!==q.epoch)return;q.intent=q.pendingIntent;q.binding=false;touch();q.step=2;render();});action('package',e=>{if(writable()){q.package=e.target.value;q.binding=false;touch();render();}},'change');action('bind',()=>{if(!writable()||q.package!=='A'||!q.intent||q.frozen!==q.epoch)return;q.binding=true;touch();q.step=3;render();});action('generate',generate);action('regenerate',generate);action('apply-merge',applyMerge);
+ for(const key of ['geometry','identity']){action('choice-'+key,e=>{if(writable()&&q.candidate&&!q.candidate.stale){q.candidate.decisions[key].choice=e.target.value;render();}},'change');action('reason-'+key,e=>{if(writable()&&q.candidate){q.candidate.decisions[key].reason=e.target.value;render();}},'input');action('lock-'+key,()=>{if(!writable())return;if(draft.locks[key]){draft.locks[key]='';touch();render();}else openDialog({kind:'lock',key,reason:''});});}
+ action('edit',()=>{if(writable())openDialog({kind:'edit',margin:String(draft.params.geometry.margin)});});action('input',e=>{if(writable()){q.input=e.target.value;touch();if(q.candidate?.applied){q.candidate.rev=draft.rev;q.candidate.stale=false;}render();}},'change');action('confirm-plan',()=>{if(writable()&&canPlan()){q.plan=draft.rev;q.step=5;notice='Ready';render();}});action('trial',startTrial);action('cancel',()=>{cancelRun();render();});action('step-review',()=>{q.step=6;render();});action('ack',()=>{if(writable()&&draft.trial===draft.rev){draft.reviewed=draft.rev;render();}});action('to-handoff',()=>{q.step=7;render();});for(const id of ['save','footer-save'])action(id,()=>saveDraft());action('save-unknown',()=>saveDraft(true));action('query-save',querySave);action('cas',()=>{if(writable()){draft.remote++;render();}});action('rebase',()=>openDialog({kind:'rebase'}));action('approval',()=>{if(canApproval())openDialog({kind:'approval',rev:draft.rev,epoch:q.epoch,response:'normal'});});
+ for(const [id,key] of [['lab-body','body'],['lab-bridge','bridge'],['correspondence','correspondence']])action(id,e=>{lab[key]=e.target.value;render();},'change');for(const k of ['lower','upper'])action('graph-'+k,()=>{lab.graph=k;render();});action('new-card',()=>{history.push({kind:'investigationRecord',id:'DEMO-LAB-'+(++opSeq),data:clone(lab)});notice='Completed';render();});history.forEach((h,i)=>action('record-'+i,()=>openDialog({kind:'record',record:clone(h)})));
+}
+function bindDialog(){action('close-dialog',()=>{closeDialog();render();});action('dialog-lang',e=>{lang=e.target.value;render();},'change');action('stay',()=>{closeDialog();render();});action('keep-leave',()=>{const next=dialog.next;cancelRun();closeDialog();mode=next;render();});action('discard-leave',()=>{if(draft.pending||run)return;const next=dialog.next;const restored=clone(savedConfig),epoch=q.epoch;q=restored.q;q.epoch=Math.max(epoch,q.epoch)+1;q.frozen=0;q.intent=null;q.binding=false;draft.params=restored.params;draft.base=restored.base;draft.locks=restored.locks;touch();draft.dirty=false;notice='restoreHelp';closeDialog();mode=next;render();});action('edit-margin',updateMarginInput,'input');action('confirm-edit',()=>{if(!writable()||dialog.kind!=='edit')return;const n=parseMargin(dialog.margin);if(n===null)return;draft.params.geometry.margin=n;touch();closeDialog();render();});action('lock-reason',e=>{dialog.reason=e.target.value;render();},'input');action('confirm-lock',()=>{if(!writable()||!dialog.reason.trim())return;draft.locks[dialog.key]=dialog.reason.trim();touch();closeDialog();render();});action('confirm-rebase',()=>{if(writable()){draft.expected=draft.remote;conflict=false;closeDialog();render();}});action('approval-response',e=>{dialog.response=e.target.value;render();},'change');action('send-approval',()=>{if(!canApproval()||dialog.rev!==draft.rev)return;const req={kind:'approval',id:'DEMO-APPROVAL-'+(++opSeq),revision:draft.rev,epoch:q.epoch,snapshot:config()};if(dialog.response==='lost'){draft.pending=req;notice='unknownReceipt';}else{draft.handoff=draft.rev;history.push({kind:'approvalRecord',id:req.id,data:req});notice='received';}closeDialog();render();});
+ if(dialog.kind==='review'){const r=reviewData(dialog.id);action('claim',()=>{if(role==='reviewer'&&!r.pending&&!r.submitted){r.claim=++opSeq;r.expired=false;dialog.preview=false;render();}});action('expire',()=>{r.expired=true;dialog.preview=false;render();});action('review-outcome',e=>{if(reviewWritable(r)){r.outcome=e.target.value;dialog.preview=false;render();}},'change');action('review-reason',e=>{if(reviewWritable(r)){r.reason=e.target.value;dialog.preview=false;render();}},'input');action('preview-review',()=>{if(reviewWritable(r)&&r.reason.trim()){dialog.preview=true;dialog.response='normal';render();}});action('review-response',e=>{dialog.response=e.target.value;render();},'change');action('submit-review',()=>{if(!reviewWritable(r)||!r.reason.trim()||!dialog.preview)return;const req={id:'DEMO-REVIEW-'+(++opSeq),item:dialog.id,claim:r.claim,outcome:r.outcome,reason:r.reason,source:original.id};if(dialog.response==='lost')r.pending=req;else{r.submitted=req;history.push({kind:'reviewRecord',id:req.id,data:clone(req)});}dialog.preview=false;render();});action('query-review',()=>{if(r.pending){r.submitted=clone(r.pending);history.push({kind:'reviewRecord',id:r.pending.id,data:clone(r.pending)});r.pending=null;render();}});}
+}
+document.getElementById('modal').addEventListener('cancel',e=>{e.preventDefault();closeDialog();render();});
+window.aoiSnapshot=()=>clone({lang,theme,role,mode,selected,selectedPin,detail,imageTab,query,side,mirror,loading,selectionSeq,q,draft,run,lab,history,reviews,original,dialog,opSeq,state:state()});
+render();
+</script></body></html>

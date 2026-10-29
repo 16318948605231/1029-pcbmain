@@ -1,0 +1,122 @@
+gray_histo_range [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Image / Features
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+gray_histo_rangegray_histo_rangeGrayHistoRangeGrayHistoRangegray_histo_range (Operator)
+Name
+gray_histo_rangegray_histo_rangeGrayHistoRangeGrayHistoRangegray_histo_range — Calculate the gray value distribution of a single channel image within a
+certain gray value range.
+Signature
+gray_histo_range(Region, Image :  : Min, Max, NumBins : Histo, BinSize)
+Herror gray_histo_range(const Hobject Region, const Hobject Image, double Min, double Max, const Hlong NumBins, Hlong* Histo, double* BinSize)
+Herror T_gray_histo_range(const Hobject Region, const Hobject Image, const Htuple Min, const Htuple Max, const Htuple NumBins, Htuple* Histo, Htuple* BinSize)
+void GrayHistoRange(const HObject& Region, const HObject& Image, const HTuple& Min, const HTuple& Max, const HTuple& NumBins, HTuple* Histo, HTuple* BinSize)
+HTuple HImage::GrayHistoRange(const HRegion& Region, const HTuple& Min, const HTuple& Max, Hlong NumBins, double* BinSize) const
+Hlong HImage::GrayHistoRange(const HRegion& Region, double Min, double Max, Hlong NumBins, double* BinSize) const
+HTuple HRegion::GrayHistoRange(const HImage& Image, const HTuple& Min, const HTuple& Max, Hlong NumBins, double* BinSize) const
+Hlong HRegion::GrayHistoRange(const HImage& Image, double Min, double Max, Hlong NumBins, double* BinSize) const
+static void HOperatorSet.GrayHistoRange(HObject region, HObject image, HTuple min, HTuple max, HTuple numBins, out HTuple histo, out HTuple binSize)
+HTuple HImage.GrayHistoRange(HRegion region, HTuple min, HTuple max, int numBins, out double binSize)
+int HImage.GrayHistoRange(HRegion region, double min, double max, int numBins, out double binSize)
+HTuple HRegion.GrayHistoRange(HImage image, HTuple min, HTuple max, int numBins, out double binSize)
+int HRegion.GrayHistoRange(HImage image, double min, double max, int numBins, out double binSize)
+def gray_histo_range(region: HObject, image: HObject, min: Union[float, int], max: Union[float, int], num_bins: int) -> Tuple[Sequence[int], float]
+def gray_histo_range_s(region: HObject, image: HObject, min: Union[float, int], max: Union[float, int], num_bins: int) -> Tuple[int, float]
+Description
+gray_histo_rangegray_histo_rangeGrayHistoRangeGrayHistoRangegray_histo_range calculates the gray value distribution
+HistoHistoHistohistohisto of the single channel ImageImageImageimageimage within RegionRegionRegionregionregion
+and the gray value range [MinMinMinminmin,MaxMaxMaxmaxmax]. The values for
+MinMinMinminmin and MaxMaxMaxmaxmax are rounded down to the next integer if the
+ImageImageImageimageimage is not of type 'real'"real""real""real""real". The gray value range is divided
+into NumBinsNumBinsNumBinsnumBinsnum_bins bins of the same size, which is returned in
+BinSizeBinSizeBinSizebinSizebin_size. If a gray value lies between two bins the gray value is
+assigned to the smaller bin. If the ImageImageImageimageimage is of type 'real'"real""real""real""real"
+.
+If the ImageImageImageimageimage has discrete gray values the size of a bin is
+computed with
+. Since the accuracy of the histogram HistoHistoHistohistohisto can
+be adjusted with NumBinsNumBinsNumBinsnumBinsnum_bins, the calculation of the gray value
+histogram with gray_histo_rangegray_histo_rangeGrayHistoRangeGrayHistoRangegray_histo_range is most useful for images of type
+'real'"real""real""real""real" and images of type 'integer'"integer""integer""integer""integer", which have
+a high bit depth.
+Attention
+Note that the operator gray_histo_rangegray_histo_rangeGrayHistoRangeGrayHistoRangegray_histo_range only considers
+the given RegionRegionRegionregionregion and ignores any previously set domain
+of the input image ImageImageImageimageimage.
+If the ImageImageImageimageimage has discrete gray values the value of BinSizeBinSizeBinSizebinSizebin_size
+may cause the following effects:
+For BinSizeBinSizeBinSizebinSizebin_size > 1 multiple neighboring gray values are
+assigned to the same bin. If BinSizeBinSizeBinSizebinSizebin_size is no integer the gray values
+are distributed uneven among the bins, e.g., for
+BinSizeBinSizeBinSizebinSizebin_size = 1.5 the first and second gray value are
+assigned to the first bin, the third gray value is assigned to the second
+bin, and the fourth and fifth gray value are assigned to the third bin.
+This becomes noticeable in several peeks in the histogram HistoHistoHistohistohisto.
+If BinSizeBinSizeBinSizebinSizebin_size < 1 some classes are not assigned by any
+gray value, e.g., for BinSizeBinSizeBinSizebinSizebin_size = 0.5 the first
+gray value is assigned to the first bin and the second gray value is assigned
+to the third bin. The histogram HistoHistoHistohistohisto shows some gaps, which
+resembles the structure of a comb.
+If the ImageImageImageimageimage is of type 'real'"real""real""real""real" and
+MinMinMinminmin = MaxMaxMaxmaxmax, all pixels of the corresponding gray value
+are assigned only to the first bin.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+Parameters
+RegionRegionRegionregionregion (input_object)  region → objectHRegionHObjectHObjectHobject
+Region in which the histogram is to be calculated.
+ImageImageImageimageimage (input_object)  singlechannelimage → objectHImageHObjectHObjectHobject (byte / cyclic / direction / int1 / uint2 / int2 / int4 / int8 / real)
+Input image.
+MinMinMinminmin (input_control)  real → HTupleUnion[float, int]HTupleHtuple (real / integer) (double / int / long) (double / Hlong) (double / Hlong)
+Minimum gray value.
+Default:
+0
+Suggested values:
+0
+MaxMaxMaxmaxmax (input_control)  real → HTupleUnion[float, int]HTupleHtuple (real / integer) (double / int / long) (double / Hlong) (double / Hlong)
+Maximum gray value.
+Default:
+255
+Suggested values:
+255
+Restriction:
+Max >= Min
+NumBinsNumBinsNumBinsnumBinsnum_bins (input_control)  integer → HTupleintHTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Number of bins.
+Default:
+256
+Suggested values:
+16, 32, 64, 128, 256
+Restriction:
+NumBins >= 1
+HistoHistoHistohistohisto (output_control)  histogram(-array) → HTupleSequence[int]HTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Histogram to be calculated.
+BinSizeBinSizeBinSizebinSizebin_size (output_control)  real → HTuplefloatHTupleHtuple (real) (double) (double) (double)
+Bin size.
+Result
+If the parameters are valid, the operator gray_histo_rangegray_histo_rangeGrayHistoRangeGrayHistoRangegray_histo_range
+returns the value 2 (
+H_MSG_TRUE)
+. If necessary an exception is raised.
+Possible Predecessors
+min_max_graymin_max_grayMinMaxGrayMinMaxGraymin_max_gray
+Possible Successors
+create_funct_1d_arraycreate_funct_1d_arrayCreateFunct1dArrayCreateFunct1dArraycreate_funct_1d_array
+Alternatives
+gray_histogray_histoGrayHistoGrayHistogray_histo,
+gray_histo_absgray_histo_absGrayHistoAbsGrayHistoAbsgray_histo_abs
+See also
+histo_2dimhisto_2dimHisto2dimHisto2dimhisto_2dim,
+scale_image_maxscale_image_maxScaleImageMaxScaleImageMaxscale_image_max
+Module
+Foundation
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

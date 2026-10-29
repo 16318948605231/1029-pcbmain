@@ -1,0 +1,80 @@
+set_framegrabber_param [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Image / Acquisition
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+set_framegrabber_paramT_set_framegrabber_paramSetFramegrabberParamSetFramegrabberParamset_framegrabber_param (Operator)
+Name
+set_framegrabber_paramT_set_framegrabber_paramSetFramegrabberParamSetFramegrabberParamset_framegrabber_param — Set specific parameters of an image acquisition device.
+Signature
+set_framegrabber_param( :  : AcqHandle, Param, Value : )
+Herror T_set_framegrabber_param(const Htuple AcqHandle, const Htuple Param, const Htuple Value)
+void SetFramegrabberParam(const HTuple& AcqHandle, const HTuple& Param, const HTuple& Value)
+void HFramegrabber::SetFramegrabberParam(const HTuple& Param, const HTuple& Value) const
+void HFramegrabber::SetFramegrabberParam(const HString& Param, const HString& Value) const
+void HFramegrabber::SetFramegrabberParam(const char* Param, const char* Value) const
+void HFramegrabber::SetFramegrabberParam(const wchar_t* Param, const wchar_t* Value) const
+(
+Windows only)
+static void HOperatorSet.SetFramegrabberParam(HTuple acqHandle, HTuple param, HTuple value)
+void HFramegrabber.SetFramegrabberParam(HTuple param, HTuple value)
+void HFramegrabber.SetFramegrabberParam(string param, string value)
+def set_framegrabber_param(acq_handle: HHandle, param: MaybeSequence[str], value: HTupleType) -> None
+Description
+The operator set_framegrabber_paramset_framegrabber_paramSetFramegrabberParamSetFramegrabberParamset_framegrabber_param sets specific parameters
+for the image acquisition device specified by AcqHandleAcqHandleAcqHandleacqHandleacq_handle.
+Additional information for a specific image acquisition device is
+available via info_framegrabberinfo_framegrabberInfoFramegrabberInfoFramegrabberinfo_framegrabber. A comprehensive documentation
+of all image acquisition device-specific parameters can be found in the
+corresponding interface documentation in the directory
+doc/html/reference/acquisition.
+Attention
+For a multithreaded application,
+info_framegrabberinfo_framegrabberInfoFramegrabberInfoFramegrabberinfo_framegrabber, open_framegrabberopen_framegrabberOpenFramegrabberOpenFramegrabberopen_framegrabber, and
+close_framegrabberclose_framegrabberCloseFramegrabberCloseFramegrabberclose_framegrabber are executed exclusively.
+set_framegrabber_paramset_framegrabber_paramSetFramegrabberParamSetFramegrabberParamset_framegrabber_param runs in parallel with all non-exclusive
+operators inside and outside of this group.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+This operator modifies the state of the following input parameter:
+AcqHandleAcqHandleAcqHandleacqHandleacq_handle
+During execution of this operator, access to the value of this parameter must be synchronized if it is used across multiple threads.
+Parameters
+AcqHandleAcqHandleAcqHandleacqHandleacq_handle (input_control, state is modified)  framegrabber → HFramegrabber, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the acquisition device to be used.
+ParamParamParamparamparam (input_control)  string(-array) → HTupleMaybeSequence[str]HTupleHtuple (string) (string) (HString) (char*)
+Parameter name.
+Suggested values:
+'color_space'"color_space""color_space""color_space""color_space", 'continuous_grabbing'"continuous_grabbing""continuous_grabbing""continuous_grabbing""continuous_grabbing", 'external_trigger'"external_trigger""external_trigger""external_trigger""external_trigger", 'grab_timeout'"grab_timeout""grab_timeout""grab_timeout""grab_timeout", 'image_height'"image_height""image_height""image_height""image_height", 'image_width'"image_width""image_width""image_width""image_width", 'port'"port""port""port""port", 'start_column'"start_column""start_column""start_column""start_column", 'start_row'"start_row""start_row""start_row""start_row", 'volatile'"volatile""volatile""volatile""volatile"
+ValueValueValuevaluevalue (input_control)  string(-array) → HTupleHTupleTypeHTupleHtuple (string / real / integer / handle) (string / double / int / long / HHandle) (HString / double / Hlong / HHandle) (char* / double / Hlong / handle)
+Parameter value to be set.
+Result
+If the image acquisition device is open and the specified parameter /
+parameter value is supported, the operator set_framegrabber_paramset_framegrabber_paramSetFramegrabberParamSetFramegrabberParamset_framegrabber_param
+returns the value 2 (
+H_MSG_TRUE)
+.  Otherwise an exception is raised.
+Possible Predecessors
+open_framegrabberopen_framegrabberOpenFramegrabberOpenFramegrabberopen_framegrabber
+Possible Successors
+grab_imagegrab_imageGrabImageGrabImagegrab_image,
+grab_datagrab_dataGrabDataGrabDatagrab_data,
+grab_image_startgrab_image_startGrabImageStartGrabImageStartgrab_image_start,
+grab_image_asyncgrab_image_asyncGrabImageAsyncGrabImageAsyncgrab_image_async,
+grab_data_asyncgrab_data_asyncGrabDataAsyncGrabDataAsyncgrab_data_async,
+get_framegrabber_paramget_framegrabber_paramGetFramegrabberParamGetFramegrabberParamget_framegrabber_param
+See also
+open_framegrabberopen_framegrabberOpenFramegrabberOpenFramegrabberopen_framegrabber,
+info_framegrabberinfo_framegrabberInfoFramegrabberInfoFramegrabberinfo_framegrabber,
+get_framegrabber_paramget_framegrabber_paramGetFramegrabberParamGetFramegrabberParamget_framegrabber_param
+Module
+Foundation
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

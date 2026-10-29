@@ -1,0 +1,439 @@
+query_data_code_2d_params [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Identification
+/
+Data Code
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+query_data_code_2d_params
+T_query_data_code_2d_params
+QueryDataCode2dParams
+QueryDataCode2dParams
+query_data_code_2d_params
+(Operator)
+Name
+query_data_code_2d_params
+T_query_data_code_2d_params
+QueryDataCode2dParams
+QueryDataCode2dParams
+query_data_code_2d_params
+— Get for a given 2D data code model the names of the generic
+parameters or objects that can be used in the other 2D data code
+operators.
+Signature
+query_data_code_2d_params
+( :  :
+DataCodeHandle
+,
+QueryName
+:
+GenParamName
+)
+Herror
+T_query_data_code_2d_params
+(const Htuple
+DataCodeHandle
+, const Htuple
+QueryName
+, Htuple*
+GenParamName
+)
+void
+QueryDataCode2dParams
+(const HTuple&
+DataCodeHandle
+, const HTuple&
+QueryName
+, HTuple*
+GenParamName
+)
+HTuple
+HDataCode2D
+::
+QueryDataCode2dParams
+(const HString&
+QueryName
+) const
+HTuple
+HDataCode2D
+::
+QueryDataCode2dParams
+(const char*
+QueryName
+) const
+HTuple
+HDataCode2D
+::
+QueryDataCode2dParams
+(const wchar_t*
+QueryName
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+QueryDataCode2dParams
+(
+HTuple
+dataCodeHandle
+,
+HTuple
+queryName
+, out
+HTuple
+genParamName
+)
+HTuple
+HDataCode2D
+.
+QueryDataCode2dParams
+(string
+queryName
+)
+def
+query_data_code_2d_params
+(
+data_code_handle
+: HHandle,
+query_name
+: str) -> Sequence[str]
+Description
+The operator
+query_data_code_2d_params
+query_data_code_2d_params
+QueryDataCode2dParams
+QueryDataCode2dParams
+query_data_code_2d_params
+returns the names of
+the generic parameters that are supported by the 2D data code
+operators
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+,
+get_data_code_2d_param
+get_data_code_2d_param
+GetDataCode2dParam
+GetDataCode2dParam
+get_data_code_2d_param
+,
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+,
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+, and
+get_data_code_2d_objects
+get_data_code_2d_objects
+GetDataCode2dObjects
+GetDataCode2dObjects
+get_data_code_2d_objects
+.
+For an explanation of the concept of the 2D data code reader
+see the introduction of chapter
+Identification / Data Code
+.
+The parameter
+QueryName
+QueryName
+QueryName
+queryName
+query_name
+is used to select the desired
+parameter group
+:
+'get_model_params'
+"get_model_params"
+"get_model_params"
+"get_model_params"
+"get_model_params"
+:
+get_data_code_2d_param
+get_data_code_2d_param
+GetDataCode2dParam
+GetDataCode2dParam
+get_data_code_2d_param
+- Parameters for querying
+the 2D data code model.
+'set_model_params'
+"set_model_params"
+"set_model_params"
+"set_model_params"
+"set_model_params"
+:
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+- Parameters for adjusting the
+2D data code model.
+'find_params'
+"find_params"
+"find_params"
+"find_params"
+"find_params"
+:
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+- Parameters used while
+searching and reading the 2D data code symbols.
+'get_result_params'
+"get_result_params"
+"get_result_params"
+"get_result_params"
+"get_result_params"
+:
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+- Parameters for querying
+the alphanumerical results of the symbol search.
+'get_result_objects'
+"get_result_objects"
+"get_result_objects"
+"get_result_objects"
+"get_result_objects"
+:
+get_data_code_2d_objects
+get_data_code_2d_objects
+GetDataCode2dObjects
+GetDataCode2dObjects
+get_data_code_2d_objects
+- Parameters for accessing
+the iconic objects of the symbol search.
+'trained'
+"trained"
+"trained"
+"trained"
+"trained"
+:
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+- Parameters whose values were
+determined by training. The next training will not reset these
+parameters, but extend the parameter space if necessary.
+The returned parameter list depends only on the type of the data
+code and not on the current state of the model or its results.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+DataCodeHandle
+DataCodeHandle
+DataCodeHandle
+dataCodeHandle
+data_code_handle
+(input_control)
+datacode_2d
+→
+HDataCode2D
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Handle of the 2D data code model.
+QueryName
+QueryName
+QueryName
+queryName
+query_name
+(input_control)
+attribute.name
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Name of the parameter group.
+Default:
+'get_result_params'
+"get_result_params"
+"get_result_params"
+"get_result_params"
+"get_result_params"
+List of values:
+'find_params'
+"find_params"
+"find_params"
+"find_params"
+"find_params"
+,
+'get_model_params'
+"get_model_params"
+"get_model_params"
+"get_model_params"
+"get_model_params"
+,
+'get_result_objects'
+"get_result_objects"
+"get_result_objects"
+"get_result_objects"
+"get_result_objects"
+,
+'get_result_params'
+"get_result_params"
+"get_result_params"
+"get_result_params"
+"get_result_params"
+,
+'set_model_params'
+"set_model_params"
+"set_model_params"
+"set_model_params"
+"set_model_params"
+,
+'trained'
+"trained"
+"trained"
+"trained"
+"trained"
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+(output_control)
+attribute.value-array
+→
+HTuple
+Sequence[str]
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+List containing the names of the supported generic
+parameters.
+Example (HDevelop)
+* This example demonstrates how the names of all available model parameters
+* can be queried.  This is used to request first the settings of the
+* untrained and then the settings of the trained model.
+
+* Create a model for reading Data matrix ECC 200 codes
+create_data_code_2d_model ('Data Matrix ECC 200', [], [], DataCodeHandle)
+* Query all the names of the generic parameters that can be passed to the
+* operator get_data_code_2d_param to request the model
+query_data_code_2d_params (DataCodeHandle, 'get_model_params', GenParamName)
+* Request the current settings of the (untrained) model
+get_data_code_2d_param(DataCodeHandle, GenParamName, ModelParams)
+
+* Read a training image
+read_image (Image, 'datacode/ecc200/ecc200_cpu_007')
+* train the model with the symbol in the image
+find_data_code_2d (Image, SymbolXLDs, DataCodeHandle, 'train', 'all', \
+                   ResultHandles, DecodedDataStrings)
+* Request the current settings of the (now trained) model
+get_data_code_2d_param(DataCodeHandle, GenParamName, TrainedModelParams)
+* Create a tuple that demonstrates the changings
+ModelAdaption := GenParamName + ':   ' + ModelParams + '  ->  ' + \
+                 TrainedModelParams
+
+* Clear the model
+clear_data_code_2d_model (DataCodeHandle)
+Result
+The operator
+query_data_code_2d_params
+query_data_code_2d_params
+QueryDataCode2dParams
+QueryDataCode2dParams
+query_data_code_2d_params
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    
+if the given parameters are correct.
+Otherwise, an exception is raised.
+Possible Predecessors
+create_data_code_2d_model
+create_data_code_2d_model
+CreateDataCode2dModel
+CreateDataCode2dModel
+create_data_code_2d_model
+Possible Successors
+get_data_code_2d_param
+get_data_code_2d_param
+GetDataCode2dParam
+GetDataCode2dParam
+get_data_code_2d_param
+,
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+,
+get_data_code_2d_objects
+get_data_code_2d_objects
+GetDataCode2dObjects
+GetDataCode2dObjects
+get_data_code_2d_objects
+Module
+Data Code
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

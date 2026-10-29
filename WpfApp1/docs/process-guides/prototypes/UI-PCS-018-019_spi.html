@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SPI · Design review</title><style>
+:root{color-scheme:dark;--bg:#0b121b;--panel:#121e2c;--raised:#182739;--line:#2a3d52;--text:#e6eef8;--muted:#93a9c1;--accent:#55bbff;--good:#59d7ae;--warn:#ffcb6a;--bad:#ff8491;--shadow:0 12px 40px #0003}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 'Segoe UI','Microsoft YaHei',sans-serif;font-variant-numeric:tabular-nums}body.light{color-scheme:light;--bg:#edf2f7;--panel:#fff;--raised:#f2f6fb;--line:#cbd8e5;--text:#193148;--muted:#526a80;--accent:#006bad;--good:#087756;--warn:#945b00;--bad:#b52942;--shadow:0 8px 24px #19314810}button,input,select{font:inherit;color:inherit}button,select,input{border:1px solid var(--line);background:var(--raised);border-radius:7px;padding:8px 11px;max-width:100%;min-width:0}button{cursor:pointer;transition:background .12s,border-color .12s}button:hover:not(:disabled){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--panel))}button:disabled{opacity:.45;cursor:not-allowed}button.primary{background:var(--accent);color:var(--bg);font-weight:650;border-color:var(--accent)}button.active{color:var(--accent);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--panel))}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}input[type=checkbox]{accent-color:var(--accent)}input[type=range]{width:100%;padding:0;accent-color:var(--accent)}header{padding:16px 24px;border-bottom:1px solid var(--line);background:var(--panel);display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;display:grid;place-items:center;background:var(--accent);color:var(--bg);border-radius:10px;font-weight:750}.brand h1{font-size:20px;line-height:1.2;margin:0}.eyebrow{font-size:11px;letter-spacing:.11em;color:var(--muted);margin:0 0 3px}.controls,.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.controls label{font-size:12px;color:var(--muted)}.controls select{display:block;padding:5px 8px}.context{padding:14px 24px;display:flex;gap:24px;flex-wrap:wrap;border-bottom:1px solid var(--line)}.context div{min-width:110px}.context small{display:block;color:var(--muted);font-size:11px}.context strong{font-weight:600}.tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;border:1px solid var(--line);padding:3px 8px;border-radius:5px;color:var(--muted)}.tag.warn,.warn{color:var(--warn)}.good{color:var(--good)}.bad{color:var(--bad)}nav{padding:0 24px;display:flex;gap:22px;border-bottom:1px solid var(--line);background:var(--panel);overflow-x:auto}nav button{border:0;border-bottom:3px solid transparent;border-radius:0;background:none;padding:14px 2px;white-space:nowrap}nav button.active{border:0;border-bottom:3px solid var(--accent);background:none}main{padding:20px 24px 125px;max-width:1900px;margin:auto}.heading{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:16px}.heading h2{font-size:20px;margin:0}.heading p{color:var(--muted);margin:4px 0 0;font-size:12px}.panel{border:1px solid var(--line);background:var(--panel);border-radius:11px;overflow:hidden;min-width:0;box-shadow:var(--shadow)}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}.panelhead h3{font-size:14px;margin:0;font-weight:600}.body{padding:16px;min-width:0}.workbench{display:grid;grid-template-columns:225px minmax(380px,1fr) 300px;gap:16px}.stack{display:grid;gap:16px;align-content:start;min-width:0}.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.wide{grid-column:1/-1}.targets{display:grid;gap:5px;margin-top:12px}.target{text-align:left;display:block;width:100%;padding:10px 12px;background:transparent;border-color:transparent}.target small{display:block;color:var(--muted);font-size:11px}.target strong{display:flex;justify-content:space-between;font-size:13px}.target .dot{font-size:10px;color:var(--warn)}.children{margin:2px 0 8px 20px;border-left:1px solid var(--line);padding-left:9px;display:flex;flex-wrap:wrap;gap:4px}.children button{padding:3px 7px;font-size:11px}.hint{color:var(--muted);font-size:12px}.callout{padding:12px 14px;background:color-mix(in srgb,var(--warn) 7%,var(--panel));border-left:3px solid var(--warn);border-radius:4px;color:var(--warn);font-size:12px;margin:12px 0}.info{border-left-color:var(--accent);color:var(--text);background:color-mix(in srgb,var(--accent) 7%,var(--panel))}.viewport{background:#0b1b23;position:relative;overflow:hidden}.viewport svg{width:100%;display:block;min-height:270px}.viewport text{font:13px 'Segoe UI',sans-serif;fill:#d5e8ef}.viewport [data-pad]{cursor:pointer}.viewport [data-pad]:focus{outline:none;filter:brightness(1.5)}.viewcaption{position:absolute;top:12px;left:14px;color:#a4c7d6;font-size:10px;letter-spacing:.08em}.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:11px;color:var(--muted);padding:10px 16px;border-top:1px solid var(--line)}.legend i{width:8px;height:8px;display:inline-block;margin-right:5px;background:var(--accent);border-radius:2px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{padding:12px;background:var(--raised);border-radius:7px;border:1px solid var(--line);min-width:0}.metric small{display:block;color:var(--muted);font-size:11px}.metric strong{font-size:22px;display:block;font-weight:600;line-height:1.4;overflow-wrap:anywhere}.metric span{font-size:11px;color:var(--muted)}.metric.wide{grid-column:1/-1}.kv{display:grid;grid-template-columns:1fr auto;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:12px}.kv span{color:var(--muted)}.kv b{text-align:right;font-weight:500;overflow-wrap:anywhere}.field{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);min-width:0}.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.sectionplot{width:100%;height:155px;display:block}.sectionplot text{fill:var(--muted);font:11px 'Segoe UI',sans-serif}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:500;background:var(--raised)}td{overflow-wrap:anywhere}.steps{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:16px 0}.steps button{text-align:left;padding:9px;font-size:12px}.steps b{display:block;font-size:11px;color:var(--muted);margin-bottom:2px}.program{display:grid;grid-template-columns:1fr 340px;gap:16px}.merge{margin-top:14px;border:1px solid var(--line);border-radius:8px;overflow:hidden}.mergetitle{padding:12px;background:var(--raised)}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}.three>div{padding:14px;background:var(--panel);min-width:0}.three h4{margin:0 0 8px;color:var(--accent)}.three .kv{display:block}.three .kv b{display:block;text-align:left;margin-top:3px}.merge .toolbar{padding:12px}.merge input{flex:1;min-width:180px}details{margin-top:10px;font-size:12px;color:var(--muted)}summary{cursor:pointer}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px}.historycard{display:grid;grid-template-columns:180px 1fr auto;gap:20px;align-items:center;border-bottom:1px solid var(--line);padding:16px}.historycard p{margin:3px 0;font-size:12px;color:var(--muted)}footer{position:fixed;bottom:0;left:0;right:0;z-index:5;background:var(--panel);border-top:1px solid var(--line);padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;box-shadow:0 -4px 24px #0002}footer strong{display:block;font-size:12px}footer small{display:block;color:var(--muted);font-size:11px}.modal{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:#020b16b3;backdrop-filter:blur(5px);padding:16px}.dialog{width:700px;max-width:100%;max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 24px 90px #0007}.dialoghead{position:sticky;top:0;background:var(--panel);border-bottom:1px solid var(--line);z-index:1;padding:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.dialoghead h2{margin:0;font-size:18px}.empty{text-align:center;padding:60px 20px;color:var(--muted)}.progress{height:4px;background:var(--line);border-radius:3px;margin:12px 0;overflow:hidden}.progress i{display:block;background:var(--accent);height:100%;width:45%}.bridgeplot{width:100%;max-height:200px}.bridgeplot text{fill:var(--text);font:13px 'Segoe UI',sans-serif}.swatch{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin:10px 0}.swatch span{height:46px;display:grid;place-items:center;border-radius:5px;font-size:12px;border:1px solid var(--line)}.F{background:#25866755}.B{background:#54738633}.U{background:repeating-linear-gradient(45deg,#b8832b33,#b8832b33 5px,transparent 5px,transparent 10px)}.muted{color:var(--muted)}@media(max-width:1250px){.workbench{grid-template-columns:200px minmax(300px,1fr)}.inspector{grid-column:1/-1}.inspector .metrics{grid-template-columns:repeat(4,1fr)}.inspector .metric.wide{grid-column:auto}.program{grid-template-columns:1fr 290px}}@media(max-width:850px){.workbench,.program{grid-template-columns:1fr}.targets{grid-template-columns:repeat(2,1fr)}.row2{grid-template-columns:1fr}.steps{grid-template-columns:repeat(4,1fr)}.three{grid-template-columns:1fr}.three>div{border-bottom:1px solid var(--line)}header,main{padding-left:12px;padding-right:12px}.context{padding:12px;gap:12px}nav{padding:0 12px;gap:18px}footer{padding:10px 12px}.historycard{grid-template-columns:1fr}.heading{align-items:flex-start;flex-wrap:wrap}}@media(max-width:480px){.inspector .metrics{grid-template-columns:1fr 1fr}.viewport svg{min-height:200px}.context div{min-width:90px}.brand h1{font-size:17px}.controls{width:100%}.controls label{flex:1}.controls select{width:100%}.form{grid-template-columns:1fr}.metric strong{font-size:20px}footer{align-items:flex-start}footer .toolbar{max-width:42%}footer button{font-size:12px;padding:7px}.heading h2{font-size:18px}.steps button{font-size:10px}.children{margin-left:8px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+nav button{flex-shrink:0}.modal{grid-template-columns:minmax(0,1fr)}.dialog{min-width:0;justify-self:center;overflow-wrap:anywhere}.dialog .toolbar{min-width:0}.dialog button{white-space:normal;overflow-wrap:anywhere}.swatch{display:flex}.swatch span{min-width:0;flex-basis:0}.program .viewport{margin:16px 0;border:1px solid var(--line);border-radius:8px}@media(max-width:850px){.workbench>.stack{order:-1}}
+
+</style></head><body><div id="app"></div><script>
+'use strict';
+const resources={};
+function addResources(text){for(const line of text.trim().split('\n')){const [key,...values]=line.split('|');resources[key]=values;}}
+addResources(`app|锡膏检查工作台|錫膏檢查工作台|Solder paste inspection
+subtitle|设计评审 · 合成证据|設計評審 · 合成證據|Design review · Synthetic evidence
+production|生产观测|生產觀測|Production observation
+programming|快速编程|快速編程|Quick programming
+method|方法调查|方法調查|Method investigation
+history|固定历史|固定歷史|Fixed history
+language|语言|語言|Language
+role|角色|角色|Role
+operator|操作员|操作員|Operator
+engineer|工程师|工程師|Engineer
+theme|切换明暗|切換明暗|Theme
+state|评审状态夹具|評審狀態夾具|Review state fixture
+Ready|就绪|就緒|Ready
+Busy|处理中|處理中|Busy
+Empty|无选择|無選擇|No selection
+Stale|结果陈旧|結果陳舊|Stale
+Blocked|依赖受阻|依賴受阻|Blocked
+RecoverableError|结果未知|結果未知|Result unknown
+PermissionDenied|只读|唯讀|Read only
+Completed|计算完成|計算完成|Calculation complete
+board|板 / 印刷尝试|板 / 印刷嘗試|Board / print attempt
+program|原程序|原程式|Original program
+station|机台 / 轨道|機台 / 軌道|Station / lane
+source|来源|來源|Source
+submitted|原提交样例|原提交範例|Original submitted example
+scope|合成设计，不连接设备|合成設計，不連接設備|Synthetic design; no device connection
+prodSub|原提交身份固定；图层、筛选和工程草稿不改变原值。|原提交身分固定；圖層、篩選及工程草稿不改變原值。|Original identity is fixed. Layers, filters and drafts do not change facts.
+targets|制造目标|製造目標|Manufacturing targets
+search|检索稳定目标ID|搜尋穩定目標ID|Search stable target ID
+next|下一个待处理|下一個待處理|Next unresolved
+all|全部|全部|All
+issues|未完成 / 异常|未完成 / 異常|Incomplete / exception
+required|必检焊盘|必檢焊盤|Required pads
+apertures|开口子窗口|開口子視窗|Aperture children
+group|沉积组|沉積組|Deposition group
+dnp|装配DNP · 仍印刷|裝配DNP · 仍印刷|Assembly DNP · Print required
+excluded|明确非印刷|明確不印刷|Explicitly not printed
+heightUnknown|材料已知，高度缺失|材料已知，高度缺失|Material known; height missing
+bridgeCandidate|局部桥违反候选|局部橋違反候選|Local bridge violation candidate
+shifted|面积相等，覆盖不足|面積相等，覆蓋不足|Equal area; incomplete overlap
+complete|样例量测完成|範例量測完成|Example measurements complete
+image|板图与关系|板圖與關係|Board and relationships
+overlay|原材料层|原材料層|Original material layer
+windows|钢网开口层|鋼網開口層|Stencil aperture layer
+unknownLayer|未知域|未知域|Unknown domain
+mirror|显示镜像|顯示鏡像|Display mirror
+heightView|高度示意|高度示意|Height schematic
+zscale|显示Z夸张|顯示Z誇張|Display Z exaggeration
+visualOnly|SVG为合成示意；Z夸张及图层不参与量测。|SVG為合成示意；Z誇張及圖層不參與量測。|Synthetic SVG schematic; Z exaggeration and layers do not enter measurement.
+pad|焊盘|焊盤|Pad
+paste|原膏组件|原膏元件|Original paste component
+ref|物理参考|物理參考|Physical reference
+section|高度截面|高度截面|Height section
+sectionAt|截面位置|截面位置|Section position
+inspect|当前对象量测|目前物件量測|Selected measurements
+areaRatio|原膏面积比|原膏面積比|Paste area ratio
+coverage|焊盘覆盖率|焊盤覆蓋率|Pad coverage
+overflow|外溢面积|外溢面積|Overflow area
+volume|材料体积|材料體積|Material volume
+partial|部分域|部分域|Partial domain
+unmeasured|未测|未測|Not measured
+denominator|名义分母|名義分母|Nominal denominator
+definition|量定义|量定義|Measurand
+reason|原因 / 恢复|原因 / 恢復|Reason / recovery
+ratioExplain|膏面积1.00 mm²，焊盘1.00 mm²，交叠0.75 mm²；100%面积比不代表全部覆盖。|膏面積1.00 mm²，焊盤1.00 mm²，交疊0.75 mm²；100%面積比不代表全部覆蓋。|Paste 1.00 mm²; pad 1.00 mm²; overlap 0.75 mm². A 100% area ratio does not mean full coverage.
+relation|物体与目标关系|物體與目標關係|Objects and target relations
+oneBridge|一个组件C-B23关联两个焊盘；组量0.120，分配0.050+0.050，未分配桥颈0.020 mm³。|一個元件C-B23關聯兩個焊盤；組量0.120，分配0.050+0.050，未分配橋頸0.020 mm³。|One C-B23 component links two pads. Group 0.120; allocated 0.050 + 0.050; unallocated neck 0.020 mm³.
+evidence|查看原证据|查看原證據|Open original evidence
+feedback|反馈与后效|回饋與後效|Feedback and effect
+queryCommit|查询原提交|查詢原提交|Query original commit
+fixedCount|筛选不改变5个必检焊盘、7个开口子窗。|篩選不改變5個必檢焊盤、7個開口子視窗。|Filters retain 5 required pads and 7 aperture children.
+noSelection|没有匹配目标；清除筛选后选择对象。|沒有符合的目標；清除篩選後選擇物件。|No matching target. Clear the filter and select an object.
+clear|清除筛选|清除篩選|Clear filter
+loading|正在载入所选对象；旧结果不回填。|正在載入所選物件；舊結果不回填。|Loading selection; old results cannot fill this view.
+close|关闭|關閉|Close
+productionLimit|未接正式端口：检测、暂停、放行及设备命令不可执行。|未接正式連接埠：檢測、暫停、放行及設備命令不可執行。|No production ports: inspection, hold, release and device commands are unavailable.
+stage0|来源|來源|Source
+stage1|印刷意图|印刷意圖|Print intent
+stage2|目标对应|目標對應|Mapping
+stage3|参数候选|參數候選|Candidates
+stage4|覆盖计划|覆蓋計畫|Coverage
+stage5|样本试算|樣本試算|Trial
+stage6|差异审阅|差異審閱|Review
+stage7|交接|交接|Handoff
+draft|工程草稿|工程草稿|Engineering draft
+programSub|生成、合并、保存、试算、审阅与交接分别记录；不发布或激活。|生成、合併、儲存、試算、審閱與交接分別記錄；不發佈或啟用。|Generation, merge, save, trial, review and handoff are separate; no publication or activation.
+design|制造资料|製造資料|Manufacturing data
+referenceImage|参考图|參考圖|Reference image
+legacy|旧程序|舊程式|Previous program
+freeze|固定来源快照|固定來源快照|Freeze source snapshot
+refreshSource|同值新来源修订|同值新來源修訂|New source revision, same values
+intent|必检意图|必檢意圖|Required intent
+areaOnly|明确2D面积用途|明確2D面積用途|Declared 2D area purpose
+volumeRequired|面积与3D体积必检|面積與3D體積必檢|Area and 3D volume required
+confirmIntent|确认印刷意图|確認印刷意圖|Confirm print intent
+bindDesign|绑定独立制造意图|綁定獨立製造意圖|Bind independent design intent
+imageLimit|参考图只给观察候选，必须绑定独立制造全集与印刷意图。|參考圖只給觀察候選，必須綁定獨立製造全集與印刷意圖。|Reference images provide observations only; bind an independent design set and print intent.
+mapping|关系状态|關係狀態|Relation status
+explicit|显式对应|明確對應|Explicit mapping
+ambiguous|对应未决|對應未決|Unresolved mapping
+confirmMapping|确认完整对应|確認完整對應|Confirm complete mapping
+mappingHint|U1/P1保留A11/A12；J2/P1、P2保留同一D23组，禁止克隆组件。|U1/P1保留A11/A12；J2/P1、P2保留同一D23組，禁止複製元件。|U1/P1 retains A11/A12. J2/P1 and P2 share D23; do not clone the component.
+generate|生成候选R|產生候選R|Generate candidate R
+edit|编辑本地整组|編輯本機整組|Edit local group
+margin|搜索外扩|搜尋外擴|Search margin
+route|采集路线|採集路線|Acquisition route
+domain|量测域定义|量測域定義|Measurement domain
+material|材料窗口 E_F∪B|材料視窗 E_F∪B|Material window E_F∪B
+geometry|真实高度几何域 E_geom|真實高度幾何域 E_geom|Measured geometry E_geom
+copper|铜面基底|銅面基底|Copper substrate
+maskStep|阻焊与独立台阶|阻焊與獨立台階|Mask plus independent step
+invalidRef|参考无资格|參考無資格|Reference unqualified
+methodLabel|方法修订|方法修訂|Method revision
+sourceRev|来源修订|來源修訂|Source revision
+candidateOnly|R仅为候选，不写L；数值为合成参数，不是工艺默认值。|R僅為候選，不寫L；數值為合成參數，不是工藝預設值。|R is a candidate and does not write L. Values are synthetic, not process defaults.
+acqGroup|采集 / 参考 / 方法 / 域耦合组|採集 / 參考 / 方法 / 域耦合組|Acquisition / reference / method / domain group
+targetGroup|目标 / 意图 / 分母耦合组|目標 / 意圖 / 分母耦合組|Target / intent / denominator group
+lock|锁定整组|鎖定整組|Lock whole group
+unlock|恢复继承|恢復繼承|Restore inheritance
+locked|人工锁定|人工鎖定|Manually locked
+inherited|继承|繼承|Inherited
+lockReason|锁定 / 处置理由|鎖定 / 處置理由|Lock / resolution reason
+choose|待选择|待選擇|Choose
+keepL|保留整个L|保留整個L|Keep whole L
+takeR|采纳整个R|採納整個R|Take whole R
+merge|采纳差异并回P4|採納差異並回P4|Apply groups and return to P4
+conflict|冲突或舍弃R需填写理由。|衝突或捨棄R須填寫理由。|A conflict or discarding R requires a reason.
+intentMismatch|当前组与P1确认意图不一致，不能降低必检要求。|目前組與P1確認意圖不一致，不能降低必檢要求。|The group conflicts with confirmed P1 intent; required scope cannot be reduced.
+staleCandidate|候选已陈旧，请重新生成。|候選已過期，請重新產生。|Candidate is stale; regenerate it.
+diagnostics|高级诊断JSON|進階診斷JSON|Advanced JSON diagnostics
+actual|实际输入样例|實際輸入範例|Actual input fixture
+available|完整H0样例|完整H0範例|Complete H0 fixture
+missing3d|仅2D，高度缺失|僅2D，高度缺失|2D only; height missing
+conflicting|多曝光冲突|多曝光衝突|Exposure conflict
+plan|确认覆盖计划|確認覆蓋計畫|Confirm coverage plan
+validate|检查当前配置|檢查目前設定|Validate configuration
+trial|冻结草稿并试算|凍結草稿並試算|Freeze draft and run trial
+cancel|请求取消|要求取消|Request cancellation
+draining|取消已请求，等待模拟在途退出。|已要求取消，等待模擬在途工作退出。|Cancellation requested; waiting for simulated work to exit.
+trialLimit|650ms模拟生命周期；不调用视觉算法，不授予工业资格。|650ms模擬生命週期；不呼叫視覺演算法，不授予工業資格。|650 ms simulated lifecycle; no vision algorithm or industrial qualification.
+ack|确认当前修订审阅|確認目前修訂審閱|Confirm current revision review
+save|保存工程草稿|儲存工程草稿|Save engineering draft
+cas|模拟远端CAS冲突|模擬遠端CAS衝突|Simulate remote CAS conflict
+casConflict|保存冲突，保留本地差异；先核对远端修订。|儲存衝突，保留本機差異；先核對遠端修訂。|Save conflict; local changes retained. Review the remote revision.
+rebase|查看远端并更新预期修订|查看遠端並更新預期修訂|Review remote revision and update expectation
+saveUnknown|模拟保存应答丢失|模擬儲存回應遺失|Simulate lost save response
+querySave|查询原保存操作|查詢原儲存操作|Query original save operation
+savePending|保存结果未知，不能再次提交；查询原操作。|儲存結果未知，不能再次提交；查詢原操作。|Save result unknown. Query the original operation before another submission.
+handoff|预览模拟交接|預覽模擬交接|Preview simulated handoff
+confirmHandoff|确认模拟交接|確認模擬交接|Confirm simulated handoff
+handoffLimit|仅记录工程交接，不是审批、发布、激活或生产就绪。|僅記錄工程交接，不是審批、發佈、啟用或生產就緒。|Records engineering handoff only; no approval, publication, activation or production readiness.
+qualGap|当前实际样例与路线/参考/必检不相容，保留未决。|目前實際範例與路線/參考/必檢不相容，保留未決。|Actual fixture is incompatible with route, reference or required scope; unresolved.
+saved|工程草稿已保存|工程草稿已儲存|Engineering draft saved
+leave|尚未保存的工程草稿|尚未儲存的工程草稿|Unsaved engineering draft
+keepLeave|保留草稿并离开|保留草稿並離開|Keep draft and leave
+saveLeave|保存并离开|儲存並離開|Save and leave
+discard|恢复已保存草稿并离开|恢復已儲存草稿並離開|Restore saved draft and leave
+readonly|当前只读；可保留草稿只导航，不执行保存或丢弃。|目前唯讀；可保留草稿只導覽，不執行儲存或捨棄。|Read only. Keep the draft and navigate; save and discard are unavailable.
+apply|确认修改|確認修改|Apply changes
+methodSub|DEMO-METHOD · 独立工程算例；不改原提交或当前草稿。|DEMO-METHOD · 獨立工程算例；不改原提交或目前草稿。|DEMO-METHOD · Independent engineering fixtures; original facts and drafts stay fixed.
+materialTab|材料与量域|材料與量域|Material and domains
+acqTab|采集支持|採集支撐|Acquisition support
+bridgeTab|局部桥|局部橋|Local bridge
+centerTab|中心与参考|中心與參考|Centers and reference
+fixture|调查样例|調查範例|Investigation fixture
+known|已知膏与无膏|已知膏與無膏|Known paste and absence
+materialUnknown|材料未知U_s|材料未知U_s|Material unknown U_s
+heightHole|已知F但高度未知U_h|已知F但高度未知U_h|Known F, height unknown U_h
+allB|全B，合法材料零量|全B，合法材料零量|All B; valid zero material
+allU|全U，无量值|全U，無量值|All U; no measurement
+bias|合成参考偏高δ|合成參考偏高δ|Synthetic reference offset δ
+areaF|已知材料面积 E_F|已知材料面積 E_F|Known material area E_F
+areaB|已证无膏面积 B|已證無膏面積 B|Proven absence area B
+unknownS|材料未知面积 U_s|材料未知面積 U_s|Unknown material area U_s
+unknownH|F内高度未知面积 U_h|F內高度未知面積 U_h|Height unknown within F
+signed|有符号量|有符號量|Signed integral
+plus|正部量|正部量|Positive integral
+total|完整材料量|完整材料量|Complete material quantity
+noBounds|未知域无独立厚度界，不能给出总体上界。|未知域無獨立厚度界，不能給出總體上界。|No independent thickness bound on the unknown domain; no total upper bound.
+biasExplain|固定分类/支持下，B为材料逻辑0；材料偏差按E_F面积，几何请求须有B上的真实高度。|固定分類/支撐下，B為材料邏輯0；材料偏差按E_F面積，幾何要求須有B上的真實高度。|With classification/support fixed, B contributes logical material zero. Material bias uses E_F; geometry requires actual height on B.
+negative|已知F出现负厚度：材料体积拒识；原有符号几何诊断保留。|已知F出現負厚度：材料體積拒識；原有符號幾何診斷保留。|Known F has negative thickness: material volume rejected; signed geometric diagnostics retained.
+native|原生有效|原生有效|Native valid
+derived|派生 / 仅显示|衍生 / 僅顯示|Derived / display only
+structure|帧组结构|影格組結構|Frame-set structure
+measurable|方法输入资格|方法輸入資格|Method input qualification
+referenceValid|参考适用|參考適用|Reference applicability
+commitState|提交 / 排空|提交 / 排空|Commit / drainage
+fullSet|完整独立组|完整獨立組|Complete independent set
+missingFrame|缺图案帧|缺圖案影格|Missing pattern frame
+mixed|逐步混曝光|逐步混曝光|Mixed exposure steps
+interpolated|插值 / 闭面|插值 / 封閉表面|Interpolated / closed surface
+rawZero|真实0与无效码|真實0與無效碼|True zero and invalid sentinel
+separateGroups|每曝光组独立重建，冲突保留；不拼最佳帧，不自动切路线。|每曝光組獨立重建，衝突保留；不拼最佳影格，不自動切路線。|Reconstruct each exposure set separately; retain conflicts, never mix best frames or switch routes silently.
+noPhase|H0来自厂商高度，不要求不存在的相位帧。|H0來自廠商高度，不要求不存在的相位影格。|H0 consumes vendor height; nonexistent phase frames are not required.
+lower|已知下图|已知下圖|Known lower graph
+upper|可能上图|可能上圖|Possible upper graph
+bridgeUnknown|局部连接未知|局部連接未知|Local connection unknown
+bridgeNo|局部切断支持|局部切斷支撐|Local disconnection support
+bridgeYes|已知局部路径|已知局部路徑|Known local path
+edgeUnknown|空间边未知|空間邊未知|Spatial edge unknown
+anchorUnknown|锚接界未知|錨接界未知|Anchor contact unknown
+remote|仅域外绕行|僅域外繞行|Outside-domain route only
+closing|closing新增材料|closing新增材料|Closing-added material
+permission|连膏许可|連膏許可|Paste connection permission
+forbidden|禁止|禁止|Forbidden
+allowed|允许指定范围|允許指定範圍|Allowed in specified scope
+pending|未决|未決|Unresolved
+bridgeLimit|固定W23与A2/A3；原F/B/U不因图层、许可或closing改变。|固定W23與A2/A3；原F/B/U不因圖層、許可或closing改變。|Fixed W23 and A2/A3; layers, permission and closing do not change original F/B/U.
+centers|两片具名中心|兩片具名中心|Named centers of two patches
+areaCenter|面积中心|面積中心|Area centroid
+volumeCenter|体积中心投影|體積中心投影|Volume centroid projection
+fullDomain|完整两片|完整兩片|Both patches complete
+partialDomain|仅首片有效|僅首片有效|First patch only
+zeroDomain|无材料，无中心|無材料，無中心|No material; no centroid
+centerLimit|相同面积，x=0/2 mm，h=0.1/0.3 mm。部分中心不是全体中心；无体积不退为空间原点。|相同面積，x=0/2 mm，h=0.1/0.3 mm。部分中心不是全體中心；無體積不退回空間原點。|Equal areas at x=0/2 mm, h=0.1/0.3 mm. Partial centers are not complete centers; zero volume has no origin fallback.
+referenceCase|参考算例|參考算例|Reference fixture
+maskUnknown|阻焊台阶未知|阻焊台階未知|Mask step unknown
+pasteTop|膏顶低残差候选|膏頂低殘差候選|Low-residual paste-top candidate
+refExplain|铜面0.035、阻焊0.020、膏顶0.135 mm；独立台阶0.015 mm。|銅面0.035、阻焊0.020、膏頂0.135 mm；獨立台階0.015 mm。|Copper 0.035, mask 0.020, paste top 0.135 mm; independent step 0.015 mm.
+height|沿基准法向高度|沿基準法向高度|Height along reference normal
+discrete|离散面积加权统计|離散面積加權統計|Discrete area-weighted statistics
+discreteExplain|面积1/3 mm²，高度0.1/0.3 mm：面积均值0.25、中位0.30 mm；不是连续面积分位。|面積1/3 mm²，高度0.1/0.3 mm：面積均值0.25、中位0.30 mm；不是連續面積分位。|Areas 1/3 mm², heights 0.1/0.3 mm: mean 0.25, median 0.30 mm; not a continuous area quantile.
+historySub|原提交、工程试算、取消及新来源预览分别保存身份；刷新清除内存演示记录。|原提交、工程試算、取消及新來源預覽分別保留身分；重新整理清除記憶體示範記錄。|Original, trial, cancellation and new-source previews retain separate identities; refresh clears in-memory demo records.
+original|原提交|原提交|Original submission
+trialRecord|试算发起快照|試算發起快照|Trial initiation snapshot
+cancelRecord|取消记录|取消記錄|Cancellation record
+preview|未提交新来源预览|未提交新來源預覽|Unsubmitted new-source preview
+addPreview|保留独立新来源卡|保留獨立新來源卡|Keep separate new-source card
+open|打开|開啟|Open
+proposal|原提案|原提案|Original proposal
+command|原命令|原命令|Original command
+transport|传输交付|傳輸交付|Transport delivery
+business|业务响应|業務回應|Business response
+application|逐项应用|逐項套用|Per-item application
+effect|后效|後效|Effect
+queryCommand|查询原命令|查詢原命令|Query original command
+sent|已传输|已傳送|Transport acknowledged
+accepted|配方已接收|配方已接收|Recipe received
+unknown|未知|未知|Unknown
+applied|已应用|已套用|Applied
+notEvaluated|未评价|未評估|Not evaluated
+effectPartial|后效成员未完整|後效成員未完整|Effect population incomplete
+oldWip|旧在制板，排除本次后效|舊在製板，排除本次後效|Old WIP; excluded from this effect
+newBoard|使用新参数版本|使用新參數版本|Used new parameter revision
+queryExplain|只读取固定原命令回执，不发送、重发或反向调机。|僅讀取固定原命令回執，不傳送、重傳或反向調機。|Reads the fixed original receipt; no send, resend or reverse adjustment.
+feedbackFixture|选择固定回执样例|選擇固定回執範例|Select fixed receipt fixture
+feedbackUnknown|已发送，应用未知|已傳送，套用未知|Sent; application unknown
+feedbackPartial|仅X已应用|僅X已套用|Only X applied
+feedbackApplied|XY已应用，后效未完整|XY已套用，後效未完整|XY applied; effect incomplete
+scopeFixed|固定总体3块：2块新参数板，1块旧在制板；仅1块新板已观察。|固定總體3塊：2塊新參數板，1塊舊在製板；僅1塊新板已觀察。|Fixed set of 3: 2 new-parameter boards and 1 old WIP; only 1 new board observed.
+statusHelp|查看缺项与原证据；页面状态夹具不改变事实或权限。|查看缺項與原證據；頁面狀態夾具不改變事實或權限。|Inspect gaps and original evidence; the state fixture changes neither facts nor permissions.
+reviewAck|当前修订工程审阅已记录|目前修訂工程審閱已記錄|Engineering review recorded for this revision
+runComplete|合成试算完成；不是工艺通过|合成試算完成；不是製程通過|Synthetic trial complete; not process acceptance
+lockedReasonRequired|锁定必须有理由。|鎖定必須有理由。|A lock requires a reason.
+evidenceOnly|只读固定证据；没有改写或提交操作。|唯讀固定證據；沒有改寫或提交操作。|Read-only fixed evidence; no write or submit operation.
+viewScope|当前视图|目前檢視|Current view
+actualMismatch|当前试算样例支持H0、铜基底与材料窗口；H1/H2、其它基底或几何积分不能替代必检材料体积。|目前試算範例支援H0、銅基底與材料視窗；H1/H2、其他基底或幾何積分不能替代必檢材料體積。|This trial fixture supports H0, copper substrate and material windows. H1/H2, other substrates or geometric integrals cannot replace required material volume.
+frameSource|原帧 / 高度来源|原影格 / 高度來源|Original frame / height source
+value|数值|數值|Value
+unit|单位|單位|Unit
+range|作用范围|作用範圍|Application scope
+pendingSave|原保存操作尚未查询|原儲存操作尚未查詢|Original save operation awaits query
+notConfirmed|尚未确认|尚未確認|Not confirmed
+confirm|确认|確認|Confirm
+queryResult|原回执样例已读取，未知仍保留。|原回執範例已讀取，未知仍保留。|Original receipt fixture read; unknown remains unknown.
+passedConfig|配置相容；尚未试算|設定相容；尚未試算|Configuration compatible; trial pending
+notApplicable|不适用|不適用|Not applicable
+dimensions|结构 / 方法 / 参考 / 提交独立|結構 / 方法 / 參考 / 提交獨立|Structure / method / reference / commit are independent
+nativeHint|零高度可有效；非零数值不证明原生，派生不能加进原生覆盖。|零高度可有效；非零數值不證明原生，衍生不能加入原生覆蓋。|Zero height may be valid; nonzero is not proof of native support. Derived support is not native coverage.
+notQualified|未具资格|未具資格|Not qualified`);
+addResources(`searchPreview|黄色框仅预览搜索外扩，不改变名义焊盘、钢网开口或必检分母。|黃色框僅預覽搜尋外擴，不改變名義焊盤、鋼網開口或必檢分母。|Yellow bounds preview search expansion only; nominal pads, apertures and required scope remain fixed.
+separateFixture|独立守恒算例|獨立守恆算例|Separate conservation fixture
+materialHeightFixture|本算例F上h=0.200−δ mm。几何请求另给B上真实h=0.200−δ；U_s与U_h无可用高度。色带按材料面积比例显示，F不代表高度完整。|本範例F上h=0.200−δ mm。幾何要求另給B上真實h=0.200−δ；U_s與U_h無可用高度。色帶按材料面積比例顯示，F不代表高度完整。|Here h=0.200−δ mm on F. Geometry separately supplies measured h=0.200−δ on B; U_s and U_h have no usable height. Bands show material area; F does not imply complete height.`);
+addResources(`framePresence|帧接收|影格接收|Frame receipt
+frameIdentity|帧/曝光组身份|影格/曝光組身分|Frame / exposure-set identity
+frameReceived|已收到|已收到|Received
+identityMatches|与本组清单一致|與本組清單一致|Matches this set manifest
+exposureMismatch|曝光组身份不一致|曝光組身分不一致|Exposure-set identity mismatch
+structureComplete|输入结构完整|輸入結構完整|Input structure complete`);
+const langs=['zh-CN','zh-TW','en-US'];let lang='zh-CN',role='operator',theme='dark',fixture='Ready',tab='production',selected='I1/U1/P1',loading=false,selectionSeq=0,query='',onlyIssues=false,subwindow=null,notice='statusHelp',dialog=null,section=.5,zscale=2,heightView=false;
+const layers={paste:true,windows:true,unknown:true,mirror:false};
+const T=k=>{if(!resources[k])throw Error('Missing resource '+k);return resources[k][langs.indexOf(lang)]};
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clone=x=>JSON.parse(JSON.stringify(x));const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const pads=[
+ {id:'I1/U1/P1',label:'U1 · P1',aps:['A11','A12'],group:'D11',component:'C11',status:'shifted',x:150,y:100,area:1,overlap:.75,volume:.1},
+ {id:'I1/J2/P1',label:'J2 · P1',aps:['A21'],group:'D23',component:'C-B23',status:'bridgeCandidate',x:370,y:110,area:.5,overlap:.48,volume:.05},
+ {id:'I1/J2/P2',label:'J2 · P2',aps:['A22'],group:'D23',component:'C-B23',status:'bridgeCandidate',x:455,y:110,area:.5,overlap:.48,volume:.05},
+ {id:'I1/TP1/P1',label:'TP1 · P1',aps:[],group:null,component:null,status:'excluded',x:155,y:280,area:null,overlap:null,volume:null},
+ {id:'I1/R9/P1',label:'R9 · P1',aps:['A91'],group:'D91',component:'C91',status:'heightUnknown',x:340,y:280,area:.4,overlap:.4,volume:null,dnp:true},
+ {id:'I2/U1/P1',label:'U1 · P1',aps:['A211','A212'],group:'D211',component:'C211',status:'complete',x:570,y:280,area:1,overlap:1,volume:.1}];
+const original=Object.freeze({id:'DEMO-SPI-ORIGINAL-r7',board:'DEMO-B0042',attempt:'PRINT-02',side:'TOP',program:'SPI-P17/r7',commit:'DEMO-COMMIT-42',required:5,apertures:7,pads:clone(pads)});
+const initialParams={acquisition:{route:'H0',reference:'copper',domain:'material',margin:.1,method:'DEMO-M1',source:1},targets:{intent:'areaOnly',pads:'I1/U1/P1 · I1/J2/P1,P2 · I1/R9/P1 · I2/U1/P1',apertures:'A11,A12,A21,A22,A91,A211,A212',denominator:'DEMO-PAD/r1',source:1}};
+let q={step:0,source:'design',sourceRev:1,frozen:null,intent:null,pendingIntent:'volumeRequired',bound:false,mapping:'explicit',mapped:false,candidate:null,actual:'available',plan:0};
+let draft={rev:1,clock:1,params:clone(initialParams),base:clone(initialParams),locks:{acquisition:'',targets:''},saved:null,savedRev:1,expected:1,remote:1,saveId:0,pendingSave:null,validated:0,trial:0,reviewed:0,handoff:0,dirty:false};draft.saved={params:clone(draft.params),base:clone(draft.base),locks:clone(draft.locks)};
+let run=null,runSeq=0;const records=[{kind:'original',id:original.id,revision:7,data:clone(original)}];
+const lab={tab:'materialTab',material:'known',domain:'material',bias:0,route:'H0',acq:'fullSet',bridge:'unknown',graph:'lower',permit:'forbidden',center:'fullDomain',reference:'copper'};
+let feedbackFixture='feedbackUnknown',feedbackQueries=0;
+function writable(){return role==='engineer'&&fixture!=='PermissionDenied'&&!run&&!draft.pendingSave;}
+function invalidate(){draft.validated=draft.trial=draft.reviewed=draft.handoff=0;q.plan=0;}
+function touch(){draft.rev=++draft.clock;draft.dirty=true;invalidate();}
+function candidateStale(){if(q.candidate)q.candidate.stale=true;}
+function qualify(){return !!q.frozen&&q.frozen.rev===q.sourceRev&&q.intent===draft.params.targets.intent&&q.mapped&&draft.params.acquisition.reference==='copper'&&(q.intent==='areaOnly'||(q.actual==='available'&&draft.params.acquisition.route==='H0'&&draft.params.acquisition.domain==='material'));}
+function canHandoff(){return writable()&&qualify()&&draft.trial===draft.rev&&draft.reviewed===draft.rev&&draft.savedRev===draft.rev&&q.plan===draft.rev&&draft.validated===draft.rev;}
+function btn(id,key,disabled=false,cls=''){return `<button id="${id}" class="${cls}" ${disabled?'disabled':''}>${T(key)}</button>`;}
+function opt(v,k,current){return `<option value="${v}" ${v===current?'selected':''}>${T(k)}</option>`;}
+function select(id,key,options,current){return `<label class="field">${T(key)}<select id="${id}">${options.map(x=>opt(Array.isArray(x)?x[0]:x,Array.isArray(x)?x[1]:x,current)).join('')}</select></label>`;}
+function metric(key,value,unit='',id='',wide=false){return `<div class="metric ${wide?'wide':''}" ${id?`id="${id}"`:''}><small>${T(key)}</small><strong>${esc(value)}</strong><span>${esc(unit)}</span></div>`;}
+function kv(key,value){return `<div class="kv"><span>${T(key)}</span><b>${esc(value)}</b></div>`;}
+function panel(key,body,extra='',cls=''){return `<section class="panel ${cls}"><div class="panelhead"><h3>${T(key)}</h3>${extra}</div><div class="body">${body}</div></section>`;}
+function mainHeading(key,sub,actions=''){return `<div class="heading"><div><h2>${T(key)}</h2><p>${T(sub)}</p></div><div class="toolbar">${actions}</div></div>`;}
+function visiblePads(){return pads.filter(p=>(!query||p.id.toLowerCase().includes(query.toLowerCase()))&&(!onlyIssues||!['complete','excluded'].includes(p.status)));}
+function empty(){return `<div class="empty">${T('noSelection')}<p>${btn('clear-search','clear')}</p></div>`;}
+function selectedPad(){return fixture==='Empty'||loading?null:pads.find(p=>p.id===selected);}
+function render(){
+ const active=document.activeElement;const focusId=active?.id;const selStart=active?.selectionStart;const scroll=window.scrollY;
+ document.documentElement.lang=lang;document.body.className=theme==='light'?'light':'';
+ document.getElementById('app').innerHTML=`<header><div class="brand"><div class="logo">SPI</div><div><p class="eyebrow">${T('subtitle')}</p><h1>${T('app')}</h1></div></div><div class="controls"><label>${T('language')}<select id="lang">${langs.map(l=>`<option ${l===lang?'selected':''}>${l}</option>`).join('')}</select></label><label>${T('role')}<select id="role">${opt('operator','operator',role)+opt('engineer','engineer',role)}</select></label><label>${T('state')}<select id="state">${['Ready','Busy','Empty','Stale','Blocked','RecoverableError','PermissionDenied','Completed'].map(k=>opt(k,k,fixture)).join('')}</select></label>${btn('theme','theme')}</div></header><div class="context"><div><small>${T('board')}</small><strong>DEMO-B0042 · PRINT-02</strong></div><div><small>${T('program')}</small><strong>SPI-P17 / r7</strong></div><div><small>${T('station')}</small><strong>DEMO-SPI / L1</strong></div><div><small>${T('source')}</small><strong>${tab==='production'?'DEMO-SPI-ORIGINAL-r7':tab==='method'?'DEMO-METHOD':tab==='history'?'DEMO-HISTORY':'DEMO-DRAFT-r'+draft.rev}</strong></div><span class="tag warn">${T('scope')}</span></div><nav aria-label="${T('viewScope')}">${['production','programming','method','history'].map(k=>btn('view-'+k,k,false,k===tab?'active':'')).join('')}</nav><main>${tab==='production'?productionHtml():tab==='programming'?programHtml():tab==='method'?methodHtml():historyHtml()}</main><footer><div><strong>${run?T(run.cancel?'draining':'Busy'):T(fixture)} · ${T(tab)} ${tab==='programming'?'r'+draft.rev:''}</strong><small role="status" id="status-message">${T(notice)}</small></div><div class="toolbar">${tab==='programming'?btn('footer-save','save',!writable())+(run?btn('footer-cancel','cancel',run.cancel):''):btn('footer-next','next',tab!=='production')}</div></footer>${dialog?dialogHtml():''}`;
+ bind();if(focusId){const n=document.getElementById(focusId);if(n){n.focus({preventScroll:true});if(typeof selStart==='number'&&n.setSelectionRange&&['text','search'].includes(n.type))n.setSelectionRange(selStart,selStart);}}window.scrollTo(0,scroll);
+}
+function targetHtml(){return `<input id="search" type="search" aria-label="${T('search')}" placeholder="${T('search')}" value="${esc(query)}"><div class="toolbar" style="margin-top:8px">${btn('filter-all','all',false,!onlyIssues?'active':'')}${btn('filter-issues','issues',false,onlyIssues?'active':'')}</div><div class="targets">${visiblePads().map(p=>`<div><button class="target ${selected===p.id?'active':''}" data-target="${p.id}" id="target-${p.id.replaceAll('/','-')}"><strong>${esc(p.label)} <span class="dot">${p.status==='complete'?'◇':'△'}</span></strong><small>${p.id}</small><small>${T(p.dnp?'dnp':p.status)}</small></button>${selected===p.id?`<div class="children">${p.aps.map(a=>`<button data-aperture="${a}" class="${subwindow===a?'active':''}">${a}</button>`).join('')}</div>`:''}</div>`).join('')}</div><p class="hint">${T('fixedCount')}</p>`;}
+function boardSvg(){const current=selectedPad();return `<div class="viewport"><div class="viewcaption">DEMO · TOP · mm · ${heightView?T('heightView'):'2D'}</div><svg viewBox="0 0 750 440" role="img" aria-label="${T('image')}"><defs><pattern id="boardGrid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="#244047" stroke-width=".5"/></pattern><pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 9L9 0" stroke="#e8b65d" stroke-width="2"/></pattern><linearGradient id="paste" x2="0" y2="1"><stop stop-color="#8ed9d6"/><stop offset="1" stop-color="#3c8c99"/></linearGradient></defs><rect width="750" height="440" fill="url(#boardGrid)"/><g transform="${layers.mirror?'translate(750 0) scale(-1 1)':''}"><rect x="45" y="50" width="660" height="350" rx="18" fill="#183c3c" stroke="#3c7970" stroke-width="2"/><path d="M70 350H105V205H320V360H680M110 80V160H285V70M520 70V210H655V360" stroke="#377572" stroke-width="6" fill="none" opacity=".35"/>${pads.map(p=>`<g data-pad="${p.id}" tabindex="0" role="button" aria-label="${p.id}"><rect x="${p.x-15}" y="${p.y-16}" width="100" height="92" rx="8" fill="none" stroke="${current?.id===p.id?'#55bbff':'transparent'}" stroke-width="2"/><rect x="${p.x}" y="${p.y}" width="65" height="55" rx="3" fill="#c7b77b" opacity=".85"/>${tab==='programming'?`<rect x="${p.x-draft.params.acquisition.margin*100}" y="${p.y-draft.params.acquisition.margin*100}" width="${65+draft.params.acquisition.margin*200}" height="${55+draft.params.acquisition.margin*200}" fill="none" stroke="#ffcb6a" stroke-dasharray="3 4"/>`:''}${layers.windows?p.aps.map((a,i)=>`<rect data-window="${a}" x="${p.x+4+i*30}" y="${p.y+5}" width="${p.aps.length>1?24:55}" height="45" fill="none" stroke="${subwindow===a?'#fff':'#89daff'}" stroke-width="${subwindow===a?3:1}" stroke-dasharray="4 3"/>`).join(''):''}${layers.paste&&p.component&&p.component!=='C-B23'?`<rect x="${p.x+(p.status==='shifted'?16:3)}" y="${p.y+6-(heightView?zscale*4:0)}" width="${p.status==='heightUnknown'?58:65}" height="43" rx="10" fill="url(#paste)" opacity=".85"/>`:''}${layers.unknown&&p.status==='heightUnknown'?`<rect x="${p.x+25}" y="${p.y}" width="30" height="55" fill="url(#hatch)"/>`:''}<text x="${p.x}" y="${p.y+78}" font-size="11">${p.id}</text></g>`).join('')}${layers.paste?'<path data-component="C-B23" d="M376 122 Q400 111 421 126 L457 126 Q480 111 510 126 L510 151 Q483 170 457 150 L421 150 Q397 167 376 151Z" fill="url(#paste)" opacity=".92"/>':''}<line x1="${current?.x??150}" x2="${(current?.x??150)+80}" y1="${(current?.y??100)+section*55}" y2="${(current?.y??100)+section*55}" stroke="#ffa869" stroke-dasharray="5 3"/></g></svg></div>`;}
+function sectionSvg(){const p=selectedPad();const unknown=!p||p.volume===null;return `<svg class="sectionplot" viewBox="0 0 650 150" aria-label="${T('section')}"><path d="M40 20V120H620" stroke="var(--line)" fill="none"/><path d="M40 110H620" stroke="var(--accent)" stroke-dasharray="4 4"/><text x="4" y="25">mm</text><text x="500" y="138">${esc(p?.id??'—')}</text>${unknown?`<rect x="180" y="35" width="200" height="72" fill="var(--warn)" opacity=".1"/><text x="190" y="75">${T('unmeasured')}</text>`:`<path d="M80 110 L175 110 Q205 ${52+section*20} 260 ${45+section*20} L370 ${45+section*20} Q425 60 445 110 L580 110" fill="none" stroke="var(--good)" stroke-width="3"/><text x="275" y="28">0.100 mm · ${T('ref')}</text>`}</svg>`;}
+function productionHtml(){const p=selectedPad();const n=loading?T('loading'):T('noSelection');const values=p?`<p class="hint">${esc(p.id)} · ${p.group??'—'} · ${subwindow??p.aps.join(' / ')}</p><div class="metrics">${metric('areaRatio',p.area===null?T('notApplicable'):p.id==='I1/U1/P1'?'100.0':p.id==='I2/U1/P1'?'100.0':'—','%', 'prod-area')}${metric('coverage',p.area===null?T('notApplicable'):p.id==='I1/U1/P1'?'75.0':p.status==='heightUnknown'?'100.0':p.status==='complete'?'100.0':'96.0','%','prod-coverage')}${metric('volume',p.volume===null?T(p.status==='excluded'?'notApplicable':'unmeasured'):p.volume.toFixed(3),'mm³','prod-volume')}${metric('overflow',p.id==='I1/U1/P1'?'0.250':p.status==='excluded'?'—':'—','mm²')}</div>${kv('denominator',p.id==='I1/U1/P1'?'DEMO-PAD/r1 · 1.000 mm²':p.aps.join(' / ')||'—')}${kv('ref','DEMO-COPPER/r2')}${kv('reason',T(p.status))}<p class="callout">${T(p.id==='I1/U1/P1'?'ratioExplain':p.status==='bridgeCandidate'?'oneBridge':p.status==='heightUnknown'?'heightUnknown':'evidenceOnly')}</p>${btn('open-evidence','evidence')}`:`<p class="empty">${n}</p>`;
+ return mainHeading('production','prodSub',btn('open-feedback','feedback')+btn('query-commit','queryCommit'))+`<div class="workbench">${panel('targets',targetHtml())}<div class="stack"><section class="panel"><div class="panelhead"><h3>${T('image')}</h3><span class="tag">5 / 6 · ${T('required')}</span></div><div class="body toolbar">${['paste','windows','unknown','mirror'].map(k=>`<label class="hint"><input type="checkbox" id="layer-${k}" ${layers[k]?'checked':''}> ${T({paste:'overlay',windows:'windows',unknown:'unknownLayer',mirror:'mirror'}[k])}</label>`).join('')}${btn('height-view','heightView',false,heightView?'active':'')}</div>${fixture==='Empty'||!selected?empty():boardSvg()}<div class="legend"><span><i></i>${T('pad')}</span><span><i style="background:var(--good)"></i>${T('paste')}</span><span><i style="background:var(--warn)"></i>U_h</span></div></section>${panel('section',sectionSvg()+`<label class="field">${T('sectionAt')} · ${(section*100).toFixed(0)}%<input id="section" type="range" min="0" max="1" step=".05" value="${section}"></label>`+(heightView?`<label class="field">${T('zscale')} · ${zscale}×<input id="zscale" type="range" min="1" max="5" value="${zscale}"></label>`:'')+`<p class="hint">${T('visualOnly')}</p>`)}</div>${panel('inspect',values,'','inspector')}</div><div class="row2">${panel('relation',`<p id="relation-summary">${T('oneBridge')}</p><div class="toolbar">${btn('select-bridge','bridgeCandidate')}${btn('investigate-bridge','bridgeTab')}</div>`)}${panel('dimensions',kv('structure','DEMO-H0 · '+T('complete'))+kv('measurable','I1/R9/P1 · '+T('heightUnknown'))+kv('commitState','DEMO-COMMIT-42 · '+T('submitted'))+`<p class="hint">${T('productionLimit')}</p>`)}</div>`;}
+function parameterFields(group){return Object.entries(group).map(([k,v])=>{const keys={route:'route',reference:'ref',domain:'domain',margin:'margin',method:'methodLabel',source:'sourceRev',intent:'intent',pads:'required',apertures:'apertures',denominator:'denominator'};return kv(keys[k],['reference','domain','intent'].includes(k)?T(v):k==='margin'?v+' mm':v);}).join('');}
+function canMerge(){const c=q.candidate;if(!writable()||!c||c.stale||c.rev!==draft.rev||c.source!==q.sourceRev)return false;for(const key of ['acquisition','targets']){const decision=c.decisions[key];if(!decision.choice)return false;if(draft.locks[key]&&decision.choice!=='L')return false;const conflict=!same(c.B[key],c.L[key])&&!same(c.B[key],c.R[key])&&!same(c.L[key],c.R[key]);if((conflict||decision.choice==='L'&&!same(c.L[key],c.R[key]))&&!decision.reason.trim())return false;}return c[c.decisions.targets.choice].targets.intent===q.intent;}
+function mergeHtml(){const c=q.candidate;if(!c)return `<p class="hint">${T('candidateOnly')}</p>`;return `<div id="merge-area">${c.stale?`<p class="callout">${T('staleCandidate')}</p>`:''}${['acquisition','targets'].map(key=>`<div class="merge"><div class="mergetitle"><strong>${T(key==='acquisition'?'acqGroup':'targetGroup')}</strong><div class="hint">${T(draft.locks[key]?'locked':'inherited')} ${esc(draft.locks[key])}</div></div><div class="three">${['B','L','R'].map(side=>`<div><h4>${side}</h4>${parameterFields(c[side][key])}<details><summary>${T('diagnostics')}</summary><pre>${esc(JSON.stringify(c[side][key],null,2))}</pre></details></div>`).join('')}</div><div class="toolbar"><label class="field">${T('choose')}<select id="choice-${key}" ${!writable()?'disabled':''}><option value="">${T('choose')}</option><option value="L" ${c.decisions[key].choice==='L'?'selected':''}>${T('keepL')}</option><option value="R" ${c.decisions[key].choice==='R'?'selected':''} ${draft.locks[key]?'disabled':''}>${T('takeR')}</option></select></label><label class="field" style="flex:1">${T('lockReason')}<input id="reason-${key}" type="text" value="${esc(c.decisions[key].reason)}" ${!writable()?'disabled':''}></label>${btn('lock-'+key,draft.locks[key]?'unlock':'lock',!writable())}</div><div class="hint" style="padding:0 12px 12px">${T('conflict')}</div></div>`).join('')}${c.decisions.targets.choice&&c[c.decisions.targets.choice].targets.intent!==q.intent?`<p id="intent-error" class="callout">${T('intentMismatch')}</p>`:''}<div class="toolbar" style="margin-top:16px">${btn('apply-merge','merge',!canMerge(),'primary')}${btn('regenerate','generate',!writable()||!q.mapped)}</div></div>`;}
+function programHtml(){let body='';
+ if(q.step===0)body=`<div class="form">${select('source','source',['design','referenceImage','legacy'],q.source)}${select('actual','actual',['available','missing3d','conflicting'],q.actual)}</div><p class="hint">DEMO-${q.source.toUpperCase()} / r${q.sourceRev} · TOP · mm · 5 / 7</p>${q.source==='referenceImage'?`<p class="callout">${T('imageLimit')}</p>`:''}<div class="toolbar">${btn('freeze','freeze',!writable(),'primary')}${btn('refresh-source','refreshSource',!writable())}</div>`;
+ if(q.step===1)body=`<div class="form">${select('intent','intent',['volumeRequired','areaOnly'],q.pendingIntent)}</div><p class="callout">${T('dnp')} · R9/P1</p><p>${T('required')}: 5 · ${T('apertures')}: 7</p><div class="toolbar">${btn('confirm-intent','confirmIntent',!writable()||!q.frozen,'primary')}${q.source==='referenceImage'?btn('bind-design','bindDesign',!writable()||!q.frozen):''}</div><p class="hint">${T('confirm')}: ${q.intent?T(q.intent):T('notConfirmed')} · ${q.bound?'DEMO-DESIGN/r1':'—'}</p>`;
+ if(q.step===2)body=`${select('mapping','mapping',['explicit','ambiguous'],q.mapping)}${boardSvg()}<p class="callout info">${T('mappingHint')}</p><div class="tablewrap"><table><thead><tr><th>${T('pad')}</th><th>${T('apertures')}</th><th>${T('group')}</th></tr></thead><tbody>${pads.map(p=>`<tr><td>${p.id}</td><td>${p.aps.join(' / ')||T('excluded')}</td><td>${p.group||'—'}</td></tr>`).join('')}</tbody></table></div><p>${btn('confirm-mapping','confirmMapping',!writable()||!q.frozen||!q.intent||q.mapping!=='explicit'||q.source==='referenceImage'&&!q.bound,'primary')}</p>`;
+ if(q.step===3)body=`<p>${T('candidateOnly')}</p><div class="toolbar">${btn('generate','generate',!writable()||!q.mapped||!q.frozen,'primary')}${btn('edit','edit',!writable())}</div>${boardSvg()}<p class="hint">${T('searchPreview')}</p>${parameterFields(draft.params.acquisition)}`;
+ if(q.step===4)body=`<div class="metrics">${metric('required','5','pad')}${metric('apertures','7','aperture')}${metric('route',draft.params.acquisition.route)}${metric('actual',T(q.actual))}</div><p class="callout ${qualify()?'info':''}">${T(qualify()?'candidateOnly':'qualGap')}</p><p class="hint">${T('actualMismatch')}</p>${btn('confirm-plan','plan',!writable()||!q.candidate?.applied,'primary')}`;
+ if(q.step===5)body=`${kv('intent',q.intent?T(q.intent):T('notConfirmed'))}${kv('actual',T(q.actual))}${kv('draft','r'+draft.rev)}${!qualify()?`<p class="callout">${T('qualGap')}</p>`:''}<p>${T('trialLimit')}</p>${run?'<div class="progress"><i></i></div>':''}<div class="toolbar">${btn('validate','validate',!writable()||q.plan!==draft.rev)}${btn('trial','trial',!writable()||!qualify()||draft.validated!==draft.rev||q.plan!==draft.rev,'primary')}${btn('cancel','cancel',!run||run.cancel)}</div>`;
+ if(q.step===6)body=mergeHtml()+`<div class="toolbar" style="margin-top:16px">${btn('edit','edit',!writable())}${btn('ack-review','ack',!writable()||!qualify()||draft.trial!==draft.rev||q.plan!==draft.rev,'primary')}</div>`;
+ if(q.step===7)body=`<p class="callout info">${T('handoffLimit')}</p>${kv('draft','r'+draft.rev)}${kv('save','r'+draft.savedRev)}${kv('trial','r'+draft.trial)}${kv('stage6','r'+draft.reviewed)}<div class="toolbar">${btn('final-save','save',!writable())}${btn('handoff','handoff',!canHandoff(),'primary')}</div>`;
+ return mainHeading('programming','programSub')+`<div class="steps">${Array.from({length:8},(_,i)=>`<button id="step-${i}" class="${q.step===i?'active':''}"><b>P${i}</b>${T('stage'+i)}</button>`).join('')}</div><div class="program">${panel('stage'+q.step,body,`<span class="tag">DEMO-DRAFT-r${draft.rev}</span>`)}<div class="stack">${panel('draft',kv('source',q.source+' / r'+q.sourceRev)+kv('intent',q.intent?T(q.intent):T('notConfirmed'))+kv('stage4','r'+q.plan)+kv('validate','r'+draft.validated)+kv('trial','r'+draft.trial)+kv('stage6','r'+draft.reviewed)+kv('stage7','r'+draft.handoff)+`<p class="hint">${T('handoffLimit')}</p>`)}${panel('save',`<p class="hint">CAS ${draft.expected} / ${draft.remote}</p>${draft.expected!==draft.remote?`<p class="callout">${T('casConflict')}</p>`:''}${draft.pendingSave?`<p class="callout">${T('savePending')} · ${draft.pendingSave.id}</p>`:''}<div class="toolbar">${btn('save','save',!writable())}${btn('cas','cas',!writable())}${btn('rebase','rebase',!writable()||draft.expected===draft.remote)}${btn('save-unknown','saveUnknown',!writable()||draft.expected!==draft.remote)}${btn('query-save','querySave',!draft.pendingSave)}</div>`)}</div></div>`;
+}
+function materialData(){const kind=lab.material;let F=.4,B=.6,Us=0,Uh=0;if(kind==='materialUnknown'){F=.5;B=.25;Us=.25;}if(kind==='heightHole'){F=.4;B=.6;Uh=.2;}if(kind==='allB'){F=0;B=1;}if(kind==='allU'){F=0;B=0;Us=1;}const EF=F-Uh,delta=lab.bias,has=EF+B>0;let signed=EF*(.2-delta),plus=EF*Math.max(.2-delta,0);if(lab.domain==='geometry'){signed=(EF+B)*(.2-delta);plus=(EF+B)*Math.max(.2-delta,0);}return {F,B,Us,Uh,EF,signed:has?signed:null,plus:has?plus:null,complete:Us===0&&Uh===0,negative:EF>0&&delta>.2};}
+function methodHtml(){let content='';
+ if(lab.tab==='materialTab'){const d=materialData();content=`<div class="row2" style="margin-top:0">${panel('materialTab',`<div class="form">${select('lab-material','fixture',['known','materialUnknown','heightHole','allB','allU'],lab.material)}${select('lab-domain','domain',['material','geometry'],lab.domain)}</div><div class="swatch">${[['F',d.F],['B',d.B],['U',d.Us]].filter(x=>x[1]>0).map(([v,a])=>`<span class="${v}" style="flex-grow:${a}">${v} · ${a.toFixed(2)}</span>`).join('')}</div><div class="metrics">${metric('areaF',d.EF.toFixed(3),'mm²','lab-ef')}${metric('areaB',d.B.toFixed(3),'mm²','lab-b')}${metric('unknownS',d.Us.toFixed(3),'mm²','lab-us')}${metric('unknownH',d.Uh.toFixed(3),'mm²','lab-uh')}</div><p class="hint">D=1.000 mm² · ${T('definition')}: ${T(lab.domain)}</p><p class="hint">${T('materialHeightFixture')}</p><p class="callout info">${T('biasExplain')}</p>`)}${panel('inspect',`<label class="field">${T('bias')} · ${lab.bias.toFixed(3)} mm<input id="lab-bias" type="range" min="0" max="0.25" step="0.01" value="${lab.bias}"></label><div class="metrics">${metric('signed',d.signed===null?T('unmeasured'):d.signed.toFixed(4),'mm³','lab-signed')}${metric('plus',d.plus===null?T('unmeasured'):d.plus.toFixed(4),'mm³','lab-plus')}${metric('total',lab.domain==='geometry'?T('notApplicable'):!d.complete||d.negative?T('unmeasured'):d.signed.toFixed(4),'mm³','lab-total',true)}</div><p class="callout">${T(d.negative?'negative':!d.complete?'noBounds':'biasExplain')}</p><div class="metrics">${metric('coverage',lab.material==='materialUnknown'?'50–75':(d.F*100).toFixed(0),'% · D=1 mm²')}${metric('partial',d.complete?T('complete'):T('partial'))}</div>`)}</div>`;}
+ if(lab.tab==='acqTab'){const allowedCases=lab.route==='H0'?['fullSet','interpolated','rawZero']:lab.route==='H1'?['fullSet','missingFrame','mixed','conflicting']:['fullSet','interpolated','conflicting'];const invalid=['missingFrame','mixed','conflicting','interpolated'].includes(lab.acq);content=`<div class="row2" style="margin-top:0">${panel('acqTab',`<div class="form">${select('lab-route','route',[['H0','H0'],['H1','H1'],['H2','H2']],lab.route)}${select('lab-acq','fixture',allowedCases,lab.acq)}</div><p class="callout info">${T(lab.route==='H0'?'noPhase':'separateGroups')}</p><div class="tablewrap"><table><thead><tr><th>${T('frameSource')}</th><th>Actual</th><th>${T('framePresence')}</th><th>${T('frameIdentity')}</th></tr></thead><tbody>${(lab.route==='H0'?['VENDOR-Z / strip-01','VENDOR-Z / strip-02']:lab.route==='H1'?['EXP-A / PAT-01','EXP-A / PAT-02','EXP-A / PAT-03','EXP-B / full-set']:['CAM-LEFT / SET-01','CAM-RIGHT / SET-01']).map((f,i)=>`<tr><td>${f}</td><td>${lab.acq==='mixed'&&i===1?'EXP-B / PAT-02':lab.route==='H0'?'mm · valid-mask':'DEMO-SYNC/1'}</td><td>${T(lab.acq==='missingFrame'&&i===1?'missingFrame':'frameReceived')}</td><td>${T(lab.acq==='mixed'&&i===1?'exposureMismatch':lab.acq==='missingFrame'&&i===1?'unknown':'identityMatches')}</td></tr>`).join('')}</tbody></table></div><p class="hint">${T('nativeHint')}</p>`)}${panel('dimensions',`<div id="acq-structure">${kv('structure',T(lab.acq==='missingFrame'?'missingFrame':lab.acq==='mixed'?'exposureMismatch':'structureComplete'))}</div>`+kv('measurable',T(invalid?'notQualified':'complete'))+kv('referenceValid',T('notEvaluated'))+kv('commitState',T('notEvaluated'))+`<div class="metrics">${metric('native',invalid?'—':lab.acq==='rawZero'?'0.000':'0.200','mm')}${metric('derived',lab.acq==='interpolated'?'0.200':T('notApplicable'),'mm')}</div><p class="callout">${T(invalid?'qualGap':'nativeHint')}</p>`)}</div>`;}
+ if(lab.tab==='bridgeTab'){const kind=lab.bridge;const cells=['no','remote','closing'].includes(kind)?['F','B','F']:kind==='unknown'?['F','U','F']:['F','F','F'];const result=kind==='yes'?'bridgeYes':['no','remote','closing'].includes(kind)?'bridgeNo':'bridgeUnknown';content=`<div class="row2" style="margin-top:0">${panel('bridgeTab',`<div class="form">${select('lab-bridge','fixture',[['unknown','bridgeUnknown'],['no','bridgeNo'],['yes','bridgeYes'],['edge','edgeUnknown'],['anchor','anchorUnknown'],['remote','remote'],['closing','closing']],kind)}${select('lab-permit','permission',['forbidden','allowed','pending'],lab.permit)}</div><div class="toolbar" style="margin-top:14px">${btn('graph-lower','lower',false,lab.graph==='lower'?'active':'')}${btn('graph-upper','upper',false,lab.graph==='upper'?'active':'')}</div><svg class="bridgeplot" viewBox="0 0 540 200" aria-label="${T('bridgeTab')}"><rect x="25" y="35" width="490" height="135" rx="12" fill="none" stroke="var(--accent)" stroke-dasharray="6 5"/><text x="45" y="25">W23 · A2 / M / A3</text>${[0,1].map(i=>`<line x1="${115+i*150}" y1="103" x2="${255+i*150}" y2="103" stroke="${result==='bridgeYes'?'var(--good)':lab.graph==='upper'&&result==='bridgeUnknown'?'var(--warn)':'var(--line)'}" stroke-width="6" ${result!=='bridgeYes'?'stroke-dasharray="8 6"':''}/>`).join('')}${cells.map((v,i)=>`<circle cx="${115+i*150}" cy="103" r="30" fill="var(--panel)" stroke="${v==='U'?'var(--warn)':v==='F'?'var(--good)':'var(--muted)'}" stroke-width="3"/><text x="${109+i*150}" y="108">${v}</text>`).join('')}<text x="95" y="155">A2</text><text x="395" y="155">A3</text></svg><p id="bridge-result" class="callout">${T(result)}</p><p class="hint">${T('bridgeLimit')}</p>`)}${panel('relation',kv('paste','C-B23 · 1')+kv('targets','J2/P1 · J2/P2 · 2')+kv('permission',T(lab.permit))+kv('reason',T(result==='bridgeYes'&&lab.permit==='forbidden'?'bridgeCandidate':lab.permit==='pending'?'pending':result))+`<p class="tag">DEMO-CONSERVATION · ${T('separateFixture')}</p><p>${T('oneBridge')}</p>${kind==='closing'?'<p class="callout">F0/B0/U0 = F/B/F · F1 = F/F/F · Added: M</p>':''}${kind==='remote'?`<p class="callout">${T('remote')} · W23</p>`:''}${kind==='edge'||kind==='anchor'?`<p class="callout">${T(kind==='edge'?'edgeUnknown':'anchorUnknown')}</p>`:''}`)}</div>`;}
+ if(lab.tab==='centerTab'){const full=lab.center==='fullDomain',zero=lab.center==='zeroDomain';const refValid=['copper','maskStep'].includes(lab.reference);content=`<div class="row2" style="margin-top:0">${panel('centers',select('lab-center','fixture',['fullDomain','partialDomain','zeroDomain'],lab.center)+`<svg class="bridgeplot" viewBox="0 0 500 160"><path d="M40 130H460" stroke="var(--muted)"/><rect x="65" y="${zero?129:90}" width="80" height="${zero?0:40}" fill="var(--accent)"/><rect x="300" y="${full?20:129}" width="80" height="${full?110:0}" fill="var(--good)"/>${!full&&!zero?'<rect x="300" y="20" width="80" height="110" fill="none" stroke="var(--warn)" stroke-dasharray="5 5"/>':''}<text x="85" y="150">x=0</text><text x="320" y="150">x=2</text></svg><div class="metrics">${metric('areaCenter',zero?T('unmeasured'):full?'1.000':'0.000','mm · '+T(full?'fullDomain':'partial'),'center-area')}${metric('volumeCenter',zero?T('unmeasured'):full?'1.500':'0.000','mm · '+T(full?'fullDomain':'partial'),'center-volume')}</div><p class="hint">${T('centerLimit')}</p>`)}${panel('ref',select('lab-reference','referenceCase',['copper','maskStep','maskUnknown','pasteTop'],lab.reference)+`<p>${T('refExplain')}</p><div class="metrics">${metric('height',refValid?'0.100':T('unmeasured'),'mm','reference-height')}${metric('referenceValid',T(refValid?'complete':'notQualified'))}</div><p class="callout">${T(refValid?'refExplain':'invalidRef')}</p>${kv('discrete','DEMO-DISCRETE-2')}<p class="hint">${T('discreteExplain')}</p><p class="hint">${T('continuousLimit')}</p>`)}</div>`;}
+ return mainHeading('method','methodSub',btn('add-preview','addPreview'))+`<div class="toolbar" style="margin-bottom:16px">${['materialTab','acqTab','bridgeTab','centerTab'].map(k=>btn('labtab-'+k,k,false,k===lab.tab?'active':'')).join('')}</div>${content}`;
+}
+addResources(`H0|H0 · 厂商高度|H0 · 廠商高度|H0 · Vendor height
+H1|H1 · 结构光/相位|H1 · 結構光/相位|H1 · Structured light/phase
+H2|H2 · 校准多视|H2 · 校準多視|H2 · Calibrated stereo
+continuousLimit|连续面积分位另沿031 §11，当前没有相应运行结果；不借离散值冒充连续值。|連續面積分位另沿031 §11，目前沒有對應執行結果；不借離散值冒充連續值。|Continuous area quantiles follow 031 §11; no result is implemented here. Discrete values are not continuous quantiles.`);
+function historyHtml(){return mainHeading('history','historySub')+panel('history',records.map((r,i)=>`<div class="historycard"><div><span class="tag">${T(r.kind)}</span><p>r${r.revision??'—'}</p></div><div><strong>${esc(r.id)}</strong><p>${T(r.kind==='original'?'submitted':'methodSub')}</p></div>${btn('history-'+i,'open')}</div>`).join(''));}
+function feedbackHtml(){const full=feedbackFixture==='feedbackApplied',partial=feedbackFixture==='feedbackPartial';return `<p class="hint">${T('proposal')}: DEMO-PROP-17 · ${T('command')}: DEMO-CMD-17-${feedbackFixture}</p><p>${T('queryExplain')}</p>${select('feedback-fixture','feedbackFixture',['feedbackUnknown','feedbackPartial','feedbackApplied'],feedbackFixture)}<div class="row2"><div>${kv('transport',T('sent'))}${kv('business',T('accepted'))}${kv('application','X: '+T(full||partial?'applied':'unknown')+' · Y: '+T(full?'applied':'unknown'))}${kv('effect',T(full?'effectPartial':'notEvaluated'))}</div><div>${kv('value','b = (+40, −20) µm')}${kv('definition','g=0.5 · J=0.001 mm/µm')}${kv('proposal','ΔX=−0.020 · ΔY=+0.010 mm')}${kv('range','DEMO-PRINTER/L1 · r17→r18')}</div></div><p class="callout">${T('scopeFixed')}</p><div class="tablewrap"><table><thead><tr><th>${T('board')}</th><th>${T('program')}</th><th>${T('effect')}</th></tr></thead><tbody><tr><td>WIP-OLD / PRINT-01</td><td>r17</td><td>${T('oldWip')}</td></tr><tr><td>NEW-01 / PRINT-01</td><td>r18</td><td>${T(full?'newBoard':'unknown')}</td></tr><tr><td>NEW-02 / PRINT-01</td><td>r18</td><td>${T('unmeasured')}</td></tr></tbody></table></div><p>${btn('query-command','queryCommand',false,'primary')}</p><p class="hint">${T('queryCommand')}: ${feedbackQueries} · ${T('notEvaluated')}</p>`;}
+function dialogHtml(){let body='',title='evidence';
+ if(dialog.kind==='edit'){title='edit';body=`<div class="form"><label class="field">${T('margin')} / mm<input id="edit-margin" type="text" inputmode="decimal" value="${esc(dialog.form.margin)}"></label>${select('edit-route','route',[['H0','H0'],['H1','H1'],['H2','H2']],dialog.form.route)}${select('edit-ref','ref',['copper','maskStep','invalidRef'],dialog.form.reference)}${select('edit-domain','domain',['material','geometry'],dialog.form.domain)}</div><p class="callout">${T('candidateOnly')}</p>${btn('confirm-edit','apply',!writable()||!Number.isFinite(Number(dialog.form.margin))||Number(dialog.form.margin)<0||Number(dialog.form.margin)>1,'primary')}`;}
+ if(dialog.kind==='lock'){title='lock';body=`<label class="field">${T('lockReason')}<input id="lock-reason" type="text" value="${esc(dialog.reason)}"></label><p class="hint">${T('lockedReasonRequired')}</p>${btn('confirm-lock','lock',!writable()||!dialog.reason.trim(),'primary')}`;}
+ if(dialog.kind==='leave'){title='leave';body=`<p>${T(writable()?'programSub':'readonly')}</p><div class="toolbar">${btn('save-leave','saveLeave',!writable()||draft.expected!==draft.remote)}${btn('discard-leave','discard',!writable())}${btn('keep-leave','keepLeave',false,'primary')}</div>${draft.pendingSave?`<p class="callout">${T('pendingSave')}</p>`:''}`;}
+ if(dialog.kind==='handoff'){title='handoff';body=`<p>${T('handoffLimit')}</p>${kv('draft','DEMO-DRAFT-r'+dialog.rev)}${kv('required','5 / 7')}${btn('confirm-handoff','confirmHandoff',!canHandoff()||draft.rev!==dialog.rev,'primary')}`;}
+ if(dialog.kind==='feedback'){title='feedback';body=feedbackHtml();}
+ if(dialog.kind==='remote'){title='rebase';body=`<p class="callout">${T('casConflict')}</p>${kv('draft','LOCAL r'+draft.rev+' · expected '+draft.expected)}${kv('program','REMOTE CAS '+draft.remote)}<p class="hint">${T('remoteNote')}</p>${btn('confirm-rebase','confirm',!writable(),'primary')}`;}
+ if(dialog.kind==='record'){const r=dialog.record;title=r.kind;body=`<p class="tag">${esc(r.id)}</p><p>${T('evidenceOnly')}</p>${r.kind==='original'?kv('board',original.board+' / '+original.attempt)+kv('program',original.program)+kv('required','5 / 7'):`${kv('draft','r'+r.revision)}${kv('source',r.data.q?.source+' / '+r.data.q?.sourceRev)}`}${r.data.params?parameterFields(r.data.params.acquisition):''}<details><summary>${T('diagnostics')}</summary><pre>${esc(JSON.stringify(r.data,null,2))}</pre></details>`;}
+ if(dialog.kind==='evidence'){body=`<p class="tag">${esc(dialog.pad.id)} · DEMO-SPI-ORIGINAL-r7</p>${kv('frameSource','DEMO-H0/42 · TOP · r7')}${kv('group',dialog.pad.group??'—')}${kv('apertures',dialog.pad.aps.join(' / ')||'—')}${kv('reason',T(dialog.pad.status))}<p>${T('evidenceOnly')}</p>`;}
+ if(dialog.kind==='commit'){title='queryCommit';body=`${select('commit-case','fixture',[['original','submitted'],['unknown','unknown']],dialog.commitCase??'original')}<p>${dialog.commitCase==='unknown'?'DEMO-COMMIT-43 · DEMO-B0043 / PRINT-01':'DEMO-COMMIT-42 · DEMO-B0042 / PRINT-02'}</p><p class="callout">${T(dialog.commitCase==='unknown'?'unknown':'submitted')}</p><p>${T('queryExplain')}</p>${btn('query-original-commit','queryCommit')}`;}
+ return `<div class="modal"><section class="dialog" role="dialog" aria-modal="true" aria-label="${T(title)}"><div class="dialoghead"><h2>${T(title)}</h2><div class="toolbar"><select id="dialog-lang" aria-label="${T('language')}">${langs.map(l=>`<option ${l===lang?'selected':''}>${l}</option>`).join('')}</select>${btn('dialog-theme','theme')}${btn('close-dialog','close')}</div></div><div class="body">${body}</div></section></div>`;}
+addResources(`remoteNote|合成远端只更新CAS代次，参数内容不变；确认后保留本地差异并撤销旧验证。真实远端不同值须进入三方差异。|合成遠端僅更新CAS代次，參數內容不變；確認後保留本機差異並撤銷舊驗證。真實遠端不同值須進入三方差異。|Synthetic remote changes the CAS generation only. Review retains local edits and invalidates checks. Different remote values require a three-way merge.`);
+function action(id,fn,event='click'){const el=document.getElementById(id);if(el)el.addEventListener(event,fn);}
+function openDialog(value){dialog=value;render();queueMicrotask(()=>document.querySelector('.dialog button:not(:disabled),.dialog select')?.focus());}
+function closeDialog(){dialog=null;render();}
+function navigate(next){if(next===tab)return;if(tab==='programming'&&(draft.dirty||run||draft.pendingSave)){openDialog({kind:'leave',next});return;}tab=next;render();}
+function cancelRun(){if(!run||run.cancel)return;run.cancel=true;notice='draining';render();}
+function selectPad(id){if(!visiblePads().some(p=>p.id===id))return;selected=id;subwindow=null;loading=true;const token=++selectionSeq;render();setTimeout(()=>{if(token===selectionSeq&&selected===id){loading=false;render();}},100);}
+function reconcileFilter(){selectionSeq++;loading=false;if(!visiblePads().some(p=>p.id===selected)){selected=null;subwindow=null;}render();}
+function generate(){if(!writable()||!q.frozen||!q.intent||!q.mapped||q.frozen.rev!==q.sourceRev)return;const R=clone(draft.base);R.acquisition={...R.acquisition,margin:.15,method:'DEMO-M2',source:q.sourceRev};R.targets={...R.targets,intent:q.intent,source:q.sourceRev};const c={B:clone(draft.base),L:clone(draft.params),R,rev:draft.rev,source:q.sourceRev,stale:false,applied:false,decisions:{}};for(const key of ['acquisition','targets']){const conflict=!same(c.B[key],c.L[key])&&!same(c.B[key],c.R[key])&&!same(c.L[key],c.R[key]);c.decisions[key]={choice:draft.locks[key]?'L':conflict?'':same(c.R[key],c.B[key])?'L':'R',reason:draft.locks[key]||''};}q.candidate=c;q.step=6;render();}
+function applyMerge(){if(!canMerge())return;const c=q.candidate;draft.params={acquisition:clone(c[c.decisions.acquisition.choice].acquisition),targets:clone(c[c.decisions.targets.choice].targets)};draft.base=clone(c.R);touch();c.applied=true;q.step=4;notice='candidateOnly';render();}
+function runTrial(){if(!writable()||!qualify()||draft.validated!==draft.rev||q.plan!==draft.rev)return;draft.trial=draft.reviewed=draft.handoff=0;const r={id:'DEMO-SPI-TRIAL-'+(++runSeq),cancel:false,snapshot:{params:clone(draft.params),q:clone(q),revision:draft.rev,actual:q.actual}};run=r;notice='Busy';render();setTimeout(()=>{if(run!==r)return;const valid=!r.cancel&&role==='engineer'&&fixture!=='PermissionDenied'&&draft.rev===r.snapshot.revision&&qualify();records.push({kind:valid?'trialRecord':'cancelRecord',id:r.id,revision:r.snapshot.revision,data:clone(r.snapshot)});run=null;if(valid){draft.trial=r.snapshot.revision;notice='runComplete';}else{notice='statusHelp';}render();},650);}
+function savedSnapshot(){return {params:clone(draft.params),base:clone(draft.base),locks:clone(draft.locks)};}
+function saveDraft(unknown=false){if(!writable())return false;if(draft.expected!==draft.remote){notice='casConflict';render();return false;}const snap=savedSnapshot();const identity='DEMO-SAVE-'+(++draft.saveId);draft.remote++;if(unknown){draft.pendingSave={id:identity,snapshot:snap,revision:draft.rev,remote:draft.remote};notice='savePending';}else{draft.saved=snap;draft.savedRev=draft.rev;draft.expected=draft.remote;draft.dirty=false;notice='saved';}render();return true;}
+function bind(){
+ action('lang',e=>{lang=e.target.value;render();},'change');action('dialog-lang',e=>{lang=e.target.value;render();},'change');
+ for(const id of ['theme','dialog-theme'])action(id,()=>{theme=theme==='dark'?'light':'dark';render();});
+ action('role',e=>{role=e.target.value;if(run&&role!=='engineer')cancelRun();render();},'change');
+ action('state',e=>{fixture=e.target.value;if(run&&fixture==='PermissionDenied')cancelRun();render();},'change');
+ for(const k of ['production','programming','method','history'])action('view-'+k,()=>navigate(k));
+ action('search',e=>{query=e.target.value;reconcileFilter();},'input');action('filter-all',()=>{onlyIssues=false;reconcileFilter();});action('filter-issues',()=>{onlyIssues=true;reconcileFilter();});
+ action('clear-search',()=>{selectionSeq++;loading=false;query='';onlyIssues=false;fixture='Ready';selected=pads[0].id;subwindow=null;render();});
+ for(const el of document.querySelectorAll('[data-target],[data-pad]')){const id=el.dataset.target||el.dataset.pad;el.addEventListener('click',()=>selectPad(id));el.addEventListener('keydown',e=>{if(['ArrowDown','ArrowUp','Enter',' '].includes(e.key)){e.preventDefault();let next=id;if(e.key.startsWith('Arrow')){const ps=visiblePads(),i=ps.findIndex(p=>p.id===id);next=ps[(i+(e.key==='ArrowDown'?1:ps.length-1))%ps.length]?.id;}selectPad(next);document.querySelector(`[data-target="${next}"]`)?.focus();}});}
+ for(const el of document.querySelectorAll('[data-aperture]'))el.addEventListener('click',()=>{subwindow=el.dataset.aperture;render();});
+ for(const key of Object.keys(layers))action('layer-'+key,e=>{layers[key]=e.target.checked;render();},'change');
+ action('height-view',()=>{heightView=!heightView;render();});action('section',e=>{section=Number(e.target.value);render();},'input');action('zscale',e=>{zscale=Number(e.target.value);render();},'input');
+ for(const id of ['footer-next'])action(id,()=>{const ps=visiblePads().filter(p=>!['complete','excluded'].includes(p.status));if(ps.length)selectPad(ps[(ps.findIndex(p=>p.id===selected)+1)%ps.length].id);});
+ action('select-bridge',()=>selectPad('I1/J2/P1'));action('investigate-bridge',()=>{lab.tab='bridgeTab';navigate('method');});action('open-evidence',()=>{const p=selectedPad();if(p)openDialog({kind:'evidence',pad:clone(p)});});action('open-feedback',()=>openDialog({kind:'feedback'}));action('query-commit',()=>openDialog({kind:'commit'}));action('commit-case',e=>{dialog.commitCase=e.target.value;render();},'change');action('query-original-commit',()=>{notice='queryResult';render();});
+ for(let i=0;i<8;i++)action('step-'+i,()=>{q.step=i;render();});
+ action('source',e=>{if(!writable()){render();return;}q.source=e.target.value;q.sourceRev++;q.frozen=null;q.intent=null;q.bound=false;q.mapped=false;candidateStale();touch();render();},'change');
+ action('actual',e=>{if(!writable()){render();return;}q.actual=e.target.value;q.sourceRev++;q.frozen=null;q.intent=null;q.mapped=false;q.bound=false;candidateStale();touch();render();},'change');
+ action('refresh-source',()=>{if(!writable())return;q.sourceRev++;q.frozen=null;q.intent=null;q.bound=false;q.mapped=false;candidateStale();touch();render();});
+ action('freeze',()=>{if(!writable())return;q.frozen={kind:q.source,rev:q.sourceRev,side:'TOP',unit:'mm',design:'DEMO-DESIGN/r1',actual:q.actual,required:5,apertures:7};q.intent=null;q.mapped=false;q.bound=false;candidateStale();touch();q.step=1;render();});
+ action('intent',e=>{if(!writable()){render();return;}q.pendingIntent=e.target.value;render();},'change');
+ action('confirm-intent',()=>{if(!writable()||!q.frozen)return;q.intent=q.pendingIntent;q.mapped=false;candidateStale();touch();q.step=2;render();});
+ action('bind-design',()=>{if(!writable()||!q.frozen)return;q.bound=true;touch();render();});
+ action('mapping',e=>{if(!writable()){render();return;}q.mapping=e.target.value;q.mapped=false;candidateStale();touch();render();},'change');
+ action('confirm-mapping',()=>{if(!writable()||!q.frozen||!q.intent||q.mapping!=='explicit'||q.source==='referenceImage'&&!q.bound)return;q.mapped=true;touch();q.step=3;render();});
+ for(const id of ['generate','regenerate'])action(id,generate);
+ action('apply-merge',applyMerge);
+ for(const key of ['acquisition','targets']){
+  action('choice-'+key,e=>{if(!writable()||!q.candidate)return;q.candidate.decisions[key].choice=e.target.value;render();},'change');
+  action('reason-'+key,e=>{if(!writable()||!q.candidate)return;q.candidate.decisions[key].reason=e.target.value;render();},'input');
+  action('lock-'+key,()=>{if(!writable())return;if(draft.locks[key]){draft.locks[key]='';touch();candidateStale();render();}else openDialog({kind:'lock',key,reason:''});});
+ }
+ action('lock-reason',e=>{if(dialog?.kind==='lock'){dialog.reason=e.target.value;render();}},'input');
+ action('confirm-lock',()=>{if(!writable()||dialog?.kind!=='lock'||!dialog.reason.trim())return;draft.locks[dialog.key]=dialog.reason.trim();touch();candidateStale();closeDialog();});
+ action('edit',()=>{if(writable())openDialog({kind:'edit',form:clone(draft.params.acquisition)});});
+ action('edit-margin',e=>{dialog.form.margin=e.target.value;render();},'input');
+ for(const [id,key] of [['edit-route','route'],['edit-ref','reference'],['edit-domain','domain']])action(id,e=>{dialog.form[key]=e.target.value;render();},'change');
+ action('confirm-edit',()=>{if(!writable()||dialog?.kind!=='edit')return;const margin=Number(dialog.form.margin);if(!Number.isFinite(margin)||margin<0||margin>1)return;draft.params.acquisition={...clone(dialog.form),margin};touch();candidateStale();closeDialog();});
+ action('confirm-plan',()=>{if(!writable()||!q.candidate?.applied)return;q.plan=draft.rev;q.step=5;render();});
+ action('validate',()=>{if(!writable()||q.plan!==draft.rev)return;if(qualify()){draft.validated=draft.rev;notice='passedConfig';}else{invalidate();notice='qualGap';}render();});
+ action('trial',runTrial);for(const id of ['cancel','footer-cancel'])action(id,cancelRun);
+ action('ack-review',()=>{if(!writable()||!qualify()||draft.trial!==draft.rev||q.plan!==draft.rev)return;draft.reviewed=draft.rev;q.step=7;notice='reviewAck';render();});
+ for(const id of ['save','footer-save','final-save'])action(id,()=>saveDraft());
+ action('save-unknown',()=>saveDraft(true));action('query-save',()=>{const p=draft.pendingSave;if(!p)return;draft.saved=clone(p.snapshot);draft.savedRev=p.revision;draft.expected=p.remote;draft.dirty=draft.rev!==p.revision;draft.pendingSave=null;notice='saved';render();});
+ action('cas',()=>{if(!writable())return;draft.remote++;notice='casConflict';render();});action('rebase',()=>{if(writable()&&draft.remote!==draft.expected)openDialog({kind:'remote'});});
+ action('confirm-rebase',()=>{if(!writable()||dialog?.kind!=='remote')return;draft.expected=draft.remote;touch();candidateStale();closeDialog();});
+ action('handoff',()=>{if(canHandoff())openDialog({kind:'handoff',rev:draft.rev});});action('confirm-handoff',()=>{if(!canHandoff()||dialog?.rev!==draft.rev)return;draft.handoff=draft.rev;notice='handoffLimit';closeDialog();});
+ action('close-dialog',closeDialog);
+ action('keep-leave',()=>{const next=dialog.next;if(run)cancelRun();tab=next;closeDialog();});
+ action('save-leave',()=>{if(!writable()||dialog?.kind!=='leave')return;const next=dialog.next;if(saveDraft()){tab=next;closeDialog();}});
+ action('discard-leave',()=>{if(!writable()||dialog?.kind!=='leave')return;const next=dialog.next;const saved=clone(draft.saved);draft.params=saved.params;draft.base=saved.base;draft.locks=saved.locks;touch();draft.savedRev=draft.rev;draft.dirty=false;q.frozen=null;q.intent=null;q.mapped=false;q.bound=false;q.candidate=null;tab=next;closeDialog();});
+ for(const k of ['materialTab','acqTab','bridgeTab','centerTab'])action('labtab-'+k,()=>{lab.tab=k;render();});
+ for(const [id,key] of [['lab-material','material'],['lab-domain','domain'],['lab-acq','acq'],['lab-bridge','bridge'],['lab-permit','permit'],['lab-center','center'],['lab-reference','reference']])action(id,e=>{lab[key]=e.target.value;render();},'change');
+ action('lab-route',e=>{lab.route=e.target.value;lab.acq='fullSet';render();},'change');action('lab-bias',e=>{lab.bias=Number(e.target.value);render();},'input');
+ for(const graph of ['lower','upper'])action('graph-'+graph,()=>{lab.graph=graph;render();});
+ action('add-preview',()=>{records.push({kind:'preview',id:'DEMO-SPI-PREVIEW-'+records.length,revision:draft.rev,data:{lab:clone(lab),params:clone(draft.params),q:clone(q),unsubmitted:true}});notice='preview';render();});
+ records.forEach((r,i)=>action('history-'+i,()=>openDialog({kind:'record',record:clone(r)})));
+ action('feedback-fixture',e=>{feedbackFixture=e.target.value;feedbackQueries=0;render();},'change');action('query-command',()=>{feedbackQueries++;notice='queryResult';render();});
+ if(tab==='programming'&&!writable())for(const id of ['source','actual','intent','mapping','edit-margin','edit-route','edit-ref','edit-domain','lock-reason']){const el=document.getElementById(id);if(el)el.disabled=true;}
+}
+document.addEventListener('keydown',e=>{if(dialog){if(e.key==='Escape'){e.preventDefault();closeDialog();}if(e.key==='Tab'){const nodes=[...document.querySelectorAll('.dialog button:not(:disabled),.dialog select:not(:disabled),.dialog input:not(:disabled),.dialog summary')];const first=nodes[0],last=nodes.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}return;}if(e.altKey&&['1','2','3','4'].includes(e.key)){e.preventDefault();navigate(['production','programming','method','history'][Number(e.key)-1]);}});
+window.spiSnapshot=()=>clone({lang,role,theme,fixture,tab,selected,subwindow,loading,query,onlyIssues,layers,section,zscale,q,draft,run,lab,records,original,dialog,feedbackFixture,feedbackQueries});
+render();
+
+</script></body></html>

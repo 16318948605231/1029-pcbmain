@@ -1,0 +1,506 @@
+File.Move Method (System.IO) | Microsoft Learn
+Skip to main content
+Skip to in-page navigation
+Skip to Ask Learn chat experience
+This browser is no longer supported.
+Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+Download Microsoft Edge
+More info about Internet Explorer and Microsoft Edge
+Table of contents
+Exit editor mode
+Ask Learn
+Ask Learn
+Language
+csharp
+vb
+fsharp
+cpp
+Reading mode
+Table of contents
+Read in English
+Add
+Add to Plans
+Edit
+Copy Markdown
+Print
+Note
+Access to this page requires authorization. You can try
+signing in
+or
+changing directories
+.
+Access to this page requires authorization. You can try
+changing directories
+.
+File.
+Move Method
+Definition
+Namespace:
+System.IO
+Assemblies:
+mscorlib.dll, System.IO.FileSystem.dll
+Assemblies:
+netstandard.dll, System.Runtime.dll
+Assemblies:
+netstandard.dll, System.IO.FileSystem.dll
+Assemblies:
+netstandard.dll, System.IO.FileSystem.dll, System.Runtime.dll
+Assembly:
+System.IO.FileSystem.dll
+Assembly:
+mscorlib.dll
+Assembly:
+netstandard.dll
+Important
+Some information relates to prerelease product that may be substantially modified before it’s released. Microsoft makes no warranties, express or implied, with respect to the information provided here.
+Overloads
+Name
+Description
+Move(String, String)
+Moves a specified file to a new location, providing the option to specify a new file name.
+Move(String, String, Boolean)
+Moves a specified file to a new location, providing the options to specify a new file name and to replace the destination file if it already exists.
+Move(String, String)
+Source:
+File.cs
+Source:
+File.cs
+Source:
+File.cs
+Source:
+File.cs
+Source:
+File.cs
+Moves a specified file to a new location, providing the option to specify a new file name.
+public:
+ static void Move(System::String ^ sourceFileName, System::String ^ destFileName);
+public static void Move(string sourceFileName, string destFileName);
+static member Move : string * string -> unit
+Public Shared Sub Move (sourceFileName As String, destFileName As String)
+Parameters
+sourceFileName
+String
+The name of the file to move. Can include a relative or absolute path.
+destFileName
+String
+The new path and name for the file.
+Exceptions
+IOException
+destFileName
+already exists.
+-or-
+An I/O error has occurred, e.g. while copying the file across disk volumes.
+FileNotFoundException
+sourceFileName
+was not found.
+ArgumentNullException
+sourceFileName
+or
+destFileName
+is
+null
+.
+ArgumentException
+.NET Framework and .NET Core versions older than 2.1:
+sourceFileName
+or
+destFileName
+is a zero-length string, contains only white space, or contains invalid characters. You can query for invalid characters by using the
+GetInvalidPathChars()
+method.
+UnauthorizedAccessException
+The caller does not have the required permission.
+PathTooLongException
+The specified path, file name, or both exceed the system-defined maximum length.
+DirectoryNotFoundException
+The path specified in
+sourceFileName
+or
+destFileName
+is invalid, (for example, it is on an unmapped drive).
+NotSupportedException
+sourceFileName
+or
+destFileName
+is in an invalid format.
+Examples
+The following example moves a file.
+using System;
+using System.IO;
+
+class Test
+{
+    public static void Main()
+    {
+        string path = @"c:\temp\MyTest.txt";
+        string path2 = @"c:\temp2\MyTest.txt";
+        try
+        {
+            if (!File.Exists(path))
+            {
+                // This statement ensures that the file is created,
+                // but the handle is not kept.
+                using (FileStream fs = File.Create(path)) {}
+            }
+
+            // Ensure that the target does not exist.
+            if (File.Exists(path2))	
+            File.Delete(path2);
+
+            // Move the file.
+            File.Move(path, path2);
+            Console.WriteLine("{0} was moved to {1}.", path, path2);
+
+            // See if the original exists now.
+            if (File.Exists(path))
+            {
+                Console.WriteLine("The original file still exists, which is unexpected.");
+            }
+            else
+            {
+                Console.WriteLine("The original file no longer exists, which is expected.");
+            }			
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("The process failed: {0}", e.ToString());
+        }
+    }
+}
+open System.IO
+
+let path = @"c:\temp\MyTest.txt"
+let path2 = @"c:\temp2\MyTest.txt"
+
+if File.Exists path |> not then
+    // This statement ensures that the file is created,
+    // but the handle is not kept.
+    use _ = File.Create path
+    ()
+
+// Ensure that the target does not exist.
+if File.Exists path2 then
+    File.Delete path2
+
+// Move the file.
+File.Move(path, path2)
+printfn $"{path} was moved to {path2}."
+
+// See if the original exists now.
+if File.Exists path then
+    printfn "The original file still exists, which is unexpected."
+else
+    printfn "The original file no longer exists, which is expected."
+Imports System.IO
+Imports System.Text
+
+Public Class Test
+    Public Shared Sub Main()
+        Dim path As String = "c:\temp\MyTest.txt"
+        Dim path2 As String = "c:\temp2\MyTest.txt"
+
+        Try
+            If File.Exists(path) = False Then
+                ' This statement ensures that the file is created,
+                ' but the handle is not kept.
+                Dim fs As FileStream = File.Create(path)
+                fs.Close()
+            End If
+
+            ' Ensure that the target does not exist.
+            If File.Exists(path2) Then
+                File.Delete(path2)
+            End If
+
+            ' Move the file.
+            File.Move(path, path2)
+            Console.WriteLine("{0} moved to {1}", path, path2)
+
+            ' See if the original file exists now.
+            If File.Exists(path) Then
+                Console.WriteLine("The original file still exists, which is unexpected.")
+            Else
+                Console.WriteLine("The original file no longer exists, which is expected.")
+            End If
+        Catch e As Exception
+            Console.WriteLine("The process failed: {0}", e.ToString())
+        End Try
+    End Sub
+End Class
+Remarks
+This method works across disk volumes, and it does not throw an exception if the source and destination are the same.
+Note that if you attempt to replace a file by moving a file of the same name into that directory, an
+IOException
+is thrown. To avoid this problem:
+In .NET Core 3.0 and later versions, you can call
+Move(String, String, Boolean)
+setting the parameter
+overwrite
+to
+true
+, which replaces the file if it exists.
+In all .NET versions, you can call
+Copy(String, String, Boolean)
+to copy with overwrite, then call
+Delete
+to remove the excess source file. This strategy isn't atomic, because a system or program crash during the
+Copy
+may leave a partially-written destination file, but it will ensure a (possibly incomplete) file always exists at the destination.
+In all .NET versions, you can call
+Delete(String)
+before calling
+Move
+, which will only delete the file if it exists.
+The
+sourceFileName
+and
+destFileName
+arguments can include relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see
+GetCurrentDirectory
+.
+Moving the file across disk volumes is equivalent to copying the file and deleting it from the source if the copying was successful.
+If you try to move a file across disk volumes and that file is in use, the file is copied to the destination, but it is not deleted from the source.
+For a list of common I/O tasks, see
+Common I/O Tasks
+.
+See also
+File and Stream I/O
+Reading Text From A File
+How to: Write Text to a File
+Applies to
+Move(String, String, Boolean)
+Source:
+File.cs
+Source:
+File.cs
+Source:
+File.cs
+Source:
+File.cs
+Source:
+File.cs
+Moves a specified file to a new location, providing the options to specify a new file name and to replace the destination file if it already exists.
+public:
+ static void Move(System::String ^ sourceFileName, System::String ^ destFileName, bool overwrite);
+public static void Move(string sourceFileName, string destFileName, bool overwrite);
+static member Move : string * string * bool -> unit
+Public Shared Sub Move (sourceFileName As String, destFileName As String, overwrite As Boolean)
+Parameters
+sourceFileName
+String
+The name of the file to move. Can include a relative or absolute path.
+destFileName
+String
+The new path and name for the file.
+overwrite
+Boolean
+true
+to replace the destination file if it already exists;
+false
+otherwise.
+Exceptions
+IOException
+destFileName
+already exists and
+overwrite
+is
+false
+.
+-or-
+An I/O error has occurred, e.g. while copying the file across disk volumes.
+FileNotFoundException
+sourceFileName
+was not found.
+ArgumentNullException
+sourceFileName
+or
+destFileName
+is
+null
+.
+ArgumentException
+.NET Framework and .NET Core versions older than 2.1:
+sourceFileName
+or
+destFileName
+is a zero-length string, contains only white space, or contains invalid characters. You can query for invalid characters by using the
+GetInvalidPathChars()
+method.
+UnauthorizedAccessException
+The caller does not have the required permission.
+-or-
+The Operating System has failed to acquire an exclusive access to the destination file.
+PathTooLongException
+The specified path, file name, or both exceed the system-defined maximum length.
+DirectoryNotFoundException
+The path specified in
+sourceFileName
+or
+destFileName
+is invalid, (for example, it is on an unmapped drive).
+NotSupportedException
+sourceFileName
+or
+destFileName
+is in an invalid format.
+Examples
+The following example moves a file.
+using System;
+using System.IO;
+
+class Test
+{
+    public static void Main()
+    {
+        string path = @"c:\temp\MyTest.txt";
+        string path2 = @"c:\temp2\MyTest.txt";
+        try
+        {
+            if (!File.Exists(path))
+            {
+                // This statement ensures that the file is created,
+                // but the handle is not kept.
+                using (FileStream fs = File.Create(path)) {}
+            }
+
+            // Ensure that the target does not exist.
+            if (File.Exists(path2))	
+            File.Delete(path2);
+
+            // Move the file.
+            File.Move(path, path2);
+            Console.WriteLine("{0} was moved to {1}.", path, path2);
+
+            // See if the original exists now.
+            if (File.Exists(path))
+            {
+                Console.WriteLine("The original file still exists, which is unexpected.");
+            }
+            else
+            {
+                Console.WriteLine("The original file no longer exists, which is expected.");
+            }			
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("The process failed: {0}", e.ToString());
+        }
+    }
+}
+open System.IO
+
+let path = @"c:\temp\MyTest.txt"
+let path2 = @"c:\temp2\MyTest.txt"
+
+if File.Exists path |> not then
+    // This statement ensures that the file is created,
+    // but the handle is not kept.
+    use _ = File.Create path
+    ()
+
+// Ensure that the target does not exist.
+if File.Exists path2 then
+    File.Delete path2
+
+// Move the file.
+File.Move(path, path2)
+printfn $"{path} was moved to {path2}."
+
+// See if the original exists now.
+if File.Exists path then
+    printfn "The original file still exists, which is unexpected."
+else
+    printfn "The original file no longer exists, which is expected."
+Imports System.IO
+Imports System.Text
+
+Public Class Test
+    Public Shared Sub Main()
+        Dim path As String = "c:\temp\MyTest.txt"
+        Dim path2 As String = "c:\temp2\MyTest.txt"
+
+        Try
+            If File.Exists(path) = False Then
+                ' This statement ensures that the file is created,
+                ' but the handle is not kept.
+                Dim fs As FileStream = File.Create(path)
+                fs.Close()
+            End If
+
+            ' Ensure that the target does not exist.
+            If File.Exists(path2) Then
+                File.Delete(path2)
+            End If
+
+            ' Move the file.
+            File.Move(path, path2)
+            Console.WriteLine("{0} moved to {1}", path, path2)
+
+            ' See if the original file exists now.
+            If File.Exists(path) Then
+                Console.WriteLine("The original file still exists, which is unexpected.")
+            Else
+                Console.WriteLine("The original file no longer exists, which is expected.")
+            End If
+        Catch e As Exception
+            Console.WriteLine("The process failed: {0}", e.ToString())
+        End Try
+    End Sub
+End Class
+Remarks
+This method works across disk volumes, and it does not throw an exception if the source and destination are the same.
+The
+sourceFileName
+and
+destFileName
+arguments can include relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see
+GetCurrentDirectory
+.
+Moving the file across disk volumes is equivalent to copying the file and deleting it from the source if the copying was successful.
+If you try to move a file across disk volumes and that file is in use, the file is copied to the destination, but it is not deleted from the source.
+For a list of common I/O tasks, see
+Common I/O Tasks
+.
+See also
+File and Stream I/O
+Reading Text From A File
+How to: Write Text to a File
+Applies to
+Collaborate with us on GitHub
+The source for this content can be found on GitHub, where you can also create and review issues and pull requests. For more information, see
+our contributor guide
+.
+.NET
+Open a documentation issue
+Provide product feedback
+Feedback
+Was this page helpful?
+Yes
+No
+No
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+Was this page helpful?
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+en-us
+Your Privacy Choices
+Theme
+Light
+Dark
+High contrast
+AI Disclaimer
+Previous Versions
+Blog
+Contribute
+Privacy
+Consumer Health Privacy
+Terms of Use
+Trademarks
+© Microsoft 2026

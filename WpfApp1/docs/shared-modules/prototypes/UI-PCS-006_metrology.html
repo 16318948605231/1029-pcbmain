@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计量工作台 · 合成原型</title><style>*{box-sizing:border-box} :root{font:14px 'Segoe UI','Microsoft YaHei',sans-serif;color-scheme:dark;--bg:#101720;--surface:#18222e;--raised:#1f2c3b;--line:#304153;--text:#e4ecf5;--muted:#a3b4c7;--accent:#64cdd1;--warn:#e7b76b;--bad:#ff8f98;--plot:#0e1722;--shade:rgba(0,0,0,.2)}
+body.light{color-scheme:light;--bg:#edf1f5;--surface:#fff;--raised:#f4f7fa;--line:#ced8e3;--text:#203247;--muted:#536b82;--accent:#007c85;--warn:#986315;--bad:#b53745;--plot:#e6eef5;--shade:rgba(28,53,81,.06)}
+body{margin:0;background:var(--bg);color:var(--text)}button,input,select{font:inherit;color:inherit;border:1px solid var(--line);background:var(--raised);border-radius:6px;min-height:36px;padding:7px 10px;max-width:100%}button{cursor:pointer;transition:background .12s}button:hover:not(:disabled){border-color:var(--accent);background:var(--surface)}button:disabled{opacity:.46;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}button.active,button.primary{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--surface))}input[type=checkbox]{min-height:auto;width:16px;height:16px;accent-color:var(--accent)}input[type=range]{padding:0;width:110px}h1,h2,h3,p{margin:0}h1{font-size:22px;font-weight:600;letter-spacing:.2px}h2{font-size:16px;font-weight:600}h3{font-size:14px}p{line-height:1.65}small,.muted{color:var(--muted)}strong,.mono{font-variant-numeric:tabular-nums}.mono{font-family:Consolas,monospace;overflow-wrap:anywhere}
+.host{padding:9px 24px;background:var(--raised);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:12px}.host label{display:flex;align-items:center;gap:7px}.host select{min-height:30px;padding:3px 8px;font-size:12px}.host-controls,.toolbar,.actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.hero{padding:23px 28px 18px;display:flex;align-items:center;justify-content:space-between;gap:20px}.eyebrow{font-size:11px;font-weight:600;letter-spacing:2px;color:var(--accent);margin-bottom:6px}.hero p{color:var(--muted);margin-top:6px;font-size:12px}.badge{display:inline-flex;align-items:center;gap:6px;color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 40%,transparent);background:color-mix(in srgb,var(--warn) 7%,transparent);border-radius:4px;padding:5px 9px;font-size:12px;max-width:100%;overflow-wrap:anywhere}.badge.neutral{color:var(--muted);border-color:var(--line)}.badge.accent{color:var(--accent);border-color:var(--accent)}nav{display:flex;gap:4px;padding:0 28px;border-bottom:1px solid var(--line);overflow:auto}nav button{white-space:nowrap;border:0;border-radius:0;min-height:48px;background:transparent;padding:10px 17px;border-bottom:3px solid transparent}nav button.active{background:transparent;border-bottom-color:var(--accent)}.ribbon{margin:16px 28px 0;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:6px;display:flex;align-items:center;justify-content:space-between;gap:12px}.ribbon p{font-size:12px;color:var(--muted)}main{padding:18px 28px 90px}.grid{display:grid;grid-template-columns:230px minmax(0,1fr) 300px;gap:16px;align-items:start}.two{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px}.stack{display:grid;gap:16px;min-width:0}.panel{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:9px;box-shadow:0 4px 18px var(--shade);overflow:hidden}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:15px 17px;border-bottom:1px solid var(--line)}.panel-body{padding:16px}.target{display:flex;width:100%;justify-content:space-between;text-align:left;margin-top:8px;padding:11px 10px}.target small{display:block;margin-top:5px}.target strong{font-weight:500}.callout{padding:12px;border-left:3px solid var(--warn);background:var(--raised);border-radius:4px;line-height:1.7;font-size:12px;margin:12px 0}.callout.info{border-left-color:var(--accent)}.callout.error{border-left-color:var(--bad)}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.metric{min-width:0;padding:14px;background:var(--raised);border-radius:6px}.metric small{display:block;font-size:11px;line-height:1.6}.metric strong{display:block;font-size:23px;font-weight:500;overflow-wrap:anywhere;margin:7px 0}.metric span{font-size:12px;color:var(--muted)}.keyrow{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding:10px 0;font-size:12px}.keyrow span{color:var(--muted)}.keyrow strong{font-weight:500;text-align:right;overflow-wrap:anywhere}.plot{width:100%;display:block;background:var(--plot);border-radius:6px;color:var(--text)}.plot text{fill:currentColor;font-family:Consolas,monospace;font-size:13px}.plot .line{stroke:var(--accent)}.plot .dim{stroke:var(--muted)}.plot [data-action]{cursor:pointer}.plot [data-action]:focus{outline:none;stroke:var(--accent);stroke-width:4}.caption{padding-top:10px;font-size:12px;color:var(--muted)}.tablewrap{overflow:auto;max-width:100%}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}th{font-weight:500;color:var(--muted);background:var(--raised)}tbody tr.selected{background:color-mix(in srgb,var(--accent) 10%,transparent)}td button{min-height:28px;padding:3px 7px;font-size:12px}.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:grid;gap:6px;font-size:12px;color:var(--muted)}.field input,.field select{width:100%;color:var(--text)}.field.check{display:flex;align-items:center;gap:8px}.full{grid-column:1/-1}.steps{display:flex;gap:5px;flex-wrap:wrap;padding:14px 16px;border-bottom:1px solid var(--line)}.step{border:1px solid var(--line);padding:7px 10px;border-radius:5px;color:var(--muted);font-size:12px}.step.current{border-color:var(--accent);color:var(--accent)}.cellgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cell{border:1px solid var(--line);border-radius:6px;padding:12px;background:var(--raised)}.cell button{display:block;width:100%;text-align:left;margin-top:7px}.cell button.bad{border-color:var(--bad)}.paper{background:#f4f1e9;color:#28323b;padding:26px;border-radius:4px;min-height:400px;font-family:Georgia,'Microsoft YaHei',serif}.paper p{font-size:13px;margin:15px 0}.paper h2{font-size:22px}.paper .stamp{border:2px solid #986315;color:#986315;display:inline-block;padding:7px;font:12px 'Segoe UI',sans-serif}.paper dl{display:grid;grid-template-columns:1fr 1fr;font-size:13px;gap:12px}.paper dt,.paper dd{margin:0;padding-bottom:8px;border-bottom:1px solid #c6c6bf;overflow-wrap:anywhere}.paper .focus{background:#ffe6a4}.history-item{display:block;text-align:left;width:100%;margin-bottom:8px}.history-item small{display:block;margin-top:6px}footer{position:fixed;bottom:0;left:0;right:0;padding:11px 28px;background:var(--surface);border-top:1px solid var(--line);display:flex;gap:16px;align-items:center;justify-content:space-between;z-index:4;font-size:12px}footer span{overflow-wrap:anywhere}dialog{background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:10px;width:min(640px,calc(100% - 28px));max-height:calc(100dvh - 40px);padding:0;box-shadow:0 20px 100px #0008}dialog::backdrop{background:#050a1288}dialog .content{padding:20px;overflow-wrap:anywhere}dialog .actions{padding:14px 20px;border-top:1px solid var(--line)}dialog h2{margin-bottom:14px}pre{white-space:pre-wrap;word-break:break-word;padding:12px;background:var(--raised);font-size:12px;border-radius:4px}details{margin-top:12px}summary{color:var(--muted);cursor:pointer;font-size:12px}a{color:var(--accent)}.spacer{margin-top:16px}.empty{padding:50px 20px;text-align:center}.empty p{margin:10px 0 20px;color:var(--muted)}
+@media(max-width:1200px){.grid{grid-template-columns:200px minmax(0,1fr)}.grid>.inspector{grid-column:1/-1}.inspector .panel-body{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}.inspector .callout{grid-column:1/-1}.hero{align-items:flex-start}.two{grid-template-columns:1fr 1fr}}@media(max-width:720px){.host{padding:9px 12px}.hero{padding:20px 14px;flex-direction:column;gap:12px}h1{font-size:21px}nav{padding:0 8px}.ribbon{margin:12px 12px 0;align-items:flex-start;flex-direction:column}main{padding:12px 12px 115px}.grid,.two{grid-template-columns:minmax(0,1fr)}.grid>.inspector{grid-column:auto}.inspector .panel-body{display:block}.metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.metric{padding:10px}.metric strong{font-size:19px}.form{grid-template-columns:1fr}.full{grid-column:auto}.panel-head{padding:13px}.panel-body{padding:13px}.cellgrid{grid-template-columns:1fr}.paper{padding:20px}.tablewrap table{min-width:510px}.ribbon .actions{width:100%}footer{padding:10px 12px;gap:8px;align-items:flex-start}footer span{max-width:65%}.host-controls{gap:6px}.host label{gap:4px}.host select{max-width:140px}}
+.plot g[data-action]{pointer-events:bounding-box}
+.field.check input{width:16px;flex:0 0 16px}.grid .plot{max-height:250px}.keyrow>span{flex:0 0 34%}.keyrow>strong{min-width:0}.panel-head .badge{font-size:11px}.two{align-items:start}nav{scroll-padding-inline:10px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><div id="app"></div><script>'use strict';
+const R={};function resources(s){s.trim().split('\n').forEach(line=>{const [k,...v]=line.split('|');R[k]=v;});}
+resources(`title|计量工作台|計量工作台|Metrology workspace
+demo|合成数据 · 设计评审|合成資料 · 設計評審|Synthetic data · Design review
+host|演示宿主|示範宿主|Demo host
+lang|语言|語言|Language
+theme|主题|主題|Theme
+dark|深色|深色|Dark
+light|浅色|淺色|Light
+role|角色|角色|Role
+engineer|配置员|配置員|Engineer
+operator|操作员|操作員|Operator
+readonly|只读审阅|唯讀審閱|Read-only reviewer
+fixture|页面状态样例|頁面狀態範例|Page-state example
+Ready|可查看|可檢視|Ready to inspect
+Busy|操作进行中|操作進行中|Operation in progress
+Empty|无匹配对象|無符合對象|No matching objects
+Stale|来源已更新|來源已更新|Source changed
+Blocked|缺必要输入|缺必要輸入|Required input missing
+RecoverableError|回执待查询|回執待查詢|Receipt needs a query
+PermissionDenied|无编辑权限|無編輯權限|Editing not permitted
+Completed|示例操作完成|範例操作完成|Example operation complete
+measure|量测与参考|量測與參考|Measurements
+coverage|覆盖与采样|覆蓋與取樣|Coverage
+study|实验与诊断|實驗與診斷|Study & diagnostics
+certificate|参考证书|參考證書|Reference certificate
+history|历史与影响|歷史與影響|History & impact
+identity|对象 / 被测量|對象 / 被測量|Object / measurand
+context|DEMO-MET-06 · TOP · L1 · CAL-r4 / METHOD-r2|DEMO-MET-06 · TOP · L1 · CAL-r4 / METHOD-r2|DEMO-MET-06 · TOP · L1 · CAL-r4 / METHOD-r2
+scope|全部数值和原页均为合成示例；没有真实计算、签名验证或资格批准。|全部數值和原頁均為合成範例；沒有真實計算、簽章驗證或資格批准。|All values and source pages are synthetic. No real computation, signature verification or qualification approval.
+safe|原始值与历史记录保持只读。|原始值與歷史記錄保持唯讀。|Raw values and historical records are read-only.
+next|下一步|下一步|Next
+evidence|查看证据|檢視證據|Open evidence
+clear|清除筛选|清除篩選|Clear filter
+search|搜索稳定目标ID|搜尋穩定目標ID|Search stable target ID
+targets|量测目录|量測目錄|Measurement tree
+width|槽宽|槽寬|Slot width
+zero|零偏差|零偏差|Zero deviation
+invalid|参考域缺失|參考域缺失|Reference region missing
+unknown|未评价|未評價|Not evaluated
+na|不适用|不適用|Not applicable
+raw|原始值|原始值|Raw value
+canonical|规范值|規範值|Canonical value
+display|显示值|顯示值|Display value
+unit|显示单位|顯示單位|Display unit
+digits|显示小数位|顯示小數位|Display decimals
+geometry|几何与支持域|幾何與支持域|Geometry & support
+syntheticView|合成轮廓，非相机影像；缩放只改变显示。|合成輪廓，非相機影像；縮放只改變顯示。|Synthetic contour, not a camera image. Zoom changes display only.
+zoom|缩放|縮放|Zoom
+tolerance|查看公差|檢視公差|Show tolerance
+uncertainty|查看不确定度|檢視不確定度|Show uncertainty
+fov|比较FOV|比較FOV|Compare FOV
+export|导出数据集|匯出資料集|Export dataset
+exportPreview|导出范围预览|匯出範圍預覽|Export scope preview
+download|下载合成CSV|下載合成CSV|Download synthetic CSV
+exportHint|导出固定四个量测对象，包含无效和未评价；显示舍入值另列，不替代原值。|匯出固定四個量測對象，包含無效和未評價；顯示捨入值另列，不替代原值。|Exports all four fixed measurements, including invalid and unevaluated rows. Rounded display values remain separate.
+close|关闭|關閉|Close
+definition|定义与资格上下文|定義與資格情境|Definition & qualification
+reference|参考|參考|Reference
+support|支持域|支持域|Support domain
+reason|原因 / 恢复|原因 / 恢復|Reason / recovery
+noTolerance|尚未绑定用途公差。可查看量值，不能判断合格或超差。|尚未綁定用途公差。可檢視量值，不能判斷合格或超差。|No use-specific tolerance is bound. Values remain visible; conformity is not evaluated.
+budgetHint|共同参考u不随重复数缩小。此处只有参考分量，完整预算未评价；不从k=2推95%。|共同參考u不隨重複數縮小。此處只有參考分量，完整預算未評價；不從k=2推95%。|A shared reference u does not shrink with repetitions. This is one component, not a complete budget; k=2 does not imply 95%.
+fovHint|FOV-A：CAL-r4，局部支持有效。FOV-B：变换资格未知。可比较原证据，不生成融合量值。|FOV-A：CAL-r4，局部支持有效。FOV-B：變換資格未知。可比較原證據，不產生融合量值。|FOV-A: CAL-r4, local support valid. FOV-B: transform qualification unknown. Compare evidence; no fused value is produced.
+invalidHint|缺REF-B支持域；查看原观察并由原Owner补齐参考，不填0。|缺REF-B支持域；檢視原觀察並由原Owner補齊參考，不填0。|REF-B support is missing. Inspect the original observation and resolve the reference through its owner; do not fill with zero.
+noSelection|没有匹配的目标|沒有符合的目標|No matching target
+loading|正在载入所选目标；旧结果不回填。|正在載入所選目標；舊結果不回填。|Loading selected target; prior results remain isolated.
+all|全部目标|全部目標|All targets
+gaps|只看缺口|只看缺口|Gaps only
+required|必需全集|必需全集|Required set
+planned|已计划|已規劃|Planned
+actual|已观察|已觀察|Observed
+valid|输入有效|輸入有效|Input valid
+evaluated|已评价|已評價|Evaluated
+submitted|已提交|已提交|Submitted
+covHint|分母固定为REQ-r3的6个目标。筛选、选择和重拍不缩小全集。|分母固定為REQ-r3的6個目標。篩選、選擇和重拍不縮小全集。|REQ-r3 fixes six required targets. Filtering, selection and recapture do not shrink this set.
+timeline|原观察与阶段|原觀察與階段|Observation & stages
+notCaptured|未采集|未擷取|Not captured
+notSubmitted|未提交|未提交|Not submitted
+notEvaluated|未评价|未評價|Not evaluated
+qualityFail|饱和拒识|飽和拒識|Rejected: saturation
+engineering|查看UI012工程交接|檢視UI012工程交接|View UI012 handoff
+engineeringHint|本页只读。修改采样/FOV应转UI012的获准草稿，由原Owner预览影响和保存；此原型仅展示交接内容。|本頁唯讀。修改取樣/FOV應轉UI012的獲准草稿，由原Owner預覽影響和儲存；此原型僅展示交接內容。|This view is read-only. Sampling/FOV changes belong to an authorized UI012 draft and its owner. This prototype only previews the handoff.
+experiment|实验计划|實驗計畫|Study plan
+method|方法样例|方法範例|Method example
+cross|平衡交叉GR&R|平衡交叉GR&R|Balanced crossed GR&R
+negative|负交互分量|負交互分量|Negative interaction component
+missing|缺一条观测|缺一條觀察|One observation missing
+duplicate|复制帧补格|複製影格補格|Copied frame in a cell
+bias|单参照偏差|單參照偏差|Single-reference bias
+linear|量程线性与残差|量程線性與殘差|Linearity & residuals
+nested|受限嵌套|受限巢狀|Restricted nested design
+confounded|设备与时间混杂|設備與時間混雜|Device/time confounding
+covariance|非法相关矩阵|非法相關矩陣|Invalid covariance matrix
+tail|分位请求超支持域|分位請求超支持域|Quantile outside supported domain
+level|重复层级|重複層級|Repetition level
+capture|稳定同件独立重采|穩定同件獨立重採|Independent recapture of stable parts
+replay|同帧重复回放|同影格重複重播|Same-frame replay
+remount|同件卸装再采|同件卸裝重採|Remount and recapture
+policy|负分量策略|負分量策略|Negative-component policy
+rawOnly|保留原估计|保留原估計|Raw estimates only
+clamp|预声明边界估计|預先聲明邊界估計|Predeclared boundary estimate
+confidence|置信水平（演示参数）|信賴水準（示範參數）|Confidence level (demo parameter)
+paramHint|样例的点估计不提供分量置信界；该参数只展示失效联动，不运行区间后端。|範例的點估計不提供分量信賴界；此參數只展示失效連動，不執行區間後端。|Point estimates have no component confidence bounds. This parameter demonstrates invalidation; no interval backend runs.
+revision|草稿修订|草稿修訂|Draft revision
+source|输入来源|輸入來源|Input source
+newSource|同值更换来源修订|同值更換來源修訂|New source revision, same values
+run|查看冻结试算|檢視凍結試算|Run frozen demo
+cancel|请求取消|要求取消|Request cancellation
+cancelling|已请求取消，等待模拟任务退出。|已要求取消，等待模擬任務退出。|Cancellation requested; waiting for the simulated task to exit.
+running|冻结输入已接收；正在等待模拟后端返回。|凍結輸入已接收；正在等待模擬後端回傳。|Frozen input accepted; awaiting the simulated backend.
+grid|实验格与失败|實驗格與失敗|Study cells & failures
+rows|计划 / 有效 / 失败 / 未采|計畫 / 有效 / 失敗 / 未採|Planned / valid / failed / missing
+independent|独立采集观测数|獨立擷取觀察數|Independent acquisitions
+copyHint|同一观察身份不能填第二个独立格。复制帧不增加独立n；保留原行和缺口。|同一觀察身分不能填第二個獨立格。複製影格不增加獨立n；保留原列和缺口。|One observation cannot fill another independent cell. A copied frame adds no independent n; retain the row and gap.
+replayHint|本来源是同帧回放，只支持软件层解释，不能授予光学重复性或交叉GR&R资格。|本來源是同影格重播，只支持軟體層解釋，不能授予光學重複性或交叉GR&R資格。|This source is same-frame replay. It supports software evidence, not optical repeatability or crossed GR&R qualification.
+missingHint|O2/P2/R2未采集，不能补均值凑平衡。保留失败，补采须形成新观察。|O2/P2/R2未擷取，不能補均值湊平衡。保留失敗，補採須形成新觀察。|O2/P2/R2 is missing. Do not impute a mean to balance the design. Preserve the failure; recapture creates a new observation.
+replacement|预览有理由补采|預覽附理由補採|Preview reasoned recapture
+replacementHint|只生成交接预览，不触发设备；原失败OBS-08保留，新观察必须使用新ID并关联原失败。|只產生交接預覽，不觸發設備；原失敗OBS-08保留，新觀察必須使用新ID並關聯原失敗。|Handoff preview only; no device trigger. Keep failed OBS-08. A replacement needs a new ID linked to that failure.
+diagnostics|数值与方法诊断|數值與方法診斷|Numerical & method diagnostics
+noReport|尚无当前修订的完整报告。先固定输入并查看试算。|尚無目前修訂的完整報告。先固定輸入並檢視試算。|No complete report for this revision. Freeze the inputs and run the demo.
+staleReport|结果属于旧输入。可在历史查看；当前修订需重新试算。|結果屬於舊輸入。可在歷史檢視；目前修訂須重新試算。|Result belongs to prior inputs. Inspect it in history; rerun for the current revision.
+precomputed|033固定算例投影 · 非运行计算|033固定算例投影 · 非執行計算|033 preset example · Not computed at runtime
+numeric|数值检查|數值檢查|Numerical checks
+applicability|方法适用|方法適用|Method applicability
+decision|当前用途资格|目前用途資格|Current-use qualification
+notApproved|未取得批准|未取得批准|Not approved
+pointOnly|仅点估计；区间未评价|僅點估計；區間未評價|Point estimates only; intervals not evaluated
+component|分量|分量|Component
+rawEstimate|原估计|原估計|Raw estimate
+boundary|边界估计|邊界估計|Boundary estimate
+negativeHint|原vPO=-1 µm²保留。只有预声明策略可显示0；0不证明交互无影响。|原vPO=-1 µm²保留。只有預先聲明策略可顯示0；0不證明交互無影響。|Keep raw vPO=-1 µm². Zero is shown only under a predeclared policy; it does not prove no interaction.
+residual|逐行残差|逐列殘差|Row residuals
+noLimits|接受界、跨度系数和用途公差未绑定；不显示合格或默认10%/30%线。|接受界、跨度係數和用途公差未綁定；不顯示合格或預設10%/30%線。|Acceptance limits, span factor and use tolerance are not bound. No conformity result or default 10%/30% lines.
+biasHint|参考10 µm，观测9/10/11 µm。bias=0不代表满足用途；共同参考u不除√n。|參考10 µm，觀察9/10/11 µm。bias=0不代表滿足用途；共同參考u不除√n。|Reference 10 µm; observations 9/10/11 µm. Zero bias is not acceptance; shared reference u is not divided by √n.
+linearHint|仅固定参照OLS描述。保留残差和失拟；缺接受界及参考协方差，不能宣布全量程资格。|僅固定參照OLS描述。保留殘差和失擬；缺接受界及參考共變異，不能宣布全量程資格。|Fixed-reference OLS description only. Retain residuals and lack of fit; absent acceptance limits and reference covariance prevent range qualification.
+nestedHint|不能单独估计件×操作者交互；不等同于交叉GR&R。|不能單獨估計件×操作者交互；不等同於交叉GR&R。|Part-by-operator interaction is not separately identified; this is not crossed GR&R.
+confoundHint|A仅t=0、B仅t=1；设备列等于时间列，秩亏，拒绝分离。|A僅t=0、B僅t=1；設備欄等於時間欄，秩虧，拒絕分離。|A only at t=0; B only at t=1. Device and time columns coincide: rank deficient, no separate estimates.
+psdHint|Σ=[[4,8],[8,4]] µm²；特征值12/-4。矩阵非法，不截负谱，也不套GR&R负分量策略。|Σ=[[4,8],[8,4]] µm²；特徵值12/-4。矩陣非法，不截負譜，也不套GR&R負分量策略。|Σ=[[4,8],[8,4]] µm²; eigenvalues 12/-4. Invalid covariance: do not clip the spectrum or apply a GR&R policy.
+tailHint|t₁(.9999)约3183，超固定候选后端[-800,800]范围。数值不支持不等于样本不合格。|t₁(.9999)約3183，超固定候選後端[-800,800]範圍。數值不支持不等於樣本不合格。|t₁(.9999) is about 3183, outside the candidate backend's [-800,800] range. Numerical non-support is not specimen failure.
+save|保存检查草稿|儲存檢查草稿|Save review draft
+saveLost|模拟回执丢失|模擬回執遺失|Simulate lost receipt
+query|查询原提交|查詢原提交|Query original submission
+saved|草稿已保存（内存演示）|草稿已儲存（記憶體示範）|Draft saved (in-memory demo)
+saveUnknown|原提交结果未知；先查询原操作，不能再次提交。|原提交結果未知；先查詢原操作，不能再次提交。|Original submission outcome unknown. Query that operation before another submission.
+noWrite|当前只读。可查看证据、查询原回执和保留草稿离开。|目前唯讀。可檢視證據、查詢原回執及保留草稿離開。|Read-only. Evidence, original receipt queries and leaving with the draft remain available.
+leave|保留未提交工作|保留未提交工作|Keep unfinished work
+leaveHint|切换工作区不会提交或批准。可保留草稿离开；在途任务先请求取消，等待原任务退出。|切換工作區不會提交或批准。可保留草稿離開；進行中的任務先要求取消，等待原任務退出。|Changing workspaces does not submit or approve. Keep the draft; request cancellation of any active task and wait for it to exit.
+stay|继续编辑|繼續編輯|Stay here
+keep|保留草稿并离开|保留草稿並離開|Keep draft and leave
+restore|恢复已存草稿并离开|還原已存草稿並離開|Restore saved draft and leave
+certSource|证书输入样例|證書輸入範例|Certificate input example
+normal|字段齐全示例|欄位完整範例|Complete-field example
+missingK|有p无k|有p無k|p present, k missing
+wrongSerial|实物序列号不符|實物序號不符|Physical serial mismatch
+badHash|附件摘要不符|附件摘要不符|Attachment hash mismatch
+badU|负标准不确定度|負標準不確定度|Negative standard uncertainty
+duplicateKey|重复字段|重複欄位|Duplicate key
+expired|用途时刻已过期|用途時刻已過期|Expired at use time
+original|合成原页|合成原頁|Synthetic source page
+projection|逐字段核对|逐欄位核對|Field-by-field review
+field|源字段|來源欄位|Source field
+originalText|原文 / 原值|原文 / 原值|Source text / value
+interpretation|解释 / 限制|解釋 / 限制|Interpretation / limit
+received|原件已保留（示例）|原件已保留（範例）|Source retained (demo)
+check|检查字段样例|檢查欄位範例|Check field example
+checked|字段检查完成|欄位檢查完成|Field review complete
+binding|实物与用途绑定|實物與用途綁定|Artifact & use binding
+physical|实物序列号|實物序號|Physical serial
+purpose|目标用途|目標用途|Target use
+height|台阶高度|階差高度|Step height
+paste|锡膏材料体积|錫膏材料體積|Paste material volume
+conditions|实物无损、条件匹配（合成确认）|實物無損、條件相符（合成確認）|Undamaged artifact; matching conditions (demo)
+bind|检查绑定|檢查綁定|Check binding
+handoff|预览原审批交接|預覽原審批交接|Preview approval handoff
+signature|签名 / 信任|簽章 / 信任|Signature / trust
+unverified|未验证|未驗證|Not verified
+certHint|原件、字段投影、分析报告和用途决定分别引用。导入或核对完成不授用途资格。|原件、欄位投影、分析報告和用途決定分別引用。匯入或核對完成不授用途資格。|Source, field projection, analysis report and use decision have separate identities. Import or review does not grant qualification.
+uHint|原定义U=k·u已给出；u=0.003 mm=3 µm。p未提供，不补95%；方差为9 µm²。|原定義U=k·u已提供；u=0.003 mm=3 µm。p未提供，不補95%；變異數為9 µm²。|Source defines U=k·u: u=0.003 mm=3 µm. p is absent; do not fill 95%. Variance is 9 µm².
+missingKHint|仅给95%覆盖概率，未给k及对应覆盖方法；标准u未评价。|僅提供95%涵蓋機率，未提供k及對應涵蓋方法；標準u未評價。|Only 95% coverage probability is supplied; k and its coverage method are missing. Standard u is not evaluated.
+badUHint|u=-0.003 mm违反非负语义；保留原值，不取绝对值。|u=-0.003 mm違反非負語義；保留原值，不取絕對值。|u=-0.003 mm violates nonnegativity. Preserve the value; do not take its absolute value.
+duplicateHint|referenceValue重复；拒绝歧义，不采用最后一个值。|referenceValue重複；拒絕歧義，不採用最後一個值。|Duplicate referenceValue: reject ambiguity, do not use the last value.
+hashHint|几何附件预期DEMO-GEO-A，收到DEMO-GEO-B。原证据闭包不完整。|幾何附件預期DEMO-GEO-A，收到DEMO-GEO-B。原證據閉包不完整。|Geometry attachment expects DEMO-GEO-A, receives DEMO-GEO-B. The evidence closure is incomplete.
+serialHint|证书REF-017与实物不符；不能以同型号替代实物核对。|證書REF-017與實物不符；不能以同型號代替實物核對。|The artifact does not match certificate serial REF-017. Model similarity cannot replace physical verification.
+purposeHint|台阶高度参考不能授予锡膏分割、基底或材料体积资格。|階差高度參考不能授予錫膏分割、基底或材料體積資格。|A step-height reference does not qualify paste segmentation, substrate choice or material volume.
+expiredHint|原件Issued保持不变；示例用途时刻超出有效区间，新用途不可用。|原件Issued保持不變；範例用途時刻超出有效區間，新用途不可用。|Source Issued stays unchanged. Demo use time is outside validity; unavailable for the new use.
+bindingReady|本地绑定检查完成；签名/当前信任与用途批准仍未验证。|本地綁定檢查完成；簽章/目前信任及用途批准仍未驗證。|Local binding checks complete; signature, current trust and use approval remain unverified.
+handoffHint|交接原件与投影修订、实物/用途和检查原因。此操作不签发证书、不授予资格、不调用真实审批端口。|交接原件與投影修訂、實物/用途及檢查原因。此操作不簽發證書、不授予資格、不呼叫真實審批端口。|Preview source/projection revisions, artifact/use and check findings. No certificate issuance, qualification grant or real approval port call.
+fieldSource|合成页1，字段定位|合成頁1，欄位定位|Synthetic page 1, field location
+historical|固定历史记录|固定歷史記錄|Fixed historical records
+report|分析报告|分析報告|Analysis report
+qualification|原Owner资格决定|原Owner資格決定|Original owner's decision
+revocation|后续撤销影响|後續撤銷影響|Later revocation impact
+published|撤销发布时间|撤銷發布時間|Revocation published at
+effective|撤销适用起点|撤銷適用起點|Revocation effective from
+historyHint|保留原报告和决定；后续变化追加关联。历史曾获准不等于现在可用，UI不改原件Issued或控制设备。|保留原報告和決定；後續變更附加關聯。歷史曾獲准不等於現在可用，UI不改原件Issued或控制設備。|Keep the original report and decision; append later effects. Historical approval does not mean current availability. UI changes neither source Issued nor devices.
+affected|受影响用途 / 报告|受影響用途 / 報告|Affected uses / reports
+currentDenied|当前用途不可用（合成撤销）|目前用途不可用（合成撤銷）|Current use unavailable (demo revocation)
+complete|完整示例结果|完整範例結果|Complete example result
+cancelled|已取消，仅保留部分诊断|已取消，僅保留部分診斷|Cancelled; partial diagnostics only
+late|旧修订返回，仅归原请求|舊修訂回傳，僅歸原要求|Prior revision returned to its request only
+pending|未完成|未完成|Pending
+dirty|有未存修改|有未存修改|Unsaved changes
+clean|与已存草稿一致|與已存草稿一致|Matches saved draft
+why|说明|說明|Explanation
+locate|定位|定位|Locate
+sourceChanged|同值新来源使旧检查失效，需重新核对。|同值新來源使舊檢查失效，須重新核對。|A new source revision invalidates prior checks, even when values match.
+blockedHint|只阻断依赖缺项的分析。原图、历史及其它只读对象仍可查看。|只阻斷依賴缺項的分析。原圖、歷史及其他唯讀對象仍可檢視。|Only analyses depending on missing inputs are blocked. Evidence, history and other read-only objects remain available.
+busyFixture|仅演示忙碌页面。真实请求进度和取消状态以当前任务显示为准。|僅示範忙碌頁面。真實要求進度和取消狀態以目前任務顯示為準。|Busy-state example only. An active demo task displays its own progress and cancellation state.
+doneHint|示例操作完成不代表计量接受、用途批准或生产通过。|範例操作完成不代表計量接受、用途批准或生產通過。|A completed demo operation is not metrology acceptance, use approval or production release.
+resetState|返回只读查看|返回唯讀檢視|Return to inspection
+inputError|置信水平必须在0与1之间；原输入保留，不能发起试算。|信賴水準必須介於0與1之間；保留原輸入，不能啟動試算。|Confidence must be between 0 and 1. Input is retained; the demo cannot start.
+notBound|未绑定|未綁定|Not bound
+validZero|有效零值|有效零值|Valid zero
+reportUnits|方差与SS按平方单位显示；不把方差按长度比例换算。|變異數與SS按平方單位顯示；不按長度比例換算變異數。|Variances and SS use squared units, not linear length conversion.
+session|仅当前浏览器内存；刷新不保留新增草稿或记录。|僅目前瀏覽器記憶體；重新整理不保留新增草稿或紀錄。|Browser memory only; refresh clears new drafts and records.
+checkFirst|先检查字段，再检查实物与用途。|先檢查欄位，再檢查實物與用途。|Check fields first, then artifact and use.
+failed|检查有缺项|檢查有缺項|Checks have gaps
+parameters|参数及原键|參數及原鍵|Parameters & original keys
+notComputed|未执行真实后端|未執行真實後端|Real backend not executed
+observation|原观察|原觀察|Original observation
+request|请求|要求|Request
+plan|计划|計畫|Plan
+range|范围|範圍|Scope
+status|状态|狀態|Status
+fixed|固定来源|固定來源|Fixed source
+reviewed|检查完成，不是批准|檢查完成，不是批准|Reviewed, not approved`);
+resources(`useAt|用途时刻|用途時刻|Use time
+receiptFixture|回执错误的页面样例；当前没有真实待查询提交，可返回查看。|回執錯誤的頁面範例；目前沒有真實待查詢提交，可返回檢視。|Receipt-error page example. No submission is pending; return to inspection.
+recaptureReason|补采理由|補採理由|Recapture reason
+physicalRepeat|物理采集身份|物理擷取身分|Acquisition identity
+covMissing|T-06尚无原观察，保持必需缺口；到UI012查看获准采样计划。|T-06尚無原觀察，保留必需缺口；到UI012檢視獲准取樣計畫。|T-06 has no observation. Keep the required gap; inspect the authorized sampling plan in UI012.`);
+const languages=['zh-CN','zh-TW','en-US'];let lang='zh-CN',theme='dark',role='engineer',fixture='Ready',tab='measure',queryText='',selection='M-01',selectionSeq=0,loading=false,unit='mm',digits=3,zoom=1,covGap=false,covSelected='T-05',dialog=null,nextTab=null,historySelected='QUAL-r1',notice='safe';
+const measurements=Object.freeze([{id:'M-01',name:'width',raw:'1000.42',canonical:'1.00042',value:1.00042,reason:'complete',ref:'REF-SLOT-01/F1',obs:'OBS-01'},{id:'M-02',name:'zero',raw:'0',canonical:'0',value:0,reason:'validZero',ref:'REF-SLOT-01/F2',obs:'OBS-02'},{id:'M-03',name:'invalid',raw:null,canonical:null,value:null,reason:'invalidHint',ref:'REF-B',obs:'OBS-03'},{id:'M-04',name:'unknown',raw:null,canonical:null,value:null,reason:'notEvaluated',ref:'REF-C',obs:'OBS-04'}].map(Object.freeze));
+const coverageRows=[['T-01','submitted',1,1,1,1],['T-02','submitted',1,1,1,1],['T-03','notSubmitted',1,1,1,0],['T-04','notEvaluated',1,1,0,0],['T-05','qualityFail',1,0,0,0],['T-06','notCaptured',0,0,0,0]];
+let revision=1,sourceRevision=1,draft={scenario:'cross',level:'capture',policy:'rawOnly',confidence:'0.95',certCase:'normal',physical:'REF-017',purpose:'height',conditions:false},savedDraft=structuredClone(draft),savedSource=1,savedRevision=1,pending=null,requestSeq=0,result=null,certCheck=null,bindingCheck=null,saveOperation=null,operationSeq=0,saveLost=false,records=[];
+const T=k=>{if(!R[k])throw Error('Missing resource '+k);return R[k][languages.indexOf(lang)];};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const btn=(action,key,disabled=false,cl='',value='')=>`<button data-action="${action}" ${value?`data-value="${esc(value)}"`:''} ${disabled?'disabled':''} class="${cl}" id="${action}${value?'-'+esc(value):''}">${T(key)}</button>`;
+const options=(list,current)=>list.map(x=>{const [v,label]=Array.isArray(x)?x:[x,T(x)];return `<option value="${v}" ${v===current?'selected':''}>${esc(label)}</option>`;}).join('');
+const select=(id,key,list,value)=>`<label class="field">${T(key)}<select id="${id}">${options(list,value)}</select></label>`;
+const panel=(key,body,extra='',cls='')=>`<section class="panel ${cls}"><div class="panel-head"><h2>${T(key)}</h2>${extra}</div><div class="panel-body">${body}</div></section>`;
+const kv=(key,value)=>`<div class="keyrow"><span>${T(key)}</span><strong>${value}</strong></div>`;
+const metric=(key,value,u='')=>`<div class="metric"><small>${T(key)}</small><strong>${value}</strong><span>${u}</span></div>`;
+const callout=(key,cls='')=>`<p class="callout ${cls}">${T(key)}</p>`;
+const badge=(key,cls='')=>`<span class="badge ${cls}">${T(key)}</span>`;
+const writable=()=>role==='engineer'&&fixture!=='PermissionDenied';
+const dirty=()=>JSON.stringify(draft)!==JSON.stringify(savedDraft)||sourceRevision!==savedSource;
+const validInput=()=>Number.isFinite(Number(draft.confidence))&&Number(draft.confidence)>0&&Number(draft.confidence)<1;
+const blockedWrite=()=>!writable()||Boolean(saveOperation?.unknown);
+function invalidate(){revision++;result=null;certCheck=null;bindingCheck=null;notice='staleReport';}
+function updateDraft(key,value){if(blockedWrite())return;draft[key]=value;if(['physical','purpose','conditions'].includes(key)){revision++;bindingCheck=null;result=null;if(certCheck)certCheck={...certCheck,revision};notice='checkFirst';}else invalidate();render();}
+function viewRows(){return fixture==='Empty'?[]:measurements.filter(m=>(m.id+' '+m.ref+' '+T(m.name)).toLowerCase().includes(queryText.toLowerCase()));}
+function selectedMeasurement(){return !loading?viewRows().find(m=>m.id===selection):null;}
+function displayValue(m){return m?.value===null||!m?'—':(m.value*(unit==='um'?1000:1)).toFixed(digits);}
+function selectMeasurement(id){if(!viewRows().some(m=>m.id===id))return;selection=id;loading=true;const seq=++selectionSeq;render();setTimeout(()=>{if(seq===selectionSeq&&selection===id){loading=false;render();}},100);}
+function clearFilter(){selectionSeq++;loading=false;queryText='';fixture='Ready';selection='M-01';render();}
+function runtimeState(){if(pending)return'Busy';if(saveOperation?.unknown)return'RecoverableError';return fixture;}
+function statusText(){if(pending)return pending.cancel?'cancelling':'running';if(saveOperation?.unknown)return'saveUnknown';return ({Ready:'safe',Busy:'busyFixture',Empty:'noSelection',Stale:'sourceChanged',Blocked:'blockedHint',RecoverableError:'receiptFixture',PermissionDenied:'noWrite',Completed:'doneHint'})[fixture];}
+function render(){
+ const oldFocus=document.activeElement?.id;document.documentElement.lang=lang;document.title=T('title')+' · '+T('demo');document.body.className=theme==='light'?'light':'';
+ document.querySelector('#app').innerHTML=`<div class="host"><span>${T('host')} · UI-PCS-006</span><div class="host-controls"><label>${T('lang')}<select id="lang">${options(languages.map(x=>[x,{'zh-CN':'简体中文','zh-TW':'繁體中文','en-US':'English'}[x]]),lang)}</select></label><label>${T('theme')}<select id="theme">${options(['dark','light'],theme)}</select></label><label>${T('role')}<select id="role">${options(['engineer','operator','readonly'],role)}</select></label><label>${T('fixture')}<select id="fixture">${options(['Ready','Busy','Empty','Stale','Blocked','RecoverableError','PermissionDenied','Completed'],fixture)}</select></label></div></div>
+ <header class="hero"><div><div class="eyebrow">METROLOGY / 006</div><h1>${T('title')}</h1><p>${T('context')}</p></div><div>${badge('demo')}<p>${T('session')}</p></div></header><nav aria-label="${T('title')}">${['measure','coverage','study','certificate','history'].map((k,i)=>`<button id="nav-${k}" data-action="navigate" data-value="${k}" class="${tab===k?'active':''}" aria-current="${tab===k?'page':'false'}">0${i+1} &nbsp; ${T(k)}</button>`).join('')}</nav>
+ <div class="ribbon"><div><strong>${T(runtimeState())}</strong><p id="runtime-status">${T(statusText())}</p></div><div class="actions">${pending?btn('cancel','cancel',pending.cancel):saveOperation?.unknown?btn('query','query'):fixture!=='Ready'?btn('reset-state','resetState'):badge('notApproved','neutral')}</div></div>
+ <main>${({measure:measureView,coverage:coverageView,study:studyView,certificate:certificateView,history:historyView})[tab]()}</main>
+ <footer><span id="notice">${T(notice)} <span class="muted">· r${revision} / ${T(dirty()?'dirty':'clean')}</span></span><span class="mono">DEMO · ${T('notApproved')}</span></footer>${dialog?dialogView():''}`;
+ bind();const activeNav=document.getElementById('nav-'+tab);if(activeNav){const n=activeNav.parentElement,ar=activeNav.getBoundingClientRect(),nr=n.getBoundingClientRect();if(ar.right>nr.right)n.scrollLeft+=ar.right-nr.right+10;else if(ar.left<nr.left)n.scrollLeft-=nr.left-ar.left+10;}if(dialog){const d=document.querySelector('dialog');d.showModal();d.addEventListener('cancel',()=>{dialog=null;});}if(oldFocus&&document.getElementById(oldFocus))document.getElementById(oldFocus).focus({preventScroll:true});
+}
+function measureView(){const rows=viewRows(),m=selectedMeasurement();return `<div class="grid">${panel('targets',`<label class="field">${T('search')}<input id="search" value="${esc(queryText)}" placeholder="M-01 / REF-017"></label>${rows.map(x=>`<button class="target ${x.id===selection?'active':''}" data-action="select" data-value="${x.id}" id="target-${x.id}"><span><strong>${x.id}</strong><small>${T(x.name)}</small></span><span>${x.value===null?'—':'◇'}</span></button>`).join('')}${rows.length?'':btn('clear','clear')}${callout('safe','info')}`)}
+ <div class="stack">${panel('geometry',`<div class="toolbar">${select('unit','unit',[['mm','mm'],['um','µm']],unit)}${select('digits','digits',[['3','3'],['5','5']],String(digits))}<label class="field">${T('zoom')}<input id="zoom" type="range" min="1" max="2" step="0.1" value="${zoom}"></label></div>${loading?callout('loading'):m?geometry(m):`<div class="empty"><h2>${T('noSelection')}</h2><p>${T('safe')}</p>${btn('clear','clear')}</div>`}<p class="caption">${T('syntheticView')}</p>`)}
+ ${panel('measure',m?`<div class="metrics">${metric('raw',m.raw??'—','µm')}${metric('canonical',m.canonical??'—','mm')}${metric('display',displayValue(m),unit==='um'?'µm':'mm')}</div><div class="actions spacer">${btn('tolerance','tolerance')}${btn('uncertainty','uncertainty')}${btn('fov','fov')}${btn('export','export',role==='readonly'||fixture==='PermissionDenied')}</div>${m.value===null?callout(m.reason):''}`:callout(loading?'loading':'noSelection'))}</div>
+ ${panel('definition',m?`${kv('identity',m.id+' · '+T(m.name))}${kv('reference',esc(m.ref))}${kv('support','DEMO-SUPPORT/r1 · TOP')}${kv('observation',m.obs)}${kv('decision',T('notApproved'))}${btn('evidence','evidence')}${callout('scope','info')}`:callout(loading?'loading':'noSelection'),'','inspector')}</div>`;}
+function geometry(m){return `<svg class="plot spacer" viewBox="0 0 680 330" role="img" aria-label="${T('geometry')}"><defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="currentColor" opacity=".07"/></pattern></defs><rect width="680" height="330" fill="url(#grid)"/><g transform="translate(340 165) scale(${zoom}) translate(-340 -165)"><path d="M90 75 H590 V255 H90Z M155 113 H525 V217 H155Z" fill="none" stroke="currentColor" opacity=".4" stroke-width="2"/><rect x="155" y="113" width="370" height="104" fill="var(--accent)" opacity=".08"/><path d="M155 113H525 M155 217H525" class="line" fill="none" stroke-width="3"/><path d="M320 113V217 M305 125L320 113 335 125 M305 205L320 217 335 205" class="line" fill="none"/><text x="342" y="169">${m.value===null?'—':displayValue(m)} ${unit==='um'?'µm':'mm'}</text><circle cx="155" cy="113" r="5" fill="var(--accent)"/><circle cx="525" cy="217" r="5" fill="var(--accent)"/></g><text x="20" y="28">${m.id} / ${m.obs}</text><text x="20" y="310">TOP · ${esc(m.ref)} · DEMO</text></svg>`;}
+function coverageView(){const shown=coverageRows.filter(x=>!covGap||x[1]!=='submitted'),row=coverageRows.find(x=>x[0]===covSelected);return `<div class="metrics">${metric('required','6','REQ-r3 · TOP')}${metric('planned','6 / 6')}${metric('actual','5 / 6')}</div><div class="two spacer">${panel('coverage',`<div class="actions">${btn('cov-filter',covGap?'all':'gaps',false,covGap?'active':'')}${btn('engineering','engineering')}</div>${callout('covHint','info')}<svg class="plot" viewBox="0 0 640 300" aria-label="${T('coverage')}">${shown.map((x,i)=>`<g role="button" tabindex="0" data-action="cov-select" data-value="${x[0]}" aria-label="${x[0]} ${T(x[1])}"><rect x="${30+(i%3)*200}" y="${35+Math.floor(i/3)*130}" width="180" height="100" rx="7" fill="var(--raised)" stroke="${covSelected===x[0]?'var(--accent)':'var(--line)'}" stroke-width="2"/><text x="${47+(i%3)*200}" y="${70+Math.floor(i/3)*130}">${x[0]}</text><text x="${47+(i%3)*200}" y="${103+Math.floor(i/3)*130}" style="font-size:11px">${T(x[1])}</text></g>`).join('')}</svg>`)}${panel('timeline',`${kv('identity',row[0])}${kv('status',T(row[1]))}${kv('observation',row[2]?'DEMO-OBS-'+row[0]:'—')}<div class="metrics spacer">${metric('valid','4 / 6')}${metric('evaluated','3 / 6')}${metric('submitted','2 / 6')}</div>${callout(row[1]==='qualityFail'?'blockedHint':row[1]==='notCaptured'?'covMissing':'safe')}${btn('cov-evidence','evidence')}`)}</div>`;}
+const scenarios=['cross','negative','missing','duplicate','bias','linear','nested','confounded','covariance','tail'];
+function sampleRows(s=draft.scenario){if(s==='bias')return [9,10,11].map((v,i)=>({id:'B-'+(i+1),p:'REF-10',o:'O1',r:i+1,v}));if(s==='linear')return [0,2,1,3,4,6].map((v,i)=>({id:'L-'+(i+1),p:'X'+Math.floor(i/2),o:'O1',r:i%2+1,v:v+Math.floor(i/2)}));if(s==='confounded')return [{id:'A-t0',p:'P1',o:'A',r:1,v:100},{id:'B-t1',p:'P1',o:'B',r:1,v:102}];if(['covariance','tail'].includes(s))return[];return Array.from({length:8},(_,i)=>{const p=i<4?-1:1,o=i%4<2?-1:1,e=i%2?-1:1;return {id:s==='duplicate'&&i===7?'OBS-07':'OBS-0'+(i+1),p:s==='nested'?`O${o===-1?1:2}/P${p===-1?1:2}`:`P${p===-1?1:2}`,o:'O'+(o===-1?1:2),r:i%2+1,v:s==='missing'&&i===7?null:100+(s==='nested'?4*o+2*p:4*p+2*o+(s==='negative'?0:p*o))+e};});}
+function studyView(){const rows=sampleRows(),optical=draft.level==='replay'?0:new Set(rows.filter(x=>x.v!==null).map(x=>x.id)).size;const count=`${rows.length} / ${rows.filter(x=>x.v!==null).length-(draft.scenario==='duplicate'?1:0)} / ${draft.scenario==='duplicate'?1:0} / ${rows.filter(x=>x.v===null).length}`;return `<div class="two"><div class="stack">${panel('experiment',`<div class="form">${select('scenario','method',scenarios,draft.scenario)}${select('level','level',['capture','replay','remount'],draft.level)}${select('policy','policy',['rawOnly','clamp'],draft.policy)}<label class="field">${T('confidence')}<input id="confidence" inputmode="decimal" value="${esc(draft.confidence)}"></label></div>${!validInput()?callout('inputError','error'):callout('paramHint','info')}${kv('source','DEMO-DATA/r'+sourceRevision)}${kv('revision','r'+revision)}<div class="actions spacer">${btn('source','newSource',blockedWrite())}${btn('run','run',blockedWrite()||!!pending||!validInput(),'primary')}${pending?btn('cancel','cancel',pending.cancel):''}</div><details><summary>${T('parameters')}</summary><pre>UncertaintyModelId: DEMO-033/r1\nConfidenceLevel: ${esc(draft.confidence)}\nVarianceComponentPolicy: ${esc(draft.policy)}\nGRRPolicy: DEMO-${esc(draft.scenario)}\n${T('notComputed')}</pre></details>`)}
+ ${panel('grid',`<div class="metrics">${metric('rows',count)}${metric('independent',String(optical))}${metric('level',T(draft.level))}</div>${['missing','duplicate'].includes(draft.scenario)?callout(draft.scenario==='missing'?'missingHint':'copyHint'):draft.level==='replay'?callout('replayHint'):''}<div class="tablewrap spacer"><table><thead><tr><th>${T('observation')}</th><th>P / O / R</th><th>${T('raw')} (µm)</th><th>${T('status')}</th></tr></thead><tbody>${rows.map((x,i)=>`<tr><td><button data-action="row" data-value="${i}">${x.id}</button></td><td>${x.p} / ${x.o} / ${x.r}</td><td>${x.v??'—'}</td><td>${T(x.v===null?'notCaptured':draft.scenario==='duplicate'&&i===7?'duplicate':draft.level==='replay'?'replay':'capture')}</td></tr>`).join('')}</tbody></table></div>${draft.scenario==='missing'?btn('replacement','replacement',blockedWrite()):''}`)}</div>
+ <div class="stack">${panel('diagnostics',result?resultView(result):callout('noReport'),badge('precomputed','neutral'))}${savePanel()}</div></div>`;}
+function resultView(r){const s=r.draft.scenario;let body=callout(({bias:'biasHint',linear:'linearHint',nested:'nestedHint',confounded:'confoundHint',covariance:'psdHint',tail:'tailHint',missing:'missingHint',duplicate:'copyHint',negative:'negativeHint',cross:'pointOnly'})[s]);const blocked=['missing','duplicate','confounded','covariance','tail'].includes(s)||r.draft.level==='replay';body+=kv('request',r.id+' · r'+r.revision)+kv('source','DEMO-DATA/r'+r.sourceRevision)+kv('numeric',T(['confounded','covariance','tail','missing','duplicate'].includes(s)?'failed':'complete'))+kv('applicability',T(blocked?'failed':'pointOnly'))+kv('decision',T('notApproved'));
+ if(r.draft.level==='replay')body+=callout('replayHint');
+ if(['cross','negative','nested'].includes(s)){const values=s==='cross'?[2,3,6,30]:s==='negative'?[2,-1,8,32]:[2,null,28,7];body+=`<div class="tablewrap spacer"><table><thead><tr><th>${T('component')}</th><th>${T('rawEstimate')} µm²</th><th>${T('boundary')} µm²</th></tr></thead><tbody>${['E','PO','O','P'].map((name,i)=>`<tr><td>${name}</td><td>${values[i]??T('na')}</td><td>${values[i]===null?T('na'):r.draft.policy==='clamp'?Math.max(0,values[i]):T('notEvaluated')}</td></tr>`).join('')}</tbody></table></div><pre>${s==='cross'?'SS P/O/PO/E = 128 / 32 / 8 / 8\ndf = 1 / 1 / 1 / 4\nvGRR = 11 µm²; vTotal = 41 µm²':s==='negative'?'MS PO = 0; vPO_raw = -1 µm²\n'+(r.draft.policy==='clamp'?'vGRR_boundary = 10 µm²':T('notEvaluated')):'SS O/P(O)/E = 128 / 32 / 8\ndf = 1 / 2 / 4'}</pre>${callout('reportUnits','info')}`;}
+ if(s==='bias')body+=`<div class="metrics spacer">${metric('rawEstimate','0','µm · bias')}${metric('component','1','µm² · s²')}${metric('independent','3')}</div>`;
+ if(s==='linear')body+=`<pre>x0=1 µm; α0=8/3 µm; β=2\nSSE=22/3 µm²; SS_PE=6 µm²; SS_LOF=4/3 µm²\ndf_residual=4</pre><h3>${T('residual')}</h3><svg class="plot spacer" viewBox="0 0 450 180"><path d="M35 90H420 M35 20V155" class="dim" fill="none"/>${[-2/3,4/3,-5/3,1/3,-2/3,4/3].map((v,i)=>`<g role="button" tabindex="0" data-action="residual" data-value="${i}" aria-label="L-${i+1}"><circle cx="${65+i*65}" cy="${90-v*32}" r="7" fill="var(--accent)"/><text x="${55+i*65}" y="170">${i+1}</text></g>`).join('')}</svg>`;
+ return body+callout('noLimits')+callout('scope','info');}
+function savePanel(){return panel('revision',`${kv('revision','r'+revision)}${kv('status',T(saveOperation?.unknown?'saveUnknown':dirty()?'dirty':'clean'))}<label class="field check spacer"><input type="checkbox" id="save-lost" ${saveLost?'checked':''} ${blockedWrite()?'disabled':''}>${T('saveLost')}</label><div class="actions spacer">${btn('save','save',blockedWrite()||!!pending,'primary')}${saveOperation?.unknown?btn('query','query'):''}</div>${callout('session','info')}`);}
+const certCases=['normal','missingK','wrongSerial','badHash','badU','duplicateKey','expired'];
+function certFields(d=draft,srcRev=sourceRevision){return [
+ ['certificateNumber','DEMO-CERT-017','DEMO-CERT-017 / source-r'+srcRev],
+ ['issuer','DEMO-LAB / DEMO-ACC-01',T('unverified')],
+ ['serialNumber','REF-017',d.physical||'—'],
+ ['geometryRef','DEMO-GEO-A',d.certCase==='badHash'?'DEMO-GEO-B':T('unverified')],
+ ['calibratedAtUtc','2026-01-01T00:00:00Z','UTC'],
+ ['validUntilUtc',d.certCase==='expired'?'2026-09-01T00:00:00Z':'2026-12-31T00:00:00Z',T('useAt')+': 2026-09-29T00:00:00Z'],
+ ['featureId / quantityKind','F1 / StepHeight',T(d.purpose)],
+ ['referenceValue',d.certCase==='duplicateKey'?'0.100 / 0.101':'0.100',d.certCase==='duplicateKey'?T('duplicateHint'):'0.100 mm = 100 µm'],
+ ['unit','mm','mm → µm'],
+ ['uncertainty',d.certCase==='badU'?'u = -0.003 mm':'U = 0.006 mm',d.certCase==='badU'?T('badUHint'):d.certCase==='missingK'?T('missingKHint'):T('uHint')],
+ ['k / p',d.certCase==='missingK'?'k: — / p: 95%':'k: 2 / p: —',d.certCase==='missingK'?T('missingKHint'):'U = k · u; p: '+T('notBound')],
+ ['environmentalConditions','20 °C ± 1 °C',d.conditions?T('conditions'):T('notBound')],
+ ['measurementMethod','DEMO-STEP/r1','DEMO-STEP/r1'],
+ ['traceabilityChain','DEMO-LAB → DEMO-REF',T('unverified')],
+ ['signatureRef / contentSha256','DEMO-SIGN / DEMO-CONTENT',T('unverified')],
+ ['status','Issued',T('notApproved')]];}
+function certificateView(){const fields=certFields();return `<div class="two"><div class="stack">${panel('original',`<div class="form">${select('cert-case','certSource',certCases,draft.certCase)}<div>${kv('source','DEMO-CERT-017/r'+sourceRevision)}${btn('source','newSource',blockedWrite())}</div></div><article class="paper spacer"><div class="stamp">${T('demo')}</div><h2 class="spacer">${T('certificate')}</h2><p>DEMO-CERT-017 / DEMO-LAB</p><dl>${fields.slice(2,12).map((x,i)=>`<dt>${esc(x[0])}</dt><dd>${esc(x[1])}</dd>`).join('')}</dl><p>${T('scope')}</p><small>DEMO-PAGE-1 · ${T('unverified')}</small></article>${callout('certHint','info')}`)}${savePanel()}</div>
+ <div class="stack">${panel('projection',`<div class="steps"><span class="step current">1 · ${T('received')}</span><span class="step ${certCheck?'current':''}">2 · ${T('projection')}</span><span class="step ${bindingCheck?'current':''}">3 · ${T('binding')}</span></div><div class="tablewrap"><table><thead><tr><th>${T('field')}</th><th>${T('originalText')}</th><th>${T('interpretation')}</th></tr></thead><tbody>${fields.map((x,i)=>`<tr><td><button data-action="cert-field" data-value="${i}" id="cert-field-${i}">${esc(x[0])}</button></td><td>${esc(x[1])}</td><td>${esc(x[2])}</td></tr>`).join('')}</tbody></table></div><div class="actions spacer">${btn('check-cert','check',blockedWrite(),'primary')}</div>${certCheck?`<div id="cert-check">${kv('status',T(certCheck.reason))}${kv('signature',T('unverified'))}${kv('decision',T('notApproved'))}</div>`:callout('checkFirst')}`)}
+ ${panel('binding',`<div class="form"><label class="field">${T('physical')}<input id="physical" value="${esc(draft.physical)}"></label>${select('purpose','purpose',['height','paste'],draft.purpose)}<label class="field check full"><input id="conditions" type="checkbox" ${draft.conditions?'checked':''}>${T('conditions')}</label></div><div class="actions spacer">${btn('bind-cert','bind',blockedWrite()||!certCheck)}${btn('handoff','handoff',!bindingCheck)}</div>${bindingCheck?`<div id="binding-result">${callout(bindingCheck.reason,bindingCheck.ok?'info':'error')}</div>`:''}${kv('decision',T('notApproved'))}`)}</div></div>`;}
+function historyView(){const all=[{id:'QUAL-r1',title:'qualification'},{id:'REPORT-r1',title:'report'},{id:'REVOKE-r2',title:'revocation'},...records.map(r=>({id:r.id,title:r.kind==='save'?'save':'report'}))];const item=records.find(x=>x.id===historySelected);let body='';if(item){body=kv('request',item.id)+kv('revision','r'+item.revision)+kv('source','DEMO-DATA/r'+item.sourceRevision)+kv('status',T(item.state));if(item.kind==='run'&&item.state==='complete')body+=resultView(item);else body+=callout(item.state==='saved'?'session':item.state);body+=`<details><summary>${T('parameters')}</summary><pre>${esc(JSON.stringify(item.draft,null,2))}</pre></details>`;}else{body=kv('identity',historySelected)+kv('fixed','DEMO-CERT-017/r1 → DEMO-REPORT/r1 → DEMO-QUAL/r1')+kv('range','DEMO-M1 · StepHeight · 0.05–0.20 mm · CAL-r4')+kv('status',T(historySelected==='REVOKE-r2'?'currentDenied':'historical'))+kv('published','2026-09-28T12:00:00Z')+kv('effective','2026-09-27T00:00:00Z')+kv('affected','DEMO-REPORT/r1 · DEMO-USE-A')+callout('historyHint')+kv('decision',T('currentDenied'));}return `<div class="two">${panel('historical',`${all.map(x=>`<button class="history-item ${historySelected===x.id?'active':''}" data-action="history-select" data-value="${x.id}">${x.id}<small>${T(x.title)}</small></button>`).join('')}${callout('scope','info')}`)}${panel('evidence',body)}</div>`;}
+function dialogView(){let title='evidence',body='',actions=btn('close','close');const m=dialog.measurement;
+ switch(dialog.type){
+ case 'leave':title='leave';body=callout('leaveHint');actions=btn('stay','stay')+btn('restore','restore',!writable()||!!pending||!!saveOperation?.unknown)+btn('keep','keep',false,'primary');break;
+ case 'tolerance':title='tolerance';body=kv('identity',m.id)+callout('noTolerance');break;
+ case 'uncertainty':title='uncertainty';body=kv('identity',m.id)+kv('reference','DEMO-SLOT-CERT/r1 · u_ref = 3 µm')+kv('uncertainty',T('notEvaluated'))+callout('budgetHint');break;
+ case 'fov':title='fov';body=callout('fovHint')+kv('identity',m.id)+kv('reference','FOV-A / CAL-r4 ↔ FOV-B / CAL-unknown');break;
+ case 'export':title='exportPreview';body=callout('exportHint')+kv('range','M-01…M-04 · DEMO-MET-06')+kv('source','DEMO-MEAS/r1')+kv('unit',dialog.unit==='um'?'µm':'mm');actions=btn('close','close')+btn('download','download',role==='readonly'||fixture==='PermissionDenied','primary');break;
+ case 'engineering':title='engineering';body=callout('engineeringHint')+kv('plan','REQ-r3 / PLAN-r2 / TOP')+kv('required','6');break;
+ case 'cov-evidence':body=kv('identity',dialog.row[0])+kv('status',T(dialog.row[1]))+kv('source','DEMO-COVERAGE/r1')+callout('covHint');break;
+ case 'row':body=kv('observation',dialog.row.id)+kv('identity',dialog.row.p+' / '+dialog.row.o+' / R'+dialog.row.r)+kv('raw',dialog.row.v===null?'—':dialog.row.v+' µm')+kv('source','DEMO-DATA/r'+dialog.sourceRevision)+callout(dialog.row.v===null?'missingHint':dialog.scenario==='duplicate'&&dialog.index===7?'copyHint':'scope');break;
+ case 'residual':title='residual';body=kv('observation','L-'+(dialog.index+1))+kv('residual',[-2/3,4/3,-5/3,1/3,-2/3,4/3][dialog.index].toFixed(6)+' µm')+kv('source',dialog.report.id+' / r'+dialog.report.revision)+callout('linearHint');break;
+ case 'replacement':title='replacement';body=callout('replacementHint')+kv('reason',T('notCaptured'))+kv('source','DEMO-DATA/r'+sourceRevision);break;
+ case 'cert-field':{const field=certFields(dialog.draft,dialog.sourceRevision)[dialog.index];title='fieldSource';body=kv('field',esc(field[0]))+kv('originalText',esc(field[1]))+kv('interpretation',esc(field[2]))+kv('source','DEMO-CERT-017/r'+dialog.sourceRevision+' / DEMO-PAGE-1')+callout('scope');break;}
+ case 'handoff':title='handoff';body=callout('handoffHint')+kv('source','DEMO-CERT-017/r'+dialog.sourceRevision)+kv('physical',esc(dialog.draft.physical))+kv('purpose',T(dialog.draft.purpose))+kv('status',T(dialog.check.reason))+kv('signature',T('unverified'))+kv('decision',T('notApproved'));break;
+ default:body=kv('identity',m.id)+kv('observation',m.obs)+kv('source','DEMO-MEAS/r1')+kv('raw',m.raw===null?'—':m.raw+' µm')+kv('canonical',m.canonical===null?'—':m.canonical+' mm')+callout('scope');
+ }return `<dialog aria-labelledby="dialog-title"><div class="host"><span>${T('host')}</span><div class="host-controls"><label>${T('lang')}<select id="dialog-lang">${options(languages.map(x=>[x,{'zh-CN':'简体中文','zh-TW':'繁體中文','en-US':'English'}[x]]),lang)}</select></label><label>${T('theme')}<select id="dialog-theme">${options(['dark','light'],theme)}</select></label></div></div><div class="content"><h2 id="dialog-title">${T(title)}</h2>${body}</div><div class="actions">${actions}</div></dialog>`;}
+function navigate(target){if(target===tab)return;if(['study','certificate'].includes(tab)&&(dirty()||pending||saveOperation?.unknown)){nextTab=target;dialog={type:'leave'};render();return;}tab=target;dialog=null;notice='safe';render();}
+function startRun(){if(blockedWrite()||pending||!validInput())return;const p={id:'DEMO-RUN-'+(++requestSeq),kind:'run',revision,sourceRevision,draft:structuredClone(draft),cancel:false};pending=p;result=null;notice='running';render();setTimeout(()=>{const rec={...p,state:p.cancel?'cancelled':p.revision!==revision?'late':'complete'};records.push(rec);if(pending===p){pending=null;if(rec.state==='complete'&&writable())result=rec;notice=rec.state;}render();},650);}
+function requestCancel(){if(!pending)return;pending.cancel=true;notice='cancelling';render();}
+function save(){if(blockedWrite()||pending)return;const op={id:'DEMO-SAVE-'+(++operationSeq),kind:'save',revision,sourceRevision,draft:structuredClone(draft),unknown:saveLost,state:'saved'};saveOperation=op;savedDraft=structuredClone(op.draft);savedSource=op.sourceRevision;savedRevision=op.revision;records.push({...op});notice=saveLost?'saveUnknown':'saved';render();}
+function querySave(){if(!saveOperation?.unknown)return;saveOperation.unknown=false;notice='saved';render();}
+function checkCertificate(){if(blockedWrite())return;const reason=({missingK:'missingKHint',badHash:'hashHint',badU:'badUHint',duplicateKey:'duplicateHint'})[draft.certCase]||'checked';certCheck={revision,sourceRevision,reason,ok:reason==='checked'};bindingCheck=null;notice=reason;render();}
+function checkBinding(){if(blockedWrite()||!certCheck||certCheck.revision!==revision)return;const reason=!certCheck.ok?certCheck.reason:draft.physical!=='REF-017'?'serialHint':draft.purpose!=='height'?'purposeHint':draft.certCase==='expired'?'expiredHint':!draft.conditions?'notBound':'bindingReady';bindingCheck={revision,sourceRevision,ok:reason==='bindingReady',reason};notice=reason;render();}
+function downloadCSV(){if(role==='readonly'||fixture==='PermissionDenied'||dialog?.type!=='export')return;const cell=v=>'"'+String(v??'').replace(/"/g,'""')+'"';const csv=[['evidence','id','raw_value','raw_unit','canonical_value','canonical_unit','display_value','display_unit','status'],...measurements.map(m=>['SYNTHETIC',m.id,m.raw,'um',m.canonical,'mm',m.value===null?'':(m.value*(dialog.unit==='um'?1000:1)).toFixed(dialog.digits),dialog.unit,m.reason])].map(r=>r.map(cell).join(',')).join('\r\n');const url=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='DEMO-MET-06.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),0);}
+function handle(action,value){switch(action){
+case'navigate':navigate(value);return;case'select':selectMeasurement(value);return;case'clear':clearFilter();return;case'reset-state':fixture='Ready';notice='safe';break;
+case'cov-filter':covGap=!covGap;break;case'cov-select':covSelected=value;break;
+case'source':if(blockedWrite())return;sourceRevision++;invalidate();notice='sourceChanged';break;
+case'run':startRun();return;case'cancel':requestCancel();return;case'save':save();return;case'query':querySave();return;
+case'check-cert':checkCertificate();return;case'bind-cert':checkBinding();return;
+case'close':case'stay':dialog=null;nextTab=null;break;
+case'keep':if(pending)pending.cancel=true;tab=nextTab;nextTab=null;dialog=null;notice='safe';break;
+case'restore':if(!writable()||pending||saveOperation?.unknown)return;draft=structuredClone(savedDraft);sourceRevision=savedSource;invalidate();tab=nextTab;nextTab=null;dialog=null;notice='safe';break;
+case'history-select':historySelected=value;break;
+case'export':if(role==='readonly'||fixture==='PermissionDenied')return;dialog={type:'export',unit,digits};break;
+case'download':downloadCSV();return;
+case'row':dialog={type:'row',row:structuredClone(sampleRows()[Number(value)]),index:Number(value),scenario:draft.scenario,sourceRevision};break;
+case'residual':dialog={type:'residual',index:Number(value),report:structuredClone(tab==='history'?records.find(r=>r.id===historySelected):result)};break;
+case'cert-field':dialog={type:'cert-field',index:Number(value),draft:structuredClone(draft),sourceRevision};break;
+case'handoff':if(!bindingCheck)return;dialog={type:'handoff',check:structuredClone(bindingCheck),draft:structuredClone(draft),sourceRevision};break;
+case'cov-evidence':dialog={type:action,row:structuredClone(coverageRows.find(x=>x[0]===covSelected))};break;
+case'engineering':dialog={type:action};break;
+case'replacement':if(blockedWrite())return;dialog={type:action};break;
+default:if(!selectedMeasurement())return;dialog={type:action,measurement:structuredClone(selectedMeasurement())};
+}render();}
+function bind(){document.querySelectorAll('[data-action]').forEach(el=>{el.addEventListener('click',()=>handle(el.dataset.action,el.dataset.value));if(el.tagName.toLowerCase()==='g')el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();handle(el.dataset.action,el.dataset.value);}});});
+ const change=(id,fn)=>{const el=document.getElementById(id);if(el)el.addEventListener('change',fn);};
+ change('lang',e=>{lang=e.target.value;render();});change('theme',e=>{theme=e.target.value;render();});change('role',e=>{role=e.target.value;if(!writable()&&pending)pending.cancel=true;render();});change('fixture',e=>{fixture=e.target.value;if(fixture==='PermissionDenied'&&pending)pending.cancel=true;render();});
+ change('dialog-lang',e=>{lang=e.target.value;render();});change('dialog-theme',e=>{theme=e.target.value;render();});
+ change('search',e=>{queryText=e.target.value;selectionSeq++;loading=false;if(!viewRows().some(m=>m.id===selection))selection=null;render();});change('unit',e=>{unit=e.target.value;render();});change('digits',e=>{digits=Number(e.target.value);render();});change('zoom',e=>{zoom=Number(e.target.value);render();});
+ for(const [id,key] of [['scenario','scenario'],['level','level'],['policy','policy'],['confidence','confidence'],['purpose','purpose'],['physical','physical']]){const el=document.getElementById(id);if(el){el.disabled=blockedWrite();change(id,e=>updateDraft(key,e.target.value));}}
+ change('cert-case',e=>{if(blockedWrite())return;draft.certCase=e.target.value;draft.physical=draft.certCase==='wrongSerial'?'REF-999':'REF-017';draft.conditions=false;invalidate();render();});const cc=document.getElementById('cert-case');if(cc)cc.disabled=blockedWrite();
+ change('conditions',e=>updateDraft('conditions',e.target.checked));const cond=document.getElementById('conditions');if(cond)cond.disabled=blockedWrite();change('save-lost',e=>{saveLost=e.target.checked;});
+}
+document.addEventListener('keydown',e=>{if(e.altKey&&/^[1-5]$/.test(e.key)&&!dialog){e.preventDefault();navigate(['measure','coverage','study','certificate','history'][Number(e.key)-1]);}});
+window.metrologySnapshot=()=>structuredClone({lang,theme,role,fixture,tab,queryText,selection,loading,unit,digits,revision,sourceRevision,draft,savedRevision,pending,result,certCheck,bindingCheck,saveOperation,records,dirty:dirty(),measurements,required:6});
+render();
+</script></body></html>

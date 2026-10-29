@@ -1,0 +1,59 @@
+read_shape_model [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Matching / Shape-Based
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+read_shape_modelT_read_shape_modelReadShapeModelReadShapeModelread_shape_model (Operator)
+Name
+read_shape_modelT_read_shape_modelReadShapeModelReadShapeModelread_shape_model — Read a shape model from a file.
+Signature
+read_shape_model( :  : FileName : ModelID)
+Herror T_read_shape_model(const Htuple FileName, Htuple* ModelID)
+void ReadShapeModel(const HTuple& FileName, HTuple* ModelID)
+void HShapeModel::HShapeModel(const HString& FileName)
+void HShapeModel::HShapeModel(const char* FileName)
+void HShapeModel::HShapeModel(const wchar_t* FileName)
+(
+Windows only)
+void HShapeModel::ReadShapeModel(const HString& FileName)
+void HShapeModel::ReadShapeModel(const char* FileName)
+void HShapeModel::ReadShapeModel(const wchar_t* FileName)
+(
+Windows only)
+static void HOperatorSet.ReadShapeModel(HTuple fileName, out HTuple modelID)
+public HShapeModel(string fileName)
+void HShapeModel.ReadShapeModel(string fileName)
+def read_shape_model(file_name: str) -> HHandle
+Description
+The operator read_shape_modelread_shape_modelReadShapeModelReadShapeModelread_shape_model reads a shape model, which has
+been written with write_shape_modelwrite_shape_modelWriteShapeModelWriteShapeModelwrite_shape_model, from the file
+FileNameFileNameFileNamefileNamefile_name.  The default HALCON file extension for
+the shape model is 'shm'.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+This operator returns a handle. Note that the state of an instance of this handle type may be changed by specific operators even though the handle is used as an input parameter by those operators.
+Parameters
+FileNameFileNameFileNamefileNamefile_name (input_control)  filename.read → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+File name.
+File extension:
+.shm
+ModelIDModelIDModelIDmodelIDmodel_id (output_control)  shape_model → HShapeModel, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the model.
+Result
+If the file name is valid, the operator read_shape_modelread_shape_modelReadShapeModelReadShapeModelread_shape_model
+returns the value 2 (
+H_MSG_TRUE)
+.  If necessary an exception is raised.
+Possible Successors
+find_generic_shape_modelfind_generic_shape_modelFindGenericShapeModelFindGenericShapeModelfind_generic_shape_model
+Module
+Matching
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

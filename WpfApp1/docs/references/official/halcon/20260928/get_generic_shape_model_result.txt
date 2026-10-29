@@ -1,0 +1,174 @@
+get_generic_shape_model_result [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Matching / Shape-Based
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+get_generic_shape_model_resultT_get_generic_shape_model_resultGetGenericShapeModelResultGetGenericShapeModelResultget_generic_shape_model_result (Operator)
+Name
+get_generic_shape_model_resultT_get_generic_shape_model_resultGetGenericShapeModelResultGetGenericShapeModelResultget_generic_shape_model_result — Get alphanumerical values from a shape matching result.
+Signature
+get_generic_shape_model_result( :  : MatchResultID, MatchSelector, GenParamName : GenParamValue)
+Herror T_get_generic_shape_model_result(const Htuple MatchResultID, const Htuple MatchSelector, const Htuple GenParamName, Htuple* GenParamValue)
+void GetGenericShapeModelResult(const HTuple& MatchResultID, const HTuple& MatchSelector, const HTuple& GenParamName, HTuple* GenParamValue)
+HTuple HGenericShapeModelResult::GetGenericShapeModelResult(const HTuple& MatchSelector, const HString& GenParamName) const
+HTuple HGenericShapeModelResult::GetGenericShapeModelResult(const HTuple& MatchSelector, const char* GenParamName) const
+HTuple HGenericShapeModelResult::GetGenericShapeModelResult(const HTuple& MatchSelector, const wchar_t* GenParamName) const
+(
+Windows only)
+static void HOperatorSet.GetGenericShapeModelResult(HTuple matchResultID, HTuple matchSelector, HTuple genParamName, out HTuple genParamValue)
+HTuple HGenericShapeModelResult.GetGenericShapeModelResult(HTuple matchSelector, string genParamName)
+def get_generic_shape_model_result(match_result_id: HHandle, match_selector: Sequence[Union[str, int]], gen_param_name: str) -> Sequence[Union[int, float, str]]
+Description
+get_generic_shape_model_resultget_generic_shape_model_resultGetGenericShapeModelResultGetGenericShapeModelResultget_generic_shape_model_result returns alphanumerical results of
+shape-based matching in GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value. The matches are contained in
+MatchResultIDMatchResultIDMatchResultIDmatchResultIDmatch_result_id and sorted by descending score.
+The parameter MatchSelectorMatchSelectorMatchSelectormatchSelectormatch_selector is used
+to select from which matches the result values shall be returned.
+The sorting remains according to their score.
+Hence, it is independent of the order of the selection criteria passed in
+MatchSelectorMatchSelectorMatchSelectormatchSelectormatch_selector. Furthermore, a matching result is only returned once
+even if it meets more than one selection criterion.
+MatchSelectorMatchSelectorMatchSelectormatchSelectormatch_selector processes selection criteria of the following types or
+combinations of them:
+'all'"all""all""all""all":
+All matching results are selected.
+'best'"best""best""best""best":
+The match with the highest score is selected.
+Result index:
+By setting MatchSelectorMatchSelectorMatchSelectormatchSelectormatch_selector to an integer, the index of the match in
+MatchResultIDMatchResultIDMatchResultIDmatchResultIDmatch_result_id is determined.
+Value range:
+0 to n-1 (with n as the total number of results).
+If the index is outside the valid range, an exception is raised.
+Shape model identifier:
+All matches found with a specific shape model are selected. For this
+you can pass the respective model identifier 'model_identifier'"model_identifier""model_identifier""model_identifier""model_identifier"
+as a string to MatchSelectorMatchSelectorMatchSelectormatchSelectormatch_selector.
+Shape model handle:
+All matches found with a specific shape model are selected. For this
+you can pass the respective shape model handle to
+MatchSelectorMatchSelectorMatchSelectormatchSelectormatch_selector.
+If MatchSelectorMatchSelectorMatchSelectormatchSelectormatch_selector is no valid selection criterion, an exception
+is raised.
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name specifies which alphanumerical result value will
+be returned. The following values are possible:
+'num_match_result'"num_match_result""num_match_result""num_match_result""num_match_result":
+Number of matches. The accumulated number of matches is returned in case
+multiple selections are made in MatchSelectorMatchSelectorMatchSelectormatchSelectormatch_selector.
+'model_identifier'"model_identifier""model_identifier""model_identifier""model_identifier":
+String identifying the model the match was found with.
+'score'"score""score""score""score":
+Score of the found match. It is a number between 0 and 1 and an approximate
+measure of how good the model is found in the image. For further
+information on scores, see
+“Solution Guide II-B - Matching”, Chapter 'General Topics',
+section 'About the Score'.
+'angle'"angle""angle""angle""angle":
+Rotation angle of the found match.
+Value range:
+-3.14
+'angle'"angle""angle""angle""angle"
+3.14 (=
+).
+'row'"row""row""row""row":
+Row coordinate of the found match in the search image.
+The coordinate relates to the origin of the shape model.
+'column'"column""column""column""column":
+Column coordinate of the found match in the search image.
+The coordinate relates to the origin of the shape model.
+'scale_row'"scale_row""scale_row""scale_row""scale_row":
+Scale of the found match in row direction.
+'scale_column'"scale_column""scale_column""scale_column""scale_column":
+Scale of the found match in column direction.
+'hom_mat_2d'"hom_mat_2d""hom_mat_2d""hom_mat_2d""hom_mat_2d":
+Homographic transformation matrix to transform the contours of the shape
+model from its origin to the found location in the search image. Position,
+rotation, and scaling in row and column direction are taken into account.
+For more information on transformations with homographic matrices see
+affine_trans_point_2daffine_trans_point_2dAffineTransPoint2dAffineTransPoint2daffine_trans_point_2d.
+'clutter_score'"clutter_score""clutter_score""clutter_score""clutter_score":
+Clutter score of the found match. It is a number between 0 and 1 and an
+approximate measure of how much clutter edges are present in the clutter
+region.
+'clutter_hom_mat_2d'"clutter_hom_mat_2d""clutter_hom_mat_2d""clutter_hom_mat_2d""clutter_hom_mat_2d":
+Homographic transformation matrix to transform the clutter region of the
+shape model from its origin to the found location in the search image.
+Position, rotation, and scaling in row and column direction are taken into
+account.
+'match'"match""match""match""match":
+Dictionary containing the coordinate 'row'"row""row""row""row", 'column'"column""column""column""column", the
+rotation angle 'angle'"angle""angle""angle""angle", the scale 'scale_row'"scale_row""scale_row""scale_row""scale_row",
+'scale_column'"scale_column""scale_column""scale_column""scale_column", the score 'score'"score""score""score""score", and the homographic
+transformation 'hom_mat_2d'"hom_mat_2d""hom_mat_2d""hom_mat_2d""hom_mat_2d" of the found match. Additionally, the
+two clutter-specific results 'clutter_score'"clutter_score""clutter_score""clutter_score""clutter_score" and
+'clutter_hom_mat_2d'"clutter_hom_mat_2d""clutter_hom_mat_2d""clutter_hom_mat_2d""clutter_hom_mat_2d" are contained in the dictionary if clutter
+has been trained and used (see set_generic_shape_model_objectset_generic_shape_model_objectSetGenericShapeModelObjectSetGenericShapeModelObjectset_generic_shape_model_object with
+'clutter_region'"clutter_region""clutter_region""clutter_region""clutter_region").
+'time_measurement'"time_measurement""time_measurement""time_measurement""time_measurement":
+A dictionary containing the different time measurements that where
+conducted during the search. Note that their sum is less then the total time
+spent on the operator call.
+The dictionary contains time measurements for the four main
+steps of the search pipeline
+'pipeline'"pipeline""pipeline""pipeline""pipeline":
+'pyramid'"pyramid""pyramid""pyramid""pyramid":
+Time spent constructing the image pyramid.
+'top_level'"top_level""top_level""top_level""top_level":
+Time spent searching for candidates on highest pyramid level.
+'tracking'"tracking""tracking""tracking""tracking":
+Time spent tracking candidates from the highest pyramid level to the
+lowest.
+'subpixel_refinement'"subpixel_refinement""subpixel_refinement""subpixel_refinement""subpixel_refinement":
+Time spent conducting the refinement at the end of the search.
+Restriction:
+MatchSelectorMatchSelectorMatchSelectormatchSelectormatch_selector must be set to 'all'"all""all""all""all".
+Note that for values regarding the location of the matches
+coordinates are given as edge centered coordinates. For more information
+on edge centered coordinates see the chapter
+Transformations / 2D Transformations.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+MatchResultIDMatchResultIDMatchResultIDmatchResultIDmatch_result_id (input_control)  generic_shape_model_result → HGenericShapeModelResult, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the shape model matches.
+MatchSelectorMatchSelectorMatchSelectormatchSelectormatch_selector (input_control)  string-array → HTupleSequence[Union[str, int]]HTupleHtuple (string / integer) (string / int / long) (HString / Hlong) (char* / Hlong)
+Selector for the matching results to be queried.
+Default:
+'all'
+"all"
+"all"
+"all"
+"all"
+List of values:
+'all'"all""all""all""all", 'best'"best""best""best""best"
+GenParamNameGenParamNameGenParamNamegenParamNamegen_param_name (input_control)  attribute.name → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Name of the queried result parameter.
+Default:
+'score'
+"score"
+"score"
+"score"
+"score"
+List of values:
+'angle'"angle""angle""angle""angle", 'clutter_hom_mat_2d'"clutter_hom_mat_2d""clutter_hom_mat_2d""clutter_hom_mat_2d""clutter_hom_mat_2d", 'clutter_score'"clutter_score""clutter_score""clutter_score""clutter_score", 'column'"column""column""column""column", 'hom_mat_2d'"hom_mat_2d""hom_mat_2d""hom_mat_2d""hom_mat_2d", 'match'"match""match""match""match", 'model_identifier'"model_identifier""model_identifier""model_identifier""model_identifier", 'num_match_result'"num_match_result""num_match_result""num_match_result""num_match_result", 'row'"row""row""row""row", 'scale_column'"scale_column""scale_column""scale_column""scale_column", 'scale_row'"scale_row""scale_row""scale_row""scale_row", 'score'"score""score""score""score", 'time_measurement'"time_measurement""time_measurement""time_measurement""time_measurement"
+GenParamValueGenParamValueGenParamValuegenParamValuegen_param_value (output_control)  attribute.value-array → HTupleSequence[Union[int, float, str]]HTupleHtuple (real / integer / string) (double / int / long / string) (double / Hlong / HString) (double / Hlong / char*)
+Value of the queried result parameter.
+Result
+If the parameters are valid, the operator
+get_generic_shape_model_resultget_generic_shape_model_resultGetGenericShapeModelResultGetGenericShapeModelResultget_generic_shape_model_result returns the value 2 (
+H_MSG_TRUE)
+.
+If necessary an exception is raised.
+Possible Predecessors
+find_generic_shape_modelfind_generic_shape_modelFindGenericShapeModelFindGenericShapeModelfind_generic_shape_model
+Module
+Matching
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

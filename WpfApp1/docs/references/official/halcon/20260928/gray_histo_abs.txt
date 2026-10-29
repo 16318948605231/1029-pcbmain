@@ -1,0 +1,99 @@
+gray_histo_abs [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Image / Features
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+gray_histo_absT_gray_histo_absGrayHistoAbsGrayHistoAbsgray_histo_abs (Operator)
+Name
+gray_histo_absT_gray_histo_absGrayHistoAbsGrayHistoAbsgray_histo_abs — Calculate the gray value distribution.
+Signature
+gray_histo_abs(Region, Image :  : Quantization : AbsoluteHisto)
+Herror T_gray_histo_abs(const Hobject Region, const Hobject Image, const Htuple Quantization, Htuple* AbsoluteHisto)
+void GrayHistoAbs(const HObject& Region, const HObject& Image, const HTuple& Quantization, HTuple* AbsoluteHisto)
+HTuple HImage::GrayHistoAbs(const HRegion& Region, const HTuple& Quantization) const
+HTuple HImage::GrayHistoAbs(const HRegion& Region, double Quantization) const
+HTuple HRegion::GrayHistoAbs(const HImage& Image, const HTuple& Quantization) const
+HTuple HRegion::GrayHistoAbs(const HImage& Image, double Quantization) const
+static void HOperatorSet.GrayHistoAbs(HObject region, HObject image, HTuple quantization, out HTuple absoluteHisto)
+HTuple HImage.GrayHistoAbs(HRegion region, HTuple quantization)
+HTuple HImage.GrayHistoAbs(HRegion region, double quantization)
+HTuple HRegion.GrayHistoAbs(HImage image, HTuple quantization)
+HTuple HRegion.GrayHistoAbs(HImage image, double quantization)
+def gray_histo_abs(region: HObject, image: HObject, quantization: Union[int, float]) -> Sequence[int]
+Description
+The operator gray_histo_absgray_histo_absGrayHistoAbsGrayHistoAbsgray_histo_abs calculates for the image
+(ImageImageImageimageimage) within RegionRegionRegionregionregion the absolute
+(AbsoluteHistoAbsoluteHistoAbsoluteHistoabsoluteHistoabsolute_histo) ) histogram of the gray values.
+The parameter QuantizationQuantizationQuantizationquantizationquantization defines, how many frequencies of
+neighbored gray values are added for one frequency value. The resulting
+histogram AbsoluteHistoAbsoluteHistoAbsoluteHistoabsoluteHistoabsolute_histo is a tuple, whose indices are mapped on the
+gray values of the input image ImageImageImageimageimage and whose elements contain the
+frequencies of the gray values. The indices i of the frequency value
+are calculated from the gray values g and the quantization q as follows:
+For unsigned image types:
+For signed image types:
+whereas MIN denotes the minimal gray value, e.g., -128 for an  int1
+image type. Therefore, the size of the tuple results from the ratio of the
+full domain of gray values and the quantization, e.g., for images of
+int2  in
+.
+The origin gray value of the signed image types  int1 resp. int2  is
+mapped on the index 128 resp. 32768, negative resp. positive gray values
+have smaller resp. greater indices.
+Attention
+Note that the operator gray_histo_absgray_histo_absGrayHistoAbsGrayHistoAbsgray_histo_abs only considers
+the given RegionRegionRegionregionregion and ignores any previously set domain
+of the input image ImageImageImageimageimage.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+Parameters
+RegionRegionRegionregionregion (input_object)  region → objectHRegionHObjectHObjectHobject
+Region in which the histogram is to be calculated.
+ImageImageImageimageimage (input_object)  singlechannelimage → objectHImageHObjectHObjectHobject (byte / cyclic / direction / int1 / int2 / uint2)
+Image the gray value distribution of which is
+to be calculated.
+QuantizationQuantizationQuantizationquantizationquantization (input_control)  number → HTupleUnion[int, float]HTupleHtuple (real / integer) (double / int / long) (double / Hlong) (double / Hlong)
+Quantization of the gray values.
+Default:
+1.0
+Suggested values:
+1.0, 2.0, 3.0, 5.0, 10.0
+Restriction:
+Quantization >= 1.0
+AbsoluteHistoAbsoluteHistoAbsoluteHistoabsoluteHistoabsolute_histo (output_control)  histogram-array → HTupleSequence[int]HTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+Absolute frequencies of the gray values.
+Result
+The operator gray_histo_absgray_histo_absGrayHistoAbsGrayHistoAbsgray_histo_abs returns the value 2 (
+H_MSG_TRUE)
+if the image
+has defined gray values and the parameters are correct.  The
+behavior in case of empty input (no input images available) is set
+via the operator
+set_system(::'no_object_result',<Result>:)set_system("no_object_result",<Result>)SetSystem("no_object_result",<Result>)SetSystem("no_object_result",<Result>)set_system("no_object_result",<Result>), the behavior
+in case of empty region is set via
+set_system(::'empty_region_result',<Result>:)set_system("empty_region_result",<Result>)SetSystem("empty_region_result",<Result>)SetSystem("empty_region_result",<Result>)set_system("empty_region_result",<Result>).
+If necessary an exception is raised.
+Possible Successors
+histo_to_threshhisto_to_threshHistoToThreshHistoToThreshhisto_to_thresh,
+gen_region_histogen_region_histoGenRegionHistoGenRegionHistogen_region_histo
+Alternatives
+min_max_graymin_max_grayMinMaxGrayMinMaxGraymin_max_gray,
+intensityintensityIntensityIntensityintensity,
+gray_histogray_histoGrayHistoGrayHistogray_histo,
+gray_histo_rangegray_histo_rangeGrayHistoRangeGrayHistoRangegray_histo_range
+See also
+disp_imagedisp_imageDispImageDispImagedisp_image,
+histo_2dimhisto_2dimHisto2dimHisto2dimhisto_2dim,
+scale_image_maxscale_image_maxScaleImageMaxScaleImageMaxscale_image_max,
+entropy_grayentropy_grayEntropyGrayEntropyGrayentropy_gray
+Module
+Foundation
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

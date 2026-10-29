@@ -1,0 +1,53 @@
+write_ncc_model [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Matching / Correlation-Based
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+write_ncc_modelT_write_ncc_modelWriteNccModelWriteNccModelwrite_ncc_model (Operator)
+Name
+write_ncc_modelT_write_ncc_modelWriteNccModelWriteNccModelwrite_ncc_model — Write an NCC model to a file.
+Signature
+write_ncc_model( :  : ModelID, FileName : )
+Herror T_write_ncc_model(const Htuple ModelID, const Htuple FileName)
+void WriteNccModel(const HTuple& ModelID, const HTuple& FileName)
+void HNCCModel::WriteNccModel(const HString& FileName) const
+void HNCCModel::WriteNccModel(const char* FileName) const
+void HNCCModel::WriteNccModel(const wchar_t* FileName) const
+(
+Windows only)
+static void HOperatorSet.WriteNccModel(HTuple modelID, HTuple fileName)
+void HNCCModel.WriteNccModel(string fileName)
+def write_ncc_model(model_id: HHandle, file_name: str) -> None
+Description
+The operator write_ncc_modelwrite_ncc_modelWriteNccModelWriteNccModelwrite_ncc_model writes an NCC model to the file
+FileNameFileNameFileNamefileNamefile_name.  The model can be read again with
+read_ncc_modelread_ncc_modelReadNccModelReadNccModelread_ncc_model.  The default HALCON file extension for
+the NCC model is 'ncm'.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+ModelIDModelIDModelIDmodelIDmodel_id (input_control)  ncc_model → HNCCModel, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the model.
+FileNameFileNameFileNamefileNamefile_name (input_control)  filename.write → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+File name.
+File extension:
+.ncm
+Result
+If the file name is valid (write permission), the operator
+write_ncc_modelwrite_ncc_modelWriteNccModelWriteNccModelwrite_ncc_model returns the value 2 (
+H_MSG_TRUE)
+.  If necessary an
+exception is raised.
+Possible Predecessors
+create_ncc_modelcreate_ncc_modelCreateNccModelCreateNccModelcreate_ncc_model
+Module
+Matching
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>closing [HALCON Operator Reference / Version 25.11.0.0]</title>
+<style type="text/css">
+      body {
+    color: #000000;
+    background-color: #ffffff;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.body_main {
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+@media screen and (min-width:992px) {
+
+    .body_main {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    table.toctable {
+        width: 80%
+    }
+}
+
+@media screen and (min-width:1400px) {
+
+    .body_main {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    table.toctable {
+        width: 70%
+    }
+}
+
+body>div ul ul {
+    margin-left: inherit;
+}
+
+a:link {
+    color: #0044cc;
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+a:link:hover,
+a:visited:hover {
+    text-decoration: underline;
+}
+
+th {
+    text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-rendering: optimizeLegibility;
+    color: #666666;
+}
+
+code {
+    font-family: monospace,monospace;
+}
+
+h1 a.halconoperator {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #666666;
+}
+
+h2 a.halconoperator {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #666666;
+}
+
+hr {
+    border: 0;
+    border-top: solid 1px #f28d26;
+}
+
+.pre {
+    display: block;
+    padding-bottom: 1ex;
+    font-family: monospace;
+    white-space: pre;
+}
+
+pre {
+    font-family: monospace, monospace;
+    padding: 1ex;
+    white-space: pre-wrap;
+}
+
+.toc {
+    font-size: 80%;
+    border-top: 1px dashed #f28d26;
+    border-bottom: 1px dashed #f28d26;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.inv {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.banner {
+    color: #666666;
+    padding-left: 1em;
+}
+
+.logo {
+    background-color: white;
+}
+
+.keyboard {
+    font-size: 80%;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #f28d26;
+    background-color: #f3f3f3;
+}
+
+.warning {
+    margin-top: 2ex;
+    margin-bottom: 1ex;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid;
+    color: #bb0000;
+    background-color: #fff7f7
+}
+
+.imprint {
+    margin-top: 1ex;
+    font-size: 80%;
+    color: #666666;
+}
+
+.imprinthead {
+    font-weight: bolder;
+    color: #666666;
+}
+
+.indexlink {
+    text-align: right;
+    padding-bottom: 5px;
+}
+
+.postscript {
+    margin-top: 2ex;
+    font-size: 80%;
+    color: #666666
+}
+
+.evenrow {
+    background-color: #e7e7ef;
+    vertical-align: top;
+}
+
+.oddrow {
+    background-color: #f7f7ff;
+    vertical-align: top;
+}
+
+.headrow {
+    background-color: #97979f;
+    color: #ffffff;
+    vertical-align: top;
+}
+
+.logorow {
+    vertical-align: top;
+}
+
+.error {
+    color: red;
+}
+
+.var {
+    font-style: italic
+}
+
+.halconoperator {
+    font-family: monospace, monospace;
+}
+
+span.operator {
+    font-family: monospace, monospace;
+}
+
+span.procedure {
+    font-family: monospace, monospace;
+}
+
+span.operation {
+    font-family: monospace, monospace;
+}
+
+span.feature {
+    font-family: Arial, Helvetica, Homerton, sans-serif;
+}
+
+ul {
+    padding-left: 1.2em;
+}
+
+li.dot {
+    list-style-type: square;
+    color: #f28d26;
+}
+
+.breadcrumb {
+    font-size: 80%;
+    color: white;
+    background-color: #062d64;
+    margin-bottom: 20px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 15px;
+}
+
+.webbar {
+    font-size: 80%;
+    background-color: #dddddd;
+    margin-top: 0px;
+    margin-left: -35px;
+    margin-right: -35px;
+    margin-bottom: 0px;
+    padding-top: 5px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 5px;
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-top: 1px dashed #f28d26;
+    font-size: 80%;
+    color: #666666;
+    padding-bottom: 8px;
+}
+
+.footer .socialmedia a {
+    padding-left: 7px;
+}
+
+.socialmedia {
+    padding-top: 10px;
+}
+
+.copyright {
+    margin-top: 19px;
+}
+
+.breadcrumb a {
+    color: #ffffff;
+    border-bottom: 1px solid white;
+}
+
+.breadcrumb a:link:hover,
+.breadcrumb a:visited:hover {
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.heading {
+    margin-top: 1ex;
+    font-size: 110%;
+    font-weight: bold;
+    color: #666666;
+}
+
+.text {
+    color: black;
+}
+
+.example {
+    font-size: 80%;
+    background-color: #f3f3f3;
+    border: 1px dashed #666666;
+    padding: 10px;
+}
+
+.verbatimblock {
+    font-family: monospace, monospace;
+    display: block;
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+}
+
+.displaymath {
+    display: block;
+    text-align: center;
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+}
+
+.title {
+    float: left;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.signnote {
+    font-family: Arial, Helvetica, Homerton, sans-serif;
+    font-size: 80%;
+    color: #666666;
+    font-weight: lighter;
+    font-style: italic
+}
+
+.par {
+    margin-bottom: 1.5em;
+}
+
+.parhead {
+    text-align: right;
+}
+
+.parname {
+    float: left;
+}
+
+.pardesc {
+    font-size: 85%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 2em;
+}
+
+.parcat {
+    color: #666;
+    font-weight: bold;
+}
+
+*[data-if=cpp],
+*[data-if=c],
+*[data-if=dotnet],
+*[data-if=com],
+*[data-if=python] {
+    display: none;
+}
+
+.tabbar {
+    text-align: right;
+    border-bottom: 1px solid #f28d26;
+    margin-bottom: 0.5em;
+}
+
+ul.tabs {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 80%
+}
+
+ul.tabs li {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    display: inline;
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    margin-left: 8px;
+    border-top: 1px solid #666;
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+}
+
+ul.tabs li.active {
+    border-left: 1px solid #f28d26;
+    border-right: 1px solid #f28d26;
+    border-top: 1px solid #f28d26;
+    border-bottom: 1px solid #fff;
+}
+
+ul.tabs li.inactive {
+    background-color: #eee;
+}
+
+ul.tabs li a {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #666;
+}
+
+ul.tabs li a:link:hover {
+    text-decoration: none;
+}
+
+ul.tabs li.inactive a {
+    color: #666;
+}
+
+ul.tabs li.active a {
+    color: black;
+}
+
+dl.generic dd {
+    margin-bottom: 1em;
+}
+
+.pari {
+    color: olive;
+}
+
+.paro {
+    color: maroon;
+}
+
+.comment {
+    font-size: 80%;
+    color: green;
+    white-space: nowrap;
+}
+
+table.grid {
+    border-collapse: collapse;
+}
+
+table.grid td {
+    padding: 5px;
+    border: 1px solid;
+}
+
+table.layout {
+    border: 0px;
+}
+
+table.layout td {
+    padding: 5px;
+}
+
+table.table {
+    border-collapse: collapse;
+}
+
+table.table td {
+    padding: 5px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+table.table tr:last-child {
+    border-bottom: 1px solid;
+}
+
+table.table th {
+    padding: 5px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.details_summary {
+    cursor: pointer;
+}
+
+table.toctable {
+    width: 100%;
+}
+
+table.toctable col:first-child {
+    width: 20%;
+}
+
+table.toctable col:nth-last-child(2) {
+    width: 8%;
+}
+
+table.altcolored tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+    </style>
+<!--OP_REF_STYLE_END-->
+<script>
+    <!--
+var active_lang='hdevelop';function switchVisibility(obj,active_lang,new_lang)
+{var display_style='inline';
+for(var i=0;i<obj.length;i++)
+{if(obj.item(i).getAttribute('data-if')==new_lang)
+{obj.item(i).style.display=display_style;}
+if(obj.item(i).getAttribute('data-if')==active_lang)
+{obj.item(i).style.display='none';}}
+return;}
+function toggleLanguage(new_lang,initial)
+{if(active_lang!=new_lang)
+{var lis=document.getElementsByTagName('li');for(var i=0;i<lis.length;i++)
+{if(lis.item(i).id=='syn-'+new_lang)
+{lis.item(i).className='active';}
+else
+{lis.item(i).className='inactive';}}
+var divs=document.getElementsByTagName('div');var spans=document.getElementsByTagName('span');switchVisibility(divs,active_lang,new_lang);switchVisibility(spans,active_lang,new_lang);if(!initial)
+{setCookie("halcon_reference_language",new_lang,null,null);}
+active_lang=new_lang;}
+return;}
+function setCookie(name,value,domain,exp_offset,path,secure)
+{localStorage.setItem(name,value);}
+function getCookie(name)
+{return localStorage.getItem(name);}
+function initialize()
+{var qs=location.href.split('?')[1];var qs_lang_raw=location.href.split('interface=')[1];var qs_lang;if(qs_lang_raw)
+{qs_lang=qs_lang_raw.split('#')[0];}
+var cookie_lang=getCookie("halcon_reference_language");var new_lang;if((qs_lang=="hdevelop")||(qs_lang=="dotnet")||(qs_lang=="python")||(qs_lang=="cpp")||(qs_lang=="c"))
+{new_lang=qs_lang;setCookie("halcon_reference_language",new_lang,null,null);}
+else if((cookie_lang=="hdevelop")||(cookie_lang=="dotnet")||(cookie_lang=="python")||(cookie_lang=="cpp")||(cookie_lang=="c"))
+{new_lang=cookie_lang;}
+else
+{new_lang="hdevelop";}
+toggleLanguage(new_lang,1);return;}
+-->
+
+  </script>
+</head>
+<body onload="initialize();">
+<div class="breadcrumb" style="height:47px;padding-top:4px;padding-bottom:0px;padding-right:20px;">
+<span style="margin:0px;float:right;"><a title="Go to MVTec homepage" href="http://www.mvtec.com/" style="border:0px">
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="108px" height="43px" viewBox="0 0 108 43" enable-background="new 0 0 108 43" xml:space="preserve">
+<rect fill="#FFFFFF" width="108" height="43"/>
+<g>
+<path fill="#062D64" d="M18.623,5.836h11.375l1.646,15.537h0.065c0.419-1.338,6.954-15.537,6.954-15.537h11.263l0.178,30.415
+H39.421L40.567,19.6c-0.371,1-7.632,16.651-7.632,16.651h-6.793c0,0-2.307-15.393-2.227-16.651h-0.016
+c-0.274,1.21-4.325,16.651-4.325,16.651H8.876L18.623,5.836L18.623,5.836z"/>
+<polygon fill="#FBBA00" points="71.516,5.836 54.928,36.251 52.056,36.251 52.04,24.197 59.979,5.836 "/>
+<polygon fill="#062D64" points="73.902,5.836 84.537,5.836 82.955,15.728 79.775,15.71 76.469,36.251 65.416,36.251 68.725,15.388 
+"/>
+<polygon fill="#062D64" points="88.828,8.046 88.57,9.692 91.441,9.692 91.104,11.854 88.23,11.854 87.958,13.533 90.991,13.533 
+90.65,15.694 85.068,15.694 86.618,5.884 92.202,5.884 91.861,8.046 "/>
+<path fill="#062D64" d="M99.414,8.386c-0.081-0.065-0.438-0.291-1.21-0.291c-1.565,0-2.808,1.21-3.052,2.727
+c-0.24,1.549,0.646,2.662,2.228,2.662c0.663,0,1.082-0.209,1.228-0.258l-0.402,2.582c-0.26,0.016-0.63,0.162-1.26,0.145
+c-1.37-0.031-2.582-0.516-3.452-1.436c-0.921-0.983-1.228-2.26-0.984-3.711c0.21-1.34,0.921-2.631,2.019-3.582
+c1.111-1.001,2.598-1.598,3.968-1.598c0.662,0,1.099,0.113,1.34,0.178L99.414,8.386L99.414,8.386z"/>
+</g>
+</svg>
+</a></span>
+<div style="padding-top:16px"><a href="../../../../documentation.html">HALCON
+      25.11.0.0</a> / <a href="index.html">HALCON Operator Reference</a> / <a href="toc_morphology.html">Morphology</a> / <a href="toc_morphology_region.html">Region</a>
+<html lang="en-US"></div>
+</div>
+<div class="body_main">
+<div class="tabbar"><ul class="tabs">
+<li id="syn-hdevelop" class="active"><a href="javascript:void(0);" onclick="toggleLanguage('hdevelop')" onfocus="blur()">HDevelop</a></li>
+<li id="syn-dotnet" class="inactive"><a href="javascript:void(0);" onclick="toggleLanguage('dotnet')" onfocus="blur()">.NET</a></li>
+<li id="syn-python" class="inactive"><a href="javascript:void(0);" onclick="toggleLanguage('python')" onfocus="blur()">Python</a></li>
+<li id="syn-cpp" class="inactive"><a href="javascript:void(0);" onclick="toggleLanguage('cpp')" onfocus="blur()">C++</a></li>
+<li id="syn-c" class="inactive"><a href="javascript:void(0);" onclick="toggleLanguage('c')" onfocus="blur()">C</a></li>
+</ul></div>
+<div class="indexlink">
+<a href="index_classes.html"><span data-if="dotnet" style="display:none;">Classes</span><span data-if="cpp" style="display:none;">Classes</span></a><span data-if="dotnet" style="display:none;"> | </span><span data-if="cpp" style="display:none;"> | </span><a href="index_by_name.html">Operators</a>
+</div>
+<!--OP_REF_HEADER_END-->
+<h1 id="sec_name">
+<span data-if="hdevelop" style="display:inline;">closing</span><span data-if="c" style="display:none;">closing</span><span data-if="cpp" style="display:none;">Closing</span><span data-if="dotnet" style="display:none;">Closing</span><span data-if="python" style="display:none;">closing</span> (Operator)</h1>
+<h2>Name</h2>
+<p><code><span data-if="hdevelop" style="display:inline;">closing</span><span data-if="c" style="display:none;">closing</span><span data-if="cpp" style="display:none;">Closing</span><span data-if="dotnet" style="display:none;">Closing</span><span data-if="python" style="display:none;">closing</span></code> — Close a region.</p>
+<h2 id="sec_synopsis">Signature</h2>
+<div data-if="hdevelop" style="display:inline;">
+<p>
+<code><b>closing</b>(<a href="#Region"><i>Region</i></a>, <a href="#StructElement"><i>StructElement</i></a> : <a href="#RegionClosing"><i>RegionClosing</i></a> :  : )</code></p>
+</div>
+<div data-if="c" style="display:none;">
+<p>
+<code>Herror <b>closing</b>(const Hobject <a href="#Region"><i>Region</i></a>, const Hobject <a href="#StructElement"><i>StructElement</i></a>, Hobject* <a href="#RegionClosing"><i>RegionClosing</i></a>)</code></p>
+<p>
+<code>Herror <b>T_closing</b>(const Hobject <a href="#Region"><i>Region</i></a>, const Hobject <a href="#StructElement"><i>StructElement</i></a>, Hobject* <a href="#RegionClosing"><i>RegionClosing</i></a>)</code></p>
+</div>
+<div data-if="cpp" style="display:none;">
+<p>
+<code>void <b>Closing</b>(const HObject&amp; <a href="#Region"><i>Region</i></a>, const HObject&amp; <a href="#StructElement"><i>StructElement</i></a>, HObject* <a href="#RegionClosing"><i>RegionClosing</i></a>)</code></p>
+<p>
+<code><a href="HRegion.html">HRegion</a> <a href="HRegion.html">HRegion</a>::<b>Closing</b>(const HRegion&amp; <a href="#StructElement"><i>StructElement</i></a>) const</code></p>
+</div>
+<div data-if="dotnet" style="display:none;">
+<p>
+<code>static void <a href="HOperatorSet.html">HOperatorSet</a>.<b>Closing</b>(<a href="HObject.html">HObject</a> <a href="#Region"><i>region</i></a>, <a href="HObject.html">HObject</a> <a href="#StructElement"><i>structElement</i></a>, out <a href="HObject.html">HObject</a> <a href="#RegionClosing"><i>regionClosing</i></a>)</code></p>
+<p>
+<code><a href="HRegion.html">HRegion</a> <a href="HRegion.html">HRegion</a>.<b>Closing</b>(<a href="HRegion.html">HRegion</a> <a href="#StructElement"><i>structElement</i></a>)</code></p>
+</div>
+<div data-if="python" style="display:none;">
+<p>
+<code>def <b>closing</b>(<a href="#Region"><i>region</i></a>: HObject, <a href="#StructElement"><i>struct_element</i></a>: HObject) -&gt; HObject</code></p>
+</div>
+<h2 id="sec_description">Description</h2>
+<p>A <code><span data-if="hdevelop" style="display:inline">closing</span><span data-if="c" style="display:none">closing</span><span data-if="cpp" style="display:none">Closing</span><span data-if="dotnet" style="display:none">Closing</span><span data-if="python" style="display:none">closing</span></code> operation is defined as a dilation followed
+by a Minkowski subtraction.  By applying <code><span data-if="hdevelop" style="display:inline">closing</span><span data-if="c" style="display:none">closing</span><span data-if="cpp" style="display:none">Closing</span><span data-if="dotnet" style="display:none">Closing</span><span data-if="python" style="display:none">closing</span></code> to a
+region, larger structures remain mostly intact, while small gaps
+between adjacent regions and holes smaller than
+<a href="#StructElement"><i><code><span data-if="hdevelop" style="display:inline">StructElement</span><span data-if="c" style="display:none">StructElement</span><span data-if="cpp" style="display:none">StructElement</span><span data-if="dotnet" style="display:none">structElement</span><span data-if="python" style="display:none">struct_element</span></code></i></a> are closed, and the regions' boundaries are
+smoothed.  All <code><span data-if="hdevelop" style="display:inline">closing</span><span data-if="c" style="display:none">closing</span><span data-if="cpp" style="display:none">Closing</span><span data-if="dotnet" style="display:none">Closing</span><span data-if="python" style="display:none">closing</span></code> variants share the property that
+separate regions are not merged, but remain separate objects.  The
+position of <a href="#StructElement"><i><code><span data-if="hdevelop" style="display:inline">StructElement</span><span data-if="c" style="display:none">StructElement</span><span data-if="cpp" style="display:none">StructElement</span><span data-if="dotnet" style="display:none">structElement</span><span data-if="python" style="display:none">struct_element</span></code></i></a> is meaningless, since a closing
+operation is invariant with respect to the choice of the reference
+point.
+</p>
+<p>Structuring elements (<a href="#StructElement"><i><code><span data-if="hdevelop" style="display:inline">StructElement</span><span data-if="c" style="display:none">StructElement</span><span data-if="cpp" style="display:none">StructElement</span><span data-if="dotnet" style="display:none">structElement</span><span data-if="python" style="display:none">struct_element</span></code></i></a>) can be generated
+with operators such as <a href="gen_circle.html"><code><span data-if="hdevelop" style="display:inline">gen_circle</span><span data-if="c" style="display:none">gen_circle</span><span data-if="cpp" style="display:none">GenCircle</span><span data-if="dotnet" style="display:none">GenCircle</span><span data-if="python" style="display:none">gen_circle</span></code></a>, <a href="gen_rectangle1.html"><code><span data-if="hdevelop" style="display:inline">gen_rectangle1</span><span data-if="c" style="display:none">gen_rectangle1</span><span data-if="cpp" style="display:none">GenRectangle1</span><span data-if="dotnet" style="display:none">GenRectangle1</span><span data-if="python" style="display:none">gen_rectangle1</span></code></a>,
+<a href="gen_rectangle2.html"><code><span data-if="hdevelop" style="display:inline">gen_rectangle2</span><span data-if="c" style="display:none">gen_rectangle2</span><span data-if="cpp" style="display:none">GenRectangle2</span><span data-if="dotnet" style="display:none">GenRectangle2</span><span data-if="python" style="display:none">gen_rectangle2</span></code></a>,  <a href="gen_ellipse.html"><code><span data-if="hdevelop" style="display:inline">gen_ellipse</span><span data-if="c" style="display:none">gen_ellipse</span><span data-if="cpp" style="display:none">GenEllipse</span><span data-if="dotnet" style="display:none">GenEllipse</span><span data-if="python" style="display:none">gen_ellipse</span></code></a>,
+<a href="draw_region.html"><code><span data-if="hdevelop" style="display:inline">draw_region</span><span data-if="c" style="display:none">draw_region</span><span data-if="cpp" style="display:none">DrawRegion</span><span data-if="dotnet" style="display:none">DrawRegion</span><span data-if="python" style="display:none">draw_region</span></code></a>, <a href="gen_region_polygon.html"><code><span data-if="hdevelop" style="display:inline">gen_region_polygon</span><span data-if="c" style="display:none">gen_region_polygon</span><span data-if="cpp" style="display:none">GenRegionPolygon</span><span data-if="dotnet" style="display:none">GenRegionPolygon</span><span data-if="python" style="display:none">gen_region_polygon</span></code></a>,
+<a href="gen_region_points.html"><code><span data-if="hdevelop" style="display:inline">gen_region_points</span><span data-if="c" style="display:none">gen_region_points</span><span data-if="cpp" style="display:none">GenRegionPoints</span><span data-if="dotnet" style="display:none">GenRegionPoints</span><span data-if="python" style="display:none">gen_region_points</span></code></a>, etc.</p>
+<h2 id="sec_attention">Attention</h2>
+<p><code><span data-if="hdevelop" style="display:inline">closing</span><span data-if="c" style="display:none">closing</span><span data-if="cpp" style="display:none">Closing</span><span data-if="dotnet" style="display:none">Closing</span><span data-if="python" style="display:none">closing</span></code> is applied to each input region separately.  If
+gaps between different regions are to be closed, <a href="union1.html"><code><span data-if="hdevelop" style="display:inline">union1</span><span data-if="c" style="display:none">union1</span><span data-if="cpp" style="display:none">Union1</span><span data-if="dotnet" style="display:none">Union1</span><span data-if="python" style="display:none">union1</span></code></a>
+or <a href="union2.html"><code><span data-if="hdevelop" style="display:inline">union2</span><span data-if="c" style="display:none">union2</span><span data-if="cpp" style="display:none">Union2</span><span data-if="dotnet" style="display:none">Union2</span><span data-if="python" style="display:none">union2</span></code></a> has to be called first.</p>
+<h2 id="sec_execution">Execution Information</h2>
+<ul>
+  <li>Multithreading type: reentrant (runs in parallel with non-exclusive operators).</li>
+<li>Multithreading scope: global (may be called from any thread).</li>
+  
+    <li>Automatically parallelized on tuple level.</li>
+  
+</ul>
+<h2 id="sec_parameters">Parameters</h2>
+  <div class="par">
+<div class="parhead">
+<span id="Region" class="parname"><b><code><span data-if="hdevelop" style="display:inline">Region</span><span data-if="c" style="display:none">Region</span><span data-if="cpp" style="display:none">Region</span><span data-if="dotnet" style="display:none">region</span><span data-if="python" style="display:none">region</span></code></b> (input_object)  </span><span>region(-array) <code>→</code> <span data-if="hdevelop" style="display:inline">object</span><span data-if="dotnet" style="display:none"><a href="HRegion.html">HRegion</a></span><span data-if="python" style="display:none">HObject</span><span data-if="cpp" style="display:none"><a href="HRegion.html">HObject</a></span><span data-if="c" style="display:none">Hobject</span></span>
+</div>
+<p class="pardesc">Regions to be closed.</p>
+</div>
+  <div class="par">
+<div class="parhead">
+<span id="StructElement" class="parname"><b><code><span data-if="hdevelop" style="display:inline">StructElement</span><span data-if="c" style="display:none">StructElement</span><span data-if="cpp" style="display:none">StructElement</span><span data-if="dotnet" style="display:none">structElement</span><span data-if="python" style="display:none">struct_element</span></code></b> (input_object)  </span><span>region <code>→</code> <span data-if="hdevelop" style="display:inline">object</span><span data-if="dotnet" style="display:none"><a href="HRegion.html">HRegion</a></span><span data-if="python" style="display:none">HObject</span><span data-if="cpp" style="display:none"><a href="HRegion.html">HObject</a></span><span data-if="c" style="display:none">Hobject</span></span>
+</div>
+<p class="pardesc">Structuring element (position-invariant).</p>
+</div>
+  <div class="par">
+<div class="parhead">
+<span id="RegionClosing" class="parname"><b><code><span data-if="hdevelop" style="display:inline">RegionClosing</span><span data-if="c" style="display:none">RegionClosing</span><span data-if="cpp" style="display:none">RegionClosing</span><span data-if="dotnet" style="display:none">regionClosing</span><span data-if="python" style="display:none">region_closing</span></code></b> (output_object)  </span><span>region(-array) <code>→</code> <span data-if="hdevelop" style="display:inline">object</span><span data-if="dotnet" style="display:none"><a href="HRegion.html">HRegion</a></span><span data-if="python" style="display:none">HObject</span><span data-if="cpp" style="display:none"><a href="HRegion.html">HObject</a></span><span data-if="c" style="display:none">Hobject *</span></span>
+</div>
+<p class="pardesc">Closed regions.</p>
+</div>
+<div data-if="hdevelop" style="display:inline">
+<h2 id="sec_example_hdevelop">Example (C++)</h2>
+<pre class="example">
+#include "HIOStream.h"
+#if !defined(USE_IOSTREAM_H)
+using namespace std;
+#endif
+#include "HalconCpp.h"
+
+main()
+{
+  cout &lt;&lt; "Reproduction of 'closing ()' using " &lt;&lt; endl;
+  cout &lt;&lt; "'dilation()' and 'minkowski_sub1()'" &lt;&lt; endl;
+
+  HByteImage img("monkey");
+  HWindow    w;
+
+  HRegion      circ = HRegion::GenCircle (10, 10, 1.5);
+  HRegionArray regs = (img &gt;= 128).Connection();
+
+  HRegionArray dilreg = regs.Dilation1 (circ, 1);
+  HRegionArray minsub = dilreg.MinkowskiSub1 (circ, 1);
+
+                        img.Display (w);      w.Click ();
+  w.SetColor ("red");   regs.Display (w);     w.Click ();
+  w.SetColor ("green"); dilreg.Display (w);   w.Click ();
+  w.SetColor ("blue");  minsub.Display (w);   w.Click ();
+
+  return(0);
+}
+</pre>
+</div>
+<div data-if="c" style="display:none">
+<h2 id="sec_example_c">Example (C)</h2>
+<pre class="example">
+my_closing(Hobject In, Hobject StructElement, Hobject *Out)
+{
+  Hobject  tmp;
+  dilation1(In,StructElement,&amp;tmp,1);
+  minkowski_sub1(tmp,StructElement,Out,1);
+}
+</pre>
+</div>
+<div data-if="cpp" style="display:none">
+<h2 id="sec_example_cpp">Example (C++)</h2>
+<pre class="example">
+#include "HIOStream.h"
+#if !defined(USE_IOSTREAM_H)
+using namespace std;
+#endif
+#include "HalconCpp.h"
+
+main()
+{
+  cout &lt;&lt; "Reproduction of 'closing ()' using " &lt;&lt; endl;
+  cout &lt;&lt; "'dilation()' and 'minkowski_sub1()'" &lt;&lt; endl;
+
+  HByteImage img("monkey");
+  HWindow    w;
+
+  HRegion      circ = HRegion::GenCircle (10, 10, 1.5);
+  HRegionArray regs = (img &gt;= 128).Connection();
+
+  HRegionArray dilreg = regs.Dilation1 (circ, 1);
+  HRegionArray minsub = dilreg.MinkowskiSub1 (circ, 1);
+
+                        img.Display (w);      w.Click ();
+  w.SetColor ("red");   regs.Display (w);     w.Click ();
+  w.SetColor ("green"); dilreg.Display (w);   w.Click ();
+  w.SetColor ("blue");  minsub.Display (w);   w.Click ();
+
+  return(0);
+}
+</pre>
+</div>
+<div data-if="dotnet" style="display:none">
+<h2 id="sec_example_dotnet">Example (C++)</h2>
+<pre class="example">
+#include "HIOStream.h"
+#if !defined(USE_IOSTREAM_H)
+using namespace std;
+#endif
+#include "HalconCpp.h"
+
+main()
+{
+  cout &lt;&lt; "Reproduction of 'closing ()' using " &lt;&lt; endl;
+  cout &lt;&lt; "'dilation()' and 'minkowski_sub1()'" &lt;&lt; endl;
+
+  HByteImage img("monkey");
+  HWindow    w;
+
+  HRegion      circ = HRegion::GenCircle (10, 10, 1.5);
+  HRegionArray regs = (img &gt;= 128).Connection();
+
+  HRegionArray dilreg = regs.Dilation1 (circ, 1);
+  HRegionArray minsub = dilreg.MinkowskiSub1 (circ, 1);
+
+                        img.Display (w);      w.Click ();
+  w.SetColor ("red");   regs.Display (w);     w.Click ();
+  w.SetColor ("green"); dilreg.Display (w);   w.Click ();
+  w.SetColor ("blue");  minsub.Display (w);   w.Click ();
+
+  return(0);
+}
+</pre>
+</div>
+<h2 id="sec_complexity">Complexity</h2>
+<p>Let F1 be the area of the input region, and F2 be the area of
+the structuring element.  Then the runtime complexity for one region
+is:
+<span title="1" class="displaymath"><!-- Created by MetaPost 1.902 on 2025.11.04:1301 --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="8.6143em" height="1.34592em" viewBox="0 0 137.828842 21.534653">
+<!-- Original BoundingBox: -68.914429 -10.767319 68.914413 10.767334 -->
+  <defs>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmr10_40">
+      <path style="fill-rule: evenodd;" d="M331.000000 240.000000C331.000000 237.000000,331.000000 235.000000,314.000000 218.000000C189.000000 92.000000,157.000000 -97.000000,157.000000 -250.000000C157.000000 -424.000000,195.000000 -598.000000,318.000000 -723.000000C331.000000 -735.000000,331.000000 -737.000000,331.000000 -740.000000C331.000000 -747.000000,327.000000 -750.000000,321.000000 -750.000000C311.000000 -750.000000,221.000000 -682.000000,162.000000 -555.000000C111.000000 -445.000000,99.000000 -334.000000,99.000000 -250.000000C99.000000 -172.000000,110.000000 -51.000000,165.000000 62.000000C225.000000 185.000000,311.000000 250.000000,321.000000 250.000000C327.000000 250.000000,331.000000 247.000000,331.000000 240.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmr10_41">
+      <path style="fill-rule: evenodd;" d="M289.000000 -250.000000C289.000000 -328.000000,278.000000 -449.000000,223.000000 -562.000000C163.000000 -685.000000,77.000000 -750.000000,67.000000 -750.000000C61.000000 -750.000000,57.000000 -746.000000,57.000000 -740.000000C57.000000 -737.000000,57.000000 -735.000000,76.000000 -717.000000C174.000000 -618.000000,231.000000 -459.000000,231.000000 -250.000000C231.000000 -79.000000,194.000000 97.000000,70.000000 223.000000C57.000000 235.000000,57.000000 237.000000,57.000000 240.000000C57.000000 246.000000,61.000000 250.000000,67.000000 250.000000C77.000000 250.000000,167.000000 182.000000,226.000000 55.000000C277.000000 -55.000000,289.000000 -166.000000,289.000000 -250.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmr10_49">
+      <path style="fill-rule: evenodd;" d="M294.000000 -640.000000C294.000000 -664.000000,294.000000 -666.000000,271.000000 -666.000000C209.000000 -602.000000,121.000000 -602.000000,89.000000 -602.000000L89.000000 -571.000000C109.000000 -571.000000,168.000000 -571.000000,220.000000 -597.000000L220.000000 -79.000000C220.000000 -43.000000,217.000000 -31.000000,127.000000 -31.000000L95.000000 -31.000000L95.000000 -0.000000L257.000000 -0.000000L130.000000 -3.000000L217.000000 -3.000000L257.000000 -3.000000L297.000000 -3.000000L384.000000 -3.000000L419.000000 -0.000000L419.000000 -31.000000L387.000000 -31.000000C297.000000 -31.000000,294.000000 -42.000000,294.000000 -79.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmr10_50">
+      <path style="fill-rule: evenodd;" d="M127.000000 -77.000000L233.000000 -180.000000C389.000000 -318.000000,449.000000 -372.000000,449.000000 -472.000000C449.000000 -586.000000,359.000000 -666.000000,237.000000 -666.000000C124.000000 -666.000000,50.000000 -574.000000,50.000000 -485.000000C50.000000 -429.000000,100.000000 -429.000000,103.000000 -429.000000C120.000000 -429.000000,155.000000 -441.000000,155.000000 -482.000000C155.000000 -508.000000,137.000000 -534.000000,102.000000 -534.000000C94.000000 -534.000000,92.000000 -534.000000,89.000000 -533.000000C112.000000 -598.000000,166.000000 -635.000000,224.000000 -635.000000C315.000000 -635.000000,358.000000 -554.000000,358.000000 -472.000000C358.000000 -392.000000,308.000000 -313.000000,253.000000 -251.000000L61.000000 -37.000000C50.000000 -26.000000,50.000000 -24.000000,50.000000 -0.000000L421.000000 -0.000000L449.000000 -174.000000L424.000000 -174.000000C419.000000 -144.000000,412.000000 -100.000000,402.000000 -85.000000C395.000000 -77.000000,329.000000 -77.000000,307.000000 -77.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmsy10_1">
+      <path style="fill-rule: evenodd;" d="M192.000000 -250.000000C192.000000 -279.000000,168.000000 -303.000000,139.000000 -303.000000C110.000000 -303.000000,86.000000 -279.000000,86.000000 -250.000000C86.000000 -221.000000,110.000000 -197.000000,139.000000 -197.000000C168.000000 -197.000000,192.000000 -221.000000,192.000000 -250.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmsy10_112">
+      <path style="fill-rule: evenodd;" d="M389.000000 855.000000L213.000000 466.000000C206.000000 450.000000,201.000000 450.000000,198.000000 450.000000C197.000000 450.000000,192.000000 450.000000,181.000000 458.000000L86.000000 530.000000C73.000000 540.000000,73.000000 543.000000,73.000000 546.000000C73.000000 551.000000,76.000000 557.000000,83.000000 557.000000C89.000000 557.000000,106.000000 543.000000,117.000000 535.000000C123.000000 530.000000,138.000000 519.000000,149.000000 511.000000L346.000000 944.000000C353.000000 960.000000,358.000000 960.000000,367.000000 960.000000C382.000000 960.000000,385.000000 954.000000,392.000000 940.000000L846.000000 -0.000000C853.000000 -14.000000,853.000000 -18.000000,853.000000 -20.000000C853.000000 -30.000000,845.000000 -40.000000,833.000000 -40.000000C825.000000 -40.000000,818.000000 -35.000000,810.000000 -19.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmmi10_58">
+      <path style="fill-rule: evenodd;" d="M192.000000 -53.000000C192.000000 -82.000000,168.000000 -106.000000,139.000000 -106.000000C110.000000 -106.000000,86.000000 -82.000000,86.000000 -53.000000C86.000000 -24.000000,110.000000 -0.000000,139.000000 -0.000000C168.000000 -0.000000,192.000000 -24.000000,192.000000 -53.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmmi10_70">
+      <path style="fill-rule: evenodd;" d="M303.000000 -325.000000L400.000000 -325.000000C475.000000 -325.000000,483.000000 -309.000000,483.000000 -280.000000C483.000000 -273.000000,483.000000 -261.000000,476.000000 -231.000000C474.000000 -226.000000,473.000000 -222.000000,473.000000 -220.000000C473.000000 -212.000000,479.000000 -208.000000,485.000000 -208.000000C495.000000 -208.000000,495.000000 -211.000000,500.000000 -229.000000L555.000000 -446.000000C558.000000 -457.000000,558.000000 -459.000000,558.000000 -462.000000C558.000000 -464.000000,556.000000 -473.000000,546.000000 -473.000000C536.000000 -473.000000,535.000000 -468.000000,531.000000 -452.000000C510.000000 -374.000000,487.000000 -356.000000,402.000000 -356.000000L311.000000 -356.000000L375.000000 -610.000000C384.000000 -645.000000,385.000000 -649.000000,429.000000 -649.000000L561.000000 -649.000000C684.000000 -649.000000,707.000000 -616.000000,707.000000 -539.000000C707.000000 -516.000000,707.000000 -512.000000,704.000000 -485.000000C702.000000 -472.000000,702.000000 -470.000000,702.000000 -467.000000C702.000000 -462.000000,705.000000 -455.000000,714.000000 -455.000000C725.000000 -455.000000,726.000000 -461.000000,728.000000 -480.000000L748.000000 -653.000000C751.000000 -680.000000,746.000000 -680.000000,721.000000 -680.000000L231.000000 -680.000000C211.000000 -680.000000,201.000000 -680.000000,201.000000 -660.000000C201.000000 -649.000000,210.000000 -649.000000,229.000000 -649.000000C266.000000 -649.000000,294.000000 -649.000000,294.000000 -631.000000C294.000000 -627.000000,294.000000 -625.000000,289.000000 -607.000000L157.000000 -78.000000C147.000000 -39.000000,145.000000 -31.000000,66.000000 -31.000000C49.000000 -31.000000,38.000000 -31.000000,38.000000 -12.000000C38.000000 -0.000000,50.000000 -0.000000,53.000000 -0.000000L185.000000 -0.000000L82.000000 -0.000000L156.000000 -3.000000L185.000000 -3.000000L218.000000 -3.000000L301.000000 -0.000000L334.000000 -0.000000C343.000000 -0.000000,355.000000 -0.000000,355.000000 -19.000000C355.000000 -27.000000,349.000000 -29.000000,349.000000 -30.000000C346.000000 -31.000000,344.000000 -31.000000,321.000000 -31.000000C299.000000 -31.000000,294.000000 -31.000000,269.000000 -33.000000C240.000000 -36.000000,237.000000 -40.000000,237.000000 -53.000000C237.000000 -55.000000,237.000000 -61.000000,241.000000 -76.000000"></path>
+    </g>
+    <g transform="scale(0.009963,0.009963)" id="GLYPHcmmi10_79">
+      <path style="fill-rule: evenodd;" d="M740.000000 -436.000000C740.000000 -597.000000,634.000000 -705.000000,485.000000 -705.000000C269.000000 -705.000000,49.000000 -478.000000,49.000000 -245.000000C49.000000 -79.000000,161.000000 22.000000,305.000000 22.000000C517.000000 22.000000,740.000000 -197.000000,740.000000 -436.000000M311.000000 -4.000000C212.000000 -4.000000,142.000000 -85.000000,142.000000 -217.000000C142.000000 -261.000000,156.000000 -407.000000,233.000000 -524.000000C302.000000 -628.000000,400.000000 -680.000000,479.000000 -680.000000C561.000000 -680.000000,651.000000 -624.000000,651.000000 -475.000000C651.000000 -403.000000,624.000000 -247.000000,525.000000 -124.000000C477.000000 -63.000000,395.000000 -4.000000,311.000000 -4.000000"></path>
+    </g>
+  </defs>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,0.085571 15.782166)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_79"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,12.687225 15.782166)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmr10_40"></use>
+    <use xlink:href="#GLYPHcmr10_50" x="3.888963"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,30.398651 15.782166)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_1"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,38.368744 1.507874)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_112"></use>
+  </g>
+  <path d="M51.652313 1.189148L72.086975 1.189148" style="stroke:rgb(0.000000%,0.000000%,0.000000%); stroke-width: 0.637604;stroke-linejoin: round;stroke-miterlimit: 10.000000;fill: none;"></path>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,51.652313 15.782166)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_70"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,64.116699 15.782166)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmr10_49"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,75.629044 15.782166)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_1"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,83.599167 1.507874)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmsy10_112"></use>
+  </g>
+  <path d="M96.882736 1.189148L117.317398 1.189148" style="stroke:rgb(0.000000%,0.000000%,0.000000%); stroke-width: 0.637604;stroke-linejoin: round;stroke-miterlimit: 10.000000;fill: none;"></path>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,96.882736 15.782166)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_70"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,109.347275 15.782166)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmr10_50"></use>
+    <use xlink:href="#GLYPHcmr10_41" x="5.000095"></use>
+  </g>
+  <g transform="matrix(1.600006,-0.000000,-0.000000,1.600006,131.486557 15.782166)" style="fill: rgb(0.000000%,0.000000%,0.000000%);">
+    <use xlink:href="#GLYPHcmmi10_58"></use>
+  </g>
+</svg></span></p>
+<h2 id="sec_result">Result</h2>
+<p><code><span data-if="hdevelop" style="display:inline">closing</span><span data-if="c" style="display:none">closing</span><span data-if="cpp" style="display:none">Closing</span><span data-if="dotnet" style="display:none">Closing</span><span data-if="python" style="display:none">closing</span></code> returns <TT>2</TT> (
+      <TT>H_MSG_TRUE</TT>)
+     if all parameters are correct.  The
+behavior in case of empty or no input region can be set via:
+</p>
+<ul>
+<li>
+<p> no region:
+<a href="set_system.html"><code><span data-if="hdevelop" style="display:inline">set_system('no_object_result',&lt;RegionResult&gt;)</span><span data-if="c" style="display:none">set_system("no_object_result",&lt;RegionResult&gt;)</span><span data-if="cpp" style="display:none">SetSystem("no_object_result",&lt;RegionResult&gt;)</span><span data-if="dotnet" style="display:none">SetSystem("no_object_result",&lt;RegionResult&gt;)</span><span data-if="python" style="display:none">set_system("no_object_result",&lt;RegionResult&gt;)</span></code></a>
+</p>
+</li>
+<li>
+<p> empty region:
+<a href="set_system.html"><code><span data-if="hdevelop" style="display:inline">set_system('empty_region_result',&lt;RegionResult&gt;)</span><span data-if="c" style="display:none">set_system("empty_region_result",&lt;RegionResult&gt;)</span><span data-if="cpp" style="display:none">SetSystem("empty_region_result",&lt;RegionResult&gt;)</span><span data-if="dotnet" style="display:none">SetSystem("empty_region_result",&lt;RegionResult&gt;)</span><span data-if="python" style="display:none">set_system("empty_region_result",&lt;RegionResult&gt;)</span></code></a>
+</p>
+</li>
+</ul>
+
+<p>Otherwise, an exception is raised.</p>
+<h2 id="sec_predecessors">Possible Predecessors</h2>
+<p>
+<code><a href="threshold.html"><span data-if="hdevelop" style="display:inline">threshold</span><span data-if="c" style="display:none">threshold</span><span data-if="cpp" style="display:none">Threshold</span><span data-if="dotnet" style="display:none">Threshold</span><span data-if="python" style="display:none">threshold</span></a></code>, 
+<code><a href="regiongrowing.html"><span data-if="hdevelop" style="display:inline">regiongrowing</span><span data-if="c" style="display:none">regiongrowing</span><span data-if="cpp" style="display:none">Regiongrowing</span><span data-if="dotnet" style="display:none">Regiongrowing</span><span data-if="python" style="display:none">regiongrowing</span></a></code>, 
+<code><a href="connection.html"><span data-if="hdevelop" style="display:inline">connection</span><span data-if="c" style="display:none">connection</span><span data-if="cpp" style="display:none">Connection</span><span data-if="dotnet" style="display:none">Connection</span><span data-if="python" style="display:none">connection</span></a></code>, 
+<code><a href="union1.html"><span data-if="hdevelop" style="display:inline">union1</span><span data-if="c" style="display:none">union1</span><span data-if="cpp" style="display:none">Union1</span><span data-if="dotnet" style="display:none">Union1</span><span data-if="python" style="display:none">union1</span></a></code>, 
+<code><a href="watersheds.html"><span data-if="hdevelop" style="display:inline">watersheds</span><span data-if="c" style="display:none">watersheds</span><span data-if="cpp" style="display:none">Watersheds</span><span data-if="dotnet" style="display:none">Watersheds</span><span data-if="python" style="display:none">watersheds</span></a></code>, 
+<code><a href="class_ndim_norm.html"><span data-if="hdevelop" style="display:inline">class_ndim_norm</span><span data-if="c" style="display:none">class_ndim_norm</span><span data-if="cpp" style="display:none">ClassNdimNorm</span><span data-if="dotnet" style="display:none">ClassNdimNorm</span><span data-if="python" style="display:none">class_ndim_norm</span></a></code>, 
+<code><a href="gen_circle.html"><span data-if="hdevelop" style="display:inline">gen_circle</span><span data-if="c" style="display:none">gen_circle</span><span data-if="cpp" style="display:none">GenCircle</span><span data-if="dotnet" style="display:none">GenCircle</span><span data-if="python" style="display:none">gen_circle</span></a></code>, 
+<code><a href="gen_ellipse.html"><span data-if="hdevelop" style="display:inline">gen_ellipse</span><span data-if="c" style="display:none">gen_ellipse</span><span data-if="cpp" style="display:none">GenEllipse</span><span data-if="dotnet" style="display:none">GenEllipse</span><span data-if="python" style="display:none">gen_ellipse</span></a></code>, 
+<code><a href="gen_rectangle1.html"><span data-if="hdevelop" style="display:inline">gen_rectangle1</span><span data-if="c" style="display:none">gen_rectangle1</span><span data-if="cpp" style="display:none">GenRectangle1</span><span data-if="dotnet" style="display:none">GenRectangle1</span><span data-if="python" style="display:none">gen_rectangle1</span></a></code>, 
+<code><a href="gen_rectangle2.html"><span data-if="hdevelop" style="display:inline">gen_rectangle2</span><span data-if="c" style="display:none">gen_rectangle2</span><span data-if="cpp" style="display:none">GenRectangle2</span><span data-if="dotnet" style="display:none">GenRectangle2</span><span data-if="python" style="display:none">gen_rectangle2</span></a></code>, 
+<code><a href="draw_region.html"><span data-if="hdevelop" style="display:inline">draw_region</span><span data-if="c" style="display:none">draw_region</span><span data-if="cpp" style="display:none">DrawRegion</span><span data-if="dotnet" style="display:none">DrawRegion</span><span data-if="python" style="display:none">draw_region</span></a></code>, 
+<code><a href="gen_region_points.html"><span data-if="hdevelop" style="display:inline">gen_region_points</span><span data-if="c" style="display:none">gen_region_points</span><span data-if="cpp" style="display:none">GenRegionPoints</span><span data-if="dotnet" style="display:none">GenRegionPoints</span><span data-if="python" style="display:none">gen_region_points</span></a></code>, 
+<code><a href="gen_region_polygon_filled.html"><span data-if="hdevelop" style="display:inline">gen_region_polygon_filled</span><span data-if="c" style="display:none">gen_region_polygon_filled</span><span data-if="cpp" style="display:none">GenRegionPolygonFilled</span><span data-if="dotnet" style="display:none">GenRegionPolygonFilled</span><span data-if="python" style="display:none">gen_region_polygon_filled</span></a></code>
+</p>
+<h2 id="sec_successors">Possible Successors</h2>
+<p>
+<code><a href="reduce_domain.html"><span data-if="hdevelop" style="display:inline">reduce_domain</span><span data-if="c" style="display:none">reduce_domain</span><span data-if="cpp" style="display:none">ReduceDomain</span><span data-if="dotnet" style="display:none">ReduceDomain</span><span data-if="python" style="display:none">reduce_domain</span></a></code>, 
+<code><a href="select_shape.html"><span data-if="hdevelop" style="display:inline">select_shape</span><span data-if="c" style="display:none">select_shape</span><span data-if="cpp" style="display:none">SelectShape</span><span data-if="dotnet" style="display:none">SelectShape</span><span data-if="python" style="display:none">select_shape</span></a></code>, 
+<code><a href="area_center.html"><span data-if="hdevelop" style="display:inline">area_center</span><span data-if="c" style="display:none">area_center</span><span data-if="cpp" style="display:none">AreaCenter</span><span data-if="dotnet" style="display:none">AreaCenter</span><span data-if="python" style="display:none">area_center</span></a></code>, 
+<code><a href="connection.html"><span data-if="hdevelop" style="display:inline">connection</span><span data-if="c" style="display:none">connection</span><span data-if="cpp" style="display:none">Connection</span><span data-if="dotnet" style="display:none">Connection</span><span data-if="python" style="display:none">connection</span></a></code>
+</p>
+<h2 id="sec_alternatives">Alternatives</h2>
+<p>
+<code><a href="closing_circle.html"><span data-if="hdevelop" style="display:inline">closing_circle</span><span data-if="c" style="display:none">closing_circle</span><span data-if="cpp" style="display:none">ClosingCircle</span><span data-if="dotnet" style="display:none">ClosingCircle</span><span data-if="python" style="display:none">closing_circle</span></a></code>
+</p>
+<h2 id="sec_see">See also</h2>
+<p>
+<code><a href="dilation1.html"><span data-if="hdevelop" style="display:inline">dilation1</span><span data-if="c" style="display:none">dilation1</span><span data-if="cpp" style="display:none">Dilation1</span><span data-if="dotnet" style="display:none">Dilation1</span><span data-if="python" style="display:none">dilation1</span></a></code>, 
+<code><a href="erosion1.html"><span data-if="hdevelop" style="display:inline">erosion1</span><span data-if="c" style="display:none">erosion1</span><span data-if="cpp" style="display:none">Erosion1</span><span data-if="dotnet" style="display:none">Erosion1</span><span data-if="python" style="display:none">erosion1</span></a></code>, 
+<code><a href="opening.html"><span data-if="hdevelop" style="display:inline">opening</span><span data-if="c" style="display:none">opening</span><span data-if="cpp" style="display:none">Opening</span><span data-if="dotnet" style="display:none">Opening</span><span data-if="python" style="display:none">opening</span></a></code>, 
+<code><a href="minkowski_sub1.html"><span data-if="hdevelop" style="display:inline">minkowski_sub1</span><span data-if="c" style="display:none">minkowski_sub1</span><span data-if="cpp" style="display:none">MinkowskiSub1</span><span data-if="dotnet" style="display:none">MinkowskiSub1</span><span data-if="python" style="display:none">minkowski_sub1</span></a></code>
+</p>
+<h2 id="sec_module">Module</h2>
+<p>
+Foundation</p>
+<!--OP_REF_FOOTER_START-->
+<hr>
+<div class="indexlink">
+<a href="index_classes.html"><span data-if="dotnet" style="display:none;">Classes</span><span data-if="cpp" style="display:none;">Classes</span></a><span data-if="dotnet" style="display:none;"> | </span><span data-if="cpp" style="display:none;"> | </span><a href="index_by_name.html">Operators</a>
+</div>
+<div class="footer">
+<div class="copyright">HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH</div>
+<div class="socialmedia">Follow us on
+        <a title="LinkedIn" href="https://www.linkedin.com/company/mvtec-software-gmbh" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24.7px" height="21px" enable-background="new 0 0 24.7 21" version="1.1" viewBox="0 0 24.7 21" xml:space="preserve">
+            <style type="text/css">.st0{fill:#0A66C1;}</style>
+            <g>
+              <g>
+                <rect x="1.7863" y="2.301" width="17.409" height="16.743" fill="#fff"></rect>
+                <path class="st0" d="m23.2 18.3c0.7 0 1.3 0.6 1.3 1.3s-0.6 1.3-1.3 1.3-1.3-0.6-1.3-1.3c0.1-0.7 0.6-1.3 1.3-1.3m0-0.2c-0.8 0-1.4 0.6-1.4 1.4s0.6 1.4 1.4 1.4 1.4-0.6 1.4-1.4c0.1-0.7-0.6-1.4-1.4-1.4z"></path>
+                <path class="st0" d="m23.5 19.7c0.2 0 0.4-0.2 0.4-0.4 0-0.3-0.2-0.4-0.5-0.4h-0.6v1.5h0.2v-0.7h0.3l0.4 0.6h0.2l-0.4-0.6zm-0.3-0.2h-0.2v-0.5h0.3c0.2 0 0.4 0 0.4 0.2-0.1 0.3-0.3 0.3-0.5 0.3"></path>
+                <path class="st0" d="m17.8 17.8h-3.1v-4.8c0-1.2 0-2.6-1.6-2.6s-1.9 1.3-1.9 2.6v4.9h-3.1v-10h3v1.4c0.6-1 1.7-1.7 2.9-1.6 3.1 0 3.7 2.1 3.7 4.7l0.1 5.4zm-13.2-11.3c-1 0-1.8-0.8-1.8-1.8s0.8-1.8 1.8-1.8 1.8 0.8 1.8 1.8-0.8 1.8-1.8 1.8m1.6 11.3h-3.1v-10h3.1v10zm13.1-17.8h-17.8c-0.8 0-1.5 0.7-1.5 1.5v17.8c0 0.8 0.7 1.5 1.5 1.5h17.8c0.8 0 1.5-0.7 1.5-1.5v-17.8c0.1-0.8-0.6-1.5-1.5-1.5" fill="#0a66c1" fill-opacity="1"></path>
+              </g>
+            </g>
+            <g fill-opacity="0">
+              <path d="m3.1146 12.806v-4.9834h3.0743v9.9668h-3.0743z"></path>
+              <path d="m4.2179 6.4484c-0.626-0.14447-1.1028-0.57558-1.3186-1.1921-0.0639-0.18261-0.069347-0.22686-0.068678-0.55784 6.624e-4 -0.32786 0.0067872-0.37695 0.069593-0.55784 0.037877-0.10909 0.097838-0.24855 0.13325-0.30991 0.48158-0.83456 1.498-1.1512 2.3497-0.73205 0.38776 0.19083 0.63099 0.43426 0.81815 0.81883 0.24765 0.50885 0.24786 1.0586 5.851e-4 1.562-0.22735 0.46283-0.58524 0.77205-1.0791 0.93231-0.20816 0.067553-0.6871 0.086978-0.90495 0.036703z"></path>
+              <path d="m8.1228 12.905v-4.9834h2.9752v1.3981l0.14185-0.20735c0.45246-0.66135 1.1062-1.123 1.8893-1.3342 0.22379-0.060362 0.26874-0.063848 0.78634-0.060992 0.92593 0.00511 1.4855 0.11689 2.0476 0.409 0.96939 0.50381 1.5023 1.4781 1.6663 3.0468 0.04646 0.44422 0.05641 0.78261 0.10086 3.4304 0.01969 1.1727 0.04274 2.3693 0.05122 2.6591l0.01543 0.52685h-3.0758l-0.01077-2.8574c-0.01142-3.0302-0.01039-3.0024-0.12981-3.4707-0.13987-0.54839-0.50964-0.91538-1.0345-1.0267-0.23173-0.04915-0.8285-0.03292-1.0473 0.02849-0.72431 0.20333-1.1332 0.7766-1.262 1.7693-0.03417 0.26341-0.03963 0.6735-0.03963 2.9808v2.6754h-3.0743z"></path>
+            </g>
+          </svg></a><a title="YouTube" href="https://www.youtube.com/mvtecsoftware" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="29.8px" height="21px" viewBox="0 0 29.8 21" style="enable-background:new 0 0 29.8 21;" xml:space="preserve">
+            <style type="text/css">.st2{fill:#FF0000;} .st1{fill:#FFFFFF;}</style>
+            <g id="XMLID_184_">
+              <path id="XMLID_182_" class="st2" d="M29.2,3.3C28.8,2,27.8,1,26.5,0.6C24.2,0,14.9,0,14.9,0S5.6,0,3.3,0.6C2,1,1,2,0.6,3.3 C0,5.6,0,10.5,0,10.5s0,4.9,0.6,7.2C1,19,2,20,3.3,20.4C5.6,21,14.9,21,14.9,21s9.3,0,11.7-0.6c1.3-0.3,2.3-1.4,2.6-2.7 c0.6-2.3,0.6-7.2,0.6-7.2S29.8,5.6,29.2,3.3z"></path>
+              <polygon id="XMLID_1355_" class="st1" points="11.9,14.9 19.6,10.5 11.9,6.1  "></polygon>
+            </g>
+          </svg></a>
+</div>
+</div>
+</div>
+</body>
+</html>

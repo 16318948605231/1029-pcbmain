@@ -1,0 +1,54 @@
+copy_image [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Image / Creation
+HDevelop
+.NET
+Python
+C++
+C
+Classes Classes | | Operators
+copy_image copy_image CopyImage CopyImage copy_image (Operator)
+Name
+copy_image copy_image CopyImage CopyImage copy_image — Copy an image and allocate new memory for it.
+Signature
+copy_image ( Image : DupImage : : )
+Herror copy_image (const Hobject Image , Hobject* DupImage )
+Herror T_copy_image (const Hobject Image , Hobject* DupImage )
+void CopyImage (const HObject& Image , HObject* DupImage )
+HImage HImage :: CopyImage () const
+static void HOperatorSet . CopyImage ( HObject image , out HObject dupImage )
+HImage HImage . CopyImage ()
+def copy_image ( image : HObject) -> HObject
+Description
+copy_image copy_image CopyImage CopyImage copy_image copies the input image into a new image with the
+same domain as the input image. In contrast to HALCON operators
+such as copy_obj copy_obj CopyObj CopyObj copy_obj , physical copies of all channels are
+created. This can be used, for example, to modify the gray values
+of the new image (see get_image_pointer1 get_image_pointer1 GetImagePointer1 GetImagePointer1 get_image_pointer1 ).
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Image Image Image image image (input_object) (multichannel-)image(-array) → object HImage HObject HObject Hobject (byte / direction / cyclic / int1 / int2 / uint2 / int4 / int8 / real / complex / vector_field)
+Image to be copied.
+DupImage DupImage DupImage dupImage dup_image (output_object) (multichannel-)image(-array) → object HImage HObject HObject Hobject * (byte / direction / cyclic / int1 / int2 / uint2 / int4 / int8 / real / complex / vector_field)
+Copied image.
+Possible Predecessors
+read_image read_image ReadImage ReadImage read_image ,
+gen_image_const gen_image_const GenImageConst GenImageConst gen_image_const
+Possible Successors
+set_grayval set_grayval SetGrayval SetGrayval set_grayval ,
+get_image_pointer1 get_image_pointer1 GetImagePointer1 GetImagePointer1 get_image_pointer1
+Alternatives
+set_grayval set_grayval SetGrayval SetGrayval set_grayval ,
+paint_gray paint_gray PaintGray PaintGray paint_gray ,
+gen_image_const gen_image_const GenImageConst GenImageConst gen_image_const ,
+gen_image_proto gen_image_proto GenImageProto GenImageProto gen_image_proto
+See also
+get_image_pointer1 get_image_pointer1 GetImagePointer1 GetImagePointer1 get_image_pointer1
+Module
+Foundation
+Classes Classes | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

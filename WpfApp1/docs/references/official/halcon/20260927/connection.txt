@@ -1,0 +1,349 @@
+connection [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Regions
+/
+Transformations
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+connection
+connection
+Connection
+Connection
+connection
+(Operator)
+Name
+connection
+connection
+Connection
+Connection
+connection
+— Compute connected components of a region.
+Signature
+connection
+(
+Region
+:
+ConnectedRegions
+:  : )
+Herror
+connection
+(const Hobject
+Region
+, Hobject*
+ConnectedRegions
+)
+Herror
+T_connection
+(const Hobject
+Region
+, Hobject*
+ConnectedRegions
+)
+void
+Connection
+(const HObject&
+Region
+, HObject*
+ConnectedRegions
+)
+HRegion
+HRegion
+::
+Connection
+() const
+static void
+HOperatorSet
+.
+Connection
+(
+HObject
+region
+, out
+HObject
+connectedRegions
+)
+HRegion
+HRegion
+.
+Connection
+()
+def
+connection
+(
+region
+: HObject) -> HObject
+Description
+connection
+connection
+Connection
+Connection
+connection
+determines the connected components of the
+input regions given in
+Region
+Region
+Region
+region
+region
+.  The neighborhood used for
+this can be set via
+set_system('neighborhood',<4/8>)
+set_system("neighborhood",<4/8>)
+SetSystem("neighborhood",<4/8>)
+SetSystem("neighborhood",<4/8>)
+set_system("neighborhood",<4/8>)
+.
+The default is 8-neighborhood, which is useful for determining the
+connected components of the foreground.    The maximum number of
+connected components that is returned by
+connection
+connection
+Connection
+Connection
+connection
+can be
+set via
+set_system('max_connection',<Num>)
+set_system("max_connection",<Num>)
+SetSystem("max_connection",<Num>)
+SetSystem("max_connection",<Num>)
+set_system("max_connection",<Num>)
+.  The default
+value of
+0
+causes all connected components to be returned.
+The inverse operator of
+connection
+connection
+Connection
+Connection
+connection
+is
+union1
+union1
+Union1
+Union1
+union1
+.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+Parameters
+Region
+Region
+Region
+region
+region
+(input_object)
+region(-array)
+→
+object
+HRegion
+HObject
+HObject
+Hobject
+Input region.
+ConnectedRegions
+ConnectedRegions
+ConnectedRegions
+connectedRegions
+connected_regions
+(output_object)
+region-array
+→
+object
+HRegion
+HObject
+HObject
+Hobject *
+Connected components.
+Example (HDevelop)
+read_image(Image,'clip')
+dev_set_colored(12)
+threshold(Image,Dark,0,150)
+count_obj(Dark,NumThresholded)
+dev_display (Dark)
+connection(Dark,ConnectedRegions)
+count_obj(ConnectedRegions,NumConnected)
+dev_display (ConnectedRegions)
+Example (C)
+read_image(&Image,"monkey");
+set_colored(WindowHandle,12);
+threshold(Image,&Light,150.0,255.0);
+count_obj(Light,&Number1);
+printf("Number of regions after threshold = %d\n",Number1);
+disp_region(Light,WindowHandle);
+connection(Light,&Many);
+count_obj(Many,&Number2);
+printf("Number of regions after threshold = %d\n",Number2);
+disp_region(Many,WindowHandle);
+Example (C++)
+#include "HIOStream.h"
+#if !defined(USE_IOSTREAM_H)
+using namespace std;
+#endif
+#include "HalconCpp.h"
+using namespace Halcon;
+
+int main (int argc, char *argv[])
+{
+  HImage   image (argv[1]);
+  HWindow  w;
+  w.SetColored(12);
+  HRegion Light = image >= 128;
+  Light.Display(w);
+  HRegionArray Many = Light.Connection();
+  cout << "Number of regions after threshold = " << Many.Num();
+  Many.Display(w);
+}
+Example (HDevelop)
+read_image(Image,'clip')
+dev_set_colored(12)
+threshold(Image,Dark,0,150)
+count_obj(Dark,NumThresholded)
+dev_display (Dark)
+connection(Dark,ConnectedRegions)
+count_obj(ConnectedRegions,NumConnected)
+dev_display (ConnectedRegions)
+Complexity
+Let F be the area of the input region and N be the number of
+generated connected components.  Then the runtime complexity is
+O(sqrt(F) * sqrt(N)).
+Result
+connection
+connection
+Connection
+Connection
+connection
+always returns the value
+2
+(
+H_MSG_TRUE
+)
+    .  The
+behavior in case of empty input (no regions given) can be set via
+set_system('no_object_result',<Result>)
+set_system("no_object_result",<Result>)
+SetSystem("no_object_result",<Result>)
+SetSystem("no_object_result",<Result>)
+set_system("no_object_result",<Result>)
+and the behavior in case of an empty input region via
+set_system('empty_region_result',<Result>)
+set_system("empty_region_result",<Result>)
+SetSystem("empty_region_result",<Result>)
+SetSystem("empty_region_result",<Result>)
+set_system("empty_region_result",<Result>)
+.
+If necessary, an exception is raised.
+Possible Predecessors
+auto_threshold
+auto_threshold
+AutoThreshold
+AutoThreshold
+auto_threshold
+,
+threshold
+threshold
+Threshold
+Threshold
+threshold
+,
+dyn_threshold
+dyn_threshold
+DynThreshold
+DynThreshold
+dyn_threshold
+,
+erosion1
+erosion1
+Erosion1
+Erosion1
+erosion1
+Possible Successors
+select_shape
+select_shape
+SelectShape
+SelectShape
+select_shape
+,
+select_gray
+select_gray
+SelectGray
+SelectGray
+select_gray
+,
+shape_trans
+shape_trans
+ShapeTrans
+ShapeTrans
+shape_trans
+,
+set_colored
+set_colored
+SetColored
+SetColored
+set_colored
+,
+dilation1
+dilation1
+Dilation1
+Dilation1
+dilation1
+,
+count_obj
+count_obj
+CountObj
+CountObj
+count_obj
+,
+reduce_domain
+reduce_domain
+ReduceDomain
+ReduceDomain
+reduce_domain
+,
+add_channels
+add_channels
+AddChannels
+AddChannels
+add_channels
+Alternatives
+background_seg
+background_seg
+BackgroundSeg
+BackgroundSeg
+background_seg
+See also
+set_system
+set_system
+SetSystem
+SetSystem
+set_system
+,
+union1
+union1
+Union1
+Union1
+union1
+Module
+Foundation
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

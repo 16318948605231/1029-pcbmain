@@ -1,0 +1,103 @@
+distance_contours_xld [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Tools / Geometry
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses | | Operators
+distance_contours_xlddistance_contours_xldDistanceContoursXldDistanceContoursXlddistance_contours_xld (Operator)
+Name
+distance_contours_xlddistance_contours_xldDistanceContoursXldDistanceContoursXlddistance_contours_xld — Calculate the pointwise distance from one contour to another.
+Signature
+distance_contours_xld(ContourFrom, ContourTo : ContourOut : Mode : )
+Herror distance_contours_xld(const Hobject ContourFrom, const Hobject ContourTo, Hobject* ContourOut, const char* Mode)
+Herror T_distance_contours_xld(const Hobject ContourFrom, const Hobject ContourTo, Hobject* ContourOut, const Htuple Mode)
+void DistanceContoursXld(const HObject& ContourFrom, const HObject& ContourTo, HObject* ContourOut, const HTuple& Mode)
+HXLDCont HXLDCont::DistanceContoursXld(const HXLDCont& ContourTo, const HString& Mode) const
+HXLDCont HXLDCont::DistanceContoursXld(const HXLDCont& ContourTo, const char* Mode) const
+HXLDCont HXLDCont::DistanceContoursXld(const HXLDCont& ContourTo, const wchar_t* Mode) const
+(
+Windows only)
+static void HOperatorSet.DistanceContoursXld(HObject contourFrom, HObject contourTo, out HObject contourOut, HTuple mode)
+HXLDCont HXLDCont.DistanceContoursXld(HXLDCont contourTo, string mode)
+def distance_contours_xld(contour_from: HObject, contour_to: HObject, mode: str) -> HObject
+Description
+The operator distance_contours_xlddistance_contours_xldDistanceContoursXldDistanceContoursXlddistance_contours_xld calculates for each point in
+ContourFromContourFromContourFromcontourFromcontour_from the minimal distance to the contours in
+ContourToContourToContourTocontourTocontour_to.
+The operator returns the contour ContourOutContourOutContourOutcontourOutcontour_out which consists of
+ContourFromContourFromContourFromcontourFromcontour_from containing the computed distances in the
+attribute 'distance'"distance""distance""distance""distance".
+The distances can be accessed by querying the attribute
+'distance'"distance""distance""distance""distance" with the operator get_contour_attrib_xldget_contour_attrib_xldGetContourAttribXldGetContourAttribXldget_contour_attrib_xld.
+See the operator reference of get_contour_attrib_xldget_contour_attrib_xldGetContourAttribXldGetContourAttribXldget_contour_attrib_xld for further
+information about contour attributes.
+The parameter
+ModeModeModemodemode determines which distances are calculated for each point
+in ContourFromContourFromContourFromcontourFromcontour_from:
+'point_to_point'"point_to_point""point_to_point""point_to_point""point_to_point" calculates the minimal distance to the base
+points of ContourToContourToContourTocontourTocontour_to.
+In contrast, 'point_to_segment'"point_to_segment""point_to_segment""point_to_segment""point_to_segment" calculates the minimum
+distance to the contour segments in ContourToContourToContourTocontourTocontour_to (see the figure
+below).
+The dashed lines illustrate the calculated distances starting from a
+point of ContourFromContourFromContourFromcontourFromcontour_from on the left.
+The distance corresponds to the
+'point_to_point'"point_to_point""point_to_point""point_to_point""point_to_point" mode, whereas the distance
+corresponds to the 'point_to_segment'"point_to_segment""point_to_segment""point_to_segment""point_to_segment" mode.
+Note that in many applications the mode 'point_to_segment'"point_to_segment""point_to_segment""point_to_segment""point_to_segment"
+suggests itself for an accurate result, whereas
+'point_to_point'"point_to_point""point_to_point""point_to_point""point_to_point" is considerably faster.
+If m is the number of points in ContourFromContourFromContourFromcontourFromcontour_from, and n the number
+of points in ContourToContourToContourTocontourTocontour_to, then distance_contours_xlddistance_contours_xldDistanceContoursXldDistanceContoursXlddistance_contours_xld
+has complexity O(mlog(n)) for 'point_to_point'"point_to_point""point_to_point""point_to_point""point_to_point", and O(mn) for
+'point_to_segment'"point_to_segment""point_to_segment""point_to_segment""point_to_segment".
+In case the template contour ContourToContourToContourTocontourTocontour_to is repeatedly used, the
+operators create_distance_transform_xldcreate_distance_transform_xldCreateDistanceTransformXldCreateDistanceTransformXldcreate_distance_transform_xld and
+apply_distance_transform_xldapply_distance_transform_xldApplyDistanceTransformXldApplyDistanceTransformXldapply_distance_transform_xld can be used as an alternative to
+distance_contours_xlddistance_contours_xldDistanceContoursXldDistanceContoursXlddistance_contours_xld. For further details, please refer to
+the documentation of create_distance_transform_xldcreate_distance_transform_xldCreateDistanceTransformXldCreateDistanceTransformXldcreate_distance_transform_xld.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+ContourFromContourFromContourFromcontourFromcontour_from (input_object) xld_cont(-array) → objectHXLDContHObjectHObjectHobject
+Contours for whose points the distances are
+calculated.
+ContourToContourToContourTocontourTocontour_to (input_object) xld_cont(-array) → objectHXLDContHObjectHObjectHobject
+Contours to which the distances are
+calculated to.
+ContourOutContourOutContourOutcontourOutcontour_out (output_object) xld_cont(-array) → objectHXLDContHObjectHObjectHobject *
+Copy of ContourFromContourFromContourFromcontourFromcontour_from containing the
+distances as an attribute.
+ModeModeModemodemode (input_control) string → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Compute the distance to points ('point_to_point')
+or to entire segments ('point_to_segment').
+Default:
+'point_to_point'
+"point_to_point"
+"point_to_point"
+"point_to_point"
+"point_to_point"
+List of values:
+'point_to_point'"point_to_point""point_to_point""point_to_point""point_to_point", 'point_to_segment'"point_to_segment""point_to_segment""point_to_segment""point_to_segment"
+Result
+If all parameters are correct, the operator returns the
+value 2 (
+H_MSG_TRUE)
+. Otherwise, an exception is raised.
+Possible Successors
+get_contour_attrib_xldget_contour_attrib_xldGetContourAttribXldGetContourAttribXldget_contour_attrib_xld,
+segment_contour_attrib_xldsegment_contour_attrib_xldSegmentContourAttribXldSegmentContourAttribXldsegment_contour_attrib_xld
+Alternatives
+apply_distance_transform_xldapply_distance_transform_xldApplyDistanceTransformXldApplyDistanceTransformXldapply_distance_transform_xld,
+distance_ccdistance_ccDistanceCcDistanceCcdistance_cc,
+distance_cc_mindistance_cc_minDistanceCcMinDistanceCcMindistance_cc_min
+Module
+Foundation
+ClassesClasses | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

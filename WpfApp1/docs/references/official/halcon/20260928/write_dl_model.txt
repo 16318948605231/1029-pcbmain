@@ -1,0 +1,61 @@
+write_dl_model [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Deep Learning / Model
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+write_dl_modelT_write_dl_modelWriteDlModelWriteDlModelwrite_dl_model (Operator)
+Name
+write_dl_modelT_write_dl_modelWriteDlModelWriteDlModelwrite_dl_model — Write a deep learning model in a file.
+Signature
+write_dl_model( :  : DLModelHandle, FileName : )
+Herror T_write_dl_model(const Htuple DLModelHandle, const Htuple FileName)
+void WriteDlModel(const HTuple& DLModelHandle, const HTuple& FileName)
+void HDlModel::WriteDlModel(const HString& FileName) const
+void HDlModel::WriteDlModel(const char* FileName) const
+void HDlModel::WriteDlModel(const wchar_t* FileName) const
+(
+Windows only)
+static void HOperatorSet.WriteDlModel(HTuple DLModelHandle, HTuple fileName)
+void HDlModel.WriteDlModel(string fileName)
+def write_dl_model(dlmodel_handle: HHandle, file_name: str) -> None
+Description
+write_dl_modelwrite_dl_modelWriteDlModelWriteDlModelwrite_dl_model writes the deep learning model
+DLModelHandleDLModelHandleDLModelHandleDLModelHandledlmodel_handle to the file given by FileNameFileNameFileNamefileNamefile_name.
+Please note that the values of the runtime specific parameters 'gpu'"gpu""gpu""gpu""gpu",
+'runtime'"runtime""runtime""runtime""runtime", and 'runtime_init'"runtime_init""runtime_init""runtime_init""runtime_init" are not written.
+The default HALCON file extension for deep learning models is
+'.hdl'.
+The model can be read with read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model.
+For further explanations to deep learning models in HALCON,
+see the chapter Deep Learning / Model.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+DLModelHandleDLModelHandleDLModelHandleDLModelHandledlmodel_handle (input_control)  dl_model → HDlModel, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the deep learning model.
+FileNameFileNameFileNamefileNamefile_name (input_control)  filename.write → HTuplestrHTupleHtuple (string) (string) (HString) (char*)
+Filename
+File extension:
+.hdl
+Result
+If the parameters are valid, the operator write_dl_modelwrite_dl_modelWriteDlModelWriteDlModelwrite_dl_model
+returns the value 2 (
+H_MSG_TRUE)
+. If necessary, an exception is raised.
+Possible Predecessors
+read_dl_modelread_dl_modelReadDlModelReadDlModelread_dl_model,
+train_dl_model_batchtrain_dl_model_batchTrainDlModelBatchTrainDlModelBatchtrain_dl_model_batch,
+train_dl_model_anomaly_datasettrain_dl_model_anomaly_datasetTrainDlModelAnomalyDatasetTrainDlModelAnomalyDatasettrain_dl_model_anomaly_dataset,
+set_dl_model_paramset_dl_model_paramSetDlModelParamSetDlModelParamset_dl_model_param
+Module
+Foundation. This operator uses dynamic licensing (see the 'Installation Guide'). Which of the following modules is required depends on the specific usage of the operator:
+3D Metrology, OCR/OCV, Matching, Deep Learning Enhanced, Deep Learning Professional
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

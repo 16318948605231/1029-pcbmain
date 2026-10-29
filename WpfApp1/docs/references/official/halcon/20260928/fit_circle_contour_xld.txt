@@ -1,0 +1,1157 @@
+fit_circle_contour_xld [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+XLD
+/
+Features
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+fit_circle_contour_xld
+fit_circle_contour_xld
+FitCircleContourXld
+FitCircleContourXld
+fit_circle_contour_xld
+(Operator)
+Name
+fit_circle_contour_xld
+fit_circle_contour_xld
+FitCircleContourXld
+FitCircleContourXld
+fit_circle_contour_xld
+— Approximate XLD contours by circles.
+Signature
+fit_circle_contour_xld
+(
+Contours
+:  :
+Algorithm
+,
+MaxNumPoints
+,
+MaxClosureDist
+,
+ClippingEndPoints
+,
+Iterations
+,
+ClippingFactor
+:
+Row
+,
+Column
+,
+Radius
+,
+StartPhi
+,
+EndPhi
+,
+PointOrder
+)
+Herror
+fit_circle_contour_xld
+(const Hobject
+Contours
+, const char*
+Algorithm
+, const Hlong
+MaxNumPoints
+, double
+MaxClosureDist
+, const Hlong
+ClippingEndPoints
+, const Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Row
+, double*
+Column
+, double*
+Radius
+, double*
+StartPhi
+, double*
+EndPhi
+, char*
+PointOrder
+)
+Herror
+T_fit_circle_contour_xld
+(const Hobject
+Contours
+, const Htuple
+Algorithm
+, const Htuple
+MaxNumPoints
+, const Htuple
+MaxClosureDist
+, const Htuple
+ClippingEndPoints
+, const Htuple
+Iterations
+, const Htuple
+ClippingFactor
+, Htuple*
+Row
+, Htuple*
+Column
+, Htuple*
+Radius
+, Htuple*
+StartPhi
+, Htuple*
+EndPhi
+, Htuple*
+PointOrder
+)
+void
+FitCircleContourXld
+(const HObject&
+Contours
+, const HTuple&
+Algorithm
+, const HTuple&
+MaxNumPoints
+, const HTuple&
+MaxClosureDist
+, const HTuple&
+ClippingEndPoints
+, const HTuple&
+Iterations
+, const HTuple&
+ClippingFactor
+, HTuple*
+Row
+, HTuple*
+Column
+, HTuple*
+Radius
+, HTuple*
+StartPhi
+, HTuple*
+EndPhi
+, HTuple*
+PointOrder
+)
+void
+HXLDCont
+::
+FitCircleContourXld
+(const HString&
+Algorithm
+, Hlong
+MaxNumPoints
+, double
+MaxClosureDist
+, Hlong
+ClippingEndPoints
+, Hlong
+Iterations
+, double
+ClippingFactor
+, HTuple*
+Row
+, HTuple*
+Column
+, HTuple*
+Radius
+, HTuple*
+StartPhi
+, HTuple*
+EndPhi
+, HTuple*
+PointOrder
+) const
+void
+HXLDCont
+::
+FitCircleContourXld
+(const HString&
+Algorithm
+, Hlong
+MaxNumPoints
+, double
+MaxClosureDist
+, Hlong
+ClippingEndPoints
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Row
+, double*
+Column
+, double*
+Radius
+, double*
+StartPhi
+, double*
+EndPhi
+, HString*
+PointOrder
+) const
+void
+HXLDCont
+::
+FitCircleContourXld
+(const char*
+Algorithm
+, Hlong
+MaxNumPoints
+, double
+MaxClosureDist
+, Hlong
+ClippingEndPoints
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Row
+, double*
+Column
+, double*
+Radius
+, double*
+StartPhi
+, double*
+EndPhi
+, HString*
+PointOrder
+) const
+void
+HXLDCont
+::
+FitCircleContourXld
+(const wchar_t*
+Algorithm
+, Hlong
+MaxNumPoints
+, double
+MaxClosureDist
+, Hlong
+ClippingEndPoints
+, Hlong
+Iterations
+, double
+ClippingFactor
+, double*
+Row
+, double*
+Column
+, double*
+Radius
+, double*
+StartPhi
+, double*
+EndPhi
+, HString*
+PointOrder
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+FitCircleContourXld
+(
+HObject
+contours
+,
+HTuple
+algorithm
+,
+HTuple
+maxNumPoints
+,
+HTuple
+maxClosureDist
+,
+HTuple
+clippingEndPoints
+,
+HTuple
+iterations
+,
+HTuple
+clippingFactor
+, out
+HTuple
+row
+, out
+HTuple
+column
+, out
+HTuple
+radius
+, out
+HTuple
+startPhi
+, out
+HTuple
+endPhi
+, out
+HTuple
+pointOrder
+)
+void
+HXLDCont
+.
+FitCircleContourXld
+(string
+algorithm
+, int
+maxNumPoints
+, double
+maxClosureDist
+, int
+clippingEndPoints
+, int
+iterations
+, double
+clippingFactor
+, out
+HTuple
+row
+, out
+HTuple
+column
+, out
+HTuple
+radius
+, out
+HTuple
+startPhi
+, out
+HTuple
+endPhi
+, out
+HTuple
+pointOrder
+)
+void
+HXLDCont
+.
+FitCircleContourXld
+(string
+algorithm
+, int
+maxNumPoints
+, double
+maxClosureDist
+, int
+clippingEndPoints
+, int
+iterations
+, double
+clippingFactor
+, out double
+row
+, out double
+column
+, out double
+radius
+, out double
+startPhi
+, out double
+endPhi
+, out string
+pointOrder
+)
+def
+fit_circle_contour_xld
+(
+contours
+: HObject,
+algorithm
+: str,
+max_num_points
+: int,
+max_closure_dist
+: float,
+clipping_end_points
+: int,
+iterations
+: int,
+clipping_factor
+: float) -> Tuple[Sequence[float], Sequence[float], Sequence[float], Sequence[float], Sequence[float], Sequence[str]]
+def
+fit_circle_contour_xld_s
+(
+contours
+: HObject,
+algorithm
+: str,
+max_num_points
+: int,
+max_closure_dist
+: float,
+clipping_end_points
+: int,
+iterations
+: int,
+clipping_factor
+: float) -> Tuple[float, float, float, float, float, str]
+Description
+fit_circle_contour_xld
+fit_circle_contour_xld
+FitCircleContourXld
+FitCircleContourXld
+fit_circle_contour_xld
+approximates the XLD contours
+Contours
+Contours
+Contours
+contours
+contours
+by circles.  It does not perform a segmentation of
+the input contours.  Thus, one has to make sure that each contour
+corresponds to one and only one circle.  The operator returns for
+each contour the center (
+Row
+Row
+Row
+row
+row
+,
+Column
+Column
+Column
+column
+column
+), and the
+Radius
+Radius
+Radius
+radius
+radius
+.
+The algorithm used for the fitting of circles can be selected via
+Algorithm
+Algorithm
+Algorithm
+algorithm
+algorithm
+:
+'algebraic'
+"algebraic"
+"algebraic"
+"algebraic"
+"algebraic"
+This approach minimizes the algebraic distance between the contour
+points and the resulting circle.
+'ahuber'
+"ahuber"
+"ahuber"
+"ahuber"
+"ahuber"
+Similar to
+'algebraic'
+"algebraic"
+"algebraic"
+"algebraic"
+"algebraic"
+. Here the contour points are weighted to
+decrease the impact of outliers based on the approach of Huber
+(see below).
+'atukey'
+"atukey"
+"atukey"
+"atukey"
+"atukey"
+Similar to
+'algebraic'
+"algebraic"
+"algebraic"
+"algebraic"
+"algebraic"
+. Here the contour points are weighted
+and outliers are ignored based
+on the approach of Tukey
+(see below).
+'geometric'
+"geometric"
+"geometric"
+"geometric"
+"geometric"
+This approach minimizes the geometric distance
+between the contour points and the resulting circle.
+The distance measure is statistically optimal, but takes more
+computational time.
+This option is recommended if the contour
+points are considerably distorted by noise.
+'geohuber'
+"geohuber"
+"geohuber"
+"geohuber"
+"geohuber"
+Similar to
+'geometric'
+"geometric"
+"geometric"
+"geometric"
+"geometric"
+. Here the contour points are weighted
+to decrease the impact of outliers based on
+the approach of Huber (see below).
+'geotukey'
+"geotukey"
+"geotukey"
+"geotukey"
+"geotukey"
+Similar to
+'geometric'
+"geometric"
+"geometric"
+"geometric"
+"geometric"
+. Here the contour points are weighted
+and outliers are ignored based on
+the approach of Tukey (see below).
+For '*huber' and '*tukey' a robust error statistics is used to estimate the
+standard deviation of the distances from the contour points
+without
+outliers from the approximating circle.  The parameter
+ClippingFactor
+ClippingFactor
+ClippingFactor
+clippingFactor
+clipping_factor
+(a scaling factor for the standard deviation)
+controls the amount of outliers: the smaller the value chosen for
+ClippingFactor
+ClippingFactor
+ClippingFactor
+clippingFactor
+clipping_factor
+the more outliers are detected. In the Tukey
+algorithm outliers are removed, whereas in the Huber algorithm
+outliers are only damped, or more precisely they are weighted linearly.
+Without any robust weighting the squares of the distances are taken as
+error values in the optimization, i.e., a least square formulation.
+In practice, the approach of Tukey is recommended.
+The parameter
+Iterations
+Iterations
+Iterations
+iterations
+iterations
+specifies the number of iterations for the
+algorithms
+'algebraic'
+"algebraic"
+"algebraic"
+"algebraic"
+"algebraic"
+,
+'ahuber'
+"ahuber"
+"ahuber"
+"ahuber"
+"ahuber"
+and
+'atukey'
+"atukey"
+"atukey"
+"atukey"
+"atukey"
+.
+This parameter is ignored for the algorithms
+'geometric'
+"geometric"
+"geometric"
+"geometric"
+"geometric"
+,
+'geohuber'
+"geohuber"
+"geohuber"
+"geohuber"
+"geohuber"
+and
+'geotukey'
+"geotukey"
+"geotukey"
+"geotukey"
+"geotukey"
+.
+If
+Iterations
+Iterations
+Iterations
+iterations
+iterations
+is set to zero, the algorithm does
+not perform iterative improvements on the fitted circle, but only checks if
+the initial guess was already close enough depending on the chosen treatment
+of outliers.
+To reduce the computational load, the fitting of circles can be
+restricted to a subset of the contour points: If a value other than
+-1
+is assigned to
+MaxNumPoints
+MaxNumPoints
+MaxNumPoints
+maxNumPoints
+max_num_points
+, only up to
+MaxNumPoints
+MaxNumPoints
+MaxNumPoints
+maxNumPoints
+max_num_points
+points - uniformly distributed over the
+contour - are used.
+For circular arcs, the points on the circle closest to the start
+points and end points of the original contours are chosen as start
+and end points.  The corresponding angles referring to the X-axis are
+returned in
+StartPhi
+StartPhi
+StartPhi
+startPhi
+start_phi
+and
+EndPhi
+EndPhi
+EndPhi
+endPhi
+end_phi
+, see also
+gen_ellipse_contour_xld
+gen_ellipse_contour_xld
+GenEllipseContourXld
+GenEllipseContourXld
+gen_ellipse_contour_xld
+.  Contours, for which the distance
+between their start points and their end points is less or equal
+MaxClosureDist
+MaxClosureDist
+MaxClosureDist
+maxClosureDist
+max_closure_dist
+are considered to be closed.  Thus, they are
+approximated by circles instead of circular arcs.  Due to artifacts
+in the pre-processing the start and end points of a contour might be
+faulty. Therefore, it is possible to exclude
+ClippingEndPoints
+ClippingEndPoints
+ClippingEndPoints
+clippingEndPoints
+clipping_end_points
+points at the beginning and at the end of a
+contour from the fitting of circles.  However, they are still used
+for the determination of
+StartPhi
+StartPhi
+StartPhi
+startPhi
+start_phi
+and
+EndPhi
+EndPhi
+EndPhi
+endPhi
+end_phi
+.
+The minimum necessary number of contour points for fitting a circle
+is three.
+Therefore, it is required that the number of contour points is at least
+.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Contours
+Contours
+Contours
+contours
+contours
+(input_object)
+xld_cont(-array)
+→
+object
+HXLDCont
+HObject
+HObject
+Hobject
+Input contours.
+Algorithm
+Algorithm
+Algorithm
+algorithm
+algorithm
+(input_control)
+string
+→
+HTuple
+str
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Algorithm for the fitting of circles.
+Default:
+'algebraic'
+"algebraic"
+"algebraic"
+"algebraic"
+"algebraic"
+List of values:
+'ahuber'
+"ahuber"
+"ahuber"
+"ahuber"
+"ahuber"
+,
+'algebraic'
+"algebraic"
+"algebraic"
+"algebraic"
+"algebraic"
+,
+'atukey'
+"atukey"
+"atukey"
+"atukey"
+"atukey"
+,
+'geohuber'
+"geohuber"
+"geohuber"
+"geohuber"
+"geohuber"
+,
+'geometric'
+"geometric"
+"geometric"
+"geometric"
+"geometric"
+,
+'geotukey'
+"geotukey"
+"geotukey"
+"geotukey"
+"geotukey"
+MaxNumPoints
+MaxNumPoints
+MaxNumPoints
+maxNumPoints
+max_num_points
+(input_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Maximum number of contour points used for the
+computation (-1 for all points).
+Default:
+-1
+Restriction:
+MaxNumPoints >= 3
+MaxClosureDist
+MaxClosureDist
+MaxClosureDist
+maxClosureDist
+max_closure_dist
+(input_control)
+real
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Maximum distance between the end points of a
+contour to be considered as 'closed'.
+Default:
+0.0
+Restriction:
+MaxClosureDist >= 0.0
+ClippingEndPoints
+ClippingEndPoints
+ClippingEndPoints
+clippingEndPoints
+clipping_end_points
+(input_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Number of points at the beginning and at the end of the
+contours to be ignored for the fitting.
+Default:
+0
+Restriction:
+ClippingEndPoints >= 0
+Iterations
+Iterations
+Iterations
+iterations
+iterations
+(input_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Maximum number of iterations for the robust weighted
+fitting.
+Default:
+3
+Restriction:
+Iterations >= 0
+ClippingFactor
+ClippingFactor
+ClippingFactor
+clippingFactor
+clipping_factor
+(input_control)
+real
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Clipping factor for the elimination of outliers
+(typical: 1.0 for Huber and 2.0 for Tukey).
+Default:
+2.0
+Suggested values:
+1.0, 1.5, 2.0, 2.5, 3.0
+Restriction:
+ClippingFactor > 0
+Row
+Row
+Row
+row
+row
+(output_control)
+circle.center.y(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Row coordinate of the center of the circle.
+Column
+Column
+Column
+column
+column
+(output_control)
+circle.center.x(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Column coordinate of the center of the circle.
+Radius
+Radius
+Radius
+radius
+radius
+(output_control)
+circle.radius(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Radius of circle.
+StartPhi
+StartPhi
+StartPhi
+startPhi
+start_phi
+(output_control)
+angle.rad(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Angle of the start point [rad].
+EndPhi
+EndPhi
+EndPhi
+endPhi
+end_phi
+(output_control)
+angle.rad(-array)
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Angle of the end point [rad].
+PointOrder
+PointOrder
+PointOrder
+pointOrder
+point_order
+(output_control)
+string(-array)
+→
+HTuple
+Sequence[str]
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Point order along the boundary.
+List of values:
+'negative'
+"negative"
+"negative"
+"negative"
+"negative"
+,
+'positive'
+"positive"
+"positive"
+"positive"
+"positive"
+Result
+fit_circle_contour_xld
+fit_circle_contour_xld
+FitCircleContourXld
+FitCircleContourXld
+fit_circle_contour_xld
+returns
+2
+(
+H_MSG_TRUE
+)
+     if all parameter values
+are correct, and circles could be fitted to the input contours.  If
+the input is empty the behavior can be set via
+set_system('no_object_result',<Result>)
+set_system("no_object_result",<Result>)
+SetSystem("no_object_result",<Result>)
+SetSystem("no_object_result",<Result>)
+set_system("no_object_result",<Result>)
+.  If necessary, an
+exception is raised.
+If the parameter
+ClippingFactor
+ClippingFactor
+ClippingFactor
+clippingFactor
+clipping_factor
+is chosen too small, i.e.,
+all points are classified as outliers, the error 3264 is raised.
+Possible Predecessors
+gen_contours_skeleton_xld
+gen_contours_skeleton_xld
+GenContoursSkeletonXld
+GenContoursSkeletonXld
+gen_contours_skeleton_xld
+,
+lines_gauss
+lines_gauss
+LinesGauss
+LinesGauss
+lines_gauss
+,
+lines_facet
+lines_facet
+LinesFacet
+LinesFacet
+lines_facet
+,
+edges_sub_pix
+edges_sub_pix
+EdgesSubPix
+EdgesSubPix
+edges_sub_pix
+,
+smooth_contours_xld
+smooth_contours_xld
+SmoothContoursXld
+SmoothContoursXld
+smooth_contours_xld
+Possible Successors
+gen_ellipse_contour_xld
+gen_ellipse_contour_xld
+GenEllipseContourXld
+GenEllipseContourXld
+gen_ellipse_contour_xld
+,
+disp_circle
+disp_circle
+DispCircle
+DispCircle
+disp_circle
+,
+get_points_ellipse
+get_points_ellipse
+GetPointsEllipse
+GetPointsEllipse
+get_points_ellipse
+See also
+fit_ellipse_contour_xld
+fit_ellipse_contour_xld
+FitEllipseContourXld
+FitEllipseContourXld
+fit_ellipse_contour_xld
+,
+fit_line_contour_xld
+fit_line_contour_xld
+FitLineContourXld
+FitLineContourXld
+fit_line_contour_xld
+,
+fit_rectangle2_contour_xld
+fit_rectangle2_contour_xld
+FitRectangle2ContourXld
+FitRectangle2ContourXld
+fit_rectangle2_contour_xld
+Module
+Foundation
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

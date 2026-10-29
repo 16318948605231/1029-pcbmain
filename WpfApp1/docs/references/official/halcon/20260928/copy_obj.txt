@@ -1,0 +1,163 @@
+copy_obj [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Object / Manipulation
+HDevelop
+.NET
+Python
+C++
+C
+Classes Classes | | Operators
+copy_obj copy_obj CopyObj CopyObj copy_obj (Operator)
+Name
+copy_obj copy_obj CopyObj CopyObj copy_obj — Copy an iconic object in the HALCON database.
+Signature
+copy_obj ( Objects : ObjectsSelected : Index , NumObj : )
+Herror copy_obj (const Hobject Objects , Hobject* ObjectsSelected , const Hlong Index , const Hlong NumObj )
+Herror T_copy_obj (const Hobject Objects , Hobject* ObjectsSelected , const Htuple Index , const Htuple NumObj )
+void CopyObj (const HObject& Objects , HObject* ObjectsSelected , const HTuple& Index , const HTuple& NumObj )
+HObject HObject :: CopyObj (Hlong Index , Hlong NumObj ) const
+HImage HImage :: CopyObj (Hlong Index , Hlong NumObj ) const
+HRegion HRegion :: CopyObj (Hlong Index , Hlong NumObj ) const
+HXLD HXLD :: CopyObj (Hlong Index , Hlong NumObj ) const
+HXLDCont HXLDCont :: CopyObj (Hlong Index , Hlong NumObj ) const
+HXLDPoly HXLDPoly :: CopyObj (Hlong Index , Hlong NumObj ) const
+HXLDPara HXLDPara :: CopyObj (Hlong Index , Hlong NumObj ) const
+HXLDModPara HXLDModPara :: CopyObj (Hlong Index , Hlong NumObj ) const
+HXLDExtPara HXLDExtPara :: CopyObj (Hlong Index , Hlong NumObj ) const
+static void HOperatorSet . CopyObj ( HObject objects , out HObject objectsSelected , HTuple index , HTuple numObj )
+HObject HObject . CopyObj (int index , int numObj )
+HImage HImage . CopyObj (int index , int numObj )
+HRegion HRegion . CopyObj (int index , int numObj )
+HXLD HXLD . CopyObj (int index , int numObj )
+HXLDCont HXLDCont . CopyObj (int index , int numObj )
+HXLDPoly HXLDPoly . CopyObj (int index , int numObj )
+HXLDPara HXLDPara . CopyObj (int index , int numObj )
+HXLDModPara HXLDModPara . CopyObj (int index , int numObj )
+HXLDExtPara HXLDExtPara . CopyObj (int index , int numObj )
+def copy_obj ( objects : HObject, index : int, num_obj : int) -> HObject
+Description
+copy_obj copy_obj CopyObj CopyObj copy_obj copies NumObj NumObj NumObj numObj num_obj iconic objects
+beginning with index Index Index Index index index (starting with 1) from the
+iconic input object tuple Objects Objects Objects objects objects to the output object
+ObjectsSelected ObjectsSelected ObjectsSelected objectsSelected objects_selected . If -1 is passed for NumObj NumObj NumObj numObj num_obj
+all objects beginning with Index Index Index index index are copied. No new
+storage is allocated for the regions and images. Instead, new
+objects containing references to the existing objects are created.
+The number of objects in an object tuple can be queried with the
+operator count_obj count_obj CountObj CountObj count_obj .
+For a short description of the iconic objects that are available in HALCON
+see the introduction of chapter Object .
+Execution Information
+Supports objects on compute devices.
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Objects Objects Objects objects objects (input_object) object(-array) → object HObject HObject HObject Hobject
+Objects to be copied.
+ObjectsSelected ObjectsSelected ObjectsSelected objectsSelected objects_selected (output_object) object(-array) → object HObject HObject HObject Hobject *
+Copied objects.
+Index Index Index index index (input_control) integer → HTuple int HTuple Htuple (integer) ( int / long) ( Hlong ) ( Hlong )
+Starting index of the objects to be copied.
+Default:
+1
+Suggested values:
+1, 2, 3, 4, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000
+Value range:
+1
+≤
+Index
+Index
+Index
+index
+index
+Restriction:
+Index <= number(Objects)
+NumObj NumObj NumObj numObj num_obj (input_control) integer → HTuple int HTuple Htuple (integer) ( int / long) ( Hlong ) ( Hlong )
+Number of objects to be copied or -1.
+Default:
+1
+Suggested values:
+-1, 1, 2, 3, 4, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000
+Value range:
+-1
+≤
+NumObj
+NumObj
+NumObj
+numObj
+num_obj
+Restriction:
+NumObj + Index - 1 <= number(Objects) && NumObj != 0
+Example (HDevelop)
+gen_circle (Circles, [100,200,400], [200,100,400], [100,100,50])
+copy_obj (Circles, CircleCopy, 2, 3)
+erosion_circle (CircleCopy, CircleErosion, 15.5)
+dev_set_color ('red')
+dev_set_draw ('fill')
+dev_display(Circles)
+dev_set_color ('white')
+dev_set_draw ('margin')
+dev_display (CircleCopy)
+dev_set_color ('green')
+dev_display (CircleErosion)
+Example (C)
+/* Access all regions */
+count_obj(Regions,&Num);
+for (i=1; i<=Num; i++);
+{
+copy_obj(Regions,&Single,i,1);
+T_get_region_polygon(Single,5.0,&Row,&Column);
+T_disp_polygon(WindowHandleTuple,Row,Column);
+destroy_tuple(Row);
+destroy_tuple(Column);
+}
+Example (HDevelop)
+gen_circle (Circles, [100,200,400], [200,100,400], [100,100,50])
+copy_obj (Circles, CircleCopy, 2, 3)
+erosion_circle (CircleCopy, CircleErosion, 15.5)
+dev_set_color ('red')
+dev_set_draw ('fill')
+dev_display(Circles)
+dev_set_color ('white')
+dev_set_draw ('margin')
+dev_display (CircleCopy)
+dev_set_color ('green')
+dev_display (CircleErosion)
+Example (HDevelop)
+gen_circle (Circles, [100,200,400], [200,100,400], [100,100,50])
+copy_obj (Circles, CircleCopy, 2, 3)
+erosion_circle (CircleCopy, CircleErosion, 15.5)
+dev_set_color ('red')
+dev_set_draw ('fill')
+dev_display(Circles)
+dev_set_color ('white')
+dev_set_draw ('margin')
+dev_display (CircleCopy)
+dev_set_color ('green')
+dev_display (CircleErosion)
+Complexity
+Runtime complexity: O(| Objects Objects Objects objects objects | + NumObj NumObj NumObj numObj num_obj );
+Memory complexity of the result object: O( NumObj NumObj NumObj numObj num_obj )
+Result
+copy_obj copy_obj CopyObj CopyObj copy_obj returns 2 (
+H_MSG_TRUE )
+if all objects are contained in
+the HALCON database and all parameters are correct. If the input
+is empty the behavior can be set via
+set_system(::'no_object_result',<Result>:) set_system("no_object_result",<Result>) SetSystem("no_object_result",<Result>) SetSystem("no_object_result",<Result>) set_system("no_object_result",<Result>) .
+If necessary, an exception is raised.
+Possible Predecessors
+count_obj count_obj CountObj CountObj count_obj
+Alternatives
+select_obj select_obj SelectObj SelectObj select_obj
+See also
+count_obj count_obj CountObj CountObj count_obj ,
+concat_obj concat_obj ConcatObj ConcatObj concat_obj ,
+obj_to_integer obj_to_integer ObjToInteger ObjToInteger obj_to_integer ,
+copy_image copy_image CopyImage CopyImage copy_image
+Module
+Foundation
+Classes Classes | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

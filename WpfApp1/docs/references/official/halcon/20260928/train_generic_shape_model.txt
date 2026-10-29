@@ -1,0 +1,83 @@
+train_generic_shape_model [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Matching / Shape-Based
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+train_generic_shape_modelT_train_generic_shape_modelTrainGenericShapeModelTrainGenericShapeModeltrain_generic_shape_model (Operator)
+Name
+train_generic_shape_modelT_train_generic_shape_modelTrainGenericShapeModelTrainGenericShapeModeltrain_generic_shape_model — Train a shape model for matching.
+Signature
+train_generic_shape_model(Template :  : ModelID : )
+Herror T_train_generic_shape_model(const Hobject Template, const Htuple ModelID)
+void TrainGenericShapeModel(const HObject& Template, const HTuple& ModelID)
+void HShapeModel::TrainGenericShapeModel(const HObject& Template) const
+void HImage::TrainGenericShapeModel(const HShapeModel& ModelID) const
+void HXLDCont::TrainGenericShapeModel(const HShapeModel& ModelID) const
+static void HOperatorSet.TrainGenericShapeModel(HObject template, HTuple modelID)
+void HShapeModel.TrainGenericShapeModel(HObject template)
+void HImage.TrainGenericShapeModel(HShapeModel modelID)
+void HXLDCont.TrainGenericShapeModel(HShapeModel modelID)
+def train_generic_shape_model(template: HObject, model_id: HHandle) -> None
+Description
+The operator train_generic_shape_modeltrain_generic_shape_modelTrainGenericShapeModelTrainGenericShapeModeltrain_generic_shape_model trains the shape model
+ModelIDModelIDModelIDmodelIDmodel_id in order to find the training pattern given in
+TemplateTemplateTemplatetemplatetemplate.
+TemplateTemplateTemplatetemplatetemplate accepts the training pattern to be of one of the following
+types:
+Image:
+The domain of the image given in TemplateTemplateTemplatetemplatetemplate sets the ROI of the
+model. Which channels of a multichannel image are used depends on the
+model parameter 'metric'"metric""metric""metric""metric" (see
+set_generic_shape_model_paramset_generic_shape_model_paramSetGenericShapeModelParamSetGenericShapeModelParamset_generic_shape_model_param).
+The model origin (reference point) is defined by the center of gravity of
+the image domain.
+The origin can be reset to a different point using
+set_generic_shape_model_paramset_generic_shape_model_paramSetGenericShapeModelParamSetGenericShapeModelParamset_generic_shape_model_param.
+XLD contour:
+XLD contours passed in TemplateTemplateTemplatetemplatetemplate should represent
+the gray value edges of the pattern to be searched.
+The model origin (reference point) is defined by the center of gravity of
+the smallest axis-parallel rectangle enclosing the contours.
+The origin can be reset to a different point using
+set_generic_shape_model_paramset_generic_shape_model_paramSetGenericShapeModelParamSetGenericShapeModelParamset_generic_shape_model_param.
+Properties of the model ModelIDModelIDModelIDmodelIDmodel_id can be retrieved using
+get_generic_shape_model_paramget_generic_shape_model_paramGetGenericShapeModelParamGetGenericShapeModelParamget_generic_shape_model_param and modified using
+set_generic_shape_model_paramset_generic_shape_model_paramSetGenericShapeModelParamSetGenericShapeModelParamset_generic_shape_model_param.
+Note that after modifying certain parameters the model needs to be
+(re)trained, see set_generic_shape_model_paramset_generic_shape_model_paramSetGenericShapeModelParamSetGenericShapeModelParamset_generic_shape_model_param.
+Added training samples:
+In case training samples have been added they are freed from the model after
+a successful call of train_generic_shape_modeltrain_generic_shape_modelTrainGenericShapeModelTrainGenericShapeModeltrain_generic_shape_model.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+This operator supports canceling timeouts and interrupts.
+This operator modifies the state of the following input parameter:
+ModelIDModelIDModelIDmodelIDmodel_id
+During execution of this operator, access to the value of this parameter must be synchronized if it is used across multiple threads.
+Parameters
+TemplateTemplateTemplatetemplatetemplate (input_object)  (multichannel-)object(-array) → objectHObjectHObjectHObjectHobject
+Training image or xld.
+ModelIDModelIDModelIDmodelIDmodel_id (input_control, state is modified)  shape_model → HShapeModel, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+Handle of the shape model.
+Result
+If the parameters are valid, the operator
+train_generic_shape_modeltrain_generic_shape_modelTrainGenericShapeModelTrainGenericShapeModeltrain_generic_shape_model returns the value 2 (
+H_MSG_TRUE)
+.
+If necessary an exception is raised.
+Possible Predecessors
+create_generic_shape_modelcreate_generic_shape_modelCreateGenericShapeModelCreateGenericShapeModelcreate_generic_shape_model,
+set_generic_shape_model_paramset_generic_shape_model_paramSetGenericShapeModelParamSetGenericShapeModelParamset_generic_shape_model_param
+Possible Successors
+find_generic_shape_modelfind_generic_shape_modelFindGenericShapeModelFindGenericShapeModelfind_generic_shape_model
+Module
+Matching
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

@@ -1,0 +1,4415 @@
+get_data_code_2d_results [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Identification
+/
+Data Code
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+get_data_code_2d_results
+T_get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+(Operator)
+Name
+get_data_code_2d_results
+T_get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+— Get the alphanumerical results that were accumulated during the
+search for 2D data code symbols.
+Signature
+get_data_code_2d_results
+( :  :
+DataCodeHandle
+,
+CandidateHandle
+,
+ResultNames
+:
+ResultValues
+)
+Herror
+T_get_data_code_2d_results
+(const Htuple
+DataCodeHandle
+, const Htuple
+CandidateHandle
+, const Htuple
+ResultNames
+, Htuple*
+ResultValues
+)
+void
+GetDataCode2dResults
+(const HTuple&
+DataCodeHandle
+, const HTuple&
+CandidateHandle
+, const HTuple&
+ResultNames
+, HTuple*
+ResultValues
+)
+HTuple
+HDataCode2D
+::
+GetDataCode2dResults
+(const HTuple&
+CandidateHandle
+, const HTuple&
+ResultNames
+) const
+HTuple
+HDataCode2D
+::
+GetDataCode2dResults
+(const HString&
+CandidateHandle
+, const HString&
+ResultNames
+) const
+HTuple
+HDataCode2D
+::
+GetDataCode2dResults
+(const char*
+CandidateHandle
+, const char*
+ResultNames
+) const
+HTuple
+HDataCode2D
+::
+GetDataCode2dResults
+(const wchar_t*
+CandidateHandle
+, const wchar_t*
+ResultNames
+) const
+(
+            Windows only)
+static void
+HOperatorSet
+.
+GetDataCode2dResults
+(
+HTuple
+dataCodeHandle
+,
+HTuple
+candidateHandle
+,
+HTuple
+resultNames
+, out
+HTuple
+resultValues
+)
+HTuple
+HDataCode2D
+.
+GetDataCode2dResults
+(
+HTuple
+candidateHandle
+,
+HTuple
+resultNames
+)
+HTuple
+HDataCode2D
+.
+GetDataCode2dResults
+(string
+candidateHandle
+, string
+resultNames
+)
+def
+get_data_code_2d_results
+(
+data_code_handle
+: HHandle,
+candidate_handle
+: Union[int, str],
+result_names
+: MaybeSequence[str]) -> Sequence[Union[int, float, str]]
+def
+get_data_code_2d_results_s
+(
+data_code_handle
+: HHandle,
+candidate_handle
+: Union[int, str],
+result_names
+: MaybeSequence[str]) -> Union[int, float, str]
+Description
+The operator
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+allows to access several
+alphanumerical results that were calculated while searching and reading the
+2D data code symbols. These results describe the search process in general or
+one of the investigated candidates - independently of whether it could
+be read or not. The results are in most cases not related to the symbol with
+the highest resolution but depend on the pyramid level that was investigated
+when the reading process was aborted. To access a result, the name of the
+parameter (
+ResultNames
+ResultNames
+ResultNames
+resultNames
+result_names
+) and the 2D data code model
+(
+DataCodeHandle
+DataCodeHandle
+DataCodeHandle
+dataCodeHandle
+data_code_handle
+) must be passed.  In addition, in
+CandidateHandle
+CandidateHandle
+CandidateHandle
+candidateHandle
+candidate_handle
+a handle of a result or candidate structure or a
+string identifying a group of candidates must be passed.  These handles are
+returned by
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+for all successfully decoded symbols
+and by
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+for a group of candidates.  If these
+operators return several handles in a tuple, the individual handles can be
+accessed by normal tuple operations.
+For an explanation of the concept of the 2D data code reader
+see the introduction of chapter
+Identification / Data Code
+.
+If
+'discard_undecoded_candidates'
+"discard_undecoded_candidates"
+"discard_undecoded_candidates"
+"discard_undecoded_candidates"
+"discard_undecoded_candidates"
+was set to
+'yes'
+"yes"
+"yes"
+"yes"
+"yes"
+with
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+, only results of successfully
+decoded candidates can be accessed.
+Most results consist of one value.
+Several of these results can be queried for a specific candidate
+in a single call.
+The values returned in
+ResultValues
+ResultValues
+ResultValues
+resultValues
+result_values
+correspond to the
+appropriate parameter names in the
+ResultNames
+ResultNames
+ResultNames
+resultNames
+result_names
+tuple.
+As an alternative, these results can also be queried for a
+group of candidates (see below).
+In this case, only one parameter can be requested per call,
+and
+ResultValues
+ResultValues
+ResultValues
+resultValues
+result_values
+contains one value for every candidate.
+Furthermore, there exists another group of results that consist of
+more than one value (e.g.,
+'bin_module_data'
+"bin_module_data"
+"bin_module_data"
+"bin_module_data"
+"bin_module_data"
+), which are
+returned as a tuple.
+These parameters must always be queried exclusively: one result
+for one specific candidate.
+Apart from the candidate-specific results there are a number of
+results referring to the search process in general.
+This is indicated by passing the string
+'general'
+"general"
+"general"
+"general"
+"general"
+in
+CandidateHandle
+CandidateHandle
+CandidateHandle
+candidateHandle
+candidate_handle
+instead of a candidate handle.
+Note that the symbol structure of GS1 DataMatrix, GS1 QR Code,
+GS1 Aztec Code, and GS1 DotCode is identical to the structure of
+Data Matrix ECC 200, QR Code, Aztec Code, or DotCode, respectively.
+Therefore, all type specific results for Data Matrix ECC 200,
+QR Code, Aztec Code, and DotCode can be queried for their
+corresponding GS1 variant as well.
+In the following, the explicit enumeration of the type specific results
+for any particular GS1 code is omitted for sake of readability. Instead,
+the relevant result names are to be inferred from the result names for the
+corresponding non-GS1 code type and or be explicitly queried by
+query_data_code_2d_params
+query_data_code_2d_params
+QueryDataCode2dParams
+QueryDataCode2dParams
+query_data_code_2d_params
+with parameter
+'get_result_params'
+"get_result_params"
+"get_result_params"
+"get_result_params"
+"get_result_params"
+.
+Candidate groups
+The following candidate group names are predefined and can be passed
+as
+CandidateHandle
+CandidateHandle
+CandidateHandle
+candidateHandle
+candidate_handle
+instead of a single handle:
+'general'
+"general"
+"general"
+"general"
+"general"
+:
+This value is used for results that refer to the last
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+call in general but not to a
+specific candidate.
+'all_candidates'
+"all_candidates"
+"all_candidates"
+"all_candidates"
+"all_candidates"
+:
+All candidates (including the successfully decoded symbols)
+that were investigated during the last call of
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+.
+'all_results'
+"all_results"
+"all_results"
+"all_results"
+"all_results"
+:
+All symbols that were successfully decoded during the last
+call of
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+.
+'all_undecoded'
+"all_undecoded"
+"all_undecoded"
+"all_undecoded"
+"all_undecoded"
+:
+All candidates of the last call of
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+that were detected as 2D data
+code symbols, but could not be decoded.
+For these candidates the error correction detected too many
+errors, or there was an failure while decoding the
+error-corrected data because of inconsistent data.
+'all_aborted'
+"all_aborted"
+"all_aborted"
+"all_aborted"
+"all_aborted"
+:
+All candidates of the last call of
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+that could not be identified as
+valid 2D data code symbols and for which the processing was
+aborted.
+Supported results
+Currently, the access to the following results, which are returned
+in
+ResultValues
+ResultValues
+ResultValues
+resultValues
+result_values
+, is supported:
+General results that do not depend on specific candidates
+-
+'general'
+"general"
+"general"
+"general"
+"general"
+:
+All data code types:
+'min_search_level'
+"min_search_level"
+"min_search_level"
+"min_search_level"
+"min_search_level"
+:
+Lowest pyramid level that is
+searched for symbols. A pyramid level of 0 corresponds to
+the original image.
+'max_search_level'
+"max_search_level"
+"max_search_level"
+"max_search_level"
+"max_search_level"
+:
+Highest pyramid level that
+is searched for symbols. A pyramid level of 0 corresponds
+to the original image.
+'result_num'
+"result_num"
+"result_num"
+"result_num"
+"result_num"
+:
+Number of successfully decoded symbols.
+'candidate_num'
+"candidate_num"
+"candidate_num"
+"candidate_num"
+"candidate_num"
+:
+Number of all investigated candidates.
+'undecoded_num'
+"undecoded_num"
+"undecoded_num"
+"undecoded_num"
+"undecoded_num"
+:
+Number of candidates that were identified as symbols but
+could not be read.
+'aborted_num'
+"aborted_num"
+"aborted_num"
+"aborted_num"
+"aborted_num"
+:
+Number of candidates that could not be identified as valid
+2D data code symbols.
+'aborted'
+"aborted"
+"aborted"
+"aborted"
+"aborted"
+:
+returns whether
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+was aborted. This might be
+caused by a timeout (see
+'timeout'
+"timeout"
+"timeout"
+"timeout"
+"timeout"
+in
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+) or an explicit abort (see
+'abort'
+"abort"
+"abort"
+"abort"
+"abort"
+in
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+).
+Value
+Description
+0
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+completed
+1
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+was aborted by a timeout
+2
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+was aborted using
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+with
+'abort'
+"abort"
+"abort"
+"abort"
+"abort"
+Data Matrix ECC 200, Aztec Code, QR Code, and Micro QR Code:
+'quality_isoiec29158_labels'
+"quality_isoiec29158_labels"
+"quality_isoiec29158_labels"
+"quality_isoiec29158_labels"
+"quality_isoiec29158_labels"
+:
+Labels of grades for all tuple elements returned
+when calling
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+with
+'quality_isoiec29158'
+"quality_isoiec29158"
+"quality_isoiec29158"
+"quality_isoiec29158"
+"quality_isoiec29158"
+.
+Data Matrix ECC 200, Aztec Code, PDF417, QR Code, and Micro QR Code:
+'pass_num'
+"pass_num"
+"pass_num"
+"pass_num"
+"pass_num"
+:
+Number of passes that were completed, see also
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+(Functionality of the symbol search).
+'quality_isoiec15415_labels'
+"quality_isoiec15415_labels"
+"quality_isoiec15415_labels"
+"quality_isoiec15415_labels"
+"quality_isoiec15415_labels"
+:
+Labels of grades for all tuple elements returned
+when calling
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+with
+'quality_isoiec15415'
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+. The labels are different
+depending on the type of the evaluated data code symbol.
+Data Matrix ECC 200:
+'quality_semi_t10_labels'
+"quality_semi_t10_labels"
+"quality_semi_t10_labels"
+"quality_semi_t10_labels"
+"quality_semi_t10_labels"
+:
+Convenience value labels of the elements of the tuple returned
+when calling
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+with
+'quality_semi_t10_values'
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+.
+Results associated with a specific candidate - one value results:
+Results that contain exactly
+one value
+and hence can be applied to a
+candidate group
+or a
+specific candidate
+. Please consider
+that some of the following results will only be meaningful if the candidate
+could be successfully decoded (see
+'status'
+"status"
+"status"
+"status"
+"status"
+).
+All data code types:
+'handle'
+"handle"
+"handle"
+"handle"
+"handle"
+:
+Handle to the candidate.
+This parameter is used to receive the handles of all
+candidates of the specified group.
+'status'
+"status"
+"status"
+"status"
+"status"
+:
+Indicates whether the decoding was successful or why the
+processing was aborted.
+'search_level'
+"search_level"
+"search_level"
+"search_level"
+"search_level"
+:
+Pyramid level on which the finder pattern was found.
+'process_level'
+"process_level"
+"process_level"
+"process_level"
+"process_level"
+:
+Pyramid level on which the candidate was processed and decoded.
+'polarity'
+"polarity"
+"polarity"
+"polarity"
+"polarity"
+:
+Polarity of the symbol.
+This is the assumption about the polarity that was used for
+searching the candidate.
+'mirrored'
+"mirrored"
+"mirrored"
+"mirrored"
+"mirrored"
+:
+Indicates whether a successfully decoded symbol is mirrored
+or not. For ECC 200, PDF417, QR and Micro QR Codes
+'no'
+"no"
+"no"
+"no"
+"no"
+or
+'yes'
+"yes"
+"yes"
+"yes"
+"yes"
+is returned.
+For Aztec Codes
+'false'
+"false"
+"false"
+"false"
+"false"
+or
+'true'
+"true"
+"true"
+"true"
+"true"
+is returned.
+For candidates that could not be read, the parameter returns
+the mirroring specification of the model.
+'orientation'
+"orientation"
+"orientation"
+"orientation"
+"orientation"
+:
+Indicates the orientation of a successfully decoded symbol.
+The orientation is an angle relative to the orientation described in
+the figure below.
+The angle is positive in counter clockwise direction and is given
+in degrees. It can be in the range of [-180.0 .. 180.0] degrees.
+(1)
+(2)
+(3)
+(4)
+(5)
+Orientation at zero degree of a Aztec symbol (1), ECC200 symbol (2),
+QR code symbol (3), PDF417 symbol (4) and DotCode symbol (5). The
+respective finder patterns or characteristic points are highlighted.
+'symbol_rows'
+"symbol_rows"
+"symbol_rows"
+"symbol_rows"
+"symbol_rows"
+,
+'symbol_cols'
+"symbol_cols"
+"symbol_cols"
+"symbol_cols"
+"symbol_cols"
+:
+Data Matrix ECC 200, QR Code, Micro QR Code, Aztec Code, and DotCode:
+detected size of the symbol in  modules: number of rows and columns
+including the finder pattern;
+PDF417:
+detected number of rows and data columns (each 17 modules
+wide) within the symbol (excluding the start/stop patterns and
+the row indicators).
+'module_height'
+"module_height"
+"module_height"
+"module_height"
+"module_height"
+,
+'module_width'
+"module_width"
+"module_width"
+"module_width"
+"module_width"
+:
+Height and width of the modules in pixels.
+'decoded_string'
+"decoded_string"
+"decoded_string"
+"decoded_string"
+"decoded_string"
+:
+Result string that is encoded in the symbol - this query
+is useful only for successfully decoded strings.
+It returns the same string as
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+.
+'decoding_error'
+"decoding_error"
+"decoding_error"
+"decoding_error"
+"decoding_error"
+:
+Decoding error - for successfully decoded symbols this is the
+number of errors that were detected and corrected by the error
+correction. The number of errors corresponds here to the number of
+code words that lead to errors when trying to read them.
+For PDF417 this number includes erasures, i.e. errors with known
+locations. If the error correction failed, a negative error code is
+returned.
+Data Matrix ECC 200, Aztec Code, PDF417 QR Code, and Micro QR Code:
+'pass'
+"pass"
+"pass"
+"pass"
+"pass"
+:
+Number of the pass in which the candidate was generated and
+processed, see also
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+(Functionality of the
+symbol search).
+'small_modules_robustness'
+"small_modules_robustness"
+"small_modules_robustness"
+"small_modules_robustness"
+"small_modules_robustness"
+:
+Robustness of the decoding of data codes with very small
+module sizes. For
+'low'
+"low"
+"low"
+"low"
+"low"
+the data code was decoded with a
+method that has only a small robustness regarding very small
+module sizes. For
+'high'
+"high"
+"high"
+"high"
+"high"
+the data code was decoded with
+a method that has a high robustness in this regard.
+'contrast'
+"contrast"
+"contrast"
+"contrast"
+"contrast"
+:
+Estimation of the symbol's contrast.
+This value is based on the gradient of the edge between the
+finder pattern and the background.
+Data Matrix ECC 200, Micro QR Code, and QR Code:
+'contrast_tolerance'
+"contrast_tolerance"
+"contrast_tolerance"
+"contrast_tolerance"
+"contrast_tolerance"
+:
+This parameter informs about the algorithm that was used to
+correct local contrast variations in the symbol search. For
+'high'
+"high"
+"high"
+"high"
+"high"
+the symbol was found using an algorithm to
+correct strong local contrast variations. For
+'low'
+"low"
+"low"
+"low"
+"low"
+the symbol was found with the faster algorithm, which
+however is less robust with respect to local contrast
+variations.
+Data Matrix ECC 200, Aztec Code, QR Code, Micro QR Code, and DotCode:
+'module_gap'
+"module_gap"
+"module_gap"
+"module_gap"
+"module_gap"
+:
+Assumption about the module gap that was used for
+searching the candidate.
+Data Matrix ECC 200, Aztec Code, QR Code, PDF417, and DotCode:
+'symbology_ident'
+"symbology_ident"
+"symbology_ident"
+"symbology_ident"
+"symbology_ident"
+:
+The
+Symbology Identifier
+is used to indicate that
+the data code contains the FNC1 and/or ECI characters.
+FNC1 (
+Function 1 Character
+) is used if the data
+formatting conforms to specific predefined industry standards.
+The ECI protocol (
+Extended Channel Interpretation
+)
+is used to change the default interpretation of the encoded data.
+A 6-digit code number after the ECI character switches the
+interpretation of the following characters from the default
+to a specific code page like an international character set.
+In the output stream the ECI switch is coded as
+'\nnnnnn'
+"\nnnnnn"
+"\nnnnnn"
+"\nnnnnn"
+"\nnnnnn"
+.
+Therefore all backslashes
+(
+'\'
+"\"
+"\"
+"\"
+"\"
+, ASCII code 92), that
+occur in the normal output stream have to be doubled.
+The
+'symbology_ident'
+"symbology_ident"
+"symbology_ident"
+"symbology_ident"
+"symbology_ident"
+parameter returns only the actual
+identifier value
+m
+(
+(QR-Code),
+(Data Matrix ECC 200 and Aztec Code),
+(PDF417) bzw.
+(DotCode))
+according to the specification of Data Matrix, QR Codes, Aztec Code,
+PDF417, and DotCode but not the identifier prefixes ']d', ']Q', ']z',
+']L', and ']J' for Data Matrix, QR Codes, Aztec Codes, PDF417,
+and DotCode, respectively.
+If required, this
+Symbology Identifier
+composed of
+the prefix and the value
+m
+has to be preceded the
+decoded string (normally only if
+m
+> 1) manually
+(for Data Matrix ECC 200 and Aztec Codes, the values
+10, 11, and 12 have to be converted to A, B, and C, respectively).
+GS1 symbologies have the following identifiers:
+']d2' for GS1 DataMatrix, ']Q3' for GS1 QR Code, ']z1' for GS1
+Aztec Code, and ']J1' for GS1 DotCode.
+Therefore, the
+'symbology_ident'
+"symbology_ident"
+"symbology_ident"
+"symbology_ident"
+"symbology_ident"
+parameter
+returns the values 2, 3, and 1, respectively.
+Symbols that contain ECI codes (and hence doubled backslashes)
+can be recognized by the following identifier values:
+Data Matrix ECC 200: 4, 5, 6, 10, 11 and 12,
+QR Code: 2, 4, and 6, PDF417: 1,
+Aztec Code: 3, 4, 5, 9, 10, and 11, DotCode: 3, 4, and 5.
+Data Matrix ECC 200 and DotCode:
+'reader_programming'
+"reader_programming"
+"reader_programming"
+"reader_programming"
+"reader_programming"
+:
+If the symbol contains a Reader Programming character that indicates
+that the symbol encodes a message used to program the reader system,
+this parameter returns
+'yes'
+"yes"
+"yes"
+"yes"
+"yes"
+, otherwise this parameter
+returns
+'no'
+"no"
+"no"
+"no"
+"no"
+. The decoded message does not contain the
+Reader Programming character.
+Data Matrix ECC 200:
+'slant'
+"slant"
+"slant"
+"slant"
+"slant"
+:
+Slant of the L-shaped finder pattern in radians.
+This is the difference between the angle of the 'L' and the
+right angle.
+'finder_pattern_tolerance'
+"finder_pattern_tolerance"
+"finder_pattern_tolerance"
+"finder_pattern_tolerance"
+"finder_pattern_tolerance"
+:
+This parameter informs about the algorithm that found the
+symbol. For
+'low'
+"low"
+"low"
+"low"
+"low"
+the symbol was found with the
+algorithm that has only a small tolerance with respect to a
+defect or partially occluded finder pattern. For
+'high'
+"high"
+"high"
+"high"
+"high"
+the symbol was found with the algorithm that
+has a high tolerance in this regard. Please note that when
+using both algorithms simultaneously it may happen that
+symbols with an undisturbed finder pattern are found from the
+algorithm of high tolerance.
+'alternating_pattern_tolerance'
+"alternating_pattern_tolerance"
+"alternating_pattern_tolerance"
+"alternating_pattern_tolerance"
+"alternating_pattern_tolerance"
+:
+This parameter informs about the algorithm that was used to
+detect and analyze the two sides with the alternating pattern. Based on
+this analysis, the associated symbol type is derived and the
+grid for the module classification is created. For
+'low'
+"low"
+"low"
+"low"
+"low"
+,
+the analysis was performed with a small tolerance to
+variations in the module widths.
+'medium'
+"medium"
+"medium"
+"medium"
+"medium"
+, when successfully
+decoded, signals that an acceptance of greater variations with respect
+to the module widths along the sides with the alternating pattern was
+necessary. Finally,
+'high'
+"high"
+"high"
+"high"
+"high"
+means that not only a larger
+variation has to be accepted, but additionally the parameter space for
+the symbol's outer boundaries had to be expanded or the relation
+between the number of edges and the symbol type had to be softened.
+In addition,
+'undefined'
+"undefined"
+"undefined"
+"undefined"
+"undefined"
+signals that the candidate either
+did not reach the alternating pattern analysis or was part of
+the search pass that is based on
+'finder_pattern_tolerance'
+"finder_pattern_tolerance"
+"finder_pattern_tolerance"
+"finder_pattern_tolerance"
+"finder_pattern_tolerance"
+set to
+'high'
+"high"
+"high"
+"high"
+"high"
+. In the latter case, the
+'alternating_pattern_tolerance'
+"alternating_pattern_tolerance"
+"alternating_pattern_tolerance"
+"alternating_pattern_tolerance"
+"alternating_pattern_tolerance"
+parameter has no effect.
+'module_grid'
+"module_grid"
+"module_grid"
+"module_grid"
+"module_grid"
+:
+For symbols that could be decoded, this parameter informs
+about the algorithm that was used for calculating the module
+grid: If a variable grid was used it returns
+'variable'
+"variable"
+"variable"
+"variable"
+"variable"
+, and otherwise
+'fixed'
+"fixed"
+"fixed"
+"fixed"
+"fixed"
+.  For
+symbols that could not be decoded, it returns the method that
+was used during the last decoding trial or, if the candidate
+was rejected before the decoding, the corresponding model
+setting.
+QR Codes:
+'version'
+"version"
+"version"
+"version"
+"version"
+:
+Version number that corresponds to the size of the symbol
+(version 1 = 21 x 21,
+version 2 = 25 x 25,
+..., version 40 = 177 x 177).
+'symbol_size'
+"symbol_size"
+"symbol_size"
+"symbol_size"
+"symbol_size"
+:
+Detected size of the symbol in modules.
+'model_type'
+"model_type"
+"model_type"
+"model_type"
+"model_type"
+:
+Type of the QR Code Model.
+In HALCON the older, original specification for QR
+Codes Model 1 as well as the newer, enhanced form Model 2
+are supported.
+'error_correction_level'
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+:
+If a candidate is recognized as a QR Code, the first step is
+to read the format information encoded in the symbol.
+This includes the level of error correction
+(
+'error_correction_level'
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+[
+'L'
+"L"
+"L"
+"L"
+"L"
+(Low),
+'M'
+"M"
+"M"
+"M"
+"M"
+(Medium),
+'Q'
+"Q"
+"Q"
+"Q"
+"Q"
+(Quartile),
+'H'
+"H"
+"H"
+"H"
+"H"
+(High)]).
+'mask_pattern_ref'
+"mask_pattern_ref"
+"mask_pattern_ref"
+"mask_pattern_ref"
+"mask_pattern_ref"
+:
+Additionally, the format information encoded in the symbol include a
+code for the pattern that was used for masking the data modules
+(0
+'mask_pattern_ref'
+"mask_pattern_ref"
+"mask_pattern_ref"
+"mask_pattern_ref"
+"mask_pattern_ref"
+7).
+'deformation_tolerance'
+"deformation_tolerance"
+"deformation_tolerance"
+"deformation_tolerance"
+"deformation_tolerance"
+:
+For symbols that could be decoded, this parameter informs, whether
+deformation was compensated during the decoding of this candidate:
+If the candidate has been decoded in the original image, it returns
+'low'
+"low"
+"low"
+"low"
+"low"
+. If the candidate has been decoded in a rectified
+image, it returns
+'curved'
+"curved"
+"curved"
+"curved"
+"curved"
+.
+'deformation_objects'
+"deformation_objects"
+"deformation_objects"
+"deformation_objects"
+"deformation_objects"
+:
+If a rectified image has been computed during the processing of this
+candidate, this parameter gives access to additional objects. It
+returns a dictionary, which contains the rectified image and the
+corresponding module regions. These objects are accessible only if
+the model parameter
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+was set to
+1
+(see
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+) before calling
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+.
+Micro QR Codes:
+'version'
+"version"
+"version"
+"version"
+"version"
+:
+Version number that corresponds to the size of the symbol
+(version M1 = 11 x 11,
+version M2 = 13 x 13,
+version M3 = 15 x 15,
+version M4 = 17 x 17 ).
+'symbol_size'
+"symbol_size"
+"symbol_size"
+"symbol_size"
+"symbol_size"
+:
+Detected size of the symbol in modules.
+'error_correction_level'
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+:
+If a candidate is recognized as a Micro QR Code, the first step is
+to read the format information encoded in the symbol.
+This includes the level of error correction
+(
+'error_correction_level'
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+[
+'N'
+"N"
+"N"
+"N"
+"N"
+(None),
+'L'
+"L"
+"L"
+"L"
+"L"
+(Low),
+'M'
+"M"
+"M"
+"M"
+"M"
+(Medium),
+'Q'
+"Q"
+"Q"
+"Q"
+"Q"
+(Quartile)]).
+'mask_pattern_ref'
+"mask_pattern_ref"
+"mask_pattern_ref"
+"mask_pattern_ref"
+"mask_pattern_ref"
+:
+Additionally, the format information encoded in the symbol include a
+code for the pattern that was used for masking the data modules
+(0
+'mask_pattern_ref'
+"mask_pattern_ref"
+"mask_pattern_ref"
+"mask_pattern_ref"
+"mask_pattern_ref"
+7).
+PDF417:
+'module_aspect'
+"module_aspect"
+"module_aspect"
+"module_aspect"
+"module_aspect"
+:
+Module aspect ratio; this corresponds to the ratio of
+'module_height'
+"module_height"
+"module_height"
+"module_height"
+"module_height"
+to
+'module_width'
+"module_width"
+"module_width"
+"module_width"
+"module_width"
+.
+'error_correction_level'
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+:
+If a candidate is recognized as a PDF417 the first step is
+to read the format information encoded in the symbol.
+This includes the error correction level, which was used
+during encoding (
+'error_correction_level'
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+[
+0
+,
+8
+]).
+'macro_exist'
+"macro_exist"
+"macro_exist"
+"macro_exist"
+"macro_exist"
+:
+Symbols that are part of a group of symbols are called
+“Macro PDF417”
+symbols. These symbols contain
+additional information within a control block. For macro
+symbols
+'macro_exist'
+"macro_exist"
+"macro_exist"
+"macro_exist"
+"macro_exist"
+returns the value
+1
+while
+for conventional symbols
+0
+is returned.
+'macro_segment_index'
+"macro_segment_index"
+"macro_segment_index"
+"macro_segment_index"
+"macro_segment_index"
+:
+Returns the index of the symbol in the group. For macro symbols
+this information is obligatory.
+'macro_file_id'
+"macro_file_id"
+"macro_file_id"
+"macro_file_id"
+"macro_file_id"
+:
+Returns the group identifier as a string. For macro symbols
+this information is obligatory.
+'macro_segment_count'
+"macro_segment_count"
+"macro_segment_count"
+"macro_segment_count"
+"macro_segment_count"
+:
+Returns the number of symbols that belong to the group.
+For macro symbols this information is optional.
+'macro_time_stamp'
+"macro_time_stamp"
+"macro_time_stamp"
+"macro_time_stamp"
+"macro_time_stamp"
+:
+Returns the time stamp on the source file expressed as the elapsed
+time in seconds since 1970:01:01:00:00:00 GMT as a string.
+For macro symbols this information is optional.
+'macro_checksum'
+"macro_checksum"
+"macro_checksum"
+"macro_checksum"
+"macro_checksum"
+:
+Returns the CRC checksum computed over the entire source file
+using the CCITT-16 polynomial. For macro symbols this
+information is optional.
+'macro_last_symbol'
+"macro_last_symbol"
+"macro_last_symbol"
+"macro_last_symbol"
+"macro_last_symbol"
+:
+Returns
+1
+if the symbol is the last one within the group of
+symbols. Otherwise
+0
+is returned. For macro symbols this
+information is optional.
+Aztec Codes:
+'format'
+"format"
+"format"
+"format"
+"format"
+:
+String that corresponds to the format of the decoded symbol:
+'compact'
+"compact"
+"compact"
+"compact"
+"compact"
+,
+'full_range'
+"full_range"
+"full_range"
+"full_range"
+"full_range"
+, or
+'rune'
+"rune"
+"rune"
+"rune"
+"rune"
+.
+'symbol_size'
+"symbol_size"
+"symbol_size"
+"symbol_size"
+"symbol_size"
+:
+Detected size of the symbol in modules.
+'layer_num'
+"layer_num"
+"layer_num"
+"layer_num"
+"layer_num"
+:
+The number of layers as encoded in the mode message of the symbol.
+'codeword_num'
+"codeword_num"
+"codeword_num"
+"codeword_num"
+"codeword_num"
+:
+The number of codewords as encoded in the mode message of the symbol.
+Results associated with a specific candidate - tuple of values
+results:
+Results that return a
+tuple of values
+and hence can be
+requested only separately and only for a
+single candidate
+.
+Please consider that some of the following results will not return a
+useful value if the investigation of the candidate was aborted.
+All data code types:
+'bin_module_data'
+"bin_module_data"
+"bin_module_data"
+"bin_module_data"
+"bin_module_data"
+:
+Binary symbol data that corresponds to the classification
+results of the individual modules - a value of 0 means that the
+module was classified as background and 100 indicates that the module
+belongs to the foreground.
+Values between 0 and 100 can be interpreted as foreground or
+background. The model persistence must be 1 for this result (see
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+). For DotCodes the model persistence
+does not matter.
+It shall be noted that the order of
+'bin_module_data'
+"bin_module_data"
+"bin_module_data"
+"bin_module_data"
+"bin_module_data"
+does
+not necessarily match the order of the modules, which can be retrieved
+using
+'module_1_rois'
+"module_1_rois"
+"module_1_rois"
+"module_1_rois"
+"module_1_rois"
+and
+'module_0_rois'
+"module_0_rois"
+"module_0_rois"
+"module_0_rois"
+"module_0_rois"
+via
+get_data_code_2d_objects
+get_data_code_2d_objects
+GetDataCode2dObjects
+GetDataCode2dObjects
+get_data_code_2d_objects
+. Instead, the order for successfully
+decoded symbols depends on the actual
+'mirrored'
+"mirrored"
+"mirrored"
+"mirrored"
+"mirrored"
+status of the
+result, or the
+'mirrored'
+"mirrored"
+"mirrored"
+"mirrored"
+"mirrored"
+setting specified via
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+for failed candidates.
+'raw_coded_data'
+"raw_coded_data"
+"raw_coded_data"
+"raw_coded_data"
+"raw_coded_data"
+:
+Data obtained by mapping the binary data to data words
+according to the particular coding scheme of the symbol type.
+Single bits may still be erroneous, and the words that are
+used for the error correction are still included.
+'corr_coded_data'
+"corr_coded_data"
+"corr_coded_data"
+"corr_coded_data"
+"corr_coded_data"
+:
+Data obtained after applying the error correction:
+erroneous bits are corrected and all redundant words are
+removed, but the words are still encoded according to the
+coding scheme that is specific for the data code type.
+'decoded_data'
+"decoded_data"
+"decoded_data"
+"decoded_data"
+"decoded_data"
+:
+Tuple with the decoded data words (= characters of the decoded
+data string) as Latin-1 or ASCII code (see also
+Tuple / String Operations
+). Additionally, decoded words can be encoded
+as JIS8 or Shift JIS characters (QR Code and Micro QR Code only) or GB2312
+characters (QR Code only).
+Note that for QR Code and Micro QR Code the Kanji characters are not returned
+as single (Shift JIS) code points by
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+, but split
+into individual bytes.
+All data code types except DotCode:
+'quality_isoiec15415'
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+:
+Tuple with the assessment of print quality in compliance with
+the international standard ISO/IEC 15415:2024. The first element
+always contains the overall symbol grade; the
+length of the tuple and the denotation of the remaining
+elements depend on the specific data code type. According to
+the standard, the grades are numbers from 0.0 to 4.0 in steps
+of 0.1, where 0.0 is the lowest and 4.0 the highest grade.
+It is important to note that, even though the implementation
+is based on the parts of the standard which are applicable
+to software, the computation of the print quality grades depends
+on the preceding decoding algorithm.
+Thus, different data code readers (of different vendors)
+can potentially produce slightly different results in the print quality
+assessment. See
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+for how to set
+the algorithm used to determine the module grid for
+Data Matrix ECC 200 codes with
+'quality_isoiec15415_decode_algorithm'
+"quality_isoiec15415_decode_algorithm"
+"quality_isoiec15415_decode_algorithm"
+"quality_isoiec15415_decode_algorithm"
+"quality_isoiec15415_decode_algorithm"
+.
+Using these values requires a thorough understanding of the
+underlying algorithms, and we recommend to read ISO/IEC
+15415:2024 along with this documentation.
+We recommend to use high quality images without artifacts
+like defocus, noise, overexposure, or inhomogeneous
+illumination. Such artifacts influence the result of the
+print quality grading. Further, to obtain robust grading
+results, an effective resolution of at least ten pixels per
+module in width and height is recommended.
+The quality grades are only computed when the symbol region including
+the quiet zone is fully in the image, elsewise -1.0 is returned for the
+quality grades. For the reference decoding algorithm, more cases
+lead to quality grades equal to -1.0. Please refer to
+'quality_isoiec15415_decode_algorithm'
+"quality_isoiec15415_decode_algorithm"
+"quality_isoiec15415_decode_algorithm"
+"quality_isoiec15415_decode_algorithm"
+"quality_isoiec15415_decode_algorithm"
+for more information.
+The print quality results of the 2D data codes Data Matrix ECC 200,
+Aztec Code, QR Code, and Micro QR Code contain the following
+twelve entries: (
+overall symbol grade
+,
+symbol contrast
+,
+modulation
+,
+fixed pattern damage
+,
+decode
+,
+axial nonuniformity
+,
+grid nonuniformity
+,
+unused error correction
+,
+print growth x
+,
+print growth y
+,
+contrast uniformity
+,
+aperture
+).
+For QR Code and Micro QR Code also the
+format information
+and
+version information
+are returned as additional grading parameters.
+The definition of the respective elements is as follows:
+The
+overall symbol grade
+is the minimum of all
+individual grades.
+The
+symbol contrast
+measures the reflectance
+difference between light and dark parts in the data code
+domain. A strong contrast results in a good grading.
+The
+modulation
+indicates how strong the
+amplitudes of the data code modules are. Big amplitudes make
+the assignment of the modules to black or white more certain,
+resulting in a high modulation grade. Further, the correct
+classification states of the modules are taken into account.
+This means, e.g., a perfectly light module will get a bad
+grade when it should actually be dark. The
+modulation
+grade takes the error correction capacity of the symbol into
+account and is therefore closely related to the
+unused error correction
+grade.
+The
+fixed pattern damage
+grade assesses degradation
+or damage of the fixed pattern, or the respective quiet zones.
+The fixed pattern is of high importance for detecting
+and decoding a data code. Among some other criteria,
+the
+fixed pattern damage
+grade is based on the modulation
+values for modules within the fixed pattern, in contrast to the
+modulation
+grade which considers only data modules.
+The
+decode
+grade indicates if a code was
+successfully decoded. It is graded
+4.0
+when
+the code could be decoded according to the reference decode
+algorithm defined in the standard (see also
+'quality_isoiec15415_decode_algorithm'
+"quality_isoiec15415_decode_algorithm"
+"quality_isoiec15415_decode_algorithm"
+"quality_isoiec15415_decode_algorithm"
+"quality_isoiec15415_decode_algorithm"
+in
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+) and
+0.0
+otherwise.
+Note that HALCON's decode algorithm differs from the reference
+decode algorithm. Thus, in many cases HALCON can decode the
+symbol although the
+decode
+grade according to the
+standard is
+0.0
+.
+The
+axial nonuniformity
+is degraded by affine
+distortions. Originally, data codes have squared modules, i.e., the
+width and height of the modules are the same. Due to a potentially
+oblique view of the camera onto the data code or a defective
+fabrication of the data code itself, the width to height ratio
+can be distorted.
+The
+grid nonuniformity
+grade is degraded if,
+apart from an affine distortion, the data code is subject
+to perspective or any other distortions.
+The
+unused error correction
+expresses the
+amount of error correcting capacities which is not used
+to read the code. As data codes are redundant codes,
+errors in the modules or codewords can be corrected.
+In a way, the
+unused error correction
+grade
+reflects the reliability of the decoding process. Note,
+that even codes with an unused error correction grading of 0.0,
+which could possibly mean a false decoding result, can be decoded
+by the
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+operator in a reliable way,
+because the implemented decoding functionality is more
+sophisticated and robust compared to the reference decode
+algorithm proposed by the standard.
+The
+print growth x
+and
+print growth y
+indicate if the graphical features comprising the symbol have
+shrunken or grown from their nominal size. This means that
+the
+print growth x
+and
+print growth y
+give
+some indication to which extent the dark and light modules
+fill out their module boundaries in horizontal (x) and vertical
+(y) direction, respectively.
+If the
+print growth x/y
+could not be calculated,
+the grade
+0.0
+is returned.
+The
+contrast uniformity
+is the minimum modulation
+value found in any module. This value is no grade and thus
+does not affect the
+overall symbol grade
+.
+The
+format information
+and
+version information
+are additional grading parameters
+for QR Codes and Micro QR Codes and are graded in a way similar
+to
+fixed pattern damage
+. If no
+version information
+exists,
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+is returned.
+The
+aperture
+is the size of the synthesized aperture
+in units of the module size of the symbol. This value is no
+grade and thus does not affect the
+overall symbol grade
+.
+The aperture is used to obtain the reference gray scale image
+during the grading procedure. It is defined in ISO/IEC 15415:2024,
+Chapter 5.6.2.
+For the 2D multi-row bar code symbol PDF417 the print
+quality is described in a tuple with eight elements:
+(
+overall symbol grade, start/stop pattern,
+       codeword yield, unused error correction, modulation,
+       decodability, defects, aperture
+).
+As the PDF417 data code is a stacked code, which can be read by
+line scan devices as well, print quality assessment is mainly
+based on techniques for linear bar codes: a set of scan reflectance
+profiles is generated across the symbol followed by the evaluation
+of the respective print qualities within each scan, which are
+finally subsumed as overall print qualities. For more details,
+the user is referred to the standard for linear symbols ISO/IEC
+15416:2016.
+The definition of the respective elements is as follows:
+The
+overall symbol grade
+is the minimum of all
+individual grades.
+In
+start/stop pattern
+, the start and stop
+patterns are assessed concerning the quality of the
+reflectance profile and the correctness of the bar and space
+sequence.
+The grade
+codeword yield
+counts and evaluates the
+relative number of correct decoded words acquired by the set
+of scan profiles.
+For the grade
+unused error correction
+, the
+relative number of false decoded words within the error
+correction blocks are counted.
+As for 2D data codes, the
+modulation
+grade
+indicates how strong the amplitudes, i.e., the extremal
+intensities, of the bars and spaces are.
+The grade
+decodability
+measures the deviation
+of the nominal length of bars and spaces with respect to
+their reference length.
+The grade
+defects
+refers to a
+measurement of how perfect the reflectance profiles of
+bars and spaces are.
+As for 2D data codes, the
+aperture
+is the
+size of the synthesized aperture in units of the module
+size of the symbol.
+To be able to compute the quality values for QR Code,
+Micro QR Code, PDF417, and Aztec Code,
+it is necessary that the parameter
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+(see
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+) is set to a value greater
+than or equal to
+0
+.
+For Data Matrix ECC 200, quality grading can also be
+performed with a
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+value of
+-1
+.
+'quality_isoiec15415_values'
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+:
+Returns a tuple with the raw values for all directly
+measurable grades (reported by
+'quality_isoiec15415'
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+).
+These are grades, whose definition in the ISO/IEC 15415:2024 standard
+is a direct derivative of the reflectance (i.e., the
+gray values) or of geometrical properties of the symbol, or grades
+that are the result of a direct counting.
+The returned tuple has the same order of elements as the
+corresponding result with
+'quality_isoiec15415'
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+. For the
+grades, which are excluded from these lists, the operator reports
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+. For the 2D data codes Data Matrix ECC 200,
+Aztec Code, QR Code, and Micro QR Code the excluded grades are
+overall symbol grade
+,
+modulation
+,
+fixed pattern damage
+, and
+decode
+.
+For the 2D multi-row bar code symbol PDF417 the excluded
+grades are
+overall symbol grade
+,
+start/stop pattern
+,
+modulation
+,
+decodability
+, and
+defects
+.
+Although the grades
+modulation
+(for Data Matrix
+ECC 200, Aztec Code, QR Code, and Micro QR Code) and
+modulation
+,
+decodability
+,
+defects
+(for PDF417) generally are grading the reflectance properties of
+the symbol, the standard procedures for their computation involve
+the symbology decoding routine and error correction mechanism.
+Therefore there is no direct raw measurement underlying these grades.
+The grade
+start/stop pattern
+(for PDF417) is
+excluded because it is a complex grade, which does not correspond
+to a single raw measurement value.
+All values except
+print growth x
+and
+print growth y
+are normalized between
+0.0
+and
+1.0
+. Hence, for
+example, a
+symbol contrast
+value of
+0.75
+will
+correspond to a gray value of
+191.25
+(if
+'quality_isoiec15415_reflectance_reference'
+"quality_isoiec15415_reflectance_reference"
+"quality_isoiec15415_reflectance_reference"
+"quality_isoiec15415_reflectance_reference"
+"quality_isoiec15415_reflectance_reference"
+is 255, see
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+).
+For the
+print growth x
+and
+print growth y
+values
+between
+-1.0
+and
+1.0
+are returned. A
+negative value corresponds to a print loss whereas a positive
+value reflects a print growth.
+If the
+print growth x/y
+could not be calculated, the
+respective value is set to
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+.
+To be able to compute the quality values for QR Code,
+Micro QR Code, PDF417, and Aztec Code,
+it is necessary that the parameter
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+(see
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+) is set to a value greater
+than or equal to
+0
+.
+For Data Matrix ECC 200, quality grading can also be
+performed with a
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+value of
+-1
+.
+Data Matrix ECC 200, Aztec Code, QR Code and Micro QR Code:
+'quality_isoiec15415_intermediate'
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+:
+Tuple with intermediate results that are determined during
+the assessment of print quality in compliance with the
+international standard ISO/IEC 15415:2024.
+Using these values requires a thorough understanding of the
+underlying algorithms, and we strongly recommend to read
+ISO/IEC 15415:2024 and the code type specific standards
+along with this documentation.
+A description of the intermediate results is given below. The
+returned intermediate grades
+(
+'quality_isoiec15415_intermediate'
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+) and values
+(
+'quality_isoiec15415_intermediate_values'
+"quality_isoiec15415_intermediate_values"
+"quality_isoiec15415_intermediate_values"
+"quality_isoiec15415_intermediate_values"
+"quality_isoiec15415_intermediate_values"
+) are the minimal
+grades and values for the code under inspection. The names of the
+available intermediate results can be queried with
+'quality_isoiec15415_intermediate_labels'
+"quality_isoiec15415_intermediate_labels"
+"quality_isoiec15415_intermediate_labels"
+"quality_isoiec15415_intermediate_labels"
+"quality_isoiec15415_intermediate_labels"
+.
+'Symbol threshold'
+: Threshold used to identify
+light and dark areas in the symbol (see Annex A,
+ISO/IEC 15415:2024). There is no corresponding grade for
+this value.
+'Rmin'
+and
+'Rmax'
+: The average
+reflectance value of the darkest and brightest 1% of the
+pixels in the inspection area of the symbol (see Chapter 7.5.3,
+ISO/IEC 15415:2024). There are no corresponding grades for
+these values.
+For Data Matrix ECC 200 the following additional
+intermediate results are returned:
+'L1'
+and
+'L2'
+: The grades of the
+vertical and horizontal portions of the outside L of the
+fixed pattern as defined in Chapter G.3.2, ISO/IEC
+16022:2024. The corresponding number of damaged modules
+is returned as value.
+'QZL1'
+and
+'QZL2'
+: The grades of
+the vertical and horizontal portions of the quiet zone
+adjacent to L1 and L2, respectively (see Chapter G.3.2,
+ISO/IEC 16022:2024). The corresponding number of damaged
+modules is returned as value.
+'Transition ratio'
+: The grade for the
+transition ratio test described in Chapter G.3.3 a),
+ISO/IEC 16022:2024. The transition ratio TR is returned
+as value. It measures the ratio between the number of
+transitions on the clock track and the associated solid
+area.
+'Clock track regularity'
+: The grade for the
+clock track regularity test as described in Chapter G.3.3
+d), ISO/IEC 16022:2024. If for any group of five adjacent
+modules more than two modules are considered as errors,
+this grade is 0.0, otherwise it is 4.0. There is no
+corresponding value.
+'Clock track damage'
+: The grade for the
+clock track damage (see Chapter G.3.3 e), ISO/IEC
+16022:2024). The corresponding number of damaged modules
+is returned as value.
+'Solid fix pattern'
+: The grade for the solid
+fixed pattern (see Chapter G.3.3 f), ISO/IEC 16022:2024). The
+corresponding number of damaged modules is returned as
+value.
+'Clock track and adjacent solid pattern'
+:
+The overall grade for the clock track and adjacent solid
+pattern (see Chapter G.3.3 j), ISO/IEC 16022:2024). There
+is no corresponding value.
+'Distributed fixed pattern damage grade'
+:
+The average grade for the fixed pattern. It is based on
+the grades for the L1, L2, QZL1, QZL2, and the overall
+grade for the clock  track and adjacent solid pattern
+(see Chapter G.3.4, ISO/IEC 16022:2024).
+There is no corresponding value.
+The grade for
+fixed pattern damage
+for the symbol is
+given by the minimum of the grades for
+'L1'
+,
+'L2'
+,
+'QZL1'
+,
+'QZL2'
+,
+'Clock track and adjacent solid pattern'
+and
+'Distributed fixed pattern damage grade'
+(see Chapter G.3.4, ISO/IEC 16022:2024).
+Data Matrix ECC 200:
+'quality_semi_t10_values'
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+:
+Tuple with the assessment of the print quality in compliance with the
+international standard SEMI T10-0701.
+We recommend to use high quality images without artifacts
+like defocus, noise, overexposure, or inhomogeneous
+illumination. Such artifacts influence the result of the
+print quality grading. Further, to obtain robust grading
+results, an effective resolution of at least ten pixels per
+module in width and height is required.
+The quality grades are only computed when the symbol is fully in the
+image, elsewise -1 is returned for the quality grades.
+The direct mark quality is described in a tuple with 21 elements:
+[P1 Row, P1 Column, P2 Row, P2 Column, P3 Row, P3 Column, P4
+Row, P4 Column, Rows, Columns, Symbol Contrast, Symbol Contrast
+SNR, Horizontal Mark Growth, Vertical Mark Growth, Data Matrix
+Cell Width, Data Matrix Cell Height, Horizontal Mark
+Misplacement, Vertical Mark Misplacement, Cell Defects, Finder
+Pattern Defects, Unused Error Correction].
+Note that the
+Unused Error Correction
+is returned for
+each Reed-Solomon block. Therefore, the actual length of the
+returned tuple depends on the number of Reed-Solomon blocks.
+The definition of the respective elements is as follows: The first
+eight entries contain the coordinates of the four corners. The first
+corner is located at the vertical finder pattern. The remaining
+corners follow contour clockwise (for non mirrored codes).
+With
+Rows
+and
+Columns
+the numbers of rows and
+columns of the code are reported.
+The value for
+Symbol Contrast
+reports the contrast
+between light and dark classified symbol pixels with respect to
+the full gray value range (255 for byte images) in percent.
+Symbol Contrast SNR
+is the corresponding signal-to-noise
+ratio. If the value is infinite,
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+is returned.
+The values for
+Horizontal Mark Growth
+and
+Vertical Mark Growth
+represent the width and height,
+respectively, of marked modules with respect to the sum of the
+width and height, respectively, of a marked module and a space
+module in percent.  A value of 50% is optimal.
+If some parts of the alternating pattern are hidden,
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+is returned.
+The values for
+Data Matrix Cell Width
+and
+Data
+       Matrix Cell Height
+report the average module width and height.
+They are computed from the four corner points and the number of
+rows and columns of the code.
+The values for
+Horizontal Mark Misplacement
+and
+Vertical Mark Misplacement
+report the displacement of the
+alternating pattern marks' centers in horizontal and
+vertical direction, respectively.
+These values are given in percent with respect to
+Data
+       Matrix Cell Width
+and
+Data Matrix Cell Height
+,
+respectively.
+If some parts of the alternating pattern are hidden,
+'N/A'
+"N/A"
+"N/A"
+"N/A"
+"N/A"
+is returned.
+The value for
+Cell Defects
+reports the percentage of
+incorrectly classified symbol pixels.
+The value for
+Finder pattern Defects
+reports the
+percentage of finder pattern pixels that would be classified
+incorrectly.
+The value for
+Unused Error Correction
+reports the
+error correction capacities that are not already used by each
+Reed-Solomon block.
+'quality_semi_t10_labels'
+"quality_semi_t10_labels"
+"quality_semi_t10_labels"
+"quality_semi_t10_labels"
+"quality_semi_t10_labels"
+:
+Convenience value labels of the elements of the tuple returned
+when calling
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+with
+'quality_semi_t10_values'
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+.
+If the ECC 200 code has more than one Reed-Solomon block, the label
+tuple is extended by the corresponding values.
+'quality_isoiec15415_modulation_module_grades'
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+:
+Tuple with the modulation module grades that are determined
+during the assessment of print quality according to the ISO/IEC
+15415:2024 standard Chapter 7.5.5.1. This includes the finder pattern
+modules and the 4 quiet zones adjacent to the symbol (2 horizontal
+and 2 vertical).
+If the symbol size is
+, the
+tuple size is
+as the 4 quiet zones are included. The tuple is sorted row by row,
+where the first row is the upper quiet zone and the last row is the
+bottom one (or QZL2 as described in ISO/IEC 16022:2024 Annex G.3.2,
+Figure G.1).
+The computed grades for each module will be in the range 0.0 to 4.0. For
+unused data modules the module grade is not computed, in this case the
+corresponding tuple value will be -1.0.
+'quality_isoiec15415_rows'
+"quality_isoiec15415_rows"
+"quality_isoiec15415_rows"
+"quality_isoiec15415_rows"
+"quality_isoiec15415_rows"
+:
+Tuple with the image row coordinates of the points within the symbol
+modules for which the module grades are computed with the parameter
+'quality_isoiec15415_modulation_module_grades'
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+.
+The returned tuple has the same number and order of elements as the
+corresponding result with
+'quality_isoiec15415_modulation_module_grades'
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+.
+'quality_isoiec15415_cols'
+"quality_isoiec15415_cols"
+"quality_isoiec15415_cols"
+"quality_isoiec15415_cols"
+"quality_isoiec15415_cols"
+:
+Tuple with the image column coordinates of the points within the
+symbol modules for which the module grades are computed with the
+parameter
+'quality_isoiec15415_modulation_module_grades'
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+.
+The returned tuple has the same number and order of elements as the
+corresponding result with
+'quality_isoiec15415_modulation_module_grades'
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+.
+'quality_isoiec29158_modulation_module_grades'
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+:
+Similar to
+'quality_isoiec15415_modulation_module_grades'
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+but in
+compliance with the ISO/IEC 29158:2025 print quality standard.
+'quality_isoiec29158_rows'
+"quality_isoiec29158_rows"
+"quality_isoiec29158_rows"
+"quality_isoiec29158_rows"
+"quality_isoiec29158_rows"
+:
+Similar to
+'quality_isoiec15415_rows'
+"quality_isoiec15415_rows"
+"quality_isoiec15415_rows"
+"quality_isoiec15415_rows"
+"quality_isoiec15415_rows"
+but related to
+'quality_isoiec29158_modulation_module_grades'
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+.
+'quality_isoiec29158_cols'
+"quality_isoiec29158_cols"
+"quality_isoiec29158_cols"
+"quality_isoiec29158_cols"
+"quality_isoiec29158_cols"
+:
+Similar to
+'quality_isoiec15415_cols'
+"quality_isoiec15415_cols"
+"quality_isoiec15415_cols"
+"quality_isoiec15415_cols"
+"quality_isoiec15415_cols"
+but related to
+'quality_isoiec29158_modulation_module_grades'
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+.
+Data Matrix ECC 200, Aztec Code, QR Code and Micro QR Code:
+'quality_isoiec29158'
+"quality_isoiec29158"
+"quality_isoiec29158"
+"quality_isoiec29158"
+"quality_isoiec29158"
+:
+Tuple with the assessment of print quality in compliance with the
+international standard ISO/IEC 29158:2025. ISO/IEC 29158:2025 is an
+extension of the ISO/IEC 15415:2024 standard that specifically addresses
+print quality grading for direct part marking (DPM) symbols.
+Using these values requires a thorough understanding of the
+underlying algorithms, and we recommend to read ISO/IEC 29158:2025
+and ISO/IEC 15415:2024 along with this documentation.
+It is very important to note that an ISO/IEC 29158:2025
+standard conforming print quality assessment requires interactive
+image acquisition! No images of a data code symbol should be regarded
+if there is no information for the camera-lighting setup used to
+acquire these images. In most cases this implies that the user should
+set up and use her/his own camera-lighting configuration. Refer to
+ISO/IEC 29158:2025, Chapter 6, for some prescribed camera-lighting
+configurations and
+general configuration principles that are relevant for the standard.
+Note also that, even though the implementation is strictly
+based on the standard, the computation of the print quality
+grades depends on the decoding algorithm used. Thus, the
+print quality inspection results are relevant only for the
+2D data code reader implemented with HALCON.
+Calling
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+with argument
+'quality_isoiec29158'
+"quality_isoiec29158"
+"quality_isoiec29158"
+"quality_isoiec29158"
+"quality_isoiec29158"
+assumes that the image
+being processed fulfills the criterion with respect to
+mean light
+explained in detail below.
+The print quality results contain the following eleven entries:
+(
+overall symbol grade
+,
+cell contrast
+,
+cell modulation
+,
+fixed pattern damage
+,
+decode
+,
+axial nonuniformity
+,
+grid nonuniformity
+,
+unused error correction
+,
+mean light
+,
+contrast uniformity
+,
+aperture
+).
+The grades have the same meaning as the ISO/IEC 15415:2024 grades with
+three exceptions:
+symbol contrast
+and
+modulation
+are
+renamed to
+cell contrast
+and
+cell
+       modulation
+, respectively, to reflect differences in the
+methods specified with both standards for estimating those
+values. The value of
+mean light
+is not a grade
+specified with ISO/IEC 29158:2025 standard. It is an
+estimation for the quality of the processed image computed as
+the mean gray-scale value of the centers of the light data code
+modules. It is a value between
+0.0
+and
+1.0
+,
+corresponding to 0% to 100% of the maximum gray-scale value (255 for byte
+images).
+For
+QR Code
+and
+Micro QR Code
+also the
+format information
+and
+version information
+are returned as additional grading parameters.
+The essence of the standard is a procedure for the adjustment of
+the camera system response (SR):
+exposure time
+,
+gain
+and/or another specific setting of the user's
+camera-lighting setup. The goal is to obtain an image of the inspected
+data code symbol with optimal gray-scale properties. In the image
+processing context, which is in the main focus of the standard, this
+is also the key to reproducibility of the grading results.
+An image has the required gray-scale properties when its
+'mean light'
+value is 78% while allowing a tolerance of
+%, i.e.
+mean light
+is expected to be
+between 70% and 86% (
+0.70
+and
+0.86
+, respectively).
+Trying to achieve this condition for images of physically low-contrast
+data code symbols results usually in very high SR levels.
+Therefore, the standard defines additionally a calibration routine,
+which identifies for comparison
+purposes the normal (calibrated) system response settings (SRcal)
+by evaluating images of an object with well-known reflectance
+properties (such as NIST traceable calibrated conformance test card).
+SRcal is then used to compute the grade
+minimum reflectance (Rtarget)
+, which measures the reflectance
+of the light elements of the symbol relative to the calibrated reflectance
+values. Therefore, a bad system response (SR resp. SRcal) influences
+the overall symbol grade negatively. Finally, the
+image acquisition criterion
+for an image reads: the image
+must have a
+mean light
+value between 70% and 86%
+(
+0.70
+and
+0.86
+, respectively).
+The system response, e.g. exposure time or gain, must be adapted until
+mean light
+is inside the required range. The procedure on how
+to adjust the system response is described in detail in
+ISO/IEC 29158:2025, Section 6.5.
+As neither the adjustment of the system response nor the computation
+of Rtarget can be carried out from within a HALCON operator,
+the assessment of the ISO/IEC 29158:2025 quality grades should be
+performed in an appropriate program setup. The user is referred
+to two example programs provided with her/his installation of HALCON
+(calibration_isoiec29158.hdev and print_quality_isoiec29158.hdev
+in the directory HALCONEXAMPLES/hdevelop/Identification/Data-Code),
+which demonstrate the calibration and the grade evaluation routines,
+respectively. The image criterion and the computation of Rtarget,
+as well as further details regarding the general camera setup and
+image acquisition are also explained and demonstrated there.
+Everyone who intends to use the ISO/IEC 29158:2025 grading standard
+can use the programs as a starting point and adapt them for her/his
+own camera-lighting setup.
+The
+aperture
+is the size of the synthesized aperture
+in units of the module size of the symbol. This aperture is
+used to obtain the reference gray scale image during the
+grading procedure and selected by the procedure described in
+ISO/IEC 29158:2025, Section 7.4.2.
+To be able to compute the quality values for QR Code, Micro QR Code
+and Aztec Code, it is necessary that the
+parameter
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+(see
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+) is set to a value greater
+than or equal to
+0
+. For Data Matrix ECC 200, quality grading
+can also be performed with a
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+value of
+-1
+.
+'quality_isoiec29158_values'
+"quality_isoiec29158_values"
+"quality_isoiec29158_values"
+"quality_isoiec29158_values"
+"quality_isoiec29158_values"
+:
+Similar to
+'quality_isoiec15415_values'
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+, the raw values
+for all directly measurable grades are reported but
+in compliance with the ISO/IEC 29158:2025 print quality standard.
+The list of the reported and the excluded raw measurement values
+is similar to the one of
+'quality_isoiec15415_values'
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+. The
+auxiliary ISO/IEC 29158:2025 value
+mean light
+is reported
+in the same format (between
+0.0
+and
+1.0
+) by both
+'quality_isoiec29158'
+"quality_isoiec29158"
+"quality_isoiec29158"
+"quality_isoiec29158"
+"quality_isoiec29158"
+and
+'quality_isoiec29158_values'
+"quality_isoiec29158_values"
+"quality_isoiec29158_values"
+"quality_isoiec29158_values"
+"quality_isoiec29158_values"
+.
+To be able to compute the quality values for QR Code, Micro QR Code
+and Aztec Code, it is necessary that the
+parameter
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+(see
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+) is set to a value greater
+than or equal to
+0
+. For Data Matrix ECC 200, quality grading
+can also be performed with a
+'persistence'
+"persistence"
+"persistence"
+"persistence"
+"persistence"
+value of
+-1
+.
+'quality_isoiec29158_intermediate'
+"quality_isoiec29158_intermediate"
+"quality_isoiec29158_intermediate"
+"quality_isoiec29158_intermediate"
+"quality_isoiec29158_intermediate"
+:
+Tuple with intermediate results that are determined during
+the assessment of print quality of Data Matrix ECC 200 Codes, QR Codes,
+Micro QR Codes and Aztec Codes in compliance with the international
+standard ISO/IEC 29158:2025.
+Using these values requires a thorough understanding of the underlying
+algorithms, and we strongly recommend to read ISO/IEC 29158:2025 and the
+code type specific standards along with this documentation.
+A description of the intermediate results is given below. The
+returned intermediate grades
+(
+'quality_isoiec29158_intermediate'
+"quality_isoiec29158_intermediate"
+"quality_isoiec29158_intermediate"
+"quality_isoiec29158_intermediate"
+"quality_isoiec29158_intermediate"
+)
+and values (
+'quality_isoiec29158_intermediate_values'
+"quality_isoiec29158_intermediate_values"
+"quality_isoiec29158_intermediate_values"
+"quality_isoiec29158_intermediate_values"
+"quality_isoiec29158_intermediate_values"
+) are
+the minimal grades and values for the code under inspection. The
+names of the available intermediate results can be queried with
+'quality_isoiec29158_intermediate_labels'
+"quality_isoiec29158_intermediate_labels"
+"quality_isoiec29158_intermediate_labels"
+"quality_isoiec29158_intermediate_labels"
+"quality_isoiec29158_intermediate_labels"
+.
+'T2'
+: The threshold created using the
+histogram of the reference gray-scale image pixel values
+at each intersection point of the grid using the method
+defined in Annex A, ISO/IEC 29158:2025.
+'MD'
+: The value of mean dark for the threshold
+T2, which is determined using the method defined in
+Annex A, ISO/IEC 291582:2025.
+'MLtarget'
+: The value of mean light
+for the threshold T2, which is determined using the method
+defined in Annex A, ISO/IEC 29158:2025.
+'Rmax'
+: Maximum reflectance value over all
+intersection points of the grid in the symbol region.
+Similar to
+'quality_isoiec15415_intermediate'
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+,
+for Data Matrix ECC 200 additional intermediate results
+are returned, see
+'quality_isoiec15415_intermediate'
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+for further information, noting that the
+distributed fixed pattern damage grade
+corresponds
+not only to ISO/IEC 16022:2024, Section G.3.4, but also to
+ISO/IEC 29158:2025, Section 9.4, for
+'quality_isoiec29158_intermediate'
+.
+Data Matrix ECC 200, QR Code, Aztec Code, and DotCode:
+'structured_append'
+"structured_append"
+"structured_append"
+"structured_append"
+"structured_append"
+:
+If the symbol is part of a group of symbols (“Structured
+Append”), this parameter contains (1) the index of
+the symbol in the group, (2) the number of symbols that belong
+to the group, and (3) a number that serves as a group identifier.
+For DotCodes only the first two are returned. For Aztec Codes the
+group identifier is a string. If the symbol is not part of a group
+of symbols (“Structured Append”) a empty tuple is returned in case
+of Aztec Codes. An empty tuple is also returned for not successfully
+decoded candidates.
+'gs1_lint_passed'
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+:
+If the symbol contains a GS1 formatted string and the data code
+model was created to read GS1 codes, additional linting can be
+performed on the contained string.
+'gs1_lint_passed'
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+will return
+'true'
+"true"
+"true"
+"true"
+"true"
+, if this is successful. Otherwise,
+'false'
+"false"
+"false"
+"false"
+"false"
+is returned. Linting checks that
+one AI (Application Identifier) does not occur multiple times with different contents,
+AIs required by other AIs are contained,
+AIs excluded by other AIs are not included, and that
+specific formatting rules for AIs are respected.
+'gs1_lint_result'
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+:
+'gs1_lint_result'
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+performs the linting tests documented in
+'gs1_lint_passed'
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+. If the linting fails,
+a list of human-readable error messages is returned, if it is successful,
+'ok'
+"ok"
+"ok"
+"ok"
+"ok"
+is returned.
+DotCode:
+DotCodes are able to encode separate data messages in one single DotCode symbol.
+According to the AIM International Symbology Specification for DotCode, such
+separated messages should be treated as if they come from different symbols.
+In the following list, all results are listed which can be queried for DotCodes
+and need a dedicated result for each separated message segment. They are all
+postfixed with
+'_separated'
+"_separated"
+"_separated"
+"_separated"
+"_separated"
+. They return a tuple with the results
+separated for each separated message segment.
+In case of a symbol with separated messages the
+correspondent results without
+'_separated'
+"_separated"
+"_separated"
+"_separated"
+"_separated"
+postfix returns the result for
+the first separated message segment.
+Note: If one of the separated messages can not be decoded, no results are returned.
+'symbology_ident_separated'
+"symbology_ident_separated"
+"symbology_ident_separated"
+"symbology_ident_separated"
+"symbology_ident_separated"
+:
+see
+'symbology_ident'
+"symbology_ident"
+"symbology_ident"
+"symbology_ident"
+"symbology_ident"
+for details.
+'decoded_string_separated'
+"decoded_string_separated"
+"decoded_string_separated"
+"decoded_string_separated"
+"decoded_string_separated"
+:
+see
+'decoded_string'
+"decoded_string"
+"decoded_string"
+"decoded_string"
+"decoded_string"
+for details.
+'structured_append_separated'
+"structured_append_separated"
+"structured_append_separated"
+"structured_append_separated"
+"structured_append_separated"
+:
+see
+'structured_append'
+"structured_append"
+"structured_append"
+"structured_append"
+"structured_append"
+for details.
+'reader_programming_separated'
+"reader_programming_separated"
+"reader_programming_separated"
+"reader_programming_separated"
+"reader_programming_separated"
+:
+see
+'reader_programming'
+"reader_programming"
+"reader_programming"
+"reader_programming"
+"reader_programming"
+for details.
+'decoded_data_separated'
+"decoded_data_separated"
+"decoded_data_separated"
+"decoded_data_separated"
+"decoded_data_separated"
+:
+see
+'decoded_data'
+"decoded_data"
+"decoded_data"
+"decoded_data"
+"decoded_data"
+for details.
+'segment_num'
+"segment_num"
+"segment_num"
+"segment_num"
+"segment_num"
+:
+Number of separated message segments.
+Status message
+The status parameter that can be queried for all candidates
+reveals why and where in the evaluation phase a candidate was
+discarded.
+The following list shows the most important status messages in the order
+of their generation during the evaluation phase:
+Data Matrix ECC 200:
+'aborted: too close to image border'
+"aborted: too close to image border"
+"aborted: too close to image border"
+"aborted: too close to image border"
+"aborted: too close to image border"
+:
+The symbol candidate is too close to the border.
+Only symbols that are completely within the image can be read.
+'aborted adjusting: ...'
+"aborted adjusting: ..."
+"aborted adjusting: ..."
+"aborted adjusting: ..."
+"aborted adjusting: ..."
+:
+It is not possible to determine the exact position of the
+finder pattern in the processing image.
+'aborted finder pattern: ...'
+"aborted finder pattern: ..."
+"aborted finder pattern: ..."
+"aborted finder pattern: ..."
+"aborted finder pattern: ..."
+:
+It is not possible to determine the width of one of the two
+legs of the L-shaped finder pattern.
+'aborted leg widths: widths of the finder
+      pattern legs differ too much'
+"aborted leg widths: widths of the finder
+      pattern legs differ too much"
+"aborted leg widths: widths of the finder
+      pattern legs differ too much"
+"aborted leg widths: widths of the finder
+      pattern legs differ too much"
+"aborted leg widths: widths of the finder
+      pattern legs differ too much"
+:
+The widths of the two legs of the L-shaped finder pattern
+differ too much.
+'aborted alternating side: ...'
+"aborted alternating side: ..."
+"aborted alternating side: ..."
+"aborted alternating side: ..."
+"aborted alternating side: ..."
+:
+For one dimension of the candidate, two opposite borders were
+found during the symbol search phase.
+However, it is not possible to determine which is the
+alternating and which the solid side of the finder pattern.
+'aborted border search: ...'
+"aborted border search: ..."
+"aborted border search: ..."
+"aborted border search: ..."
+"aborted border search: ..."
+:
+For one dimension of the candidate, only the border that
+belongs to the solid side of the finder pattern was found
+during the symbol search phase.
+Searching the opposite (the alternating) side failed.
+'aborted symbol: invalid size'
+"aborted symbol: invalid size"
+"aborted symbol: invalid size"
+"aborted symbol: invalid size"
+"aborted symbol: invalid size"
+:
+The number of rows and columns of the symbol that was deduced
+from the alternating pattern does not yield in a valid ECC 200
+code.
+'aborted symbol: size does not fit strict
+      model definition'
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+:
+Although the deduced symbol size is a valid ECC 200 size, it is
+not inside the range predefined by the model.
+'aborted symbol: rectangular symbol does not
+      fit strict mirror definition of model'
+"aborted symbol: rectangular symbol does not
+      fit strict mirror definition of model"
+"aborted symbol: rectangular symbol does not
+      fit strict mirror definition of model"
+"aborted symbol: rectangular symbol does not
+      fit strict mirror definition of model"
+"aborted symbol: rectangular symbol does not
+      fit strict mirror definition of model"
+:
+The symbol was identified as a rectangular ECC 200 code.
+In conjunction with the mirroring parameter of the model,
+however, the symbol's rows and columns are swapped such that
+no valid ECC 200 code is achieved.
+This test is of course not possible for square symbols.
+There, a wrong mirroring specification will affect the reading
+of the symbol data and, in general, lead to the following
+error:
+'error correction failed'
+"error correction failed"
+"error correction failed"
+"error correction failed"
+"error correction failed"
+:
+The error correction failed because there are too many modules
+that couldn't be interpreted correctly.
+Normally, this indicates that the print and/or image quality
+is too bad, but it may also be provoked by a wrong mirroring
+specification in the model.
+'decoding failed: special decoding reader
+      requested'
+"decoding failed: special decoding reader
+      requested"
+"decoding failed: special decoding reader
+      requested"
+"decoding failed: special decoding reader
+      requested"
+"decoding failed: special decoding reader
+      requested"
+:
+The decoded data contains a message for programming the data
+code reader.
+This feature is not supported.
+'decoding failed: inconsistent data'
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+:
+The data coded in the symbol is not consistent and therefore
+cannot be read.
+'decoding failed: invalid GS1 format'
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+:
+The data encoded in the symbol is not conform to the GS1
+General Specifications. This indicates an attempt
+to read a non-GS1 symbol with a data code model created as
+GS1 reader.
+'quiet zone is missing'
+"quiet zone is missing"
+"quiet zone is missing"
+"quiet zone is missing"
+"quiet zone is missing"
+:
+The quiet zone of this candidate is missing or shows severe
+defects.
+'strict_fp_and_qz: alternating pattern check failed'
+"strict_fp_and_qz: alternating pattern check failed"
+"strict_fp_and_qz: alternating pattern check failed"
+"strict_fp_and_qz: alternating pattern check failed"
+"strict_fp_and_qz: alternating pattern check failed"
+:
+The candidate could be decoded, but was discarded as a possible
+false positive, because the alternating pattern showed too many
+defects. See
+'strict_fp_and_qz'
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+in
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+for more information.
+'strict_fp_and_qz: L pattern check failed'
+"strict_fp_and_qz: L pattern check failed"
+"strict_fp_and_qz: L pattern check failed"
+"strict_fp_and_qz: L pattern check failed"
+"strict_fp_and_qz: L pattern check failed"
+:
+The candidate could be decoded, but was discarded as a possible
+false positive, because the L pattern showed too many
+defects. See
+'strict_fp_and_qz'
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+in
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+for more information.
+'strict_fp_and_qz: finder pattern check failed'
+"strict_fp_and_qz: finder pattern check failed"
+"strict_fp_and_qz: finder pattern check failed"
+"strict_fp_and_qz: finder pattern check failed"
+"strict_fp_and_qz: finder pattern check failed"
+:
+The candidate could be decoded, but was discarded as a possible
+false positive, because the finder pattern as combination of the
+alternating and the L pattern showed too many defects. See
+'strict_fp_and_qz'
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+in
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+for more information.
+'strict_fp_and_qz: quiet zone check failed'
+"strict_fp_and_qz: quiet zone check failed"
+"strict_fp_and_qz: quiet zone check failed"
+"strict_fp_and_qz: quiet zone check failed"
+"strict_fp_and_qz: quiet zone check failed"
+:
+The candidate could be decoded, but was discarded as a possible
+false positive, because the quiet zone showed too many
+defects. See
+'strict_fp_and_qz'
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+"strict_fp_and_qz"
+in
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+for more information.
+Data Matrix ECC 200 (if a high finder pattern tolerance is
+chosen, the following messages may occur additionally):
+'aborted module grid search: no regular
+      module grid found'
+"aborted module grid search: no regular
+      module grid found"
+"aborted module grid search: no regular
+      module grid found"
+"aborted module grid search: no regular
+      module grid found"
+"aborted module grid search: no regular
+      module grid found"
+No regular module grid structure could be found within the
+candidate region. Therefore, the candidate is assumed to be
+no ECC 200 symbol.
+'aborted border search: overlap with
+      previous result'
+"aborted border search: overlap with
+      previous result"
+"aborted border search: overlap with
+      previous result"
+"aborted border search: overlap with
+      previous result"
+"aborted border search: overlap with
+      previous result"
+The current candidate overlaps with a previously found result.
+Therefore, the search for a valid border was aborted.
+'aborted border search: no consistent
+      border found'
+"aborted border search: no consistent
+      border found"
+"aborted border search: no consistent
+      border found"
+"aborted border search: no consistent
+      border found"
+"aborted border search: no consistent
+      border found"
+No consistent border that leads to a symbol size that is
+within the range of valid symbol sizes leads to a successful
+decoding.
+'aborted reading: result is likely to be
+      random'
+"aborted reading: result is likely to be
+      random"
+"aborted reading: result is likely to be
+      random"
+"aborted reading: result is likely to be
+      random"
+"aborted reading: result is likely to be
+      random"
+The candidate could be decoded. However, because the symbol
+size was small and the code had too many decoding errors,
+the result is very likely to be random, and hence was
+rejected. This heuristic is applied for symbols of size 10
+x 10 with at least 1 decoding error and for
+symbols of size 12 x 12 or 8 x
+18 with more than 1 decoding error.
+QR Code:
+'aborted: too close to image border'
+"aborted: too close to image border"
+"aborted: too close to image border"
+"aborted: too close to image border"
+"aborted: too close to image border"
+:
+The symbol candidate is too close to the border.
+Only symbols that are completely within the image can be read.
+'aborted adjusting: finder patterns'
+"aborted adjusting: finder patterns"
+"aborted adjusting: finder patterns"
+"aborted adjusting: finder patterns"
+"aborted adjusting: finder patterns"
+:
+It is not possible to determine the exact position of the
+finder pattern in the processing image.
+'aborted symbol: different number of rows
+      and columns'
+"aborted symbol: different number of rows
+      and columns"
+"aborted symbol: different number of rows
+      and columns"
+"aborted symbol: different number of rows
+      and columns"
+"aborted symbol: different number of rows
+      and columns"
+:
+It is not possible to determine for both dimensions a
+consistent symbol size by the size and the position of the
+detected finder pattern.
+When reading Model 2 symbols, this error may occur only with
+small symbols (< version 7 or 45 x 45
+modules).
+For bigger symbols the size is coded within the symbol
+in the version information region.
+The estimated size is used only as a hint for finding the
+version information region.
+'aborted symbol: invalid size'
+"aborted symbol: invalid size"
+"aborted symbol: invalid size"
+"aborted symbol: invalid size"
+"aborted symbol: invalid size"
+:
+The size determined by the size and the position of the
+detected finder pattern is too small or (only Model 1) too
+big.
+'decoding of version information failed'
+"decoding of version information failed"
+"decoding of version information failed"
+"decoding of version information failed"
+"decoding of version information failed"
+:
+While processing a Model 2 symbol, the symbol version
+as determined by the finder pattern is at least 7
+(
+45 x 45 modules).
+However, reading the version from the appropriate region in
+the symbol failed.
+'aborted symbol: size does not fit strict
+      model definition'
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+:
+Although the deduced symbol size is valid, it is not inside the
+range predefined by the model.
+'decoding of format information failed'
+"decoding of format information failed"
+"decoding of format information failed"
+"decoding of format information failed"
+"decoding of format information failed"
+:
+Reading the format information (mask pattern and error
+correction level) from the appropriate region in the symbol
+failed.
+'error correction failed'
+"error correction failed"
+"error correction failed"
+"error correction failed"
+"error correction failed"
+:
+The error correction failed because there are too many modules
+that couldn't be interpreted correctly.
+Normally, this indicates that the print and/or image quality
+is too bad, but it may also be provoked by a wrong mirroring
+specification in the model.
+'decoding failed: inconsistent data'
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+:
+The data coded in the symbol is not consistent and therefore
+cannot be read.
+'decoding failed: invalid GS1 format'
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+:
+The data encoded in the symbol is not conform to the GS1
+General Specifications. This indicates an attempt
+to read a non-GS1 symbol with a data code model created as
+GS1 reader.
+Aztec Code:
+'aborted: too close to image border'
+"aborted: too close to image border"
+"aborted: too close to image border"
+"aborted: too close to image border"
+"aborted: too close to image border"
+:
+The symbol candidate is too close to the border or even partially
+outside the image.
+'aborted: mode message could not be decoded'
+"aborted: mode message could not be decoded"
+"aborted: mode message could not be decoded"
+"aborted: mode message could not be decoded"
+"aborted: mode message could not be decoded"
+:
+The mode message of this candidate could not be decoded because
+there are too many modules that could not be interpreted correctly.
+'aborted: symbol expansion failed'
+"aborted: symbol expansion failed"
+"aborted: symbol expansion failed"
+"aborted: symbol expansion failed"
+"aborted: symbol expansion failed"
+:
+The expansion of the candidate failed. Most likely because of
+too heavy perspective distortions.
+'aborted symbol: size does not fit strict
+      model definition'
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+:
+Although the deduced symbol size is valid, it is not inside the
+range predefined by the model. Adapt the model
+(
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+) to include this candidate in
+the final results.
+'aborted symbol: rectangular symbol does not
+      fit strict mirror definition of model'
+"aborted symbol: rectangular symbol does not
+      fit strict mirror definition of model"
+"aborted symbol: rectangular symbol does not
+      fit strict mirror definition of model"
+"aborted symbol: rectangular symbol does not
+      fit strict mirror definition of model"
+"aborted symbol: rectangular symbol does not
+      fit strict mirror definition of model"
+:
+Although this candidate is valid, it does not fit the mirroring
+constraint predefined by the model. Adapt the model
+(
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+) to include this candidate in
+the final results.
+'aborted symbol: invalid format'
+"aborted symbol: invalid format"
+"aborted symbol: invalid format"
+"aborted symbol: invalid format"
+"aborted symbol: invalid format"
+:
+Although this candidate is valid, it does not fit the format
+predefined by the model. Adapt the model
+(
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+) to include this candidate in
+the final results.
+'error correction failed'
+"error correction failed"
+"error correction failed"
+"error correction failed"
+"error correction failed"
+:
+The error correction failed because there are too many modules
+that could not be interpreted correctly.
+Normally, this indicates that the print and/or image quality
+is too bad, but it may also be provoked by a wrong mirroring
+specification in the model.
+'decoding failed: invalid GS1 format'
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+:
+The data encoded in the symbol is not conform to the GS1
+General Specifications. This indicates an attempt
+to read a non-GS1 symbol with a data code model created as
+GS1 reader.
+PDF417:
+'aborted: too close to image border'
+"aborted: too close to image border"
+"aborted: too close to image border"
+"aborted: too close to image border"
+"aborted: too close to image border"
+:
+The symbol candidate is too close to the border.
+Only symbols that are completely within the image can be read.
+'aborted symbol: size does not fit strict
+      model definition'
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+:
+Although the deduced symbol size is valid, it is not inside the
+range predefined by the model.
+'error correction failed'
+"error correction failed"
+"error correction failed"
+"error correction failed"
+"error correction failed"
+:
+The error correction failed because there are too many modules
+that couldn't be interpreted correctly.
+Normally, this indicates that the print and/or image quality
+is too bad, but it may also be provoked by a wrong mirroring
+specification in the model.
+'decoding failed: special decoding reader
+      requested'
+"decoding failed: special decoding reader
+      requested"
+"decoding failed: special decoding reader
+      requested"
+"decoding failed: special decoding reader
+      requested"
+"decoding failed: special decoding reader
+      requested"
+:
+The decoded data contains a message for programming the data
+code reader.
+This feature is not supported.
+'decoding failed: inconsistent data'
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+:
+The data coded in the symbol is not consistent and therefore
+cannot be read.
+DotCode:
+'aborted module grid search: no regular
+      module grid found'
+"aborted module grid search: no regular
+      module grid found"
+"aborted module grid search: no regular
+      module grid found"
+"aborted module grid search: no regular
+      module grid found"
+"aborted module grid search: no regular
+      module grid found"
+No regular module grid structure could be found within the
+candidate region. Therefore, the candidate is assumed to be
+no DotCode symbol.
+'aborted symbol: size does not fit strict
+      model definition'
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+"aborted symbol: size does not fit strict
+      model definition"
+:
+Although the deduced symbol size is a valid DotCode size, it is
+not inside the range predefined by the model.
+'error correction failed'
+"error correction failed"
+"error correction failed"
+"error correction failed"
+"error correction failed"
+:
+The error correction failed because there are too many modules
+that couldn't be interpreted correctly.
+Normally, this indicates that the print and/or image quality
+is too bad, but it may also be provoked by a wrong mirroring
+specification in the model.
+'decoding failed: inconsistent data'
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+"decoding failed: inconsistent data"
+:
+The data coded in the symbol is not consistent and therefore
+cannot be read.
+'unmasking: invalid mask type'
+"unmasking: invalid mask type"
+"unmasking: invalid mask type"
+"unmasking: invalid mask type"
+"unmasking: invalid mask type"
+:
+The first two bits of each DotCode encoded in the data stream
+of the code determine the so-called mask. The mask is used
+during encoding process in order to increase graphical robustness.
+Possible values are 0, 1, 2 and 3. If any other value is encoded
+in the first two bits, the candidate is marked with this status.
+'quiet zone is missing'
+"quiet zone is missing"
+"quiet zone is missing"
+"quiet zone is missing"
+"quiet zone is missing"
+:
+The quiet zone of this candidate is missing or shows severe
+defects.
+'decoding failed: invalid GS1 format'
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+"decoding failed: invalid GS1 format"
+:
+The data encoded in the symbol is not conform to the GS1
+General Specifications. This indicates an attempt
+to read a non-GS1 symbol with a data code model created as
+GS1 reader.
+While processing a candidate, it is possible that internally several
+iterations for reading the symbol are performed.
+If all attempts fail, normally the last abortion state is stored in
+the candidate structure.
+E.g., if the QR Code model enables symbols with Model 1 and Model 2
+specification,
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+tries first to interpret
+the symbol as Model 2 type.
+If this fails, Model 1 interpretation is performed.
+If this also fails, the status variable is set to the latest failure
+state of the Model 1 interpretation.
+In order to get the error state of the Model 2 branch, the
+'model_type'
+"model_type"
+"model_type"
+"model_type"
+"model_type"
+parameter of the data code model must be
+restricted accordingly (with
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+).
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+Parameters
+DataCodeHandle
+DataCodeHandle
+DataCodeHandle
+dataCodeHandle
+data_code_handle
+(input_control)
+datacode_2d
+→
+HDataCode2D
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Handle of the 2D data code model.
+CandidateHandle
+CandidateHandle
+CandidateHandle
+candidateHandle
+candidate_handle
+(input_control)
+integer
+→
+HTuple
+Union[int, str]
+HTuple
+Htuple
+(string /
+integer)
+(
+string
+/
+int /
+long)
+(
+HString
+/
+Hlong)
+(
+char*
+/
+Hlong)
+Handle of the 2D data code candidate. Either an integer
+(usually the ResultHandle of
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+) or
+a string representing a group of candidates.
+Default:
+'all_candidates'
+"all_candidates"
+"all_candidates"
+"all_candidates"
+"all_candidates"
+Suggested values:
+0, 1, 2,
+'general'
+"general"
+"general"
+"general"
+"general"
+,
+'all_candidates'
+"all_candidates"
+"all_candidates"
+"all_candidates"
+"all_candidates"
+,
+'all_results'
+"all_results"
+"all_results"
+"all_results"
+"all_results"
+,
+'all_undecoded'
+"all_undecoded"
+"all_undecoded"
+"all_undecoded"
+"all_undecoded"
+,
+'all_aborted'
+"all_aborted"
+"all_aborted"
+"all_aborted"
+"all_aborted"
+ResultNames
+ResultNames
+ResultNames
+resultNames
+result_names
+(input_control)
+attribute.name(-array)
+→
+HTuple
+MaybeSequence[str]
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Names of the results of the 2D data code to return.
+Default:
+'status'
+"status"
+"status"
+"status"
+"status"
+List of values:
+'aborted'
+"aborted"
+"aborted"
+"aborted"
+"aborted"
+,
+'aborted_num'
+"aborted_num"
+"aborted_num"
+"aborted_num"
+"aborted_num"
+,
+'alternating_pattern_tolerance'
+"alternating_pattern_tolerance"
+"alternating_pattern_tolerance"
+"alternating_pattern_tolerance"
+"alternating_pattern_tolerance"
+,
+'bin_module_data'
+"bin_module_data"
+"bin_module_data"
+"bin_module_data"
+"bin_module_data"
+,
+'candidate_num'
+"candidate_num"
+"candidate_num"
+"candidate_num"
+"candidate_num"
+,
+'codeword_num'
+"codeword_num"
+"codeword_num"
+"codeword_num"
+"codeword_num"
+,
+'contrast'
+"contrast"
+"contrast"
+"contrast"
+"contrast"
+,
+'contrast_tolerance'
+"contrast_tolerance"
+"contrast_tolerance"
+"contrast_tolerance"
+"contrast_tolerance"
+,
+'corr_coded_data'
+"corr_coded_data"
+"corr_coded_data"
+"corr_coded_data"
+"corr_coded_data"
+,
+'decoded_data'
+"decoded_data"
+"decoded_data"
+"decoded_data"
+"decoded_data"
+,
+'decoded_data_separated'
+"decoded_data_separated"
+"decoded_data_separated"
+"decoded_data_separated"
+"decoded_data_separated"
+,
+'decoded_string'
+"decoded_string"
+"decoded_string"
+"decoded_string"
+"decoded_string"
+,
+'decoded_string_separated'
+"decoded_string_separated"
+"decoded_string_separated"
+"decoded_string_separated"
+"decoded_string_separated"
+,
+'decoding_error'
+"decoding_error"
+"decoding_error"
+"decoding_error"
+"decoding_error"
+,
+'deformation_objects'
+"deformation_objects"
+"deformation_objects"
+"deformation_objects"
+"deformation_objects"
+,
+'deformation_tolerance'
+"deformation_tolerance"
+"deformation_tolerance"
+"deformation_tolerance"
+"deformation_tolerance"
+,
+'error_correction_level'
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+"error_correction_level"
+,
+'finder_pattern_tolerance'
+"finder_pattern_tolerance"
+"finder_pattern_tolerance"
+"finder_pattern_tolerance"
+"finder_pattern_tolerance"
+,
+'format'
+"format"
+"format"
+"format"
+"format"
+,
+'gs1_lint_passed'
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+"gs1_lint_passed"
+,
+'gs1_lint_result'
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+"gs1_lint_result"
+,
+'handle'
+"handle"
+"handle"
+"handle"
+"handle"
+,
+'layer_num'
+"layer_num"
+"layer_num"
+"layer_num"
+"layer_num"
+,
+'macro_checksum'
+"macro_checksum"
+"macro_checksum"
+"macro_checksum"
+"macro_checksum"
+,
+'macro_exist'
+"macro_exist"
+"macro_exist"
+"macro_exist"
+"macro_exist"
+,
+'macro_file_id'
+"macro_file_id"
+"macro_file_id"
+"macro_file_id"
+"macro_file_id"
+,
+'macro_last_symbol'
+"macro_last_symbol"
+"macro_last_symbol"
+"macro_last_symbol"
+"macro_last_symbol"
+,
+'macro_segment_count'
+"macro_segment_count"
+"macro_segment_count"
+"macro_segment_count"
+"macro_segment_count"
+,
+'macro_segment_index'
+"macro_segment_index"
+"macro_segment_index"
+"macro_segment_index"
+"macro_segment_index"
+,
+'macro_time_stamp'
+"macro_time_stamp"
+"macro_time_stamp"
+"macro_time_stamp"
+"macro_time_stamp"
+,
+'mask_pattern_ref'
+"mask_pattern_ref"
+"mask_pattern_ref"
+"mask_pattern_ref"
+"mask_pattern_ref"
+,
+'max_search_level'
+"max_search_level"
+"max_search_level"
+"max_search_level"
+"max_search_level"
+,
+'min_search_level'
+"min_search_level"
+"min_search_level"
+"min_search_level"
+"min_search_level"
+,
+'mirrored'
+"mirrored"
+"mirrored"
+"mirrored"
+"mirrored"
+,
+'model_type'
+"model_type"
+"model_type"
+"model_type"
+"model_type"
+,
+'module_aspect'
+"module_aspect"
+"module_aspect"
+"module_aspect"
+"module_aspect"
+,
+'module_gap'
+"module_gap"
+"module_gap"
+"module_gap"
+"module_gap"
+,
+'module_grid'
+"module_grid"
+"module_grid"
+"module_grid"
+"module_grid"
+,
+'module_height'
+"module_height"
+"module_height"
+"module_height"
+"module_height"
+,
+'module_width'
+"module_width"
+"module_width"
+"module_width"
+"module_width"
+,
+'orientation'
+"orientation"
+"orientation"
+"orientation"
+"orientation"
+,
+'pass'
+"pass"
+"pass"
+"pass"
+"pass"
+,
+'pass_num'
+"pass_num"
+"pass_num"
+"pass_num"
+"pass_num"
+,
+'polarity'
+"polarity"
+"polarity"
+"polarity"
+"polarity"
+,
+'process_level'
+"process_level"
+"process_level"
+"process_level"
+"process_level"
+,
+'quality_isoiec15415'
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+"quality_isoiec15415"
+,
+'quality_isoiec15415_cols'
+"quality_isoiec15415_cols"
+"quality_isoiec15415_cols"
+"quality_isoiec15415_cols"
+"quality_isoiec15415_cols"
+,
+'quality_isoiec15415_intermediate'
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+"quality_isoiec15415_intermediate"
+,
+'quality_isoiec15415_intermediate_labels'
+"quality_isoiec15415_intermediate_labels"
+"quality_isoiec15415_intermediate_labels"
+"quality_isoiec15415_intermediate_labels"
+"quality_isoiec15415_intermediate_labels"
+,
+'quality_isoiec15415_intermediate_values'
+"quality_isoiec15415_intermediate_values"
+"quality_isoiec15415_intermediate_values"
+"quality_isoiec15415_intermediate_values"
+"quality_isoiec15415_intermediate_values"
+,
+'quality_isoiec15415_labels'
+"quality_isoiec15415_labels"
+"quality_isoiec15415_labels"
+"quality_isoiec15415_labels"
+"quality_isoiec15415_labels"
+,
+'quality_isoiec15415_modulation_module_grades'
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+"quality_isoiec15415_modulation_module_grades"
+,
+'quality_isoiec15415_rows'
+"quality_isoiec15415_rows"
+"quality_isoiec15415_rows"
+"quality_isoiec15415_rows"
+"quality_isoiec15415_rows"
+,
+'quality_isoiec15415_values'
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+"quality_isoiec15415_values"
+,
+'quality_isoiec29158'
+"quality_isoiec29158"
+"quality_isoiec29158"
+"quality_isoiec29158"
+"quality_isoiec29158"
+,
+'quality_isoiec29158_cols'
+"quality_isoiec29158_cols"
+"quality_isoiec29158_cols"
+"quality_isoiec29158_cols"
+"quality_isoiec29158_cols"
+,
+'quality_isoiec29158_intermediate'
+"quality_isoiec29158_intermediate"
+"quality_isoiec29158_intermediate"
+"quality_isoiec29158_intermediate"
+"quality_isoiec29158_intermediate"
+,
+'quality_isoiec29158_intermediate_labels'
+"quality_isoiec29158_intermediate_labels"
+"quality_isoiec29158_intermediate_labels"
+"quality_isoiec29158_intermediate_labels"
+"quality_isoiec29158_intermediate_labels"
+,
+'quality_isoiec29158_intermediate_values'
+"quality_isoiec29158_intermediate_values"
+"quality_isoiec29158_intermediate_values"
+"quality_isoiec29158_intermediate_values"
+"quality_isoiec29158_intermediate_values"
+,
+'quality_isoiec29158_labels'
+"quality_isoiec29158_labels"
+"quality_isoiec29158_labels"
+"quality_isoiec29158_labels"
+"quality_isoiec29158_labels"
+,
+'quality_isoiec29158_modulation_module_grades'
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+"quality_isoiec29158_modulation_module_grades"
+,
+'quality_isoiec29158_rows'
+"quality_isoiec29158_rows"
+"quality_isoiec29158_rows"
+"quality_isoiec29158_rows"
+"quality_isoiec29158_rows"
+,
+'quality_isoiec29158_values'
+"quality_isoiec29158_values"
+"quality_isoiec29158_values"
+"quality_isoiec29158_values"
+"quality_isoiec29158_values"
+,
+'quality_semi_t10_labels'
+"quality_semi_t10_labels"
+"quality_semi_t10_labels"
+"quality_semi_t10_labels"
+"quality_semi_t10_labels"
+,
+'quality_semi_t10_values'
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+"quality_semi_t10_values"
+,
+'raw_coded_data'
+"raw_coded_data"
+"raw_coded_data"
+"raw_coded_data"
+"raw_coded_data"
+,
+'reader_programming'
+"reader_programming"
+"reader_programming"
+"reader_programming"
+"reader_programming"
+,
+'reader_programming_separated'
+"reader_programming_separated"
+"reader_programming_separated"
+"reader_programming_separated"
+"reader_programming_separated"
+,
+'result_num'
+"result_num"
+"result_num"
+"result_num"
+"result_num"
+,
+'search_level'
+"search_level"
+"search_level"
+"search_level"
+"search_level"
+,
+'segment_num'
+"segment_num"
+"segment_num"
+"segment_num"
+"segment_num"
+,
+'slant'
+"slant"
+"slant"
+"slant"
+"slant"
+,
+'small_modules_robustness'
+"small_modules_robustness"
+"small_modules_robustness"
+"small_modules_robustness"
+"small_modules_robustness"
+,
+'status'
+"status"
+"status"
+"status"
+"status"
+,
+'structured_append'
+"structured_append"
+"structured_append"
+"structured_append"
+"structured_append"
+,
+'structured_append_separated'
+"structured_append_separated"
+"structured_append_separated"
+"structured_append_separated"
+"structured_append_separated"
+,
+'symbol_cols'
+"symbol_cols"
+"symbol_cols"
+"symbol_cols"
+"symbol_cols"
+,
+'symbol_rows'
+"symbol_rows"
+"symbol_rows"
+"symbol_rows"
+"symbol_rows"
+,
+'symbol_size'
+"symbol_size"
+"symbol_size"
+"symbol_size"
+"symbol_size"
+,
+'symbology_ident'
+"symbology_ident"
+"symbology_ident"
+"symbology_ident"
+"symbology_ident"
+,
+'symbology_ident_separated'
+"symbology_ident_separated"
+"symbology_ident_separated"
+"symbology_ident_separated"
+"symbology_ident_separated"
+,
+'undecoded_num'
+"undecoded_num"
+"undecoded_num"
+"undecoded_num"
+"undecoded_num"
+,
+'version'
+"version"
+"version"
+"version"
+"version"
+ResultValues
+ResultValues
+ResultValues
+resultValues
+result_values
+(output_control)
+attribute.value(-array)
+→
+HTuple
+Sequence[Union[int, float, str]]
+HTuple
+Htuple
+(string /
+integer /
+real)
+(
+string
+/
+int /
+long /
+double)
+(
+HString
+/
+Hlong /
+double)
+(
+char*
+/
+Hlong /
+double)
+List with the results.
+Example (HDevelop)
+* Example demonstrating how to access the results of the data code search.
+
+* Create a model for reading Data matrix ECC 200 codes
+create_data_code_2d_model ('Data Matrix ECC 200', [], [], DataCodeHandle)
+* Read an image
+read_image (Image, 'datacode/ecc200/ecc200_cpu_010')
+* Read the symbol in the image
+find_data_code_2d (Image, SymbolXLDs, DataCodeHandle, [], [], \
+                   ResultHandles, DecodedDataStrings)
+
+* Get the number of passes
+get_data_code_2d_results (DataCodeHandle, 'general', 'pass_num', Passes)
+
+* Get a tuple with the status of all candidates
+get_data_code_2d_results (DataCodeHandle, 'all_candidates', 'status', \
+                          AllStatus)
+* Get the handles of all candidates that were detected as a symbol but
+* could not be read
+get_data_code_2d_results (DataCodeHandle, 'all_undecoded', 'handle', \
+                          HandlesUndecoded)
+
+* For every undecoded symbol, get the contour, the symbol size, and
+* the binary module data
+dev_set_color ('red')
+for i := 0 to |HandlesUndecoded| - 1 by 1
+    * Get the contour of the symbol
+    get_data_code_2d_objects (SymbolXLD, DataCodeHandle, \
+                              HandlesUndecoded[i], 'candidate_xld')
+    * Get the symbol size
+    get_data_code_2d_results (DataCodeHandle, HandlesUndecoded[i], \
+                              ['symbol_rows','symbol_cols'], SymbolSize)
+    * Get the binary module data (has to be queried exclusively)
+    get_data_code_2d_results (DataCodeHandle, HandlesUndecoded[i], \
+                              'bin_module_data', BinModuleData)
+    * Stop for inspecting the data
+    stop ()
+endfor
+
+* Clear the model
+clear_data_code_2d_model (DataCodeHandle)
+Result
+The operator
+get_data_code_2d_results
+get_data_code_2d_results
+GetDataCode2dResults
+GetDataCode2dResults
+get_data_code_2d_results
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    
+if the given parameters are correct and the requested results are
+available for the last symbol search.
+Otherwise, an exception is raised.
+Possible Predecessors
+find_data_code_2d
+find_data_code_2d
+FindDataCode2d
+FindDataCode2d
+find_data_code_2d
+,
+query_data_code_2d_params
+query_data_code_2d_params
+QueryDataCode2dParams
+QueryDataCode2dParams
+query_data_code_2d_params
+Possible Successors
+get_data_code_2d_objects
+get_data_code_2d_objects
+GetDataCode2dObjects
+GetDataCode2dObjects
+get_data_code_2d_objects
+See also
+query_data_code_2d_params
+query_data_code_2d_params
+QueryDataCode2dParams
+QueryDataCode2dParams
+query_data_code_2d_params
+,
+get_data_code_2d_objects
+get_data_code_2d_objects
+GetDataCode2dObjects
+GetDataCode2dObjects
+get_data_code_2d_objects
+,
+get_data_code_2d_param
+get_data_code_2d_param
+GetDataCode2dParam
+GetDataCode2dParam
+get_data_code_2d_param
+,
+set_data_code_2d_param
+set_data_code_2d_param
+SetDataCode2dParam
+SetDataCode2dParam
+set_data_code_2d_param
+References
+International Standard ISO/IEC 15415: “
+Automatic identification and data capture techniques -
+Bar code symbol print quality test specification - Two-dimensional symbols”;
+Reference number ISO/IEC 15415:2024 (en);
+ISO/IEC 2024.
+International Standard ISO/IEC 16022: “Information technology -
+Automatic identification and data capture techniques -
+Data Matrix bar code symbology specification”;
+Reference number ISO/IEC 16022:2024 (en);
+ISO/IEC 2024.
+International Standard ISO/IEC 15438: “Information technology -
+Automatic identification and data capture techniques -
+PDF417 bar code symbology specification”;
+Reference number ISO/IEC 15438:2015 (E);
+ISO/IEC 2015.
+International Standard ISO/IEC 18004: “Information technology -
+Automatic identification and data capture techniques -
+QR Code bar code symbology specification”;
+Reference number ISO/IEC 18004:2024 (en);
+ISO/IEC 2024.
+International Standard ISO/IEC 24778: “Information technology -
+Automatic identification and data capture techniques -
+Aztec Code bar code symbology specification”;
+Reference number ISO/IEC 24778:2024 (en);
+ISO/IEC 2024.
+International standard ISO/IEC 29158: “
+Automatic identification and data capture techniques -
+Bar code symbol quality test specification - Direct part mark (DPM)”;
+Reference number ISO/IEC 29158:2025 (en);
+ISO/IEC 2025.
+GS1 General Specifications; Version 25.0; Jan-2025; GS1.
+Module
+Data Code
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

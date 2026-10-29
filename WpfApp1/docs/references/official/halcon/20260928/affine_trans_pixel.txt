@@ -1,0 +1,99 @@
+affine_trans_pixel [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Transformations / 2D Transformations
+HDevelop
+.NET
+Python
+C++
+C
+Classes Classes | | Operators
+affine_trans_pixel T_affine_trans_pixel AffineTransPixel AffineTransPixel affine_trans_pixel (Operator)
+Name
+affine_trans_pixel T_affine_trans_pixel AffineTransPixel AffineTransPixel affine_trans_pixel — Apply an arbitrary affine 2D transformation to pixel coordinates.
+Signature
+affine_trans_pixel ( : : HomMat2D , Row , Col : RowTrans , ColTrans )
+Herror T_affine_trans_pixel (const Htuple HomMat2D , const Htuple Row , const Htuple Col , Htuple* RowTrans , Htuple* ColTrans )
+void AffineTransPixel (const HTuple& HomMat2D , const HTuple& Row , const HTuple& Col , HTuple* RowTrans , HTuple* ColTrans )
+void HHomMat2D :: AffineTransPixel (const HTuple& Row , const HTuple& Col , HTuple* RowTrans , HTuple* ColTrans ) const
+void HHomMat2D :: AffineTransPixel (double Row , double Col , double* RowTrans , double* ColTrans ) const
+static void HOperatorSet . AffineTransPixel ( HTuple homMat2D , HTuple row , HTuple col , out HTuple rowTrans , out HTuple colTrans )
+void HHomMat2D . AffineTransPixel ( HTuple row , HTuple col , out HTuple rowTrans , out HTuple colTrans )
+void HHomMat2D . AffineTransPixel (double row , double col , out double rowTrans , out double colTrans )
+def affine_trans_pixel ( hom_mat_2d : Sequence[float], row : MaybeSequence[Union[float, int]], col : MaybeSequence[Union[float, int]]) -> Tuple[Sequence[float], Sequence[float]]
+def affine_trans_pixel_s ( hom_mat_2d : Sequence[float], row : MaybeSequence[Union[float, int]], col : MaybeSequence[Union[float, int]]) -> Tuple[float, float]
+Description
+affine_trans_pixel affine_trans_pixel AffineTransPixel AffineTransPixel affine_trans_pixel applies an arbitrary affine 2D transformation,
+i.e., scaling, rotation, translation, and slant (skewing), to the input
+pixels ( Row Row Row row row , Col Col Col col col ) and returns the resulting pixels in
+( RowTrans RowTrans RowTrans rowTrans row_trans , ColTrans ColTrans ColTrans colTrans col_trans ); the input and output pixels are
+subpixel precise coordinates. The affine transformation is described by the
+homogeneous transformation matrix given in HomMat2D HomMat2D HomMat2D homMat2D hom_mat_2d .
+In contrast to affine_trans_point_2d affine_trans_point_2d AffineTransPoint2d AffineTransPoint2d affine_trans_point_2d , affine_trans_pixel affine_trans_pixel AffineTransPixel AffineTransPixel affine_trans_pixel
+first converts the input coordinates from HALCON's standard coordinate
+system (with the origin in the center of the upper left pixel) to a coordinate
+system with the origin in the upper left corner of the upper left pixel. After
+the transformation with HomMat2D HomMat2D HomMat2D homMat2D hom_mat_2d the result is converted back to
+the standard coordinate system.
+This way, affine_trans_pixel affine_trans_pixel AffineTransPixel AffineTransPixel affine_trans_pixel is compatible with
+affine_trans_image affine_trans_image AffineTransImage AffineTransImage affine_trans_image , affine_trans_image_size affine_trans_image_size AffineTransImageSize AffineTransImageSize affine_trans_image_size ,
+affine_trans_region affine_trans_region AffineTransRegion AffineTransRegion affine_trans_region , affine_trans_contour_xld affine_trans_contour_xld AffineTransContourXld AffineTransContourXld affine_trans_contour_xld , and
+affine_trans_polygon_xld affine_trans_polygon_xld AffineTransPolygonXld AffineTransPolygonXld affine_trans_polygon_xld .
+Applying affine_trans_pixel affine_trans_pixel AffineTransPixel AffineTransPixel affine_trans_pixel corresponds to the following chain of
+transformations (input and output pixels as homogeneous vectors):
+Hence, affine_trans_pixel(HomMat2D, Row, Col, RowTrans, ColTrans) affine_trans_pixel(HomMat2D, Row, Col, RowTrans, ColTrans) AffineTransPixel(HomMat2D, Row, Col, RowTrans, ColTrans) AffineTransPixel(HomMat2D, Row, Col, RowTrans, ColTrans) affine_trans_pixel(HomMat2D, Row, Col, RowTrans, ColTrans)
+corresponds to the following operator sequence:
+affine_trans_point_2d(HomMat2D, Row+0.5, Col+0.5, RowTmp, ColTmp) affine_trans_point_2d(HomMat2D, Row+0.5, Col+0.5, RowTmp, ColTmp) AffineTransPoint2d(HomMat2D, Row+0.5, Col+0.5, RowTmp, ColTmp) AffineTransPoint2d(HomMat2D, Row+0.5, Col+0.5, RowTmp, ColTmp) affine_trans_point_2d(HomMat2D, Row+0.5, Col+0.5, RowTmp, ColTmp)
+RowTrans := RowTmp-0.5
+ColTrans := ColTmp-0.5
+Further Information
+For an explanation of the different 2D coordinate systems
+used in HALCON, see the introduction of chapter
+Transformations / 2D Transformations .
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+Parameters
+HomMat2D HomMat2D HomMat2D homMat2D hom_mat_2d (input_control) hom_mat2d → HHomMat2D , HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+Input transformation matrix.
+Row Row Row row row (input_control) point.x(-array) → HTuple MaybeSequence[Union[float, int]] HTuple Htuple (real / integer) ( double / int / long) ( double / Hlong) ( double / Hlong)
+Input pixel(s) (row coordinate).
+Default:
+64
+Suggested values:
+0, 16, 32, 64, 128, 256, 512, 1024
+Col Col Col col col (input_control) point.y(-array) → HTuple MaybeSequence[Union[float, int]] HTuple Htuple (real / integer) ( double / int / long) ( double / Hlong) ( double / Hlong)
+Input pixel(s) (column coordinate).
+Default:
+64
+Suggested values:
+0, 16, 32, 64, 128, 256, 512, 1024
+RowTrans RowTrans RowTrans rowTrans row_trans (output_control) point.x(-array) → HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+Output pixel(s) (row coordinate).
+ColTrans ColTrans ColTrans colTrans col_trans (output_control) point.y(-array) → HTuple Sequence[float] HTuple Htuple (real) ( double ) ( double ) ( double )
+Output pixel(s) (column coordinate).
+Result
+If the matrix HomMat2D HomMat2D HomMat2D homMat2D hom_mat_2d represents an affine transformation
+(i.e., not a projective transformation),
+affine_trans_pixel affine_trans_pixel AffineTransPixel AffineTransPixel affine_trans_pixel returns 2 (
+H_MSG_TRUE )
+. Otherwise, an exception
+is raised.
+Possible Predecessors
+hom_mat2d_translate hom_mat2d_translate HomMat2dTranslate HomMat2dTranslate hom_mat2d_translate ,
+hom_mat2d_translate_local hom_mat2d_translate_local HomMat2dTranslateLocal HomMat2dTranslateLocal hom_mat2d_translate_local ,
+hom_mat2d_scale hom_mat2d_scale HomMat2dScale HomMat2dScale hom_mat2d_scale ,
+hom_mat2d_scale_local hom_mat2d_scale_local HomMat2dScaleLocal HomMat2dScaleLocal hom_mat2d_scale_local ,
+hom_mat2d_rotate hom_mat2d_rotate HomMat2dRotate HomMat2dRotate hom_mat2d_rotate ,
+hom_mat2d_rotate_local hom_mat2d_rotate_local HomMat2dRotateLocal HomMat2dRotateLocal hom_mat2d_rotate_local ,
+hom_mat2d_slant hom_mat2d_slant HomMat2dSlant HomMat2dSlant hom_mat2d_slant ,
+hom_mat2d_slant_local hom_mat2d_slant_local HomMat2dSlantLocal HomMat2dSlantLocal hom_mat2d_slant_local ,
+hom_mat2d_reflect hom_mat2d_reflect HomMat2dReflect HomMat2dReflect hom_mat2d_reflect ,
+hom_mat2d_reflect_local hom_mat2d_reflect_local HomMat2dReflectLocal HomMat2dReflectLocal hom_mat2d_reflect_local
+Alternatives
+affine_trans_point_2d affine_trans_point_2d AffineTransPoint2d AffineTransPoint2d affine_trans_point_2d
+Module
+Foundation
+Classes Classes | | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

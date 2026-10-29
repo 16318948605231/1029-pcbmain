@@ -1,0 +1,80 @@
+intersection [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+25.11.0.0 / HALCON Operator Reference / Regions / Sets
+HDevelop
+.NET
+Python
+C++
+C
+ClassesClasses |  | Operators
+intersectionintersectionIntersectionIntersectionintersection (Operator)
+Name
+intersectionintersectionIntersectionIntersectionintersection — Calculate the intersection of two regions.
+Signature
+intersection(Region1, Region2 : RegionIntersection :  : )
+Herror intersection(const Hobject Region1, const Hobject Region2, Hobject* RegionIntersection)
+Herror T_intersection(const Hobject Region1, const Hobject Region2, Hobject* RegionIntersection)
+void Intersection(const HObject& Region1, const HObject& Region2, HObject* RegionIntersection)
+HRegion HRegion::Intersection(const HRegion& Region2) const
+static void HOperatorSet.Intersection(HObject region1, HObject region2, out HObject regionIntersection)
+HRegion HRegion.Intersection(HRegion region2)
+def intersection(region_1: HObject, region_2: HObject) -> HObject
+Description
+intersectionintersectionIntersectionIntersectionintersection calculates the intersection of the regions
+in Region1Region1Region1region1region_1 with the regions in Region2Region2Region2region2region_2.  Each
+region in Region1Region1Region1region1region_1 is intersected with all regions in
+Region2Region2Region2region2region_2. That is, internally all regions of  Region2Region2Region2region2region_2
+are united to a single region before the individual regions of
+Region1Region1Region1region1region_1 are intersected with the united region. The order of
+regions in RegionIntersectionRegionIntersectionRegionIntersectionregionIntersectionregion_intersection is identical to the order
+of regions in Region1Region1Region1region1region_1.
+Attention
+Empty input regions are permitted.  Because empty result regions are
+possible, the system flag 'store_empty_region'"store_empty_region""store_empty_region""store_empty_region""store_empty_region" should be
+set appropriately.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Processed without parallelization.
+Parameters
+Region1Region1Region1region1region_1 (input_object)  region(-array) → objectHRegionHObjectHObjectHobject
+Regions to be intersected with all regions in Region2.
+Region2Region2Region2region2region_2 (input_object)  region(-array) → objectHRegionHObjectHObjectHobject
+Regions with which Region1 is intersected.
+RegionIntersectionRegionIntersectionRegionIntersectionregionIntersectionregion_intersection (output_object)  region(-array) → objectHRegionHObjectHObjectHobject *
+Result of the intersection.
+Number of elements:
+RegionIntersection <= Region1
+Complexity
+Let N be the number of regions in Region1Region1Region1region1region_1,
+be
+their average area, and
+be the total area of all regions in
+Region2Region2Region2region2region_2.  Then the runtime complexity is
+.
+Result
+intersectionintersectionIntersectionIntersectionintersection always returns 2 (
+H_MSG_TRUE)
+.  The behavior in case of
+empty input (no regions given) can be set via
+set_system('no_object_result',<Result>)set_system("no_object_result",<Result>)SetSystem("no_object_result",<Result>)SetSystem("no_object_result",<Result>)set_system("no_object_result",<Result>)
+and the behavior in case of an empty input region via
+set_system('empty_region_result',<Result>)set_system("empty_region_result",<Result>)SetSystem("empty_region_result",<Result>)SetSystem("empty_region_result",<Result>)set_system("empty_region_result",<Result>).
+If necessary, an exception is raised.
+Possible Predecessors
+thresholdthresholdThresholdThresholdthreshold,
+connectionconnectionConnectionConnectionconnection,
+regiongrowingregiongrowingRegiongrowingRegiongrowingregiongrowing,
+pouringpouringPouringPouringpouring
+Possible Successors
+select_shapeselect_shapeSelectShapeSelectShapeselect_shape,
+disp_regiondisp_regionDispRegionDispRegiondisp_region
+See also
+union1union1Union1Union1union1,
+union2union2Union2Union2union2,
+complementcomplementComplementComplementcomplement
+Module
+Foundation
+ClassesClasses |  | Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on

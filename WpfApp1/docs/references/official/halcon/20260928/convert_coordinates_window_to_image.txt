@@ -1,0 +1,135 @@
+convert_coordinates_window_to_image [HALCON Operator Reference / Version 25.11.0.0]
+
+HALCON
+25.11.0.0 / HALCON Operator Reference / Graphics / Parameters
+
+HDevelop
+
+.NET
+
+Python
+
+C++
+
+C
+
+ClassesClasses | | Operators
+
+convert_coordinates_window_to_imageT_convert_coordinates_window_to_imageConvertCoordinatesWindowToImageConvertCoordinatesWindowToImageconvert_coordinates_window_to_image (Operator)
+
+Name
+
+convert_coordinates_window_to_imageT_convert_coordinates_window_to_imageConvertCoordinatesWindowToImageConvertCoordinatesWindowToImageconvert_coordinates_window_to_image — Convert window coordinates to image coordinates
+
+Signature
+
+convert_coordinates_window_to_image( : : WindowHandle, RowWindow, ColumnWindow : RowImage, ColumnImage)
+
+Herror T_convert_coordinates_window_to_image(const Htuple WindowHandle, const Htuple RowWindow, const Htuple ColumnWindow, Htuple* RowImage, Htuple* ColumnImage)
+
+void ConvertCoordinatesWindowToImage(const HTuple& WindowHandle, const HTuple& RowWindow, const HTuple& ColumnWindow, HTuple* RowImage, HTuple* ColumnImage)
+
+void HWindow::ConvertCoordinatesWindowToImage(const HTuple& RowWindow, const HTuple& ColumnWindow, HTuple* RowImage, HTuple* ColumnImage) const
+
+void HWindow::ConvertCoordinatesWindowToImage(double RowWindow, double ColumnWindow, double* RowImage, double* ColumnImage) const
+
+static void HOperatorSet.ConvertCoordinatesWindowToImage(HTuple windowHandle, HTuple rowWindow, HTuple columnWindow, out HTuple rowImage, out HTuple columnImage)
+
+void HWindow.ConvertCoordinatesWindowToImage(HTuple rowWindow, HTuple columnWindow, out HTuple rowImage, out HTuple columnImage)
+
+void HWindow.ConvertCoordinatesWindowToImage(double rowWindow, double columnWindow, out double rowImage, out double columnImage)
+
+def convert_coordinates_window_to_image(window_handle: HHandle, row_window: MaybeSequence[float], column_window: MaybeSequence[float]) -> Tuple[Sequence[float], Sequence[float]]
+
+def convert_coordinates_window_to_image_s(window_handle: HHandle, row_window: MaybeSequence[float], column_window: MaybeSequence[float]) -> Tuple[float, float]
+
+Description
+
+convert_coordinates_window_to_imageconvert_coordinates_window_to_imageConvertCoordinatesWindowToImageConvertCoordinatesWindowToImageconvert_coordinates_window_to_image converts window coordinates
+RowWindowRowWindowRowWindowrowWindowrow_window and ColumnWindowColumnWindowColumnWindowcolumnWindowcolumn_window into image coordinates
+RowImageRowImageRowImagerowImagerow_image and ColumnImageColumnImageColumnImagecolumnImagecolumn_image based on the displayed image part
+and the window size of the window defined in WindowHandleWindowHandleWindowHandlewindowHandlewindow_handle.
+
+Execution Information
+
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+
+Multithreading scope: global (may be called from any thread).
+
+Processed without parallelization.
+
+Parameters
+
+WindowHandleWindowHandleWindowHandlewindowHandlewindow_handle (input_control) window → HWindow, HTupleHHandleHTupleHtuple (handle) (IntPtr) (HHandle) (handle)
+
+Window handle.
+
+RowWindowRowWindowRowWindowrowWindowrow_window (input_control) coordinates.y(-array) → HTupleMaybeSequence[float]HTupleHtuple (real) (double) (double) (double)
+
+Row (Y) in window coordinates.
+
+ColumnWindowColumnWindowColumnWindowcolumnWindowcolumn_window (input_control) coordinates.x(-array) → HTupleMaybeSequence[float]HTupleHtuple (real) (double) (double) (double)
+
+Column (X) in window coordinates.
+
+RowImageRowImageRowImagerowImagerow_image (output_control) coordinates.y(-array) → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+
+Row in image coordinates.
+
+ColumnImageColumnImageColumnImagecolumnImagecolumn_image (output_control) coordinates.x(-array) → HTupleSequence[float]HTupleHtuple (real) (double) (double) (double)
+
+Column in image coordinates.
+
+Example (HDevelop)
+
+read_image (Image, 'printer_chip/printer_chip_01')
+dev_get_window (WindowHandle)
+get_window_extents (WindowHandle, Row, Column, Width, Height)
+dev_set_part (450, 300, 750, 600)
+dev_display (Image)
+*
+* Generate rectangle in image coordinates
+Row := [474, 746]
+Column := [314, 589]
+gen_rectangle1 (Rectangle1, Row[0], Column[0], Row[1], Column[1])
+* Convert rectangle corner points to window coordinates
+convert_coordinates_image_to_window (WindowHandle, Row[[0,1,0,1]], \
+Column[[0,0,1,1]], RowWindow, ColumnWindow)
+*
+* Window center in window coordinates
+WindowCenterRow := Height/2-1
+WindowCenterColumn := Width/2-1
+* Convert window center to image coordinates
+convert_coordinates_window_to_image (WindowHandle, WindowCenterRow, \
+WindowCenterColumn, RowImage, ColumnImage)
+*
+* Display all points in image coordinates
+dev_display (Image)
+disp_cross (WindowHandle, Row[[0,1,0,1]], Column[[0,0,1,1]], 6, rad(45))
+disp_cross (WindowHandle, RowImage, ColumnImage, 6, 0)
+
+Result
+
+convert_coordinates_window_to_imageconvert_coordinates_window_to_imageConvertCoordinatesWindowToImageConvertCoordinatesWindowToImageconvert_coordinates_window_to_image returns 2 (
+H_MSG_TRUE)
+if the window is valid.
+Otherwise an exception is raised.
+
+Possible Predecessors
+
+set_window_extentsset_window_extentsSetWindowExtentsSetWindowExtentsset_window_extents,
+set_partset_partSetPartSetPartset_part
+
+See also
+
+convert_coordinates_image_to_windowconvert_coordinates_image_to_windowConvertCoordinatesImageToWindowConvertCoordinatesImageToWindowconvert_coordinates_image_to_window
+
+Module
+
+Foundation
+
+ClassesClasses | | Operators
+
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+
+Follow us on

@@ -1,0 +1,189 @@
+get_grayval [HALCON Operator Reference / Version 25.11.0.0]
+
+HALCON
+25.11.0.0 / HALCON Operator Reference / Image / Access
+
+HDevelop
+
+.NET
+
+Python
+
+C++
+
+C
+
+ClassesClasses | | Operators
+
+get_grayvalT_get_grayvalGetGrayvalGetGrayvalget_grayval (Operator)
+
+Name
+
+get_grayvalT_get_grayvalGetGrayvalGetGrayvalget_grayval — Access the gray values of an image object.
+
+Signature
+
+get_grayval(Image : : Row, Column : Grayval)
+
+Herror T_get_grayval(const Hobject Image, const Htuple Row, const Htuple Column, Htuple* Grayval)
+
+void GetGrayval(const HObject& Image, const HTuple& Row, const HTuple& Column, HTuple* Grayval)
+
+HTuple HImage::GetGrayval(const HTuple& Row, const HTuple& Column) const
+
+HTuple HImage::GetGrayval(Hlong Row, Hlong Column) const
+
+static void HOperatorSet.GetGrayval(HObject image, HTuple row, HTuple column, out HTuple grayval)
+
+HTuple HImage.GetGrayval(HTuple row, HTuple column)
+
+HTuple HImage.GetGrayval(int row, int column)
+
+def get_grayval(image: HObject, row: MaybeSequence[int], column: MaybeSequence[int]) -> Sequence[Union[int, float]]
+
+Description
+
+The parameter GrayvalGrayvalGrayvalgrayvalgrayval is a tuple of floating point numbers
+or integer numbers which returns the gray values of several pixels
+of ImageImageImageimageimage. For a multi-channel image, a group of elements,
+in particular one value for each channel (or two values for each
+channel for complex or vector field images), is returned for each
+pixel. The row coordinates of the pixels are specified in the tuple
+RowRowRowrowrow, the column coordinates are specified in the tuple
+ColumnColumnColumncolumncolumn.
+
+Note that get_grayvalget_grayvalGetGrayvalGetGrayvalget_grayval does not take the domain of the image
+into account, i.e., if the domain has been reduced, e.g., with
+reduce_domainreduce_domainReduceDomainReduceDomainreduce_domain, gray values are returned even for points that
+lie outside the domain.
+
+Attention
+
+The type of the values of GrayvalGrayvalGrayvalgrayvalgrayval depends on the type of
+the gray values of the channels of the image ImageImageImageimageimage. The
+operator get_grayvalget_grayvalGetGrayvalGetGrayvalget_grayval produces quite some overhead.
+Typically, it is used to get single gray values of an image (e.g.,
+get_mpositionget_mpositionGetMpositionGetMpositionget_mposition followed by get_grayvalget_grayvalGetGrayvalGetGrayvalget_grayval). It is not
+suitable for programming image processing operations such as
+filters. In this case it is more useful to use the operator
+get_image_pointer1get_image_pointer1GetImagePointer1GetImagePointer1get_image_pointer1 and to directly use the C or C++
+interface for integrating own procedures.
+
+Execution Information
+
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+
+Multithreading scope: global (may be called from any thread).
+
+Processed without parallelization.
+
+Parameters
+
+ImageImageImageimageimage (input_object) (multichannel-)image → objectHImageHObjectHObjectHobject (byte / direction / cyclic / int1 / int2 / uint2 / int4 / int8 / real / complex / vector_field)
+
+Image whose gray value is to be accessed.
+
+RowRowRowrowrow (input_control) point.y(-array) → HTupleMaybeSequence[int]HTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+
+Row coordinates of pixels to be viewed.
+
+Default:
+0
+
+Suggested values:
+0, 64, 128, 256, 512, 1024
+
+Value range:
+0
+≤
+
+Row
+Row
+Row
+row
+row
+
+≤
+32767 (lin)
+
+Minimum increment:
+1
+
+Recommended increment:
+1
+
+Restriction:
+0 <= Row && Row < height(Image)
+
+ColumnColumnColumncolumncolumn (input_control) point.x(-array) → HTupleMaybeSequence[int]HTupleHtuple (integer) (int / long) (Hlong) (Hlong)
+
+Column coordinates of pixels to be viewed.
+
+Number of elements:
+Column == Row
+
+Default:
+0
+
+Suggested values:
+0, 64, 128, 256, 512, 1024
+
+Value range:
+0
+≤
+
+Column
+Column
+Column
+column
+column
+
+≤
+32767 (lin)
+
+Minimum increment:
+1
+
+Recommended increment:
+1
+
+Restriction:
+0 <= Column && Column < width(Image)
+
+GrayvalGrayvalGrayvalgrayvalgrayval (output_control) grayval-array → HTupleSequence[Union[int, float]]HTupleHtuple (real / integer) (double / int / long) (double / Hlong) (double / Hlong)
+
+Gray values of indicated pixels.
+
+Result
+
+If the state of the parameters is correct, the operator
+get_grayvalget_grayvalGetGrayvalGetGrayvalget_grayval returns the value 2 (
+H_MSG_TRUE)
+. The behavior in case of
+empty input (no input images available) is set via the operator
+set_system('no_object_result',<Result>)set_system("no_object_result",<Result>)SetSystem("no_object_result",<Result>)SetSystem("no_object_result",<Result>)set_system("no_object_result",<Result>). If necessary, an
+exception is raised.
+
+Possible Predecessors
+
+read_imageread_imageReadImageReadImageread_image
+
+Alternatives
+
+get_image_pointer1get_image_pointer1GetImagePointer1GetImagePointer1get_image_pointer1,
+get_grayval_interpolatedget_grayval_interpolatedGetGrayvalInterpolatedGetGrayvalInterpolatedget_grayval_interpolated,
+get_grayval_contour_xldget_grayval_contour_xldGetGrayvalContourXldGetGrayvalContourXldget_grayval_contour_xld
+
+See also
+
+set_grayvalset_grayvalSetGrayvalSetGrayvalset_grayval
+
+Module
+
+Foundation
+
+ClassesClasses | | Operators
+
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+
+Follow us on

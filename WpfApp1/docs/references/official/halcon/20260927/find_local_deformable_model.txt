@@ -1,0 +1,1502 @@
+find_local_deformable_model [HALCON Operator Reference / Version 25.11.0.0]
+HALCON
+      25.11.0.0
+/
+HALCON Operator Reference
+/
+Matching
+/
+Deformable
+HDevelop
+.NET
+Python
+C++
+C
+Classes
+Classes
+|
+|
+Operators
+find_local_deformable_model
+T_find_local_deformable_model
+FindLocalDeformableModel
+FindLocalDeformableModel
+find_local_deformable_model
+(Operator)
+Name
+find_local_deformable_model
+T_find_local_deformable_model
+FindLocalDeformableModel
+FindLocalDeformableModel
+find_local_deformable_model
+— Find the best matches of a local deformable model in an image.
+Signature
+find_local_deformable_model
+(
+Image
+:
+ImageRectified
+,
+VectorField
+,
+DeformedContours
+:
+ModelID
+,
+AngleStart
+,
+AngleExtent
+,
+ScaleRMin
+,
+ScaleRMax
+,
+ScaleCMin
+,
+ScaleCMax
+,
+MinScore
+,
+NumMatches
+,
+MaxOverlap
+,
+NumLevels
+,
+Greediness
+,
+ResultType
+,
+GenParamName
+,
+GenParamValue
+:
+Score
+,
+Row
+,
+Column
+)
+Herror
+T_find_local_deformable_model
+(const Hobject
+Image
+, Hobject*
+ImageRectified
+, Hobject*
+VectorField
+, Hobject*
+DeformedContours
+, const Htuple
+ModelID
+, const Htuple
+AngleStart
+, const Htuple
+AngleExtent
+, const Htuple
+ScaleRMin
+, const Htuple
+ScaleRMax
+, const Htuple
+ScaleCMin
+, const Htuple
+ScaleCMax
+, const Htuple
+MinScore
+, const Htuple
+NumMatches
+, const Htuple
+MaxOverlap
+, const Htuple
+NumLevels
+, const Htuple
+Greediness
+, const Htuple
+ResultType
+, const Htuple
+GenParamName
+, const Htuple
+GenParamValue
+, Htuple*
+Score
+, Htuple*
+Row
+, Htuple*
+Column
+)
+void
+FindLocalDeformableModel
+(const HObject&
+Image
+, HObject*
+ImageRectified
+, HObject*
+VectorField
+, HObject*
+DeformedContours
+, const HTuple&
+ModelID
+, const HTuple&
+AngleStart
+, const HTuple&
+AngleExtent
+, const HTuple&
+ScaleRMin
+, const HTuple&
+ScaleRMax
+, const HTuple&
+ScaleCMin
+, const HTuple&
+ScaleCMax
+, const HTuple&
+MinScore
+, const HTuple&
+NumMatches
+, const HTuple&
+MaxOverlap
+, const HTuple&
+NumLevels
+, const HTuple&
+Greediness
+, const HTuple&
+ResultType
+, const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+, HTuple*
+Score
+, HTuple*
+Row
+, HTuple*
+Column
+)
+HImage
+HDeformableModel
+::
+FindLocalDeformableModel
+(const HImage&
+Image
+, HImage*
+VectorField
+, HXLDCont*
+DeformedContours
+, double
+AngleStart
+, double
+AngleExtent
+, double
+ScaleRMin
+, double
+ScaleRMax
+, double
+ScaleCMin
+, double
+ScaleCMax
+, double
+MinScore
+, Hlong
+NumMatches
+, double
+MaxOverlap
+, Hlong
+NumLevels
+, double
+Greediness
+, const HTuple&
+ResultType
+, const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+, HTuple*
+Score
+, HTuple*
+Row
+, HTuple*
+Column
+) const
+HImage
+HImage
+::
+FindLocalDeformableModel
+(HImage*
+VectorField
+, HXLDCont*
+DeformedContours
+, const HDeformableModel&
+ModelID
+, double
+AngleStart
+, double
+AngleExtent
+, double
+ScaleRMin
+, double
+ScaleRMax
+, double
+ScaleCMin
+, double
+ScaleCMax
+, double
+MinScore
+, Hlong
+NumMatches
+, double
+MaxOverlap
+, Hlong
+NumLevels
+, double
+Greediness
+, const HTuple&
+ResultType
+, const HTuple&
+GenParamName
+, const HTuple&
+GenParamValue
+, HTuple*
+Score
+, HTuple*
+Row
+, HTuple*
+Column
+) const
+static void
+HOperatorSet
+.
+FindLocalDeformableModel
+(
+HObject
+image
+, out
+HObject
+imageRectified
+, out
+HObject
+vectorField
+, out
+HObject
+deformedContours
+,
+HTuple
+modelID
+,
+HTuple
+angleStart
+,
+HTuple
+angleExtent
+,
+HTuple
+scaleRMin
+,
+HTuple
+scaleRMax
+,
+HTuple
+scaleCMin
+,
+HTuple
+scaleCMax
+,
+HTuple
+minScore
+,
+HTuple
+numMatches
+,
+HTuple
+maxOverlap
+,
+HTuple
+numLevels
+,
+HTuple
+greediness
+,
+HTuple
+resultType
+,
+HTuple
+genParamName
+,
+HTuple
+genParamValue
+, out
+HTuple
+score
+, out
+HTuple
+row
+, out
+HTuple
+column
+)
+HImage
+HDeformableModel
+.
+FindLocalDeformableModel
+(
+HImage
+image
+, out
+HImage
+vectorField
+, out
+HXLDCont
+deformedContours
+, double
+angleStart
+, double
+angleExtent
+, double
+scaleRMin
+, double
+scaleRMax
+, double
+scaleCMin
+, double
+scaleCMax
+, double
+minScore
+, int
+numMatches
+, double
+maxOverlap
+, int
+numLevels
+, double
+greediness
+,
+HTuple
+resultType
+,
+HTuple
+genParamName
+,
+HTuple
+genParamValue
+, out
+HTuple
+score
+, out
+HTuple
+row
+, out
+HTuple
+column
+)
+HImage
+HImage
+.
+FindLocalDeformableModel
+(out
+HImage
+vectorField
+, out
+HXLDCont
+deformedContours
+,
+HDeformableModel
+modelID
+, double
+angleStart
+, double
+angleExtent
+, double
+scaleRMin
+, double
+scaleRMax
+, double
+scaleCMin
+, double
+scaleCMax
+, double
+minScore
+, int
+numMatches
+, double
+maxOverlap
+, int
+numLevels
+, double
+greediness
+,
+HTuple
+resultType
+,
+HTuple
+genParamName
+,
+HTuple
+genParamValue
+, out
+HTuple
+score
+, out
+HTuple
+row
+, out
+HTuple
+column
+)
+def
+find_local_deformable_model
+(
+image
+: HObject,
+model_id
+: HHandle,
+angle_start
+: float,
+angle_extent
+: float,
+scale_rmin
+: float,
+scale_rmax
+: float,
+scale_cmin
+: float,
+scale_cmax
+: float,
+min_score
+: float,
+num_matches
+: int,
+max_overlap
+: float,
+num_levels
+: int,
+greediness
+: float,
+result_type
+: Sequence[str],
+gen_param_name
+: Sequence[str],
+gen_param_value
+: Sequence[Union[int, float, str]]) -> Tuple[HObject, HObject, HObject, Sequence[float], Sequence[float], Sequence[float]]
+Description
+The operator
+find_local_deformable_model
+find_local_deformable_model
+FindLocalDeformableModel
+FindLocalDeformableModel
+find_local_deformable_model
+finds the best
+NumMatches
+NumMatches
+NumMatches
+numMatches
+num_matches
+instances of the locally deformable
+model
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+in the input
+Image
+Image
+Image
+image
+image
+. The model must have been
+created previously by calling
+create_local_deformable_model
+create_local_deformable_model
+CreateLocalDeformableModel
+CreateLocalDeformableModel
+create_local_deformable_model
+or
+read_deformable_model
+read_deformable_model
+ReadDeformableModel
+ReadDeformableModel
+read_deformable_model
+.
+The model is searched within those points of the domain of the
+image in which the model lies completely within the image.
+This means that the model will not be found if it extends beyond
+the borders of the image, even if it would achieve a score
+greater than
+MinScore
+MinScore
+MinScore
+minScore
+min_score
+. Note that, if for a certain pyramid
+level the model touches the image border, it might not be found
+even if it lies completely within the original image.
+As a rule of thumb, the model might not be found if its distance to
+an image border falls below
+.
+This behavior can be changed with
+set_system('border_shape_models','true')
+set_system("border_shape_models","true")
+SetSystem("border_shape_models","true")
+SetSystem("border_shape_models","true")
+set_system("border_shape_models","true")
+, which will cause
+models that extend beyond the image border to be found if they
+achieve a score greater than
+MinScore
+MinScore
+MinScore
+minScore
+min_score
+. Here, points lying
+outside the image are regarded as being occluded, i.e., they lower
+the score.  It should be noted that the runtime of the search will
+increase in this mode.
+Note further, that in rare cases, which occur typically only for
+artificial images, the model might not be found also if for certain
+pyramid levels them model touches the border of the reduced domain.
+Then, it may help to enlarge the reduced domain by
+using, e.g.,
+dilation_circle
+dilation_circle
+DilationCircle
+DilationCircle
+dilation_circle
+.
+The operator
+find_local_deformable_model
+find_local_deformable_model
+FindLocalDeformableModel
+FindLocalDeformableModel
+find_local_deformable_model
+returns the
+Row
+Row
+Row
+row
+row
+and
+Column
+Column
+Column
+column
+column
+coordinates of the found instances.
+Additionally, a rectified part of the image, the respective vector field, and
+the contours of the found deformed model instance can be returned in
+ImageRectified
+ImageRectified
+ImageRectified
+imageRectified
+image_rectified
+,
+VectorField
+VectorField
+VectorField
+vectorField
+vector_field
+, and
+DeformedContours
+DeformedContours
+DeformedContours
+deformedContours
+deformed_contours
+.
+By default, these iconic objects are not returned. In case they are
+needed the parameter
+ResultType
+ResultType
+ResultType
+resultType
+result_type
+should be set to
+'image_rectified'
+"image_rectified"
+"image_rectified"
+"image_rectified"
+"image_rectified"
+,
+'vector_field'
+"vector_field"
+"vector_field"
+"vector_field"
+"vector_field"
+or
+'deformed_contours'
+"deformed_contours"
+"deformed_contours"
+"deformed_contours"
+"deformed_contours"
+.
+The size of
+ImageRectified
+ImageRectified
+ImageRectified
+imageRectified
+image_rectified
+and
+VectorField
+VectorField
+VectorField
+vectorField
+vector_field
+is the smallest
+axis-aligned rectangle of the domain of the image that was used to create
+the local deformable model with
+create_local_deformable_model
+create_local_deformable_model
+CreateLocalDeformableModel
+CreateLocalDeformableModel
+create_local_deformable_model
+.
+The size of the rectified image and the vector field can be expanded in all
+directions by setting
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+to
+'expand_border'
+"expand_border"
+"expand_border"
+"expand_border"
+"expand_border"
+and the
+respective
+GenParamValue
+GenParamValue
+GenParamValue
+genParamValue
+gen_param_value
+to the number of pixels. Optionally, a
+specific direction can be selected with
+'expand_border_top'
+"expand_border_top"
+"expand_border_top"
+"expand_border_top"
+"expand_border_top"
+,
+'expand_border_bottom'
+"expand_border_bottom"
+"expand_border_bottom"
+"expand_border_bottom"
+"expand_border_bottom"
+,
+'expand_border_left'
+"expand_border_left"
+"expand_border_left"
+"expand_border_left"
+"expand_border_left"
+, or
+'expand_border_right'
+"expand_border_right"
+"expand_border_right"
+"expand_border_right"
+"expand_border_right"
+.
+Please note that the returned
+VectorField
+VectorField
+VectorField
+vectorField
+vector_field
+is in absolute coordinates
+and can be used for
+convert_map_type
+convert_map_type
+ConvertMapType
+ConvertMapType
+convert_map_type
+.
+The smoothness of the estimated deformation can be selected with
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+set to
+'deformation_smoothness'
+"deformation_smoothness"
+"deformation_smoothness"
+"deformation_smoothness"
+"deformation_smoothness"
+. The value for
+'deformation_smoothness'
+"deformation_smoothness"
+"deformation_smoothness"
+"deformation_smoothness"
+"deformation_smoothness"
+can be imagined as the size of a smoothing
+filter to the estimated deformation field. A too small value expects
+a strong deformation a too big value expects a rigid object. The
+minimal value for
+'deformation_smoothness'
+"deformation_smoothness"
+"deformation_smoothness"
+"deformation_smoothness"
+"deformation_smoothness"
+is
+3
+,
+a typical value is
+11
+, and the value can be increased further for
+only small global  deformations.
+Finally, the score of each found instance is returned in
+Score
+Score
+Score
+score
+score
+.
+The score is a number between 0 and 1, which is an approximate measure of how
+much of the model is visible in the image.
+For further explanation on the parameters used for the search of a local
+deformable model we refer to the description of
+find_planar_uncalib_deformable_model
+find_planar_uncalib_deformable_model
+FindPlanarUncalibDeformableModel
+FindPlanarUncalibDeformableModel
+find_planar_uncalib_deformable_model
+.
+Execution Information
+Multithreading type: reentrant (runs in parallel with non-exclusive operators).
+Multithreading scope: global (may be called from any thread).
+Automatically parallelized on internal data level.
+Parameters
+Image
+Image
+Image
+image
+image
+(input_object)
+(multichannel-)image
+→
+object
+HImage
+HObject
+HObject
+Hobject
+(byte / uint2)
+Input image in which the model should be found.
+ImageRectified
+ImageRectified
+ImageRectified
+imageRectified
+image_rectified
+(output_object)
+(multichannel-)image(-array)
+→
+object
+HImage
+HObject
+HObject
+Hobject *
+(byte / uint2)
+Rectified image of the found model.
+VectorField
+VectorField
+VectorField
+vectorField
+vector_field
+(output_object)
+singlechannelimage(-array)
+→
+object
+HImage
+HObject
+HObject
+Hobject *
+(vector_field)
+Vector field of the rectification transformation.
+DeformedContours
+DeformedContours
+DeformedContours
+deformedContours
+deformed_contours
+(output_object)
+xld_cont-array
+→
+object
+HXLDCont
+HObject
+HObject
+Hobject *
+Contours of the found instances of the model.
+ModelID
+ModelID
+ModelID
+modelID
+model_id
+(input_control)
+deformable_model
+→
+HDeformableModel
+,
+HTuple
+HHandle
+HTuple
+Htuple
+(handle)
+(
+IntPtr
+)
+(
+HHandle
+)
+(
+handle
+)
+Handle of the model.
+AngleStart
+AngleStart
+AngleStart
+angleStart
+angle_start
+(input_control)
+angle.rad
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Smallest rotation of the model.
+Default:
+-0.39
+Suggested values:
+-3.14, -1.57, -0.79, -0.39, -0.20, 0.0
+AngleExtent
+AngleExtent
+AngleExtent
+angleExtent
+angle_extent
+(input_control)
+angle.rad
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Extent of the rotation angles.
+Default:
+0.79
+Suggested values:
+6.29, 3.14, 1.57, 0.79, 0.39, 0.0
+Restriction:
+AngleExtent >= 0
+ScaleRMin
+ScaleRMin
+ScaleRMin
+scaleRMin
+scale_rmin
+(input_control)
+number
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Minimum scale of the model in row direction.
+Default:
+1.0
+Suggested values:
+0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+Restriction:
+ScaleRMin > 0
+ScaleRMax
+ScaleRMax
+ScaleRMax
+scaleRMax
+scale_rmax
+(input_control)
+number
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Maximum scale of the model in row direction.
+Default:
+1.0
+Suggested values:
+1.0, 1.1, 1.2, 1.3, 1.4, 1.5
+Restriction:
+ScaleRMax >= ScaleRMin
+ScaleCMin
+ScaleCMin
+ScaleCMin
+scaleCMin
+scale_cmin
+(input_control)
+number
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Minimum scale of the model in column direction.
+Default:
+1.0
+Suggested values:
+0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+Restriction:
+ScaleCMin > 0
+ScaleCMax
+ScaleCMax
+ScaleCMax
+scaleCMax
+scale_cmax
+(input_control)
+number
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Maximum scale of the model in column direction.
+Default:
+1.0
+Suggested values:
+1.0, 1.1, 1.2, 1.3, 1.4, 1.5
+Restriction:
+ScaleCMax >= ScaleCMin
+MinScore
+MinScore
+MinScore
+minScore
+min_score
+(input_control)
+real
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Minimum score of the instances of the model to
+be found.
+Default:
+0.5
+Suggested values:
+0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+Value range:
+0
+          ≤
+MinScore
+MinScore
+MinScore
+minScore
+min_score
+≤
+          1
+Minimum increment:
+0.01
+Recommended increment:
+0.05
+NumMatches
+NumMatches
+NumMatches
+numMatches
+num_matches
+(input_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Number of instances of the model to be found
+(or 0 for all matches).
+Default:
+1
+Suggested values:
+0, 1, 2, 3, 4, 5, 10, 20
+MaxOverlap
+MaxOverlap
+MaxOverlap
+maxOverlap
+max_overlap
+(input_control)
+real
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Maximum overlap of the instances of the model
+to be found.
+Default:
+1.0
+Suggested values:
+0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+Value range:
+0
+          ≤
+MaxOverlap
+MaxOverlap
+MaxOverlap
+maxOverlap
+max_overlap
+≤
+          1
+Minimum increment:
+0.01
+Recommended increment:
+0.05
+NumLevels
+NumLevels
+NumLevels
+numLevels
+num_levels
+(input_control)
+integer
+→
+HTuple
+int
+HTuple
+Htuple
+(integer)
+(
+int
+/
+long)
+(
+Hlong
+)
+(
+Hlong
+)
+Number of pyramid levels used in the matching.
+Default:
+0
+List of values:
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+Greediness
+Greediness
+Greediness
+greediness
+greediness
+(input_control)
+real
+→
+HTuple
+float
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+“Greediness” of the search heuristic (0: safe
+but slow; 1: fast but matches may be missed).
+Default:
+0.9
+Suggested values:
+0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+Value range:
+0
+          ≤
+Greediness
+Greediness
+Greediness
+greediness
+greediness
+≤
+          1
+Minimum increment:
+0.01
+Recommended increment:
+0.05
+ResultType
+ResultType
+ResultType
+resultType
+result_type
+(input_control)
+string-array
+→
+HTuple
+Sequence[str]
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+Switch for requested iconic result.
+Default:
+[]
+List of values:
+[],
+'deformed_contours'
+"deformed_contours"
+"deformed_contours"
+"deformed_contours"
+"deformed_contours"
+,
+'image_rectified'
+"image_rectified"
+"image_rectified"
+"image_rectified"
+"image_rectified"
+,
+'vector_field'
+"vector_field"
+"vector_field"
+"vector_field"
+"vector_field"
+GenParamName
+GenParamName
+GenParamName
+genParamName
+gen_param_name
+(input_control)
+string-array
+→
+HTuple
+Sequence[str]
+HTuple
+Htuple
+(string)
+(
+string
+)
+(
+HString
+)
+(
+char*
+)
+The general parameter names.
+Default:
+[]
+List of values:
+[],
+'angle_step'
+"angle_step"
+"angle_step"
+"angle_step"
+"angle_step"
+,
+'deformation_smoothness'
+"deformation_smoothness"
+"deformation_smoothness"
+"deformation_smoothness"
+"deformation_smoothness"
+,
+'expand_border'
+"expand_border"
+"expand_border"
+"expand_border"
+"expand_border"
+,
+'expand_border_bottom'
+"expand_border_bottom"
+"expand_border_bottom"
+"expand_border_bottom"
+"expand_border_bottom"
+,
+'expand_border_left'
+"expand_border_left"
+"expand_border_left"
+"expand_border_left"
+"expand_border_left"
+,
+'expand_border_right'
+"expand_border_right"
+"expand_border_right"
+"expand_border_right"
+"expand_border_right"
+,
+'expand_border_top'
+"expand_border_top"
+"expand_border_top"
+"expand_border_top"
+"expand_border_top"
+,
+'scale_c_step'
+"scale_c_step"
+"scale_c_step"
+"scale_c_step"
+"scale_c_step"
+,
+'scale_r_step'
+"scale_r_step"
+"scale_r_step"
+"scale_r_step"
+"scale_r_step"
+,
+'subpixel'
+"subpixel"
+"subpixel"
+"subpixel"
+"subpixel"
+GenParamValue
+GenParamValue
+GenParamValue
+genParamValue
+gen_param_value
+(input_control)
+integer-array
+→
+HTuple
+Sequence[Union[int, float, str]]
+HTuple
+Htuple
+(integer /
+real /
+string)
+(
+int
+/
+long /
+double /
+string)
+(
+Hlong
+/
+double /
+HString)
+(
+Hlong
+/
+double /
+char*)
+Values of the general parameters.
+Default:
+[]
+List of values:
+[],
+'least_squares'
+"least_squares"
+"least_squares"
+"least_squares"
+"least_squares"
+,
+'least_squares_high'
+"least_squares_high"
+"least_squares_high"
+"least_squares_high"
+"least_squares_high"
+,
+'least_squares_very_high'
+"least_squares_very_high"
+"least_squares_very_high"
+"least_squares_very_high"
+"least_squares_very_high"
+,
+'none'
+"none"
+"none"
+"none"
+"none"
+Score
+Score
+Score
+score
+score
+(output_control)
+real-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Scores of the found instances of the model.
+Row
+Row
+Row
+row
+row
+(output_control)
+real-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Row coordinates of the found instances of the model.
+Column
+Column
+Column
+column
+column
+(output_control)
+real-array
+→
+HTuple
+Sequence[float]
+HTuple
+Htuple
+(real)
+(
+double
+)
+(
+double
+)
+(
+double
+)
+Column coordinates of the found instances of the model.
+Result
+If the parameters are valid, the operator
+find_local_deformable_model
+find_local_deformable_model
+FindLocalDeformableModel
+FindLocalDeformableModel
+find_local_deformable_model
+returns the value
+2
+(
+H_MSG_TRUE
+)
+    .  If
+necessary an exception is raised.
+Possible Predecessors
+create_local_deformable_model
+create_local_deformable_model
+CreateLocalDeformableModel
+CreateLocalDeformableModel
+create_local_deformable_model
+,
+create_local_deformable_model_xld
+create_local_deformable_model_xld
+CreateLocalDeformableModelXld
+CreateLocalDeformableModelXld
+create_local_deformable_model_xld
+,
+read_deformable_model
+read_deformable_model
+ReadDeformableModel
+ReadDeformableModel
+read_deformable_model
+Module
+Matching
+Classes
+Classes
+|
+|
+Operators
+HALCON Operator Reference 25.11.0.0 Copyright © 1996-2025 MVTec Software GmbH
+Follow us on
